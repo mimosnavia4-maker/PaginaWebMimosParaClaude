@@ -1,0 +1,6 @@
+{
+  "name": "Tintorería Mimos Navia – Tintorería y Lavandería en Vigo",
+  "description": "Tintorería y lavandería profesional en Vigo con recogida a domicilio. Cuidado de prendas, coladas, edredones, alfombras y servicio para apartamentos turísticos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,43 @@
+# robots.txt optimizado para SEO y AEO (Buscadores tradicionales e Inteligencia Artificial)
+# Tintorería Mimos Navia, S.L. (https://www.tintoreriamimos.es)
+
+User-agent: *
+Allow: /
+# Las páginas de zonas locales permanecen en borrador (noindex) hasta completar las confirmaciones pendientes
+Disallow: /zonas/
+
+# Buscadores de IA y asistentes de respuesta (AEO: ChatGPT Search, Perplexity, Gemini, Claude, Apple)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /zonas/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /zonas/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /zonas/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /zonas/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /zonas/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /zonas/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /zonas/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /zonas/
+
+Sitemap: https://www.tintoreriamimos.es/sitemap.xml
+# Archivo estructurado para modelos de lenguaje (AEO): https://www.tintoreriamimos.es/llms.txt

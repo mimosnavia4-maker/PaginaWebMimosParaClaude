@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Fuente corporativa Sony Sketch (usa la fuente instalada o Patrick Hand como alternativa manuscrita limpia) */
+@font-face {
+  font-family: "Sony Sketch";
+  src: local("Sony Sketch"), local("Sony Sketch EF");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Nunito Sans", system-ui, -apple-system, sans-serif;
+  --font-sketch: "Sony Sketch", "Patrick Hand", cursive, sans-serif;
+  --font-sans: "Nunito Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Paleta estricta Sección 8 del Plan Maestro: Azul marino (#002147), Azul vivo rótulo (#0F76BB), Blanco, Verde WhatsApp (#178A47). Sin turquesa. */
+  --color-mimos-navy: #002147;
+  --color-mimos-navy-light: #0a3161;
+  --color-mimos-blue: #0F76BB;
+  --color-mimos-blue-dark: #0B5C94;
+  --color-mimos-whatsapp: #178A47;
+  --color-mimos-whatsapp-hover: #126E38;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-padding-top: 5rem;
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+}
+
+.font-sketch {
+  font-family: var(--font-sketch);
+  letter-spacing: 0.01em;
+}
+
+/* Visible accessibility focus rings */
+:focus-visible {
+  outline: 2px solid #0F76BB;
+  outline-offset: 2px;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Google Maps InfoWindow Custom Styling: No scrollbars & seamless padding */
+.gm-style .gm-style-iw-c {
+  padding: 12px 14px !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  max-width: 380px !important;
+}
+
+.gm-style .gm-style-iw-d {
+  overflow: visible !important;
+  max-height: none !important;
+  max-width: none !important;
+}
+
+.gm-style .gm-style-iw-d::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.gm-style .gm-style-iw-tc::after {
+  background: white !important;
+}

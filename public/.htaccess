@@ -1,0 +1,54 @@
+# Configuración Apache (.htaccess) para Tintorería Mimos Navia (www.tintoreriamimos.es)
+# Optimizado para ProfesionalHosting (Apache/Plesk), SEO y AEO (archivos HTML pre-renderizados por ruta + llms.txt)
+
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType "text/plain; charset=UTF-8" .txt
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirección 301 de URLs antiguas de alfombras y reparación de alfombras hacia la única URL canónica /limpieza-alfombras-vigo (Sección 16)
+  RewriteRule ^servicios/alfombras-pieles/?$ /limpieza-alfombras-vigo [L,R=301]
+  RewriteRule ^alfombras-vigo/?$ /limpieza-alfombras-vigo [L,R=301]
+  RewriteRule ^servicios/limpieza-de-alfombras(\.html)?/?$ /limpieza-alfombras-vigo [L,R=301]
+  RewriteRule ^servicios/reparacion-de-alfombras(\.html)?/?$ /limpieza-alfombras-vigo [L,R=301]
+
+  # Redirección 301 de URLs antiguas de pieles y cuero hacia /limpieza-pieles-cuero-vigo
+  RewriteRule ^servicios/limpieza-de-pieles-y-cuero(\.html)?/?$ /limpieza-pieles-cuero-vigo [L,R=301]
+  RewriteRule ^pieles-y-cuero-vigo/?$ /limpieza-pieles-cuero-vigo [L,R=301]
+
+  # Redirección 301 de variantes de costura y arreglos hacia la única URL canónica /arreglos-de-ropa-vigo (Sección 7)
+  RewriteRule ^servicios/costura-arreglos/?$ /arreglos-de-ropa-vigo [L,R=301]
+  RewriteRule ^costura-arreglos-vigo/?$ /arreglos-de-ropa-vigo [L,R=301]
+  RewriteRule ^arreglos-ropa-vigo/?$ /arreglos-de-ropa-vigo [L,R=301]
+
+  # Compatibilidad 301 con las URLs antiguas .html de las páginas de subvenciones públicas y empleo
+  RewriteRule ^feder\.html$ /feder [L,R=301]
+  RewriteRule ^programa-bono-energia-peme-2025-in417z\.html$ /programa-bono-energia-peme-2025-in417z [L,R=301]
+  RewriteRule ^empleo-unete-a-nosotros\.html$ /empleo-unete-a-nosotros [L,R=301]
+
+  # Redirección 301 de artículos antiguos del blog hacia la nueva estructura limpia
+  RewriteRule ^blog/9-blog/26-la-colada-en-casa(\.html)?/?$ /blog/la-colada-en-casa [L,R=301]
+  RewriteRule ^blog/9-blog/22-montar-tu-propia-tintoreria-lavanderia(\.html)?/?$ /blog/montar-tu-propia-tintoreria-lavanderia [L,R=301]
+
+  # Quitar barra final en rutas (excepto la raíz /) para mantener una única URL canónica limpia
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+  # Si la ruta corresponde a una carpeta pre-renderizada con su propio index.html (AEO/SEO), servir ese index.html directamente
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.+)$ $1/index.html [L]
+
+  # Servir archivos existentes directamente (robots.txt, llms.txt, sitemap.xml, imágenes, CSS, JS)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Fallback SPA para cualquier otra ruta
+  RewriteRule ^ index.html [L]
+</IfModule>

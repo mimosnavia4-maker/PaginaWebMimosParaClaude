@@ -1,0 +1,372 @@
+[
+  {
+    "id": "as-teixugueiras",
+    "activo": true,
+    "tipo": "tienda",
+    "nombre_comercio": "Tintorería Mimos Navia, S.L.",
+    "nombre_mostrado": "Tienda Mimos As Teixugueiras (Sede Navia)",
+    "localidad": "Vigo",
+    "zona_slug": "vigo",
+    "direccion": "C/ As Teixugueiras, 11, local 9",
+    "codigo_postal": "36212",
+    "latitud": 42.2088,
+    "longitud": -8.7634,
+    "telefono": "986125141",
+    "telefonos_mostrados": "986 125 141 · 655 536 844",
+    "horario": {
+      "resumen": "L-V 9.30-14.00 y 16.00-20.00 · Sáb 10.00-13.30",
+      "lunes_a_viernes": "09:30–14:00 y 16:00–20:00",
+      "sabado": "10:00–13:30",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar",
+      "limpieza_alfombras",
+      "costura_arreglos",
+      "alojamientos_empresas"
+    ],
+    "arreglos_confirmados": [
+      "Bajos y bastillas en pantalones, faldas, vestidos y abrigos",
+      "Cambio y reparación de cremalleras y botones",
+      "Estrechar y ensanchar prendas y ajustes de cintura",
+      "Zurcidos, descosidos y rotos en camisas, chaquetas y prendas de calle"
+    ],
+    "servicios_admitidos": [
+      "Tintorería profesional",
+      "Lavandería",
+      "Planchado profesional",
+      "Costura y arreglos de ropa",
+      "Colada familiar (lavado, secado y doblado)",
+      "Limpieza de textiles del hogar (edredones, mantas, ropa de cama, alfombras y cortinas)",
+      "Recepción para alojamientos turísticos y empresas"
+    ],
+    "dias_de_ruta": "Atención diaria directa en tienda central",
+    "plazo": "Se confirma en tienda o por WhatsApp según prenda y tratamiento",
+    "hora_limite": "Durante todo el horario de apertura",
+    "instrucciones_entrega_recogida": "Entrega y recogida directa en nuestra tienda principal de Navia sin cita previa, tanto para tintorería, lavandería y textiles del hogar como para costura y arreglos de ropa.",
+    "foto": "/osito-mimos.jpg",
+    "permiso_comercio": "Tienda propia de Tintorería Mimos Navia, S.L."
+  },
+  {
+    "id": "rua-venezuela",
+    "activo": true,
+    "tipo": "tienda",
+    "nombre_comercio": "Tintorería Mimos Navia, S.L.",
+    "nombre_mostrado": "Tienda Mimos Rúa Venezuela",
+    "localidad": "Vigo",
+    "zona_slug": "vigo",
+    "direccion": "Rúa de Venezuela, 34 (bajos Parking Venezuela)",
+    "codigo_postal": "36203",
+    "latitud": 42.2314,
+    "longitud": -8.7208,
+    "telefono": "646946764",
+    "telefonos_mostrados": "646 946 764",
+    "horario": {
+      "resumen": "L-V 10.00-13.30 y 16.30-19.30 · Sáb cerrado",
+      "lunes_a_viernes": "10:00–13:30 y 16:30–19:30",
+      "sabado": "Cerrado",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar",
+      "limpieza_alfombras",
+      "costura_arreglos"
+    ],
+    "arreglos_confirmados": [
+      "Bajos y bastillas en pantalones, faldas, vestidos y abrigos",
+      "Cambio y reparación de cremalleras y botones",
+      "Estrechar y ensanchar prendas y ajustes de cintura",
+      "Zurcidos, descosidos y rotos en camisas, chaquetas y prendas de calle"
+    ],
+    "servicios_admitidos": [
+      "Tintorería profesional",
+      "Lavandería",
+      "Planchado profesional",
+      "Costura y arreglos de ropa",
+      "Colada familiar",
+      "Limpieza de textiles del hogar (edredones, mantas, cortinas y alfombras)"
+    ],
+    "dias_de_ruta": "Atención directa en tienda propia",
+    "plazo": "Se confirma en tienda o por WhatsApp según prenda y tratamiento",
+    "hora_limite": "Durante todo el horario de apertura",
+    "instrucciones_entrega_recogida": "Entrega y recogida directa en nuestra tienda propia de Rúa de Venezuela, 34 para servicios de tintorería, lavandería, textiles del hogar y arreglos de ropa.",
+    "foto": "/tienda-mimos.jpg",
+    "permiso_comercio": "Tienda propia de Tintorería Mimos Navia, S.L."
+  },
+  {
+    "id": "gregorio-espino",
+    "activo": true,
+    "tipo": "tienda",
+    "nombre_comercio": "Tintorería Mimos Navia, S.L.",
+    "nombre_mostrado": "Tienda Mimos Gregorio Espino",
+    "localidad": "Vigo",
+    "zona_slug": "vigo",
+    "direccion": "Avda. Alcalde Gregorio Espino, 44",
+    "codigo_postal": "36205",
+    "latitud": 42.2301,
+    "longitud": -8.7052,
+    "telefono": "986192787",
+    "telefonos_mostrados": "986 192 787 · 655 536 844",
+    "horario": {
+      "resumen": "L-V 9.30-13.30 y 16.30-20.00 · Sáb 10.00-13.00",
+      "lunes_a_viernes": "09:30–13:30 y 16:30–20:00",
+      "sabado": "10:00–13:00",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar",
+      "limpieza_alfombras",
+      "costura_arreglos"
+    ],
+    "arreglos_confirmados": [
+      "Bajos y bastillas en pantalones, faldas, vestidos y abrigos",
+      "Cambio y reparación de cremalleras y botones",
+      "Estrechar y ensanchar prendas y ajustes de cintura",
+      "Zurcidos, descosidos y rotos en camisas, chaquetas y prendas de calle"
+    ],
+    "servicios_admitidos": [
+      "Tintorería profesional",
+      "Lavandería",
+      "Planchado profesional",
+      "Costura y arreglos de ropa",
+      "Colada familiar",
+      "Limpieza de textiles del hogar (edredones, mantas, cortinas y alfombras)"
+    ],
+    "dias_de_ruta": "Atención directa en tienda propia",
+    "plazo": "Se confirma en tienda o por WhatsApp según prenda y tratamiento",
+    "hora_limite": "Durante todo el horario de apertura",
+    "instrucciones_entrega_recogida": "Entrega y recogida directa en nuestra tienda propia de Avda. Alcalde Gregorio Espino, 44 para tintorería, lavandería, textiles del hogar y arreglos de ropa.",
+    "foto": "/tienda-mimos.jpg",
+    "permiso_comercio": "Tienda propia de Tintorería Mimos Navia, S.L."
+  },
+  {
+    "id": "punto-redondela",
+    "activo": true,
+    "tipo": "punto",
+    "nombre_comercio": "Establecimiento colaborador en C/ José Regojo, 29",
+    "nombre_mostrado": "Servicio de Tintorería Mimos disponible en establecimiento colaborador de Redondela",
+    "localidad": "Redondela",
+    "zona_slug": "redondela",
+    "direccion": "C/ José Regojo, 29 bajo",
+    "codigo_postal": "36800",
+    "latitud": 42.2836,
+    "longitud": -8.6096,
+    "telefono": "613624724",
+    "telefonos_mostrados": "613 624 724",
+    "horario": {
+      "resumen": "L-V 10.00-13.30 y 17.00-20.00 · Sáb 10.00-13.00",
+      "lunes_a_viernes": "10:00–13:30 y 17:00–20:00",
+      "sabado": "10:00–13:00",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar"
+    ],
+    "arreglos_confirmados": [],
+    "servicios_admitidos": [
+      "Recepción de tintorería, lavandería, planchado y colada familiar (tratamiento en instalaciones Mimos)",
+      "Recepción de edredones, mantas, cortinas y textiles del hogar (tratamiento en instalaciones Mimos)"
+    ],
+    "dias_de_ruta": "Consultar días de recogida y reparto con Mimo por WhatsApp",
+    "plazo": "Según tipo de prenda y ruta de reparto del punto",
+    "hora_limite": "Dentro del horario de atención del establecimiento",
+    "instrucciones_entrega_recogida": "Deposita y recoge tus prendas y textiles del hogar para los servicios de Tintorería Mimos en el establecimiento colaborador de C/ José Regojo, 29 bajo en Redondela (tratados en nuestra central de Vigo; este punto no dispone de servicio de costura).",
+    "foto": "/tienda-mimos.jpg",
+    "permiso_comercio": "Establecimiento colaborador independiente"
+  },
+  {
+    "id": "punto-gondomar",
+    "activo": true,
+    "tipo": "punto",
+    "nombre_comercio": "Puntadas No Aire (taller y tienda de costura)",
+    "nombre_mostrado": "Servicio de Tintorería Mimos disponible en Puntadas No Aire, establecimiento colaborador",
+    "localidad": "Gondomar",
+    "zona_slug": "gondomar",
+    "direccion": "C/ Ángel Urzaiz, 6",
+    "codigo_postal": "36380",
+    "latitud": 42.1108,
+    "longitud": -8.7615,
+    "telefono": "630822184",
+    "telefonos_mostrados": "630 822 184",
+    "horario": {
+      "resumen": "L 10.00-13.30 y 16.00-19.00 · M-X 8.00-14.00 y 16.00-19.00 · J-V 8.00-14.00 · Sáb 10.00-13.30",
+      "lunes": "10:00–13:30 y 16:00–19:00",
+      "martes_y_miercoles": "08:00–14:00 y 16:00–19:00",
+      "jueves_y_viernes": "08:00–14:00",
+      "sabado": "10:00–13:30",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar",
+      "costura_arreglos"
+    ],
+    "arreglos_confirmados": [
+      "Bajos y bastillas en pantalones, faldas, vestidos y abrigos",
+      "Cambio y reparación de cremalleras y botones",
+      "Estrechar y ensanchar prendas y ajustes de cintura",
+      "Zurcidos, descosidos y rotos en prendas de vestir"
+    ],
+    "servicios_admitidos": [
+      "Recepción de tintorería, lavandería, planchado y colada familiar (tratamiento en instalaciones Mimos)",
+      "Recepción de edredones, mantas, cortinas y textiles del hogar (tratamiento en instalaciones Mimos)",
+      "Costura y arreglos de ropa"
+    ],
+    "dias_de_ruta": "Consultar días de recogida y reparto con Mimo por WhatsApp",
+    "plazo": "Según tipo de prenda o arreglo y disponibilidad del punto",
+    "hora_limite": "Dentro del horario de atención del establecimiento",
+    "instrucciones_entrega_recogida": "Entrega tus prendas y textiles del hogar en Puntadas No Aire (C/ Ángel Urzaiz, 6, Gondomar), establecimiento colaborador independiente de recogida y entrega para los servicios de Tintorería Mimos que cuenta además con servicio confirmado de costura y arreglos de ropa.",
+    "foto": "/tienda-mimos.jpg",
+    "permiso_comercio": "Establecimiento colaborador independiente"
+  },
+  {
+    "id": "punto-ponteareas",
+    "activo": true,
+    "tipo": "punto",
+    "nombre_comercio": "Arreglado2 (tienda y taller de costura)",
+    "nombre_mostrado": "Servicio de Tintorería Mimos disponible en Arreglado2, establecimiento colaborador",
+    "localidad": "Ponteareas",
+    "zona_slug": "ponteareas",
+    "direccion": "C/ Argentina, 4",
+    "codigo_postal": "36860",
+    "latitud": 42.1746,
+    "longitud": -8.5048,
+    "telefono": "647616615",
+    "telefonos_mostrados": "647 616 615",
+    "horario": {
+      "resumen": "L-V 9.30-13.30 y 16.00-19.30 · Sáb 9.30-13.30",
+      "lunes_a_viernes": "09:30–13:30 y 16:00–19:30",
+      "sabado": "09:30–13:30",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar",
+      "costura_arreglos"
+    ],
+    "arreglos_confirmados": [
+      "Bajos y bastillas en pantalones, faldas, vestidos y abrigos",
+      "Cambio y reparación de cremalleras y botones",
+      "Estrechar y ensanchar prendas y ajustes de cintura",
+      "Zurcidos, descosidos y rotos en prendas de vestir"
+    ],
+    "servicios_admitidos": [
+      "Recepción de tintorería, lavandería, planchado y colada familiar (tratamiento en instalaciones Mimos)",
+      "Recepción de edredones, mantas, cortinas y textiles del hogar (tratamiento en instalaciones Mimos)",
+      "Costura y arreglos de ropa"
+    ],
+    "dias_de_ruta": "Consultar días de recogida y reparto con Mimo por WhatsApp",
+    "plazo": "Según tipo de prenda o arreglo y disponibilidad del punto",
+    "hora_limite": "Dentro del horario de atención del establecimiento",
+    "instrucciones_entrega_recogida": "Deja tus prendas y textiles del hogar en C/ Argentina, 4 (Ponteareas), establecimiento colaborador independiente de recogida y entrega para los servicios de Tintorería Mimos con taller confirmado de costura y arreglos de ropa.",
+    "foto": "/tienda-mimos.jpg",
+    "permiso_comercio": "Establecimiento colaborador independiente"
+  },
+  {
+    "id": "punto-o-porrino",
+    "activo": true,
+    "tipo": "punto",
+    "nombre_comercio": "Telas y Más (tienda y arreglos de costura)",
+    "nombre_mostrado": "Servicio de Tintorería Mimos disponible en Telas y Más, establecimiento colaborador",
+    "localidad": "O Porriño",
+    "zona_slug": "o-porrino",
+    "direccion": "C/ Manuel Rodríguez, 30",
+    "codigo_postal": "36400",
+    "latitud": 42.1618,
+    "longitud": -8.6194,
+    "telefono": "605027652",
+    "telefonos_mostrados": "605 027 652",
+    "horario": {
+      "resumen": "L-V 10.00-13.30 y 17.00-20.30 · Sáb 10.00-13.30",
+      "lunes_a_viernes": "10:00–13:30 y 17:00–20:30",
+      "sabado": "10:00–13:30",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar",
+      "costura_arreglos"
+    ],
+    "arreglos_confirmados": [
+      "Bajos y bastillas en pantalones, faldas, vestidos y abrigos",
+      "Cambio y reparación de cremalleras y botones",
+      "Estrechar y ensanchar prendas y ajustes de cintura",
+      "Zurcidos, descosidos y rotos en prendas de vestir"
+    ],
+    "servicios_admitidos": [
+      "Recepción de tintorería, lavandería, planchado y colada familiar (tratamiento en instalaciones Mimos)",
+      "Recepción de edredones, mantas, cortinas y textiles del hogar (tratamiento en instalaciones Mimos)",
+      "Costura y arreglos de ropa"
+    ],
+    "dias_de_ruta": "Consultar días de recogida y reparto con Mimo por WhatsApp",
+    "plazo": "Según tipo de prenda o arreglo y disponibilidad del punto",
+    "hora_limite": "Dentro del horario de atención del establecimiento",
+    "instrucciones_entrega_recogida": "Entrega tus prendas y textiles del hogar en Telas y Más (C/ Manuel Rodríguez, 30, O Porriño), establecimiento colaborador independiente de recogida y entrega para los servicios de Tintorería Mimos que ofrece además costura y arreglos de ropa.",
+    "foto": "/tienda-mimos.jpg",
+    "permiso_comercio": "Establecimiento colaborador independiente"
+  },
+  {
+    "id": "punto-vigo-dpasso",
+    "activo": true,
+    "tipo": "punto",
+    "nombre_comercio": "D'Passo (cerrajería y zapatería)",
+    "nombre_mostrado": "Servicio de Tintorería Mimos disponible en D'Passo, establecimiento colaborador",
+    "localidad": "Vigo",
+    "zona_slug": "vigo",
+    "direccion": "Camiño Espedrigada, 9 bajo",
+    "codigo_postal": "36210",
+    "latitud": 42.2165,
+    "longitud": -8.7385,
+    "telefono": "986230643",
+    "telefonos_mostrados": "986 230 643",
+    "horario": {
+      "resumen": "L-V 9.30-13.30 y 16.30-20.30 · Sáb cerrado",
+      "lunes_a_viernes": "09:30–13:30 y 16:30–20:30",
+      "sabado": "Cerrado",
+      "domingo": "Cerrado"
+    },
+    "servicios_confirmados": [
+      "tintoreria",
+      "lavanderia",
+      "planchado",
+      "colada_familiar",
+      "textiles_hogar"
+    ],
+    "arreglos_confirmados": [],
+    "servicios_admitidos": [
+      "Recepción de tintorería, lavandería, planchado y colada familiar (tratamiento en instalaciones Mimos)",
+      "Recepción de edredones, mantas, cortinas y textiles del hogar (tratamiento en instalaciones Mimos)"
+    ],
+    "dias_de_ruta": "Consultar días de recogida y reparto con Mimo por WhatsApp",
+    "plazo": "Según tipo de prenda y ruta de reparto del punto",
+    "hora_limite": "Dentro del horario de atención del establecimiento",
+    "instrucciones_entrega_recogida": "Deposita y recoge tus prendas y textiles del hogar para los servicios de Tintorería Mimos en el establecimiento colaborador D'Passo en Vigo (tratados en nuestra central de Navia; este punto colaborador no dispone de servicio de costura).",
+    "foto": "/tienda-mimos.jpg",
+    "permiso_comercio": "Establecimiento colaborador independiente"
+  }
+]
