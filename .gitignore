@@ -6,3 +6,8 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# AI Studio and local backups
+.aistudio/
+.backup-*
+.gmp_cache/

@@ -336,13 +336,17 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     id="b2b-nombre"
                     type="text"
                     required
+                    autoComplete="name"
+                    aria-required="true"
+                    aria-invalid={Boolean(errorMsg && !nombreEmpresa.trim())}
+                    aria-describedby={errorMsg ? 'b2b-error-msg' : undefined}
                     value={nombreEmpresa}
                     onChange={(e) => {
                       setNombreEmpresa(e.target.value);
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: Apartamentos Ría / Carlos"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                   />
                 </div>
                 <div>
@@ -356,13 +360,17 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     id="b2b-telefono"
                     type="tel"
                     required
+                    autoComplete="tel"
+                    aria-required="true"
+                    aria-invalid={Boolean(errorMsg && !telefono.trim())}
+                    aria-describedby={errorMsg ? 'b2b-error-msg' : undefined}
                     value={telefono}
                     onChange={(e) => {
                       setTelefono(e.target.value);
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: 600 123 456"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                   />
                 </div>
               </div>
@@ -442,7 +450,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     setPreparedReady(false);
                   }}
                   placeholder="Ej.: 2 apartamentos en el centro de Vigo, 4 camas en total..."
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                 />
               </div>
 
@@ -470,7 +478,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
               </label>
 
               {errorMsg && (
-                <p role="alert" className="text-xs font-bold text-red-600 dark:text-red-400">
+                <p id="b2b-error-msg" role="alert" className="text-xs font-bold text-red-600 dark:text-red-400">
                   {errorMsg}
                 </p>
               )}

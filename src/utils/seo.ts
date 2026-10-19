@@ -18,27 +18,9 @@ export interface PageSEOConfig {
   jsonLd: Record<string, unknown> | Record<string, unknown>[];
 }
 
-export const KNOWN_ROUTES: string[] = Array.from(
-  new Set([
-    '/',
-    '/limpieza-alfombras-vigo',
-    '/arreglos-de-ropa-vigo',
-    '/limpieza-profesional-vigo',
-    '/puntos-mimos',
-    '/contacto',
-    '/blog',
-    '/aviso-legal',
-    '/privacidad',
-    '/cookies',
-    '/feder',
-    '/programa-bono-energia-peme-2025-in417z',
-    '/empleo-unete-a-nosotros',
-    '/tienda-mimos-gregorio-espino-vigo',
-    ...SERVICIOS_MIMOS.map((s) => s.url),
-    ...ARTICULOS_BLOG.map((a) => a.url),
-    ...ZONAS_SEO_LOCAL.map((z) => z.url),
-  ])
-);
+import { ALL_ROUTE_PATHS } from '../data/routesSeoData';
+
+export const KNOWN_ROUTES: string[] = ALL_ROUTE_PATHS;
 
 const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/feder.html': '/feder',

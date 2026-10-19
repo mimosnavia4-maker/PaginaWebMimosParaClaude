@@ -175,13 +175,16 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                     type="text"
                     required
                     autoComplete="name"
+                    aria-required="true"
+                    aria-invalid={Boolean(errorMsg && !nombre.trim())}
+                    aria-describedby={errorMsg ? 'pickup-error-msg' : undefined}
                     value={nombre}
                     onChange={(e) => {
                       setNombre(e.target.value);
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: María Castro"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                   />
                 </div>
 
@@ -199,13 +202,16 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       type="tel"
                       required
                       autoComplete="tel"
+                      aria-required="true"
+                      aria-invalid={Boolean(errorMsg && !telefono.trim())}
+                      aria-describedby={errorMsg ? 'pickup-error-msg' : undefined}
                       value={telefono}
                       onChange={(e) => {
                         setTelefono(e.target.value);
                         setPreparedReady(false);
                       }}
                       placeholder="Ej.: 600 123 456"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                     />
                   </div>
 
@@ -255,13 +261,16 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                     type="text"
                     required
                     autoComplete="street-address"
+                    aria-required="true"
+                    aria-invalid={Boolean(errorMsg && !direccion.trim())}
+                    aria-describedby={errorMsg ? 'pickup-error-msg' : undefined}
                     value={direccion}
                     onChange={(e) => {
                       setDireccion(e.target.value);
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: C/ As Teixugueiras, 36212 Vigo"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                   />
                 </div>
 
@@ -282,7 +291,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: 1 edredón de plumas y 2 trajes. Preferiblemente por la tarde."
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                   />
                 </div>
 
@@ -310,7 +319,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                 </label>
 
                 {errorMsg && (
-                  <p role="alert" className="text-xs font-bold text-red-600 dark:text-red-400">
+                  <p id="pickup-error-msg" role="alert" className="text-xs font-bold text-red-600 dark:text-red-400">
                     {errorMsg}
                   </p>
                 )}

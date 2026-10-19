@@ -4,9 +4,10 @@ import { ARTICULOS_BLOG, CONTACT_INFO } from '../data/mimosData';
 
 interface BlogSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
+  isPage?: boolean;
 }
 
-export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate }) => {
+export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = false }) => {
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
 
   return (
@@ -20,12 +21,21 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate }) => {
           <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-2">
             Guías de cuidado textil · Blog de Mimos
           </p>
-          <h2
-            id="consejos-heading"
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
-          >
-            Guías prácticas para conservar tus prendas, textiles del hogar y alojamientos
-          </h2>
+          {isPage ? (
+            <h1
+              id="consejos-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
+            >
+              Guías prácticas para conservar tus prendas, textiles del hogar y alojamientos
+            </h1>
+          ) : (
+            <h2
+              id="consejos-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
+            >
+              Guías prácticas para conservar tus prendas, textiles del hogar y alojamientos
+            </h2>
+          )}
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
             Consejos de expertos para el cuidado textil: manchas difíciles, edredones de plumas, símbolos de lavado, ventajas de externalizar la colada de casa y gestión de alojamientos turísticos.
           </p>

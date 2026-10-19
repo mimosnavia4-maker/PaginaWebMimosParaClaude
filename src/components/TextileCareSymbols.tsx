@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Dialog } from './Dialog';
 import { 
   Search, 
   Printer, 
@@ -736,16 +737,15 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
         ))}
       </div>
 
-      {/* Modal / Ficha Desplegada al hacer clic en un símbolo */}
-      {simboloActivo && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn"
-          onClick={() => setSimboloActivo(null)}
-        >
-          <div 
-            className="w-full max-w-xl rounded-2xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-2xl space-y-5"
-            onClick={(e) => e.stopPropagation()}
-          >
+      {/* Modal / Ficha Desplegada al hacer clic en un símbolo con Dialog accesible */}
+      <Dialog
+        isOpen={Boolean(simboloActivo)}
+        onClose={() => setSimboloActivo(null)}
+        titleId={simboloActivo ? 'simbolo-modal-titulo' : undefined}
+        maxWidthClass="max-w-xl"
+      >
+        {simboloActivo && (
+          <div className="p-6 sm:p-7 space-y-5">
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div 
@@ -758,7 +758,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
                   <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
                     {simboloActivo.categoriaNombre}
                   </span>
-                  <h3 className="text-xl font-extrabold text-[#002147] dark:text-white">
+                  <h3 id="simbolo-modal-titulo" className="text-xl font-extrabold text-[#002147] dark:text-white">
                     {simboloActivo.nombre}
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -768,7 +768,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
               </div>
               <button
                 onClick={() => setSimboloActivo(null)}
-                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center font-bold text-sm"
+                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center font-bold text-sm cursor-pointer"
                 aria-label="Cerrar modal"
               >
                 ✕
@@ -819,8 +819,8 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
               </div>
             )}
           </div>
-        </div>
-      )}
+        )}
+      </Dialog>
 
       {/* Tablas Nativas HTML para Motores de Búsqueda y Featured Snippets */}
       <div className="space-y-8 pt-6">

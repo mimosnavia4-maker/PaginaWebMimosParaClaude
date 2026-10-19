@@ -16,6 +16,7 @@ import {
   Scissors,
   CheckCircle2,
   Navigation,
+  ExternalLink,
 } from 'lucide-react';
 import {
   REGISTROS_PUNTOS,
@@ -71,8 +72,15 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
   onNavigate,
 }) => {
   const apiKey = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string) || '';
+  const [mapError, setMapError] = useState(!apiKey);
   const [filterType, setFilterType] = useState<'todos' | 'tiendas' | 'colaboradores'>('todos');
   const [activePunto, setActivePunto] = useState<PuntoRegistro | null>(null);
+
+  useEffect(() => {
+    const handleQuota = () => setMapError(true);
+    window.addEventListener('gmp-quota-exceeded', handleQuota);
+    return () => window.removeEventListener('gmp-quota-exceeded', handleQuota);
+  }, []);
 
   useEffect(() => {
     if (selectedPuntoId) {
@@ -108,16 +116,62 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
 
   const defaultCenter = { lat: 42.19, lng: -8.67 };
 
-  if (!apiKey) {
+  if (mapError) {
     return (
-      <div className="w-full p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#071324] text-center">
-        <MapPin className="w-8 h-8 text-[#0F76BB] mx-auto mb-2" />
-        <p className="font-bold text-[#002147] dark:text-white">
-          Configuración de Google Maps pendiente
-        </p>
-        <p className="text-xs text-slate-500 mt-1">
-          La clave de API de Google Maps se activará para mostrar el mapa interactivo.
-        </p>
+      <div className={`w-full p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] shadow-xs ${className}`}>
+        <div className="text-center max-w-xl mx-auto mb-6">
+          <div className="w-12 h-12 rounded-xl bg-[#0F76BB]/10 text-[#0F76BB] flex items-center justify-center mx-auto mb-3">
+            <MapPin className="w-6 h-6" aria-hidden="true" />
+          </div>
+          <h4 className="text-lg sm:text-xl font-black text-[#002147] dark:text-white">
+            Nuestras Tiendas Propias en Vigo
+          </h4>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
+            Puedes consultar la dirección, horarios y abrir la ruta directa en Google Maps para llegar a cualquiera de nuestras ubicaciones:
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {TIENDAS_PROPIAS.map((tienda) => (
+            <div
+              key={tienda.id}
+              className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0b1d36] flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                  Tienda Propia · {tienda.localidad}
+                </span>
+                <h5 className="font-extrabold text-sm text-slate-900 dark:text-white mt-1">
+                  {tienda.nombre_mostrado}
+                </h5>
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
+                  {tienda.direccion}
+                </p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                  {tienda.horario.resumen}
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700/60 flex items-center gap-2">
+                <a
+                  href={`tel:${tienda.telefono}`}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-[#0F76BB] transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                  <span>{tienda.telefonos_mostrados}</span>
+                </a>
+                <a
+                  href={buildGoogleMapsUrl(tienda)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center p-2 rounded-lg bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold transition-colors shadow-xs"
+                  title={`Abrir ubicación de ${tienda.nombre_mostrado} en Google Maps`}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

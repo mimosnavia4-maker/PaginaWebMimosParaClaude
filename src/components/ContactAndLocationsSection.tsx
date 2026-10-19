@@ -39,13 +39,16 @@ const MimosGoogleMap = React.lazy(() =>
 );
 import { PuntoTelasMasFicha } from './PuntoTelasMasFicha';
 import { PuntoGondomarFicha } from './PuntoGondomarFicha';
+import { Dialog } from './Dialog';
 
 interface ContactAndLocationsSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
+  pageMode?: 'puntos' | 'contacto' | null;
 }
 
 export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProps> = ({
   onNavigate,
+  pageMode = null,
 }) => {
   const [selectedZone, setSelectedZone] = useState<string>('Todos');
   const [searchLocation, setSearchLocation] = useState('');
@@ -434,12 +437,21 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-2">
             {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} puntos de recogida colaboradores
           </p>
-          <h2
-            id="puntos-heading"
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
-          >
-            Red de tiendas propias de Tintorería Mimos y puntos colaboradores en la comarca
-          </h2>
+          {pageMode === 'puntos' ? (
+            <h1
+              id="puntos-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
+            >
+              Red de tiendas propias de Tintorería Mimos en Vigo y puntos colaboradores
+            </h1>
+          ) : (
+            <h2
+              id="puntos-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
+            >
+              Red de tiendas propias de Tintorería Mimos y puntos colaboradores en la comarca
+            </h2>
+          )}
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
             Diferenciamos con total transparencia nuestras <strong>{TIENDAS_PROPIAS.length} tiendas propias en Vigo</strong> de los <strong>{PUNTOS_COLABORADORES.length} establecimientos colaboradores</strong> en {ZONAS_SERVICIO.join(', ')} donde puedes depositar y recoger tus encargos.
           </p>
@@ -593,7 +605,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 value={searchLocation}
                 onChange={(e) => setSearchLocation(e.target.value)}
                 placeholder="Calle, localidad o CP (ej. 36860)..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
               />
             </div>
           </div>
@@ -693,9 +705,15 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
                 Contacto directo · {CONTACT_INFO.legalName}
               </p>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">
-                Estamos a tu disposición en Navia (Vigo)
-              </h3>
+              {pageMode === 'contacto' ? (
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">
+                  Contacto, tiendas propias en Vigo y horarios de Tintorería Mimos Navia
+                </h1>
+              ) : (
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">
+                  Estamos a tu disposición en Navia (Vigo)
+                </h3>
+              )}
             </div>
 
             <dl className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
@@ -781,13 +799,17 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       id="contact-nombre"
                       type="text"
                       required
+                      autoComplete="name"
+                      aria-required="true"
+                      aria-invalid={Boolean(contactError && !contactNombre.trim())}
+                      aria-describedby={contactError ? 'contact-form-error' : undefined}
                       value={contactNombre}
                       onChange={(e) => {
                         setContactNombre(e.target.value);
                         setContactReady(false);
                       }}
                       placeholder="Tu nombre"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                     />
                   </div>
                   <div>
@@ -801,13 +823,17 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       id="contact-telefono"
                       type="tel"
                       required
+                      autoComplete="tel"
+                      aria-required="true"
+                      aria-invalid={Boolean(contactError && !contactTelefono.trim())}
+                      aria-describedby={contactError ? 'contact-form-error' : undefined}
                       value={contactTelefono}
                       onChange={(e) => {
                         setContactTelefono(e.target.value);
                         setContactReady(false);
                       }}
                       placeholder="Ej.: 600 000 000"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                     />
                   </div>
                 </div>
@@ -823,13 +849,14 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     <input
                       id="contact-email"
                       type="email"
+                      autoComplete="email"
                       value={contactEmail}
                       onChange={(e) => {
                         setContactEmail(e.target.value);
                         setContactReady(false);
                       }}
                       placeholder="tu@email.com"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                     />
                   </div>
                   <div>
@@ -877,13 +904,16 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     id="contact-mensaje"
                     rows={3}
                     required
+                    aria-required="true"
+                    aria-invalid={Boolean(contactError && !contactMensaje.trim())}
+                    aria-describedby={contactError ? 'contact-form-error' : undefined}
                     value={contactMensaje}
                     onChange={(e) => {
                       setContactMensaje(e.target.value);
                       setContactReady(false);
                     }}
                     placeholder="Indícanos qué prenda o servicio necesitas consultar..."
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
                   />
                 </div>
 
@@ -911,7 +941,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 </label>
 
                 {contactError && (
-                  <p role="alert" className="text-xs font-bold text-red-600 dark:text-red-400">
+                  <p id="contact-form-error" role="alert" className="text-xs font-bold text-red-600 dark:text-red-400">
                     {contactError}
                   </p>
                 )}
@@ -949,20 +979,20 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         </div>
       </div>
 
-      {/* Modal Ficha Detallada de Establecimiento */}
-      {puntoModalFicha && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-ficha-titulo"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/75 backdrop-blur-xs animate-fadeIn"
-          onClick={() => setPuntoModalFicha(null)}
-        >
-          {puntoModalFicha.id === 'punto-o-porrino' ? (
-            <div
-              className="relative w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
+      {/* Modal Ficha Detallada de Establecimiento con gestión accesible Dialog */}
+      <Dialog
+        isOpen={Boolean(puntoModalFicha)}
+        onClose={() => setPuntoModalFicha(null)}
+        titleId={puntoModalFicha ? 'modal-ficha-titulo' : undefined}
+        maxWidthClass={
+          puntoModalFicha?.id === 'punto-o-porrino' || puntoModalFicha?.id === 'punto-gondomar'
+            ? 'max-w-5xl'
+            : 'max-w-2xl'
+        }
+      >
+        {puntoModalFicha && (
+          puntoModalFicha.id === 'punto-o-porrino' ? (
+            <div className="overflow-y-auto max-h-[92vh]">
               <PuntoTelasMasFicha
                 isModal={true}
                 onClose={() => setPuntoModalFicha(null)}
@@ -970,10 +1000,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               />
             </div>
           ) : puntoModalFicha.id === 'punto-gondomar' ? (
-            <div
-              className="relative w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="overflow-y-auto max-h-[92vh]">
               <PuntoGondomarFicha
                 isModal={true}
                 onClose={() => setPuntoModalFicha(null)}
@@ -981,10 +1008,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               />
             </div>
           ) : (
-            <div
-              className="relative w-full max-w-2xl max-h-[92vh] flex flex-col rounded-2xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <>
               {/* Cabecera del Modal */}
               <div className="relative px-6 py-5 bg-gradient-to-r from-[#002147] to-[#0F76BB] text-white shrink-0">
                 <button
@@ -1203,10 +1227,10 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   </button>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
-      )}
+            </>
+          )
+        )}
+      </Dialog>
     </section>
   );
 };

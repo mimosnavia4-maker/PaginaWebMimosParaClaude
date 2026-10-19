@@ -62,6 +62,7 @@ import {
   trackContactClick,
   trackPageView,
 } from './utils/analytics';
+import { getStoredTheme, setStoredTheme } from './utils/safeStorage';
 
 export function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -81,10 +82,7 @@ export function App() {
   });
 
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('mimos_theme') === 'dark';
-    }
-    return false;
+    return getStoredTheme();
   });
 
   const [cookieBannerOpen, setCookieBannerOpen] = useState<boolean>(() => {
@@ -99,14 +97,13 @@ export function App() {
     const root = document.documentElement;
     if (darkMode) {
       root.classList.add('dark');
-      localStorage.setItem('mimos_theme', 'dark');
     } else {
       root.classList.remove('dark');
-      localStorage.setItem('mimos_theme', 'light');
     }
+    setStoredTheme(darkMode);
   }, [darkMode]);
 
-  // Apply SEO & Schema.org on route change, and manage GA4 page_view according to consent
+  // Apply SEO & Schema.org on route change, manage GA4, and focus h1 for accessibility
   useEffect(() => {
     applyPageSEO(currentPath);
     if (hasAnalyticsConsent()) {
@@ -115,6 +112,15 @@ export function App() {
     } else {
       disableAndClearGA4();
     }
+    // Accesibilidad: mover foco al encabezado principal tras la navegación
+    const timer = setTimeout(() => {
+      const heading = document.querySelector('h1') as HTMLElement | null;
+      if (heading) {
+        heading.setAttribute('tabindex', '-1');
+        heading.focus({ preventScroll: true });
+      }
+    }, 60);
+    return () => clearTimeout(timer);
   }, [currentPath]);
 
   // Delegated listener for WhatsApp and phone clicks (single source, no PII or URLs sent)
@@ -269,21 +275,19 @@ export function App() {
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white dark:bg-[#071324] text-slate-900 dark:text-slate-100">
-      {/* Quota Defense Banner (Case A: Demo Key) */}
+      {/* Aviso amable de disponibilidad de mapa para visitantes */}
       {quotaExceeded && (
-        <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs md:text-sm text-center sticky top-0 z-50 shadow-sm">
+        <div className="bg-amber-50 dark:bg-amber-950/70 border-b border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 px-4 py-2.5 text-xs sm:text-sm text-center sticky top-0 z-50 shadow-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
           <span>
-            Google Maps Platform quota reached. If you are the app owner, visit{' '}
-            <a
-              href="https://developers.google.com/maps/ai/ai-studio?utm_campaign=gmp_mcp_codeassist_v1_aistudio#quota_exceeded_errors"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline font-semibold text-amber-950 hover:text-amber-800"
-            >
-              maps developer site
-            </a>{' '}
-            for instructions to update your account.
+            El mapa interactivo se encuentra temporalmente en mantenimiento. Nuestras 3 tiendas propias y 5 puntos colaboradores atienden con total normalidad.
           </span>
+          <a
+            href="/#puntos"
+            onClick={(e) => handleNavigate('/#puntos', e)}
+            className="underline font-bold text-amber-950 dark:text-amber-100 hover:text-amber-700 dark:hover:text-amber-300"
+          >
+            Ver direcciones, horarios y teléfonos
+          </a>
         </div>
       )}
 
@@ -304,49 +308,78 @@ export function App() {
         }
       >
         {articuloActivo ? (
-          <BlogArticlePage articulo={articuloActivo} onNavigate={handleNavigate} />
+          <div id="main-content">
+            <BlogArticlePage articulo={articuloActivo} onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/blog' ? (
-          <main>
-            <BlogSection onNavigate={handleNavigate} />
+          <main id="main-content">
+            <BlogSection onNavigate={handleNavigate} isPage={true} />
           </main>
         ) : currentPath === '/limpieza-alfombras-vigo' ? (
-          <CarpetCleaningPage onNavigate={handleNavigate} />
+          <div id="main-content">
+            <CarpetCleaningPage onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/arreglos-de-ropa-vigo' ? (
-          <ClothingAlterationsPage onNavigate={handleNavigate} />
+          <div id="main-content">
+            <ClothingAlterationsPage onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/limpieza-profesional-vigo' ? (
-          <CleaningDivisionPage variant="limpieza" onNavigate={handleNavigate} />
+          <div id="main-content">
+            <CleaningDivisionPage variant="limpieza" onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/limpieza-apartamentos-turisticos-vigo' ? (
-          <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
+          <div id="main-content">
+            <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/servicios-empresas' ? (
-          <CleaningDivisionPage variant="empresas" onNavigate={handleNavigate} />
+          <div id="main-content">
+            <CleaningDivisionPage variant="empresas" onNavigate={handleNavigate} />
+          </div>
         ) : servicioIndividualActivo ? (
-          <ServiceDetailPage
-            servicio={servicioIndividualActivo}
-            onNavigate={handleNavigate}
-          />
+          <div id="main-content">
+            <ServiceDetailPage
+              servicio={servicioIndividualActivo}
+              onNavigate={handleNavigate}
+            />
+          </div>
         ) : currentPath === '/puntos-mimos' || currentPath === '/contacto' ? (
-          <main>
-            <ContactAndLocationsSection onNavigate={handleNavigate} />
+          <main id="main-content">
+            <ContactAndLocationsSection
+              onNavigate={handleNavigate}
+              pageMode={currentPath === '/contacto' ? 'contacto' : 'puntos'}
+            />
           </main>
         ) : zonaActiva ? (
-          <LocalZonePage zona={zonaActiva} onNavigate={handleNavigate} />
+          <div id="main-content">
+            <LocalZonePage zona={zonaActiva} onNavigate={handleNavigate} />
+          </div>
         ) : isLegalRoute ? (
-          <LegalPage
-            section={currentPath.replace('/', '') as 'aviso-legal' | 'privacidad' | 'cookies'}
-            onNavigate={handleNavigate}
-            onOpenCookieSettings={() => setCookieBannerOpen(true)}
-          />
+          <div id="main-content">
+            <LegalPage
+              section={currentPath.replace('/', '') as 'aviso-legal' | 'privacidad' | 'cookies'}
+              onNavigate={handleNavigate}
+              onOpenCookieSettings={() => setCookieBannerOpen(true)}
+            />
+          </div>
         ) : currentPath === '/feder' ? (
-          <SubsidiesPage variant="feder" onNavigate={handleNavigate} />
+          <div id="main-content">
+            <SubsidiesPage variant="feder" onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/programa-bono-energia-peme-2025-in417z' ? (
-          <SubsidiesPage variant="bono-energia" onNavigate={handleNavigate} />
+          <div id="main-content">
+            <SubsidiesPage variant="bono-energia" onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/empleo-unete-a-nosotros' ? (
-          <CareersPage onNavigate={handleNavigate} />
+          <div id="main-content">
+            <CareersPage onNavigate={handleNavigate} />
+          </div>
         ) : currentPath === '/tienda-mimos-gregorio-espino-vigo' || currentPath === '/tienda/gregorio-espino' ? (
-          <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
+          <div id="main-content">
+            <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
+          </div>
         ) : (
           /* Portada con los bloques de Sección 7 + el Bloque Propio Prioritario de Limpieza de Alfombras (Sección 16) */
-          <main>
+          <main id="main-content">
             {/* 2. Portada principal */}
             <HeroSection onNavigate={handleNavigate} />
             {/* 3. Servicios de tintorería y lavandería */}

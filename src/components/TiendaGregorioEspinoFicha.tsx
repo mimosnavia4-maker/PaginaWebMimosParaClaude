@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Dialog } from './Dialog';
 import {
   Phone,
   MessageCircle,
@@ -131,49 +132,43 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
 
   return (
     <div className="space-y-10 animate-fadeIn text-slate-800 dark:text-slate-100">
-      {/* Lightbox / Visor de Fotos a Pantalla Completa */}
-      {lightboxOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn"
+      {/* Lightbox / Visor de Fotos a Pantalla Completa con Dialog accesible */}
+      <Dialog
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        ariaLabel="Visor de fotografía a pantalla completa"
+        maxWidthClass="max-w-4xl"
+        className="bg-slate-900 border-slate-700"
+      >
+        <button
+          type="button"
           onClick={() => setLightboxOpen(false)}
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-colors cursor-pointer"
+          aria-label="Cerrar visor"
         >
-          <div
-            className="relative max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setLightboxOpen(false)}
-              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-colors cursor-pointer"
-              aria-label="Cerrar visor"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black flex items-center justify-center">
-              <img
-                src={photos[activeTabPhoto].url}
-                alt={photos[activeTabPhoto].titulo}
-                className="max-h-[75vh] w-full object-contain"
-              />
-            </div>
-            <div className="p-4 sm:p-6 bg-slate-950 text-white">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#0F76BB] text-white">
-                  {photos[activeTabPhoto].tag}
-                </span>
-                <span className="text-xs text-slate-400">Tienda Propia Mimos · Vigo</span>
-              </div>
-              <h4 className="text-base sm:text-lg font-bold">{photos[activeTabPhoto].titulo}</h4>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1">{photos[activeTabPhoto].subtitulo}</p>
-              <p className="text-xs text-slate-400 mt-2 border-t border-slate-800 pt-2">
-                {photos[activeTabPhoto].detalle}
-              </p>
-            </div>
-          </div>
+          <X className="w-5 h-5" />
+        </button>
+        <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black flex items-center justify-center">
+          <img
+            src={photos[activeTabPhoto].url}
+            alt={photos[activeTabPhoto].titulo}
+            className="max-h-[75vh] w-full object-contain"
+          />
         </div>
-      )}
+        <div className="p-4 sm:p-6 bg-slate-950 text-white">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#0F76BB] text-white">
+              {photos[activeTabPhoto].tag}
+            </span>
+            <span className="text-xs text-slate-400">Tienda Propia Mimos · Vigo</span>
+          </div>
+          <h4 className="text-base sm:text-lg font-bold">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-xs sm:text-sm text-slate-300 mt-1">{photos[activeTabPhoto].subtitulo}</p>
+          <p className="text-xs text-slate-400 mt-2 border-t border-slate-800 pt-2">
+            {photos[activeTabPhoto].detalle}
+          </p>
+        </div>
+      </Dialog>
 
       {/* 1. CABECERA HERO CON FOTOGRAFÍA REAL Y ACCIONES RÁPIDAS */}
       <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl">
