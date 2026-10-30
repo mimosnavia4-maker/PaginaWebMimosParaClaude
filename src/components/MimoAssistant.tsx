@@ -109,6 +109,18 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const triggerButtonRef = useRef<HTMLButtonElement>(null);
+  const wasOpenRef = useRef(false);
+
+  useEffect(() => {
+    if (wasOpenRef.current && !open) {
+      // Devolver foco al botón disparador tras cerrarse el asistente
+      setTimeout(() => {
+        triggerButtonRef.current?.focus();
+      }, 50);
+    }
+    wasOpenRef.current = open;
+  }, [open]);
 
   useEffect(() => {
     if (open && scrollRef.current) {
@@ -208,6 +220,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
       {/* Floating Assistant Trigger (Posicionado por encima de la barra móvil inferior) */}
       {!open && (
         <button
+          ref={triggerButtonRef}
           type="button"
           onClick={() => {
             setOpen(true);

@@ -1,4 +1,5 @@
 import express from 'express';
+import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -136,6 +137,7 @@ export function injectSeoIntoHtml(html: string, reqPath: string): string {
 
 async function startServer() {
   const app = express();
+  const server = http.createServer(app);
   const PORT = 3000;
 
   // Redirecciones 301 hacia las URLs canónicas (Secciones 7 y 16)
@@ -189,8 +191,14 @@ async function startServer() {
   });
 
   if (process.env.NODE_ENV !== 'production') {
+    // En desarrollo local con 'npm run dev', hmr: { server } asocia el WebSocket de HMR de Vite
+    // al servidor HTTP de Express (puerto 3000), permitiendo recarga en caliente sin puertos extra.
+    // En entornos sandbox o cuando DISABLE_HMR=true, Vite ignora el watcher sin afectar a la ejecución.
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: { server },
+      },
       appType: 'custom',
     });
 
@@ -226,7 +234,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  server.listen(PORT, '0.0.0.0', () => {
     console.log(`Tintorería Mimos Navia server running on http://localhost:${PORT}`);
   });
 }

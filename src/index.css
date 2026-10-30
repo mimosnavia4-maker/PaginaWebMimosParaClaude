@@ -78,6 +78,11 @@
   outline-offset: 2px;
 }
 
+/* Ocultar anillo de foco únicamente en encabezados enfocados programáticamente con tabindex="-1" */
+h1[tabindex="-1"]:focus {
+  outline: none !important;
+}
+
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,

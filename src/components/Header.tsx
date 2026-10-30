@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import {
   CONTACT_INFO,
@@ -14,6 +14,15 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const wasMobileMenuOpenRef = useRef(false);
+
+  useEffect(() => {
+    if (wasMobileMenuOpenRef.current && !mobileMenuOpen) {
+      mobileMenuButtonRef.current?.focus();
+    }
+    wasMobileMenuOpenRef.current = mobileMenuOpen;
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -180,6 +189,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
           </a>
 
           <button
+            ref={mobileMenuButtonRef}
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             className="p-1.5 sm:p-2 rounded-lg text-slate-200 hover:text-white hover:bg-white/10 transition-colors shrink-0"

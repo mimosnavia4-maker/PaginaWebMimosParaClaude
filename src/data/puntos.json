@@ -254,9 +254,9 @@
     "plazo": "Según tipo de prenda y ruta de reparto del punto",
     "hora_limite": "Dentro del horario de atención del establecimiento",
     "instrucciones_entrega_recogida": "Deposita y recoge tus prendas y textiles del hogar para los servicios de Tintorería Mimos en C/ José Regojo, 29 bajo en Redondela.",
-    "foto": "",
-    "referencia_local": "",
-    "aparcamiento": "",
+    "foto": "/images/mimos-redondela/fachadaRedondela1.jpg",
+    "referencia_local": "C/ José Regojo, 29 bajo, en el casco urbano de Redondela.",
+    "aparcamiento": "Aparcamiento y zona de parada rápida en las inmediaciones de la calle José Regojo.",
     "cierre_temporal": false,
     "permiso_comercio": ""
   },

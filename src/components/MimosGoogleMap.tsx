@@ -486,6 +486,16 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                         <span>Ver ficha y fotos de Gondomar</span>
                       </a>
                     )}
+                    {activePunto.id === 'punto-redondela' && (
+                      <a
+                        href="/zonas/redondela"
+                        onClick={(e) => onNavigate?.('/zonas/redondela', e)}
+                        className="w-full inline-flex items-center justify-center gap-1.5 bg-[#0F76BB] hover:bg-[#0b5f97] text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors shadow-xs"
+                      >
+                        <Store className="w-3.5 h-3.5" />
+                        <span>Ver ficha y fotos de Redondela</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </InfoWindow>

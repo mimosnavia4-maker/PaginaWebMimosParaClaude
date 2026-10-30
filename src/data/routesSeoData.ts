@@ -135,28 +135,30 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     breadcrumbName: 'Recogida a domicilio',
   },
   '/limpieza-profesional-vigo': {
-    title: 'Empresa de Limpieza Profesional en Vigo | Limpieza Mimos',
-    h1: 'Servicios profesionales de limpieza en Vigo para empresas, comunidades y particulares',
+    title:
+      'Empresa de Limpieza Profesional en Vigo | Apartamentos, Viviendas y Oficinas | Mimos',
+    h1: 'Empresa de limpieza profesional en Vigo y gestión textil para alojamientos',
     description:
-      'Empresa de limpieza profesional en Vigo para comunidades, oficinas, comercios, fin de obra, garajes y viviendas. Pide presupuesto sin compromiso.',
+      'Servicios de limpieza profesional en Vigo respaldados por Tintorería Mimos Navia: apartamentos turísticos, viviendas, oficinas y empresas. Pide presupuesto con Mimo.',
     canonical: 'https://www.tintoreriamimos.es/limpieza-profesional-vigo',
     robots: 'index, follow',
     ogType: 'website',
     breadcrumbName: 'Limpieza profesional en Vigo',
   },
   '/limpieza-apartamentos-turisticos-vigo': {
-    title: 'Limpieza de Apartamentos Turísticos en Vigo | Lavandería y Cambio Textil | Mimos',
-    h1: 'Limpieza integral y gestión textil para apartamentos turísticos en Vigo',
+    title: 'Limpieza y Lavandería para Apartamentos Turísticos en Vigo | Mimos',
+    h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',
     description:
-      'Servicio especializado de limpieza, higienización y gestión de sábanas y toallas para alojamientos turísticos y vacacionales en Vigo. Check-in impecable.',
-    canonical: 'https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo',
+      'Servicio de lavandería y limpieza profesional para apartamentos turísticos y viviendas vacacionales en Vigo. Pide presupuesto personalizado con Mimo.',
+    canonical:
+      'https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo',
     robots: 'index, follow',
     ogType: 'website',
     breadcrumbName: 'Apartamentos turísticos en Vigo',
   },
   '/servicios-empresas': {
     title: 'Lavandería y Tintorería para Empresas y Profesionales en Vigo | Mimos',
-    h1: 'Servicios de lavandería y tintorería para empresas y profesionales en Vigo',
+    h1: 'Servicios de lavandería, tintorería y limpieza para empresas en Vigo',
     description:
       'Soluciones de lavandería, planchado y tintorería para empresas, hostelería, comercios y profesionales en Vigo. Presupuesto adaptado a cada negocio.',
     canonical: 'https://www.tintoreriamimos.es/servicios-empresas',
@@ -176,9 +178,9 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/tienda-mimos-gregorio-espino-vigo': {
     title: 'Mimos Gregorio Espino Vigo | Tintorería, Lavandería y Taller de Costura Propio',
-    h1: 'Tintorería, Lavandería y Taller Propio de Costura en Gregorio Espino (Vigo)',
+    h1: 'Mimos Gregorio Espino',
     description:
-      'Tienda propia de Tintorería Mimos en Alcalde Gregorio Espino 44, Vigo. Taller in situ de costura y modistería, limpieza de alfombras, tintorería, edredones y colada con carga y descarga fácil.',
+      'Tienda propia de Tintorería Mimos en Alcalde Gregorio Espino 44, Vigo. Taller propio de costura y modistería in situ, limpieza de alfombras, tintorería, edredones y colada con carga y descarga fácil.',
     canonical: 'https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo',
     robots: 'index, follow',
     ogType: 'website',
@@ -210,12 +212,12 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     breadcrumbName: 'Blog y Guías',
   },
   '/zonas/redondela': {
-    title: 'Servicio de Tintorería y Lavandería en Redondela | Punto Mimos',
+    title: 'Servicio de Tintorería y Lavandería en Redondela | Punto Colaborador Mimos',
     h1: 'Servicio de tintorería y lavandería Mimos en Redondela',
     description:
-      'Servicio de Tintorería Mimos disponible en Mimos Redondela (C/ José Regojo, 29 bajo), establecimiento colaborador en Redondela. Recogida y entrega de prendas.',
+      'Punto colaborador de recogida y entrega Mimos Redondela en C/ José Regojo, 29 bajo (36800 Redondela) para prendas, alfombras y textiles del hogar. Consulta con Mimo.',
     canonical: 'https://www.tintoreriamimos.es/zonas/redondela',
-    robots: 'noindex, nofollow',
+    robots: 'index, follow',
     ogType: 'website',
     breadcrumbName: 'Redondela',
     breadcrumbParent: {
@@ -226,7 +228,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/zonas/gondomar': {
     title: 'Tintorería, Lavandería y Costura en Gondomar | Punto Mimos en Puntadas No Aire',
-    h1: 'Servicio de tintorería, lavandería y arreglos de ropa en Gondomar (Val Miñor)',
+    h1: 'Puntadas No Aire (Gondomar)',
     description:
       'Punto colaborador de Tintorería Mimos y arreglos de ropa disponible en Puntadas No Aire (Avda. Elduayen, 9, Gondomar). Recogida y entrega de prendas y costura confirmada.',
     canonical: 'https://www.tintoreriamimos.es/zonas/gondomar',
@@ -256,7 +258,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/zonas/o-porrino': {
     title: 'Tintorería, Lavandería y Costura en O Porriño | Punto Mimos en Telas y Más',
-    h1: 'Servicio de tintorería, lavandería y arreglos de ropa en O Porriño',
+    h1: 'Telas y Más (O Porriño)',
     description:
       'Punto colaborador de Tintorería Mimos y arreglos de ropa disponible en Telas y Más (C/ Manuel Rodríguez, 30, O Porriño). Recogida y entrega de prendas y costura confirmada.',
     canonical: 'https://www.tintoreriamimos.es/zonas/o-porrino',
@@ -273,7 +275,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Tiendas Propias de Tintorería Mimos en Vigo | Navia, Venezuela y Gregorio Espino',
     h1: 'Nuestras 3 tiendas propias en Vigo y servicio de recogida a domicilio',
     description:
-      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (Teixugueiras, Venezuela y Gregorio Espino) con todos los servicios y costura, además del servicio de recogida a domicilio.',
+      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (C/ Teixugueiras 11, C/ Venezuela 41 y Avda. Alcalde Gregorio Espino 44) con todos los servicios, costura y recogida a domicilio.',
     canonical: 'https://www.tintoreriamimos.es/zonas/vigo',
     robots: 'index, follow',
     ogType: 'website',
@@ -300,10 +302,10 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
   },
   '/blog/como-lavar-edredon-de-plumas-guia-practica': {
-    title: 'Cómo lavar un edredón de plumas: guía práctica | Tintorería Mimos',
-    h1: 'Cómo lavar un edredón de plumas sin estropearlo: guía paso a paso',
+    title: 'Cómo lavar un edredón de plumas y secarlo bien | Mimos Vigo',
+    h1: 'Cómo lavar un edredón de plumas: guía práctica para cuidarlo correctamente',
     description:
-      'Consejos profesionales para lavar y secar un edredón de plumas o plumón: capacidad del tambor, secado correcto para evitar apelmazamiento y ventajas de la higienización profesional.',
+      'Aprende cómo lavar un edredón de plumas paso a paso: lectura de la etiqueta, capacidad de la lavadora, ciclo adecuado y claves para secar completamente el relleno.',
     canonical:
       'https://www.tintoreriamimos.es/blog/como-lavar-edredon-de-plumas-guia-practica',
     robots: 'index, follow',
@@ -315,10 +317,11 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
   },
   '/blog/guia-simbolos-etiquetas-ropa-significado': {
-    title: 'Significado de los símbolos de las etiquetas de la ropa | Mimos',
-    h1: 'Guía práctica de los símbolos de lavado y cuidado en las etiquetas de tu ropa',
+    title:
+      'Símbolos de Lavado en Etiquetas de Ropa (ISO 3758:2023) | Mimos Vigo',
+    h1: 'Guía práctica de los símbolos de lavado y etiquetas de tu ropa',
     description:
-      'Aprende a interpretar los símbolos de lavado, lejía, secado, planchado y limpieza en seco de tus prendas para evitar desteñidos y encogimientos.',
+      'Guía técnica completa según la norma internacional ISO 3758:2023: significado de los 5 símbolos de las etiquetas de ropa (lavado, blanqueo, secado, plancha y tintorería P, F, W), tablas de temperaturas y consejos de tintorero.',
     canonical:
       'https://www.tintoreriamimos.es/blog/guia-simbolos-etiquetas-ropa-significado',
     robots: 'index, follow',
@@ -330,7 +333,8 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
   },
   '/blog/como-preparar-apartamento-turistico-entre-huespedes': {
-    title: 'Cómo preparar un apartamento turístico entre huéspedes | Mimos Vigo',
+    title:
+      'Cómo preparar un apartamento turístico entre huéspedes | Guía Mimos Vigo',
     h1: 'Cómo organizar la limpieza y los textiles de un apartamento turístico entre huéspedes',
     description:
       'Claves prácticas para propietarios y gestores de apartamentos turísticos en Vigo: rotación de sábanas y toallas, revisión en el check-out y cuidado de edredones.',
@@ -375,7 +379,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/aviso-legal': {
     title: 'Aviso Legal | Tintorería Mimos Navia, S.L. (Vigo)',
-    h1: 'Aviso Legal – Tintorería Mimos Navia, S.L.',
+    h1: 'Aviso Legal',
     description:
       'Información legal e identificativa de Tintorería Mimos Navia, S.L., con domicilio en C/ As Teixugueiras, 11, local 9, 36212 Vigo.',
     canonical: 'https://www.tintoreriamimos.es/aviso-legal',
@@ -385,7 +389,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/privacidad': {
     title: 'Política de Privacidad | Tintorería Mimos Navia, S.L. (Vigo)',
-    h1: 'Política de Privacidad – Tintorería Mimos Navia, S.L.',
+    h1: 'Política de Privacidad',
     description:
       'Política de protección de datos personales y privacidad de Tintorería Mimos Navia, S.L. en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/privacidad',
@@ -395,7 +399,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/cookies': {
     title: 'Política de Cookies | Tintorería Mimos Navia, S.L. (Vigo)',
-    h1: 'Política de Cookies – Tintorería Mimos Navia, S.L.',
+    h1: 'Política de Cookies',
     description: 'Información sobre el uso de cookies técnicas y preferencias en www.tintoreriamimos.es.',
     canonical: 'https://www.tintoreriamimos.es/cookies',
     robots: 'index, follow',
@@ -414,7 +418,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/programa-bono-energia-peme-2025-in417z': {
     title: 'Programa Bono Energía Peme 2025: IN417Z | Tintorería Mimos Navia',
-    h1: 'Programa Bono Energía Peme 2025: IN417Z — Sustitución de Secadora Girbau STI-23 por Secadora Domus DTT2-18 E',
+    h1: 'Programa Bono Energía Peme 2025: IN417Z',
     description:
       'Convocatoria de Subvencións do Instituto Enerxético de Galicia (INEGA) para proxectos de Mellora Enerxética (Programa Bono enerxía Peme 2025: IN417Z) — Sustitución de secadora Girbau STI-23 por secadora Domus DTT2-18 E.',
     canonical: 'https://www.tintoreriamimos.es/programa-bono-energia-peme-2025-in417z',
@@ -424,7 +428,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/empleo-unete-a-nosotros': {
     title: 'Empleo – Únete a Nosotros | Trabaja en Tintorería Mimos (Vigo)',
-    h1: 'Empleo — Únete a nosotros en Tintorería Mimos (Vigo)',
+    h1: 'Empleo — Únete a nosotros',
     description:
       'Bolsa de empleo de Tintorería Mimos en Vigo: buscamos personal de tintorería (atención al público, desmanchado, lavado y planchado) y personal de limpieza a domicilio.',
     canonical: 'https://www.tintoreriamimos.es/empleo-unete-a-nosotros',

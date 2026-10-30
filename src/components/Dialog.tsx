@@ -10,6 +10,23 @@ interface DialogProps {
   className?: string;
 }
 
+// Pila global de diálogos abiertos a nivel de módulo
+// Permite que al presionar Escape solo se cierre el diálogo más superficial (el último abierto)
+const openDialogsStack: Array<() => void> = [];
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && openDialogsStack.length > 0) {
+      e.preventDefault();
+      e.stopPropagation();
+      const topCloseHandler = openDialogsStack[openDialogsStack.length - 1];
+      if (topCloseHandler) {
+        topCloseHandler();
+      }
+    }
+  });
+}
+
 export const Dialog: React.FC<DialogProps> = ({
   isOpen,
   onClose,
@@ -22,34 +39,33 @@ export const Dialog: React.FC<DialogProps> = ({
   const dialogRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
 
-  // 1. Guardar foco previo y bloquear scroll del body
+  // Mantener la referencia de onClose actualizada sin reiniciar efectos
+  onCloseRef.current = onClose;
+
+  // 1. Ciclo de vida del diálogo: solo se ejecuta cuando isOpen pasa de false a true o viceversa
   useEffect(() => {
     if (!isOpen) return;
 
+    // Guardar elemento enfocado antes de abrir
     previousActiveElement.current = document.activeElement as HTMLElement | null;
+
+    // Bloquear scroll del documento
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // 2. Integración con el historial del navegador (botón Atrás cierra el modal)
-    if (typeof window !== 'undefined' && window.history) {
-      try {
-        window.history.pushState({ mimosModal: true }, '');
-      } catch {
-        // Ignorar en entornos de prueba o iframes restringidos
-      }
-    }
-
-    const handlePopState = (e: PopStateEvent) => {
-      onClose();
+    // Registrar en la pila de diálogos para gestión de Escape en capas
+    const handleClose = () => {
+      onCloseRef.current();
     };
-    window.addEventListener('popstate', handlePopState);
+    openDialogsStack.push(handleClose);
 
-    // 3. Foco inicial dentro del modal tras abrir
+    // Foco inicial: una única vez tras la apertura
     const timer = setTimeout(() => {
       if (dialogRef.current) {
         const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
         );
         if (focusable.length > 0) {
           focusable[0].focus();
@@ -62,52 +78,70 @@ export const Dialog: React.FC<DialogProps> = ({
     return () => {
       clearTimeout(timer);
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener('popstate', handlePopState);
 
-      // Devolver foco al elemento disparador
-      if (previousActiveElement.current && typeof previousActiveElement.current.focus === 'function') {
-        previousActiveElement.current.focus();
+      // Desapilar el diálogo
+      const index = openDialogsStack.lastIndexOf(handleClose);
+      if (index !== -1) {
+        openDialogsStack.splice(index, 1);
+      }
+
+      // Devolver foco al elemento disparador si sigue presente en el DOM
+      const prevEl = previousActiveElement.current;
+      if (prevEl && typeof prevEl.focus === 'function' && prevEl.isConnected) {
+        prevEl.focus();
       }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
-  // 4. Trampa de foco (Tab / Shift+Tab) y cierre con tecla Escape
+  // 2. Trampa de foco (Tab / Shift+Tab) confinada al diálogo activo
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+
+      const focusables = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (focusables.length === 0) {
         e.preventDefault();
-        onClose();
+        dialogRef.current.focus();
         return;
       }
 
-      if (e.key === 'Tab' && dialogRef.current) {
-        const focusables = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusables.length === 0) return;
+      const firstElement = focusables[0];
+      const lastElement = focusables[focusables.length - 1];
+      const activeEl = document.activeElement;
 
-        const firstElement = focusables[0];
-        const lastElement = focusables[focusables.length - 1];
-
+      // Si el foco está fuera del diálogo o en el propio contenedor, redirigir
+      if (!dialogRef.current.contains(activeEl) || activeEl === dialogRef.current) {
+        e.preventDefault();
         if (e.shiftKey) {
-          if (document.activeElement === firstElement) {
-            e.preventDefault();
-            lastElement.focus();
-          }
+          lastElement.focus();
         } else {
-          if (document.activeElement === lastElement) {
-            e.preventDefault();
-            firstElement.focus();
-          }
+          firstElement.focus();
+        }
+        return;
+      }
+
+      // Ciclo en los extremos
+      if (e.shiftKey) {
+        if (activeEl === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (activeEl === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
         }
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+    window.addEventListener('keydown', handleTabKey);
+    return () => window.removeEventListener('keydown', handleTabKey);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -120,7 +154,7 @@ export const Dialog: React.FC<DialogProps> = ({
       aria-label={ariaLabel}
       onClick={(e) => {
         if (e.target === backdropRef.current) {
-          onClose();
+          onCloseRef.current();
         }
       }}
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/75 backdrop-blur-xs transition-opacity duration-200"

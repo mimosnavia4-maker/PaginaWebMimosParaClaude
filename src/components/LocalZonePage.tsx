@@ -26,6 +26,7 @@ import {
 } from '../data/mimosData';
 import { PuntoTelasMasPage } from './PuntoTelasMasPage';
 import { PuntoGondomarPage } from './PuntoGondomarPage';
+import { PuntoRedondelaPage } from './PuntoRedondelaPage';
 
 interface LocalZonePageProps {
   zona: ZonaSEOLocal;
@@ -39,6 +40,10 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
 
   if (zona.slug === 'gondomar') {
     return <PuntoGondomarPage onNavigate={onNavigate} />;
+  }
+
+  if (zona.slug === 'redondela') {
+    return <PuntoRedondelaPage onNavigate={onNavigate} />;
   }
 
   const puntosDeEstaZona = REGISTROS_PUNTOS.filter(

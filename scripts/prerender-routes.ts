@@ -1,12 +1,242 @@
 /**
  * Pre-generador de archivos HTML estáticos por ruta para ProfesionalHosting (Apache/Plesk) y buscadores de IA (AEO)
- * Consume directamente la fuente única de verdad: src/data/routesSeoData.ts
+ * Consume directamente la fuente única de verdad: src/data/routesSeoData.ts y src/data/mimosData.ts
  * Genera dist/<ruta>/index.html y sincroniza automáticamente dist/sitemap.xml y public/sitemap.xml.
  */
 
 import fs from 'fs';
 import path from 'path';
 import { ROUTE_SEO_MAP, RouteMeta } from '../src/data/routesSeoData.ts';
+import {
+  ARTICULOS_BLOG,
+  CONTACT_INFO,
+  ETIQUETAS_SERVICIOS_CONFIRMADOS,
+  FAQ_PORTADA_SIN_PRECIOS,
+  REGISTROS_PUNTOS,
+  SERVICIOS_LIMPIEZA_PROFESIONAL,
+  SERVICIOS_MIMOS,
+  SERVICIO_ALFOMBRAS_DATA,
+  SERVICIO_ARREGLOS_DATA,
+  TIENDAS_PROPIAS,
+  ZONAS_SEO_LOCAL,
+} from '../src/data/mimosData.ts';
+
+function escapeHtml(str: unknown): string {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
+  let specificHtml = '';
+
+  if (meta.ogType === 'article') {
+    const articulo = ARTICULOS_BLOG.find((a) => a.url === routePath);
+    if (articulo) {
+      const seccionesHtml = articulo.secciones
+        .map(
+          (s) =>
+            `<li><h3>${escapeHtml(s.h2)}</h3>` +
+            (s.subsecciones && s.subsecciones.length > 0
+              ? `<ul>${s.subsecciones.map((sub) => `<li>${escapeHtml(sub.h3)}</li>`).join('')}</ul>`
+              : '') +
+            `</li>`
+        )
+        .join('');
+
+      specificHtml =
+        `<section>` +
+        (articulo.introduccion ? `<p>${escapeHtml(articulo.introduccion)}</p>` : '') +
+        `<h2>Estructura y claves del artículo</h2>` +
+        `<ul>${seccionesHtml}</ul>` +
+        `</section>`;
+    }
+  } else if (routePath.startsWith('/zonas/')) {
+    const zona = ZONAS_SEO_LOCAL.find((z) => z.url === routePath);
+    if (zona) {
+      const puntos = REGISTROS_PUNTOS.filter((p) => p.zona_slug === zona.slug);
+      const puntosHtml = puntos
+        .map(
+          (p) =>
+            `<article>` +
+            `<h3>${escapeHtml(p.nombre_mostrado)}</h3>` +
+            `<p><strong>Dirección:</strong> ${escapeHtml(p.direccion)}, ${escapeHtml(p.codigo_postal)} ${escapeHtml(p.localidad)}</p>` +
+            `<p><strong>Horario:</strong> ${escapeHtml(p.horario.resumen)}</p>` +
+            `<p><strong>Teléfono:</strong> ${escapeHtml(p.telefonos_mostrados)}</p>` +
+            `<p><strong>Servicios confirmados:</strong> ${escapeHtml(
+              p.servicios_confirmados.map((s) => ETIQUETAS_SERVICIOS_CONFIRMADOS[s] || s).join(', ')
+            )}</p>` +
+            `</article>`
+        )
+        .join('');
+
+      const faqsHtml =
+        zona.preguntasFrecuentes && zona.preguntasFrecuentes.length > 0
+          ? `<h3>Preguntas frecuentes en ${escapeHtml(zona.localidad)}</h3><dl>` +
+            zona.preguntasFrecuentes
+              .map(
+                (f) =>
+                  `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+              )
+              .join('') +
+            `</dl>`
+          : '';
+
+      specificHtml =
+        `<section>` +
+        (zona.subtitulo ? `<p>${escapeHtml(zona.subtitulo)}</p>` : '') +
+        `<h2>Puntos de atención y recogida en ${escapeHtml(zona.localidad)}</h2>` +
+        puntosHtml +
+        faqsHtml +
+        `</section>`;
+    }
+  } else if (routePath === '/tienda-mimos-gregorio-espino-vigo') {
+    const punto = TIENDAS_PROPIAS.find((t) => t.id === 'gregorio-espino');
+    if (punto) {
+      specificHtml =
+        `<section>` +
+        `<h2>Tienda propia Tintorería Mimos Gregorio Espino (Vigo)</h2>` +
+        `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)}</p>` +
+        `<p><strong>Horario:</strong> ${escapeHtml(punto.horario.resumen)}</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)}</p>` +
+        `<p><strong>Servicios disponibles:</strong> Tintorería profesional, lavandería, planchado profesional, colada familiar, limpieza de alfombras y taller propio de costura y arreglos in situ.</p>` +
+        `</section>`;
+    }
+  } else if (routePath === '/limpieza-alfombras-vigo') {
+    const faqsHtml = SERVICIO_ALFOMBRAS_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(SERVICIO_ALFOMBRAS_DATA.subtituloCabecera)}</p>` +
+      `<h2>Preguntas frecuentes sobre limpieza de alfombras en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
+  } else if (routePath === '/arreglos-de-ropa-vigo') {
+    const faqsHtml = SERVICIO_ARREGLOS_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(SERVICIO_ARREGLOS_DATA.subtituloCabecera)}</p>` +
+      `<h2>Preguntas frecuentes sobre costura y arreglos de ropa</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
+  } else if (routePath === '/limpieza-profesional-vigo') {
+    const subdivisionesHtml = SERVICIOS_LIMPIEZA_PROFESIONAL.map(
+      (s) =>
+        `<article>` +
+        `<h3>${escapeHtml(s.titulo)}</h3>` +
+        `<p>${escapeHtml(s.descripcion)}</p>` +
+        `<ul>` +
+        s.incluye.map((i) => `<li>${escapeHtml(i)}</li>`).join('') +
+        `</ul>` +
+        `</article>`
+    ).join('');
+    specificHtml =
+      `<section>` +
+      `<h2>Servicios de la división de limpieza profesional</h2>` +
+      subdivisionesHtml +
+      `</section>`;
+  } else if (routePath === '/') {
+    const faqsHtml = FAQ_PORTADA_SIN_PRECIOS.map(
+      (f) =>
+        `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+    ).join('');
+    specificHtml =
+      `<section>` +
+      `<h2>Preguntas frecuentes de nuestros clientes</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
+  } else {
+    const servicio = SERVICIOS_MIMOS.find((s) => s.url === routePath);
+    if (servicio) {
+      const queTratamosHtml =
+        servicio.queTratamos && servicio.queTratamos.length > 0
+          ? `<h3>Prendas y textiles que tratamos</h3><ul>` +
+            servicio.queTratamos.map((item) => `<li>${escapeHtml(item)}</li>`).join('') +
+            `</ul>`
+          : '';
+      const comoSeContrataHtml =
+        servicio.comoSeContrata && servicio.comoSeContrata.length > 0
+          ? `<h3>Cómo solicitar el servicio</h3><ul>` +
+            servicio.comoSeContrata.map((item) => `<li>${escapeHtml(item)}</li>`).join('') +
+            `</ul>`
+          : '';
+      specificHtml =
+        `<section>` +
+        `<p>${escapeHtml(servicio.descripcion)}</p>` +
+        queTratamosHtml +
+        comoSeContrataHtml +
+        `</section>`;
+    }
+  }
+
+  const navHtml =
+    `<nav aria-label="Navegación principal">` +
+    `<h2>Servicios y secciones principales</h2>` +
+    `<ul>` +
+    `<li><a href="/">Inicio</a></li>` +
+    `<li><a href="/tintoreria-vigo">Tintorería profesional</a></li>` +
+    `<li><a href="/lavanderia-vigo">Lavandería</a></li>` +
+    `<li><a href="/planchado-vigo">Solo planchado</a></li>` +
+    `<li><a href="/colada-familiar-vigo">Colada familiar</a></li>` +
+    `<li><a href="/textiles-hogar-vigo">Textiles del hogar</a></li>` +
+    `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras</a></li>` +
+    `<li><a href="/limpieza-pieles-cuero-vigo">Pieles y cuero</a></li>` +
+    `<li><a href="/arreglos-de-ropa-vigo">Arreglos de ropa</a></li>` +
+    `<li><a href="/recogida-a-domicilio">Recogida a domicilio</a></li>` +
+    `<li><a href="/limpieza-profesional-vigo">Limpieza profesional</a></li>` +
+    `<li><a href="/limpieza-apartamentos-turisticos-vigo">Apartamentos turísticos</a></li>` +
+    `<li><a href="/servicios-empresas">Servicios para empresas</a></li>` +
+    `<li><a href="/puntos-mimos">Tiendas y Puntos Mimos</a></li>` +
+    `<li><a href="/contacto">Contacto y horarios</a></li>` +
+    `<li><a href="/blog">Blog y consejos</a></li>` +
+    `</ul>` +
+    `</nav>`;
+
+  const tiendasHtml = TIENDAS_PROPIAS.map(
+    (t) =>
+      `<li><strong>${escapeHtml(t.nombre_mostrado)}:</strong> ${escapeHtml(t.direccion)} (${escapeHtml(
+        t.localidad
+      )}) · Tel. ${escapeHtml(t.telefonos_mostrados)} · Horario: ${escapeHtml(t.horario.resumen)}</li>`
+  ).join('');
+
+  const footerHtml =
+    `<footer>` +
+    `<h2>Contacto oficial y tiendas propias</h2>` +
+    `<p><strong>${escapeHtml(CONTACT_INFO.companyName)}</strong> · Sede central: ${escapeHtml(
+      CONTACT_INFO.streetAddress
+    )}, ${escapeHtml(CONTACT_INFO.postalCode)} ${escapeHtml(CONTACT_INFO.locality)} (${escapeHtml(
+      CONTACT_INFO.region
+    )}) · Teléfono: <a href="tel:+34986125141">+34 986 12 51 41</a> · WhatsApp: <a href="https://wa.me/34655536844">+34 655 536 844</a> · Email: <a href="mailto:${escapeHtml(
+      CONTACT_INFO.email
+    )}">${escapeHtml(CONTACT_INFO.email)}</a>.</p>` +
+    `<h3>Tiendas propias en Vigo:</h3>` +
+    `<ul>${tiendasHtml}</ul>` +
+    `</footer>`;
+
+  return (
+    `<noscript id="aeo-static-summary">` +
+    `<section>` +
+    `<h1>${escapeHtml(meta.h1)}</h1>` +
+    `<p>${escapeHtml(meta.description)}</p>` +
+    specificHtml +
+    navHtml +
+    footerHtml +
+    `</section>` +
+    `</noscript>`
+  );
+}
 
 function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta): string {
   const breadcrumbItems = [{ name: 'Inicio', url: 'https://www.tintoreriamimos.es/' }];
@@ -74,7 +304,7 @@ function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta
     routeJsonLd
   )}</script>`;
 
-  const aeoNoscriptBlock = `<noscript id="aeo-static-summary"><section><h1>${meta.h1}</h1><p>${meta.description}</p><p><strong>Tintorería Mimos Navia, S.L.</strong> · Sede central: C/ Teixugueiras, 11 bajo 9, 36212 Vigo (Pontevedra) · Teléfono fijo: +34 986 12 51 41 · WhatsApp y asistente Mimo (precios y presupuestos): +34 655 536 844 (https://wa.me/34655536844) · Email: info@tintoreriamimos.es.</p><p>3 tiendas propias en Vigo: C/ Teixugueiras, 11 bajo 9 (Navia), C/ Venezuela, 41 bajo 1 y Avda. Alcalde Gregorio Espino, 44. Puntos colaboradores en Redondela, Gondomar, Ponteareas, O Porriño y Vigo (D'Passo).</p></section></noscript>`;
+  const aeoNoscriptBlock = buildNoscriptContent(routePath, meta);
 
   return baseHtml
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)

@@ -351,6 +351,15 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   <FileText className="w-4 h-4" aria-hidden="true" />
                   <span>Ver ficha y fotos</span>
                 </a>
+              ) : punto.id === 'punto-redondela' ? (
+                <a
+                  href="/zonas/redondela"
+                  onClick={(e) => onNavigate('/zonas/redondela', e)}
+                  className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
+                >
+                  <FileText className="w-4 h-4" aria-hidden="true" />
+                  <span>Ver ficha y fotos</span>
+                </a>
               ) : (
                 <button
                   type="button"
@@ -985,7 +994,8 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         onClose={() => setPuntoModalFicha(null)}
         titleId={puntoModalFicha ? 'modal-ficha-titulo' : undefined}
         maxWidthClass={
-          puntoModalFicha?.id === 'punto-o-porrino' || puntoModalFicha?.id === 'punto-gondomar'
+          puntoModalFicha?.id === 'punto-o-porrino' ||
+          puntoModalFicha?.id === 'punto-gondomar'
             ? 'max-w-5xl'
             : 'max-w-2xl'
         }
@@ -1046,6 +1056,50 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
 
               {/* Contenido scrolleable de la ficha */}
               <div className="px-6 py-5 overflow-y-auto space-y-5 text-slate-800 dark:text-slate-100">
+                {/* Fotografías del establecimiento si están disponibles */}
+                {puntoModalFicha.id === 'punto-redondela' ? (
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#002147] dark:text-slate-200">
+                      Fotografías del establecimiento
+                    </p>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+                        <img
+                          src="/images/mimos-redondela/fachadaRedondela1.jpg"
+                          alt="Fachada de Mimos Redondela"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+                        <img
+                          src="/images/mimos-redondela/InteriorRedondela.jpg"
+                          alt="Interior y mostrador de Mimos Redondela"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+                        <img
+                          src="/images/mimos-redondela/fachadaRedondela2.jpg"
+                          alt="Acceso comercial de Mimos Redondela"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : puntoModalFicha.foto ? (
+                  <div className="aspect-[16/9] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+                    <img
+                      src={puntoModalFicha.foto}
+                      alt={`Instalaciones de ${puntoModalFicha.nombre_mostrado}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : null}
+
                 {/* Ubicación y accesos */}
                 <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0b1d36] border border-slate-200 dark:border-slate-800 space-y-2.5">
                   <div className="flex items-start gap-2.5">

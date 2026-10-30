@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { ServicesAndPricingSection } from './components/ServicesAndPricingSection';
@@ -103,6 +103,8 @@ export function App() {
     setStoredTheme(darkMode);
   }, [darkMode]);
 
+  const isInitialMount = useRef(true);
+
   // Apply SEO & Schema.org on route change, manage GA4, and focus h1 for accessibility
   useEffect(() => {
     applyPageSEO(currentPath);
@@ -112,15 +114,96 @@ export function App() {
     } else {
       disableAndClearGA4();
     }
-    // Accesibilidad: mover foco al encabezado principal tras la navegación
-    const timer = setTimeout(() => {
+
+    // En la carga inicial de una URL no movemos el foco al H1 para que el primer Tab llegue al Skip-link
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    // Accesibilidad: mover foco al encabezado principal solo tras una navegación interna real
+    const originActiveElement = document.activeElement as HTMLElement | null;
+    let observer: MutationObserver | null = null;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    let focusMoved = false;
+
+    const tryFocusHeading = (): boolean => {
+      if (focusMoved) return true;
+
+      const currentActive = document.activeElement as HTMLElement | null;
+
+      // No mover el foco si el usuario ya se ha movido deliberadamente a otro elemento distinto del origen y del body
+      if (
+        currentActive !== originActiveElement &&
+        currentActive !== document.body &&
+        currentActive !== null
+      ) {
+        return true; // El usuario ya interactuó durante la carga, no arrebatar el foco
+      }
+
+      // No mover el foco si el foco está en un campo de texto/formulario o dentro de un diálogo abierto
+      const isFormInput =
+        currentActive instanceof HTMLInputElement ||
+        currentActive instanceof HTMLTextAreaElement ||
+        currentActive instanceof HTMLSelectElement ||
+        currentActive?.getAttribute('contenteditable') === 'true';
+      const isInsideDialog = currentActive?.closest('[role="dialog"], dialog') !== null;
+
+      if (isFormInput || isInsideDialog) {
+        return true;
+      }
+
       const heading = document.querySelector('h1') as HTMLElement | null;
       if (heading) {
         heading.setAttribute('tabindex', '-1');
         heading.focus({ preventScroll: true });
+        focusMoved = true;
+        return true;
       }
-    }, 60);
-    return () => clearTimeout(timer);
+
+      return false;
+    };
+
+    // Intento inmediato si el H1 ya está presente (rutas síncronas o ya cargadas en caché)
+    if (!tryFocusHeading()) {
+      // Para rutas diferidas (React.lazy + Suspense), observar la inserción del H1 en el DOM
+      const targetContainer = document.getElementById('main-content') || document.body;
+
+      observer = new MutationObserver(() => {
+        if (tryFocusHeading()) {
+          observer?.disconnect();
+          observer = null;
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+          }
+        }
+      });
+
+      observer.observe(targetContainer, {
+        childList: true,
+        subtree: true,
+      });
+
+      // Límite de seguridad máximo de 3 segundos para evitar observadores colgados
+      timeoutId = setTimeout(() => {
+        if (observer) {
+          observer.disconnect();
+          observer = null;
+        }
+      }, 3000);
+    }
+
+    return () => {
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+      }
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+    };
   }, [currentPath]);
 
   // Delegated listener for WhatsApp and phone clicks (single source, no PII or URLs sent)
