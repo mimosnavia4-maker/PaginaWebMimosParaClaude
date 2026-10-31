@@ -49,6 +49,7 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
     '/blog/montar-tu-propia-tintoreria-lavanderia',
   '/punto-telas-mas-porrino': '/zonas/o-porrino',
   '/punto/telas-mas': '/zonas/o-porrino',
+  '/ficha/telas-mas': '/zonas/o-porrino',
   '/punto-puntadas-no-aire-gondomar': '/zonas/gondomar',
   '/punto/puntadas-no-aire': '/zonas/gondomar',
   '/ficha/puntadas-no-aire': '/zonas/gondomar',
@@ -60,6 +61,11 @@ export function resolveCanonicalRoute(rawPath: string): string {
   const normalized =
     withoutQuery.length > 1 ? withoutQuery.replace(/\/+$/, '') : '/';
   return LEGACY_REDIRECT_MAP[normalized] || normalized;
+}
+
+export function isKnownRoute(rawPath: string): boolean {
+  const resolved = resolveCanonicalRoute(rawPath);
+  return KNOWN_ROUTES.includes(resolved);
 }
 
 function buildBreadcrumbSchema(
@@ -472,7 +478,19 @@ function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unkno
 export function getPageSEO(pathname: string): PageSEOConfig {
   const canonicalPath = resolveCanonicalRoute(pathname);
   const cleanPath = canonicalPath.split('?')[0].split('#')[0] || '/';
-  const meta = ROUTE_SEO_MAP[cleanPath] || ROUTE_SEO_MAP['/'];
+  const meta = ROUTE_SEO_MAP[cleanPath];
+
+  if (!meta) {
+    return {
+      title: 'Página no encontrada | Tintorería Mimos',
+      description:
+        'La página solicitada no existe o ha sido trasladada. Tintorería y lavandería profesional en Vigo con recogida a domicilio y 3 tiendas propias.',
+      canonical: '',
+      robots: 'noindex, nofollow',
+      ogType: 'website',
+      jsonLd: [],
+    };
+  }
 
   return {
     title: meta.title,
@@ -509,31 +527,44 @@ export function applyPageSEO(pathname: string): void {
   setMetaContent('meta[name="robots"]', seo.robots);
   setMetaContent('meta[property="og:title"]', seo.title);
   setMetaContent('meta[property="og:description"]', seo.description);
-  setMetaContent('meta[property="og:url"]', seo.canonical);
+  if (seo.canonical) {
+    setMetaContent('meta[property="og:url"]', seo.canonical);
+  } else {
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.remove();
+  }
   setMetaContent('meta[property="og:type"]', seo.ogType);
   setMetaContent('meta[name="twitter:title"]', seo.title);
   setMetaContent('meta[name="twitter:description"]', seo.description);
 
   const cleanPath = resolveCanonicalRoute(pathname).split('?')[0].split('#')[0] || '/';
-  const meta = ROUTE_SEO_MAP[cleanPath] || ROUTE_SEO_MAP['/'];
-  const image = meta.ogImage || 'https://www.tintoreriamimos.es/osito-mimos.jpg';
+  const meta = ROUTE_SEO_MAP[cleanPath];
+  const image = meta?.ogImage || 'https://www.tintoreriamimos.es/osito-mimos.jpg';
   setMetaContent('meta[property="og:image"]', image);
   setMetaContent('meta[name="twitter:image"]', image);
 
   let canonicalEl = document.querySelector('link[rel="canonical"]');
-  if (!canonicalEl) {
-    canonicalEl = document.createElement('link');
-    canonicalEl.setAttribute('rel', 'canonical');
-    document.head.appendChild(canonicalEl);
+  if (seo.canonical) {
+    if (!canonicalEl) {
+      canonicalEl = document.createElement('link');
+      canonicalEl.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalEl);
+    }
+    canonicalEl.setAttribute('href', seo.canonical);
+  } else if (canonicalEl) {
+    canonicalEl.remove();
   }
-  canonicalEl.setAttribute('href', seo.canonical);
 
   let scriptEl = document.getElementById('schema-dynamic-page') as HTMLScriptElement | null;
-  if (!scriptEl) {
-    scriptEl = document.createElement('script');
-    scriptEl.id = 'schema-dynamic-page';
-    scriptEl.type = 'application/ld+json';
-    document.head.appendChild(scriptEl);
+  if (seo.jsonLd && (Array.isArray(seo.jsonLd) ? seo.jsonLd.length > 0 : Object.keys(seo.jsonLd).length > 0)) {
+    if (!scriptEl) {
+      scriptEl = document.createElement('script');
+      scriptEl.id = 'schema-dynamic-page';
+      scriptEl.type = 'application/ld+json';
+      document.head.appendChild(scriptEl);
+    }
+    scriptEl.textContent = JSON.stringify(seo.jsonLd);
+  } else if (scriptEl) {
+    scriptEl.remove();
   }
-  scriptEl.textContent = JSON.stringify(seo.jsonLd);
 }

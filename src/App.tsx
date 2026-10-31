@@ -42,6 +42,9 @@ const CareersPage = React.lazy(() =>
 const TiendaGregorioEspinoPage = React.lazy(() =>
   import('./components/TiendaGregorioEspinoPage').then((m) => ({ default: m.TiendaGregorioEspinoPage }))
 );
+const NotFoundPage = React.lazy(() =>
+  import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
+);
 import {
   ARTICULOS_BLOG,
   SERVICIOS_MIMOS,
@@ -68,15 +71,14 @@ export function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const rawPath = window.location.pathname || '/';
-      const canonicalPath = resolveCanonicalRoute(rawPath);
-      if (canonicalPath !== rawPath && KNOWN_ROUTES.includes(canonicalPath)) {
+      const cleanPath = rawPath.split('?')[0].split('#')[0] || '/';
+      const normalized = cleanPath.length > 1 ? cleanPath.replace(/\/+$/, '') : '/';
+      const canonicalPath = resolveCanonicalRoute(normalized);
+      if (canonicalPath !== normalized && KNOWN_ROUTES.includes(canonicalPath)) {
         window.history.replaceState({}, '', canonicalPath);
         return canonicalPath;
       }
-      if (KNOWN_ROUTES.includes(canonicalPath)) {
-        return canonicalPath;
-      }
-      return '/';
+      return rawPath;
     }
     return '/';
   });
@@ -127,6 +129,45 @@ export function App() {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
     let focusMoved = false;
 
+    const isElementVisible = (el: HTMLElement): boolean => {
+      if (!el.isConnected) return false;
+
+      // Si el navegador soporta checkVisibility (Chromium, Firefox, Safari)
+      if (typeof el.checkVisibility === 'function') {
+        if (!el.checkVisibility({ checkOpacity: false, checkVisibilityCSS: true })) {
+          return false;
+        }
+      }
+
+      const style = window.getComputedStyle(el);
+      if (style.display === 'none' || style.visibility === 'hidden') {
+        return false;
+      }
+
+      // Comprobar dimensiones reales y offsetParent (salvo posición fija donde offsetParent puede ser null)
+      if (el.offsetParent === null && style.position !== 'fixed') {
+        const rect = el.getBoundingClientRect();
+        if (rect.width === 0 && rect.height === 0) {
+          return false;
+        }
+      }
+
+      // Comprobar que ningún ancestro esté oculto (por ejemplo contenedores ocultos por React Suspense o con atributo hidden)
+      let parent = el.parentElement;
+      while (parent && parent !== document.body) {
+        if (parent.hasAttribute('hidden')) {
+          return false;
+        }
+        const pStyle = window.getComputedStyle(parent);
+        if (pStyle.display === 'none' || pStyle.visibility === 'hidden') {
+          return false;
+        }
+        parent = parent.parentElement;
+      }
+
+      return true;
+    };
+
     const tryFocusHeading = (): boolean => {
       if (focusMoved) return true;
 
@@ -153,21 +194,27 @@ export function App() {
         return true;
       }
 
-      const heading = document.querySelector('h1') as HTMLElement | null;
-      if (heading) {
-        heading.setAttribute('tabindex', '-1');
-        heading.focus({ preventScroll: true });
-        focusMoved = true;
-        return true;
+      // Buscar todos los h1 en el DOM y seleccionar el primero que sea realmente visible
+      const headings = Array.from(document.querySelectorAll<HTMLElement>('h1'));
+      const visibleHeading = headings.find(isElementVisible);
+
+      if (visibleHeading) {
+        visibleHeading.setAttribute('tabindex', '-1');
+        visibleHeading.focus({ preventScroll: true });
+        // Comprobar que el foco fue efectivamente recibido por el elemento visible
+        if (document.activeElement === visibleHeading) {
+          focusMoved = true;
+          return true;
+        }
       }
 
       return false;
     };
 
-    // Intento inmediato si el H1 ya está presente (rutas síncronas o ya cargadas en caché)
+    // Intento inmediato si el H1 ya está presente y visible (rutas síncronas o ya cargadas en caché)
     if (!tryFocusHeading()) {
-      // Para rutas diferidas (React.lazy + Suspense), observar la inserción del H1 en el DOM
-      const targetContainer = document.getElementById('main-content') || document.body;
+      // Para rutas diferidas (React.lazy + Suspense), observar la inserción o visibilidad del H1 en el DOM
+      const targetContainer = document.getElementById('root') || document.body;
 
       observer = new MutationObserver(() => {
         if (tryFocusHeading()) {
@@ -183,15 +230,17 @@ export function App() {
       observer.observe(targetContainer, {
         childList: true,
         subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'hidden', 'class'],
       });
 
-      // Límite de seguridad máximo de 3 segundos para evitar observadores colgados
+      // Límite de seguridad máximo de 4.5 segundos para evitar observadores colgados en redes lentas
       timeoutId = setTimeout(() => {
         if (observer) {
           observer.disconnect();
           observer = null;
         }
-      }, 3000);
+      }, 4500);
     }
 
     return () => {
@@ -256,7 +305,7 @@ export function App() {
   // Listen to browser back/forward navigation
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(resolveCanonicalRoute(window.location.pathname || '/'));
+      setCurrentPath(window.location.pathname || '/');
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -271,8 +320,9 @@ export function App() {
       if (href.startsWith('/#') || href.startsWith('#')) {
         const hash = href.replace(/^\//, '');
         const targetId = hash.replace('#', '');
+        const currentBase = (currentPath || '/').split('?')[0].split('#')[0] || '/';
 
-        if (currentPath !== '/') {
+        if (currentBase !== '/') {
           window.history.pushState({}, '', `/${hash}`);
           setCurrentPath('/');
           setTimeout(() => {
@@ -323,22 +373,29 @@ export function App() {
     disableAndClearGA4();
   };
 
+  // Normalizar la ruta actual sin fragmento (#) ni parámetros de consulta (?)
+  const cleanCurrentPath = (currentPath || '/').split('?')[0].split('#')[0] || '/';
+  const normalizedRoute =
+    cleanCurrentPath.length > 1 ? cleanCurrentPath.replace(/\/+$/, '') : '/';
+  const effectivePath = resolveCanonicalRoute(normalizedRoute);
+  const isKnown = KNOWN_ROUTES.includes(effectivePath);
+
   // Match route
-  const articuloActivo = ARTICULOS_BLOG.find((a) => a.url === currentPath);
+  const articuloActivo = ARTICULOS_BLOG.find((a) => a.url === effectivePath);
   const zonaActiva =
-    ZONAS_SEO_LOCAL.find((z) => z.url === currentPath) ||
-    (currentPath === '/punto-telas-mas-porrino' ||
-    currentPath === '/punto/telas-mas' ||
-    currentPath === '/ficha/telas-mas'
+    ZONAS_SEO_LOCAL.find((z) => z.url === effectivePath) ||
+    (effectivePath === '/punto-telas-mas-porrino' ||
+    effectivePath === '/punto/telas-mas' ||
+    effectivePath === '/ficha/telas-mas'
       ? ZONAS_SEO_LOCAL.find((z) => z.slug === 'o-porrino')
-      : currentPath === '/punto-puntadas-no-aire-gondomar' ||
-        currentPath === '/punto/puntadas-no-aire' ||
-        currentPath === '/ficha/puntadas-no-aire'
+      : effectivePath === '/punto-puntadas-no-aire-gondomar' ||
+        effectivePath === '/punto/puntadas-no-aire' ||
+        effectivePath === '/ficha/puntadas-no-aire'
       ? ZONAS_SEO_LOCAL.find((z) => z.slug === 'gondomar')
       : undefined);
   const servicioIndividualActivo = SERVICIOS_MIMOS.find(
     (s) =>
-      s.url === currentPath &&
+      s.url === effectivePath &&
       s.url !== '/limpieza-apartamentos-turisticos-vigo' &&
       s.url !== '/servicios-empresas'
   );
@@ -352,9 +409,9 @@ export function App() {
   }, []);
 
   const isLegalRoute =
-    currentPath === '/aviso-legal' ||
-    currentPath === '/privacidad' ||
-    currentPath === '/cookies';
+    effectivePath === '/aviso-legal' ||
+    effectivePath === '/privacidad' ||
+    effectivePath === '/cookies';
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white dark:bg-[#071324] text-slate-900 dark:text-slate-100">
@@ -390,31 +447,33 @@ export function App() {
           </div>
         }
       >
-        {articuloActivo ? (
+        {!isKnown ? (
+          <NotFoundPage onNavigate={handleNavigate} />
+        ) : articuloActivo ? (
           <div id="main-content">
             <BlogArticlePage articulo={articuloActivo} onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/blog' ? (
+        ) : effectivePath === '/blog' ? (
           <main id="main-content">
             <BlogSection onNavigate={handleNavigate} isPage={true} />
           </main>
-        ) : currentPath === '/limpieza-alfombras-vigo' ? (
+        ) : effectivePath === '/limpieza-alfombras-vigo' ? (
           <div id="main-content">
             <CarpetCleaningPage onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/arreglos-de-ropa-vigo' ? (
+        ) : effectivePath === '/arreglos-de-ropa-vigo' ? (
           <div id="main-content">
             <ClothingAlterationsPage onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/limpieza-profesional-vigo' ? (
+        ) : effectivePath === '/limpieza-profesional-vigo' ? (
           <div id="main-content">
             <CleaningDivisionPage variant="limpieza" onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/limpieza-apartamentos-turisticos-vigo' ? (
+        ) : effectivePath === '/limpieza-apartamentos-turisticos-vigo' ? (
           <div id="main-content">
             <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/servicios-empresas' ? (
+        ) : effectivePath === '/servicios-empresas' ? (
           <div id="main-content">
             <CleaningDivisionPage variant="empresas" onNavigate={handleNavigate} />
           </div>
@@ -425,11 +484,11 @@ export function App() {
               onNavigate={handleNavigate}
             />
           </div>
-        ) : currentPath === '/puntos-mimos' || currentPath === '/contacto' ? (
+        ) : effectivePath === '/puntos-mimos' || effectivePath === '/contacto' ? (
           <main id="main-content">
             <ContactAndLocationsSection
               onNavigate={handleNavigate}
-              pageMode={currentPath === '/contacto' ? 'contacto' : 'puntos'}
+              pageMode={effectivePath === '/contacto' ? 'contacto' : 'puntos'}
             />
           </main>
         ) : zonaActiva ? (
@@ -439,28 +498,28 @@ export function App() {
         ) : isLegalRoute ? (
           <div id="main-content">
             <LegalPage
-              section={currentPath.replace('/', '') as 'aviso-legal' | 'privacidad' | 'cookies'}
+              section={effectivePath.replace('/', '') as 'aviso-legal' | 'privacidad' | 'cookies'}
               onNavigate={handleNavigate}
               onOpenCookieSettings={() => setCookieBannerOpen(true)}
             />
           </div>
-        ) : currentPath === '/feder' ? (
+        ) : effectivePath === '/feder' ? (
           <div id="main-content">
             <SubsidiesPage variant="feder" onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/programa-bono-energia-peme-2025-in417z' ? (
+        ) : effectivePath === '/programa-bono-energia-peme-2025-in417z' ? (
           <div id="main-content">
             <SubsidiesPage variant="bono-energia" onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/empleo-unete-a-nosotros' ? (
+        ) : effectivePath === '/empleo-unete-a-nosotros' ? (
           <div id="main-content">
             <CareersPage onNavigate={handleNavigate} />
           </div>
-        ) : currentPath === '/tienda-mimos-gregorio-espino-vigo' || currentPath === '/tienda/gregorio-espino' ? (
+        ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
           <div id="main-content">
             <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
           </div>
-        ) : (
+        ) : effectivePath === '/' ? (
           /* Portada con los bloques de Sección 7 + el Bloque Propio Prioritario de Limpieza de Alfombras (Sección 16) */
           <main id="main-content">
             {/* 2. Portada principal */}
@@ -480,6 +539,8 @@ export function App() {
             {/* 8. Guías de cuidado textil */}
             <BlogSection onNavigate={handleNavigate} />
           </main>
+        ) : (
+          <NotFoundPage onNavigate={handleNavigate} />
         )}
       </React.Suspense>
 

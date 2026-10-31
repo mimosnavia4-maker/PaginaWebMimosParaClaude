@@ -356,6 +356,62 @@ function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta
     .replace('<div id="root"></div>', `<div id="root"></div>\n    ${aeoNoscriptBlock}`);
 }
 
+function render404Html(baseHtml: string): string {
+  const notFoundNoscriptBlock =
+    `<noscript id="aeo-static-summary">` +
+    `<section>` +
+    `<h1>Página no encontrada</h1>` +
+    `<p>La dirección que has introducido no existe o ha sido trasladada a una nueva sección. Tintorería Mimos ofrece servicios profesionales de tintorería, lavandería y limpieza de alfombras en Vigo y comarca con recogida a domicilio y 3 tiendas propias.</p>` +
+    `<nav aria-label="Servicios recomendados">` +
+    `<ul>` +
+    `<li><a href="/">Portada principal de Tintorería Mimos</a></li>` +
+    `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras con recogida a domicilio</a></li>` +
+    `<li><a href="/tintoreria-vigo">Tintorería profesional en Vigo</a></li>` +
+    `<li><a href="/lavanderia-vigo">Lavandería y colada por kilos</a></li>` +
+    `<li><a href="/arreglos-de-ropa-vigo">Arreglos de ropa y costura</a></li>` +
+    `<li><a href="/contacto">Contacto, teléfonos y horarios</a></li>` +
+    `</ul>` +
+    `</nav>` +
+    `</section>` +
+    `</noscript>`;
+
+  return baseHtml
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>Página no encontrada | Tintorería Mimos</title>`)
+    .replace(
+      /<meta\s+name="description"\s+content="[^"]*"\s*\/>/,
+      `<meta name="description" content="La página que busca no existe o ha sido movida. Tintorería y lavandería profesional en Vigo con recogida a domicilio y 3 tiendas propias." />`
+    )
+    .replace(
+      /<meta\s+name="robots"\s+id="meta-robots"\s+content="[^"]*"\s*\/>/,
+      `<meta name="robots" id="meta-robots" content="noindex, nofollow" />`
+    )
+    .replace(
+      /<link\s+rel="canonical"\s+id="canonical-link"\s+href="[^"]*"\s*\/>\s*/,
+      ''
+    )
+    .replace(
+      /<meta\s+property="og:title"\s+id="og-title"\s+content="[^"]*"\s*\/>/,
+      `<meta property="og:title" id="og-title" content="Página no encontrada | Tintorería Mimos" />`
+    )
+    .replace(
+      /<meta\s+property="og:description"\s+id="og-description"\s+content="[^"]*"\s*\/>/,
+      `<meta property="og:description" id="og-description" content="La página solicitada no existe o ha sido movida." />`
+    )
+    .replace(
+      /<meta\s+property="og:url"\s+id="og-url"\s+content="[^"]*"\s*\/>\s*/,
+      ''
+    )
+    .replace(
+      /<meta\s+name="twitter:title"\s+id="twitter-title"\s+content="[^"]*"\s*\/>/,
+      `<meta name="twitter:title" id="twitter-title" content="Página no encontrada | Tintorería Mimos" />`
+    )
+    .replace(
+      /<meta\s+name="twitter:description"\s+id="twitter-description"\s+content="[^"]*"\s*\/>/,
+      `<meta name="twitter:description" id="twitter-description" content="La página solicitada no existe o ha sido movida." />`
+    )
+    .replace('<div id="root"></div>', `<div id="root"></div>\n    ${notFoundNoscriptBlock}`);
+}
+
 function generateSitemapXml(routes: Record<string, RouteMeta>): string {
   const today = '2026-10-18';
   const urls = Object.entries(routes)
@@ -413,10 +469,14 @@ if (fs.existsSync(baseIndexPath)) {
     }
   }
 
-  // Generar y sincronizar sitemap.xml
+  // Generar dist/404.html (excluido de sitemap.xml y fuera de las 34 rutas válidas)
+  const notFoundHtml = render404Html(baseHtml);
+  fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf-8');
+
+  // Generar y sincronizar sitemap.xml (solo contiene las 34 rutas válidas indexables)
   const sitemapXml = generateSitemapXml(ROUTE_SEO_MAP);
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf-8');
   fs.writeFileSync(path.resolve(process.cwd(), 'public/sitemap.xml'), sitemapXml, 'utf-8');
 
-  console.log(`[AEO Prerender] Generados ${Object.keys(ROUTE_SEO_MAP).length} archivos HTML estáticos y sitemap.xml sincronizado.`);
+  console.log(`[AEO Prerender] Generados ${Object.keys(ROUTE_SEO_MAP).length} archivos HTML estáticos + dist/404.html y sitemap.xml sincronizado.`);
 }

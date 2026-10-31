@@ -13,9 +13,25 @@ import type { RouteMeta } from './src/data/routesSeoData.ts';
 export { ROUTE_SEO_MAP };
 export type { RouteMeta };
 
-export function injectSeoIntoHtml(html: string, reqPath: string): string {
+export function isKnownServerRoute(reqPath: string): boolean {
   const cleanPath = reqPath.split('?')[0].split('#')[0] || '/';
-  const meta = ROUTE_SEO_MAP[cleanPath] || ROUTE_SEO_MAP['/'];
+  const normalized = cleanPath.length > 1 ? cleanPath.replace(/\/+$/, '') : '/';
+  return Boolean(ROUTE_SEO_MAP[normalized]);
+}
+
+export function injectSeoIntoHtml(html: string, reqPath: string): { html: string; status: number } {
+  const cleanPath = reqPath.split('?')[0].split('#')[0] || '/';
+  const isFound = Boolean(ROUTE_SEO_MAP[cleanPath]);
+  const meta: RouteMeta = ROUTE_SEO_MAP[cleanPath] || {
+    title: 'Página no encontrada | Tintorería Mimos',
+    h1: 'Página no encontrada',
+    description:
+      'La página que busca no existe o ha sido movida. Tintorería y lavandería profesional en Vigo con recogida a domicilio y 3 tiendas propias.',
+    canonical: '',
+    robots: 'noindex, nofollow',
+    ogType: 'website',
+    breadcrumbName: 'Página no encontrada',
+  };
 
   const breadcrumbItems: { name: string; url: string }[] = [
     { name: 'Inicio', url: 'https://www.tintoreriamimos.es/' },
@@ -23,24 +39,26 @@ export function injectSeoIntoHtml(html: string, reqPath: string): string {
   if (meta.breadcrumbParent) {
     breadcrumbItems.push(meta.breadcrumbParent);
   }
-  if (cleanPath !== '/') {
+  if (cleanPath !== '/' && meta.canonical) {
     breadcrumbItems.push({ name: meta.breadcrumbName, url: meta.canonical });
   }
 
-  const routeJsonLd: Record<string, unknown>[] = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: breadcrumbItems.map((item, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        name: item.name,
-        item: item.url,
-      })),
-    },
-  ];
+  const routeJsonLd: Record<string, unknown>[] = isFound
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: breadcrumbItems.map((item, idx) => ({
+            '@type': 'ListItem',
+            position: idx + 1,
+            name: item.name,
+            item: item.url,
+          })),
+        },
+      ]
+    : [];
 
-  if (meta.ogType === 'article') {
+  if (isFound && meta.ogType === 'article') {
     routeJsonLd.push({
       '@context': 'https://schema.org',
       '@type': 'Article',
@@ -58,6 +76,7 @@ export function injectSeoIntoHtml(html: string, reqPath: string): string {
       },
     });
   } else if (
+    isFound &&
     cleanPath !== '/' &&
     cleanPath !== '/blog' &&
     cleanPath !== '/puntos-mimos' &&
@@ -77,11 +96,14 @@ export function injectSeoIntoHtml(html: string, reqPath: string): string {
     });
   }
 
-  const routeSchemaTag = `<script type="application/ld+json" id="schema-dynamic-page">${JSON.stringify(
-    routeJsonLd
-  )}</script>`;
+  const routeSchemaTag =
+    routeJsonLd.length > 0
+      ? `<script type="application/ld+json" id="schema-dynamic-page">${JSON.stringify(routeJsonLd)}</script>`
+      : '';
 
-  const aeoNoscriptBlock = `<noscript id="aeo-static-summary"><section><h1>${meta.h1}</h1><p>${meta.description}</p><p><strong>Tintorería Mimos Navia, S.L.</strong> · Sede central: C/ As Teixugueiras, 11, local 9, 36212 Vigo (Pontevedra) · Teléfono fijo: +34 986 12 51 41 · WhatsApp y asistente Mimo (precios y presupuestos): +34 655 536 844 (https://wa.me/34655536844) · Email: info@tintoreriamimos.es.</p><p>3 tiendas propias en Vigo: As Teixugueiras 11 (Navia), C/ Venezuela 41 bajo 1 y Avda. Alcalde Gregorio Espino 44. Puntos colaboradores en Redondela, Gondomar, Ponteareas y O Porriño.</p></section></noscript>`;
+  const aeoNoscriptBlock = isFound
+    ? `<noscript id="aeo-static-summary"><section><h1>${meta.h1}</h1><p>${meta.description}</p><p><strong>Tintorería Mimos Navia, S.L.</strong> · Sede central: C/ As Teixugueiras, 11, local 9, 36212 Vigo (Pontevedra) · Teléfono fijo: +34 986 12 51 41 · WhatsApp y asistente Mimo: +34 655 536 844 · Email: info@tintoreriamimos.es.</p><p>3 tiendas propias en Vigo: As Teixugueiras 11 (Navia), C/ Venezuela 41 bajo 1 y Avda. Alcalde Gregorio Espino 44. Puntos colaboradores en Redondela, Gondomar, Ponteareas y O Porriño.</p></section></noscript>`
+    : `<noscript id="aeo-static-summary"><section><h1>Página no encontrada</h1><p>La dirección solicitada no existe. Dispone de servicios profesionales de tintorería y lavandería en Vigo con recogida a domicilio y 3 tiendas propias.</p><p><a href="/">Volver a la portada</a></p></section></noscript>`;
 
   let out = html
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)
@@ -94,8 +116,8 @@ export function injectSeoIntoHtml(html: string, reqPath: string): string {
       `<meta name="robots" id="meta-robots" content="${meta.robots}" />`
     )
     .replace(
-      /<link\s+rel="canonical"\s+id="canonical-link"\s+href="[^"]*"\s*\/>/,
-      `<link rel="canonical" id="canonical-link" href="${meta.canonical}" />`
+      /<link\s+rel="canonical"\s+id="canonical-link"\s+href="[^"]*"\s*\/>\s*/,
+      meta.canonical ? `<link rel="canonical" id="canonical-link" href="${meta.canonical}" />` : ''
     )
     .replace(
       /<meta\s+property="og:type"\s+content="[^"]*"\s+id="og-type"\s*\/>/,
@@ -110,8 +132,8 @@ export function injectSeoIntoHtml(html: string, reqPath: string): string {
       `<meta property="og:description" id="og-description" content="${meta.description}" />`
     )
     .replace(
-      /<meta\s+property="og:url"\s+id="og-url"\s+content="[^"]*"\s*\/>/,
-      `<meta property="og:url" id="og-url" content="${meta.canonical}" />`
+      /<meta\s+property="og:url"\s+id="og-url"\s+content="[^"]*"\s*\/>\s*/,
+      meta.canonical ? `<meta property="og:url" id="og-url" content="${meta.canonical}" />` : ''
     )
     .replace(
       /<meta\s+name="twitter:title"\s+id="twitter-title"\s+content="[^"]*"\s*\/>/,
@@ -128,11 +150,14 @@ export function injectSeoIntoHtml(html: string, reqPath: string): string {
     .replace(
       /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/>/,
       `<meta name="twitter:image" content="${meta.ogImage || 'https://www.tintoreriamimos.es/osito-mimos.jpg'}" />`
-    )
-    .replace('</head>', `    ${routeSchemaTag}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root"></div>\n    ${aeoNoscriptBlock}`);
+    );
 
-  return out;
+  if (routeSchemaTag) {
+    out = out.replace('</head>', `    ${routeSchemaTag}\n  </head>`);
+  }
+  out = out.replace('<div id="root"></div>', `<div id="root"></div>\n    ${aeoNoscriptBlock}`);
+
+  return { html: out, status: isFound ? 200 : 404 };
 }
 
 async function startServer() {
@@ -140,7 +165,7 @@ async function startServer() {
   const server = http.createServer(app);
   const PORT = 3000;
 
-  // Redirecciones 301 hacia las URLs canónicas (Secciones 7 y 16)
+  // Redirecciones 301 hacia las URLs canónicas (sincronizadas con .htaccess)
   app.use((req, res, next) => {
     const cleanPath = req.path;
     if (
@@ -170,10 +195,50 @@ async function startServer() {
       cleanPath === '/costura-y-arreglos/' ||
       cleanPath === '/servicios/costura-arreglos' ||
       cleanPath === '/servicios/costura-arreglos/' ||
+      cleanPath === '/costura-arreglos-vigo' ||
+      cleanPath === '/costura-arreglos-vigo/' ||
       cleanPath === '/arreglos-ropa-vigo' ||
       cleanPath === '/arreglos-ropa-vigo/'
     ) {
       return res.redirect(301, '/arreglos-de-ropa-vigo');
+    }
+    if (
+      cleanPath === '/empleo' ||
+      cleanPath === '/empleo/' ||
+      cleanPath === '/unete-a-nosotros' ||
+      cleanPath === '/unete-a-nosotros/' ||
+      cleanPath === '/empleo-unete-a-nosotros.html'
+    ) {
+      return res.redirect(301, '/empleo-unete-a-nosotros');
+    }
+    if (cleanPath === '/feder.html') {
+      return res.redirect(301, '/feder');
+    }
+    if (cleanPath === '/programa-bono-energia-peme-2025-in417z.html') {
+      return res.redirect(301, '/programa-bono-energia-peme-2025-in417z');
+    }
+    if (
+      cleanPath === '/punto-telas-mas-porrino' ||
+      cleanPath === '/punto-telas-mas-porrino/' ||
+      cleanPath === '/punto/telas-mas' ||
+      cleanPath === '/punto/telas-mas/' ||
+      cleanPath === '/ficha/telas-mas' ||
+      cleanPath === '/ficha/telas-mas/'
+    ) {
+      return res.redirect(301, '/zonas/o-porrino');
+    }
+    if (
+      cleanPath === '/punto-puntadas-no-aire-gondomar' ||
+      cleanPath === '/punto-puntadas-no-aire-gondomar/' ||
+      cleanPath === '/punto/puntadas-no-aire' ||
+      cleanPath === '/punto/puntadas-no-aire/' ||
+      cleanPath === '/ficha/puntadas-no-aire' ||
+      cleanPath === '/ficha/puntadas-no-aire/'
+    ) {
+      return res.redirect(301, '/zonas/gondomar');
+    }
+    if (cleanPath === '/tienda/gregorio-espino' || cleanPath === '/tienda/gregorio-espino/') {
+      return res.redirect(301, '/tienda-mimos-gregorio-espino-vigo');
     }
     if (
       cleanPath === '/blog/9-blog/26-la-colada-en-casa.html' ||
@@ -191,9 +256,6 @@ async function startServer() {
   });
 
   if (process.env.NODE_ENV !== 'production') {
-    // En desarrollo local con 'npm run dev', hmr: { server } asocia el WebSocket de HMR de Vite
-    // al servidor HTTP de Express (puerto 3000), permitiendo recarga en caliente sin puertos extra.
-    // En entornos sandbox o cuando DISABLE_HMR=true, Vite ignora el watcher sin afectar a la ejecución.
     const vite = await createViteServer({
       server: {
         middlewareMode: true,
@@ -212,8 +274,8 @@ async function startServer() {
       try {
         let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
-        const htmlWithSeo = injectSeoIntoHtml(template, url);
-        res.status(200).set({ 'Content-Type': 'text/html' }).end(htmlWithSeo);
+        const { html: htmlWithSeo, status } = injectSeoIntoHtml(template, url);
+        res.status(status).set({ 'Content-Type': 'text/html' }).end(htmlWithSeo);
       } catch (e) {
         vite.ssrFixStacktrace(e as Error);
         next(e);
@@ -229,8 +291,8 @@ async function startServer() {
       }
       const indexPath = path.join(distPath, 'index.html');
       const template = fs.readFileSync(indexPath, 'utf-8');
-      const htmlWithSeo = injectSeoIntoHtml(template, req.originalUrl);
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(htmlWithSeo);
+      const { html: htmlWithSeo, status } = injectSeoIntoHtml(template, req.originalUrl);
+      res.status(status).set({ 'Content-Type': 'text/html' }).end(htmlWithSeo);
     });
   }
 
