@@ -1,5 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { RefreshCw, Home, Phone, MessageCircle, AlertCircle } from 'lucide-react';
+import { CONTACT_INFO } from '../data/mimosData';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -83,20 +84,20 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               <p className="font-semibold mb-2">¿Necesitas atención inmediata?</p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <a
-                  href="tel:+34986125141"
+                  href={CONTACT_INFO.phoneHref}
                   className="inline-flex items-center gap-1.5 text-[#0F76BB] dark:text-[#60B5F6] font-bold hover:underline"
                 >
                   <Phone className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>986 12 51 41</span>
+                  <span>{CONTACT_INFO.phoneDisplay}</span>
                 </a>
                 <a
-                  href="https://wa.me/34655536844"
+                  href={CONTACT_INFO.whatsappBaseHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold hover:underline"
                 >
                   <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>WhatsApp: 655 536 844</span>
+                  <span>WhatsApp: {CONTACT_INFO.whatsappNumber}</span>
                 </a>
               </div>
             </div>

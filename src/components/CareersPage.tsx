@@ -49,11 +49,11 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
             Empleo — Únete a nosotros
           </h1>
           <p className="text-sm sm:text-base text-slate-200 max-w-3xl leading-relaxed">
-            Tintorería Mimos busca profesionales de diferentes perfiles que realicen su actividad en nuestras áreas de cuidado textil y limpieza profesional en Vigo:
+            Tintorería Mimos mantiene abierta la recepción de candidaturas espontáneas para profesionales interesados en el ámbito del cuidado textil, lavandería y atención al público en Vigo:
           </p>
         </div>
 
-        {/* Las 2 áreas de empleo (Personal de tintorería y Personal de limpieza) */}
+        {/* Las 2 áreas de empleo (Personal de tintorería y Personal de gestión textil) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-10">
           {/* Perfil 1: Personal de tintorería */}
           <article className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden flex flex-col">
@@ -71,10 +71,10 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                   Área 1 · Tiendas y Taller Textil en Vigo
                 </span>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
-                  Personal de tintorería
+                  Personal de tintorería y atención
                 </h2>
                 <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Su función será la de <strong>atención al público, desmanchado, lavado y planchado de las prendas</strong>. Si tienes experiencia o te atrae el mundo de la tintorería, éste puede ser tu trabajo.
+                  Candidaturas espontáneas para funciones de <strong>atención al público, desmanchado, lavado y planchado de prendas</strong>. Si cuentas con experiencia previa en el sector textil o quieres incorporarte a nuestra bolsa de empleo, puedes remitirnos tu perfil.
                 </p>
 
                 <ul className="pt-2 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
@@ -96,7 +96,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
                 <a
                   href={`mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(
-                    'Currículum - Personal de tintorería (Tintorería Mimos)'
+                    'Candidatura espontánea - Personal de tintorería (Tintorería Mimos)'
                   )}`}
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#0F76BB] hover:bg-[#002147] text-white font-bold text-sm px-4 py-3 rounded-xl transition-colors"
                 >
@@ -107,12 +107,12 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
             </div>
           </article>
 
-          {/* Perfil 2: Personal de limpieza */}
+          {/* Perfil 2: Personal de gestión textil y lavandería */}
           <article className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden flex flex-col">
             <div className="aspect-[16/10] w-full bg-slate-100 dark:bg-slate-800 overflow-hidden border-b border-slate-200 dark:border-slate-800">
               <img
                 src="/images/articulos/personal-limpieza.jpg"
-                alt="Personal de limpieza a domicilio y apartamentos en Tintorería Mimos Vigo"
+                alt="Personal de lavandería e higienización textil para alojamientos y empresas en Tintorería Mimos Vigo"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -120,27 +120,27 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
             <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
               <div className="space-y-3">
                 <span className="inline-block text-xs font-mono uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6] font-bold">
-                  Área 2 · Servicios a Domicilio en Vigo
+                  Área 2 · Gestión Textil y Alojamientos
                 </span>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
-                  Personal de limpieza
+                  Gestión textil y lavandería para alojamientos
                 </h2>
                 <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Su función es la <strong>limpieza en casa del cliente</strong>. Si tienes experiencia o te atrae el mundo de los servicios, éste puede ser tu trabajo.
+                  Candidaturas espontáneas para la <strong>puesta a punto y rotación textil de lencería</strong> para apartamentos turísticos y clientes de empresa en Vigo.
                 </p>
 
                 <ul className="pt-2 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5" aria-hidden="true" />
-                    <span>Limpieza profesional en viviendas particulares y hogares en Vigo.</span>
+                    <span>Preparación y empaquetado de juegos de cama y toallas para alojamientos turísticos.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5" aria-hidden="true" />
-                    <span>Puesta a punto de apartamentos turísticos y viviendas vacacionales.</span>
+                    <span>Control de calidad y desmanchado de lencería de uso intensivo.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5" aria-hidden="true" />
-                    <span>Limpieza y mantenimiento de oficinas y locales profesionales.</span>
+                    <span>Apoyo en la coordinación de recogidas y entregas de lavandería para empresas.</span>
                   </li>
                 </ul>
               </div>
@@ -148,12 +148,12 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
                 <a
                   href={`mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(
-                    'Currículum - Personal de limpieza (Tintorería Mimos)'
+                    'Candidatura espontánea - Gestión textil y alojamientos (Tintorería Mimos)'
                   )}`}
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#0F76BB] hover:bg-[#002147] text-white font-bold text-sm px-4 py-3 rounded-xl transition-colors"
                 >
                   <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
-                  <span>Enviar CV para Personal de limpieza</span>
+                  <span>Enviar CV para Gestión textil y alojamientos</span>
                 </a>
               </div>
             </div>
@@ -181,8 +181,8 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                 >
                   {CONTACT_INFO.email}
                 </a>{' '}
-                indicando el tipo de empleo al que quieres acceder (<strong>Personal de tintorería</strong> o{' '}
-                <strong>Personal de limpieza</strong>).
+                indicando el área de interés (<strong>Personal de tintorería</strong> o{' '}
+                <strong>Gestión textil y alojamientos</strong>).
               </p>
             </div>
 

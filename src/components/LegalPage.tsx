@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, FileText } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { CONTACT_INFO } from '../data/mimosData';
 
 interface LegalPageProps {
@@ -66,21 +66,6 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             Política de cookies
           </a>
         </nav>
-
-        {(section === 'aviso-legal' || section === 'privacidad') && (
-          <div className="mb-8 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0b1d36] flex items-start gap-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-            <FileText
-              className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5"
-              aria-hidden="true"
-            />
-            <div>
-              <strong className="text-[#002147] dark:text-white block mb-0.5">
-                Documento en modo borrador previo a publicación definitiva
-              </strong>
-              Esta sección legal permanece sin indexar en buscadores hasta que se incorporen los datos registrales y de identificación fiscal definitivos antes de la publicación oficial del sitio web.
-            </div>
-          </div>
-        )}
 
         {/* Datos Identificativos del Titular (LSSI-CE y RGPD) */}
         <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] mb-8 text-sm">

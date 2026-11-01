@@ -7,6 +7,7 @@
 import fs from 'fs';
 import path from 'path';
 import { ROUTE_SEO_MAP, RouteMeta } from '../src/data/routesSeoData.ts';
+import { getPageSEO } from '../src/utils/seo.ts';
 import {
   ARTICULOS_BLOG,
   CONTACT_INFO,
@@ -239,74 +240,15 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
 }
 
 function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta): string {
-  const breadcrumbItems = [{ name: 'Inicio', url: 'https://www.tintoreriamimos.es/' }];
-  if (meta.breadcrumbParent) {
-    breadcrumbItems.push(meta.breadcrumbParent);
-  }
-  if (routePath !== '/') {
-    breadcrumbItems.push({ name: meta.breadcrumbName, url: meta.canonical });
-  }
-
-  const routeJsonLd: Record<string, unknown>[] = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: breadcrumbItems.map((item, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        name: item.name,
-        item: item.url,
-      })),
-    },
-  ];
-
-  if (meta.ogType === 'article') {
-    routeJsonLd.push({
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: meta.h1,
-      description: meta.description,
-      datePublished: '2026-10-09',
-      author: {
-        '@type': 'Organization',
-        name: 'Tintorería Mimos Navia, S.L.',
-        url: 'https://www.tintoreriamimos.es/',
-      },
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': meta.canonical,
-      },
-    });
-  } else if (
-    routePath !== '/' &&
-    routePath !== '/blog' &&
-    routePath !== '/puntos-mimos' &&
-    routePath !== '/contacto' &&
-    !routePath.startsWith('/aviso') &&
-    !routePath.startsWith('/privacidad') &&
-    !routePath.startsWith('/cookies') &&
-    !routePath.startsWith('/feder') &&
-    !routePath.startsWith('/programa-bono-energia') &&
-    !routePath.startsWith('/empleo-unete-a-nosotros')
-  ) {
-    routeJsonLd.push({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      name: meta.h1,
-      description: meta.description,
-      provider: { '@id': 'https://www.tintoreriamimos.es/#negocio' },
-      areaServed: meta.areaServed || { '@type': 'City', name: 'Vigo' },
-      url: meta.canonical,
-    });
-  }
-
+  const seo = getPageSEO(routePath);
   const routeSchemaTag = `<script type="application/ld+json" id="schema-dynamic-page">${JSON.stringify(
-    routeJsonLd
+    seo.jsonLd
   )}</script>`;
 
   const aeoNoscriptBlock = buildNoscriptContent(routePath, meta);
 
   return baseHtml
+    .replace(/<script\s+type="application\/ld\+json"\s+id="schema-localbusiness">[\s\S]*?<\/script>\s*/, '')
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)
     .replace(
       /<meta\s+name="description"\s+content="[^"]*"\s*\/>/,
@@ -412,41 +354,53 @@ function render404Html(baseHtml: string): string {
     .replace('<div id="root"></div>', `<div id="root"></div>\n    ${notFoundNoscriptBlock}`);
 }
 
+function getVerifiableLastmod(path: string): string {
+  // Artículos individuales del blog con fecha verificada de publicación
+  if (path.startsWith('/blog/')) {
+    const articulo = ARTICULOS_BLOG.find((a) => a.url === path);
+    if (articulo?.fechaISO) return articulo.fechaISO;
+    return '2026-10-09';
+  }
+  if (path === '/blog') return '2026-10-09';
+
+  // Subvenciones y convocatorias institucionales históricas
+  if (path === '/feder') return '2024-12-01';
+  if (path.startsWith('/programa-bono')) return '2025-01-15';
+
+  // Páginas con cambios editoriales sustanciales verificados en Fase 3 (2026-11-01):
+  // Portada (eliminación tarifas, unificación red), Puntos Mimos (3 tiendas + 5 colaboradores),
+  // landing de Gregorio Espino, contacto, zonas locales, empleo y páginas de servicios con reclamos corregidos.
+  const paginasModificadasFase3 = [
+    '/',
+    '/empleo-unete-a-nosotros',
+    '/puntos-mimos',
+    '/tienda-mimos-gregorio-espino-vigo',
+    '/contacto',
+    '/zonas/vigo',
+    '/zonas/redondela',
+    '/zonas/gondomar',
+    '/zonas/ponteareas',
+    '/zonas/o-porrino',
+    '/arreglos-de-ropa-vigo',
+    '/limpieza-profesional-vigo',
+    '/limpieza-apartamentos-turisticos-vigo',
+    '/servicios-empresas',
+    '/recogida-a-domicilio',
+  ];
+  if (paginasModificadasFase3.includes(path)) {
+    return '2026-11-01';
+  }
+
+  // Servicios comerciales estándar sin cambios en catálogo en Fase 3: fecha base previa
+  return '2026-10-15';
+}
+
 function generateSitemapXml(routes: Record<string, RouteMeta>): string {
-  const today = '2026-10-18';
   const urls = Object.entries(routes)
     .filter(([_, meta]) => meta.robots === 'index, follow')
     .map(([path, meta]) => {
-      let priority = '0.8';
-      let changefreq = 'monthly';
-      if (path === '/') {
-        priority = '1.0';
-        changefreq = 'weekly';
-      } else if (
-        path === '/puntos-mimos' ||
-        path === '/tienda-mimos-gregorio-espino-vigo' ||
-        path === '/limpieza-alfombras-vigo' ||
-        path === '/arreglos-de-ropa-vigo' ||
-        path === '/zonas/gondomar' ||
-        path === '/zonas/o-porrino'
-      ) {
-        priority = '0.9';
-        changefreq = 'weekly';
-      } else if (path.startsWith('/blog/')) {
-        priority = '0.7';
-        changefreq = 'monthly';
-      } else if (
-        path === '/aviso-legal' ||
-        path === '/privacidad' ||
-        path === '/cookies' ||
-        path === '/feder' ||
-        path.startsWith('/programa-bono') ||
-        path === '/empleo-unete-a-nosotros'
-      ) {
-        priority = '0.5';
-        changefreq = 'yearly';
-      }
-      return `  <url>\n    <loc>${meta.canonical}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+      const lastmod = getVerifiableLastmod(path);
+      return `  <url>\n    <loc>${meta.canonical}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`;
     });
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;

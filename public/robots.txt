@@ -1,10 +1,10 @@
-# robots.txt optimizado para SEO y AEO (Buscadores tradicionales e Inteligencia Artificial)
+# robots.txt optimizado para SEO tradicional, SEO local y GEO (Asistentes de Inteligencia Artificial)
 # Tintorería Mimos Navia, S.L. (https://www.tintoreriamimos.es)
 
 User-agent: *
 Allow: /
 
-# Buscadores de IA y asistentes de respuesta (AEO: ChatGPT Search, Perplexity, Gemini, Claude, Apple)
+# Motores de búsqueda de IA y citas (GEO / AEO)
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -17,7 +17,10 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Google-Extended
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
 Allow: /
 
 User-agent: ClaudeBot
@@ -29,5 +32,10 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# Control de entrenamiento y grounding (Token Google-Extended)
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://www.tintoreriamimos.es/sitemap.xml
-# Archivo estructurado para modelos de lenguaje (AEO): https://www.tintoreriamimos.es/llms.txt
+# Archivo de contexto semántico para LLMs: https://www.tintoreriamimos.es/llms.txt
+

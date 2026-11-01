@@ -1177,7 +1177,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#178A47] dark:text-[#4ade80] hover:underline"
                     >
                       <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>WhatsApp Mimos (655 536 844)</span>
+                      <span>WhatsApp Mimos ({CONTACT_INFO.whatsappNumber})</span>
                     </a>
                   </div>
                 </div>

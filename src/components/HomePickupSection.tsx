@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Phone, Check, Copy } from 'lucide-react';
-import { CONTACT_INFO } from '../data/mimosData';
+import { CONTACT_INFO, buildMimoWhatsAppUrl } from '../data/mimosData';
 
 interface HomePickupSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -31,9 +31,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
     return lines.join('\n');
   };
 
-  const customWhatsAppHref = `https://wa.me/34655536844?text=${encodeURIComponent(
-    buildWhatsAppMessage()
-  )}`;
+  const customWhatsAppHref = buildMimoWhatsAppUrl(buildWhatsAppMessage());
 
   const handlePrepareOrder = (e: React.FormEvent) => {
     e.preventDefault();

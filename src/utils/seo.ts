@@ -1,6 +1,8 @@
 import {
   ARTICULOS_BLOG,
   CONTACT_INFO,
+  CANALES_CONTACTO_CENTRAL,
+  REGISTROS_PUNTOS,
   SERVICIOS_MIMOS,
   SERVICIO_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
@@ -16,9 +18,9 @@ export interface PageSEOConfig {
   title: string;
   description: string;
   canonical: string;
-  robots: 'index, follow' | 'noindex, nofollow';
+  robots: 'index, follow' | 'noindex, nofollow' | 'noindex, follow';
   ogType: 'website' | 'article';
-  jsonLd: Record<string, unknown> | Record<string, unknown>[];
+  jsonLd: Record<string, unknown>;
 }
 
 export const KNOWN_ROUTES: string[] = ALL_ROUTE_PATHS;
@@ -72,7 +74,6 @@ function buildBreadcrumbSchema(
   items: { name: string; url: string }[]
 ): Record<string, unknown> {
   return {
-    '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: items.map((item, idx) => ({
       '@type': 'ListItem',
@@ -83,22 +84,49 @@ function buildBreadcrumbSchema(
   };
 }
 
-const DEFAULT_LOCALBUSINESS_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'DryCleaningOrLaundry',
-  '@id': 'https://www.tintoreriamimos.es/#negocio',
-  name: CONTACT_INFO.companyName,
-  legalName: CONTACT_INFO.legalName,
+export const ORGANIZATION_SCHEMA: Record<string, unknown> = {
+  '@type': 'Organization',
+  '@id': 'https://www.tintoreriamimos.es/#organization',
+  name: 'Tintorería Mimos',
+  legalName: 'Tintorería Mimos Navia, S.L.',
+  taxID: 'ESB27755925',
+  vatID: 'ESB27755925',
   url: 'https://www.tintoreriamimos.es/',
-  image: 'https://www.tintoreriamimos.es/osito-mimos.jpg',
-  telephone: '+34986125141',
-  email: CONTACT_INFO.email,
+  logo: 'https://www.tintoreriamimos.es/logo-mimos.webp',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: CONTACT_INFO.streetAddress,
-    addressLocality: CONTACT_INFO.locality,
-    addressRegion: CONTACT_INFO.region,
-    postalCode: CONTACT_INFO.postalCode,
+    streetAddress: 'C/ Teixugueiras, 11, bajo 9',
+    addressLocality: 'Vigo',
+    postalCode: '36212',
+    addressRegion: 'Pontevedra',
+    addressCountry: 'ES',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+34986125141',
+    contactType: 'customer service',
+    availableLanguage: ['es', 'gl'],
+  },
+  subOrganization: [
+    { '@id': 'https://www.tintoreriamimos.es/#tienda-navia' },
+    { '@id': 'https://www.tintoreriamimos.es/#tienda-gregorio-espino' },
+    { '@id': 'https://www.tintoreriamimos.es/#tienda-venezuela' },
+  ],
+};
+
+export const TIENDA_NAVIA_SCHEMA: Record<string, unknown> = {
+  '@type': 'DryCleaningOrLaundry',
+  '@id': 'https://www.tintoreriamimos.es/#tienda-navia',
+  name: 'Tintorería Mimos – Sede Central Navia',
+  url: 'https://www.tintoreriamimos.es/',
+  telephone: '+34986125141',
+  parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'C/ As Teixugueiras, 11, local 9',
+    addressLocality: 'Vigo',
+    postalCode: '36212',
+    addressRegion: 'Pontevedra',
     addressCountry: 'ES',
   },
   geo: {
@@ -121,42 +149,92 @@ const DEFAULT_LOCALBUSINESS_SCHEMA = {
     },
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
+      dayOfWeek: ['Saturday'],
       opens: '10:00',
       closes: '13:30',
     },
   ],
-  areaServed: [
-    { '@type': 'City', name: 'Vigo' },
-    { '@type': 'City', name: 'Redondela' },
-    { '@type': 'City', name: 'Gondomar' },
-    { '@type': 'City', name: 'Ponteareas' },
-    { '@type': 'City', name: 'O Porriño' },
-  ],
-  department: TIENDAS_PROPIAS.map((t) => ({
-    '@type': 'DryCleaningOrLaundry',
-    name: t.nombre_mostrado,
-    telephone: `+34${t.telefono}`,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: t.direccion,
-      addressLocality: t.localidad,
-      postalCode: t.codigo_postal,
-      addressCountry: 'ES',
-    },
-    ...(t.latitud && t.longitud
-      ? {
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: t.latitud,
-            longitude: t.longitud,
-          },
-        }
-      : {}),
-  })),
 };
 
-function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unknown>[] {
+export const TIENDA_GREGORIO_ESPINO_SCHEMA: Record<string, unknown> = {
+  '@type': 'DryCleaningOrLaundry',
+  '@id': 'https://www.tintoreriamimos.es/#tienda-gregorio-espino',
+  name: 'Tintorería Lavandería Mimos – Gregorio Espino',
+  url: 'https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo',
+  telephone: '+34986192787',
+  parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Alcalde Gregorio Espino, 44, bajo',
+    addressLocality: 'Vigo',
+    postalCode: '36205',
+    addressRegion: 'Pontevedra',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 42.22836,
+    longitude: -8.707589,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:30',
+      closes: '13:30',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '16:30',
+      closes: '20:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday'],
+      opens: '09:30',
+      closes: '13:00',
+    },
+  ],
+};
+
+export const TIENDA_VENEZUELA_SCHEMA: Record<string, unknown> = {
+  '@type': 'DryCleaningOrLaundry',
+  '@id': 'https://www.tintoreriamimos.es/#tienda-venezuela',
+  name: 'Tintorería Mimos – Venezuela',
+  url: 'https://www.tintoreriamimos.es/zonas/vigo',
+  telephone: '+34646946764',
+  parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'C/ Venezuela, 41, bajo 1',
+    addressLocality: 'Vigo',
+    postalCode: '36203',
+    addressRegion: 'Pontevedra',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 42.23268,
+    longitude: -8.719311,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:30',
+      closes: '13:30',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '16:30',
+      closes: '19:30',
+    },
+  ],
+};
+
+export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unknown> {
   const breadcrumbItems: { name: string; url: string }[] = [
     { name: 'Inicio', url: 'https://www.tintoreriamimos.es/' },
   ];
@@ -168,92 +246,87 @@ function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unkno
   }
 
   const breadcrumbs = buildBreadcrumbSchema(breadcrumbItems);
-
-  if (cleanPath === '/tienda-mimos-gregorio-espino-vigo') {
-    const gregorioPunto = TIENDAS_PROPIAS.find((t) => t.id === 'gregorio-espino');
-    return [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'DryCleaningOrLaundry',
-        '@id': 'https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo#tienda',
-        name: 'Tintorería Lavandería Mimos – Gregorio Espino',
-        legalName: 'Tintorería Mimos Navia, S.L.',
-        url: 'https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo',
-        image: 'https://www.tintoreriamimos.es/images/gregorio-espino/fachada.jpg',
-        telephone: '+34986192787',
-        email: CONTACT_INFO.email,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: gregorioPunto?.direccion || 'Alcalde Gregorio Espino, 44, bajo',
-          addressLocality: 'Vigo',
-          addressRegion: 'Pontevedra',
-          postalCode: '36205',
-          addressCountry: 'ES',
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: 42.22836,
-          longitude: -8.707589,
-        },
-        openingHoursSpecification: [
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '09:30',
-            closes: '13:30',
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '16:30',
-            closes: '20:00',
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Saturday'],
-            opens: '09:30',
-            closes: '13:00',
-          },
-        ],
-      },
-      breadcrumbs,
-    ];
-  }
-
-  const schemas: Record<string, unknown>[] = [
-    DEFAULT_LOCALBUSINESS_SCHEMA,
-    breadcrumbs,
-  ];
+  const graph: Record<string, unknown>[] = [breadcrumbs];
 
   if (cleanPath === '/') {
-    schemas.push({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: FAQ_PORTADA_SIN_PRECIOS.map((f) => ({
-        '@type': 'Question',
-        name: f.pregunta,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: f.respuesta,
-        },
-      })),
-    });
-    return schemas;
-  }
-
-  if (cleanPath === '/limpieza-alfombras-vigo') {
-    schemas.push(
+    graph.push(
       {
-        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': 'https://www.tintoreriamimos.es/#website',
+        name: 'Tintorería Mimos Navia',
+        url: 'https://www.tintoreriamimos.es/',
+        publisher: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+      },
+      ORGANIZATION_SCHEMA,
+      TIENDA_NAVIA_SCHEMA,
+      TIENDA_GREGORIO_ESPINO_SCHEMA,
+      TIENDA_VENEZUELA_SCHEMA,
+      {
+        '@type': 'FAQPage',
+        mainEntity: FAQ_PORTADA_SIN_PRECIOS.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/tienda-mimos-gregorio-espino-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      TIENDA_GREGORIO_ESPINO_SCHEMA
+    );
+  } else if (cleanPath === '/zonas/vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      TIENDA_NAVIA_SCHEMA,
+      TIENDA_GREGORIO_ESPINO_SCHEMA,
+      TIENDA_VENEZUELA_SCHEMA
+    );
+  } else if (cleanPath.startsWith('/zonas/')) {
+    const zona = ZONAS_SEO_LOCAL.find((z) => z.url === cleanPath);
+    if (zona) {
+      graph.push(
+        ORGANIZATION_SCHEMA,
+        {
+          '@type': 'Service',
+          '@id': `${meta.canonical}#servicio`,
+          name: meta.h1,
+          description: meta.description,
+          provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+          areaServed: { '@type': 'City', name: zona.localidad },
+          url: meta.canonical,
+        }
+      );
+      if (zona.preguntasFrecuentes && zona.preguntasFrecuentes.length > 0) {
+        graph.push({
+          '@type': 'FAQPage',
+          mainEntity: zona.preguntasFrecuentes.map((f) => ({
+            '@type': 'Question',
+            name: f.pregunta,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: f.respuesta,
+            },
+          })),
+        });
+      }
+    }
+  } else if (cleanPath === '/limpieza-alfombras-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
         '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
         name: SERVICIO_ALFOMBRAS_DATA.h1,
         description: meta.description,
-        provider: { '@id': 'https://www.tintoreriamimos.es/#negocio' },
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
         areaServed: { '@type': 'City', name: 'Vigo' },
         url: meta.canonical,
       },
       {
-        '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: SERVICIO_ALFOMBRAS_DATA.preguntasFrecuentes.map((f) => ({
           '@type': 'Question',
@@ -265,17 +338,15 @@ function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unkno
         })),
       }
     );
-    return schemas;
-  }
-
-  if (cleanPath === '/arreglos-de-ropa-vigo') {
-    schemas.push(
+  } else if (cleanPath === '/arreglos-de-ropa-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
       {
-        '@context': 'https://schema.org',
         '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
         name: meta.h1,
         description: meta.description,
-        provider: { '@id': 'https://www.tintoreriamimos.es/#negocio' },
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
         areaServed: meta.areaServed || [
           { '@type': 'City', name: 'Vigo' },
           { '@type': 'City', name: 'Gondomar' },
@@ -285,7 +356,6 @@ function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unkno
         url: meta.canonical,
       },
       {
-        '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: SERVICIO_ARREGLOS_DATA.preguntasFrecuentes.map((f) => ({
           '@type': 'Question',
@@ -297,39 +367,33 @@ function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unkno
         })),
       }
     );
-    return schemas;
-  }
-
-  if (meta.ogType === 'article') {
+  } else if (meta.ogType === 'article') {
     const articulo = ARTICULOS_BLOG.find((a) => a.url === cleanPath);
     if (articulo) {
-      schemas.push({
-        '@context': 'https://schema.org',
-        '@type': 'TechArticle',
-        headline: articulo.titulo,
-        description: meta.description,
-        image: `https://www.tintoreriamimos.es${articulo.imagen}`,
-        datePublished: articulo.fechaISO,
-        dateModified: articulo.fechaISO,
-        author: {
-          '@type': 'Organization',
-          name: CONTACT_INFO.legalName,
-          url: 'https://www.tintoreriamimos.es/',
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: CONTACT_INFO.legalName,
-          url: 'https://www.tintoreriamimos.es/',
-        },
-        mainEntityOfPage: {
-          '@type': 'WebPage',
-          '@id': meta.canonical,
-        },
-      });
-
+      graph.push(
+        ORGANIZATION_SCHEMA,
+        {
+          '@type': 'Article',
+          '@id': `${meta.canonical}#article`,
+          headline: articulo.titulo,
+          description: meta.description,
+          image: `https://www.tintoreriamimos.es${articulo.imagen}`,
+          datePublished: articulo.fechaISO,
+          dateModified: articulo.fechaISO,
+          author: {
+            '@type': 'Organization',
+            name: 'Tintorería Mimos',
+            url: 'https://www.tintoreriamimos.es/',
+          },
+          publisher: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': meta.canonical,
+          },
+        }
+      );
       if (articulo.slug === 'guia-simbolos-etiquetas-ropa-significado') {
-        schemas.push({
-          '@context': 'https://schema.org',
+        graph.push({
           '@type': 'FAQPage',
           mainEntity: [
             {
@@ -376,103 +440,30 @@ function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string, unkno
         });
       }
     }
-    return schemas;
-  }
-
-  if (cleanPath.startsWith('/zonas/')) {
-    const zona = ZONAS_SEO_LOCAL.find((z) => z.url === cleanPath);
-    if (zona) {
-      schemas.push({
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: meta.h1,
-        description: meta.description,
-        provider: { '@id': 'https://www.tintoreriamimos.es/#negocio' },
-        areaServed: { '@type': 'City', name: zona.localidad },
-        url: meta.canonical,
-      });
-
-      if (zona.slug === 'o-porrino') {
-        schemas.push({
-          '@context': 'https://schema.org',
-          '@type': 'DryCleaningOrLaundry',
-          '@id': 'https://www.tintoreriamimos.es/zonas/o-porrino#telas-mas',
-          name: 'Telas y Más – Punto Colaborador Tintorería Mimos',
-          url: 'https://www.tintoreriamimos.es/zonas/o-porrino',
-          image: [
-            'https://www.tintoreriamimos.es/images/telas-mas/fachada2Porri.jpg',
-            'https://www.tintoreriamimos.es/images/telas-mas/exterio1Porri.jpg',
-            'https://www.tintoreriamimos.es/images/telas-mas/interiorPorri.jpg',
-          ],
-          telephone: '+34605027652',
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'Rúa Manuel Rodríguez, 30',
-            addressLocality: 'O Porriño',
-            postalCode: '36400',
-            addressRegion: 'Pontevedra',
-            addressCountry: 'ES',
-          },
-        });
-      }
-
-      if (zona.slug === 'gondomar') {
-        schemas.push({
-          '@context': 'https://schema.org',
-          '@type': 'DryCleaningOrLaundry',
-          '@id': 'https://www.tintoreriamimos.es/zonas/gondomar#puntadas-no-aire',
-          name: 'Puntadas No Aire – Punto Colaborador Tintorería Mimos',
-          url: 'https://www.tintoreriamimos.es/zonas/gondomar',
-          image: [
-            'https://www.tintoreriamimos.es/images/puntadas-no-aire/fachadaGondomar1.jpg',
-            'https://www.tintoreriamimos.es/images/puntadas-no-aire/InteriorGondomar.jpg',
-            'https://www.tintoreriamimos.es/images/puntadas-no-aire/fachadaGondomar2.jpg',
-          ],
-          telephone: '+34630822184',
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'Avda. Elduayen, 9',
-            addressLocality: 'Gondomar',
-            postalCode: '36380',
-            addressRegion: 'Pontevedra',
-            addressCountry: 'ES',
-          },
-        });
-      }
-
-      if (zona.preguntasFrecuentes && zona.preguntasFrecuentes.length > 0) {
-        schemas.push({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: zona.preguntasFrecuentes.map((f) => ({
-            '@type': 'Question',
-            name: f.pregunta,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: f.respuesta,
-            },
-          })),
-        });
-      }
+  } else {
+    const servicio = SERVICIOS_MIMOS.find((s) => s.url === cleanPath);
+    if (servicio || cleanPath === '/limpieza-profesional-vigo') {
+      graph.push(
+        ORGANIZATION_SCHEMA,
+        {
+          '@type': 'Service',
+          '@id': `${meta.canonical}#servicio`,
+          name: meta.h1,
+          description: meta.description,
+          provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+          areaServed: meta.areaServed || { '@type': 'City', name: 'Vigo' },
+          url: meta.canonical,
+        }
+      );
+    } else {
+      graph.push(ORGANIZATION_SCHEMA);
     }
-    return schemas;
   }
 
-  const servicio = SERVICIOS_MIMOS.find((s) => s.url === cleanPath);
-  if (servicio || cleanPath === '/limpieza-profesional-vigo') {
-    schemas.push({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      name: meta.h1,
-      description: meta.description,
-      provider: { '@id': 'https://www.tintoreriamimos.es/#negocio' },
-      areaServed: meta.areaServed || { '@type': 'City', name: 'Vigo' },
-      url: meta.canonical,
-    });
-    return schemas;
-  }
-
-  return schemas;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph,
+  };
 }
 
 export function getPageSEO(pathname: string): PageSEOConfig {
@@ -488,7 +479,7 @@ export function getPageSEO(pathname: string): PageSEOConfig {
       canonical: '',
       robots: 'noindex, nofollow',
       ogType: 'website',
-      jsonLd: [],
+      jsonLd: { '@context': 'https://schema.org', '@graph': [] },
     };
   }
 
@@ -553,6 +544,11 @@ export function applyPageSEO(pathname: string): void {
     canonicalEl.setAttribute('href', seo.canonical);
   } else if (canonicalEl) {
     canonicalEl.remove();
+  }
+
+  const legacyLocalBusiness = document.getElementById('schema-localbusiness');
+  if (legacyLocalBusiness) {
+    legacyLocalBusiness.remove();
   }
 
   let scriptEl = document.getElementById('schema-dynamic-page') as HTMLScriptElement | null;

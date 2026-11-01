@@ -354,11 +354,11 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
                   <span>WhatsApp de Mimos</span>
                 </a>
                 <a
-                  href="tel:+34630822184"
+                  href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#001733] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.98]"
                 >
                   <Phone className="w-4 h-4 text-[#60B5F6] shrink-0" />
-                  <span>Llamar: 630 82 21 84</span>
+                  <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
 
@@ -1034,11 +1034,11 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
               <span>Consultar ahora con Mimo</span>
             </a>
             <a
-              href="tel:+34630822184"
+              href={`tel:+34${punto.telefono}`}
               className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-white/20 transition-colors"
             >
               <Phone className="w-4 h-4 text-[#60B5F6]" />
-              <span>Llamar al 630 82 21 84</span>
+              <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>
         </div>

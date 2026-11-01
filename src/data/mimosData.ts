@@ -1,4 +1,39 @@
-import puntosRaw from './puntos.json';
+import {
+  CANALES_CONTACTO_CENTRAL,
+  DATOS_LEGALES_EMPRESA,
+  DISCREPANCIAS_COMERCIALES,
+  MASTER_TIENDAS_PROPIAS,
+  MASTER_ESTABLECIMIENTOS_COLABORADORES,
+  MASTER_PUNTOS_REGISTRO_RAW,
+  TODOS_LOS_ESTABLECIMIENTOS,
+  getEstablecimientoById,
+  buildWhatsAppUrlConMensaje,
+  buildGoogleMapsSearchUrl,
+  type TiendaPropia,
+  type EstablecimientoColaborador,
+  type DatosLegalesEmpresa,
+  type CanalesContactoCentral,
+  type DiscrepanciaRegistrada,
+  type LegacyPuntoRegistroRaw,
+} from './commercialMasterData';
+
+export {
+  CANALES_CONTACTO_CENTRAL,
+  DATOS_LEGALES_EMPRESA,
+  DISCREPANCIAS_COMERCIALES,
+  MASTER_TIENDAS_PROPIAS,
+  MASTER_ESTABLECIMIENTOS_COLABORADORES,
+  MASTER_PUNTOS_REGISTRO_RAW,
+  TODOS_LOS_ESTABLECIMIENTOS,
+  getEstablecimientoById,
+  buildWhatsAppUrlConMensaje,
+  buildGoogleMapsSearchUrl,
+  type TiendaPropia,
+  type EstablecimientoColaborador,
+  type DatosLegalesEmpresa,
+  type CanalesContactoCentral,
+  type DiscrepanciaRegistrada,
+};
 
 export const IMAGES = {
   ositoMimos: '/osito-mimos.jpg',
@@ -17,7 +52,7 @@ export const IMAGES = {
 export const MIMOS_LOGO_DATA_URI = '/logo-mimos.webp';
 
 export function buildMimoWhatsAppUrl(message: string): string {
-  return `https://wa.me/34655536844?text=${encodeURIComponent(message)}`;
+  return buildWhatsAppUrlConMensaje(message);
 }
 
 export function buildGoogleMapsUrl(punto: {
@@ -35,7 +70,7 @@ export function buildGoogleMapsUrl(punto: {
   )}`;
 }
 
-// Tipado del archivo único de puntos (src/data/puntos.json)
+// Tipado de compatibilidad derivado de commercialMasterData.ts
 export type TramoHorario = [string, string];
 
 export interface HorarioEstructuradoRaw {
@@ -176,7 +211,9 @@ export function derivarDatosDesdePuntos(rawList: PuntoRegistroRaw[]) {
   };
 }
 
-const datosDerivados = derivarDatosDesdePuntos(puntosRaw as unknown as PuntoRegistroRaw[]);
+const datosDerivados = derivarDatosDesdePuntos(
+  MASTER_PUNTOS_REGISTRO_RAW as unknown as PuntoRegistroRaw[]
+);
 
 export const REGISTROS_PUNTOS: PuntoRegistro[] = datosDerivados.registrosPuntos;
 export const TIENDAS_PROPIAS: PuntoRegistro[] = datosDerivados.tiendasPropias;
@@ -191,22 +228,21 @@ const resumenNaviaPartes = (
   sedeNavia?.horario.resumen ?? 'L-V 09:30-14:00 y 16:00-20:00 · Sáb 10:00-13:30'
 ).split(' · ');
 
-// Datos verificados del negocio derivados de la sede activa en puntos.json
+// Datos verificados del negocio centralizados desde commercialMasterData.ts y la sede activa
 export const CONTACT_INFO = {
-  companyName: sedeNavia?.nombre_mostrado ?? 'Tintorería Mimos Navia',
-  legalName: sedeNavia?.nombre_comercio ?? 'Tintorería Mimos Navia, S.L.',
-  cif: 'B27755925',
-  registroMercantil: 'Registro Mercantil de Pontevedra (en proceso de incorporación previa a publicación)',
-  canalEtico:
-    'Consultas y comunicaciones a través de info@tintoreriamimos.es',
-  streetAddress: sedeNavia?.direccion ?? 'C/ Teixugueiras, 11, bajo 9',
-  postalCode: sedeNavia?.codigo_postal ?? '36212',
-  locality: sedeNavia?.localidad ?? 'Vigo',
-  region: 'Pontevedra',
-  phoneDisplay: sedeNavia?.telefonos_mostrados ?? '986 12 51 41',
-  phoneHref: `tel:+34${sedeNavia?.telefono ?? '986125141'}`,
-  whatsappNumber: '655 536 844',
-  whatsappBaseHref: 'https://wa.me/34655536844',
+  companyName: DATOS_LEGALES_EMPRESA.nombreComercial,
+  legalName: DATOS_LEGALES_EMPRESA.razonSocial,
+  cif: DATOS_LEGALES_EMPRESA.cif,
+  registroMercantil: DATOS_LEGALES_EMPRESA.registroMercantil,
+  canalEtico: DATOS_LEGALES_EMPRESA.canalEtico,
+  streetAddress: sedeNavia?.direccion ?? DATOS_LEGALES_EMPRESA.domicilioSocial,
+  postalCode: sedeNavia?.codigo_postal ?? DATOS_LEGALES_EMPRESA.codigoPostal,
+  locality: sedeNavia?.localidad ?? DATOS_LEGALES_EMPRESA.localidad,
+  region: DATOS_LEGALES_EMPRESA.provincia,
+  phoneDisplay: CANALES_CONTACTO_CENTRAL.telefonoPrincipalMostrado,
+  phoneHref: CANALES_CONTACTO_CENTRAL.telefonoPrincipalHref,
+  whatsappNumber: CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado,
+  whatsappBaseHref: CANALES_CONTACTO_CENTRAL.whatsappBaseHref,
   whatsappGeneralHref: buildMimoWhatsAppUrl(
     'Hola, Mimo. Quiero hacer una consulta sobre vuestros servicios.'
   ),
@@ -231,9 +267,9 @@ export const CONTACT_INFO = {
   whatsappBlogHelpHref: buildMimoWhatsAppUrl(
     'Hola, Mimo. Necesito asesoramiento para el cuidado de una prenda.'
   ),
-  email: 'info@tintoreriamimos.es',
-  emailHref: 'mailto:info@tintoreriamimos.es',
-  appName: 'Wash In Town',
+  email: CANALES_CONTACTO_CENTRAL.emailAtencion,
+  emailHref: CANALES_CONTACTO_CENTRAL.emailAtencionHref,
+  appName: CANALES_CONTACTO_CENTRAL.appClientes,
   googleMapsMainHref:
     'https://www.google.com/maps/search/?api=1&query=Tintorer%C3%ADa+Mimos+Navia+C%2F+Teixugueiras+11+bajo+9+36212+Vigo',
   googleReviewsHref:
@@ -242,7 +278,7 @@ export const CONTACT_INFO = {
   scheduleSaturday: resumenNaviaPartes[1] ?? 'Sáb 10:00-13:30',
   scheduleFullNavia:
     sedeNavia?.horario.resumen ?? 'L-V 09:30-14:00 y 16:00-20:00 · Sáb 10:00-13:30',
-  canonicalBase: 'https://www.tintoreriamimos.es',
+  canonicalBase: CANALES_CONTACTO_CENTRAL.webOficial,
 };
 
 export interface ServicioMimos {
@@ -662,7 +698,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     comarca: 'O Val Miñor',
     codigosPostales: '36380',
     tienePendientes: false,
-    seoTitle: 'Tintorería, Lavandería y Costura en Gondomar | Punto Mimos en Puntadas No Aire',
+    seoTitle: 'Tintorería y Lavandería Mimos en Gondomar | Punto en Puntadas No Aire',
     metaDescription:
       'Punto colaborador de Tintorería Mimos y arreglos de ropa disponible en Puntadas No Aire (Avda. Elduayen, 9, Gondomar). Recogida y entrega de prendas y costura confirmada.',
     h1: 'Servicio de tintorería, lavandería y arreglos de ropa en Gondomar (Val Miñor)',
@@ -716,7 +752,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     comarca: 'O Condado',
     codigosPostales: '36860',
     tienePendientes: false,
-    seoTitle: 'Tintorería, Lavandería y Costura en Ponteareas | Punto Mimos en Arregla2',
+    seoTitle: 'Tintorería y Lavandería Mimos en Ponteareas | Punto en Arregla2',
     metaDescription:
       'Punto colaborador de Tintorería Mimos y arreglos de ropa disponible en Arregla2 (C/ Argentina, 4, Ponteareas). Recogida y entrega de prendas y costura confirmada.',
     h1: 'Servicio de tintorería, lavandería y arreglos de ropa en Ponteareas',
@@ -770,7 +806,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     comarca: 'A Louriña',
     codigosPostales: '36400',
     tienePendientes: false,
-    seoTitle: 'Tintorería, Lavandería y Costura en O Porriño | Punto Mimos en Telas y Más',
+    seoTitle: 'Tintorería y Lavandería Mimos en O Porriño | Punto en Telas y Más',
     metaDescription:
       'Punto colaborador de Tintorería Mimos y arreglos de ropa disponible en Telas y Más (C/ Manuel Rodríguez, 30, O Porriño). Recogida y entrega de prendas y costura confirmada.',
     h1: 'Servicio de tintorería, lavandería y arreglos de ropa en O Porriño',
@@ -809,7 +845,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
       {
         pregunta: '¿Cómo consulto un precio o arreglo antes de acudir al punto de O Porriño?',
         respuesta:
-          'Escríbenos por WhatsApp al 655 536 844 y nuestro asistente Mimo te informará al instante según la prenda o el arreglo que necesites.',
+          'Escríbenos por WhatsApp al 655 536 844 para consultar disponibilidad y presupuesto personalizado según la prenda o el arreglo que necesites.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -865,7 +901,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
       {
         pregunta: '¿Qué tiendas propias de Vigo abren los sábados por la mañana?',
         respuesta:
-          'Las 3 tiendas propias de Vigo abren los sábados por la mañana: la sede de C/ Teixugueiras, 11, bajo 9 (Navia) de 10:00 a 13:30; la tienda de C/ Venezuela, 41, bajo 1 de 10:00 a 14:00; y la tienda de Avda. Alcalde Gregorio Espino, 44 de 09:30 a 13:00.',
+          'Abren los sábados por la mañana nuestras tiendas de Navia (C/ Teixugueiras, 11, bajo 9, de 10:00 a 13:30) y Gregorio Espino (Avda. Alcalde Gregorio Espino, 44, de 09:30 a 13:00). La tienda de C/ Venezuela, 41 atiende de lunes a viernes de 09:30 a 13:30 y de 16:30 a 19:30.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -914,8 +950,7 @@ export const RESENAS_REALES: ResenaCliente[] = [
 export const FAQ_PORTADA_SIN_PRECIOS = [
   {
     pregunta: '¿Cómo puedo consultar el precio de limpiar una prenda, un edredón o una alfombra?',
-    respuesta:
-      'Todos los precios y presupuestos te los facilita de forma inmediata nuestro asistente Mimo por WhatsApp en el 655 536 844 (o llamándonos al 986 12 51 41). Así podemos darte la información exacta según el tipo de prenda, tejido o servicio que necesites.',
+    respuesta: `Puedes consultar precios y solicitar un presupuesto personalizado escribiéndonos por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado} o llamándonos al ${CANALES_CONTACTO_CENTRAL.telefonoPrincipalMostrado}. Te informaremos con detalle según el tipo de prenda, tejido o tratamiento que requiera.`,
   },
   {
     pregunta: '¿Cuál es la diferencia entre las tiendas Mimos y los puntos de recogida?',
@@ -923,13 +958,12 @@ export const FAQ_PORTADA_SIN_PRECIOS = [
   },
   {
     pregunta: '¿Cómo funciona el servicio de recogida y entrega a domicilio?',
-    respuesta:
-      'Puedes solicitar la recogida escribiendo por WhatsApp al 655 536 844, a través del formulario de esta web o desde la aplicación Wash In Town. El servicio está sujeto a las condiciones y zona de cobertura.',
+    respuesta: `Puedes solicitar la recogida escribiendo por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}, a través del formulario de esta web o desde la aplicación Wash In Town. El servicio está sujeto a las condiciones y zona de cobertura.`,
   },
   {
-    pregunta: '¿Ofrecéis servicios para apartamentos turísticos, viviendas y empresas en Vigo?',
+    pregunta: '¿Ofrecéis servicios para apartamentos turísticos y empresas en Vigo?',
     respuesta:
-      'Sí. Disponemos de una línea especializada para alojamientos turísticos, viviendas, oficinas, locales y empresas en Vigo. Preparamos presupuestos a medida según el volumen, la frecuencia y las necesidades de cada cliente.',
+      'Sí. Disponemos de una línea especializada de cuidado textil, lavandería e higienización para alojamientos turísticos y empresas en Vigo. Preparamos presupuestos a medida según el volumen, la frecuencia y las necesidades de cada cliente.',
   },
 ];
 
@@ -1537,66 +1571,69 @@ export const SERVICIOS_LIMPIEZA_PROFESIONAL: ServicioLimpiezaProfesional[] = [
   {
     index: '01',
     id: 'apartamentos-turisticos',
-    titulo: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales',
-    subtitulo: 'Puesta a punto entre huéspedes, cambio de sábanas y toallas en Vigo',
+    titulo: 'Lavandería y cuidado textil para alojamientos turísticos',
+    subtitulo: 'Lavado, secado, planchado y embolsado de ropa de cama y toallas en Vigo',
     descripcion:
-      'Ayudamos a propietarios, anfitriones y empresas gestoras en Vigo a tener sus alojamientos turísticos impecables para cada check-in. Combinamos la limpieza del apartamento con el lavado, higienización y planchado profesional de toda la ropa de cama y baño.',
+      'Servicio de lavandería para propietarios y gestores de alojamientos turísticos en Vigo: lavado, higienización, planchado y entrega de juegos de cama y baño listos para su uso.',
     incluye: [
-      'Lavado, secado y planchado profesional de sábanas, fundas nórdicas, cuadrantes y toallas',
-      'Puesta a punto y limpieza entre reservas coordinada según entradas y salidas',
-      'Higienización de edredones, protectores de colchón, cortinas, fundas de sofá y alfombras',
-      'Presupuestos a medida según número de apartamentos, camas y frecuencia de rotación',
+      'Lavado, secado y planchado de sábanas, fundas nórdicas y toallas',
+      'Entrega de lencería limpia y protegida por lotes para facilitar su gestión',
+      'Lavado e higienización de protectores, mantas y edredones',
+      'Presupuestos adaptados al volumen y frecuencia de cada alojamiento',
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero solicitar un presupuesto para la limpieza y lavandería de apartamentos turísticos'
+      'Hola, Mimo. Quiero solicitar un presupuesto para lavandería de apartamentos turísticos'
     ),
   },
   {
     index: '02',
-    id: 'viviendas-particulares',
-    titulo: 'Limpieza de viviendas particulares en Vigo',
-    subtitulo: 'Valoración personalizada según necesidades del hogar',
+    id: 'empresas-y-comercios',
+    titulo: 'Lavandería para empresas, comercios y profesionales',
+    subtitulo: 'Cuidado textil regular para negocios y profesionales de Vigo',
     descripcion:
-      'Soluciones de limpieza profesional para hogares en Vigo que buscan un equipo de confianza, respaldado por nuestra experiencia en el cuidado textil de ropa de hogar, cortinas, alfombras y tapicerías.',
+      'Servicio continuado de lavado, desmanchado y planchado para negocios que precisan un mantenimiento textil regular de prendas de trabajo o mantelería.',
     incluye: [
-      'Intervenciones de limpieza en viviendas particulares previa valoración con Mimo',
-      'Adaptación a las características y dimensiones de cada domicilio en Vigo',
-      'Posibilidad de combinar con lavado de edredones, cortinas, mantas y alfombras del hogar',
+      'Lavado y planchado de prendas de trabajo y textiles de uso profesional',
+      'Lavado de mantelería, toallas y piezas textiles para hostelería y comercios',
+      'Facturación adaptada para empresas y profesionales autónomos',
+      'Atención directa y concertada desde nuestra central en Vigo',
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero solicitar un presupuesto para la limpieza de una vivienda en Vigo'
+      'Hola, Mimo. Quiero solicitar un presupuesto de lavandería para mi empresa o negocio en Vigo'
     ),
   },
   {
     index: '03',
-    id: 'oficinas-y-locales',
-    titulo: 'Limpieza de oficinas, despachos y locales comerciales',
-    subtitulo: 'Mantenimiento profesional para negocios en Vigo',
+    id: 'higienizacion-gran-formato',
+    titulo: 'Limpieza e higienización de textiles de gran formato',
+    subtitulo: 'Edredones, mantas, cortinas y alfombras en Vigo',
     descripcion:
-      'Servicio de limpieza adaptado a los horarios y necesidades de oficinas, clínicas, despachos profesionales y comercios en Vigo, con opción de incluir el mantenimiento de textiles y vestuario laboral.',
+      'Tratamiento profesional para prendas y piezas textiles voluminosas que requieren procesos de tintorería y lavandería especializada en nuestras instalaciones propias.',
     incluye: [
-      'Propuesta adaptada a la superficie y frecuencia de cada oficina, despacho o comercio',
-      'Lavandería y planchado de uniformes, batas, toallas y textiles de empresa',
-      'Facturación empresarial y trato directo con nuestro equipo en Navia',
+      'Lavado e higienización de edredones de plumas y sintéticos',
+      'Limpieza y tratamiento de cortinas y fundas desmontables',
+      'Servicio de limpieza y mantenimiento de alfombras con recogida y entrega',
+      'Tratamiento adaptado a la composición y etiqueta de cada tejido',
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero solicitar un presupuesto de limpieza para mi oficina o local en Vigo'
+      'Hola, Mimo. Quiero consultar presupuesto para higienización de edredones o textiles de gran formato'
     ),
   },
   {
     index: '04',
-    id: 'comunidades-y-fin-de-obra',
-    titulo: 'Limpieza de comunidades y puesta a punto de inmuebles',
-    subtitulo: 'Valoración previa según tipo de edificio o inmueble en Vigo',
+    id: 'planchado-acabado-textil',
+    titulo: 'Servicio de solo planchado y acabado textil',
+    subtitulo: 'Planchado profesional para particulares, alojamientos y comercios',
     descripcion:
-      'Servicios sujetos a valoración previa para zonas comunes de edificios y puesta a punto de viviendas o locales en Vigo.',
+      'Servicio dedicado de planchado y empaquetado para quienes necesitan tener sus prendas, ropa de cama o mantelería perfectamente listas para usar o almacenar.',
     incluye: [
-      'Estudio personalizado según las características de la comunidad o del inmueble',
-      'Coordinación con propietarios, administradores o empresas en Vigo',
-      'Valoración previa sin compromiso a través de Mimo por WhatsApp',
+      'Planchado profesional adaptado a cada tipo de tejido y fibra',
+      'Entrega de prendas en percha o dobladas según preferencia',
+      'Cuidado riguroso de prendas delicadas y de tintorería',
+      'Consulta de condiciones y plazos a través de Mimo por WhatsApp',
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero consultar disponibilidad y presupuesto para limpieza de comunidad o puesta a punto de inmueble'
+      'Hola, Mimo. Quiero consultar condiciones para el servicio de solo planchado'
     ),
   },
 ];
@@ -1613,8 +1650,7 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
   {
     id: 'precios',
     label: 'Consultar precios',
-    respuesta:
-      'Para darte el precio exacto según tu prenda, tejido o servicio (trajes, vestidos, camisas, edredones, alfombras, colada familiar o limpieza), escríbenos por WhatsApp al 655 536 844 y te informamos al instante.',
+    respuesta: `Para darte el precio exacto según tu prenda, tejido o servicio (trajes, vestidos, camisas, edredones, alfombras, colada familiar o alojamientos), escríbenos por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado} y te informamos detalladamente.`,
     whatsappUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero consultar el precio de un servicio de tintorería'
     ),
@@ -1645,8 +1681,7 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
   {
     id: 'domicilio',
     label: 'Recogida a domicilio',
-    respuesta:
-      'Disponemos de servicio de recogida y entrega a domicilio sujeto a condiciones y zona de cobertura. Puedes solicitarlo directamente por WhatsApp en el 655 536 844, en el formulario de la web o con la app Wash In Town.',
+    respuesta: `Disponemos de servicio de recogida y entrega a domicilio sujeto a condiciones y zona de cobertura. Puedes solicitarlo directamente por WhatsApp en el ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}, en el formulario de la web o con la app Wash In Town.`,
     whatsappUrl: CONTACT_INFO.whatsappPickupHref,
     whatsappCtaLabel: 'Solicitar recogida por WhatsApp',
   },
@@ -1825,8 +1860,7 @@ export const SERVICIO_ALFOMBRAS_DATA = {
   preguntasFrecuentes: [
     {
       pregunta: '1. ¿Cómo puedo solicitar el servicio de limpieza de alfombras?',
-      respuesta:
-        'Puedes pulsar cualquiera de los botones de esta página para abrir el chat de WhatsApp con Mimo (655 536 844), llamarnos al 986 12 51 41 o acercarte a nuestras tiendas propias en Vigo.',
+      respuesta: `Puedes pulsar cualquiera de los botones de esta página para abrir el chat de WhatsApp con Mimo (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}), llamarnos al ${CANALES_CONTACTO_CENTRAL.telefonoPrincipalMostrado} o acercarte a nuestras tiendas propias en Vigo.`,
     },
     {
       pregunta: '2. ¿Qué datos hacen falta para pedir una valoración a Mimo?',
@@ -1871,8 +1905,7 @@ export const SERVICIO_ALFOMBRAS_DATA = {
     },
     {
       pregunta: '10. ¿Hacéis reparación de flecos, bordes o restauración de alfombras?',
-      respuesta:
-        'Sí, gestionamos trabajos de reparación y restauración de alfombras (reposición o igualado de flecos, refuerzo de bordes y ribetes desgastados o descosidos). Envíanos una fotografía detallada de la zona dañada por WhatsApp a Mimo (655 536 844) para valorar tu alfombra y confirmarte viabilidad, presupuesto y plazo antes de intervenir.',
+      respuesta: `Sí, gestionamos trabajos de reparación y restauración de alfombras (reposición o igualado de flecos, refuerzo de bordes y ribetes desgastados o descosidos). Envíanos una fotografía detallada de la zona dañada por WhatsApp a Mimo (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}) para valorar tu alfombra y confirmarte viabilidad, presupuesto y plazo antes de intervenir.`,
     },
   ],
   enlacesRelacionados: [
@@ -2021,8 +2054,7 @@ export const SERVICIO_ARREGLOS_DATA = {
     },
     {
       pregunta: '5. ¿Cómo puedo saber el presupuesto de un arreglo de ropa?',
-      respuesta:
-        'No publicamos tarifas estándar cerradas porque cada compostura depende de la prenda, el tejido y la complejidad (por ejemplo, si lleva forro o requiere desmontar piezas). Puedes orientarte escribiendo a Mimo por WhatsApp en el 655 536 844 y el presupuesto definitivo se confirma al revisar la prenda.',
+      respuesta: `No publicamos tarifas estándar cerradas porque cada compostura depende de la prenda, el tejido y la complejidad (por ejemplo, si lleva forro o requiere desmontar piezas). Puedes orientarte escribiendo a Mimo por WhatsApp en el ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado} y el presupuesto definitivo se confirma al revisar la prenda.`,
     },
     {
       pregunta: '6. ¿Cuál es el plazo habitual para los arreglos de costura?',

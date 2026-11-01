@@ -38,10 +38,10 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
 
   const pageHeader = {
     limpieza: {
-      badge: 'DIVISIÓN DE LIMPIEZA PROFESIONAL · VIGO',
-      h1: 'Empresa de limpieza profesional en Vigo y gestión textil para alojamientos',
+      badge: 'CUIDADO TEXTIL Y GESTIÓN PARA ALOJAMIENTOS · VIGO',
+      h1: 'Cuidado textil profesional y limpieza para apartamentos turísticos y empresas en Vigo',
       subtitle:
-        'Impulsamos nuestra experiencia en higiene y cuidado textil hacia el servicio de limpieza profesional en Vigo: apartamentos turísticos, viviendas, oficinas y negocios con presupuesto a medida.',
+        'Soluciones especializadas de gestión de lencería, lavado, planchado e higienización textil para alojamientos turísticos y empresas en Vigo con presupuesto personalizado.',
     },
     apartamentos: {
       badge: 'ESPECIALISTAS EN ALOJAMIENTOS TURÍSTICOS · VIGO',
@@ -53,7 +53,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
       badge: 'SERVICIOS B2B PARA EMPRESAS Y PROFESIONALES · VIGO',
       h1: 'Servicios de lavandería, tintorería y limpieza para empresas en Vigo',
       subtitle:
-        'Soluciones adaptadas a cada negocio en Vigo: alojamientos turísticos, hostelería, clínicas, comercios, oficinas y vestuario laboral con atención directa desde nuestra central de Navia.',
+        'Soluciones adaptadas a cada negocio en Vigo: alojamientos turísticos, hostelería, clínicas, comercios y vestuario laboral con atención directa desde nuestra central de Navia.',
     },
   }[variant];
 
@@ -216,10 +216,10 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
               Soluciones profesionales sin tarifas cerradas estándar
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4">
-              Servicios de limpieza y mantenimiento textil en Vigo
+              Cuidado textil y mantenimiento para alojamientos y empresas en Vigo
             </h2>
             <p className="text-base text-slate-600 dark:text-slate-300">
-              Cada apartamento, vivienda o negocio tiene dimensiones y frecuencias distintas. Por eso nuestro asistente <strong>Mimo</strong> recoge tus necesidades por WhatsApp para prepararte una propuesta a medida.
+              Cada apartamento turístico o empresa tiene requerimientos y frecuencias de rotación distintas. Por eso nuestro asistente <strong>Mimo</strong> recoge tus necesidades por WhatsApp para prepararte una propuesta a medida.
             </p>
           </div>
 
