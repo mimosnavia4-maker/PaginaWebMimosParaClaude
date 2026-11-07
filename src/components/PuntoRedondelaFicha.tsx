@@ -58,7 +58,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
 
   const photos = {
     fachada1: {
-      url: '/images/mimos-redondela/fachadaRedondela1.jpg',
+      url: '/images/mimos-redondela/fachada-mimos-redondela.jpg',
       titulo: 'Fachada Principal y Rótulo Oficial',
       subtitulo: 'Entrada comercial de Mimos Redondela en C/ José Regojo, 29 bajo.',
       tag: 'Fachada Principal',
@@ -66,7 +66,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
         'Entrada directa a cota cero en el casco urbano de Redondela. Punto colaborador oficial de Tintorería Mimos con recepción y entrega de todo tipo de prendas y textiles del hogar.',
     },
     interior: {
-      url: '/images/mimos-redondela/InteriorRedondela.jpg',
+      url: '/images/mimos-redondela/interior-mostrador-mimos-redondela.jpg',
       titulo: 'Interior: Mostrador de Atención y Recepción',
       subtitulo: 'Mostrador de recepción y entrega de prendas atendido por profesionales.',
       tag: 'Interior & Mostrador',
@@ -74,7 +74,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
         'Espacio higienizado, ordenado y acondicionado para la recepción, revisión y custodia de tus prendas con total garantía y mimo.',
     },
     fachada2: {
-      url: '/images/mimos-redondela/fachadaRedondela2.jpg',
+      url: '/images/mimos-redondela/escaparate-acceso-mimos-redondela.jpg',
       titulo: 'Perspectiva Exterior y Acceso Peatonal',
       subtitulo: 'Escaparate y visibilidad comercial en C/ José Regojo (Redondela).',
       tag: 'Perspectiva y Calle',

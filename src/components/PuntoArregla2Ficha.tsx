@@ -60,7 +60,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
 
   const photos = {
     fachada1: {
-      url: '/images/arregla2-ponteareas/fachada1Ponteareas.jpg',
+      url: '/images/arregla2-ponteareas/fachada-arregla2-ponteareas.jpg',
       titulo: 'Fachada Principal y Rótulo Oficial',
       subtitulo: 'Entrada y rótulo de Arregla2 en C/ Argentina, 4 (Ponteareas).',
       tag: 'Fachada Principal',
@@ -68,7 +68,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         'Acceso a cota cero en el centro urbano de Ponteareas. Punto colaborador oficial de Tintorería Mimos con recepción directa de tintorería y taller de costura in situ.',
     },
     interior: {
-      url: '/images/arregla2-ponteareas/InterioPonteareas.jpg',
+      url: '/images/arregla2-ponteareas/interior-taller-arregla2-ponteareas.jpg',
       titulo: 'Interior: Taller de Costura y Mostrador',
       subtitulo: 'Mostrador de atención al público, taller de confección y recepción de prendas.',
       tag: 'Taller In Situ & Mostrador',
@@ -76,7 +76,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         'Taller artesanal de costura equipado con maquinaria profesional donde se reciben tus prendas para tintorería, colada o alfombras, y se realizan composturas y arreglos textiles con toma de medidas directa.',
     },
     fachada2: {
-      url: '/images/arregla2-ponteareas/fachada2Ponteareas.jpg',
+      url: '/images/arregla2-ponteareas/escaparate-arregla2-ponteareas.jpg',
       titulo: 'Perspectiva Exterior y Escaparate',
       subtitulo: 'Escaparate y visibilidad comercial de Arregla2 en C/ Argentina (O Condado).',
       tag: 'Escaparate y Acceso',

@@ -59,21 +59,21 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
 
   const photos = {
     fachada: {
-      url: '/images/gregorio-espino/fachada1Gregorio.jpg',
+      url: '/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.jpg',
       titulo: 'Fachada Principal y Rótulo Mimos',
       subtitulo: 'Rótulo azul distintivo Tintorería Lavandería Mimos, toldos amarillos y escaparate luminoso en Gregorio Espino 44.',
       tag: 'Fachada Principal',
       detalle: 'Entrada a cota cero sin barreras arquitectónicas, con visibilidad completa desde la acera ajardinada de Alcalde Gregorio Espino.',
     },
     interior: {
-      url: '/images/gregorio-espino/interiorGregorio.jpg',
+      url: '/images/gregorio-espino/interior-taller-gregorio-espino-vigo.jpg',
       titulo: 'Interior: Mostrador de Atención y Oso Mimos',
       subtitulo: 'Mostrador de recepción de prendas, taller de costura in situ y nuestra entrañable mascota Mimos presidiendo la tienda.',
       tag: 'Taller In Situ & Mostrador',
       detalle: 'Espacio acondicionado para atención personalizada, depósito y revisión cuidadosa de tejidos, y entrega en percha protegida.',
     },
     esquina: {
-      url: '/images/gregorio-espino/fachada2Gregorio.jpg',
+      url: '/images/gregorio-espino/escaparate-mimos-gregorio-espino-vigo.jpg',
       titulo: 'Esquina Rúa do Escultor Nogueira',
       subtitulo: 'Perspectiva de la esquina con Escultor Nogueira y acceso directo a la zona de carga y descarga de vehículos.',
       tag: 'Acceso y Carga/Descarga',

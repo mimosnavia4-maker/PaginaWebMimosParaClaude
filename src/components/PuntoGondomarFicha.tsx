@@ -60,7 +60,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
 
   const photos = {
     fachada1: {
-      url: '/images/puntadas-no-aire/fachadaGondomar1.jpg',
+      url: '/images/puntadas-no-aire/fachada-puntadas-no-aire-gondomar.jpg',
       titulo: 'Fachada Principal y Entrada Oficial',
       subtitulo: 'Entrada comercial de Puntadas No Aire en Avda. Elduayen, 9 (Gondomar).',
       tag: 'Fachada Principal',
@@ -68,7 +68,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
         'Acceso a cota cero en la avenida principal de Gondomar. Punto colaborador oficial de Tintorería Mimos con recepción directa de tintorería y taller de costura in situ.',
     },
     interior: {
-      url: '/images/puntadas-no-aire/InteriorGondomar.jpg',
+      url: '/images/puntadas-no-aire/interior-taller-puntadas-no-aire-gondomar.jpg',
       titulo: 'Interior: Taller de Costura y Mostrador',
       subtitulo: 'Mostrador de atención al público, taller de confección y recepción de prendas.',
       tag: 'Taller In Situ & Mostrador',
@@ -76,7 +76,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
         'Taller artesanal de costura equipado con maquinaria profesional donde se reciben tus prendas para tintorería, colada o alfombras, y se realizan composturas y arreglos textiles con toma de medidas directa.',
     },
     fachada2: {
-      url: '/images/puntadas-no-aire/fachadaGondomar2.jpg',
+      url: '/images/puntadas-no-aire/escaparate-puntadas-no-aire-gondomar.jpg',
       titulo: 'Perspectiva Exterior y Escaparate',
       subtitulo: 'Escaparate y visibilidad comercial en Avda. Elduayen (Val Miñor).',
       tag: 'Escaparate y Acceso',

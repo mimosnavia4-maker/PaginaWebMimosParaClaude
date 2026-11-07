@@ -1161,7 +1161,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     <div className="grid grid-cols-3 gap-2">
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/mimos-redondela/fachadaRedondela1.jpg"
+                          src="/images/mimos-redondela/fachada-mimos-redondela.jpg"
                           alt="Fachada de Mimos Redondela"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1169,7 +1169,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/mimos-redondela/InteriorRedondela.jpg"
+                          src="/images/mimos-redondela/interior-mostrador-mimos-redondela.jpg"
                           alt="Interior y mostrador de Mimos Redondela"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1177,7 +1177,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/mimos-redondela/fachadaRedondela2.jpg"
+                          src="/images/mimos-redondela/escaparate-acceso-mimos-redondela.jpg"
                           alt="Acceso comercial de Mimos Redondela"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1193,7 +1193,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     <div className="grid grid-cols-3 gap-2">
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/arregla2-ponteareas/fachada1Ponteareas.jpg"
+                          src="/images/arregla2-ponteareas/fachada-arregla2-ponteareas.jpg"
                           alt="Fachada de Arregla2 Ponteareas"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1201,7 +1201,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/arregla2-ponteareas/InterioPonteareas.jpg"
+                          src="/images/arregla2-ponteareas/interior-taller-arregla2-ponteareas.jpg"
                           alt="Interior y taller de costura de Arregla2 Ponteareas"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1209,7 +1209,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/arregla2-ponteareas/fachada2Ponteareas.jpg"
+                          src="/images/arregla2-ponteareas/escaparate-arregla2-ponteareas.jpg"
                           alt="Acceso comercial y escaparate de Arregla2 Ponteareas"
                           className="w-full h-full object-cover"
                           loading="lazy"

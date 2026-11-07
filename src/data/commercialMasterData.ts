@@ -320,7 +320,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
       'Entrega y recogida directa en nuestra tienda propia de Alcalde Gregorio Espino, 44 para tintorería, lavandería, textiles del hogar y arreglos de ropa.',
-    foto: '/images/gregorio-espino/fachada1Gregorio.jpg',
+    foto: '/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.jpg',
     referenciaLocal:
       'Esquina con Rúa do Escultor Nogueira, frente a la zona ajardinada de Alcalde Gregorio Espino.',
     aparcamiento:
@@ -430,7 +430,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Deposita y recoge tus prendas y textiles del hogar para los servicios de Tintorería Mimos en C/ José Regojo, 29 bajo en Redondela.',
-    foto: '/images/mimos-redondela/fachadaRedondela1.jpg',
+    foto: '/images/mimos-redondela/fachada-mimos-redondela.jpg',
     referenciaLocal: 'C/ José Regojo, 29 bajo, en el casco urbano de Redondela.',
     aparcamiento:
       'Aparcamiento y zona de parada rápida en las inmediaciones de la calle José Regojo.',
@@ -485,7 +485,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Entrega tus prendas y textiles del hogar en Puntadas No Aire (Avda. Elduayen, 9, Gondomar), establecimiento colaborador de recogida y entrega para los servicios de Tintorería Mimos que cuenta además con servicio confirmado de costura y arreglos de ropa.',
-    foto: '/images/puntadas-no-aire/fachadaGondomar1.jpg',
+    foto: '/images/puntadas-no-aire/fachada-puntadas-no-aire-gondomar.jpg',
     referenciaLocal:
       'En pleno centro de Gondomar, Avda. Elduayen, 9 (taller y tienda de costura Puntadas No Aire).',
     aparcamiento:
@@ -541,7 +541,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Deja tus prendas y textiles del hogar en Arregla2 (C/ Argentina, 4, Ponteareas), establecimiento colaborador de recogida y entrega para los servicios de Tintorería Mimos con servicio confirmado de costura y arreglos de ropa.',
-    foto: '/images/arregla2-ponteareas/fachada1Ponteareas.jpg',
+    foto: '/images/arregla2-ponteareas/fachada-arregla2-ponteareas.jpg',
     referenciaLocal: 'En el casco urbano de Ponteareas, C/ Argentina, 4.',
     aparcamiento: 'Estacionamiento y parada en las calles aledañas a C/ Argentina.',
     cierreTemporal: false,
@@ -595,7 +595,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Entrega tus prendas y textiles del hogar en Telas y Más (C/ Manuel Rodríguez, 30, O Porriño), establecimiento colaborador de recogida y entrega para los servicios de Tintorería Mimos que ofrece además costura y arreglos de ropa.',
-    foto: '/images/telas-mas/fachada2Porri.jpg',
+    foto: '/images/telas-mas/fachada-telas-mas-o-porrino.jpg',
     referenciaLocal:
       'En pleno centro comercial de O Porriño, Rúa Manuel Rodríguez, 30 (zona peatonal y de fácil acceso).',
     aparcamiento:

@@ -60,21 +60,21 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
 
   const photos = {
     fachada: {
-      url: '/images/telas-mas/fachada2Porri.jpg',
+      url: '/images/telas-mas/fachada-telas-mas-o-porrino.jpg',
       titulo: 'Fachada Principal y Rótulo Oficial',
       subtitulo: 'Rótulo comercial Telas y Más en Rúa Manuel Rodríguez, 30 (O Porriño).',
       tag: 'Fachada Principal',
       detalle: 'Entrada a cota cero en pleno centro comercial de O Porriño. Punto colaborador oficial de Tintorería Mimos con recepción directa de prendas.',
     },
     interior: {
-      url: '/images/telas-mas/interiorPorri.jpg',
+      url: '/images/telas-mas/interior-taller-telas-mas-o-porrino.jpg',
       titulo: 'Interior: Mostrador de Atención y Telas',
       subtitulo: 'Mostrador de recepción de prendas, amplia variedad de telas y taller propio de costura.',
       tag: 'Taller In Situ & Mostrador',
       detalle: 'Espacio especializado en confección y tejidos donde se revisan tus prendas y se coordinan los tratamientos con la central de Mimos en Vigo.',
     },
     exterior: {
-      url: '/images/telas-mas/exterio1Porri.jpg',
+      url: '/images/telas-mas/escaparate-calle-telas-mas-o-porrino.jpg',
       titulo: 'Perspectiva Exterior y Entrada Peatonal',
       subtitulo: 'Escaparate y acceso en la zona comercial céntrica de O Porriño.',
       tag: 'Acceso y Calle Comercial',
