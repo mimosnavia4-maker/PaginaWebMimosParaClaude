@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   MapPin,
   Phone,
@@ -33,12 +33,20 @@ import {
   buildGoogleMapsUrl,
   derivarEtiquetasServicios,
 } from '../data/mimosData';
+import {
+  trackWhatsAppClick,
+  trackPhoneClick,
+  trackFormPrepared,
+  trackLocatorSearch,
+} from '../utils/analytics';
 
 const MimosGoogleMap = React.lazy(() =>
   import('./MimosGoogleMap').then((m) => ({ default: m.MimosGoogleMap }))
 );
 import { PuntoTelasMasFicha } from './PuntoTelasMasFicha';
 import { PuntoGondomarFicha } from './PuntoGondomarFicha';
+import { PuntoRedondelaFicha } from './PuntoRedondelaFicha';
+import { PuntoArregla2Ficha } from './PuntoArregla2Ficha';
 import { Dialog } from './Dialog';
 
 interface ContactAndLocationsSectionProps {
@@ -86,6 +94,24 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
     });
   }, [selectedZone, selectedTipo, selectedServicio, searchLocation]);
 
+  const currentSectionPath =
+    typeof window !== 'undefined'
+      ? window.location.pathname
+      : pageMode === 'contacto'
+        ? '/contacto'
+        : pageMode === 'puntos'
+          ? '/puntos-mimos'
+          : '/#contacto';
+
+  useEffect(() => {
+    if (searchLocation.trim().length >= 3) {
+      const timer = setTimeout(() => {
+        trackLocatorSearch(currentSectionPath, filteredPoints.length, 'text_search');
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [searchLocation, filteredPoints.length, currentSectionPath]);
+
   const tiendasFiltradas = filteredPoints.filter((p) => p.tipo === 'tienda');
   const colaboradoresFiltrados = filteredPoints.filter((p) => p.tipo === 'punto');
 
@@ -104,6 +130,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
     }
     setContactError('');
     setContactReady(true);
+    trackFormPrepared(currentSectionPath, 'contact_request');
   };
 
   const composedContactText = [
@@ -226,6 +253,11 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   <dd>
                     <a
                       href={`tel:+34${punto.telefono}`}
+                      onClick={() =>
+                        trackPhoneClick(currentSectionPath, 'point_card', {
+                          store_id: punto.id,
+                        })
+                      }
                       className="font-extrabold text-[#0F76BB] dark:text-[#60B5F6] hover:underline tabular-nums text-base"
                     >
                       {punto.telefonos_mostrados}
@@ -284,14 +316,18 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   ))}
                 </ul>
 
-                {/* Sub-bloque Taller de costura y arreglos in situ */}
+                {/* Sub-bloque Taller de costura y arreglos */}
                 {tieneCostura && (
                   <div className="mt-3.5 pt-3.5 border-t border-slate-200/80 dark:border-slate-800">
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <div className="flex items-center gap-1.5">
                         <Scissors className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
                         <span className="text-xs font-bold text-[#178A47] dark:text-[#4ade80]">
-                          Taller de costura y arreglos in situ
+                          {punto.id === 'gregorio-espino' || punto.id === 'rua-venezuela'
+                            ? 'Taller propio de costura y arreglos'
+                            : punto.id === 'as-teixugueiras'
+                              ? 'Recepción de costura y arreglos'
+                              : 'Arreglos de costura del comercio colaborador'}
                         </span>
                       </div>
                       <a
@@ -302,6 +338,16 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         Ver arreglos →
                       </a>
                     </div>
+                    {punto.id === 'as-teixugueiras' && (
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 pl-4 mb-1.5 leading-snug">
+                        Recepción directa en tienda central para su confección y ajuste con nuestro taller propio de costura.
+                      </p>
+                    )}
+                    {punto.tipo === 'punto' && (
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 pl-4 mb-1.5 leading-snug">
+                        Servicio de costura y composturas realizado de forma independiente por el propio taller de {punto.nombre_comercio}.
+                      </p>
+                    )}
                     {punto.arreglos_confirmados && punto.arreglos_confirmados.length > 0 && (
                       <ul className="space-y-1 text-xs text-slate-600 dark:text-slate-300 pl-4">
                         {punto.arreglos_confirmados.slice(0, 3).map((arr) => (
@@ -360,6 +406,15 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   <FileText className="w-4 h-4" aria-hidden="true" />
                   <span>Ver ficha y fotos</span>
                 </a>
+              ) : punto.id === 'punto-ponteareas' ? (
+                <a
+                  href="/zonas/ponteareas"
+                  onClick={(e) => onNavigate('/zonas/ponteareas', e)}
+                  className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
+                >
+                  <FileText className="w-4 h-4" aria-hidden="true" />
+                  <span>Ver ficha y fotos</span>
+                </a>
               ) : (
                 <button
                   type="button"
@@ -408,6 +463,11 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick(currentSectionPath, 'point_card', {
+                    store_id: punto.id,
+                  })
+                }
                 className="inline-flex items-center gap-1.5 text-[#178A47] dark:text-[#4ade80] hover:underline"
               >
                 <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
@@ -446,7 +506,14 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-2">
             {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} puntos de recogida colaboradores
           </p>
-          {pageMode === 'puntos' ? (
+          {pageMode === 'contacto' ? (
+            <h1
+              id="puntos-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
+            >
+              Contacto, tiendas propias en Vigo y horarios de Tintorería Mimos Navia
+            </h1>
+          ) : pageMode === 'puntos' ? (
             <h1
               id="puntos-heading"
               className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
@@ -571,7 +638,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               value={selectedServicio}
               onChange={(e) => setSelectedServicio(e.target.value)}
               aria-label="Filtrar por servicio"
-              className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white"
+              className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
             >
               <option value="todos">Todos los servicios ({REGISTROS_PUNTOS.length})</option>
               <option value="costura_arreglos">
@@ -591,7 +658,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 setSelectedTipo(e.target.value as 'todos' | 'tienda' | 'punto')
               }
               aria-label="Filtrar por tipo de establecimiento"
-              className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white"
+              className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
             >
               <option value="todos">Todos ({REGISTROS_PUNTOS.length})</option>
               <option value="tienda">Solo tiendas propias ({TIENDAS_PROPIAS.length})</option>
@@ -614,7 +681,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 value={searchLocation}
                 onChange={(e) => setSearchLocation(e.target.value)}
                 placeholder="Calle, localidad o CP (ej. 36860)..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               />
             </div>
           </div>
@@ -672,6 +739,9 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
             )}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              trackWhatsAppClick(currentSectionPath, 'partner_acquisition_cta')
+            }
             className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm px-5 sm:px-6 py-3.5 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
           >
             <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -692,7 +762,10 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               >
                 <summary className="font-bold text-[#002147] dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                   <span>{faq.pregunta}</span>
-                  <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform">
+                  <span
+                    className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform"
+                    aria-hidden="true"
+                  >
                     +
                   </span>
                 </summary>
@@ -715,9 +788,9 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 Contacto directo · {CONTACT_INFO.legalName}
               </p>
               {pageMode === 'contacto' ? (
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">
-                  Contacto, tiendas propias en Vigo y horarios de Tintorería Mimos Navia
-                </h1>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">
+                  Estamos a tu disposición en Navia (Vigo)
+                </h2>
               ) : (
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">
                   Estamos a tu disposición en Navia (Vigo)
@@ -742,6 +815,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <a
                   href={CONTACT_INFO.phoneHref}
+                  onClick={() => trackPhoneClick(currentSectionPath, 'contact_central_phone')}
                   className="p-4 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] transition-colors block"
                 >
                   <span className="text-xs text-slate-500 dark:text-slate-400 block mb-1">
@@ -757,6 +831,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   href={CONTACT_INFO.whatsappGeneralHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick(currentSectionPath, 'contact_central_whatsapp')}
                   className="p-4 rounded-xl bg-[#178A47] hover:bg-[#126E38] text-white transition-colors block"
                 >
                   <span className="text-xs text-white/85 block mb-1">
@@ -818,7 +893,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactReady(false);
                       }}
                       placeholder="Tu nombre"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
                   <div>
@@ -842,7 +917,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactReady(false);
                       }}
                       placeholder="Ej.: 600 000 000"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
                 </div>
@@ -865,7 +940,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactReady(false);
                       }}
                       placeholder="tu@email.com"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
                   <div>
@@ -882,7 +957,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactAsunto(e.target.value);
                         setContactReady(false);
                       }}
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     >
                       <option value="Consulta de precio o prenda">Consulta de precio o prenda</option>
                       <option value="Consulta de Costura y Arreglos de Ropa">
@@ -922,7 +997,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       setContactReady(false);
                     }}
                     placeholder="Indícanos qué prenda o servicio necesitas consultar..."
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0b1d36] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
@@ -968,6 +1043,9 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       href={contactWhatsAppHref}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() =>
+                        trackWhatsAppClick(currentSectionPath, 'contact_form')
+                      }
                       className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors"
                     >
                       <MessageCircle className="w-4 h-4" aria-hidden="true" />
@@ -995,7 +1073,9 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         titleId={puntoModalFicha ? 'modal-ficha-titulo' : undefined}
         maxWidthClass={
           puntoModalFicha?.id === 'punto-o-porrino' ||
-          puntoModalFicha?.id === 'punto-gondomar'
+          puntoModalFicha?.id === 'punto-gondomar' ||
+          puntoModalFicha?.id === 'punto-redondela' ||
+          puntoModalFicha?.id === 'punto-ponteareas'
             ? 'max-w-5xl'
             : 'max-w-2xl'
         }
@@ -1012,6 +1092,22 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           ) : puntoModalFicha.id === 'punto-gondomar' ? (
             <div className="overflow-y-auto max-h-[92vh]">
               <PuntoGondomarFicha
+                isModal={true}
+                onClose={() => setPuntoModalFicha(null)}
+                onNavigate={onNavigate}
+              />
+            </div>
+          ) : puntoModalFicha.id === 'punto-redondela' ? (
+            <div className="overflow-y-auto max-h-[92vh]">
+              <PuntoRedondelaFicha
+                isModal={true}
+                onClose={() => setPuntoModalFicha(null)}
+                onNavigate={onNavigate}
+              />
+            </div>
+          ) : puntoModalFicha.id === 'punto-ponteareas' ? (
+            <div className="overflow-y-auto max-h-[92vh]">
+              <PuntoArregla2Ficha
                 isModal={true}
                 onClose={() => setPuntoModalFicha(null)}
                 onNavigate={onNavigate}
@@ -1083,6 +1179,38 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         <img
                           src="/images/mimos-redondela/fachadaRedondela2.jpg"
                           alt="Acceso comercial de Mimos Redondela"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : puntoModalFicha.id === 'punto-ponteareas' ? (
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#002147] dark:text-slate-200">
+                      Fotografías del establecimiento
+                    </p>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+                        <img
+                          src="/images/arregla2-ponteareas/fachada1Ponteareas.jpg"
+                          alt="Fachada de Arregla2 Ponteareas"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+                        <img
+                          src="/images/arregla2-ponteareas/InterioPonteareas.jpg"
+                          alt="Interior y taller de costura de Arregla2 Ponteareas"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+                        <img
+                          src="/images/arregla2-ponteareas/fachada2Ponteareas.jpg"
+                          alt="Acceso comercial y escaparate de Arregla2 Ponteareas"
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
@@ -1254,6 +1382,11 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 <div className="flex items-center gap-2">
                   <a
                     href={`tel:+34${puntoModalFicha.telefono}`}
+                    onClick={() =>
+                      trackPhoneClick(currentSectionPath, 'point_modal', {
+                        store_id: puntoModalFicha.id,
+                      })
+                    }
                     className="inline-flex items-center gap-1 text-xs font-bold px-3 py-2 rounded-lg bg-[#002147] hover:bg-[#0a3161] text-white transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5" aria-hidden="true" />
@@ -1266,6 +1399,11 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackWhatsAppClick(currentSectionPath, 'point_modal', {
+                        store_id: puntoModalFicha.id,
+                      })
+                    }
                     className="inline-flex items-center gap-1 text-xs font-bold px-3 py-2 rounded-lg bg-[#178A47] hover:bg-[#126E38] text-white transition-colors"
                   >
                     <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />

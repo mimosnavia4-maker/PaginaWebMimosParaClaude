@@ -27,6 +27,7 @@ import {
 import { PuntoTelasMasPage } from './PuntoTelasMasPage';
 import { PuntoGondomarPage } from './PuntoGondomarPage';
 import { PuntoRedondelaPage } from './PuntoRedondelaPage';
+import { PuntoArregla2Page } from './PuntoArregla2Page';
 
 interface LocalZonePageProps {
   zona: ZonaSEOLocal;
@@ -44,6 +45,10 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
 
   if (zona.slug === 'redondela') {
     return <PuntoRedondelaPage onNavigate={onNavigate} />;
+  }
+
+  if (zona.slug === 'ponteareas') {
+    return <PuntoArregla2Page onNavigate={onNavigate} />;
   }
 
   const puntosDeEstaZona = REGISTROS_PUNTOS.filter(
@@ -316,7 +321,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
   };
 
   return (
-    <main className="bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
       {/* Cabecera Local */}
       <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

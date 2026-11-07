@@ -6,6 +6,7 @@ import {
   CONTACT_INFO,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 interface MimoAssistantProps {
   cookieBannerOpen: boolean;
@@ -110,6 +111,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogPanelRef = useRef<HTMLDivElement>(null);
   const wasOpenRef = useRef(false);
 
   useEffect(() => {
@@ -136,6 +138,50 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
+  }, [open]);
+
+  // Trampa de foco (Tab / Shift+Tab) confinada al asistente Mimo mientras permanezca abierto
+  useEffect(() => {
+    if (!open) return;
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !dialogPanelRef.current) return;
+
+      const focusables = dialogPanelRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (focusables.length === 0) {
+        e.preventDefault();
+        dialogPanelRef.current.focus();
+        return;
+      }
+
+      const firstEl = focusables[0];
+      const lastEl = focusables[focusables.length - 1];
+      const activeEl = document.activeElement;
+
+      if (!dialogPanelRef.current.contains(activeEl)) {
+        e.preventDefault();
+        firstEl.focus();
+        return;
+      }
+
+      if (e.shiftKey) {
+        if (activeEl === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        }
+      } else {
+        if (activeEl === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleTabKey);
+    return () => window.removeEventListener('keydown', handleTabKey);
   }, [open]);
 
   const handleTopicClick = (topic: (typeof MIMO_FAQ_TOPICS)[number]) => {
@@ -177,10 +223,10 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
       {cookieBannerOpen && (
         <div
           role="dialog"
-          aria-label="Preferencias de cookies"
-          className="fixed left-4 bottom-20 md:bottom-4 z-50 max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] p-5 shadow-xl text-sm"
+          aria-labelledby="cookie-preferences-title"
+          className="fixed left-4 right-4 md:left-auto md:right-4 bottom-20 md:bottom-5 z-50 max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] p-5 shadow-2xl text-sm"
         >
-          <p className="font-extrabold text-[#002147] dark:text-white mb-1">
+          <p id="cookie-preferences-title" className="font-extrabold text-[#002147] dark:text-white mb-1">
             Preferencias de cookies
           </p>
           <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
@@ -192,7 +238,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                   onNavigate('/cookies', e);
                 }
               }}
-              className="underline font-bold text-[#002147] dark:text-[#60B5F6]"
+              className="underline font-bold text-[#002147] dark:text-[#60B5F6] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xs"
             >
               Política de cookies
             </a>
@@ -202,14 +248,14 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
             <button
               type="button"
               onClick={onAcceptCookies}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white text-xs font-bold cursor-pointer text-center transition-colors"
+              className="w-full px-4 py-2.5 rounded-lg bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white text-xs font-bold cursor-pointer text-center transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               Aceptar
             </button>
             <button
               type="button"
               onClick={onRejectCookies}
-              className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 hover:border-[#002147] dark:hover:border-white bg-white dark:bg-[#071324] text-slate-800 dark:text-slate-100 text-xs font-bold cursor-pointer text-center transition-colors"
+              className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 hover:border-[#002147] dark:hover:border-white bg-white dark:bg-[#071324] text-slate-800 dark:text-slate-100 text-xs font-bold cursor-pointer text-center transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               Rechazar
             </button>
@@ -217,8 +263,8 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
         </div>
       )}
 
-      {/* Floating Assistant Trigger (Posicionado por encima de la barra móvil inferior) */}
-      {!open && (
+      {/* Floating Assistant Trigger (Posicionado por encima de la barra móvil inferior; oculto mientras el banner de cookies esté abierto) */}
+      {!open && !cookieBannerOpen && (
         <button
           ref={triggerButtonRef}
           type="button"
@@ -228,11 +274,12 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           }}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="fixed right-4 bottom-20 md:bottom-5 z-40 inline-flex items-center gap-2.5 bg-[#002147] hover:bg-[#0a3161] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg border border-white/20 transition-colors cursor-pointer"
+          className="fixed right-4 bottom-20 md:bottom-5 z-40 inline-flex items-center gap-2.5 bg-[#002147] hover:bg-[#0a3161] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg border border-white/20 transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
         >
           <img
             src={IMAGES.logoMimos}
             alt=""
+            aria-hidden="true"
             width={26}
             height={26}
             className="w-6.5 h-6.5 rounded-full bg-white/10"
@@ -244,15 +291,18 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
       {/* Assistant Dialog Panel */}
       {open && (
         <div
+          ref={dialogPanelRef}
           role="dialog"
+          aria-modal="true"
           aria-label="Mimo, asistente de Tintorería Mimos"
-          className="fixed right-4 bottom-20 md:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(510px,calc(100vh-7rem))] rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] shadow-2xl flex flex-col overflow-hidden"
+          className="fixed right-4 bottom-20 md:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(510px,calc(100vh-7rem))] rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] shadow-2xl flex flex-col overflow-hidden focus:outline-hidden"
         >
           <div className="bg-[#002147] text-white px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <img
                 src={IMAGES.logoMimos}
                 alt=""
+                aria-hidden="true"
                 width={28}
                 height={28}
                 className="w-7 h-7 rounded-full bg-white/10"
@@ -270,9 +320,9 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Cerrar asistente"
-              className="p-1 rounded-lg hover:bg-white/10 text-white cursor-pointer"
+              className="p-1 rounded-lg hover:bg-white/10 text-white cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
 
@@ -296,7 +346,13 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                     href={m.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2.5 inline-flex items-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors"
+                    onClick={() =>
+                      trackWhatsAppClick(
+                        typeof window !== 'undefined' ? window.location.pathname : '/',
+                        'mimo_assistant'
+                      )
+                    }
+                    className="mt-2.5 inline-flex items-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
                   >
                     <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>{m.whatsappCtaLabel || 'Abrir WhatsApp de Mimo'}</span>
@@ -313,7 +369,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                 key={t.id}
                 type="button"
                 onClick={() => handleTopicClick(t)}
-                className="px-2.5 py-1 rounded-md border border-slate-300 dark:border-slate-700 hover:border-[#0F76BB] text-[11px] font-bold text-[#002147] dark:text-slate-200 cursor-pointer"
+                className="px-2.5 py-1 rounded-md border border-slate-300 dark:border-slate-700 hover:border-[#0F76BB] text-[11px] font-bold text-[#002147] dark:text-slate-200 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
               >
                 {t.label}
               </button>
@@ -331,14 +387,14 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
               onChange={(e) => setInput(e.target.value)}
               placeholder="Pregunta por tu prenda, horario o punto..."
               aria-label="Escribe tu consulta"
-              className="flex-1 px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0b1d36] text-xs text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+              className="flex-1 px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0b1d36] text-xs text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
             />
             <button
               type="submit"
               aria-label="Enviar pregunta"
-              className="p-2 rounded-lg bg-[#002147] dark:bg-[#0F76BB] text-white cursor-pointer"
+              className="p-2 rounded-lg bg-[#002147] dark:bg-[#0F76BB] text-white cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-4 h-4" aria-hidden="true" />
             </button>
           </form>
         </div>

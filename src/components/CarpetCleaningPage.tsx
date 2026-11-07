@@ -76,7 +76,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
   };
 
   return (
-    <main className="bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
       {/* 1. CABECERA: H1, frase breve y botones "Consultar con Mimo por WhatsApp" y "Solicitar recogida a domicilio" (Sección 16.1) */}
       <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -523,7 +523,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-servicio"
                   value={servicioSolicitado}
                   onChange={(e) => setServicioSolicitado(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Limpieza e higienización de alfombra">
                     Limpieza de alfombra
@@ -548,7 +548,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-localidad"
                   value={localidad}
                   onChange={(e) => setLocalidad(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {ZONAS_SERVICIO.map((loc) => (
                     <option key={loc} value={loc}>
@@ -574,7 +574,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   value={largo}
                   onChange={(e) => setLargo(e.target.value)}
                   placeholder="Ej.: 2,40 m"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
 
@@ -591,7 +591,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   value={ancho}
                   onChange={(e) => setAncho(e.target.value)}
                   placeholder="Ej.: 1,70 m"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -608,7 +608,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-fibra"
                   value={tipoFibra}
                   onChange={(e) => setTipoFibra(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="No estoy seguro / Sin etiqueta">
                     No estoy seguro / Sin etiqueta
@@ -633,7 +633,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-modalidad"
                   value={modalidadEntrega}
                   onChange={(e) => setModalidadEntrega(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Quiero consultar recogida y entrega a domicilio">
                     Quiero consultar recogida y entrega a domicilio
@@ -658,7 +658,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 value={observaciones}
                 onChange={(e) => setObservaciones(e.target.value)}
                 placeholder="Ej.: Tiene una mancha de café y flecos en los bordes. Disponible por las tardes."
-                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               />
             </div>
 

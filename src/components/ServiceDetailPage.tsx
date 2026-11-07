@@ -15,6 +15,7 @@ import {
   PUNTOS_CON_COSTURA,
   CONTACT_INFO,
 } from '../data/mimosData';
+import { trackWhatsAppClick, trackPhoneClick } from '../utils/analytics';
 import { HomePickupSection } from './HomePickupSection';
 
 interface ServiceDetailPageProps {
@@ -29,7 +30,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
   const otrosServicios = SERVICIOS_MIMOS.filter((s) => s.id !== servicio.id);
 
   return (
-    <main className="bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
       {/* Cabecera del Servicio */}
       <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,6 +76,11 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 href={servicio.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick(servicio.url, 'service_detail', {
+                    service_id: servicio.id,
+                  })
+                }
                 className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl transition-colors"
               >
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
@@ -82,6 +88,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               </a>
               <a
                 href={CONTACT_INFO.phoneHref}
+                onClick={() => trackPhoneClick(servicio.url, 'service_detail')}
                 className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white text-white font-bold text-sm sm:text-base px-5 py-4 rounded-xl transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#60B5F6]" aria-hidden="true" />
@@ -138,6 +145,11 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   href={servicio.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick(servicio.url, 'service_detail_secondary', {
+                      service_id: servicio.id,
+                    })
+                  }
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />

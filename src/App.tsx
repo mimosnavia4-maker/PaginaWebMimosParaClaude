@@ -414,7 +414,7 @@ export function App() {
     effectivePath === '/cookies';
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white dark:bg-[#071324] text-slate-900 dark:text-slate-100">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white dark:bg-[#071324] text-slate-900 dark:text-slate-100 pb-16 md:pb-0">
       {/* Aviso amable de disponibilidad de mapa para visitantes */}
       {quotaExceeded && (
         <div className="bg-amber-50 dark:bg-amber-950/70 border-b border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 px-4 py-2.5 text-xs sm:text-sm text-center sticky top-0 z-50 shadow-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
@@ -450,78 +450,52 @@ export function App() {
         {!isKnown ? (
           <NotFoundPage onNavigate={handleNavigate} />
         ) : articuloActivo ? (
-          <div id="main-content">
-            <BlogArticlePage articulo={articuloActivo} onNavigate={handleNavigate} />
-          </div>
+          <BlogArticlePage articulo={articuloActivo} onNavigate={handleNavigate} />
         ) : effectivePath === '/blog' ? (
-          <main id="main-content">
+          <main id="main-content" tabIndex={-1} className="focus:outline-hidden">
             <BlogSection onNavigate={handleNavigate} isPage={true} />
           </main>
         ) : effectivePath === '/limpieza-alfombras-vigo' ? (
-          <div id="main-content">
-            <CarpetCleaningPage onNavigate={handleNavigate} />
-          </div>
+          <CarpetCleaningPage onNavigate={handleNavigate} />
         ) : effectivePath === '/arreglos-de-ropa-vigo' ? (
-          <div id="main-content">
-            <ClothingAlterationsPage onNavigate={handleNavigate} />
-          </div>
+          <ClothingAlterationsPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-profesional-vigo' ? (
-          <div id="main-content">
-            <CleaningDivisionPage variant="limpieza" onNavigate={handleNavigate} />
-          </div>
+          <CleaningDivisionPage variant="limpieza" onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-apartamentos-turisticos-vigo' ? (
-          <div id="main-content">
-            <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
-          </div>
+          <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
         ) : effectivePath === '/servicios-empresas' ? (
-          <div id="main-content">
-            <CleaningDivisionPage variant="empresas" onNavigate={handleNavigate} />
-          </div>
+          <CleaningDivisionPage variant="empresas" onNavigate={handleNavigate} />
         ) : servicioIndividualActivo ? (
-          <div id="main-content">
-            <ServiceDetailPage
-              servicio={servicioIndividualActivo}
-              onNavigate={handleNavigate}
-            />
-          </div>
+          <ServiceDetailPage
+            servicio={servicioIndividualActivo}
+            onNavigate={handleNavigate}
+          />
         ) : effectivePath === '/puntos-mimos' || effectivePath === '/contacto' ? (
-          <main id="main-content">
+          <main id="main-content" tabIndex={-1} className="focus:outline-hidden">
             <ContactAndLocationsSection
               onNavigate={handleNavigate}
               pageMode={effectivePath === '/contacto' ? 'contacto' : 'puntos'}
             />
           </main>
         ) : zonaActiva ? (
-          <div id="main-content">
-            <LocalZonePage zona={zonaActiva} onNavigate={handleNavigate} />
-          </div>
+          <LocalZonePage zona={zonaActiva} onNavigate={handleNavigate} />
         ) : isLegalRoute ? (
-          <div id="main-content">
-            <LegalPage
-              section={effectivePath.replace('/', '') as 'aviso-legal' | 'privacidad' | 'cookies'}
-              onNavigate={handleNavigate}
-              onOpenCookieSettings={() => setCookieBannerOpen(true)}
-            />
-          </div>
+          <LegalPage
+            section={effectivePath.replace('/', '') as 'aviso-legal' | 'privacidad' | 'cookies'}
+            onNavigate={handleNavigate}
+            onOpenCookieSettings={() => setCookieBannerOpen(true)}
+          />
         ) : effectivePath === '/feder' ? (
-          <div id="main-content">
-            <SubsidiesPage variant="feder" onNavigate={handleNavigate} />
-          </div>
+          <SubsidiesPage variant="feder" onNavigate={handleNavigate} />
         ) : effectivePath === '/programa-bono-energia-peme-2025-in417z' ? (
-          <div id="main-content">
-            <SubsidiesPage variant="bono-energia" onNavigate={handleNavigate} />
-          </div>
+          <SubsidiesPage variant="bono-energia" onNavigate={handleNavigate} />
         ) : effectivePath === '/empleo-unete-a-nosotros' ? (
-          <div id="main-content">
-            <CareersPage onNavigate={handleNavigate} />
-          </div>
+          <CareersPage onNavigate={handleNavigate} />
         ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
-          <div id="main-content">
-            <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
-          </div>
+          <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (
           /* Portada con los bloques de Sección 7 + el Bloque Propio Prioritario de Limpieza de Alfombras (Sección 16) */
-          <main id="main-content">
+          <main id="main-content" tabIndex={-1} className="focus:outline-hidden">
             {/* 2. Portada principal */}
             <HeroSection onNavigate={handleNavigate} />
             {/* 3. Servicios de tintorería y lavandería */}
@@ -546,6 +520,7 @@ export function App() {
 
       {/* 9. Contacto y pie de página + Barra inferior móvil */}
       <Footer
+        currentPath={currentPath}
         onNavigate={handleNavigate}
         onOpenCookieSettings={() => setCookieBannerOpen(true)}
         darkMode={darkMode}

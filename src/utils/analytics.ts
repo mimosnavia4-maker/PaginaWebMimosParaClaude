@@ -9,10 +9,21 @@ export type CtaZone =
   | 'header'
   | 'mobile_bar'
   | 'mimo_assistant'
-  | 'page_content';
+  | 'page_content'
+  | 'footer'
+  | 'hero'
+  | 'service_card'
+  | 'service_detail'
+  | 'pickup_section'
+  | 'pickup_form'
+  | 'contact_form'
+  | 'point_card'
+  | 'point_modal';
 
 export type MimosEventName =
   | ContactEventName
+  | 'form_prepared'
+  | 'request_prepared'
   | 'form_submit'
   | 'locator_search'
   | 'ficha_view';
@@ -28,9 +39,11 @@ declare global {
 let gaInitialized = false;
 let lastTrackedPath: string | null = null;
 let lastClickRecord: { key: string; timestamp: number } | null = null;
+let lastSearchRecord: { key: string; timestamp: number } | null = null;
 
-function sanitizePagePath(rawPath: string): string {
-  const clean = (rawPath || '/').split('?')[0].split('#')[0].trim();
+function sanitizePagePath(rawPath?: string): string {
+  const path = rawPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
+  const clean = path.split('?')[0].split('#')[0].trim();
   return clean.startsWith('/') ? clean : `/${clean}`;
 }
 
@@ -165,6 +178,7 @@ export function disableAndClearGA4(): void {
   window[`ga-disable-${GA4_MEASUREMENT_ID}`] = true;
   lastTrackedPath = null;
   lastClickRecord = null;
+  lastSearchRecord = null;
   gaInitialized = false;
 
   try {
@@ -261,7 +275,192 @@ export function trackContactClick(
   try {
     window.gtag('event', eventName, {
       page_path: cleanPath,
+      cta_location: ctaZone,
       cta_zone: ctaZone,
+      send_to: GA4_MEASUREMENT_ID,
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export interface TrackClickOptions {
+  service_id?: string;
+  store_id?: string;
+  cta_location?: string;
+}
+
+export function trackWhatsAppClick(
+  pagePath: string,
+  ctaLocation: string = 'page_content',
+  options?: TrackClickOptions
+): boolean {
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) {
+    return false;
+  }
+  if (window[`ga-disable-${GA4_MEASUREMENT_ID}`] === true) {
+    return false;
+  }
+  if (!gaInitialized) {
+    initGA4();
+  }
+  if (typeof window.gtag !== 'function') {
+    return false;
+  }
+
+  const cleanPath = sanitizePagePath(pagePath);
+  const serviceId = options?.service_id;
+  const storeId = options?.store_id;
+  const dedupeKey = `whatsapp_click:${cleanPath}:${ctaLocation}:${serviceId || ''}:${storeId || ''}`;
+  const now = Date.now();
+
+  if (
+    lastClickRecord &&
+    lastClickRecord.key === dedupeKey &&
+    now - lastClickRecord.timestamp < 500
+  ) {
+    return false;
+  }
+  lastClickRecord = { key: dedupeKey, timestamp: now };
+
+  try {
+    const payload: Record<string, unknown> = {
+      page_path: cleanPath,
+      cta_location: ctaLocation,
+      cta_zone: ctaLocation,
+      send_to: GA4_MEASUREMENT_ID,
+    };
+    if (serviceId) payload.service_id = serviceId;
+    if (storeId) payload.store_id = storeId;
+
+    window.gtag('event', 'whatsapp_click', payload);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function trackPhoneClick(
+  pagePath: string,
+  ctaLocation: string = 'page_content',
+  options?: { store_id?: string }
+): boolean {
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) {
+    return false;
+  }
+  if (window[`ga-disable-${GA4_MEASUREMENT_ID}`] === true) {
+    return false;
+  }
+  if (!gaInitialized) {
+    initGA4();
+  }
+  if (typeof window.gtag !== 'function') {
+    return false;
+  }
+
+  const cleanPath = sanitizePagePath(pagePath);
+  const storeId = options?.store_id;
+  const dedupeKey = `phone_click:${cleanPath}:${ctaLocation}:${storeId || ''}`;
+  const now = Date.now();
+
+  if (
+    lastClickRecord &&
+    lastClickRecord.key === dedupeKey &&
+    now - lastClickRecord.timestamp < 500
+  ) {
+    return false;
+  }
+  lastClickRecord = { key: dedupeKey, timestamp: now };
+
+  try {
+    const payload: Record<string, unknown> = {
+      page_path: cleanPath,
+      cta_location: ctaLocation,
+      cta_zone: ctaLocation,
+      send_to: GA4_MEASUREMENT_ID,
+    };
+    if (storeId) payload.store_id = storeId;
+
+    window.gtag('event', 'phone_click', payload);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Tracks valid form preparation (strictly NO personal data, names, phone numbers, or addresses).
+ */
+export function trackFormPrepared(
+  pagePath: string,
+  formName: 'pickup_request' | 'contact_request'
+): boolean {
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) {
+    return false;
+  }
+  if (window[`ga-disable-${GA4_MEASUREMENT_ID}`] === true) {
+    return false;
+  }
+  if (!gaInitialized) {
+    initGA4();
+  }
+  if (typeof window.gtag !== 'function') {
+    return false;
+  }
+
+  const cleanPath = sanitizePagePath(pagePath);
+  try {
+    window.gtag('event', 'form_prepared', {
+      page_path: cleanPath,
+      form_name: formName,
+      send_to: GA4_MEASUREMENT_ID,
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Tracks locator search/filter interactions without transmitting user queries or personal data.
+ */
+export function trackLocatorSearch(
+  pagePath: string,
+  resultsCount: number,
+  filterType?: string
+): boolean {
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) {
+    return false;
+  }
+  if (window[`ga-disable-${GA4_MEASUREMENT_ID}`] === true) {
+    return false;
+  }
+  if (!gaInitialized) {
+    initGA4();
+  }
+  if (typeof window.gtag !== 'function') {
+    return false;
+  }
+
+  const cleanPath = sanitizePagePath(pagePath);
+  const dedupeKey = `locator_search:${cleanPath}:${filterType || 'query'}:${resultsCount}`;
+  const now = Date.now();
+
+  if (
+    lastSearchRecord &&
+    lastSearchRecord.key === dedupeKey &&
+    now - lastSearchRecord.timestamp < 1000
+  ) {
+    return false;
+  }
+  lastSearchRecord = { key: dedupeKey, timestamp: now };
+
+  try {
+    window.gtag('event', 'locator_search', {
+      page_path: cleanPath,
+      results_count: resultsCount,
+      filter_type: filterType || 'query',
       send_to: GA4_MEASUREMENT_ID,
     });
     return true;
@@ -277,22 +476,36 @@ export function trackMimosEvent(
   if (!hasAnalyticsConsent()) {
     return;
   }
-  if (eventName === 'whatsapp_click' || eventName === 'phone_click') {
-    const rawZone = params.cta_zone;
-    const zone: CtaZone =
-      rawZone === 'header' ||
-      rawZone === 'mobile_bar' ||
-      rawZone === 'mimo_assistant' ||
-      rawZone === 'page_content'
-        ? rawZone
-        : 'page_content';
-    const path =
-      typeof params.page_path === 'string'
-        ? params.page_path
-        : typeof window !== 'undefined'
-          ? window.location.pathname
-          : '/';
-    trackContactClick(eventName, path, zone);
+  const path =
+    typeof params.page_path === 'string'
+      ? params.page_path
+      : typeof window !== 'undefined'
+        ? window.location.pathname
+        : '/';
+
+  if (eventName === 'whatsapp_click') {
+    const location =
+      typeof params.cta_location === 'string'
+        ? params.cta_location
+        : typeof params.cta_zone === 'string'
+          ? params.cta_zone
+          : 'page_content';
+    const serviceId = typeof params.service_id === 'string' ? params.service_id : undefined;
+    const storeId = typeof params.store_id === 'string' ? params.store_id : undefined;
+    trackWhatsAppClick(path, location, { service_id: serviceId, store_id: storeId });
+  } else if (eventName === 'phone_click') {
+    const location =
+      typeof params.cta_location === 'string'
+        ? params.cta_location
+        : typeof params.cta_zone === 'string'
+          ? params.cta_zone
+          : 'page_content';
+    const storeId = typeof params.store_id === 'string' ? params.store_id : undefined;
+    trackPhoneClick(path, location, { store_id: storeId });
+  } else if (eventName === 'form_prepared' || eventName === 'request_prepared') {
+    const formName =
+      params.form_name === 'contact_request' ? 'contact_request' : 'pickup_request';
+    trackFormPrepared(path, formName);
   }
 }
 

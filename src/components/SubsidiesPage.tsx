@@ -11,7 +11,11 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
   const isFeder = variant === 'feder';
 
   return (
-    <main className="py-12 sm:py-16 bg-slate-50 dark:bg-[#071324] flex-1">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="focus:outline-hidden py-12 sm:py-16 bg-slate-50 dark:bg-[#071324] flex-1"
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Migas de pan y botón volver */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">

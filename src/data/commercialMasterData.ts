@@ -320,7 +320,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
       'Entrega y recogida directa en nuestra tienda propia de Alcalde Gregorio Espino, 44 para tintorería, lavandería, textiles del hogar y arreglos de ropa.',
-    foto: '/images/gregorio-espino/fachada.jpg',
+    foto: '/images/gregorio-espino/fachada1Gregorio.jpg',
     referenciaLocal:
       'Esquina con Rúa do Escultor Nogueira, frente a la zona ajardinada de Alcalde Gregorio Espino.',
     aparcamiento:
@@ -541,7 +541,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Deja tus prendas y textiles del hogar en Arregla2 (C/ Argentina, 4, Ponteareas), establecimiento colaborador de recogida y entrega para los servicios de Tintorería Mimos con servicio confirmado de costura y arreglos de ropa.',
-    foto: '',
+    foto: '/images/arregla2-ponteareas/fachada1Ponteareas.jpg',
     referenciaLocal: 'En el casco urbano de Ponteareas, C/ Argentina, 4.',
     aparcamiento: 'Estacionamiento y parada en las calles aledañas a C/ Argentina.',
     cierreTemporal: false,

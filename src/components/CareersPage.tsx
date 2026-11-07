@@ -8,7 +8,11 @@ interface CareersPageProps {
 
 export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
   return (
-    <main className="py-12 sm:py-16 bg-slate-50 dark:bg-[#071324] flex-1">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="focus:outline-hidden py-12 sm:py-16 bg-slate-50 dark:bg-[#071324] flex-1"
+    >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Migas de pan y botón volver */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">

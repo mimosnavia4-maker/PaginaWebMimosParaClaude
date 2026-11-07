@@ -26,7 +26,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
   const otroArticulo = ARTICULOS_BLOG[nextIndex];
 
   return (
-    <main className="py-10 sm:py-16 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden py-10 sm:py-16 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav aria-label="Migas de pan" className="mb-6">

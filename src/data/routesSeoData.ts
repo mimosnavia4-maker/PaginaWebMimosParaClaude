@@ -62,7 +62,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Arreglos de Ropa en Vigo: Costura y Composturas Profesionales | Mimos',
     h1: 'Arreglos de ropa en Vigo: costura y composturas profesionales',
     description:
-      'Taller propio de costura y composturas en Vigo en la tienda de Gregorio Espino (modistería in situ), recepción en tiendas propias y puntos colaboradores con costura.',
+      'Taller propio de costura y composturas en Vigo en Gregorio Espino y Venezuela (modistería in situ), recepción de prendas en Navia y puntos colaboradores con costura.',
     canonical: 'https://www.tintoreriamimos.es/arreglos-de-ropa-vigo',
     robots: 'index, follow',
     ogType: 'website',
@@ -275,7 +275,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Tiendas Propias de Tintorería Mimos en Vigo | Navia, Venezuela y Gregorio Espino',
     h1: 'Nuestras 3 tiendas propias en Vigo y servicio de recogida a domicilio',
     description:
-      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (Navia, Venezuela y Gregorio Espino). Servicios de tintorería, lavandería, taller de costura propio en Gregorio Espino y recogida a domicilio.',
+      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (Navia, Venezuela y Gregorio Espino). Tintorería, lavandería, taller propio de costura en Gregorio Espino y Venezuela, recepción en Navia y recogida a domicilio.',
     canonical: 'https://www.tintoreriamimos.es/zonas/vigo',
     robots: 'index, follow',
     ogType: 'website',

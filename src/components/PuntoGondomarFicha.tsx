@@ -309,9 +309,18 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                Puntadas No Aire (Gondomar)
-              </h1>
+              {isModal ? (
+                <h2
+                  id="modal-ficha-titulo"
+                  className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight"
+                >
+                  Puntadas No Aire (Gondomar)
+                </h2>
+              ) : (
+                <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
+                  Puntadas No Aire (Gondomar)
+                </h1>
+              )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
                 Punto Oficial Tintorería Mimos y Taller de Costura en Val Miñor
               </p>

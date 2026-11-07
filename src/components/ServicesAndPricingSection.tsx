@@ -7,6 +7,7 @@ import {
   CONTACT_INFO,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 interface ServicesAndPricingSectionProps {
   onNavigate?: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -53,7 +54,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
             Nuestros servicios profesionales de tintorería, lavandería y limpieza
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-            En <strong>Tintorería Mimos Navia</strong> tratamos cada prenda y cada textil según su tejido y composición. Nuestro asistente <strong>Mimo</strong> te facilita al instante por WhatsApp el precio exacto o el presupuesto personalizado para lo que necesites.
+            En <strong>Tintorería Mimos Navia</strong> tratamos cada prenda y cada textil según su tejido y composición. El precio depende de la prenda, el tejido y el tratamiento necesario. Consúltanos y te orientaremos sobre su tarifa a través de nuestro asistente <strong>Mimo</strong> por WhatsApp.
           </p>
         </div>
 
@@ -126,6 +127,11 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                   href={servicio.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick('/#servicios', 'service_card', {
+                      service_id: servicio.id,
+                    })
+                  }
                   className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
@@ -203,6 +209,11 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                 href={CONTACT_INFO.whatsappArreglosHref}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick('/#servicios', 'services_featured_costura', {
+                    service_id: 'costura_arreglos',
+                  })
+                }
                 className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
@@ -223,10 +234,10 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                 Atención inmediata por WhatsApp · {CONTACT_INFO.whatsappNumber}
               </p>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                ¿Quieres saber cuánto cuesta limpiar una prenda, un edredón o una alfombra?
+                ¿Quieres consultar la tarifa para limpiar una prenda, un edredón o una alfombra?
               </h3>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
-                Los precios te los da nuestro asistente <strong>Mimo</strong> al instante por WhatsApp según el tipo de prenda, tejido o servicio que necesites. Selecciona una consulta rápida o escribe tu prenda:
+                El precio depende de la prenda, el tejido y el tratamiento necesario. Consúltanos y te orientaremos sobre su tarifa. Selecciona una consulta rápida o escribe tu prenda para hablar con Mimo por WhatsApp:
               </p>
 
               <div className="flex flex-wrap gap-2 pt-2">
@@ -234,10 +245,13 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                   <a
                     key={item.label}
                     href={buildMimoWhatsAppUrl(
-                      `Hola, Mimo. Quiero saber cuánto cuesta limpiar ${item.prenda}`
+                      `Hola, Mimo. Quiero consultar la tarifa para limpiar ${item.prenda}`
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackWhatsAppClick('/#servicios', 'pricing_quick_query')
+                    }
                     className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/10 hover:bg-[#0F76BB] text-xs font-bold text-white border border-white/15 transition-colors"
                   >
                     <MessageCircle className="w-3.5 h-3.5 text-[#4ade80]" aria-hidden="true" />
@@ -261,16 +275,19 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                   value={prendaPersonalizada}
                   onChange={(e) => setPrendaPersonalizada(e.target.value)}
                   placeholder="Ej.: un abrigo de lana, 2 edredones, vestido..."
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-white text-slate-900 text-sm font-medium placeholder:text-slate-400"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white text-slate-900 text-sm font-medium placeholder:text-slate-400 focus:ring-2 focus:ring-[#60B5F6] focus:outline-hidden transition-colors"
                 />
                 <a
                   href={customPrendaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick('/#servicios', 'pricing_custom_query')
+                  }
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-lg transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span>Consulta tu precio con Mimo</span>
+                  <span>Consultar tarifa con Mimo</span>
                 </a>
               </div>
             </div>

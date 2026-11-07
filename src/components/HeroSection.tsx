@@ -8,6 +8,7 @@ import {
   UserCheck,
   Sparkles,
   Scissors,
+  Phone,
 } from 'lucide-react';
 import {
   CONTACT_INFO,
@@ -18,6 +19,7 @@ import {
   ZONAS_SEO_LOCAL,
 } from '../data/mimosData';
 import { getNaviaStoreStatus, StoreStatusInfo } from '../utils/storeStatus';
+import { trackWhatsAppClick, trackPhoneClick } from '../utils/analytics';
 
 interface HeroSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -85,6 +87,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 href={CONTACT_INFO.whatsappGeneralHref}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('/', 'hero')}
                 className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors shadow-sm text-center sm:whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
@@ -98,6 +101,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               >
                 <span>Solicitar recogida a domicilio</span>
                 <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
+
+            {/* Acceso telefónico discreto y accesible (verificado: 986 12 51 41) */}
+            <div className="pt-0.5">
+              <a
+                href={CONTACT_INFO.phoneHref}
+                onClick={() => trackPhoneClick('/', 'hero')}
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-[#0F76BB] dark:hover:text-[#60B5F6] min-h-[44px] py-1 transition-colors group"
+                aria-label={`Llamar por teléfono al ${CONTACT_INFO.phoneDisplay}`}
+              >
+                <span className="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover:bg-[#0F76BB]/10 text-[#0F76BB] dark:text-[#60B5F6] transition-colors shrink-0">
+                  <Phone className="w-3.5 h-3.5" aria-hidden="true" />
+                </span>
+                <span>¿Prefieres llamar? Atención en el <strong className="font-extrabold text-[#002147] dark:text-white tabular-nums underline decoration-[#0F76BB]/40 group-hover:decoration-[#0F76BB]">{CONTACT_INFO.phoneDisplay}</strong></span>
               </a>
             </div>
 
@@ -330,6 +348,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                   href={CONTACT_INFO.whatsappApartamentosHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick('/', 'hero_card_apartamentos', {
+                      service_id: 'apartamentos-turisticos',
+                    })
+                  }
                   className="inline-flex items-center gap-1 text-xs font-bold text-[#178A47] dark:text-[#4ade80] hover:underline"
                 >
                   <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
@@ -377,6 +400,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                   href={CONTACT_INFO.whatsappAlfombrasHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick('/', 'hero_card_alfombras', {
+                      service_id: 'alfombras-tapiceria',
+                    })
+                  }
                   className="inline-flex items-center gap-1 text-xs font-bold text-[#178A47] dark:text-[#4ade80] hover:underline"
                 >
                   <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
@@ -424,6 +452,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                   href={CONTACT_INFO.whatsappArreglosHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick('/', 'hero_card_costura', {
+                      service_id: 'arreglos-costura',
+                    })
+                  }
                   className="inline-flex items-center gap-1 text-xs font-bold text-[#178A47] dark:text-[#4ade80] hover:underline"
                 >
                   <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />

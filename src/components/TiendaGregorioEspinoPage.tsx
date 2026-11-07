@@ -8,7 +8,11 @@ interface TiendaGregorioEspinoPageProps {
 
 export const TiendaGregorioEspinoPage: React.FC<TiendaGregorioEspinoPageProps> = ({ onNavigate }) => {
   return (
-    <main className="py-8 sm:py-12 bg-slate-50 dark:bg-[#071324] flex-1 min-h-screen">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="focus:outline-hidden py-8 sm:py-12 bg-slate-50 dark:bg-[#071324] flex-1 min-h-screen"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Migas de pan y navegación */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">

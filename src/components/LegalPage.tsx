@@ -14,7 +14,11 @@ export const LegalPage: React.FC<LegalPageProps> = ({
   onOpenCookieSettings,
 }) => {
   return (
-    <main className="py-12 sm:py-16 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="focus:outline-hidden py-12 sm:py-16 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+    >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <a

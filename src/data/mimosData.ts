@@ -318,7 +318,7 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
       'Vestidos de fiesta, invitada, comunión, bautizo y vestidos de novia',
       'Abrigos de paño, gabardinas, chaquetones y plumíferos técnicos',
       'Blusas de seda, lino, viscosa, lana fría y tejidos con pedrería o encaje',
-      'Costura y arreglos de ropa en nuestras 3 tiendas propias de Vigo y en los puntos colaboradores con servicio de costura',
+      'Costura y arreglos de ropa (taller propio in situ en Gregorio Espino y Venezuela; recepción en Navia y puntos con costura)',
     ],
     comoSeContrata: [
       `Entrega directa en cualquiera de nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo (${TIENDAS_PROPIAS.map((t) => t.direccion).join(', ')}).`,
@@ -863,12 +863,12 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     seoTitle:
       'Tiendas Propias de Tintorería Mimos en Vigo | Navia, Venezuela y Gregorio Espino',
     metaDescription:
-      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (C/ Teixugueiras 11, C/ Venezuela 41 y Avda. Alcalde Gregorio Espino 44) con todos los servicios, costura y recogida a domicilio.',
+      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (C/ Teixugueiras 11, C/ Venezuela 41 y Avda. Alcalde Gregorio Espino 44) con servicios completos, talleres propios de costura en Gregorio Espino y Venezuela, recepción en Navia y recogida a domicilio.',
     h1: 'Nuestras 3 tiendas propias en Vigo y servicio de recogida a domicilio',
     subtitulo:
-      'Atención directa con todos nuestros servicios (incluida costura y limpieza de alfombras) en nuestras 3 tiendas propias de Tintorería Mimos Navia, S.L. en Vigo, y servicio coordinado de recogida y entrega a domicilio.',
+      'Atención directa en nuestras 3 tiendas propias de Vigo (taller propio de costura in situ en Gregorio Espino y Venezuela, y recepción en Navia), con limpieza de alfombras y recogida a domicilio.',
     explicacionEspecificaZona: [
-      'En Vigo contamos con 3 tiendas propias de Tintorería Mimos Navia, S.L.: la sede central en C/ Teixugueiras, 11, bajo 9 (Navia), la tienda del centro urbano en C/ Venezuela, 41, bajo 1 y la tienda de Avda. Alcalde Gregorio Espino, 44. En nuestras 3 tiendas propias ofrecemos el catálogo completo de Mimos: tintorería profesional, lavandería, planchado, colada familiar, limpieza de alfombras y textiles del hogar, costura y arreglos de ropa, y atención a empresas y alojamientos turísticos.',
+      'En Vigo contamos con 3 tiendas propias de Tintorería Mimos Navia, S.L.: la sede central en C/ Teixugueiras, 11, bajo 9 (Navia, punto de recepción para arreglos), la tienda de C/ Venezuela, 41, bajo 1 (con taller propio de costura in situ) y la de Avda. Alcalde Gregorio Espino, 44 (con taller propio de costura y modistería in situ). En nuestras 3 tiendas ofrecemos el catálogo completo de cuidado textil, tintorería, lavandería, limpieza de alfombras y servicio coordinado de arreglos de ropa.',
       'Para mayor comodidad de particulares, empresas y viviendas turísticas, disponemos también de servicio coordinado de recogida y entrega a domicilio en Vigo y comarca con solicitud directa a través de nuestro asistente Mimo por WhatsApp o formulario web.',
     ],
     pasosEntregaRecogida: [
@@ -876,7 +876,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
         paso: '01',
         titulo: 'Elige entre nuestras 3 tiendas propias en Vigo o solicita recogida a domicilio',
         detalle:
-          'Acude a cualquiera de nuestras 3 tiendas propias (C/ Teixugueiras 11 en Navia, C/ Venezuela 41 en el centro o Avda. Alcalde Gregorio Espino 44 en O Calvario) para todos los servicios y costura, o solicita recogida a domicilio con Mimo.',
+          'Acude a cualquiera de nuestras 3 tiendas propias (taller propio in situ en Gregorio Espino y Venezuela, o entrega y recepción en Navia) para todos los servicios y arreglos, o solicita recogida a domicilio con Mimo.',
       },
       {
         paso: '02',
@@ -896,7 +896,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
         pregunta:
           '¿Dónde están ubicadas las 3 tiendas propias de Mimos en Vigo y qué servicios ofrecen?',
         respuesta:
-          'Nuestras 3 tiendas propias se encuentran en C/ Teixugueiras, 11, bajo 9 (Navia, CP 36212), C/ Venezuela, 41, bajo 1 (Centro, CP 36203) y Avda. Alcalde Gregorio Espino, 44 (O Calvario, CP 36205). En las 3 tiendas ofrecemos el catálogo completo de servicios: tintorería profesional, lavandería, planchado, colada, limpieza de alfombras y taller de costura y arreglos de ropa.',
+          'Nuestras 3 tiendas propias se encuentran en C/ Teixugueiras, 11, bajo 9 (Navia, CP 36212), C/ Venezuela, 41, bajo 1 (Centro, CP 36203) y Avda. Alcalde Gregorio Espino, 44 (O Calvario, CP 36205). Ofrecemos el catálogo completo de tintorería, lavandería, planchado, colada y limpieza de alfombras en las 3 tiendas. Para arreglos de ropa, disponemos de taller propio de costura in situ en Gregorio Espino y Venezuela, mientras que en Navia atendemos la recepción y entrega de prendas para su confección en nuestros talleres.',
       },
       {
         pregunta: '¿Qué tiendas propias de Vigo abren los sábados por la mañana?',
@@ -1295,7 +1295,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
       },
       {
         texto: 'Limpieza y Secado Controlado de Edredones',
-        href: '/edredones-mimos-vigo',
+        href: '/textiles-hogar-vigo',
         descripcion: 'Tratamiento volumétrico con recuperación de plumón y desinfección térmica profunda.',
       },
       {
@@ -1536,7 +1536,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     enlacesInternos: [
       {
         texto: 'Servicios de Tintorería y Wetcleaning en Vigo',
-        href: '/servicios',
+        href: '/#servicios',
         descripcion: 'Conoce nuestros procesos de lavado en seco y en agua con tecnología ecológica.',
       },
       {
@@ -1688,9 +1688,7 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
   {
     id: 'costura',
     label: 'Costura y arreglos',
-    respuesta: `Realizamos arreglos y composturas de ropa (bajos, cremalleras, botones, estrechar/ensanchar, ajustes de cintura, zurcidos y descosidos) en nuestras ${TIENDAS_PROPIAS.length} tiendas propias de Vigo (${TIENDAS_PROPIAS.map(
-      (t) => `${t.nombre_mostrado} en ${t.direccion}`
-    ).join(', ')}) y en los puntos colaboradores con servicio de costura confirmado: ${PUNTOS_CON_COSTURA.filter(
+    respuesta: `Realizamos arreglos y composturas de ropa con taller propio in situ en Gregorio Espino (Alcalde Gregorio Espino 44) y Venezuela (C/ Venezuela 41 bajo 1), punto de recepción y entrega en Navia (C/ Teixugueiras 11 bajo 9), y en los establecimientos colaboradores independientes con costura confirmada: ${PUNTOS_CON_COSTURA.filter(
       (p) => p.tipo === 'punto'
     )
       .map((p) => `${p.localidad} (${p.nombre_comercio}, ${p.direccion})`)
@@ -1933,10 +1931,10 @@ export const SERVICIO_ARREGLOS_DATA = {
   canonical: 'https://www.tintoreriamimos.es/arreglos-de-ropa-vigo',
   seoTitle: 'Arreglos de Ropa en Vigo: Costura y Composturas Profesionales | Mimos',
   metaDescription:
-    'Servicio profesional de arreglos de ropa, costura y composturas en Vigo (3 tiendas propias) y puntos con costura en Gondomar, Ponteareas y O Porriño. Consulta con Mimo.',
+    'Arreglos de ropa y costura en Vigo: taller propio in situ en Gregorio Espino y Venezuela, recepción en Navia y puntos colaboradores independientes con costura.',
   h1: 'Arreglos de ropa en Vigo: costura y composturas profesionales',
   subtituloCabecera:
-    'Adaptamos, reparamos y damos una segunda vida a tus prendas con acabados cuidados en nuestras 3 tiendas propias de Vigo y en nuestra red de talleres colaboradores con costura.',
+    'Taller propio de costura y arreglos in situ en Gregorio Espino y Venezuela, recepción de prendas en Navia y red de establecimientos colaboradores independientes con costura.',
   trabajosConfirmados: [
     {
       id: 'bajos-bastillas',
@@ -1994,7 +1992,7 @@ export const SERVICIO_ARREGLOS_DATA = {
       num: '01',
       titulo: 'Consúltanos por WhatsApp o acude a tu punto de costura',
       descripcion:
-        'Puedes escribir a nuestro asistente Mimo indicando qué arreglo necesitas y en qué zona estás, o llevar directamente la prenda a cualquiera de nuestras 3 tiendas propias en Vigo o a los puntos colaboradores con servicio de costura.',
+        'Puedes consultar por WhatsApp a Mimo o llevar directamente tu prenda a nuestras tiendas de Gregorio Espino o Venezuela (con taller propio in situ), a Navia (recepción y entrega de arreglos) o a los puntos colaboradores con servicio de costura.',
     },
     {
       num: '02',
@@ -2063,9 +2061,7 @@ export const SERVICIO_ARREGLOS_DATA = {
     },
     {
       pregunta: '7. ¿En qué tiendas propias y puntos colaboradores puedo entregar una prenda para arreglar?',
-      respuesta: `Puedes acudir a nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo (${TIENDAS_PROPIAS.map(
-        (t) => `${t.nombre_mostrado} en ${t.direccion}`
-      ).join(', ')}) y a los puntos colaboradores con servicio de costura confirmado en ${PUNTOS_CON_COSTURA.filter(
+      respuesta: `Puedes acudir a nuestras tiendas propias de Gregorio Espino (Alcalde Gregorio Espino, 44) o Venezuela (C/ Venezuela, 41, bajo 1), ambas con taller propio de costura in situ; a nuestra sede de Navia (C/ Teixugueiras, 11, bajo 9), donde gestionamos la recepción y entrega para taller; y a los establecimientos colaboradores independientes con servicio de costura confirmado en ${PUNTOS_CON_COSTURA.filter(
         (p) => p.tipo === 'punto'
       )
         .map((p) => `${p.localidad} (${p.nombre_comercio}, ${p.direccion})`)

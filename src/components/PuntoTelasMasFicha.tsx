@@ -200,7 +200,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-[#002147]/95 text-white border border-white/20 shadow-lg backdrop-blur-xs">
                   <Handshake className="w-3.5 h-3.5 text-[#60B5F6]" />
-                  Punto Colaborador Mimos · Taller In Situ
+                  Punto Colaborador Mimos · Taller Propio del Colaborador
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-400 text-slate-950 shadow-md">
                   {photos[activeTabPhoto].tag}
@@ -280,11 +280,20 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                Telas y Más (O Porriño)
-              </h1>
+              {isModal ? (
+                <h2
+                  id="modal-ficha-titulo"
+                  className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight"
+                >
+                  Telas y Más (O Porriño)
+                </h2>
+              ) : (
+                <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
+                  Telas y Más (O Porriño)
+                </h1>
+              )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
-                Punto Oficial Tintorería Mimos y Taller de Costura
+                Punto colaborador independiente de recepción y recogida Mimos · Taller de costura propio del establecimiento
               </p>
 
               <div className="mt-4 space-y-2 text-xs">

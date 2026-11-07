@@ -6,6 +6,7 @@ import {
   SERVICIOS_MIMOS,
   ZONAS_SEO_LOCAL,
 } from '../data/mimosData';
+import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
 
 interface HeaderProps {
   currentPath: string;
@@ -16,6 +17,25 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const wasMobileMenuOpenRef = useRef(false);
+
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const servicesTriggerRef = useRef<HTMLAnchorElement>(null);
+  const servicesContainerRef = useRef<HTMLDivElement>(null);
+  const firstServiceLinkRef = useRef<HTMLAnchorElement>(null);
+
+  // Cerrar desplegable de servicios con Escape y devolver foco al disparador
+  useEffect(() => {
+    if (!servicesDropdownOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setServicesDropdownOpen(false);
+        servicesTriggerRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [servicesDropdownOpen]);
 
   useEffect(() => {
     if (wasMobileMenuOpenRef.current && !mobileMenuOpen) {
@@ -45,8 +65,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   ];
 
   const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    setServicesDropdownOpen(false);
     setMobileMenuOpen(false);
     onNavigate(href, e);
+  };
+
+  const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      setServicesDropdownOpen(true);
+      setTimeout(() => firstServiceLinkRef.current?.focus(), 30);
+    }
+  };
+
+  const handleContainerBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (!servicesContainerRef.current?.contains(e.relatedTarget as Node)) {
+      setServicesDropdownOpen(false);
+    }
   };
 
   return (
@@ -91,28 +126,49 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
         {/* Primary Desktop Navigation */}
         <nav aria-label="Navegación principal" className="hidden xl:flex items-center gap-3.5 2xl:gap-5 shrink-0">
           {/* Dropdown for Services */}
-          <div className="relative group">
+          <div
+            ref={servicesContainerRef}
+            className="relative"
+            onMouseEnter={() => setServicesDropdownOpen(true)}
+            onMouseLeave={() => setServicesDropdownOpen(false)}
+            onFocus={() => setServicesDropdownOpen(true)}
+            onBlur={handleContainerBlur}
+          >
             <a
+              ref={servicesTriggerRef}
               href="/#servicios"
               onClick={(e) => handleNavClick('/#servicios', e)}
-              className="inline-flex items-center gap-1 text-[13px] 2xl:text-sm font-semibold text-slate-200 hover:text-white transition-colors py-2 whitespace-nowrap"
+              onKeyDown={handleTriggerKeyDown}
+              aria-haspopup="true"
+              aria-expanded={servicesDropdownOpen}
+              className="inline-flex items-center gap-1 text-[13px] 2xl:text-sm font-semibold text-slate-200 hover:text-white transition-colors py-2 whitespace-nowrap rounded-md focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#60B5F6]"
             >
               <span>Servicios</span>
-              <ChevronDown className="w-3.5 h-3.5 text-[#60B5F6]" aria-hidden="true" />
+              <ChevronDown
+                className={`w-3.5 h-3.5 text-[#60B5F6] transition-transform duration-150 ${servicesDropdownOpen ? 'rotate-180' : ''}`}
+                aria-hidden="true"
+              />
             </a>
-            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150 absolute left-0 top-full pt-1 w-72 z-50">
+            <div
+              className={`transition-all duration-150 absolute left-0 top-full pt-1 w-72 z-50 ${
+                servicesDropdownOpen
+                  ? 'visible opacity-100'
+                  : 'invisible opacity-0 pointer-events-none'
+              }`}
+            >
               <div className="rounded-xl bg-[#002147] border border-white/15 shadow-2xl p-2 space-y-0.5">
                 <a
+                  ref={firstServiceLinkRef}
                   href="/limpieza-alfombras-vigo"
                   onClick={(e) => handleNavClick('/limpieza-alfombras-vigo', e)}
-                  className="block px-3 py-2 rounded-lg text-xs font-extrabold text-[#60B5F6] bg-white/5 hover:bg-[#0F76BB] hover:text-white transition-colors mb-1"
+                  className="block px-3 py-2 rounded-lg text-xs font-extrabold text-[#60B5F6] bg-white/5 hover:bg-[#0F76BB] hover:text-white transition-colors mb-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#60B5F6]"
                 >
                   ★ Limpieza y reparación de alfombras
                 </a>
                 <a
                   href="/arreglos-de-ropa-vigo"
                   onClick={(e) => handleNavClick('/arreglos-de-ropa-vigo', e)}
-                  className="block px-3 py-2 rounded-lg text-xs font-extrabold text-[#60B5F6] bg-white/5 hover:bg-[#0F76BB] hover:text-white transition-colors mb-1"
+                  className="block px-3 py-2 rounded-lg text-xs font-extrabold text-[#60B5F6] bg-white/5 hover:bg-[#0F76BB] hover:text-white transition-colors mb-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#60B5F6]"
                 >
                   ★ Costura y arreglos de ropa
                 </a>
@@ -121,7 +177,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     key={srv.id}
                     href={srv.url}
                     onClick={(e) => handleNavClick(srv.url, e)}
-                    className="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-200 hover:bg-[#0F76BB] hover:text-white transition-colors"
+                    className="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-200 hover:bg-[#0F76BB] hover:text-white transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#60B5F6]"
                   >
                     {srv.index}. {srv.titulo}
                   </a>
@@ -155,6 +211,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
         <div className="hidden md:flex items-center gap-2 2xl:gap-3 shrink-0">
           <a
             href={CONTACT_INFO.phoneHref}
+            onClick={() => trackPhoneClick(currentPath, 'header')}
             className="inline-flex items-center gap-1.5 text-[13px] 2xl:text-sm font-semibold text-slate-200 hover:text-white transition-colors tabular-nums px-2 py-2 rounded-lg hover:bg-white/5 whitespace-nowrap"
             aria-label={`Llamar por teléfono al ${CONTACT_INFO.phoneDisplay}`}
           >
@@ -166,6 +223,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             href={CONTACT_INFO.whatsappGeneralHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick(currentPath, 'header')}
             className="inline-flex items-center gap-1.5 2xl:gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-[13px] 2xl:text-sm px-3 2xl:px-4 py-2 2xl:py-2.5 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-sm"
           >
             <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -180,6 +238,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             href={CONTACT_INFO.whatsappGeneralHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick(currentPath, 'header_mobile')}
             className="md:hidden inline-flex items-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs px-2.5 sm:px-3 py-2 rounded-lg transition-colors whitespace-nowrap shrink-0"
             aria-label="Hablar con Mimo por WhatsApp"
           >
@@ -197,7 +256,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             aria-controls="mobile-nav-drawer"
             aria-label={mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" aria-hidden="true" />
+            ) : (
+              <Menu className="w-6 h-6" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
@@ -283,6 +346,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
           <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
             <a
               href={CONTACT_INFO.phoneHref}
+              onClick={() => trackPhoneClick(currentPath, 'header_drawer')}
               className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-white/10 text-white font-semibold text-sm tabular-nums"
             >
               <Phone className="w-4 h-4 text-[#60B5F6]" aria-hidden="true" />
@@ -292,6 +356,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
               href={CONTACT_INFO.whatsappGeneralHref}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick(currentPath, 'header_drawer')}
               className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm"
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />

@@ -186,11 +186,19 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
               )}
             </span>
 
-            {tieneCostura && (
+            {punto.id === 'gregorio-espino' || punto.id === 'rua-venezuela' ? (
               <span className="text-xs font-bold text-[#178A47] dark:text-[#4ade80]">
-                Costura y arreglos confirmados
+                Taller propio in situ
               </span>
-            )}
+            ) : punto.id === 'as-teixugueiras' ? (
+              <span className="text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                Recepción para taller propio
+              </span>
+            ) : tieneCostura ? (
+              <span className="text-xs font-bold text-[#178A47] dark:text-[#4ade80]">
+                Taller del colaborador
+              </span>
+            ) : null}
           </div>
 
           <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white mb-1">
@@ -328,7 +336,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
   };
 
   return (
-    <main className="bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
       {/* 1. CABECERA: H1, frase breve y botones «Consultar mi arreglo con Mimo» y «Encontrar mi punto de costura» */}
       <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -419,7 +427,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   </div>
                 )}
                 <figcaption className="p-4 text-xs text-slate-300 border-t border-white/10">
-                  Bajos, cremalleras, botones, entallados y composturas en nuestras 3 tiendas propias de Vigo y en puntos colaboradores con taller de costura.
+                  Taller propio de costura in situ en Gregorio Espino y Venezuela, recepción de prendas en Navia y red de colaboradores.
                 </figcaption>
               </figure>
             </div>
@@ -570,7 +578,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   )
                 }
                 aria-label="Filtrar por servicio confirmado"
-                className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white"
+                className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               >
                 <option value="costura_arreglos">
                   Servicio: Costura y arreglos ({PUNTOS_CON_COSTURA.length})
@@ -586,7 +594,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   setSelectedTipo(e.target.value as 'todos' | 'tienda' | 'punto')
                 }
                 aria-label="Filtrar por tienda propia o punto colaborador"
-                className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white"
+                className="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               >
                 <option value="todos">Tiendas propias y colaboradores</option>
                 <option value="tienda">
@@ -609,7 +617,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Calle, localidad o CP..."
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -792,7 +800,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   id="arr-tipo"
                   value={tipoArreglo}
                   onChange={(e) => setTipoArreglo(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Bajos o bastillas">Bajos o bastillas</option>
                   <option value="Cambio o arreglo de cremallera">
@@ -821,7 +829,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   id="arr-prenda"
                   value={tipoPrenda}
                   onChange={(e) => setTipoPrenda(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Pantalón">Pantalón</option>
                   <option value="Falda">Falda</option>
@@ -844,7 +852,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   id="arr-zona"
                   value={zonaPreferida}
                   onChange={(e) => setZonaPreferida(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {PUNTOS_CON_COSTURA.map((p) => (
                     <option
@@ -871,7 +879,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 value={detallesExtra}
                 onChange={(e) => setDetallesExtra(e.target.value)}
                 placeholder="Ej.: Es un pantalón de traje con vuelta, o un abrigo con forro interior..."
-                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               />
             </div>
 

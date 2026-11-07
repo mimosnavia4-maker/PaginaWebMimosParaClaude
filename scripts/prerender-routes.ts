@@ -228,13 +228,13 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
 
   return (
     `<noscript id="aeo-static-summary">` +
-    `<section>` +
+    `<main id="main-content">` +
     `<h1>${escapeHtml(meta.h1)}</h1>` +
     `<p>${escapeHtml(meta.description)}</p>` +
     specificHtml +
     navHtml +
     footerHtml +
-    `</section>` +
+    `</main>` +
     `</noscript>`
   );
 }
@@ -301,7 +301,7 @@ function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta
 function render404Html(baseHtml: string): string {
   const notFoundNoscriptBlock =
     `<noscript id="aeo-static-summary">` +
-    `<section>` +
+    `<main id="main-content">` +
     `<h1>Página no encontrada</h1>` +
     `<p>La dirección que has introducido no existe o ha sido trasladada a una nueva sección. Tintorería Mimos ofrece servicios profesionales de tintorería, lavandería y limpieza de alfombras en Vigo y comarca con recogida a domicilio y 3 tiendas propias.</p>` +
     `<nav aria-label="Servicios recomendados">` +
@@ -314,7 +314,7 @@ function render404Html(baseHtml: string): string {
     `<li><a href="/contacto">Contacto, teléfonos y horarios</a></li>` +
     `</ul>` +
     `</nav>` +
-    `</section>` +
+    `</main>` +
     `</noscript>`;
 
   return baseHtml

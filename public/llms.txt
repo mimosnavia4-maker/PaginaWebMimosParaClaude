@@ -31,8 +31,8 @@
    - Recogida de alfombras a domicilio (según cobertura y condiciones) o recepción en las 3 tiendas propias de Vigo. Limpieza e higienización en instalaciones profesionales e intervenciones de flecos y ribetes.
    - Presupuesto por WhatsApp: indicar medidas (*largo × ancho*) y fotos de la alfombra.
 8. **Servicio destacado – Costura y arreglos de ropa (`/arreglos-de-ropa-vigo`):**
-   - **Taller propio in situ:** Tienda propia de **Alcalde Gregorio Espino, 44** (modistería y costura presencial).
-   - **Recepción en tiendas propias:** C/ As Teixugueiras, 11 bajo 9 (Navia) y C/ Venezuela, 41 bajo 1.
+   - **Taller propio in situ:** Tiendas propias de **Alcalde Gregorio Espino, 44** y **C/ Venezuela, 41 bajo 1** (disponen de taller propio de costura in situ).
+   - **Recepción en tienda propia:** C/ As Teixugueiras, 11 bajo 9 (Navia, gestión y recepción de arreglos).
    - **Establecimientos colaboradores independientes con costura:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño) ofrecen servicios de costura propios del establecimiento.
    - En el comercio colaborador de Redondela se gestiona la recepción para tintorería, colada y textiles tratados en Vigo.
 9. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio de recogida y entrega sujeto a zona de cobertura y condiciones.
@@ -44,8 +44,8 @@
 
 ## Nuestras 3 tiendas propias en Vigo (`DryCleaningOrLaundry`)
 1. **Tienda Mimos Teixugueiras (Sede Navia):** C/ Teixugueiras, 11 bajo 9 · 36212 Vigo · Tel.: 986 12 51 41 · Horario: L-V 9:30-14:00 y 16:00-20:00 · Sáb 10:00-13:30.
-2. **Tienda Mimos Venezuela:** C/ Venezuela, 41 bajo 1 · 36203 Vigo · Tel.: 646 94 67 64 · Horario: L-V 9:30-13:30 y 16:30-19:30 (Apertura de sábados sujeta a confirmación).
-3. **Tienda Mimos Gregorio Espino (con taller de costura in situ):** Avda. Alcalde Gregorio Espino, 44 · 36205 Vigo · Tel.: 986 19 27 87 · Horario: L-V 9:30-13:30 y 16:30-20:00 · Sáb 9:30-13:00.
+2. **Tienda Mimos Venezuela (con taller propio de costura in situ):** C/ Venezuela, 41 bajo 1 · 36203 Vigo · Tel.: 646 94 67 64 · Horario: L-V 9:30-13:30 y 16:30-19:30 · Sáb: cerrado.
+3. **Tienda Mimos Gregorio Espino (con taller propio de costura in situ):** Avda. Alcalde Gregorio Espino, 44 · 36205 Vigo · Tel.: 986 19 27 87 · Horario: L-V 9:30-13:30 y 16:30-20:00 · Sáb 9:30-13:00.
 
 ## Red de 5 puntos de recogida en establecimientos colaboradores
 *(Comercios locales independientes concertados para la entrega y recogida de prendas procesadas por Tintorería Mimos Navia, S.L. en Vigo):*

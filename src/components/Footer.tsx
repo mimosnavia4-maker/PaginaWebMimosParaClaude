@@ -8,8 +8,10 @@ import {
   ZONAS_SEO_LOCAL,
   ARTICULOS_BLOG,
 } from '../data/mimosData';
+import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
 
 interface FooterProps {
+  currentPath?: string;
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
   onOpenCookieSettings: () => void;
   darkMode: boolean;
@@ -17,11 +19,13 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({
+  currentPath,
   onNavigate,
   onOpenCookieSettings,
   darkMode,
   onToggleDarkMode,
 }) => {
+  const activePath = currentPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
   return (
     <>
       <footer className="bg-[#002147] text-slate-300 pt-14 pb-36 md:pb-24 border-t border-white/10">
@@ -166,6 +170,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <li>
                   <a
                     href={CONTACT_INFO.phoneHref}
+                    onClick={() => trackPhoneClick(activePath, 'footer')}
                     className="inline-flex items-center gap-2 hover:text-white tabular-nums font-bold"
                   >
                     <Phone className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
@@ -177,6 +182,7 @@ export const Footer: React.FC<FooterProps> = ({
                     href={CONTACT_INFO.whatsappGeneralHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick(activePath, 'footer')}
                     className="inline-flex items-center gap-2 hover:text-white font-bold"
                   >
                     <MessageCircle className="w-4 h-4 text-[#4ade80] shrink-0" aria-hidden="true" />
@@ -321,10 +327,11 @@ export const Footer: React.FC<FooterProps> = ({
       {/* Barra Inferior Fija en Móvil: 3 Accesos Rápidos (Llamar, WhatsApp Mimo, Puntos Mimos — Sección 8 del Plan Maestro) */}
       <nav
         aria-label="Accesos rápidos en móvil"
-        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-[#002147] border-t border-white/15 px-2 py-2 grid grid-cols-3 gap-1.5 shadow-2xl"
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-[#002147] border-t border-white/15 px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] grid grid-cols-3 gap-1.5 shadow-2xl"
       >
         <a
           href={CONTACT_INFO.phoneHref}
+          onClick={() => trackPhoneClick(activePath, 'mobile_bar')}
           className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg bg-white/10 text-white text-xs font-bold tabular-nums"
         >
           <Phone className="w-3.5 h-3.5 text-[#60B5F6] shrink-0" aria-hidden="true" />
@@ -335,6 +342,7 @@ export const Footer: React.FC<FooterProps> = ({
           href={CONTACT_INFO.whatsappGeneralHref}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick(activePath, 'mobile_bar')}
           className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg bg-[#178A47] text-white text-xs font-bold"
         >
           <MessageCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />

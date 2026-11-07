@@ -98,7 +98,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
   };
 
   return (
-    <main className="bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
       {/* Cabecera */}
       <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -346,7 +346,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: Apartamentos Ría / Carlos"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
                 <div>
@@ -370,7 +370,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: 600 123 456"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
               </div>
@@ -390,7 +390,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setTipoInmueble(e.target.value);
                       setPreparedReady(false);
                     }}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Apartamento turístico / Vivienda vacacional">
                       Apartamento turístico / Vivienda vacacional
@@ -423,7 +423,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setFrecuencia(e.target.value);
                       setPreparedReady(false);
                     }}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Rotación por reservas / Semanal">
                       Rotación por reservas / Semanal
@@ -450,7 +450,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     setPreparedReady(false);
                   }}
                   placeholder="Ej.: 2 apartamentos en el centro de Vigo, 4 camas en total..."
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
 

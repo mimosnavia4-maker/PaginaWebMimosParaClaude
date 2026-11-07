@@ -59,21 +59,21 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
 
   const photos = {
     fachada: {
-      url: '/images/gregorio-espino/fachada.jpg',
+      url: '/images/gregorio-espino/fachada1Gregorio.jpg',
       titulo: 'Fachada Principal y Rótulo Mimos',
       subtitulo: 'Rótulo azul distintivo Tintorería Lavandería Mimos, toldos amarillos y escaparate luminoso en Gregorio Espino 44.',
       tag: 'Fachada Principal',
       detalle: 'Entrada a cota cero sin barreras arquitectónicas, con visibilidad completa desde la acera ajardinada de Alcalde Gregorio Espino.',
     },
     interior: {
-      url: '/images/gregorio-espino/interior.jpg',
+      url: '/images/gregorio-espino/interiorGregorio.jpg',
       titulo: 'Interior: Mostrador de Atención y Oso Mimos',
       subtitulo: 'Mostrador de recepción de prendas, taller de costura in situ y nuestra entrañable mascota Mimos presidiendo la tienda.',
       tag: 'Taller In Situ & Mostrador',
       detalle: 'Espacio acondicionado para atención personalizada, depósito y revisión cuidadosa de tejidos, y entrega en percha protegida.',
     },
     esquina: {
-      url: '/images/gregorio-espino/fachada2.jpg',
+      url: '/images/gregorio-espino/fachada2Gregorio.jpg',
       titulo: 'Esquina Rúa do Escultor Nogueira',
       subtitulo: 'Perspectiva de la esquina con Escultor Nogueira y acceso directo a la zona de carga y descarga de vehículos.',
       tag: 'Acceso y Carga/Descarga',
@@ -279,9 +279,18 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                Mimos Gregorio Espino
-              </h1>
+              {isModal ? (
+                <h2
+                  id="modal-ficha-titulo"
+                  className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight"
+                >
+                  Mimos Gregorio Espino
+                </h2>
+              ) : (
+                <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
+                  Mimos Gregorio Espino
+                </h1>
+              )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
                 Tintorería, Lavandería y Taller Propio de Costura
               </p>

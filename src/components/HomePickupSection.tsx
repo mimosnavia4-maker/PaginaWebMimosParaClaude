@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
-import { MessageCircle, Phone, Check, Copy } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { MessageCircle, Phone, Check, Copy, Pencil } from 'lucide-react';
 import { CONTACT_INFO, buildMimoWhatsAppUrl } from '../data/mimosData';
+import {
+  trackWhatsAppClick,
+  trackPhoneClick,
+  trackFormPrepared,
+} from '../utils/analytics';
 
 interface HomePickupSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -16,6 +21,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
   const [errorMsg, setErrorMsg] = useState('');
   const [preparedReady, setPreparedReady] = useState(false);
   const [copied, setCopied] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement>(null);
 
   const buildWhatsAppMessage = () => {
     const lines = [
@@ -45,6 +51,13 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
     }
     setErrorMsg('');
     setPreparedReady(true);
+    trackFormPrepared(
+      typeof window !== 'undefined' ? window.location.pathname : '/#recogida',
+      'pickup_request'
+    );
+    setTimeout(() => {
+      confirmationRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 80);
   };
 
   const handleCopyText = async () => {
@@ -125,6 +138,12 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                 href={CONTACT_INFO.whatsappPickupHref}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick(
+                    typeof window !== 'undefined' ? window.location.pathname : '/#recogida',
+                    'pickup_section'
+                  )
+                }
                 className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
@@ -141,6 +160,12 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
 
               <a
                 href={CONTACT_INFO.phoneHref}
+                onClick={() =>
+                  trackPhoneClick(
+                    typeof window !== 'undefined' ? window.location.pathname : '/#recogida',
+                    'pickup_section'
+                  )
+                }
                 className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#002147] dark:hover:border-white text-[#002147] dark:text-white font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
               >
                 <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
@@ -182,7 +207,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: María Castro"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
@@ -209,7 +234,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                         setPreparedReady(false);
                       }}
                       placeholder="Ej.: 600 123 456"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
 
@@ -228,7 +253,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                         setServicio(e.target.value);
                         setPreparedReady(false);
                       }}
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white"
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     >
                       <option value="Tintorería profesional">Tintorería profesional</option>
                       <option value="Lavandería">Lavandería</option>
@@ -268,7 +293,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: C/ As Teixugueiras, 36212 Vigo"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
@@ -289,7 +314,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: 1 edredón de plumas y 2 trajes. Preferiblemente por la tarde."
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
@@ -325,35 +350,57 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                 {!preparedReady ? (
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-colors cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-colors cursor-pointer shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4" aria-hidden="true" />
                     <span>Preparar solicitud para Mimo (WhatsApp)</span>
                   </button>
                 ) : (
-                  <div className="p-4 rounded-xl border border-[#178A47]/40 bg-[#178A47]/10 dark:bg-[#178A47]/20 space-y-3">
-                    <p className="text-xs font-bold text-[#002147] dark:text-white">
-                      Tu solicitud está lista. Pulsa el botón verde para abrir WhatsApp con Mimo:
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-2.5">
+                  <div
+                    ref={confirmationRef}
+                    role="region"
+                    aria-label="Confirmación de solicitud preparada"
+                    className="p-4 sm:p-5 rounded-2xl border-2 border-[#178A47]/40 bg-[#178A47]/10 dark:bg-[#178A47]/20 space-y-3.5"
+                  >
+                    <div className="space-y-1">
+                      <p className="text-sm font-extrabold text-[#002147] dark:text-white flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#178A47] text-white flex items-center justify-center shrink-0">
+                          <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                        </span>
+                        <span>Paso 2 de 2: Solicitud preparada en pantalla</span>
+                      </p>
+                      <p className="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                        Hemos organizado tu solicitud con tus datos. <strong>Aviso importante:</strong> el mensaje no se envía solo; pulsa a continuación en <em>«Abrir WhatsApp y enviar a Mimo»</em> para transferirlo al chat oficial.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
                       <a
                         href={customWhatsAppHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors"
+                        onClick={() =>
+                          trackWhatsAppClick(
+                            typeof window !== 'undefined' ? window.location.pathname : '/#recogida',
+                            'pickup_form',
+                            { service_id: 'recogida-a-domicilio' }
+                          )
+                        }
+                        className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm py-3.5 px-4 rounded-xl transition-colors shadow-xs"
                       >
-                        <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                        <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>Abrir WhatsApp y enviar a Mimo</span>
                       </a>
+
                       <button
                         type="button"
                         onClick={handleCopyText}
-                        className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 bg-white dark:bg-[#071324] text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5 px-3.5 rounded-lg cursor-pointer"
+                        className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 bg-white dark:bg-[#071324] hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold py-2.5 px-3.5 rounded-xl cursor-pointer transition-colors"
                       >
                         {copied ? (
                           <>
                             <Check className="w-3.5 h-3.5 text-[#178A47]" />
-                            <span>Copiado</span>
+                            <span>Texto copiado</span>
                           </>
                         ) : (
                           <>
@@ -361,6 +408,17 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                             <span>Copiar texto</span>
                           </>
                         )}
+                      </button>
+                    </div>
+
+                    <div className="pt-1 text-center">
+                      <button
+                        type="button"
+                        onClick={() => setPreparedReady(false)}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#002147] dark:hover:text-white underline cursor-pointer"
+                      >
+                        <Pencil className="w-3 h-3" aria-hidden="true" />
+                        <span>¿Necesitas corregir algún dato? Modificar formulario</span>
                       </button>
                     </div>
                   </div>

@@ -10,6 +10,7 @@ const __dirname = path.dirname(__filename);
 
 import { ROUTE_SEO_MAP } from './src/data/routesSeoData.ts';
 import type { RouteMeta } from './src/data/routesSeoData.ts';
+import { getPageSEO } from './src/utils/seo.ts';
 export { ROUTE_SEO_MAP };
 export type { RouteMeta };
 
@@ -33,72 +34,10 @@ export function injectSeoIntoHtml(html: string, reqPath: string): { html: string
     breadcrumbName: 'Página no encontrada',
   };
 
-  const breadcrumbItems: { name: string; url: string }[] = [
-    { name: 'Inicio', url: 'https://www.tintoreriamimos.es/' },
-  ];
-  if (meta.breadcrumbParent) {
-    breadcrumbItems.push(meta.breadcrumbParent);
-  }
-  if (cleanPath !== '/' && meta.canonical) {
-    breadcrumbItems.push({ name: meta.breadcrumbName, url: meta.canonical });
-  }
-
-  const routeJsonLd: Record<string, unknown>[] = isFound
-    ? [
-        {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: breadcrumbItems.map((item, idx) => ({
-            '@type': 'ListItem',
-            position: idx + 1,
-            name: item.name,
-            item: item.url,
-          })),
-        },
-      ]
-    : [];
-
-  if (isFound && meta.ogType === 'article') {
-    routeJsonLd.push({
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: meta.h1,
-      description: meta.description,
-      datePublished: '2026-10-09',
-      author: {
-        '@type': 'Organization',
-        name: 'Tintorería Mimos Navia, S.L.',
-        url: 'https://www.tintoreriamimos.es/',
-      },
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': meta.canonical,
-      },
-    });
-  } else if (
-    isFound &&
-    cleanPath !== '/' &&
-    cleanPath !== '/blog' &&
-    cleanPath !== '/puntos-mimos' &&
-    cleanPath !== '/contacto' &&
-    !cleanPath.startsWith('/aviso') &&
-    !cleanPath.startsWith('/privacidad') &&
-    !cleanPath.startsWith('/cookies')
-  ) {
-    routeJsonLd.push({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      name: meta.h1,
-      description: meta.description,
-      provider: { '@id': 'https://www.tintoreriamimos.es/#negocio' },
-      areaServed: meta.areaServed || { '@type': 'City', name: 'Vigo' },
-      url: meta.canonical,
-    });
-  }
-
+  const seo = getPageSEO(cleanPath);
   const routeSchemaTag =
-    routeJsonLd.length > 0
-      ? `<script type="application/ld+json" id="schema-dynamic-page">${JSON.stringify(routeJsonLd)}</script>`
+    seo.jsonLd && (Array.isArray(seo.jsonLd) ? seo.jsonLd.length > 0 : Object.keys(seo.jsonLd).length > 0)
+      ? `<script type="application/ld+json" id="schema-dynamic-page">${JSON.stringify(seo.jsonLd)}</script>`
       : '';
 
   const aeoNoscriptBlock = isFound
@@ -106,6 +45,7 @@ export function injectSeoIntoHtml(html: string, reqPath: string): { html: string
     : `<noscript id="aeo-static-summary"><section><h1>Página no encontrada</h1><p>La dirección solicitada no existe. Dispone de servicios profesionales de tintorería y lavandería en Vigo con recogida a domicilio y 3 tiendas propias.</p><p><a href="/">Volver a la portada</a></p></section></noscript>`;
 
   let out = html
+    .replace(/<script\s+type="application\/ld\+json"\s+id="schema-localbusiness">[\s\S]*?<\/script>\s*/, '')
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)
     .replace(
       /<meta\s+name="description"\s+content="[^"]*"\s*\/>/,
