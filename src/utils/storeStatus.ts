@@ -129,3 +129,4 @@ export function getStoreStatusById(storeId: string = 'as-teixugueiras'): StoreSt
 export function getNaviaStoreStatus(): StoreStatusInfo {
   return getStoreStatusById('as-teixugueiras');
 }
+

@@ -1,7 +1,7 @@
 /**
  * Pre-generador de archivos HTML estáticos por ruta para ProfesionalHosting (Apache/Plesk) y buscadores de IA (AEO)
  * Consume directamente la fuente única de verdad: src/data/routesSeoData.ts y src/data/mimosData.ts
- * Genera dist/<ruta>/index.html y sincroniza automáticamente dist/sitemap.xml y public/sitemap.xml.
+ * Genera dist/<ruta>/index.html y dist/sitemap.xml.
  */
 
 import fs from 'fs';
@@ -354,53 +354,24 @@ function render404Html(baseHtml: string): string {
     .replace('<div id="root"></div>', `<div id="root"></div>\n    ${notFoundNoscriptBlock}`);
 }
 
-function getVerifiableLastmod(path: string): string {
-  // Artículos individuales del blog con fecha verificada de publicación
-  if (path.startsWith('/blog/')) {
+function getBlogArticleLastmod(path: string): string | null {
+  // Únicamente los artículos individuales del blog disponen de fechaISO real verificable
+  if (path.startsWith('/blog/') && path !== '/blog') {
     const articulo = ARTICULOS_BLOG.find((a) => a.url === path);
     if (articulo?.fechaISO) return articulo.fechaISO;
-    return '2026-10-09';
   }
-  if (path === '/blog') return '2026-10-09';
-
-  // Subvenciones y convocatorias institucionales históricas
-  if (path === '/feder') return '2024-12-01';
-  if (path.startsWith('/programa-bono')) return '2025-01-15';
-
-  // Páginas con cambios editoriales sustanciales verificados en Fase 3 (2026-11-01):
-  // Portada (eliminación tarifas, unificación red), Puntos Mimos (3 tiendas + 5 colaboradores),
-  // landing de Gregorio Espino, contacto, zonas locales, empleo y páginas de servicios con reclamos corregidos.
-  const paginasModificadasFase3 = [
-    '/',
-    '/empleo-unete-a-nosotros',
-    '/puntos-mimos',
-    '/tienda-mimos-gregorio-espino-vigo',
-    '/contacto',
-    '/zonas/vigo',
-    '/zonas/redondela',
-    '/zonas/gondomar',
-    '/zonas/ponteareas',
-    '/zonas/o-porrino',
-    '/arreglos-de-ropa-vigo',
-    '/limpieza-profesional-vigo',
-    '/limpieza-apartamentos-turisticos-vigo',
-    '/servicios-empresas',
-    '/recogida-a-domicilio',
-  ];
-  if (paginasModificadasFase3.includes(path)) {
-    return '2026-11-01';
-  }
-
-  // Servicios comerciales estándar sin cambios en catálogo en Fase 3: fecha base previa
-  return '2026-10-15';
+  return null;
 }
 
 function generateSitemapXml(routes: Record<string, RouteMeta>): string {
   const urls = Object.entries(routes)
     .filter(([_, meta]) => meta.robots === 'index, follow')
     .map(([path, meta]) => {
-      const lastmod = getVerifiableLastmod(path);
-      return `  <url>\n    <loc>${meta.canonical}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`;
+      const lastmod = getBlogArticleLastmod(path);
+      if (lastmod) {
+        return `  <url>\n    <loc>${meta.canonical}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`;
+      }
+      return `  <url>\n    <loc>${meta.canonical}</loc>\n  </url>`;
     });
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
@@ -427,10 +398,9 @@ if (fs.existsSync(baseIndexPath)) {
   const notFoundHtml = render404Html(baseHtml);
   fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf-8');
 
-  // Generar y sincronizar sitemap.xml (solo contiene las 34 rutas válidas indexables)
+  // Generar dist/sitemap.xml exclusivamente en dist/ (solo contiene las 31 rutas válidas indexables)
   const sitemapXml = generateSitemapXml(ROUTE_SEO_MAP);
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf-8');
-  fs.writeFileSync(path.resolve(process.cwd(), 'public/sitemap.xml'), sitemapXml, 'utf-8');
 
-  console.log(`[AEO Prerender] Generados ${Object.keys(ROUTE_SEO_MAP).length} archivos HTML estáticos + dist/404.html y sitemap.xml sincronizado.`);
+  console.log(`[AEO Prerender] Generados ${Object.keys(ROUTE_SEO_MAP).length} archivos HTML estáticos + dist/404.html y dist/sitemap.xml.`);
 }
