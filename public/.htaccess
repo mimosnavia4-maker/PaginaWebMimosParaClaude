@@ -37,6 +37,8 @@ ErrorDocument 404 /404.html
   RewriteRule ^empleo-unete-a-nosotros\.html$ /empleo-unete-a-nosotros [L,R=301]
   RewriteRule ^empleo/?$ /empleo-unete-a-nosotros [L,R=301]
   RewriteRule ^unete-a-nosotros/?$ /empleo-unete-a-nosotros [L,R=301]
+  RewriteRule ^se-punto-de-recogida(\.html)?/?$ /se-punto-colaborador [L,R=301]
+  RewriteRule ^punto-colaborador/?$ /se-punto-colaborador [L,R=301]
 
   # Redirección 301 de artículos antiguos del blog hacia la nueva estructura limpia
   RewriteRule ^blog/9-blog/26-la-colada-en-casa(\.html)?/?$ /blog/la-colada-en-casa [L,R=301]

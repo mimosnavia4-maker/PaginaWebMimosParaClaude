@@ -178,15 +178,14 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                 ¿Cómo enviarnos tu currículum?
               </h2>
               <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300">
-                Envíanos tu currículum a{' '}
+                Al pulsar en cualquiera de los botones de candidatura se abrirá automáticamente tu aplicación o programa de correo electrónico habitual (con el asunto preparado) para que puedas <strong>adjuntar tu currículum en formato PDF</strong> y enviárnoslo directamente a{' '}
                 <a
                   href={CONTACT_INFO.emailHref}
                   className="font-extrabold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
                 >
                   {CONTACT_INFO.email}
                 </a>{' '}
-                indicando el área de interés (<strong>Personal de tintorería</strong> o{' '}
-                <strong>Gestión textil y alojamientos</strong>).
+                indicando tu experiencia o disponibilidad.
               </p>
             </div>
 
@@ -197,7 +196,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
               className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors shrink-0"
             >
               <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>Escribir a {CONTACT_INFO.email}</span>
+              <span>Abrir correo para enviar CV</span>
             </a>
           </div>
 

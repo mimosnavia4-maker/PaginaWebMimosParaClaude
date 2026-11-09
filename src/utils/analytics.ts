@@ -241,6 +241,17 @@ export function trackPageView(path: string, title?: string): boolean {
   }
 }
 
+let lastContactThrottle: { type: string; timestamp: number } | null = null;
+
+export function shouldThrottleContact(type: string, windowMs = 1000): boolean {
+  const now = Date.now();
+  if (lastContactThrottle && lastContactThrottle.type === type && now - lastContactThrottle.timestamp < windowMs) {
+    return true;
+  }
+  lastContactThrottle = { type, timestamp: now };
+  return false;
+}
+
 export function trackContactClick(
   eventName: ContactEventName,
   pagePath: string,
@@ -259,18 +270,12 @@ export function trackContactClick(
     return false;
   }
 
-  const cleanPath = sanitizePagePath(pagePath);
-  const dedupeKey = `${eventName}:${cleanPath}:${ctaZone}`;
-  const now = Date.now();
-
-  if (
-    lastClickRecord &&
-    lastClickRecord.key === dedupeKey &&
-    now - lastClickRecord.timestamp < 500
-  ) {
+  // Prevenir duplicaciones entre el listener global de App.tsx y los onClick locales
+  if (shouldThrottleContact(eventName, 1000)) {
     return false;
   }
-  lastClickRecord = { key: dedupeKey, timestamp: now };
+
+  const cleanPath = sanitizePagePath(pagePath);
 
   try {
     window.gtag('event', eventName, {
@@ -309,20 +314,14 @@ export function trackWhatsAppClick(
     return false;
   }
 
+  // Prevenir duplicaciones entre el listener global de App.tsx y los onClick locales
+  if (shouldThrottleContact('whatsapp_click', 1000)) {
+    return false;
+  }
+
   const cleanPath = sanitizePagePath(pagePath);
   const serviceId = options?.service_id;
   const storeId = options?.store_id;
-  const dedupeKey = `whatsapp_click:${cleanPath}:${ctaLocation}:${serviceId || ''}:${storeId || ''}`;
-  const now = Date.now();
-
-  if (
-    lastClickRecord &&
-    lastClickRecord.key === dedupeKey &&
-    now - lastClickRecord.timestamp < 500
-  ) {
-    return false;
-  }
-  lastClickRecord = { key: dedupeKey, timestamp: now };
 
   try {
     const payload: Record<string, unknown> = {
@@ -356,6 +355,11 @@ export function trackPhoneClick(
     initGA4();
   }
   if (typeof window.gtag !== 'function') {
+    return false;
+  }
+
+  // Prevenir duplicaciones entre el listener global de App.tsx y los onClick locales
+  if (shouldThrottleContact('phone_click', 1000)) {
     return false;
   }
 

@@ -65,6 +65,34 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
   const [selectedMapPuntoId, setSelectedMapPuntoId] = useState<string | null>(null);
   const [puntoModalFicha, setPuntoModalFicha] = useState<PuntoRegistro | null>(null);
 
+  // Carga diferida inteligente de Google Maps: solo cuando se acerca al viewport o el usuario lo activa
+  const mapRef = React.useRef<HTMLDivElement>(null);
+  const [mapShouldLoad, setMapShouldLoad] = useState<boolean>(pageMode === 'puntos');
+
+  useEffect(() => {
+    if (mapShouldLoad || typeof window === 'undefined') return;
+    const el = mapRef.current;
+    if (!el) return;
+
+    if (!('IntersectionObserver' in window)) {
+      setMapShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMapShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [mapShouldLoad]);
+
   // Formulario de contacto general
   const [contactNombre, setContactNombre] = useState('');
   const [contactTelefono, setContactTelefono] = useState('');
@@ -571,7 +599,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         </div>
 
         {/* Mapa Interactivo con Google Maps */}
-        <div id="mapa-interactivo-puntos" className="mb-12 scroll-mt-24">
+        <div id="mapa-interactivo-puntos" ref={mapRef} className="mb-12 scroll-mt-24">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <div>
               <div className="flex items-center gap-2">
@@ -587,27 +615,49 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               </p>
             </div>
           </div>
-          <React.Suspense
-            fallback={
-              <div className="w-full h-[430px] sm:h-[490px] lg:h-[530px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#071324] flex flex-col items-center justify-center p-6 text-center animate-pulse">
-                <div className="w-12 h-12 rounded-full bg-[#0F76BB]/10 flex items-center justify-center mb-3">
-                  <MapPin className="w-6 h-6 text-[#0F76BB] animate-bounce" />
-                </div>
-                <p className="font-extrabold text-[#002147] dark:text-white text-base">
-                  Cargando mapa interactivo de Mimos...
-                </p>
-                <p className="text-xs text-slate-500 mt-1 max-w-sm">
-                  Preparando tiendas propias y puntos colaboradores en Vigo y comarca.
-                </p>
+          {!mapShouldLoad ? (
+            <div className="w-full h-[430px] sm:h-[490px] lg:h-[530px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#071324] flex flex-col items-center justify-center p-6 text-center">
+              <div className="w-14 h-14 rounded-2xl bg-[#0F76BB]/10 flex items-center justify-center mb-4">
+                <MapPin className="w-7 h-7 text-[#0F76BB]" />
               </div>
-            }
-          >
-            <MimosGoogleMap
-              selectedPuntoId={selectedMapPuntoId}
-              onSelectPunto={(p) => setSelectedMapPuntoId(p ? p.id : null)}
-              onNavigate={onNavigate}
-            />
-          </React.Suspense>
+              <h4 className="font-extrabold text-[#002147] dark:text-white text-lg sm:text-xl mb-2">
+                Mapa interactivo de tiendas y puntos Mimos
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-md mb-5 leading-relaxed">
+                3 tiendas propias en Vigo y 5 puntos colaboradores oficiales en Redondela, Gondomar, Ponteareas, O Porriño y As Travesas.
+              </p>
+              <button
+                type="button"
+                onClick={() => setMapShouldLoad(true)}
+                className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors cursor-pointer shadow-xs"
+              >
+                <MapIcon className="w-4 h-4" />
+                <span>Cargar mapa interactivo</span>
+              </button>
+            </div>
+          ) : (
+            <React.Suspense
+              fallback={
+                <div className="w-full h-[430px] sm:h-[490px] lg:h-[530px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#071324] flex flex-col items-center justify-center p-6 text-center animate-pulse">
+                  <div className="w-12 h-12 rounded-full bg-[#0F76BB]/10 flex items-center justify-center mb-3">
+                    <MapPin className="w-6 h-6 text-[#0F76BB] animate-bounce" />
+                  </div>
+                  <p className="font-extrabold text-[#002147] dark:text-white text-base">
+                    Cargando mapa interactivo de Mimos...
+                  </p>
+                  <p className="text-xs text-slate-500 mt-1 max-w-sm">
+                    Preparando tiendas propias y puntos colaboradores en Vigo y comarca.
+                  </p>
+                </div>
+              }
+            >
+              <MimosGoogleMap
+                selectedPuntoId={selectedMapPuntoId}
+                onSelectPunto={(p) => setSelectedMapPuntoId(p ? p.id : null)}
+                onNavigate={onNavigate}
+              />
+            </React.Suspense>
+          )}
         </div>
 
         {/* Buscador por localidad o código postal + Filtros */}
@@ -733,20 +783,29 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               Si tienes una tienda de arreglos, mercería, zapatería o comercio de proximidad en Vigo o su área metropolitana y quieres ofrecer a tus vecinos el servicio de recepción de Tintorería Mimos, escríbenos y te explicamos cómo colaborar.
             </p>
           </div>
-          <a
-            href={buildMimoWhatsAppUrl(
-              'Hola, Mimo. Tengo un comercio y me gustaría recibir información para ser Punto Mimos colaborador.'
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() =>
-              trackWhatsAppClick(currentSectionPath, 'partner_acquisition_cta')
-            }
-            className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm px-5 sm:px-6 py-3.5 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-          >
-            <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
-            <span>Quiero ser punto Mimos colaborador</span>
-          </a>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+            <a
+              href="/se-punto-colaborador"
+              onClick={(e) => onNavigate('/se-punto-colaborador', e)}
+              className="inline-flex items-center justify-center gap-2 bg-[#0F76BB] hover:bg-[#0d649e] text-white font-bold text-sm px-5 sm:px-6 py-3.5 rounded-xl transition-colors text-center sm:whitespace-nowrap"
+            >
+              <span>Ver condiciones y ventajas →</span>
+            </a>
+            <a
+              href={buildMimoWhatsAppUrl(
+                'Hola, Mimo. Tengo un comercio y me gustaría recibir información para ser Punto Mimos colaborador.'
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackWhatsAppClick(currentSectionPath, 'partner_acquisition_cta')
+              }
+              className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-white/10 dark:hover:bg-white/20 text-white font-bold text-sm px-4 sm:px-5 py-3.5 rounded-xl transition-colors text-center sm:whitespace-nowrap"
+            >
+              <MessageCircle className="w-4 h-4 shrink-0 text-[#4ade80]" aria-hidden="true" />
+              <span>WhatsApp directo</span>
+            </a>
+          </div>
         </div>
 
         {/* Preguntas frecuentes generales SIN PRECIOS (Sección 4 y 7.9) */}
@@ -856,6 +915,56 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   </dd>
                 </div>
                 <Mail className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
+              </div>
+
+              {/* Redes Sociales Oficiales */}
+              <div className="p-4 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 space-y-2.5">
+                <div>
+                  <dt className="text-xs text-slate-500 dark:text-slate-400 block mb-0.5">
+                    Redes sociales oficiales
+                  </dt>
+                  <dd className="font-bold text-[#002147] dark:text-white text-sm">
+                    Síguenos en nuestros perfiles
+                  </dd>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  <a
+                    href={CONTACT_INFO.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram oficial de Tintorería Mimos Navia"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-90 shadow-xs transition-opacity"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    <span>Instagram</span>
+                  </a>
+                  <a
+                    href={CONTACT_INFO.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook oficial de Tintorería Mimos"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#1877F2] hover:bg-[#166fe5] shadow-xs transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    <span>Facebook</span>
+                  </a>
+                  <a
+                    href={CONTACT_INFO.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn oficial de Tintorería Mimos Navia, S.L."
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#0A66C2] hover:bg-[#095196] shadow-xs transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
               </div>
             </dl>
           </div>

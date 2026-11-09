@@ -39,6 +39,9 @@ const SubsidiesPage = React.lazy(() =>
 const CareersPage = React.lazy(() =>
   import('./components/CareersPage').then((m) => ({ default: m.CareersPage }))
 );
+const PuntoColaboradorPage = React.lazy(() =>
+  import('./components/PuntoColaboradorPage').then((m) => ({ default: m.PuntoColaboradorPage }))
+);
 const TiendaGregorioEspinoPage = React.lazy(() =>
   import('./components/TiendaGregorioEspinoPage').then((m) => ({ default: m.TiendaGregorioEspinoPage }))
 );
@@ -491,6 +494,8 @@ export function App() {
           <SubsidiesPage variant="bono-energia" onNavigate={handleNavigate} />
         ) : effectivePath === '/empleo-unete-a-nosotros' ? (
           <CareersPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/se-punto-colaborador' ? (
+          <PuntoColaboradorPage onNavigate={handleNavigate} />
         ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
           <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (

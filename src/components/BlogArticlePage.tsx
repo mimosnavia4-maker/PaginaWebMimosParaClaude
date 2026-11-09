@@ -160,6 +160,49 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                   ))}
                 </ul>
               )}
+
+              {sec.tabla && (
+                <div className="my-6 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                  <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-left text-xs sm:text-sm">
+                    <thead className="bg-[#002147] text-white">
+                      <tr>
+                        {sec.tabla.encabezados.map((enc, idx) => (
+                          <th key={idx} scope="col" className="px-4 py-3 font-bold">
+                            {enc}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 bg-white dark:bg-[#071324] text-slate-700 dark:text-slate-300">
+                      {sec.tabla.filas.map((fila, rIdx) => (
+                        <tr key={rIdx} className={rIdx % 2 === 0 ? 'bg-slate-50/50 dark:bg-white/[0.02]' : ''}>
+                          {fila.map((celda, cIdx) => (
+                            <td key={cIdx} className="px-4 py-3 align-top leading-relaxed">
+                              {cIdx === 0 ? <strong className="text-[#002147] dark:text-white">{celda}</strong> : celda}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {sec.tabla.pie && (
+                    <div className="bg-slate-50 dark:bg-[#0b1d36] px-4 py-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+                      {sec.tabla.pie}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {sec.destacado && (
+                <div className="my-6 p-5 sm:p-6 rounded-2xl bg-[#002147]/5 dark:bg-[#60B5F6]/10 border-l-4 border-[#0F76BB] dark:border-[#60B5F6]">
+                  <h4 className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white mb-2">
+                    {sec.destacado.titulo}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                    {sec.destacado.texto}
+                  </p>
+                </div>
+              )}
             </section>
           ))}
 

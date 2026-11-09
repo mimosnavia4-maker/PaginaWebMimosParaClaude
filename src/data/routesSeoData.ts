@@ -191,6 +191,21 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
     areaServed: { '@type': 'City', name: 'Vigo' },
   },
+  '/se-punto-colaborador': {
+    title: 'Sé Punto Colaborador de Tintorería Mimos | Oportunidad para Comercios',
+    h1: 'Sé Punto Colaborador de Tintorería Mimos',
+    description:
+      'Suma un servicio de tintorería profesional a tu comercio en Vigo o comarca. Sin inversión, con logística propia de furgoneta, operativa ágil en menos de 30 segundos y comisiones periódicas.',
+    canonical: 'https://www.tintoreriamimos.es/se-punto-colaborador',
+    robots: 'index, follow',
+    ogType: 'website',
+    breadcrumbName: 'Sé Punto Colaborador',
+    breadcrumbParent: {
+      name: 'Tiendas y Puntos Mimos',
+      url: 'https://www.tintoreriamimos.es/puntos-mimos',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/images/colaboradores/paso-1-recepcion-software.jpg',
+  },
   '/contacto': {
     title: 'Contacto, Tiendas Propias en Vigo y Horarios | Tintorería Mimos Navia',
     h1: 'Contacto, tiendas propias en Vigo y horarios de Tintorería Mimos Navia',
@@ -376,6 +391,67 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
       url: 'https://www.tintoreriamimos.es/blog',
     },
     ogImage: 'https://www.tintoreriamimos.es/blog-montar-tintoreria.jpg',
+  },
+  '/blog/ropa-afectada-humo-incendio-siniestro-hogar': {
+    title: 'Restauración Textil por Humo e Incendio en Vigo | Guía Técnica y Seguro',
+    h1: 'Guía Técnica de Restauración Textil Post-Incendio: Descontaminación de Humo, Hollín y Cobertura del Seguro del Hogar en España',
+    description:
+      'Guía técnica y pericial para recuperar ropa y textiles dañados por humo y hollín tras un incendio. Desodorización molecular, Wet Cleaning y tramitación con el seguro del hogar en Vigo.',
+    canonical: 'https://www.tintoreriamimos.es/blog/ropa-afectada-humo-incendio-siniestro-hogar',
+    robots: 'index, follow',
+    ogType: 'article',
+    breadcrumbName: 'Restauración Textil tras Incendios',
+    breadcrumbParent: {
+      name: 'Blog y Guías',
+      url: 'https://www.tintoreriamimos.es/blog',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/images/articulos/blog-siniestros-incendio.jpg',
+  },
+  '/blog/protocolo-rotacion-apartamentos-turisticos-vigo': {
+    title: 'Protocolo de Limpieza y Rotación de Pisos Turísticos en Vigo | Mimos',
+    h1: 'Protocolo de rotación en apartamentos turísticos en Vigo: el checklist para garantizar las 5 estrellas de limpieza',
+    description:
+      'Checklist operativo para anfitriones de Airbnb y Booking en Vigo: gestión de lencería de cama y toallas, desinfección ágil entre huéspedes y cómo delegar la operativa completa.',
+    canonical:
+      'https://www.tintoreriamimos.es/blog/protocolo-rotacion-apartamentos-turisticos-vigo',
+    robots: 'index, follow',
+    ogType: 'article',
+    breadcrumbName: 'Protocolo de Rotación para Apartamentos',
+    breadcrumbParent: {
+      name: 'Blog y Guías',
+      url: 'https://www.tintoreriamimos.es/blog',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/images/articulos/blog-apartamentos-rotacion.jpg',
+  },
+  '/blog/limpieza-comunidades-propietarios-vigo': {
+    title: 'Limpieza de Comunidades de Vecinos en Vigo | Tintorería Mimos',
+    h1: 'Limpieza de comunidades de propietarios en Vigo: claves para portales, escaleras y zonas comunes impecables',
+    description:
+      'Consejos y frecuencias recomendadas para la limpieza de portales, escaleras, cristales y garajes en comunidades de propietarios en Vigo. Servicio profesional y de confianza.',
+    canonical: 'https://www.tintoreriamimos.es/blog/limpieza-comunidades-propietarios-vigo',
+    robots: 'index, follow',
+    ogType: 'article',
+    breadcrumbName: 'Limpieza de Comunidades de Propietarios',
+    breadcrumbParent: {
+      name: 'Blog y Guías',
+      url: 'https://www.tintoreriamimos.es/blog',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/images/articulos/blog-limpieza-comunidades.jpg',
+  },
+  '/blog/limpieza-oficinas-despachos-clinicas-vigo': {
+    title: 'Limpieza de Oficinas, Despachos y Clínicas en Vigo | Mimos',
+    h1: 'Limpieza e higienización de oficinas, despachos y clínicas en Vigo: salud laboral y primera impresión',
+    description:
+      'Protocolos de limpieza periódica y desinfección para oficinas, consultas y locales comerciales en Vigo. Ambientes de trabajo saludables, productivos y libres de alérgenos.',
+    canonical: 'https://www.tintoreriamimos.es/blog/limpieza-oficinas-despachos-clinicas-vigo',
+    robots: 'index, follow',
+    ogType: 'article',
+    breadcrumbName: 'Limpieza de Oficinas y Despachos',
+    breadcrumbParent: {
+      name: 'Blog y Guías',
+      url: 'https://www.tintoreriamimos.es/blog',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/images/articulos/blog-limpieza-oficinas.jpg',
   },
   '/aviso-legal': {
     title: 'Aviso Legal | Tintorería Mimos Navia, S.L. (Vigo)',

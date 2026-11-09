@@ -47,6 +47,10 @@ export const IMAGES = {
   blogMontarTintoreria: '/blog-montar-tintoreria.jpg',
   servicioTintoreria: '/servicio-tintoreria.jpg',
   arreglosRopa: '/arreglos-ropa-mimos.jpg',
+  blogSiniestrosIncendio: '/images/articulos/blog-siniestros-incendio.jpg',
+  blogLimpiezaComunidades: '/images/articulos/blog-limpieza-comunidades.jpg',
+  blogLimpiezaOficinas: '/images/articulos/blog-limpieza-oficinas.jpg',
+  blogApartamentosRotacion: '/images/articulos/blog-apartamentos-rotacion.jpg',
 };
 
 export const MIMOS_LOGO_DATA_URI = '/logo-mimos.webp';
@@ -243,6 +247,9 @@ export const CONTACT_INFO = {
   phoneHref: CANALES_CONTACTO_CENTRAL.telefonoPrincipalHref,
   whatsappNumber: CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado,
   whatsappBaseHref: CANALES_CONTACTO_CENTRAL.whatsappBaseHref,
+  whatsappHref: buildMimoWhatsAppUrl(
+    'Hola, Mimo. Quiero hacer una consulta sobre vuestros servicios.'
+  ),
   whatsappGeneralHref: buildMimoWhatsAppUrl(
     'Hola, Mimo. Quiero hacer una consulta sobre vuestros servicios.'
   ),
@@ -273,13 +280,20 @@ export const CONTACT_INFO = {
   googleMapsMainHref:
     'https://www.google.com/maps/search/?api=1&query=Tintorer%C3%ADa+Mimos+Navia+C%2F+Teixugueiras+11+bajo+9+36212+Vigo',
   googleReviewsHref:
-    'https://www.google.com/maps/search/?api=1&query=Tintorer%C3%ADa+Mimos+Vigo',
+    'https://www.google.com/maps/place/Tintorer%C3%ADa+Mimos/@42.21223,-8.754691,17z/data=!4m8!3m7!1s0xd2f777174db1dbb:0x524855ad2566ecb9!8m2!3d42.21223!4d-8.754691!9m1!1b1!16s%2Fg%2F11b6d194vf?entry=ttu',
   scheduleWeekdays: resumenNaviaPartes[0] ?? 'L-V 09:30-14:00 y 16:00-20:00',
   scheduleSaturday: resumenNaviaPartes[1] ?? 'Sáb 10:00-13:30',
   scheduleFullNavia:
     sedeNavia?.horario.resumen ?? 'L-V 09:30-14:00 y 16:00-20:00 · Sáb 10:00-13:30',
   canonicalBase: CANALES_CONTACTO_CENTRAL.webOficial,
+  social: {
+    facebook: 'https://www.facebook.com/tintoreriamimos',
+    instagram: 'https://www.instagram.com/tintoreria_mimos_navia/',
+    linkedin: 'https://www.linkedin.com/company/tintorer%C3%ADa-mimos-navia-s-l-/',
+  },
 };
+
+export const REDES_SOCIALES = CONTACT_INFO.social;
 
 export interface ServicioMimos {
   index: string;
@@ -541,9 +555,9 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     titulo: 'Recogida y entrega a domicilio y en puntos',
     subtitulo: 'Pasamos por tu domicilio o te atendemos en tu punto colaborador más cercano',
     descripcion:
-      'Para que cuidar tu ropa resulte todavía más sencillo, disponemos de servicio de recogida y entrega a domicilio (sujeto a las condiciones del servicio y a la zona de cobertura) así como 3 tiendas propias en Vigo y puntos colaboradores en la comarca.',
+      'Para que cuidar tu ropa resulte todavía más sencillo, disponemos de servicio de recogida y entrega a domicilio con un pedido mínimo de 30 € (sujeto a las condiciones del servicio y a la zona de cobertura en Vigo y alrededores) así como 3 tiendas propias en Vigo y puntos colaboradores en la comarca.',
     queTratamos: [
-      'Recogida de prendas de tintorería, pieles, coladas familiares, edredones y alfombras',
+      'Recogida de prendas de tintorería, pieles, coladas familiares, edredones y alfombras (pedido mínimo: 30 €)',
       'Seguimiento y solicitud mediante WhatsApp con Mimo, teléfono o la aplicación Wash In Town',
       'Plazos e información del pedido confirmados directamente al gestionar tu solicitud',
     ],
@@ -564,48 +578,92 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
 export const PACKS_APARTAMENTOS_BORRADOR = [
   {
     id: 'pack-lenceria',
-    nombre: 'Modalidad 1 · Lavandería de Lencería para Alojamientos',
-    estado: 'Propuesta a medida según rotación',
+    nombre: 'Solo Ropa de Cama y Toallas',
+    estado: 'Servicio de lavandería profesional',
     descripcion:
-      'Lavado, higienización, secado y planchado de juegos de sábanas, fundas nórdicas, fundas de almohada y toallas de tus apartamentos turísticos en Vigo.',
+      'Tú te encargas del apartamento. Nosotros nos ocupamos de que la ropa de cama y baño esté siempre limpia, cuidada y preparada para la siguiente estancia.',
     incluye: [
-      'Higienización y planchado profesional de ropa de cama y baño',
-      'Opciones adaptadas al equipamiento textil de cada alojamiento',
-      'Entrega en tienda o recogida coordinada según tus rotaciones',
+      'Lavado, higienización y planchado profesional de sábanas, fundas nórdicas, toallas y demás textiles del alojamiento.',
+      'Preparación de los juegos de cama y baño limpios y listos para su utilización.',
+      'Recogida de ropa utilizada y entrega de lencería limpia, adaptándonos a las necesidades y días de cambio del alojamiento.',
     ],
+    ctaTexto: 'Consultar servicio de lavandería',
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero solicitar un presupuesto para la lavandería de ropa de cama y toallas de apartamentos turísticos'
+      'Hola, Mimo. Quiero consultar el servicio de lavandería y lencería para apartamentos turísticos en Vigo'
     ),
   },
   {
     id: 'pack-checkout',
-    nombre: 'Modalidad 2 · Limpieza entre Reservas + Lavandería',
-    estado: 'Propuesta a medida según inmueble',
+    nombre: 'Limpieza y Lavandería Completa',
+    estado: 'Preparación entre reservas',
     descripcion:
-      'Solución combinada para propietarios y anfitriones: preparación del apartamento tras la salida del huésped junto con la renovación de toda la ropa de cama y toallas limpias.',
+      'Tú gestionas las reservas. Nosotros nos ocupamos de la limpieza y de la ropa entre una estancia y la siguiente, para que el alojamiento esté preparado para recibir a nuevos huéspedes.',
     incluye: [
-      'Puesta a punto del alojamiento entre reservas según necesidades del inmueble',
-      'Retirada de textil usado y reposición de juegos higienizados por Tintorería Mimos',
-      'Coordinación directa por WhatsApp según calendario de entradas',
+      'Limpieza profesional del apartamento después de cada salida, incluyendo cocina, baño, habitaciones y zonas comunes.',
+      'Recogida de textiles utilizados, tratamiento de lavandería y entrega de juegos limpios de cama y baño.',
+      'Revisión visual del estado del alojamiento y comunicación de posibles incidencias o necesidades detectadas.',
     ],
+    ctaTexto: 'Solicitar presupuesto de limpieza y lavandería',
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero solicitar un presupuesto para la limpieza check-out y lavandería de mi apartamento turístico'
+      'Hola, Mimo. Quiero solicitar presupuesto de limpieza y lavandería completa para mi apartamento turístico en Vigo'
     ),
   },
   {
-    id: 'pack-empresas-pisos',
-    nombre: 'Modalidad 3 · Gestoras y Propietarios con Varios Apartamentos',
-    estado: 'Propuesta integral para carteras',
+    id: 'pack-gestion-integral',
+    nombre: 'Nos Ocupamos de tu Apartamento',
+    estado: 'Servicio integral a medida para propietarios',
     descripcion:
-      'Servicio a medida para empresas gestoras y propietarios con múltiples viviendas vacacionales o alojamientos en Vigo que requieren un socio único de limpieza y lavandería.',
+      'Tú eres el propietario. Nosotros podemos ocuparnos de organizar y coordinar el funcionamiento diario de tu alojamiento: desde las reservas y la atención a los huéspedes hasta la limpieza, la lavandería y el seguimiento del inmueble.',
     incluye: [
-      'Planificación adaptada al volumen de apartamentos y temporada alta/baja',
-      'Limpieza periódica + lavandería textil + limpieza de edredones, sofás y cortinas',
-      'Facturación unificada y contacto directo con nuestro equipo en Vigo',
+      'Comercialización y rentabilidad: optimización de anuncios en Airbnb y Booking, seguimiento de precios y opción de web propia.',
+      'Reservas y atención al huésped: coordinación de calendarios, consultas y organización de llegadas y salidas acordadas.',
+      'Limpieza y operativa: organización de la limpieza profesional y entrega de lencería limpia en cada cambio de estancia.',
+      'Seguimiento y control: supervisión continua, comunicación ágil de incidencias y propuestas de mejora del inmueble.',
     ],
+    ctaTexto: 'Quiero delegar la gestión de mi apartamento',
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Gestiono varios apartamentos turísticos en Vigo y quiero solicitar un presupuesto personalizado'
+      'Hola, Mimo. Quiero delegar la gestión de mi apartamento turístico en Vigo y consultar una propuesta a medida'
     ),
+  },
+];
+
+// 4 Bloques estructurados de la Modalidad 3 (Gestión a medida para propietarios)
+export const GESTION_INTEGRAL_AREAS = [
+  {
+    numero: '01',
+    titulo: 'Comercialización y rentabilidad',
+    puntos: [
+      'Optimización de los anuncios en plataformas (Airbnb, Booking y similares) para mejorar visibilidad y ocupación.',
+      'Seguimiento de precios según temporada y demanda local en Vigo.',
+      'Posibilidad de disponer de página web propia para conseguir reservas directas y reducir comisiones.',
+    ],
+  },
+  {
+    numero: '02',
+    titulo: 'Reservas y atención al huésped',
+    puntos: [
+      'Coordinación del calendario de reservas para evitar solapamientos o huecos innecesarios.',
+      'Atención a consultas de viajeros antes y durante su estancia.',
+      'Organización de la llegada y salida de los huéspedes según los procedimientos acordados con el propietario.',
+    ],
+  },
+  {
+    numero: '03',
+    titulo: 'Limpieza y operativa',
+    puntos: [
+      'Organización de la limpieza profesional en cada cambio de estancia.',
+      'Lavandería, planchado y entrega de ropa de cama y baño limpia y preparada.',
+      'Coordinación continua de las necesidades del apartamento para que todo esté a punto entre reservas.',
+    ],
+  },
+  {
+    numero: '04',
+    titulo: 'Seguimiento y control',
+    puntos: [
+      'Seguimiento general de la actividad y del estado del alojamiento.',
+      'Comunicación ágil con el propietario ante incidencias o elementos que requieran revisión.',
+      'Propuestas de mejora para cuidar el inmueble y favorecer la satisfacción de los huéspedes.',
+    ],
   },
 ];
 
@@ -958,7 +1016,7 @@ export const FAQ_PORTADA_SIN_PRECIOS = [
   },
   {
     pregunta: '¿Cómo funciona el servicio de recogida y entrega a domicilio?',
-    respuesta: `Puedes solicitar la recogida escribiendo por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}, a través del formulario de esta web o desde la aplicación Wash In Town. El servicio está sujeto a las condiciones y zona de cobertura.`,
+    respuesta: `Puedes solicitar la recogida escribiendo por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}, a través del formulario de esta web o desde la aplicación Wash In Town. El servicio cuenta con un pedido mínimo de 30 € y está sujeto a disponibilidad y zona de cobertura en Vigo y alrededores.`,
   },
   {
     pregunta: '¿Ofrecéis servicios para apartamentos turísticos y empresas en Vigo?',
@@ -990,6 +1048,15 @@ export interface ArticuloBlog {
       texto: string;
     }[];
     puntosClave?: string[];
+    tabla?: {
+      encabezados: string[];
+      filas: string[][];
+      pie?: string;
+    };
+    destacado?: {
+      titulo: string;
+      texto: string;
+    };
   }[];
   advertenciaProfesional: string;
   enlacesInternos: {
@@ -1554,6 +1621,544 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
       'Hola, Mimo. He leído el artículo del blog sobre montar una tintorería/lavandería moderna y quiero ponerme en contacto con vosotros.'
     ),
   },
+  {
+    slug: 'ropa-afectada-humo-incendio-siniestro-hogar',
+    url: '/blog/ropa-afectada-humo-incendio-siniestro-hogar',
+    canonical:
+      'https://www.tintoreriamimos.es/blog/ropa-afectada-humo-incendio-siniestro-hogar',
+    titulo:
+      'Guía Técnica de Restauración Textil Post-Incendio: Descontaminación de Humo, Hollín y Cobertura del Seguro del Hogar en España',
+    seoTitle:
+      'Restauración Textil por Humo e Incendio en Vigo | Guía Técnica y Seguro',
+    metaDescription:
+      'Guía técnica y pericial para recuperar ropa y textiles dañados por humo y hollín tras un incendio. Desodorización molecular, Wet Cleaning y tramitación con el seguro del hogar en Vigo.',
+    categoria: 'Siniestros del Hogar y Restauración Textil',
+    fechaPublicacion: '8 de noviembre de 2026',
+    fechaISO: '2026-11-08',
+    tiempoLectura: '9 min de lectura técnica',
+    extracto:
+      'La contaminación de prendas y textiles tras un incendio plantea un desafío de física, química polimérica y peritaje asegurador. Descubre la fisiología del daño por COVs y hollín lipofílico, los errores irreparables del lavado casero, los protocolos industriales de desodorización por ozono y radicales hidroxilo, la matriz pericial de recuperación por fibra y cómo tramitar el 100% de la factura con tu seguro de hogar bajo la Ley 50/1980.',
+    imagen: IMAGES.blogSiniestrosIncendio,
+    imagenAlt:
+      'Especialista en tintorería examinando prendas y abrigos recuperados tras un siniestro de humo e incendio',
+    introduccion: [
+      'La contaminación de prendas de vestir y textiles del hogar tras un siniestro por incendio representa un desafío técnico y de gestión de elevada complejidad para el sector de la conservación textil. La acción del fuego genera no solo la destrucción directa de materiales por combustión, sino también la dispersión de subproductos de pirólisis y combustión incompleta que se impregnan profundamente en la matriz íntima de la fibra.',
+      'Para un establecimiento especializado en tintorería técnica y lavandería industrial como Tintorería Mimos, la recuperación de prendas afectadas por humo y hollín exige combinar una rigurosa comprensión de la química textil con el dominio de tecnologías avanzadas de desodorización oxidativa y un conocimiento exhaustivo del marco normativo y operativo de los seguros multirriesgo de hogar en España.',
+      'Si has sufrido un conato de incendio o fuego en tu vivienda o negocio en Vigo o su área metropolitana, esta guía detalla por qué la ropa nunca debe lavarse con métodos domésticos, cómo se recuperan las fibras a nivel molecular y los pasos legales para que tu compañía aseguradora cubra íntegramente los costes del tratamiento.',
+    ],
+    secciones: [
+      {
+        h2: '1. Fisiología del daño por humo, hollín y residuos de combustión en textiles',
+        parrafos: [
+          'El impacto de un incendio sobre la ropa no es una simple cuestión estética o superficial. El humo generado durante la combustión de una vivienda es una compleja mezcla heterogénea formada por una fase gaseosa rica en Compuestos Orgánicos Volátiles (COV), hidrocarburos aromáticos policíclicos (HAP), monóxido de carbono, aldehídos y gases ácidos corrosivos (derivados de la degradación térmica de plásticos, aislamientos y barnices sintéticos), junto a una fase particulada constituida por hollín y cenizas ultrafinas en suspensión.',
+          'Al entrar en contacto con las telas, las moléculas de combustión penetran por capilaridad en los poros microscópicos de las fibras naturales y sintéticas. El hollín, compuesto primordialmente por carbono amorfo impregnado de aceites sintéticos y resinas no quemadas, actúa como un pigmento lipofílico que se adhiere mediante fuerzas electrostáticas y de Van der Waals a la superficie de los hilos. Simultáneamente, los compuestos aromáticos en fase gaseosa se condensan a medida que desciende la temperatura del entorno, fijándose en la estructura interna del tejido.',
+          'Con el transcurso de las horas, los textiles contaminados experimentan un proceso de desgasificación continua (off-gassing), liberando moléculas malolientes de forma prolongada. Si las prendas no son sometidas a un tratamiento de descontaminación inmediato, los residuos ácidos presentes en el hollín desencadenan una degradación química progresiva de las poliamidas y celulosas, provocando la pérdida irreversible de la resistencia mecánica del tejido y la alteración permanente de los tintes originales.',
+        ],
+        puntosClave: [
+          'Compuestos lipofílicos: el hollín contiene aceites sintéticos que repelen el agua pura y requieren desengrase técnico específico.',
+          'Riesgo de off-gassing: la ropa no tratada emite gases volátiles durante meses, contaminando armarios y provocando irritaciones respiratorias.',
+          'Ataque ácido: los subproductos de combustión degradan el pH de la fibra, debilitando las costuras y volviendo quebradizo el algodón y la lana.',
+        ],
+      },
+      {
+        h2: '2. Análisis comparativo: Errores del tratamiento doméstico frente a metodologías profesionales',
+        parrafos: [
+          'La tentativa de resolver la contaminación por humo mediante lavados domésticos o remedios caseros suele derivar en la inutilización definitiva de las prendas. El tratamiento de ropa expuesta a siniestros exige la eliminación oxidativa de los contaminantes a nivel molecular, un objetivo inalcanzable para los electrodomésticos y detergentes de consumo masivo.',
+        ],
+        subsecciones: [
+          {
+            h3: 'El calor: fijador térmico irreversible',
+            texto:
+              'El secado en máquina convencional o el planchado doméstico provoca la termofijación permanente de los COVs y las resinas de hollín en el polímero textil, tornando el olor a quemado completamente indeleble.',
+          },
+          {
+            h3: 'Suavizantes y detergentes comunes: película grasa',
+            texto:
+              'Los suavizantes de consumo no rompen las cadenas de hidrocarburos; se limitan a aplicar una película lipídica perfumada que sella la suciedad. En cuanto se evapora la fragancia o la prenda entra en contacto con el calor corporal, el olor a humo reaparece con virulencia.',
+          },
+          {
+            h3: 'Fricción acuosa sin aspiración: barro incrustado',
+            texto:
+              'Frotar en seco o lavar en agua sin succión previa disuelve el carbón superficial convirtiéndolo en un lodo graso que penetra en el núcleo del hilo, transformando partículas volátiles en manchas oscuras permanentes.',
+          },
+          {
+            h3: 'Bolsas de plástico estancas y mezclas peligrosas',
+            texto:
+              'Guardar la ropa en bolsas de basura herméticas concentra los gases de pirólisis y acelera la putrefacción ácida. Asimismo, mezclar lejía con vinagre o amoníaco genera emanaciones de cloro tóxicas sin ninguna eficacia desodorante.',
+          },
+        ],
+        tabla: {
+          encabezados: [
+            'Parámetro de Tratamiento',
+            'Método Doméstico / Casero',
+            'Procesamiento Profesional en Tintorería Mimos',
+          ],
+          filas: [
+            [
+              'Mecanismo de Desodorización',
+              'Enmascaramiento temporal mediante perfumes y tensoactivos suaves.',
+              'Descontaminación con oxígeno activo en Wet Cleaning, desengrase con solventes lipofílicos en Dry Cleaning y tratamiento de ozono únicamente en prendas seleccionadas con saturación extrema.',
+            ],
+            [
+              'Eliminación de Hollín',
+              'Difusión por arrastre acuoso sin succión previa; riesgo crítico de fijación en la fibra.',
+              'Aspiración industrial de alta eficiencia HEPA y desmanchado lipofílico/oxigenado controlado.',
+            ],
+            [
+              'Integridad Textil y Fibra',
+              'Riesgo elevado de encogimiento, decoloración por fricción y daño por acidez residual.',
+              'Conservación de elasticidad, textura y tono mediante solventes neutros y oxígeno activo.',
+            ],
+            [
+              'Efecto Térmico',
+              'Secado convencional que termofija de forma permanente los olores de combustión.',
+              'Control estricto de secado a baja temperatura tras neutralización molecular previa.',
+            ],
+            [
+              'Documentación Legal y Pericial',
+              'Nula validez justificativa ante compañías aseguradoras.',
+              'Emisión de Informe Técnico Desglosado y factura pericial oficial certificada con validez legal.',
+            ],
+          ],
+          pie: 'Comparativa técnica elaborada según estándares de restauración textil tras siniestros de hogar.',
+        },
+      },
+      {
+        h2: '3. Tecnologías y protocolos de restauración profesional en Tintorería Mimos',
+        parrafos: [
+          'En las instalaciones centrales de Tintorería Mimos en Navia (Vigo), aplicamos un protocolo profesional de ingeniería textil y química oxidativa centrado en el desengrase de hollín, la neutralización molecular y el lavado oxigenado, reservando la cámara de ozono para prendas seleccionadas que presentan saturación extrema:',
+        ],
+        subsecciones: [
+          {
+            h3: 'Fase 1: Triage técnico y clasificación microscópica',
+            texto:
+              'Separación de prendas según tolerancia al agua, resistencia al calor, estabilidad de tinte y tipo de afección (prendas saturadas de gas de humo vs. ropa empapada por agua de extinción de bomberos o con depósito directo de ceniza).',
+          },
+          {
+            h3: 'Fase 2: Depuración mecánica de hollín en seco (HEPA)',
+            texto:
+              'Antes de cualquier proceso húmedo, se extrae la fracción de carbono volátil mediante aspiración neumática con filtración absoluta HEPA, impidiendo que el hollín cree barrillo graso al contacto con agua.',
+          },
+          {
+            h3: 'Fase 3: Neutralización molecular y tratamiento de ozono en prendas seleccionadas',
+            texto:
+              'La neutralización estándar se realiza mediante agentes tensoactivos desengrasantes y oxígeno activo que degradan los fenoles y aldehídos sin agredir el tejido. Únicamente para aquellas prendas seleccionadas con penetración extrema de olor a quemado y previa verificación de que no contengan elastómeros ni tintes sensibles, se recurre a un ciclo puntual en cámara de ozono controlada.',
+          },
+          {
+            h3: 'Fase 4: Lavado especializado Wet Cleaning y Dry Cleaning ecológico',
+            texto:
+              'Wet Cleaning ecológico con peróxido de hidrógeno a pH neutro para desengrasar fibras lavables, y limpieza en seco (Dry Cleaning) en circuito cerrado para trajes de lana, sedas y abrigos de sastrería.',
+          },
+          {
+            h3: 'Fase 5: Verificación de COVs, planchado artesanal y empaquetado transpirable',
+            texto:
+              'Control final sensorial y analítico para comprobar la eliminación completa de hidrocarburos volátiles, seguido de planchado en mesas de aspiración y enfundado en protectores transpirables.',
+          },
+        ],
+      },
+      {
+        h2: '4. Matriz diagnóstica pericial de recuperabilidad por tipo de tejido y daño',
+        parrafos: [
+          'Recuperar ropa tras un siniestro de incendio es una de las tareas más complejas y difíciles de la conservación textil. La acidez de los gases de combustión, la condensación de resinas lipofílicas y la degradación térmica provocan que un porcentaje considerable de prendas sufra daños irreversibles en el entramado de la fibra o retenga olores persistentes.',
+          'Por este motivo, en Tintorería Mimos aplicamos un triaje pericial riguroso y transparente: diagnosticamos qué prendas tienen una viabilidad técnica real de recuperación y cuáles deben declararse formalmente como pérdida total o baja pericial para que la compañía aseguradora abone la indemnización completa de reposición a nuevo:',
+        ],
+        tabla: {
+          encabezados: [
+            'Tipo de Tejido / Material',
+            'Grado de Afectación',
+            'Tasa de Recuperación Estimada',
+            'Tratamiento Técnico Recomendado en Mimos',
+          ],
+          filas: [
+            [
+              'Algodón / Lino Blanco',
+              'Impregnación de humo y hollín medio',
+              '50% - 65%',
+              'Extracción HEPA + Wet Cleaning desodorizante con Oxígeno Activo (ozono solo en piezas seleccionadas con olor extremo).',
+            ],
+            [
+              'Fibras Sintéticas (Poliéster, Poliamida)',
+              'Olor intenso sin deformación térmica',
+              '45% - 60%',
+              'Extracción HEPA + Lavado neutro desodorizante a baja temperatura (máx. 40°C).',
+            ],
+            [
+              'Lana, Cachemir, Alpaca',
+              'Humo denso y ligero hollín',
+              '40% - 55%',
+              'Extracción en seco HEPA + Dry Cleaning en circuito cerrado con solventes lipofílicos.',
+            ],
+            [
+              'Seda y Cortinajes Delicados',
+              'Afectación por gas de humo',
+              '30% - 45%',
+              'Aireación técnica controlada + Dry Cleaning suave desodorizante.',
+            ],
+            [
+              'Cuero, Ante y Pieles',
+              'Olor profundo a humo',
+              '15% - 25%',
+              'Tratamiento artesanal superficial muy limitado; el cuero poroso absorbe aceites de combustión de forma irreversible.',
+            ],
+            [
+              'Sintéticos Fusionados',
+              'Fusión parcial o ampollado por calor',
+              '0% (Irrecuperable)',
+              'Reconciliación pericial como Pérdida Total (baja para indemnización de reposición del seguro).',
+            ],
+            [
+              'Fibras Carbonizadas',
+              'Bordes quemados o pérdida de materia',
+              '0% (Irrecuperable)',
+              'Reconciliación pericial como Pérdida Total (baja para indemnización de reposición del seguro).',
+            ],
+          ],
+          pie: 'Matriz diagnóstica pericial orientativa. La tasa real depende de la inmediatez de la recogida, la temperatura sufrida y la ausencia de lavados caseros previos que fijen el olor.',
+        },
+      },
+      {
+        h2: '5. Marco legal, cobertura del seguro de hogar en España (Ley 50/1980) y peritaje',
+        parrafos: [
+          'La restauración textil post-incendio se encuadra plenamente en el marco operativo de las pólizas multirriesgo de hogar y comercio supervisadas por la Dirección General de Seguros y Fondos de Pensiones (DGSFP) en España:',
+          '1. Clasificación jurídica como Contenido: en aseguradoras como Mapfre, Allianz, Mutua Madrileña, AXA, SegurCaixa, Generali o Línea Directa, la ropa personal, los textiles de cama, cortinas y alfombras forman parte del Contenido asegurado. La garantía de Daños por Incendio y gastos de salvamento asume legalmente los costes de descontaminación y desodorización técnica hasta el límite del capital contratado.',
+          '2. Plazos legales (Artículos 16 y 18 de la Ley 50/1980 de Contrato de Seguro): el asegurado dispone formalmente de 7 días para comunicar el siniestro, ampliable jurisprudencialmente hasta 30 días en casos de inhabitabilidad sobrevenida o atención médica. La compañía está obligada a abonar el importe mínimo o proceder a la reparación en un plazo máximo de 40 días desde la declaración.',
+          '3. Franquicias e Infraseguro: si la póliza incluye franquicia (habitualmente entre 100 € y 300 €), el coste de una intervención integral suele superarla ampliamente, siendo absorbida por la aseguradora. Para evitar recortes por regla proporcional de infraseguro, nuestro informe técnico detalla minuciosamente el valor de salvamento frente al coste mucho más elevado de reponer el armario completo.',
+          '4. Facturación directa sin desembolso previo: en Tintorería Mimos ofrecemos a nuestros clientes la modalidad de Cesión de Derechos de Cobro. Con este documento, tramitamos y cobramos la factura directamente con tu compañía de seguros, liberándote de tener que adelantar fondos de tu bolsillo en un momento tan delicado.',
+          '5. Derecho a perito de parte (Artículo 38 LCS): si el perito de la aseguradora planteara discrepancias injustificadas sobre las prendas recuperables, el asegurado tiene el derecho legal de nombrar su propio perito independiente o solicitar un perito dirimente.',
+        ],
+        destacado: {
+          titulo: '¿Cómo funciona la facturación directa con la aseguradora en Tintorería Mimos?',
+          texto:
+            'Firmando una simple orden de cesión de crédito, Tintorería Mimos envía la relación fotográfica de prendas, el informe técnico de desodorización y la factura con CIF oficial directamente al perito o tramitador de tu seguro. Tú no tienes que desembolsar el coste de la restauración textil.',
+        },
+      },
+      {
+        h2: '6. Protocolo de actuación inmediata en 4 pasos para afectados en Vigo y su área',
+        parrafos: [
+          'Si has sufrido un incendio o conato de humo en Vigo, Redondela, Nigrán, Gondomar, Porriño o alrededores, sigue estos pasos secuenciales para garantizar el salvamento de tu ropa y la cobertura del seguro:',
+        ],
+        puntosClave: [
+          'Notifica el siniestro de inmediato a tu compañía o mediador de seguros y solicita tu número de expediente.',
+          'No manipules la ropa en seco, no apliques calor y bajo ningún concepto la empaquetes en bolsas de plástico herméticas.',
+          'Contacta con Tintorería Mimos (Navia - Vigo): coordinamos la recogida técnica de tus prendas en sacos transpirables y emitimos el informe pericial inicial con inventario fotográfico.',
+          'Autoriza la cesión de cobro: procesamos la desodorización molecular en cámara de ozono y wet cleaning, y gestionamos la liquidación de la factura directamente con la compañía de seguros.',
+        ],
+      },
+    ],
+    advertenciaProfesional:
+      'Tras un siniestro de fuego o humo, el tiempo es determinante: cada hora que las prendas permanecen saturadas de hollín ácido aumenta el riesgo de degradación irreversible de la fibra. En Tintorería Mimos activamos un protocolo de respuesta urgente en 24-48 horas para recoger los textiles, emitir el informe pericial oficial y desodorizar tus prendas con garantía científica en nuestras instalaciones centrales de Vigo.',
+    enlacesInternos: [
+      {
+        texto: 'Servicios Profesionales de Limpieza y Siniestros en Vigo',
+        href: '/limpieza-profesional-vigo',
+        descripcion: 'Protocolo de intervención urgente ante siniestros de hogar y desinfección.',
+      },
+      {
+        texto: 'Tintorería Profesional y Wet Cleaning Ecológico',
+        href: '/tintoreria-vigo',
+        descripcion: 'Cuidado especializado en cámara sellada para prendas de lana, seda y trajes.',
+      },
+      {
+        texto: 'Limpieza y Desodorización de Alfombras en Vigo',
+        href: '/limpieza-alfombras-vigo',
+        descripcion: 'Eliminación profunda de hollín, cenizas y olores en alfombras y moquetas.',
+      },
+      {
+        texto: 'Tiendas Mimos y Contacto Central en Navia',
+        href: '/puntos-mimos',
+        descripcion: 'Sede central en C/ As Teixugueiras 11, local 9, Navia (Vigo).',
+      },
+    ],
+    whatsappCtaUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. He sufrido un siniestro de incendio/humo en casa y necesito presupuesto, informe pericial y facturación para el seguro del hogar para recuperar mis prendas.'
+    ),
+  },
+  {
+    slug: 'protocolo-rotacion-apartamentos-turisticos-vigo',
+    url: '/blog/protocolo-rotacion-apartamentos-turisticos-vigo',
+    canonical:
+      'https://www.tintoreriamimos.es/blog/protocolo-rotacion-apartamentos-turisticos-vigo',
+    titulo:
+      'Protocolo de rotación en apartamentos turísticos en Vigo: el checklist para garantizar las 5 estrellas de limpieza',
+    seoTitle:
+      'Protocolo de Limpieza y Rotación de Pisos Turísticos en Vigo | Mimos',
+    metaDescription:
+      'Checklist operativo para anfitriones de Airbnb y Booking en Vigo: gestión de lencería de cama y toallas, desinfección ágil entre huéspedes y cómo delegar la operativa completa.',
+    categoria: 'Alojamientos Turísticos y Anfitriones',
+    fechaPublicacion: '7 de noviembre de 2026',
+    fechaISO: '2026-11-07',
+    tiempoLectura: '5 min de lectura',
+    extracto:
+      'La limpieza es el factor número uno que determina las reseñas y la insignia de Superhost en Airbnb y Booking. Conoce el checklist paso a paso para ejecutar rotaciones impecables en Vigo, el reto del secado con la humedad gallega y las ventajas de externalizar la lencería hotelera o la operativa completa.',
+    imagen: IMAGES.blogApartamentosRotacion,
+    imagenAlt:
+      'Dormitorio de apartamento turístico en Vigo con cama vestida con sábanas blancas impecables y toallas dobladas con mimo',
+    introduccion: [
+      'En el competitivo sector de las viviendas de uso turístico (VUT) en Vigo y las Rías Baixas, la limpieza no es un detalle secundario: es el principal termómetro que define las valoraciones de los huéspedes. Una cocina impecable y una cama con sábanas con aroma a limpio consiguen comentarios de 5 estrellas de forma natural; un solo pelo en la ducha o una toalla con olor a humedad garantizan una reseña demoledora.',
+      'Gestionar la limpieza y la colada entre estancias exige una disciplina casi militar, especialmente en temporada alta o fines de semana donde la rotación debe completarse de forma ágil antes de la siguiente entrada.',
+    ],
+    secciones: [
+      {
+        h2: '1. Por qué la limpieza define el 80% de tus ingresos y posicionamiento',
+        parrafos: [
+          'Los algoritmos de Airbnb y Booking premian sistemáticamente a los alojamientos que mantienen una puntuación superior a 4.8 sobre 5 en limpieza. Una caída por debajo de ese umbral no solo elimina la insignia de Superhost o Preferred, sino que hunde el anuncio en los resultados de búsqueda locales de Vigo.',
+          'Los huéspedes actuales son más exigentes que nunca: esperan encontrar estándares equiparables a los de un hotel boutique, con camas tensas y lencería blanca e impoluta.',
+        ],
+      },
+      {
+        h2: '2. El checklist paso a paso para una rotación sin fallos',
+        parrafos: [
+          'Para no olvidar ningún rincón en los momentos de mayor prisa, es fundamental trabajar con una lista de verificación secuencial:',
+        ],
+        puntosClave: [
+          'Ventilación y descarte: abrir ventanas para renovar el aire y retirar de inmediato toda la lencería usada introduciéndola en sacos específicos para evitar contaminar zonas limpias.',
+          'Puntos de alto contacto: desinfección rigurosa de mandos de televisión, interruptores de luz, pomos de puertas, tiradores de armarios y griferías.',
+          'Cocina y electrodomésticos: revisión interior de microondas, cafetera descalcificada, nevera sin restos de comida y vajilla reluciente.',
+          'Baño impecable: mampara libre de cal, desagües desinfectados y precinto de toallas de tacto mullido.',
+          'Revisión visual final: chequeo de bombillas fundidas, pilas de mandos a distancia y reposición del pack de bienvenida.',
+        ],
+      },
+      {
+        h2: '3. El talón de Aquiles en Galicia: el secado y planchado doméstico',
+        parrafos: [
+          'En el clima de Vigo y su entorno marítimo, secar sábanas de matrimonio y toallas gruesas de rizo en un tendedero doméstico o en una lavadora-secadora estándar puede convertirse en un cuello de botella insalvable. Las toallas secadas en casa a menudo retienen humedad residual que genera malos olores al doblarse en los armarios.',
+          'La lencería tratada industrialmente en lavandería profesional se procesa a temperaturas controladas con calandras de vapor que desinfectan térmicamente y dejan las sábanas totalmente lisas y suaves, sin necesidad de horas de planchado manual.',
+        ],
+      },
+      {
+        h2: '4. Fórmulas de trabajo: desde la lencería por rotación hasta la colaboración total',
+        parrafos: [
+          'Cada propietario tiene una disponibilidad distinta. En Tintorería Mimos ofrecemos tres niveles adaptados:',
+        ],
+        subsecciones: [
+          {
+            h3: 'Modalidad Lencería Hotelera',
+            texto:
+              'Tú te encargas de la limpieza física y nosotros te entregamos packs de sábanas y toallas higienizadas y embolsadas listas para vestir las camas.',
+          },
+          {
+            h3: 'Modalidad Rotación Completa',
+            texto:
+              'Nuestro equipo acude al apartamento entre reservas, limpia a fondo y deja las camas hechas y el baño equipado con lencería limpia.',
+          },
+          {
+            h3: 'Modalidad Colaboración Operativa Integral ("Hacemos nosotros todo")',
+            texto:
+              'Nos encargamos de la gestión operativa integral: limpieza, lavandería, creación de página web propia para conseguir reservas directas sin comisiones del 15%-20%, sincronización de calendarios, atención de incidencias y coordinación continua.',
+          },
+        ],
+      },
+    ],
+    advertenciaProfesional:
+      'No sacrifiques tus fines de semana ni arriesgues la reputación de tu piso turístico en Vigo. En Tintorería Mimos adaptamos el servicio a tu calendario de reservas con entrega directa en el alojamiento.',
+    enlacesInternos: [
+      {
+        texto: 'Servicios para Apartamentos Turísticos en Vigo',
+        href: '/limpieza-apartamentos-turisticos-vigo',
+        descripcion: 'Lencería hotelera embolsada y colaboración operativa integral.',
+      },
+      {
+        texto: 'División de Limpieza Profesional en Vigo',
+        href: '/limpieza-profesional-vigo',
+        descripcion: 'Soluciones integrales de mantenimiento e higienización.',
+      },
+      {
+        texto: 'Lavandería y Cuidado Textil en Vigo',
+        href: '/lavanderia-vigo',
+        descripcion: 'Lavado industrial higiénico con acabado de calandra.',
+      },
+      {
+        texto: 'Contacto y Presupuesto con Mimo',
+        href: '/contacto',
+        descripcion: 'Cuéntanos cuántos alojamientos tienes y te preparamos una propuesta a medida.',
+      },
+    ],
+    whatsappCtaUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Tengo apartamentos turísticos en Vigo y quiero informarme sobre el protocolo de limpieza y lencería entre reservas.'
+    ),
+  },
+  {
+    slug: 'limpieza-comunidades-propietarios-vigo',
+    url: '/blog/limpieza-comunidades-propietarios-vigo',
+    canonical:
+      'https://www.tintoreriamimos.es/blog/limpieza-comunidades-propietarios-vigo',
+    titulo:
+      'Limpieza de comunidades de propietarios en Vigo: claves para portales, escaleras y zonas comunes impecables',
+    seoTitle:
+      'Limpieza de Comunidades de Vecinos en Vigo | Tintorería Mimos',
+    metaDescription:
+      'Consejos y frecuencias recomendadas para la limpieza de portales, escaleras, cristales y garajes en comunidades de propietarios en Vigo. Servicio profesional y de confianza.',
+    categoria: 'Comunidades y Mantenimiento',
+    fechaPublicacion: '7 de noviembre de 2026',
+    fechaISO: '2026-11-07',
+    tiempoLectura: '5 min de lectura',
+    extracto:
+      'El portal y las escaleras son la carta de presentación de cualquier edificio residencial. Descubre qué plan de frecuencias es el más adecuado según el número de vecinos, qué productos utilizar para no deteriorar el granito o mármol y las ventajas de contratar una empresa local con personal asegurado y supervisado en Vigo.',
+    imagen: IMAGES.blogLimpiezaComunidades,
+    imagenAlt:
+      'Portal de comunidad de propietarios moderno y luminoso con suelo de granito pulido impecable en Vigo',
+    introduccion: [
+      'El portal, las escaleras, los ascensores y los rellanos son las zonas de mayor tránsito diario de una comunidad de vecinos. Mantenerlos limpios y cuidados no solo mejora la convivencia y el confort de quienes habitan el edificio, sino que protege y revaloriza directamente el valor de tasación y alquiler de cada una de las viviendas.',
+      'Sin embargo, la limpieza de una comunidad suele ser uno de los focos habituales de discrepancias en las reuniones de vecinos cuando el servicio es irregular, faltan operarios o los productos utilizados estropean los suelos nobles.',
+    ],
+    secciones: [
+      {
+        h2: '1. Frecuencias recomendadas según el tamaño y tránsito del inmueble',
+        parrafos: [
+          'No todas las comunidades tienen las mismas necesidades. Un edificio de 8 viviendas no precisa la misma intensidad que una torre residencial con 40 pisos y locales comerciales en planta baja:',
+        ],
+        subsecciones: [
+          {
+            h3: 'Edificios pequeños (hasta 10-12 vecinos)',
+            texto:
+              'Suele ser suficiente con una intervención semanal completa: fregado de escaleras, limpieza de portal, barandillas, desinfección de cabina de ascensor y vaciado de papeleras.',
+          },
+          {
+            h3: 'Comunidades medianas y grandes (más de 15 vecinos)',
+            texto:
+              'Se recomienda un servicio de dos o tres días por semana, con repaso frecuente de cristales de acceso, felpudos, botoneras de ascensor y zonas de buzones.',
+          },
+          {
+            h3: 'Intervenciones periódicas complementarias',
+            texto:
+              'Planificación mensual o trimestral para la limpieza de cristales en altura, patios interiores comunitarios, salas de contadores y barrido/fregado de viales de garaje y trasteros.',
+          },
+        ],
+      },
+      {
+        h2: '2. Cuidado de materiales nobles: granito gallego, mármol y acero inoxidable',
+        parrafos: [
+          'En Vigo abundan los portales con solados de granito de Porriño, mármol pulido o gres porcelánico, combinados con carpinterías y buzones de acero inoxidable. El uso continuado de lejías domésticas o detergentes fuertemente ácidos acaba quemando el brillo natural de la piedra y provocando manchas blanquecinas irreversibles.',
+          'En el servicio profesional de Mimos empleamos productos de pH neutro específicos que limpian sin erosionar el pulido, manteniendo la viveza de la piedra y desengrasando el acero sin dejar huellas grasientas.',
+        ],
+      },
+      {
+        h2: '3. Legalidad, seguros y tranquilidad para la presidencia de la comunidad',
+        parrafos: [
+          'Delegar la limpieza en personas particulares sin contrato o empresas que no acreditan sus coberturas expone al presidente de la comunidad a graves responsabilidades solidarias ante posibles accidentes laborales o caídas por resbalones.',
+          'Contratar una empresa formalizada como Tintorería Mimos garantiza que todo el personal cuenta con alta en el Régimen General de la Seguridad Social, formación en prevención de riesgos laborales y póliza de seguro de responsabilidad civil que ampara cualquier eventualidad en el inmueble.',
+        ],
+      },
+    ],
+    advertenciaProfesional:
+      '¿Buscáis renovar el servicio de limpieza de vuestra comunidad en Vigo o el área metropolitana? En Tintorería Mimos visitamos vuestro edificio sin compromiso para evaluar los metros, materiales y frecuencias, y os presentamos una propuesta económica clara y transparente para la próxima junta de vecinos.',
+    enlacesInternos: [
+      {
+        texto: 'Limpieza de Comunidades y Oficinas en Vigo',
+        href: '/limpieza-profesional-vigo',
+        descripcion: 'Planes de mantenimiento continuo para zonas comunes y portales.',
+      },
+      {
+        texto: 'Servicios de Empresa y Negocios en Vigo',
+        href: '/servicios-empresas',
+        descripcion: 'Soluciones integrales de mantenimiento e higienización para instalaciones.',
+      },
+      {
+        texto: 'Puntos Mimos y Atención Centralizada',
+        href: '/puntos-mimos',
+        descripcion: 'Sede central en C/ As Teixugueiras, Navia, y cobertura en todo Vigo.',
+      },
+    ],
+    whatsappCtaUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Soy presidente/administrador de una comunidad de vecinos en Vigo y me gustaría solicitar presupuesto para la limpieza de nuestro portal y escaleras.'
+    ),
+  },
+  {
+    slug: 'limpieza-oficinas-despachos-clinicas-vigo',
+    url: '/blog/limpieza-oficinas-despachos-clinicas-vigo',
+    canonical:
+      'https://www.tintoreriamimos.es/blog/limpieza-oficinas-despachos-clinicas-vigo',
+    titulo:
+      'Limpieza e higienización de oficinas, despachos y clínicas en Vigo: salud laboral y primera impresión',
+    seoTitle:
+      'Limpieza de Oficinas, Despachos y Clínicas en Vigo | Mimos',
+    metaDescription:
+      'Protocolos de limpieza periódica y desinfección para oficinas, consultas y locales comerciales en Vigo. Ambientes de trabajo saludables, productivos y libres de alérgenos.',
+    categoria: 'Empresas y Espacios Comerciales',
+    fechaPublicacion: '7 de noviembre de 2026',
+    fechaISO: '2026-11-07',
+    tiempoLectura: '5 min de lectura',
+    extracto:
+      'Un espacio de trabajo limpio reduce el absentismo laboral, mejora la concentración del equipo y proyecta profesionalidad ante clientes y visitas. Analizamos los puntos críticos de desinfección en oficinas y clínicas en Vigo, horarios sin interferencias y facturación mensual deducible.',
+    imagen: IMAGES.blogLimpiezaOficinas,
+    imagenAlt:
+      'Oficina corporativa moderna con mamparas de cristal y escritorios limpios y desinfectados en Vigo',
+    introduccion: [
+      'Pasamos más de un tercio del día en nuestros lugares de trabajo. En despachos profesionales, notarías, agencias, locales comerciales y clínicas sanitarias de Vigo, la limpieza va mucho más allá de vaciar papeleras y pasar el plumero: es una cuestión de salud laboral, prevención de contagios y una pieza clave de la imagen de marca de la empresa.',
+      'Un entorno de trabajo pulcro, con aire fresco y superficies desinfectadas, genera una sensación inmediata de bienestar en los empleados y transmite seriedad y confianza al cliente desde el primer minuto de su reunión.',
+    ],
+    secciones: [
+      {
+        h2: '1. Puntos críticos de higienización en oficinas y espacios compartidos',
+        parrafos: [
+          'En cualquier puesto de trabajo moderno existen superficies que acumulan miles de bacterias por centímetro cuadrado si no se desinfectan periódicamente con bayetas de microfibra codificadas por colores y virucidas específicos:',
+        ],
+        puntosClave: [
+          'Periféricos y tecnología: teclados, ratones, pantallas, teléfonos fijos y mandos de climatización.',
+          'Puntos de apoyo y paso: brazos de sillas ergonómicas, mesas de juntas, manillas de puertas y pomos de ventanas.',
+          'Office y comedores: encimeras, tirador de la nevera comunitaria, máquina de café y grifos de agua.',
+          'Aseos corporativos: desinfección bactericida profunda de sanitarios, reposición de jabón higiénico y toallas de un solo uso.',
+        ],
+      },
+      {
+        h2: '2. Requisitos especiales para clínicas y consultas médicas',
+        parrafos: [
+          'En clínicas dentales, fisioterapia, consultas de psicología o centros médicos, el nivel de exigencia se multiplica. Es imperativo aplicar protocolos de bioseguridad con productos homologados que garanticen la eliminación de virus y bacterias en camillas, salas de espera, mostradores de recepción y suelos sanitarios sin dejar residuos tóxicos ni aromas sofocantes.',
+        ],
+      },
+      {
+        h2: '3. Flexibilidad horaria sin interferir en tu actividad comercial',
+        parrafos: [
+          'El mejor servicio de limpieza es aquel que se nota en el resultado pero no en la jornada laboral. En Tintorería Mimos adaptamos los turnos de intervención a las necesidades de cada negocio:',
+        ],
+        subsecciones: [
+          {
+            h3: 'Turno de primera hora de la mañana',
+            texto:
+              'Antes de que abra la oficina o lleguen los primeros clientes, para que el equipo encuentre su puesto ventilado, limpio y listo para empezar.',
+          },
+          {
+            h3: 'Turno de tarde o última hora',
+            texto:
+              'Al concluir la jornada de atención al público, dejando las instalaciones ordenadas para el día siguiente.',
+          },
+          {
+            h3: 'Intervenciones en fin de semana',
+            texto:
+              'Para tareas de mayor envergadura como abrillantado de suelos, limpieza integral de cristaleras o limpieza profunda de moquetas y alfombras.',
+          },
+        ],
+      },
+      {
+        h2: '4. Factura mensual única y 100% deducible',
+        parrafos: [
+          'Simplificamos la contabilidad de tu negocio: acordamos una cuota mensual fija adaptada a los metros cuadrados y frecuencia requerida, emitiendo una factura oficial con IVA desglosado para su deducción íntegra como gasto de explotación en la declaración fiscal trimestral.',
+        ],
+      },
+    ],
+    advertenciaProfesional:
+      '¿Quieres mejorar el ambiente de trabajo y la presencia de tu oficina o clínica en Vigo? Contacta con Tintorería Mimos y prepararemos un plan de limpieza a la medida exacta de tus instalaciones y horarios.',
+    enlacesInternos: [
+      {
+        texto: 'Servicios para Empresas y Oficinas en Vigo',
+        href: '/servicios-empresas',
+        descripcion: 'Mantenimiento integral para oficinas, clínicas y locales comerciales.',
+      },
+      {
+        texto: 'Limpieza de Alfombras y Moquetas en Vigo',
+        href: '/limpieza-alfombras-vigo',
+        descripcion: 'Desinfección profunda para suelos textiles de oficinas y despachos.',
+      },
+      {
+        texto: 'Puntos Mimos y Atención al Cliente',
+        href: '/puntos-mimos',
+        descripcion: 'Red de tiendas y sede central en Vigo a tu disposición.',
+      },
+    ],
+    whatsappCtaUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Quiero solicitar presupuesto para la limpieza periódica de nuestra oficina / despacho / clínica en Vigo.'
+    ),
+  },
 ];
 
 export interface ServicioLimpiezaProfesional {
@@ -1634,6 +2239,23 @@ export const SERVICIOS_LIMPIEZA_PROFESIONAL: ServicioLimpiezaProfesional[] = [
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero consultar condiciones para el servicio de solo planchado'
+    ),
+  },
+  {
+    index: '05',
+    id: 'recuperacion-siniestros',
+    titulo: 'Recuperación Textil tras Siniestros (Incendios, Humo e Inundaciones)',
+    subtitulo: 'Eliminación de humo, hollín y olores / Presupuesto y factura para aseguradoras',
+    descripcion:
+      'Servicio especializado y urgente para particulares y empresas afectados por incendios, humaredas o inundaciones en Vigo y área de influencia. Retiramos y recuperamos todo el vestuario y ajuar del hogar.',
+    incluye: [
+      'Eliminación de olores a humo persistentes mediante desodorización profesional',
+      'Desmanchado y descontaminación de partículas de hollín en tejidos delicados',
+      'Lavado, planchado y recuperación de armarios enteros, edredones, cortinas y alfombras',
+      'Factura desglosada y memoria pericial para presentar a tu compañía aseguradora',
+    ],
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Necesito consultar el servicio urgente de recuperación textil tras siniestro (incendio, humo o inundación) en Vigo'
     ),
   },
 ];

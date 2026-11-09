@@ -56,6 +56,9 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/punto/puntadas-no-aire': '/zonas/gondomar',
   '/ficha/puntadas-no-aire': '/zonas/gondomar',
   '/tienda/gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
+  '/se-punto-de-recogida.html': '/se-punto-colaborador',
+  '/se-punto-de-recogida': '/se-punto-colaborador',
+  '/punto-colaborador': '/se-punto-colaborador',
 };
 
 export function resolveCanonicalRoute(rawPath: string): string {
@@ -107,6 +110,11 @@ export const ORGANIZATION_SCHEMA: Record<string, unknown> = {
     contactType: 'customer service',
     availableLanguage: ['es', 'gl'],
   },
+  sameAs: [
+    CONTACT_INFO.social.facebook,
+    CONTACT_INFO.social.instagram,
+    CONTACT_INFO.social.linkedin,
+  ],
   subOrganization: [
     { '@id': 'https://www.tintoreriamimos.es/#tienda-navia' },
     { '@id': 'https://www.tintoreriamimos.es/#tienda-gregorio-espino' },

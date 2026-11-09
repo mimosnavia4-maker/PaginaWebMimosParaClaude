@@ -176,7 +176,7 @@ export const B2BApartmentsSection: React.FC<B2BApartmentsSectionProps> = ({ onNa
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-lg transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span>Solicitar presupuesto con Mimo</span>
+                  <span>{pack.ctaTexto}</span>
                 </a>
               </div>
             ))}

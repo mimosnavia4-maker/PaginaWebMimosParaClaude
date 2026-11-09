@@ -1,84 +1,151 @@
 # Tintorería Mimos Navia (Tintorería Mimos Navia, S.L.)
 
-> Tintorería, lavandería profesional, cuidado de textiles del hogar (edredones, alfombras y cortinas) y servicios de limpieza profesional para particulares, apartamentos turísticos y empresas en Vigo (Pontevedra, España) y su área metropolitana.
+> Tintorería, lavandería profesional, cuidado de textiles del hogar (edredones, alfombras y cortinas), arreglos de ropa y división de limpieza profesional para particulares, apartamentos turísticos y empresas en Vigo (Pontevedra, España) y su área metropolitana.
 
 ## Datos verificados de la empresa (NAP / Registro Mercantil)
 - **Razón social:** Tintorería Mimos Navia, S.L.
 - **Nombre comercial:** Tintorería Mimos Navia
 - **NIF / CIF:** B27755925
 - **Datos registrales oficiales (BORME-A-2011-68-36):** Inscrita en el Registro Mercantil de Pontevedra, Tomo 3698, Libro 3698, Folio 170, Sección 8, Hoja PO-51054, Inscripción 1ª (28/03/2011). Comienzo de operaciones: 25/03/2011.
-- **Domicilio social corporativo:** C/ Teixugueiras, 11 bajo 9 · 36212 Vigo (Pontevedra), España
+- **Domicilio social corporativo:** C/ Teixugueiras, 11, bajo 9 · 36212 Vigo (Pontevedra), España
 - **Teléfono central:** +34 986 12 51 41
 - **WhatsApp oficial (consultas sobre prendas, presupuestos y recogidas):** +34 655 536 844 (`https://wa.me/34655536844`)
-- **Correo electrónico:** info@tintoreriamimos.es
+- **Correo electrónico de atención:** info@tintoreriamimos.es
 - **Sitio web oficial:** https://www.tintoreriamimos.es/
-- **Aplicación móvil:** Wash In Town
+- **Aplicación móvil para clientes:** Wash In Town
+- **Perfiles oficiales en redes sociales:**
+  - Facebook: https://www.facebook.com/tintoreriamimos
+  - Instagram: https://www.instagram.com/tintoreria_mimos_navia/
+  - LinkedIn: https://www.linkedin.com/company/tintorer%C3%ADa-mimos-navia-s-l-/
 
 ## Política de precios y presupuestos
-- La web pública no publica tablas de tarifas cerradas ni precios unitarios para evitar importes descontextualizados según el tejido, composición o dimensiones de cada prenda.
-- La orientación de precios por prenda y los presupuestos personalizados se facilitan a través de WhatsApp en el **+34 655 536 844** (`https://wa.me/34655536844`) o por teléfono en el **986 12 51 41**.
+- La web pública no publica tarifas fijas cerradas ni listas genéricas de precios unitarios para evitar importes descontextualizados según la composición, estado, dimensiones o particularidades de cada encargo.
+- Toda orientación de precio y presupuesto personalizado se gestiona con Mimo a través de WhatsApp en el **+34 655 536 844** o por teléfono en el **986 12 51 41**.
 
-## Las dos líneas de negocio principales
+---
+
+## Las dos grandes líneas de actividad
 
 ### 1. Tintorería, lavandería y cuidado textil en Vigo
-1. **Tintorería profesional (`/tintoreria-vigo`):** Limpieza especializada de trajes, americanas, vestidos de fiesta, comunión y novia, abrigos y prendas delicadas.
-2. **Lavandería (`/lavanderia-vigo`):** Lavado profesional de ropa de uso diario y textiles adaptado a cada fibra.
-3. **Planchado profesional (`/planchado-vigo`):** Servicio de solo planchado para camisas, pantalones, vestidos, trajes y ropa de hogar.
-4. **Colada familiar (`/colada-familiar-vigo`):** Lavado, secado y doblado de ropa cotidiana para familias y particulares.
-5. **Limpieza de textiles del hogar (`/textiles-hogar-vigo`):** Edredones de plumas y sintéticos, mantas, ropa de cama, fundas de sofá, cortinas y alfombras.
-6. **Limpieza de pieles y cuero (`/limpieza-pieles-cuero-vigo`):** Tratamiento especializado de cazadoras y abrigos de cuero, ante, nobuk, peletería y prendas combinadas (con valoración previa).
-7. **Servicio prioritario – Limpieza y reparación de alfombras en Vigo con recogida y entrega (`/limpieza-alfombras-vigo`):**
-   - Recogida de alfombras a domicilio (según cobertura y condiciones) o recepción en las 3 tiendas propias de Vigo. Limpieza e higienización en instalaciones profesionales e intervenciones de flecos y ribetes.
-   - Presupuesto por WhatsApp: indicar medidas (*largo × ancho*) y fotos de la alfombra.
+1. **Tintorería profesional (`/tintoreria-vigo`):** Limpieza en seco y desmanchado técnico de trajes, vestidos de fiesta, comunión y novia, abrigos y prendas delicadas.
+2. **Lavandería (`/lavanderia-vigo`):** Lavado e higienización profesional para ropa de uso diario y prendas textiles.
+3. **Planchado profesional (`/planchado-vigo`):** Servicio especializado de solo planchado para camisas, pantalones, trajes y mantelería.
+4. **Colada familiar (`/colada-familiar-vigo`):** Lavado, secado y doblado de ropa cotidiana para particulares y familias.
+5. **Limpieza de textiles del hogar (`/textiles-hogar-vigo`):** Edredones de plumas y sintéticos, mantas, cortinas, fundas de sofá y ropa de cama.
+6. **Limpieza de pieles y cuero (`/limpieza-pieles-cuero-vigo`):** Tratamiento especializado de cazadoras, abrigos de cuero, ante, nobuk y peletería (con valoración previa).
+7. **Servicio prioritario – Limpieza y restauración de alfombras en Vigo (`/limpieza-alfombras-vigo`):**
+   - Recogida a domicilio en Vigo y área de influencia (según cobertura) o entrega en las 3 tiendas propias.
+   - Tratamiento especializado de lavado, desinfección, eliminación de manchas e intervenciones de flecos y ribetes.
+   - Presupuestos por WhatsApp: se solicitan medidas (*largo × ancho*) y fotografías del estado de la alfombra.
 8. **Servicio destacado – Costura y arreglos de ropa (`/arreglos-de-ropa-vigo`):**
-   - **Taller propio in situ:** Tiendas propias de **Alcalde Gregorio Espino, 44** y **C/ Venezuela, 41 bajo 1** (disponen de taller propio de costura in situ).
-   - **Recepción en tienda propia:** C/ As Teixugueiras, 11 bajo 9 (Navia, gestión y recepción de arreglos).
-   - **Establecimientos colaboradores independientes con costura:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño) ofrecen servicios de costura propios del establecimiento.
-   - En el comercio colaborador de Redondela se gestiona la recepción para tintorería, colada y textiles tratados en Vigo.
-9. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio de recogida y entrega sujeto a zona de cobertura y condiciones.
+   - **Talleres propios in situ:** Disponibles en las tiendas propias de **Alcalde Gregorio Espino, 44** y **C/ Venezuela, 41, bajo 1**.
+   - **Recepción en tienda propia:** C/ As Teixugueiras, 11, bajo 9 (Navia, recepción y entrega de prendas para confección en taller).
+   - **Puntos colaboradores independientes con costura confirmada:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño) prestan sus propios servicios de costura y composturas en sus locales.
+   - En el punto colaborador de Redondela se gestiona la recepción para tintorería, colada y textiles tratados en la central de Vigo.
+9. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio coordinado para particulares y empresas en Vigo y comarca (sujeto a condiciones y zona de cobertura).
 
-### 2. Limpieza profesional, alojamientos turísticos y empresas en Vigo
-- **Empresa de limpieza profesional en Vigo (`/limpieza-profesional-vigo`):** Limpieza y mantenimiento textil para apartamentos turísticos, viviendas y locales en Vigo.
-- **Servicio para apartamentos turísticos (`/limpieza-apartamentos-turisticos-vigo`):** Lavado y planchado higiénico de sábanas, toallas, nórdicos y preparación textil entre estancias.
-- **Servicios para empresas y negocios (`/servicios-empresas`):** Lavandería, planchado y cuidado textil para empresas locales, alojamientos y comercios en Vigo.
+### 2. División de Limpieza Profesional, Apartamentos Turísticos y Empresas
+Plataforma que integra servicios de limpieza técnica de instalaciones con la capacidad industrial de lavandería propia en Vigo:
+
+1. **Empresa de limpieza profesional en Vigo (`/limpieza-profesional-vigo`):** Mantenimiento higiénico para oficinas, despachos, clínicas, comunidades de vecinos, locales comerciales y alojamientos.
+2. **Servicios para apartamentos turísticos (`/limpieza-apartamentos-turisticos-vigo`):**
+   - Propuesta comercial estructurada en **tres modalidades de colaboración** configurables:
+     - **Modalidad 1 – Solo Ropa de Cama y Toallas:** Tratamiento de lavandería y lencería higienizada por lotes para anfitriones que limpian su propio inmueble.
+     - **Modalidad 2 – Limpieza y Lavandería Completa:** Limpieza exhaustiva del apartamento tras cada salida + entrega de juegos limpios de sábanas y toallas.
+     - **Modalidad 3 – Gestión Operativa Integral (Nos ocupamos de tu apartamento):** Servicio de mayor valor donde el propietario o gestor delega la operativa:
+       * *Comercialización y rentabilidad:* Optimización de anuncios en Airbnb y Booking, seguimiento de ocupación y tarifas, o desarrollo de web propia.
+       * *Reservas y atención al huésped:* Coordinación de calendarios, atención a consultas y organización de entradas/salidas acordadas.
+       * *Limpieza y operativa:* Organización de la limpieza en cada cambio y entrega de lencería limpia.
+       * *Seguimiento y control:* Supervisión del inmueble, comunicación de incidencias y propuestas de mejora.
+       * *Nota de transparencia:* Se trata de un servicio a medida; Mimos no realiza check-in presencial forzoso, atención de emergencias 24h, custodia de llaves ni reparaciones técnicas de averías.
+3. **Servicios para empresas y comercios (`/servicios-empresas`):** Mantenimiento textil regular de mantelería, vestuario laboral y textiles corporativos con facturación adaptada para profesionales.
+4. **Área 05 – Recuperación textil en siniestros e incendios:** Protocolo de actuación urgente ante incendios, humaredas e inundaciones para particulares y empresas en Vigo:
+   - Descontaminación de hollín, desodorización de prendas y recuperación de ajuar del hogar.
+   - Emisión de informe técnico, memoria pericial y facturación oficial para tramitación directa con compañías aseguradoras bajo la Ley 50/1980 de Contrato de Seguro.
+
+---
 
 ## Nuestras 3 tiendas propias en Vigo (`DryCleaningOrLaundry`)
-1. **Tienda Mimos Teixugueiras (Sede Navia):** C/ Teixugueiras, 11 bajo 9 · 36212 Vigo · Tel.: 986 12 51 41 · Horario: L-V 9:30-14:00 y 16:00-20:00 · Sáb 10:00-13:30.
-2. **Tienda Mimos Venezuela (con taller propio de costura in situ):** C/ Venezuela, 41 bajo 1 · 36203 Vigo · Tel.: 646 94 67 64 · Horario: L-V 9:30-13:30 y 16:30-19:30 · Sáb: cerrado.
-3. **Tienda Mimos Gregorio Espino (con taller propio de costura in situ):** Avda. Alcalde Gregorio Espino, 44 · 36205 Vigo · Tel.: 986 19 27 87 · Horario: L-V 9:30-13:30 y 16:30-20:00 · Sáb 9:30-13:00.
+1. **Tienda Mimos Teixugueiras (Sede Central Navia):**  
+   C/ Teixugueiras, 11, bajo 9 · 36212 Vigo (Pontevedra) · Tel.: 986 12 51 41  
+   Horario: L-V 09:30-14:00 y 16:00-20:00 · Sábados 10:00-13:30.  
+   *(Punto de recepción y entrega de arreglos para confección en taller)*.
+2. **Tienda Mimos Venezuela (con taller propio de costura in situ):**  
+   C/ Venezuela, 41, bajo 1 · 36203 Vigo (Pontevedra) · Tel.: 646 94 67 64  
+   Horario: L-V 09:30-13:30 y 16:30-19:30 · Sábados: cerrado.
+3. **Tienda Mimos Gregorio Espino (con taller propio de costura in situ):**  
+   Avda. Alcalde Gregorio Espino, 44 · 36205 Vigo (Pontevedra) · Tel.: 986 19 27 87  
+   Horario: L-V 09:30-13:30 y 16:30-20:00 · Sábados 09:30-13:00.
 
-## Red de 5 puntos de recogida en establecimientos colaboradores
-*(Comercios locales independientes concertados para la entrega y recogida de prendas procesadas por Tintorería Mimos Navia, S.L. en Vigo):*
-1. **Redondela:** Mimos Redondela · Recogida y entrega para tintorería, colada y textiles tratados en Vigo.
-2. **Gondomar:** Puntadas No Aire · Recogida y entrega para tintorería/lavandería + servicios propios de costura del colaborador.
-3. **Ponteareas:** Arregla2 · Recogida y entrega para tintorería/lavandería + servicios propios de costura y composturas del colaborador.
-4. **O Porriño:** Telas y Más · Recogida y entrega para tintorería/lavandería + venta de telas y costura del colaborador.
-5. **Vigo As Travesas (D'Passo):** Camiño Espedrigada, 9 bajo · Recogida y entrega para servicios de tintorería y lavandería procesados en Vigo.
+---
 
-## Mapa de URLs principales y guías prácticas
+## Red de establecimientos colaboradores independientes
+*(Comercios locales concertados para la recepción y entrega de prendas que son tratadas en las instalaciones centrales de Tintorería Mimos en Vigo):*
+
+1. **Redondela (`/zonas/redondela`):**  
+   Establecimiento colaborador Mimos Redondela · C/ José Regojo, 29 bajo (36800 Redondela) · Tel.: 613 62 47 24.  
+   Recepción y entrega para tintorería, colada familiar, mantas y alfombras tratadas en Vigo.
+2. **Gondomar (`/zonas/gondomar`):**  
+   Puntadas No Aire · Avda. Elduayen, 9 (36380 Gondomar) · Tel.: 886 13 46 29.  
+   Taller y tienda de costura independiente. Recogida y entrega de tintorería/lavandería + servicios propios de confección y arreglos.
+3. **Ponteareas (`/zonas/ponteareas`):**  
+   Arregla2 · C/ Argentina, 4 (36860 Ponteareas) · Tel.: 647 61 66 15.  
+   Tienda y taller de costura independiente. Recogida y entrega de tintorería/lavandería + arreglos de costura del propio establecimiento.
+4. **O Porriño (`/zonas/o-porrino`):**  
+   Telas y Más · C/ Manuel Rodríguez, 30 (36400 O Porriño) · Tel.: 986 33 80 43.  
+   Comercio textil independiente. Recogida y entrega para tintorería/lavandería + venta de tejidos y costura del colaborador.
+5. **Vigo As Travesas:**  
+   D'Passo · Camiño Espedrigada, 9 bajo (36211 Vigo) · Tel.: 986 20 83 75.  
+   Punto colaborador de proximidad para tintorería y lavandería en el barrio de As Travesas.
+6. **Línea de expansión de colaboradores (`/se-punto-colaborador`):**  
+   Programa para incorporar nuevos comercios de barrio (mercerías, zapaterías, tintorerías sin planta propia o tiendas de moda) en Vigo y municipios limítrofes.
+
+---
+
+## Mapa completo de URLs indexables
+
+### Páginas principales y de servicio
 - [Portada principal](https://www.tintoreriamimos.es/)
-- [Limpieza y reparación de alfombras en Vigo con recogida y entrega](https://www.tintoreriamimos.es/limpieza-alfombras-vigo)
-- [Limpieza especializada de pieles y cuero en Vigo](https://www.tintoreriamimos.es/limpieza-pieles-cuero-vigo)
-- [Arreglos de ropa en Vigo: costura y composturas profesionales](https://www.tintoreriamimos.es/arreglos-de-ropa-vigo)
+- [Limpieza y reparación de alfombras en Vigo](https://www.tintoreriamimos.es/limpieza-alfombras-vigo)
+- [Costura y arreglos de ropa en Vigo](https://www.tintoreriamimos.es/arreglos-de-ropa-vigo)
 - [Tintorería profesional en Vigo](https://www.tintoreriamimos.es/tintoreria-vigo)
 - [Lavandería profesional en Vigo](https://www.tintoreriamimos.es/lavanderia-vigo)
 - [Planchado profesional en Vigo](https://www.tintoreriamimos.es/planchado-vigo)
 - [Colada familiar en Vigo](https://www.tintoreriamimos.es/colada-familiar-vigo)
-- [Limpieza de edredones, cortinas y textiles del hogar](https://www.tintoreriamimos.es/textiles-hogar-vigo)
+- [Limpieza de edredones y textiles del hogar](https://www.tintoreriamimos.es/textiles-hogar-vigo)
+- [Limpieza especializada de pieles y cuero](https://www.tintoreriamimos.es/limpieza-pieles-cuero-vigo)
 - [Recogida y entrega a domicilio](https://www.tintoreriamimos.es/recogida-a-domicilio)
+
+### División de limpieza profesional y empresas
 - [Empresa de limpieza profesional en Vigo](https://www.tintoreriamimos.es/limpieza-profesional-vigo)
 - [Limpieza y lavandería para apartamentos turísticos en Vigo](https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo)
-- [Servicios para empresas y profesionales](https://www.tintoreriamimos.es/servicios-empresas)
-- [Tiendas y Puntos Mimos](https://www.tintoreriamimos.es/puntos-mimos)
-  - [Tienda propia Mimos Gregorio Espino (Vigo)](https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo)
-  - [Punto colaborador Mimos en Gondomar – Puntadas No Aire](https://www.tintoreriamimos.es/zonas/gondomar)
-  - [Punto colaborador Mimos en O Porriño – Telas y Más](https://www.tintoreriamimos.es/zonas/o-porrino)
-  - [Tiendas propias Mimos en Vigo y cobertura local](https://www.tintoreriamimos.es/zonas/vigo)
-- [Contacto y horarios](https://www.tintoreriamimos.es/contacto)
-- [Blog y guías de cuidado textil](https://www.tintoreriamimos.es/blog)
-  - [Cómo quitar una mancha de vino tinto sin dañar tu ropa delicada](https://www.tintoreriamimos.es/blog/como-quitar-mancha-vino-tinto-ropa-delicada)
-  - [Cómo lavar un edredón de plumas: guía práctica](https://www.tintoreriamimos.es/blog/como-lavar-edredon-de-plumas-guia-practica)
-  - [Guía práctica de los símbolos de lavado y etiquetas de tu ropa](https://www.tintoreriamimos.es/blog/guia-simbolos-etiquetas-ropa-significado)
-  - [Cómo organizar la limpieza y los textiles de un apartamento turístico entre huéspedes](https://www.tintoreriamimos.es/blog/como-preparar-apartamento-turistico-entre-huespedes)
-  - [La colada en casa: ¿Ahorro o pérdida de tiempo y calidad?](https://www.tintoreriamimos.es/blog/la-colada-en-casa)
-  - [Montar tu propia tintorería o lavandería: las claves de un negocio moderno](https://www.tintoreriamimos.es/blog/montar-tu-propia-tintoreria-lavanderia)
+- [Servicios para empresas y negocios](https://www.tintoreriamimos.es/servicios-empresas)
+
+### Red física, tiendas y zonas locales
+- [Buscador general de tiendas y puntos](https://www.tintoreriamimos.es/puntos-mimos)
+- [Tienda propia Mimos Gregorio Espino (Vigo)](https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo)
+- [Puntos Mimos y tiendas propias en Vigo](https://www.tintoreriamimos.es/zonas/vigo)
+- [Punto colaborador Mimos en Redondela](https://www.tintoreriamimos.es/zonas/redondela)
+- [Punto colaborador Mimos en Gondomar – Puntadas No Aire](https://www.tintoreriamimos.es/zonas/gondomar)
+- [Punto colaborador Mimos en Ponteareas – Arregla2](https://www.tintoreriamimos.es/zonas/ponteareas)
+- [Punto colaborador Mimos en O Porriño – Telas y Más](https://www.tintoreriamimos.es/zonas/o-porrino)
+- [Programa y solicitud: Sé Punto Colaborador](https://www.tintoreriamimos.es/se-punto-colaborador)
+- [Contacto central y horarios](https://www.tintoreriamimos.es/contacto)
+
+### Blog profesional y guías de cuidado textil (10 Artículos)
+- [Blog principal y guías](https://www.tintoreriamimos.es/blog)
+1. [Cómo quitar una mancha de vino tinto sin dañar tu ropa delicada](https://www.tintoreriamimos.es/blog/como-quitar-mancha-vino-tinto-ropa-delicada)
+2. [Cómo lavar un edredón de plumas: guía práctica](https://www.tintoreriamimos.es/blog/como-lavar-edredon-de-plumas-guia-practica)
+3. [Guía práctica de los símbolos de lavado y etiquetas de tu ropa](https://www.tintoreriamimos.es/blog/guia-simbolos-etiquetas-ropa-significado)
+4. [Cómo preparar un apartamento turístico entre huéspedes](https://www.tintoreriamimos.es/blog/como-preparar-apartamento-turistico-entre-huespedes)
+5. [La colada en casa: ¿Ahorro o pérdida de tiempo y dinero?](https://www.tintoreriamimos.es/blog/la-colada-en-casa)
+6. [Montar tu propia tintorería o lavandería: las claves que nadie te cuenta](https://www.tintoreriamimos.es/blog/montar-tu-propia-tintoreria-lavanderia)
+7. [Ropa y textiles afectados por humo u hollín tras un incendio](https://www.tintoreriamimos.es/blog/ropa-afectada-humo-incendio-siniestro-hogar)
+8. [Protocolo de rotación y lencería en apartamentos turísticos en Vigo](https://www.tintoreriamimos.es/blog/protocolo-rotacion-apartamentos-turisticos-vigo)
+9. [Limpieza y mantenimiento de comunidades de propietarios en Vigo](https://www.tintoreriamimos.es/blog/limpieza-comunidades-propietarios-vigo)
+10. [Limpieza e higienización de oficinas, despachos y clínicas en Vigo](https://www.tintoreriamimos.es/blog/limpieza-oficinas-despachos-clinicas-vigo)
+
+### Información corporativa y empleo
+- [Trabaja con nosotros / Empleo en Vigo](https://www.tintoreriamimos.es/empleo-unete-a-nosotros)
+- [Fondo Europeo de Desarrollo Regional (FEDER)](https://www.tintoreriamimos.es/feder)
+- [Programa Bono Enerxía Peme 2025 (IN417Z)](https://www.tintoreriamimos.es/programa-bono-energia-peme-2025-in417z)

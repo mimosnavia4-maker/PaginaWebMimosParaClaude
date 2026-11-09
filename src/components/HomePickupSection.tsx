@@ -89,9 +89,14 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
             >
               Recogida y entrega de prendas a domicilio en Vigo y alrededores
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              Para que cuidar tu ropa resulte todavía más sencillo, disponemos de opciones de recogida y entrega sujetas a las condiciones del servicio y a la zona de cobertura. También contamos con la aplicación móvil <strong>{CONTACT_INFO.appName}</strong>.
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Para que cuidar tu ropa resulte todavía más sencillo, disponemos de servicio de recogida y entrega a domicilio con un <strong>pedido mínimo de 30 €</strong>, sujeto a las condiciones del servicio y a la zona de cobertura en Vigo y alrededores. También contamos con la aplicación móvil <strong>{CONTACT_INFO.appName}</strong>.
             </p>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0F76BB]/10 text-[#0F76BB] dark:text-[#60B5F6] font-bold text-xs mb-6 border border-[#0F76BB]/20">
+              <span>★ Pedido mínimo: 30 € por recogida</span>
+              <span>·</span>
+              <span>Vigo y municipios limítrofes</span>
+            </div>
 
             {/* 3 Numbered Steps */}
             <ol className="space-y-5 mb-8">

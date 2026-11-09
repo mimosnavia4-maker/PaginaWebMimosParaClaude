@@ -6,12 +6,16 @@ import {
   Check,
   Copy,
   CheckCircle2,
+  ShieldCheck,
+  Building2,
+  Sparkles,
 } from 'lucide-react';
 import {
   CONTACT_INFO,
   IMAGES,
   SERVICIOS_LIMPIEZA_PROFESIONAL,
   PACKS_APARTAMENTOS_BORRADOR,
+  GESTION_INTEGRAL_AREAS,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
 
@@ -27,9 +31,17 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
   const [nombreEmpresa, setNombreEmpresa] = useState('');
   const [telefono, setTelefono] = useState('');
   const [tipoInmueble, setTipoInmueble] = useState(
-    'Apartamento turístico / Vivienda vacacional'
+    variant === 'apartamentos'
+      ? 'Limpieza integral de Apartamento Turístico (con lencería)'
+      : variant === 'empresas'
+      ? 'Limpieza de Oficina o Despacho profesional'
+      : 'Limpieza de Oficina o Despacho profesional'
   );
-  const [frecuencia, setFrecuencia] = useState('Rotación por reservas / Semanal');
+  const [frecuencia, setFrecuencia] = useState(
+    variant === 'apartamentos'
+      ? 'Rotación por reservas / Semanal'
+      : 'Servicio continuado / Semanal'
+  );
   const [detalles, setDetalles] = useState('');
   const [aceptoPrivacidad, setAceptoPrivacidad] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -38,16 +50,16 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
 
   const pageHeader = {
     limpieza: {
-      badge: 'CUIDADO TEXTIL Y GESTIÓN PARA ALOJAMIENTOS · VIGO',
-      h1: 'Cuidado textil profesional y limpieza para apartamentos turísticos y empresas en Vigo',
+      badge: 'EMPRESA DE SERVICIOS DE LIMPIEZA · VIGO Y ÁREA DE INFLUENCIA',
+      h1: 'Empresa de servicios de limpieza en Vigo y comarca',
       subtitle:
-        'Soluciones especializadas de gestión de lencería, lavado, planchado e higienización textil para alojamientos turísticos y empresas en Vigo con presupuesto personalizado.',
+        'Limpieza profesional para oficinas y despachos, comunidades de propietarios, locales comerciales, clínicas y apartamentos turísticos en Vigo y su área de influencia, respaldada por nuestra propia planta de tintorería y lavandería.',
     },
     apartamentos: {
-      badge: 'ESPECIALISTAS EN ALOJAMIENTOS TURÍSTICOS · VIGO',
-      h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',
+      badge: 'COLABORACIÓN A MEDIDA PARA ALOJAMIENTOS TURÍSTICOS · VIGO',
+      h1: 'Servicios para apartamentos turísticos en Vigo: lavandería, limpieza y gestión operativa a tu medida',
       subtitle:
-        'Ayudamos a propietarios, anfitriones y empresas gestoras a tener cada apartamento impecable entre huéspedes: lavado y planchado profesional de ropa de cama y toallas junto con soluciones de puesta a punto.',
+        'Adaptado a anfitriones y propietarios de viviendas turísticas: desde el cuidado profesional de la ropa de cama y baño hasta la preparación completa entre reservas y la coordinación operativa de tu alojamiento.',
     },
     empresas: {
       badge: 'SERVICIOS B2B PARA EMPRESAS Y PROFESIONALES · VIGO',
@@ -70,6 +82,15 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
     }
     return lines.join('\n');
   };
+
+  const heroWhatsAppHref =
+    variant === 'empresas'
+      ? buildMimoWhatsAppUrl(
+          'Hola, Mimo. Quiero solicitar un presupuesto de lavandería y servicios textiles para mi empresa o negocio en Vigo.'
+        )
+      : variant === 'limpieza'
+      ? CONTACT_INFO.whatsappCleaningHref
+      : CONTACT_INFO.whatsappApartamentosHref;
 
   const whatsappQuoteHref = buildMimoWhatsAppUrl(buildQuoteMessage());
 
@@ -169,10 +190,10 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
                 <a
-                  href={CONTACT_INFO.whatsappApartamentosHref}
+                  href={heroWhatsAppHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl transition-colors"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl transition-colors shadow-lg"
                 >
                   <MessageCircle className="w-5 h-5" aria-hidden="true" />
                   <span>Pide presupuesto con Mimo</span>
@@ -188,7 +209,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-white/15 bg-[#071936]">
+              <div className="rounded-2xl overflow-hidden border border-white/15 bg-[#071936] shadow-2xl">
                 <img
                   src={IMAGES.b2bApartamentos}
                   alt="Ropa de cama y toallas preparadas por Tintorería Mimos para alojamientos turísticos y empresas en Vigo"
@@ -208,18 +229,18 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
         </div>
       </section>
 
-      {/* Los 4 Bloques de Servicios de Limpieza Profesional (Sección 3.B) */}
+      {/* Los Bloques de Servicios de Limpieza Profesional y Cuidado Textil */}
       <section className="py-16 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-2">
-              Soluciones profesionales sin tarifas cerradas estándar
+              Vigo y área de influencia · Presupuestos personalizados a medida
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4">
-              Cuidado textil y mantenimiento para alojamientos y empresas en Vigo
+              Servicios profesionales de limpieza de instalaciones y cuidado textil
             </h2>
             <p className="text-base text-slate-600 dark:text-slate-300">
-              Cada apartamento turístico o empresa tiene requerimientos y frecuencias de rotación distintas. Por eso nuestro asistente <strong>Mimo</strong> recoge tus necesidades por WhatsApp para prepararte una propuesta a medida.
+              Ofrecemos mantenimiento para oficinas, despachos, comunidades de propietarios, locales comerciales, clínicas y soluciones a medida para alojamientos y apartamentos turísticos. Además, disponemos de protocolo de actuación urgente para siniestros de hogar (incendios, humo e inundaciones) con facturación oficial para aseguradoras.
             </p>
           </div>
 
@@ -227,7 +248,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             {SERVICIOS_LIMPIEZA_PROFESIONAL.map((srv) => (
               <article
                 key={srv.id}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col justify-between"
+                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col justify-between shadow-xs"
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -274,39 +295,137 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
           </div>
 
           {/* Las 3 Modalidades para Apartamentos Turísticos */}
-          <div className="rounded-2xl bg-[#002147] text-white p-6 sm:p-10">
-            <h2 className="text-2xl font-extrabold text-white mb-2">
-              Modalidades de servicio para apartamentos turísticos en Vigo
-            </h2>
-            <p className="text-sm text-slate-200 mb-6">
-              Sin tarifas públicas cerradas: elige la modalidad que mejor encaje con tu alojamiento y consulta condiciones con Mimo.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {PACKS_APARTAMENTOS_BORRADOR.map((pack) => (
+          <div className="rounded-2xl bg-[#002147] text-white p-6 sm:p-10 shadow-xl border border-white/10">
+            <div className="max-w-3xl mb-8">
+              <span className="text-xs font-mono font-bold text-[#60B5F6] uppercase tracking-wider">
+                Propuesta comercial para anfitriones y propietarios · Tres niveles de colaboración
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1 mb-2">
+                Modalidades de servicio para apartamentos turísticos en Vigo
+              </h2>
+              <p className="text-sm text-slate-200">
+                Tú decides qué tareas prefieres seguir gestionando personalmente y cuáles delegar en Mimos. Evaluamos juntos la rotación de tu alojamiento para ofrecerte una propuesta personalizada y adaptada a tu ritmo.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+              {PACKS_APARTAMENTOS_BORRADOR.map((pack) => {
+                const isIntegral = pack.id === 'pack-gestion-integral';
+                return (
+                  <div
+                    key={pack.id}
+                    className={`rounded-2xl border p-6 sm:p-7 flex flex-col justify-between transition-all ${
+                      isIntegral
+                        ? 'bg-gradient-to-b from-[#072552] to-[#041733] border-[#60B5F6]/60 ring-2 ring-[#60B5F6]/30 shadow-2xl relative'
+                        : 'border-white/15 bg-white/5'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span className="inline-block text-[11px] font-mono bg-white/10 text-[#60B5F6] border border-white/15 px-2.5 py-1 rounded-md font-bold">
+                          {pack.estado}
+                        </span>
+                        {isIntegral && (
+                          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#178A47] text-white">
+                            Servicio más completo
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-xl font-extrabold text-white mb-2 leading-snug">{pack.nombre}</h3>
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-5">
+                        {pack.descripcion}
+                      </p>
+                      <ul className="space-y-2.5 mb-6 text-xs sm:text-sm text-slate-200">
+                        {pack.incluye.map((inc, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-[#60B5F6] shrink-0 mt-0.5" />
+                            <span>{inc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <a
+                      href={pack.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full inline-flex items-center justify-center gap-2 font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-colors shadow-xs ${
+                        isIntegral
+                          ? 'bg-[#178A47] hover:bg-[#126E38] text-white py-3.5 shadow-md'
+                          : 'bg-white/15 hover:bg-white/25 text-white'
+                      }`}
+                    >
+                      <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                      <span>{pack.ctaTexto}</span>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Módulo Especial: Modalidad 3 - Gestión Operativa Integral estructurada en 4 áreas */}
+          <div className="mt-10 rounded-3xl bg-gradient-to-br from-[#002147] via-[#071936] to-[#0a254c] text-white border border-[#0F76BB]/40 p-6 sm:p-10 lg:p-12 shadow-2xl">
+            <div className="max-w-3xl mb-10">
+              <span className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#60B5F6] bg-white/10 px-3 py-1 rounded-md uppercase tracking-wider mb-3">
+                <ShieldCheck className="w-4 h-4 text-[#60B5F6]" />
+                <span>Modalidad 3 · Servicio integral a medida para propietarios</span>
+              </span>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                Nos Ocupamos de tu Apartamento
+              </h3>
+              <p className="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed">
+                Tú eres el propietario. Nosotros podemos ocuparnos de organizar y coordinar el funcionamiento diario de tu alojamiento: desde las reservas y la atención a los huéspedes hasta la limpieza, la lavandería y el seguimiento del inmueble.
+              </p>
+              <p className="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
+                Un único equipo de confianza para que tu apartamento funcione de forma ordenada, profesional y sin quitarte tiempo. Esta modalidad se configura de forma totalmente personalizada: cada propietario decide qué tareas quiere delegar y cuáles desea mantener bajo su gestión.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+              {GESTION_INTEGRAL_AREAS.map((area) => (
                 <div
-                  key={pack.id}
-                  className="rounded-xl border border-white/15 bg-white/5 p-5 flex flex-col justify-between"
+                  key={area.numero}
+                  className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between space-y-4"
                 >
                   <div>
-                    <span className="inline-block text-[11px] font-mono bg-white/10 text-[#60B5F6] border border-white/15 px-2 py-0.5 rounded mb-2.5">
-                      {pack.estado}
-                    </span>
-                    <h3 className="text-base font-extrabold text-white mb-2">{pack.nombre}</h3>
-                    <p className="text-xs text-slate-200 leading-relaxed mb-4">
-                      {pack.descripcion}
-                    </p>
+                    <div className="w-10 h-10 rounded-xl bg-[#0F76BB]/25 border border-[#60B5F6]/30 flex items-center justify-center text-[#60B5F6] font-bold text-sm mb-3">
+                      {area.numero}
+                    </div>
+                    <h4 className="text-base font-bold text-white mb-3 leading-snug">
+                      {area.titulo}
+                    </h4>
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      {area.puntos.map((punto, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-[#60B5F6] shrink-0 mt-0.5" />
+                          <span>{punto}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <a
-                    href={pack.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs py-2.5 px-3 rounded-lg transition-colors"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                    <span>Pedir presupuesto</span>
-                  </a>
                 </div>
               ))}
+            </div>
+
+            <div className="p-6 sm:p-8 rounded-2xl bg-white/10 border border-white/20 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="space-y-2 text-center md:text-left max-w-2xl">
+                <p className="text-base sm:text-lg font-bold text-white italic">
+                  «Un único interlocutor para coordinar tu alojamiento. Menos gestiones para ti, una operativa mejor organizada y un equipo local pendiente de que todo funcione.»
+                </p>
+                <p className="text-xs sm:text-sm text-slate-300">
+                  Sin tarifas cerradas públicas. Analizamos las características de tu alojamiento y el ritmo de rotación en Vigo para diseñar una propuesta a medida.
+                </p>
+              </div>
+              <a
+                href={buildMimoWhatsAppUrl(
+                  'Hola, Mimo. Quiero delegar la gestión de mi apartamento turístico en Vigo y consultar una propuesta a medida'
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl transition-colors shrink-0 shadow-lg text-center"
+              >
+                <MessageCircle className="w-5 h-5" aria-hidden="true" />
+                <span>Quiero delegar la gestión de mi apartamento</span>
+              </a>
             </div>
           </div>
         </div>
@@ -392,20 +511,23 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     }}
                     className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
-                    <option value="Apartamento turístico / Vivienda vacacional">
-                      Apartamento turístico / Vivienda vacacional
+                    <option value="Limpieza integral de Apartamento Turístico (con lencería)">
+                      Limpieza integral de Apartamento Turístico (con lencería)
                     </option>
-                    <option value="Vários apartamentos turísticos (Gestora)">
-                      Varios apartamentos turísticos (Gestora)
+                    <option value="Limpieza de Oficina o Despacho profesional">
+                      Limpieza de Oficina o Despacho profesional
                     </option>
-                    <option value="Lavandería para empresa u hostelería">
-                      Lavandería para empresa u hostelería
+                    <option value="Limpieza de Comunidad de Propietarios (portal y zonas comunes)">
+                      Limpieza de Comunidad de Propietarios (portal y zonas comunes)
                     </option>
-                    <option value="Limpieza de oficina o local comercial">
-                      Limpieza de oficina o local comercial
+                    <option value="Limpieza de Local Comercial o Clínica">
+                      Limpieza de Local Comercial o Clínica
                     </option>
-                    <option value="Limpieza de vivienda particular">
-                      Limpieza de vivienda particular
+                    <option value="Recuperación de ropa y textiles por siniestro o incendio (Seguro)">
+                      Recuperación de ropa y textiles por siniestro o incendio (Seguro)
+                    </option>
+                    <option value="Lavandería y cuidado textil para empresas">
+                      Lavandería y cuidado textil para empresas
                     </option>
                   </select>
                 </div>
@@ -427,6 +549,9 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                   >
                     <option value="Rotación por reservas / Semanal">
                       Rotación por reservas / Semanal
+                    </option>
+                    <option value="Servicio continuado / Semanal">
+                      Servicio continuado / Semanal
                     </option>
                     <option value="Varias veces por semana">Varias veces por semana</option>
                     <option value="Servicio puntual">Servicio puntual</option>

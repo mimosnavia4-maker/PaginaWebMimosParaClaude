@@ -110,7 +110,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             </div>
             <div className="sm:col-span-2 pt-1 border-t border-slate-200 dark:border-slate-700">
               <dt className="text-xs text-slate-500 dark:text-slate-400">
-                Canal de comunicación y atención legal:
+                Canal de comunicación y atención corporativa:
               </dt>
               <dd className="text-xs text-slate-600 dark:text-slate-300">
                 {CONTACT_INFO.canalEtico}
@@ -133,6 +133,16 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             <p>
               La información sobre servicios, establecimientos propios en Vigo y comercios colaboradores tiene por objeto facilitar a los usuarios el contacto directo con nuestro equipo a través de teléfono ({CONTACT_INFO.phoneDisplay}), correo electrónico ({CONTACT_INFO.email}) o WhatsApp ({CONTACT_INFO.whatsappNumber}). Los presupuestos y condiciones específicas de cada encargo se confirman de forma personalizada antes de la prestación del servicio.
             </p>
+            <h2 className="text-lg font-extrabold text-[#002147] dark:text-white">
+              Comunicaciones y canal de atención
+            </h2>
+            <p>
+              Para cualquier consulta, reclamación, sugerencia o comunicación sobre cumplimiento y transparencia empresarial, las personas usuarias pueden dirigirse a nuestro canal de atención por correo electrónico a{' '}
+              <a href={CONTACT_INFO.emailHref} className="underline font-bold">
+                {CONTACT_INFO.email}
+              </a>
+              .
+            </p>
           </article>
         )}
 
@@ -152,8 +162,19 @@ export const LegalPage: React.FC<LegalPageProps> = ({
               Finalidad del tratamiento en formularios y consultas con Mimo
             </h2>
             <p>
-              Los datos que el usuario introduce en los formularios de recogida a domicilio, presupuesto para empresas o contacto se utilizan en su propio navegador para estructurar el mensaje que el usuario envía voluntariamente a través de WhatsApp (655 536 844) o correo electrónico con la finalidad de atender su consulta de precios, recogida o presupuesto.
+              Los datos que el usuario introduce en los formularios de recogida a domicilio, presupuesto para empresas, colaboradores o contacto se procesan en su propio navegador para estructurar el mensaje que el usuario envía voluntariamente a través de WhatsApp ({CONTACT_INFO.whatsappNumber}) o correo electrónico con la finalidad de atender su consulta de precios, recogida, presupuesto o solicitud de colaboración.
             </p>
+            <h2 className="text-lg font-extrabold text-[#002147] dark:text-white">
+              Servicios externos y comunicaciones con terceros
+            </h2>
+            <ul className="list-disc pl-5 space-y-2 text-sm">
+              <li>
+                <strong>Canal de mensajería WhatsApp:</strong> Al pulsar en los botones o enlaces de contacto por WhatsApp, la comunicación se gestiona a través de la infraestructura externa de Meta Platforms Ireland Ltd. (WhatsApp Ireland Limited). El tratamiento de los mensajes y metadatos en dicha plataforma se rige por su respectiva política de privacidad y las condiciones aceptadas por el usuario al utilizar dicha aplicación.
+              </li>
+              <li>
+                <strong>Google Maps y Google Fonts:</strong> Esta web integra recursos técnicos de Google Ireland Limited para la visualización de fuentes tipográficas y mapas interactivos de localización de tiendas y puntos colaboradores. La carga de estos componentes técnicos puede requerir la transmisión de la dirección IP del usuario a los servidores del proveedor con fines estrictamente técnicos de visualización y geolocalización.
+              </li>
+            </ul>
             <h2 className="text-lg font-extrabold text-[#002147] dark:text-white">
               Derechos de las personas interesadas
             </h2>

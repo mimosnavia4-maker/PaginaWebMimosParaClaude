@@ -148,6 +148,19 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<h2>Servicios de la división de limpieza profesional</h2>` +
       subdivisionesHtml +
       `</section>`;
+  } else if (routePath === '/se-punto-colaborador') {
+    specificHtml =
+      `<section>` +
+      `<h2>Sé Punto Colaborador de Tintorería Mimos</h2>` +
+      `<p>Suma un servicio de tintorería profesional a tu comercio de proximidad (modistería, mercería, arreglos, boutique o calzado) en Vigo, Val Miñor, O Morrazo o comarcas limítrofes.</p>` +
+      `<h3>Claves para tu comercio</h3>` +
+      `<ul>` +
+      `<li>Operativa ágil en mostrador en menos de 30 segundos con el software TintoSilver.</li>` +
+      `<li>Recogida y entrega puntual en tu puerta con furgoneta propia de Mimos.</li>` +
+      `<li>Tratamiento profesional en taller propio central en Vigo con acabado al vapor Veit.</li>` +
+      `<li>Comisión periódica directa por prenda y aumento de tráfico de clientes a tu tienda.</li>` +
+      `</ul>` +
+      `</section>`;
   } else if (routePath === '/') {
     const faqsHtml = FAQ_PORTADA_SIN_PRECIOS.map(
       (f) =>
