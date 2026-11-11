@@ -289,6 +289,7 @@ export const CONTACT_INFO = {
   social: {
     facebook: 'https://www.facebook.com/tintoreriamimos',
     instagram: 'https://www.instagram.com/tintoreria_mimos_navia/',
+    youtube: 'https://www.youtube.com/@tintoreriamimosnavias.l.1658',
     linkedin: 'https://www.linkedin.com/company/tintorer%C3%ADa-mimos-navia-s-l-/',
   },
 };

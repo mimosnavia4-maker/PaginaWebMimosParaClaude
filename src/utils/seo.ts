@@ -117,6 +117,7 @@ export const ORGANIZATION_SCHEMA: Record<string, unknown> = {
   sameAs: [
     CONTACT_INFO.social.facebook,
     CONTACT_INFO.social.instagram,
+    CONTACT_INFO.social.youtube,
     CONTACT_INFO.social.linkedin,
   ],
   subOrganization: [
