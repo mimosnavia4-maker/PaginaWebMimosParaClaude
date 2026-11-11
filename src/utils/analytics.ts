@@ -241,9 +241,11 @@ export function trackPageView(path: string, title?: string): boolean {
   }
 }
 
+// Throttler global unificado para eventos de contacto (WhatsApp y teléfono)
+// Previene dobles conversiones entre el listener global de App.tsx y los manejadores locales en componentes
 let lastContactThrottle: { type: string; timestamp: number } | null = null;
 
-export function shouldThrottleContact(type: string, windowMs = 1000): boolean {
+export function shouldThrottleContact(type: string, windowMs = 1500): boolean {
   const now = Date.now();
   if (lastContactThrottle && lastContactThrottle.type === type && now - lastContactThrottle.timestamp < windowMs) {
     return true;
@@ -252,6 +254,10 @@ export function shouldThrottleContact(type: string, windowMs = 1000): boolean {
   return false;
 }
 
+/**
+ * Registra un clic en enlaces de contacto (WhatsApp o teléfono).
+ * ctaZone identifica la zona visual general ('header', 'mobile_bar', 'mimo_assistant', 'page_content').
+ */
 export function trackContactClick(
   eventName: ContactEventName,
   pagePath: string,
@@ -270,8 +276,8 @@ export function trackContactClick(
     return false;
   }
 
-  // Prevenir duplicaciones entre el listener global de App.tsx y los onClick locales
-  if (shouldThrottleContact(eventName, 1000)) {
+  // Prevenir duplicaciones unificadas (1,5 s de ventana)
+  if (shouldThrottleContact(eventName, 1500)) {
     return false;
   }
 
@@ -296,6 +302,11 @@ export interface TrackClickOptions {
   cta_location?: string;
 }
 
+/**
+ * Registra la intención de contactar abriendo WhatsApp (whatsapp_click).
+ * Nota de medición: Este evento registra la acción del usuario al pulsar el botón hacia WhatsApp,
+ * no equivale a una venta o contacto cerrado, el cual se confirma una vez el mensaje llega al equipo de Mimos.
+ */
 export function trackWhatsAppClick(
   pagePath: string,
   ctaLocation: string = 'page_content',
@@ -314,8 +325,8 @@ export function trackWhatsAppClick(
     return false;
   }
 
-  // Prevenir duplicaciones entre el listener global de App.tsx y los onClick locales
-  if (shouldThrottleContact('whatsapp_click', 1000)) {
+  // Prevenir duplicaciones unificadas (1,5 s de ventana)
+  if (shouldThrottleContact('whatsapp_click', 1500)) {
     return false;
   }
 
@@ -340,6 +351,9 @@ export function trackWhatsAppClick(
   }
 }
 
+/**
+ * Registra la intención de llamar por teléfono (phone_click).
+ */
 export function trackPhoneClick(
   pagePath: string,
   ctaLocation: string = 'page_content',
@@ -358,24 +372,13 @@ export function trackPhoneClick(
     return false;
   }
 
-  // Prevenir duplicaciones entre el listener global de App.tsx y los onClick locales
-  if (shouldThrottleContact('phone_click', 1000)) {
+  // Prevenir duplicaciones unificadas (1,5 s de ventana)
+  if (shouldThrottleContact('phone_click', 1500)) {
     return false;
   }
 
   const cleanPath = sanitizePagePath(pagePath);
   const storeId = options?.store_id;
-  const dedupeKey = `phone_click:${cleanPath}:${ctaLocation}:${storeId || ''}`;
-  const now = Date.now();
-
-  if (
-    lastClickRecord &&
-    lastClickRecord.key === dedupeKey &&
-    now - lastClickRecord.timestamp < 500
-  ) {
-    return false;
-  }
-  lastClickRecord = { key: dedupeKey, timestamp: now };
 
   try {
     const payload: Record<string, unknown> = {
@@ -393,12 +396,21 @@ export function trackPhoneClick(
   }
 }
 
+export type FormPreparedType =
+  | 'pickup_request'
+  | 'contact_request'
+  | 'quote_apartamentos'
+  | 'quote_empresas'
+  | 'quote_limpieza'
+  | 'collaborator_application'
+  | (string & {});
+
 /**
  * Tracks valid form preparation (strictly NO personal data, names, phone numbers, or addresses).
  */
 export function trackFormPrepared(
   pagePath: string,
-  formName: 'pickup_request' | 'contact_request'
+  formName: FormPreparedType
 ): boolean {
   if (typeof window === 'undefined' || !hasAnalyticsConsent()) {
     return false;

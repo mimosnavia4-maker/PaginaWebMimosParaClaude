@@ -16,12 +16,14 @@ import {
   Clock,
   Sparkles,
   HelpCircle,
+  FileText,
 } from 'lucide-react';
 import {
   CONTACT_INFO,
   PUNTOS_COLABORADORES,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
+import { trackFormPrepared, trackWhatsAppClick } from '../utils/analytics';
 
 interface PuntoColaboradorPageProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -83,7 +85,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
     {
       pregunta: '¿Cuánto tiempo me quitará atender a un cliente de tintorería?',
       respuesta:
-        'Menos de 30 segundos. Gracias a nuestro sistema informático TintoSilver, registrar la entrada o salida de una prenda se realiza en pantalla de forma ágil y guiada, sin entorpecer la atención de tu negocio principal.',
+        'Apenas unos instantes. El depósito y recogida se realiza mediante resguardos oficiales numerados donde se anotan las prendas recibidas de forma rápida y sencilla, sin entorpecer la atención de tu negocio principal.',
     },
     {
       pregunta: '¿En qué zonas o localidades puedo solicitar ser colaborador?',
@@ -141,7 +143,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 Suma un servicio de tintorería y lavandería a tu comercio sin inversión
               </h1>
               <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
-                Gana una comisión directa por cada prenda, atrae nuevos clientes que visitarán tu local dos veces y despreocúpate de todo: en Tintorería Mimos aportamos las rutas logísticas semanales, nuestro software de gestión propio TintoSilver y nuestra planta central en Vigo.
+                Gana una comisión directa por cada prenda, atrae nuevos clientes que visitarán tu local dos veces y despreocúpate de todo: en Tintorería Mimos aportamos las rutas logísticas periódicas, el sistema de resguardos oficiales y el tratamiento profesional en nuestras instalaciones centrales en Vigo.
               </p>
 
               {/* Botones de acción */}
@@ -266,10 +268,10 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 <Monitor className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-[#002147] dark:text-white">
-                Software propio incluido
+                Resguardos claros y numerados
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Sistema intuitivo en tablet o móvil para emitir resguardos en menos de 30 segundos, sin errores ni cálculos manuales y con total control de comisiones.
+                Sistema ágil de depósito y entrega con resguardos oficiales para el cliente, identificación segura de cada prenda y control transparente de comisiones devengadas.
               </p>
             </div>
           </div>
@@ -299,7 +301,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                   <source srcSet="/images/colaboradores/paso-1-recepcion-software.webp" type="image/webp" />
                   <img
                     src="/images/colaboradores/paso-1-recepcion-software.jpg"
-                    alt="Paso 1: Recepción en mostrador con software de gestión TintoSilver"
+                    alt="Paso 1: Recepción en mostrador con resguardo oficial numerado"
                     width={800}
                     height={500}
                     loading="lazy"
@@ -314,14 +316,14 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                       PASO 01
                     </span>
                     <span className="text-xs text-slate-500 dark:text-slate-400">
-                      30 segundos en mostrador
+                      Atención rápida en mostrador
                     </span>
                   </div>
                   <h3 className="text-xl font-extrabold text-[#002147] dark:text-white">
-                    Recepción ágil con nuestro software propio
+                    Recepción ágil con resguardo oficial
                   </h3>
                   <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
-                    El cliente entrega su ropa o alfombra en tu tienda. En nuestra tablet o desde tu propio ordenador seleccionas las prendas con un par de toques: el sistema genera el resguardo con el precio oficial de forma automática y el cliente recibe su comprobante digital o impreso.
+                    El cliente entrega su ropa o alfombra en tu tienda. Se anota la prenda en el resguardo oficial de Mimos con el servicio solicitado: el cliente recibe su comprobante de depósito y las prendas quedan identificadas de forma segura para la siguiente ruta de recogida.
                   </p>
                 </div>
                 <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 pt-3 border-t border-slate-200 dark:border-slate-800">
@@ -484,7 +486,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <span>Tecnología y Respaldo Total</span>
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-              Nos encargamos de todo: software propio, material y logística
+              Nos encargamos de todo: resguardos oficiales, material y logística
             </h2>
             <p className="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed">
               Sabemos que tu tiempo debe estar centrado en tu negocio. Por eso hemos simplificado la operativa al máximo para que ser punto colaborador sea una experiencia cómoda, ágil y rentable.
@@ -494,17 +496,17 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-4">
             <div className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 space-y-3.5">
               <div className="w-12 h-12 rounded-xl bg-[#0F76BB]/30 flex items-center justify-center text-[#60B5F6]">
-                <Monitor className="w-6 h-6" />
+                <FileText className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-white">
-                Software de gestión propio
+                Resguardos oficiales claros
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Plataforma web diseñada a medida para puntos de recogida. Funciona desde cualquier tablet, móvil o PC. Emite resguardos con precios oficiales, registra prendas y gestiona el flujo de trabajo en segundos.
+                Operativa sencilla pensada para el comercio de barrio. Identificación clara de cada prenda con resguardo oficial numerado, desglose del servicio y control mensual y transparente de liquidación de comisiones.
               </p>
               <div className="text-xs text-[#60B5F6] font-semibold flex items-center gap-1.5 pt-1">
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Gestión ágil en menos de 30 segundos</span>
+                <span>Atención ágil sin complicaciones técnicas</span>
               </div>
             </div>
 
@@ -706,7 +708,15 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                   return;
                 }
                 setErrorPrivacidad('');
-                window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                trackFormPrepared(
+                  typeof window !== 'undefined' ? window.location.pathname : '/se-punto-colaborador',
+                  'collaborator_application'
+                );
+                trackWhatsAppClick(
+                  typeof window !== 'undefined' ? window.location.pathname : '/se-punto-colaborador',
+                  'collaborator_form'
+                );
+                window.location.href = whatsappUrl;
               }}
               className="space-y-5"
             >

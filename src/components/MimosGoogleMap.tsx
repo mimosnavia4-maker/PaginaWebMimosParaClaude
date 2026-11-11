@@ -456,6 +456,16 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
                     </a>
+                    {activePunto.id === 'as-teixugueiras' && (
+                      <a
+                        href="/tienda-mimos-navia-vigo"
+                        onClick={(e) => onNavigate?.('/tienda-mimos-navia-vigo', e)}
+                        className="w-full inline-flex items-center justify-center gap-1.5 bg-[#0F76BB] hover:bg-[#0b5f97] text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors shadow-xs"
+                      >
+                        <Store className="w-3.5 h-3.5" />
+                        <span>Ver ficha completa de la tienda</span>
+                      </a>
+                    )}
                     {activePunto.id === 'gregorio-espino' && (
                       <a
                         href="/tienda-mimos-gregorio-espino-vigo"

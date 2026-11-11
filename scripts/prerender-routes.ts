@@ -94,6 +94,18 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
         faqsHtml +
         `</section>`;
     }
+  } else if (routePath === '/tienda-mimos-navia-vigo') {
+    const punto = TIENDAS_PROPIAS.find((t) => t.id === 'as-teixugueiras');
+    if (punto) {
+      specificHtml =
+        `<section>` +
+        `<h2>Sede Central Tintorería Mimos Navia (Vigo)</h2>` +
+        `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)}</p>` +
+        `<p><strong>Horario:</strong> ${escapeHtml(punto.horario.resumen)}</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)}</p>` +
+        `<p><strong>Servicios disponibles:</strong> Tintorería profesional, lavandería, centro de planchado, colada familiar por kilos, limpieza de alfombras, edredones y mantas, coordinación de recogida a domicilio y recepción para taller propio de costura.</p>` +
+        `</section>`;
+    }
   } else if (routePath === '/tienda-mimos-gregorio-espino-vigo') {
     const punto = TIENDAS_PROPIAS.find((t) => t.id === 'gregorio-espino');
     if (punto) {

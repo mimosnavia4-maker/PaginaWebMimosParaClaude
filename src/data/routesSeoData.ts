@@ -176,6 +176,21 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     ogType: 'website',
     breadcrumbName: 'Tiendas y Puntos Mimos',
   },
+  '/tienda-mimos-navia-vigo': {
+    title: 'Tintorería Mimos Navia (Sede Central Vigo) | C/ Teixugueiras 11',
+    h1: 'Tintorería Mimos Navia – Sede Central en Vigo',
+    description:
+      'Sede central de Tintorería Lavandería Mimos en C/ Teixugueiras 11, bajo 9, Navia (Vigo). Tintorería profesional, colada, edredones, alfombras y recepción de costura.',
+    canonical: 'https://www.tintoreriamimos.es/tienda-mimos-navia-vigo',
+    robots: 'index, follow',
+    ogType: 'website',
+    breadcrumbName: 'Mimos Navia (Central)',
+    breadcrumbParent: {
+      name: 'Tiendas y Puntos Mimos',
+      url: 'https://www.tintoreriamimos.es/puntos-mimos',
+    },
+    areaServed: { '@type': 'City', name: 'Vigo' },
+  },
   '/tienda-mimos-gregorio-espino-vigo': {
     title: 'Mimos Gregorio Espino Vigo | Tintorería, Lavandería y Taller de Costura Propio',
     h1: 'Tintorería y Costura Mimos Gregorio Espino (Vigo)',
@@ -195,7 +210,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Sé Punto Colaborador de Tintorería Mimos | Oportunidad para Comercios',
     h1: 'Sé Punto Colaborador de Tintorería Mimos',
     description:
-      'Suma un servicio de tintorería profesional a tu comercio en Vigo o comarca. Sin inversión, con logística propia de furgoneta, operativa ágil en menos de 30 segundos y comisiones periódicas.',
+      'Suma un servicio de tintorería profesional a tu comercio en Vigo o comarca. Sin inversión, con logística de furgoneta propia, resguardos oficiales claros y comisiones periódicas.',
     canonical: 'https://www.tintoreriamimos.es/se-punto-colaborador',
     robots: 'index, follow',
     ogType: 'website',
@@ -396,7 +411,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Restauración Textil por Humo e Incendio en Vigo | Guía Técnica y Seguro',
     h1: 'Guía Técnica de Restauración Textil Post-Incendio: Descontaminación de Humo, Hollín y Cobertura del Seguro del Hogar en España',
     description:
-      'Guía técnica y pericial para recuperar ropa y textiles dañados por humo y hollín tras un incendio. Desodorización molecular, Wet Cleaning y tramitación con el seguro del hogar en Vigo.',
+      'Guía técnica para recuperar ropa y textiles dañados por humo y hollín tras un incendio. Desodorización profunda, lavado técnico especializado y documentación para tramitar con el seguro del hogar en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/blog/ropa-afectada-humo-incendio-siniestro-hogar',
     robots: 'index, follow',
     ogType: 'article',
@@ -409,7 +424,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/blog/protocolo-rotacion-apartamentos-turisticos-vigo': {
     title: 'Protocolo de Limpieza y Rotación de Pisos Turísticos en Vigo | Mimos',
-    h1: 'Protocolo de rotación en apartamentos turísticos en Vigo: el checklist para garantizar las 5 estrellas de limpieza',
+    h1: 'Protocolo de rotación en apartamentos turísticos en Vigo: checklist profesional de limpieza y gestión textil',
     description:
       'Checklist operativo para anfitriones de Airbnb y Booking en Vigo: gestión de lencería de cama y toallas, desinfección ágil entre huéspedes y cómo delegar la operativa completa.',
     canonical:

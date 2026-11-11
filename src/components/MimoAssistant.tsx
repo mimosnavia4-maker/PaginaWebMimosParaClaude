@@ -102,7 +102,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
     {
       id: 'welcome',
       sender: 'bot',
-      text: '¡Hola! Soy Mimo, el asistente de Tintorería Mimos Navia. Selecciona un tema o escribe tu consulta para informarte sobre horarios, tiendas, puntos colaboradores o abrir WhatsApp y darte el precio exacto de tus prendas.',
+      text: '¡Hola! Soy Mimo, el asistente interactivo de ayuda de Tintorería Mimos Navia. Selecciona un tema o haz tu consulta para informarte sobre horarios, tiendas, puntos colaboradores o abrir WhatsApp para consultar tus prendas.',
       whatsappUrl: CONTACT_INFO.whatsappGeneralHref,
       whatsappCtaLabel: 'Hablar con Mimo en WhatsApp',
     },

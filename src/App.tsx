@@ -42,6 +42,9 @@ const CareersPage = React.lazy(() =>
 const PuntoColaboradorPage = React.lazy(() =>
   import('./components/PuntoColaboradorPage').then((m) => ({ default: m.PuntoColaboradorPage }))
 );
+const TiendaNaviaPage = React.lazy(() =>
+  import('./components/TiendaNaviaPage').then((m) => ({ default: m.TiendaNaviaPage }))
+);
 const TiendaGregorioEspinoPage = React.lazy(() =>
   import('./components/TiendaGregorioEspinoPage').then((m) => ({ default: m.TiendaGregorioEspinoPage }))
 );
@@ -266,7 +269,7 @@ export function App() {
       }
       const target = e.target as HTMLElement | null;
       const anchor = target?.closest('a[href]') as HTMLAnchorElement | null;
-      if (!anchor) {
+      if (!anchor || (e as unknown as { __mimosTracked?: boolean }).__mimosTracked) {
         return;
       }
 
@@ -496,6 +499,8 @@ export function App() {
           <CareersPage onNavigate={handleNavigate} />
         ) : effectivePath === '/se-punto-colaborador' ? (
           <PuntoColaboradorPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/tienda-mimos-navia-vigo' || effectivePath === '/tienda/navia' ? (
+          <TiendaNaviaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
           <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (

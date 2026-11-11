@@ -123,6 +123,7 @@ Plataforma que integra servicios de limpieza técnica de instalaciones con la ca
 
 ### Red física, tiendas y zonas locales
 - [Buscador general de tiendas y puntos](https://www.tintoreriamimos.es/puntos-mimos)
+- [Sede central Tintorería Mimos Navia (Vigo)](https://www.tintoreriamimos.es/tienda-mimos-navia-vigo)
 - [Tienda propia Mimos Gregorio Espino (Vigo)](https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo)
 - [Puntos Mimos y tiendas propias en Vigo](https://www.tintoreriamimos.es/zonas/vigo)
 - [Punto colaborador Mimos en Redondela](https://www.tintoreriamimos.es/zonas/redondela)

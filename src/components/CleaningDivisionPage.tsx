@@ -18,6 +18,11 @@ import {
   GESTION_INTEGRAL_AREAS,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
+import {
+  trackFormPrepared,
+  trackWhatsAppClick,
+  trackPhoneClick,
+} from '../utils/analytics';
 
 interface CleaningDivisionPageProps {
   variant?: 'limpieza' | 'apartamentos' | 'empresas';
@@ -106,6 +111,10 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
     }
     setErrorMsg('');
     setPreparedReady(true);
+    trackFormPrepared(
+      typeof window !== 'undefined' ? window.location.pathname : `/b2b-${variant}`,
+      `quote_${variant}`
+    );
   };
 
   const handleCopy = async () => {
@@ -370,13 +379,13 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                 <span>Modalidad 3 · Servicio integral a medida para propietarios</span>
               </span>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                Nos Ocupamos de tu Apartamento
+                Coordinación Integral de Limpieza y Lavandería
               </h3>
               <p className="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed">
-                Tú eres el propietario. Nosotros podemos ocuparnos de organizar y coordinar el funcionamiento diario de tu alojamiento: desde las reservas y la atención a los huéspedes hasta la limpieza, la lavandería y el seguimiento del inmueble.
+                Tú gestionas tus reservas y calendario. Mimos se encarga de la parte operativa crítica: la limpieza exhaustiva en cada cambio de huésped (checkout) y la logística completa de lencería lavada, higienizada y planchada.
               </p>
               <p className="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
-                Un único equipo de confianza para que tu apartamento funcione de forma ordenada, profesional y sin quitarte tiempo. Esta modalidad se configura de forma totalmente personalizada: cada propietario decide qué tareas quiere delegar y cuáles desea mantener bajo su gestión.
+                Un interlocutor profesional para que cada nuevo huésped encuentre tu alojamiento impecable, con sábanas y toallas de calidad hotelera, resguardando la reputación de tu vivienda turística con puntualidad rigurosa.
               </p>
             </div>
 
@@ -622,6 +631,13 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       href={whatsappQuoteHref}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() =>
+                        trackWhatsAppClick(
+                          typeof window !== 'undefined' ? window.location.pathname : `/b2b-${variant}`,
+                          `b2b_${variant}_quote_form`,
+                          { service_id: `b2b-${variant}` }
+                        )
+                      }
                       className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors"
                     >
                       <MessageCircle className="w-4 h-4" aria-hidden="true" />

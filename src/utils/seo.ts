@@ -55,6 +55,8 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/punto-puntadas-no-aire-gondomar': '/zonas/gondomar',
   '/punto/puntadas-no-aire': '/zonas/gondomar',
   '/ficha/puntadas-no-aire': '/zonas/gondomar',
+  '/tienda/navia': '/tienda-mimos-navia-vigo',
+  '/tienda-navia': '/tienda-mimos-navia-vigo',
   '/tienda/gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
   '/se-punto-de-recogida.html': '/se-punto-colaborador',
   '/se-punto-de-recogida': '/se-punto-colaborador',
@@ -126,7 +128,7 @@ export const TIENDA_NAVIA_SCHEMA: Record<string, unknown> = {
   '@type': 'DryCleaningOrLaundry',
   '@id': 'https://www.tintoreriamimos.es/#tienda-navia',
   name: 'Tintorería Mimos – Sede Central Navia',
-  url: 'https://www.tintoreriamimos.es/',
+  url: 'https://www.tintoreriamimos.es/tienda-mimos-navia-vigo',
   telephone: '+34986125141',
   parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
   address: {
@@ -280,6 +282,11 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
           },
         })),
       }
+    );
+  } else if (cleanPath === '/tienda-mimos-navia-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      TIENDA_NAVIA_SCHEMA
     );
   } else if (cleanPath === '/tienda-mimos-gregorio-espino-vigo') {
     graph.push(

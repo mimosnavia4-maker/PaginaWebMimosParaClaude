@@ -264,7 +264,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
       'Entrega y recogida directa en nuestra tienda principal de Navia sin cita previa, tanto para tintorería, lavandería y textiles del hogar como para costura y arreglos de ropa.',
-    foto: '',
+    foto: '/images/navia/fachada-mimos-navia-vigo.jpg',
     referenciaLocal: 'En el barrio de Navia (Vigo), C/ As Teixugueiras, 11, bajo 9.',
     aparcamiento: 'Fácil aparcamiento en las inmediaciones y plazas públicas de Teixugueiras.',
     cierreTemporal: false,

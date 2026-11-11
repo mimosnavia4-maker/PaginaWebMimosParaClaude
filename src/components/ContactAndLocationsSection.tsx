@@ -47,6 +47,7 @@ import { PuntoTelasMasFicha } from './PuntoTelasMasFicha';
 import { PuntoGondomarFicha } from './PuntoGondomarFicha';
 import { PuntoRedondelaFicha } from './PuntoRedondelaFicha';
 import { PuntoArregla2Ficha } from './PuntoArregla2Ficha';
+import { TiendaNaviaFicha } from './TiendaNaviaFicha';
 import { Dialog } from './Dialog';
 
 interface ContactAndLocationsSectionProps {
@@ -398,7 +399,16 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
             {/* Fila 1: Botón Ver ficha detallada + Cómo llegar */}
             <div className="flex items-center gap-3">
-              {punto.id === 'gregorio-espino' ? (
+              {punto.id === 'as-teixugueiras' ? (
+                <a
+                  href="/tienda-mimos-navia-vigo"
+                  onClick={(e) => onNavigate('/tienda-mimos-navia-vigo', e)}
+                  className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
+                >
+                  <FileText className="w-4 h-4" aria-hidden="true" />
+                  <span>Ver ficha detallada</span>
+                </a>
+              ) : punto.id === 'gregorio-espino' ? (
                 <a
                   href="/tienda-mimos-gregorio-espino-vigo"
                   onClick={(e) => onNavigate('/tienda-mimos-gregorio-espino-vigo', e)}
@@ -1181,6 +1191,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         onClose={() => setPuntoModalFicha(null)}
         titleId={puntoModalFicha ? 'modal-ficha-titulo' : undefined}
         maxWidthClass={
+          puntoModalFicha?.id === 'as-teixugueiras' ||
           puntoModalFicha?.id === 'punto-o-porrino' ||
           puntoModalFicha?.id === 'punto-gondomar' ||
           puntoModalFicha?.id === 'punto-redondela' ||
@@ -1190,7 +1201,15 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         }
       >
         {puntoModalFicha && (
-          puntoModalFicha.id === 'punto-o-porrino' ? (
+          puntoModalFicha.id === 'as-teixugueiras' ? (
+            <div className="overflow-y-auto max-h-[92vh]">
+              <TiendaNaviaFicha
+                isModal={true}
+                onClose={() => setPuntoModalFicha(null)}
+                onNavigate={onNavigate}
+              />
+            </div>
+          ) : puntoModalFicha.id === 'punto-o-porrino' ? (
             <div className="overflow-y-auto max-h-[92vh]">
               <PuntoTelasMasFicha
                 isModal={true}
