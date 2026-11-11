@@ -52,8 +52,12 @@ ErrorDocument 404 /404.html
   RewriteRule ^punto/puntadas-no-aire/?$ /zonas/gondomar [L,R=301]
   RewriteRule ^ficha/puntadas-no-aire/?$ /zonas/gondomar [L,R=301]
 
-  # Redirección 301 de la ficha antigua de la tienda Gregorio Espino hacia la página canónica
+  # Redirección 301 de fichas y alias de tiendas propias hacia sus URLs canónicas
   RewriteRule ^tienda/gregorio-espino/?$ /tienda-mimos-gregorio-espino-vigo [L,R=301]
+  RewriteRule ^tienda-gregorio-espino/?$ /tienda-mimos-gregorio-espino-vigo [L,R=301]
+  RewriteRule ^tienda/navia/?$ /tienda-mimos-navia-vigo [L,R=301]
+  RewriteRule ^tienda-navia/?$ /tienda-mimos-navia-vigo [L,R=301]
+  RewriteRule ^central-navia/?$ /tienda-mimos-navia-vigo [L,R=301]
 
   # Quitar barra final en rutas (excepto la raíz /) para mantener una única URL canónica limpia
   RewriteCond %{REQUEST_URI} !^/$

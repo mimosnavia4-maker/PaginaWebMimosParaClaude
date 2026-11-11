@@ -423,9 +423,14 @@ if (fs.existsSync(baseIndexPath)) {
   const notFoundHtml = render404Html(baseHtml);
   fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf-8');
 
-  // Generar dist/sitemap.xml exclusivamente en dist/ (solo contiene las 31 rutas válidas indexables)
+  // Generar dist/sitemap.xml y sincronizar public/sitemap.xml (solo contiene las rutas válidas indexables)
   const sitemapXml = generateSitemapXml(ROUTE_SEO_MAP);
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf-8');
+  try {
+    fs.writeFileSync(path.resolve(process.cwd(), 'public', 'sitemap.xml'), sitemapXml, 'utf-8');
+  } catch {
+    // ignorar si public no es escribible
+  }
 
-  console.log(`[AEO Prerender] Generados ${Object.keys(ROUTE_SEO_MAP).length} archivos HTML estáticos + dist/404.html y dist/sitemap.xml.`);
+  console.log(`[AEO Prerender] Generados ${Object.keys(ROUTE_SEO_MAP).length} archivos HTML estáticos + dist/404.html y sitemap.xml.`);
 }

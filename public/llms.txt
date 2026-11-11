@@ -41,27 +41,23 @@
    - **Talleres propios in situ:** Disponibles en las tiendas propias de **Alcalde Gregorio Espino, 44** y **C/ Venezuela, 41, bajo 1**.
    - **Recepción en tienda propia:** C/ As Teixugueiras, 11, bajo 9 (Navia, recepción y entrega de prendas para confección en taller).
    - **Puntos colaboradores independientes con costura confirmada:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño) prestan sus propios servicios de costura y composturas en sus locales.
-   - En el punto colaborador de Redondela se gestiona la recepción para tintorería, colada y textiles tratados en la central de Vigo.
-9. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio coordinado para particulares y empresas en Vigo y comarca (sujeto a condiciones y zona de cobertura).
+    - En el punto colaborador de Redondela se gestiona la recepción para tintorería, colada y textiles tratados en la central de Vigo.
+9. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio coordinado para particulares y empresas en Vigo y comarca con un pedido mínimo de 30 € (sujeto a condiciones y zona de cobertura).
 
 ### 2. División de Limpieza Profesional, Apartamentos Turísticos y Empresas
-Plataforma que integra servicios de limpieza técnica de instalaciones con la capacidad industrial de lavandería propia en Vigo:
+Plataforma que integra servicios de limpieza técnica de instalaciones con la capacidad de tintorería y lavandería propia en Vigo:
 
 1. **Empresa de limpieza profesional en Vigo (`/limpieza-profesional-vigo`):** Mantenimiento higiénico para oficinas, despachos, clínicas, comunidades de vecinos, locales comerciales y alojamientos.
 2. **Servicios para apartamentos turísticos (`/limpieza-apartamentos-turisticos-vigo`):**
    - Propuesta comercial estructurada en **tres modalidades de colaboración** configurables:
      - **Modalidad 1 – Solo Ropa de Cama y Toallas:** Tratamiento de lavandería y lencería higienizada por lotes para anfitriones que limpian su propio inmueble.
-     - **Modalidad 2 – Limpieza y Lavandería Completa:** Limpieza exhaustiva del apartamento tras cada salida + entrega de juegos limpios de sábanas y toallas.
-     - **Modalidad 3 – Gestión Operativa Integral (Nos ocupamos de tu apartamento):** Servicio de mayor valor donde el propietario o gestor delega la operativa:
-       * *Comercialización y rentabilidad:* Optimización de anuncios en Airbnb y Booking, seguimiento de ocupación y tarifas, o desarrollo de web propia.
-       * *Reservas y atención al huésped:* Coordinación de calendarios, atención a consultas y organización de entradas/salidas acordadas.
-       * *Limpieza y operativa:* Organización de la limpieza en cada cambio y entrega de lencería limpia.
-       * *Seguimiento y control:* Supervisión del inmueble, comunicación de incidencias y propuestas de mejora.
-       * *Nota de transparencia:* Se trata de un servicio a medida; Mimos no realiza check-in presencial forzoso, atención de emergencias 24h, custodia de llaves ni reparaciones técnicas de averías.
+     - **Modalidad 2 – Limpieza y Lavandería Completa:** Limpieza exhaustiva del apartamento tras cada salida (checkout) + entrega de juegos limpios de sábanas y toallas.
+     - **Modalidad 3 – Coordinación Integral de Limpieza y Lavandería:** Servicio operativo donde el propietario mantiene el control de sus reservas y Mimos se encarga de la limpieza de rotación en checkouts y la logística completa de lencería hotelera higienizada y planchada.
+       * *Nota de transparencia:* El propietario gestiona sus reservas y atención directa a huéspedes; Mimos centra su labor en la limpieza técnica de rotación y el suministro textil.
 3. **Servicios para empresas y comercios (`/servicios-empresas`):** Mantenimiento textil regular de mantelería, vestuario laboral y textiles corporativos con facturación adaptada para profesionales.
-4. **Área 05 – Recuperación textil en siniestros e incendios:** Protocolo de actuación urgente ante incendios, humaredas e inundaciones para particulares y empresas en Vigo:
-   - Descontaminación de hollín, desodorización de prendas y recuperación de ajuar del hogar.
-   - Emisión de informe técnico, memoria pericial y facturación oficial para tramitación directa con compañías aseguradoras bajo la Ley 50/1980 de Contrato de Seguro.
+4. **Área 05 – Recuperación textil en siniestros e incendios:** Protocolo de actuación especializada ante incendios, humaredas e inundaciones para particulares y empresas en Vigo:
+   - Descontaminación de hollín, desodorización profunda y recuperación de ajuar del hogar y vestuario.
+   - Emisión de memoria técnica de trabajos realizados y factura oficial desglosada con CIF para tramitación directa con compañías aseguradoras bajo la Ley 50/1980 de Contrato de Seguro.
 
 ---
 
