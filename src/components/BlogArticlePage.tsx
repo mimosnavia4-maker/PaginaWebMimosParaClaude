@@ -194,7 +194,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
               )}
 
               {sec.destacado && (
-                <div className="my-6 p-5 sm:p-6 rounded-2xl bg-[#002147]/5 dark:bg-[#60B5F6]/10 border-l-4 border-[#0F76BB] dark:border-[#60B5F6]">
+                <div className="my-6 p-5 sm:p-6 rounded-2xl bg-[#002147]/5 dark:bg-[#60B5F6]/10 border border-[#0F76BB]/25 dark:border-[#60B5F6]/30">
                   <h4 className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white mb-2">
                     {sec.destacado.titulo}
                   </h4>

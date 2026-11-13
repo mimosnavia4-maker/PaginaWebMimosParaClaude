@@ -32,7 +32,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Tintorería Mimos Navia – Tintorería, Lavandería y Limpieza en Vigo',
     h1: 'Cuidamos tu ropa, tus textiles del hogar y tus espacios con mimo profesional.',
     description:
-      'Tintorería y lavandería profesional en Vigo con recogida a domicilio, 3 tiendas propias, red de puntos colaboradores y limpieza de apartamentos turísticos.',
+      'Tintorería, lavandería, costura con 18 arreglos, limpieza de sofás a domicilio, limpieza y arreglo de alfombras y limpieza profesional en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/',
     robots: 'index, follow',
     ogType: 'website',
@@ -124,6 +124,20 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     ogType: 'website',
     breadcrumbName: 'Textiles del hogar en Vigo',
   },
+  '/limpieza-sofas-vigo': {
+    title: 'Limpieza de Sofás y Tapicerías a Domicilio en Vigo | Tintorería Mimos',
+    h1: 'Limpieza de sofás y tapicerías a domicilio en Vigo',
+    description:
+      'Limpieza profesional de sofás, chaiselongue, sillones, sillas y cabeceros tapizados a domicilio en Vigo mediante inyección-extracción. Pide presupuesto con foto a Mimo.',
+    canonical: 'https://www.tintoreriamimos.es/limpieza-sofas-vigo',
+    robots: 'index, follow',
+    ogType: 'website',
+    breadcrumbName: 'Limpieza de sofás en Vigo',
+    breadcrumbParent: {
+      name: 'Limpieza profesional',
+      url: 'https://www.tintoreriamimos.es/limpieza-profesional-vigo',
+    },
+  },
   '/recogida-a-domicilio': {
     title: 'Tintorería y Lavandería a Domicilio en Vigo y Comarca | Mimos',
     h1: 'Recogida y entrega de prendas a domicilio y en puntos colaboradores',
@@ -136,10 +150,10 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/limpieza-profesional-vigo': {
     title:
-      'Cuidado Textil y Limpieza para Apartamentos Turísticos y Empresas en Vigo | Mimos',
-    h1: 'Cuidado textil profesional y limpieza para apartamentos turísticos y empresas en Vigo',
+      'Limpieza Profesional, Sofás a Domicilio y Lavandería para Empresas en Vigo | Mimos',
+    h1: 'Limpieza profesional, sofás a domicilio y lavandería para empresas y alojamientos en Vigo',
     description:
-      'Servicios especializados de lavandería, cuidado textil e higienización para alojamientos turísticos y empresas en Vigo respaldados por Tintorería Mimos Navia.',
+      'Servicios especializados de limpieza profesional de oficinas, comunidades y viviendas, limpieza de sofás y tapicerías a domicilio, apartamentos turísticos y lavandería en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/limpieza-profesional-vigo',
     robots: 'index, follow',
     ogType: 'website',
@@ -157,10 +171,10 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     breadcrumbName: 'Apartamentos turísticos en Vigo',
   },
   '/servicios-empresas': {
-    title: 'Lavandería y Tintorería para Empresas y Negocios en Vigo | Mimos',
-    h1: 'Servicios de lavandería, tintorería y limpieza para empresas en Vigo',
+    title: 'Lavandería, Limpieza y Tapicerías para Empresas en Vigo | Mimos',
+    h1: 'Servicios de lavandería, tintorería, tapicerías y limpieza para empresas en Vigo',
     description:
-      'Servicios de lavandería, planchado y cuidado textil para empresas, alojamientos turísticos y comercios locales en Vigo. Presupuestos y facturación adaptada.',
+      'Servicios de lavandería, planchado, limpieza de sofás y tapicerías, uniformidad y mantenimiento para empresas, clínicas, hostelería y comercios locales en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/servicios-empresas',
     robots: 'index, follow',
     ogType: 'website',

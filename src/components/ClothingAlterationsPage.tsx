@@ -435,20 +435,20 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
         </div>
       </section>
 
-      {/* 2. QUÉ ARREGLAMOS (Solo trabajos confirmados en prendas confirmadas — Sección 7.2) */}
+      {/* 2. QUÉ ARREGLAMOS: Los 18 servicios completos organizados por categoría y disponibilidad */}
       <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-8 space-y-6">
               <div>
                 <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
-                  Composturas y costura de prendas de vestir
+                  Composturas de ropa de vestir · Tiendas propias y puntos con costura
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
                   Qué arreglos de ropa realizamos
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-                  Trabajamos los arreglos y ajustes esenciales para que tus prendas sienten bien y duren más temporadas, siempre con revisión previa del tejido y las costuras:
+                  Trabajamos tanto las composturas habituales del día a día como trabajos especializados de taller propio (piel, prendas delicadas, bordados, confección hogar y servicio express), siempre con revisión previa del tejido y las costuras:
                 </p>
               </div>
 
@@ -459,6 +459,9 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] flex flex-col justify-between"
                   >
                     <div>
+                      <p className="text-[11px] font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+                        {item.disponibilidad}
+                      </p>
                       <div className="flex items-center gap-2 mb-2">
                         <Scissors
                           className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0"
@@ -500,7 +503,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 </ul>
 
                 <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  <strong>Consultas sobre otros textiles:</strong> Para ropa del hogar, cortinas, estores, cojines, prendas de piel u otros trabajos especiales, consulta previamente con Mimo por WhatsApp para verificar disponibilidad y en qué establecimiento puede atenderse.
+                  <strong>Especialidades y hogar en tienda propia:</strong> Arreglos en piel, bordados personalizados, confección de cortinas, estores y cojines, y servicio express en nuestro taller de <strong>Gregorio Espino</strong> (con recepción previa en Navia bajo consulta con Mimo).
                 </div>
               </div>
 
@@ -516,6 +519,87 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* 2.B. Especialidades de taller propio (Delicadas, Piel, Bordados y Express) + Confección Hogar */}
+          <div className="pt-10 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-7 space-y-5">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+                  Especialidades de taller propio en Vigo
+                </p>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                  Prendas delicadas, arreglos de piel, bordados y servicio express
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {SERVICIO_ARREGLOS_DATA.especialidadesTallerPropio.map((esp) => (
+                  <div
+                    key={esp.id}
+                    className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]"
+                  >
+                    <p className="text-[11px] font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+                      {esp.disponibilidad}
+                    </p>
+                    <h4 className="text-base font-extrabold text-[#002147] dark:text-white mb-1.5">
+                      {esp.titulo}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {esp.descripcion}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 rounded-2xl border border-[#002147]/20 dark:border-[#0F76BB]/40 bg-slate-50 dark:bg-[#0b1d36] p-6 sm:p-7 space-y-4">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+                  Taller propio Gregorio Espino · Vigo
+                </p>
+                <h3 className="text-xl font-extrabold text-[#002147] dark:text-white">
+                  Confección de textiles del hogar a medida
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+                  Además de la compostura de prendas de vestir, confeccionamos textiles para tu vivienda u oficina bajo medida y valoración en taller:
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                {SERVICIO_ARREGLOS_DATA.confeccionHogar.map((conf) => (
+                  <div
+                    key={conf.id}
+                    className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324]"
+                  >
+                    <h4 className="text-sm font-extrabold text-[#002147] dark:text-white flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                      <span>{conf.titulo}</span>
+                    </h4>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed pl-6 mt-1">
+                      {conf.descripcion}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 2.C. Índice completo de los 18 servicios de costura y confección */}
+          <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]">
+            <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-3">
+              Listado completo de trabajos de costura y confección (18 servicios)
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+              {SERVICIO_ARREGLOS_DATA.catalogoCompleto18Puntos.map((puntoNombre, idx) => (
+                <li key={puntoNombre} className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6] tabular-nums w-5 shrink-0">
+                    {idx + 1 < 10 ? `0${idx + 1}.` : `${idx + 1}.`}
+                  </span>
+                  <span>{puntoNombre}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -803,15 +887,32 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Bajos o bastillas">Bajos o bastillas</option>
-                  <option value="Cambio o arreglo de cremallera">
-                    Cambio o arreglo de cremallera
+                  <option value="Cambio o reparación de cremallera">
+                    Cambio o reparación de cremallera
                   </option>
                   <option value="Estrechar o ensanchar prenda">
                     Estrechar o ensanchar prenda
                   </option>
                   <option value="Ajuste de cintura">Ajuste de cintura</option>
-                  <option value="Botones o cierres">Botones o cierres</option>
+                  <option value="Cambio o reparación de botones">
+                    Cambio o reparación de botones
+                  </option>
                   <option value="Zurcido, descosido o roto">Zurcido, descosido o roto</option>
+                  <option value="Arreglo en prenda delicada o de ceremonia">
+                    Arreglo en prenda delicada o de ceremonia
+                  </option>
+                  <option value="Arreglo en prenda de piel">
+                    Arreglo en prenda de piel (Gregorio Espino / Navia)
+                  </option>
+                  <option value="Bordado personalizado">
+                    Bordado personalizado (Gregorio Espino)
+                  </option>
+                  <option value="Confección de cortinas, estores o cojines">
+                    Confección de cortinas, estores o cojines
+                  </option>
+                  <option value="Servicio de arreglo express">
+                    Servicio de arreglo express (consultar en Gregorio Espino)
+                  </option>
                   <option value="Arreglo + Tintorería / Planchado">
                     Arreglo + Tintorería / Planchado
                   </option>
@@ -833,11 +934,15 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 >
                   <option value="Pantalón">Pantalón</option>
                   <option value="Falda">Falda</option>
-                  <option value="Vestido">Vestido</option>
+                  <option value="Vestido o prenda delicada">Vestido o prenda delicada</option>
                   <option value="Camisa o blusa">Camisa o blusa</option>
                   <option value="Chaqueta o americana">Chaqueta o americana</option>
                   <option value="Abrigo o gabardina">Abrigo o gabardina</option>
-                  <option value="Otra prenda (consultar)">Otra prenda (consultar)</option>
+                  <option value="Prenda de piel o cuero">Prenda de piel o cuero</option>
+                  <option value="Cortinas, estores o cojines">Cortinas, estores o cojines</option>
+                  <option value="Otra prenda o textil (consultar)">
+                    Otra prenda o textil (consultar)
+                  </option>
                 </select>
               </div>
 

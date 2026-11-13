@@ -155,7 +155,26 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<h2>Preguntas frecuentes sobre limpieza de pieles y cuero en Vigo</h2>` +
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
+  } else if (routePath === '/limpieza-sofas-vigo') {
+    specificHtml =
+      `<section>` +
+      `<p>Servicio 100 % a domicilio en Vigo y área de influencia para limpieza de sofás de 2, 3 o más plazas, chaiselongue, sillones, sillas tapizadas, cabeceros y colchones (no realizamos tapicerías de coches). Método mediante aspirado en seco, pretratamiento e inyección-extracción controlada o baja humedad/seco en código S, con secado natural al aire sin vapor seco, enzimáticos ni ventiladores.</p>` +
+      `<h2>Cómo solicitar presupuesto por foto con Mimo</h2>` +
+      `<ul>` +
+      `<li>Foto frontal completa del sofá o piezas, fotos de cerca de manchas y foto del tejido junto con la etiqueta W, S, WS o X si la conserva.</li>` +
+      `<li>Número de plazas o piezas, origen aproximado de manchas (y si se aplicó remedio casero previo) y localidad o código postal.</li>` +
+      `</ul>` +
+      `<h2>Preguntas frecuentes sobre limpieza de sofás</h2>` +
+      `<dl>` +
+      `<dt><strong>¿La limpieza del sofá se hace en casa o os lo lleváis?</strong></dt><dd>100 % en tu vivienda o local sin desmontar muebles; fundas desenfundables también en nuestras tiendas de Vigo.</dd>` +
+      `<dt><strong>¿Cómo seca el sofá y qué métodos usáis?</strong></dt><dd>Inyección-extracción controlada o método en seco código S, con secado natural al aire ventilando la estancia (sin vapor seco, enzimáticos, ozono ni ventiladores).</dd>` +
+      `<dt><strong>¿Limpiáis tapicerías de coches?</strong></dt><dd>No; el servicio se centra exclusivamente en mobiliario tapizado de hogares, alojamientos y empresas.</dd>` +
+      `</dl>` +
+      `</section>`;
   } else if (routePath === '/arreglos-de-ropa-vigo') {
+    const catalogoHtml = SERVICIO_ARREGLOS_DATA.catalogoCompleto18Puntos
+      .map((item) => `<li>${escapeHtml(item)}</li>`)
+      .join('');
     const faqsHtml = SERVICIO_ARREGLOS_DATA.preguntasFrecuentes
       .map(
         (f) =>
@@ -165,6 +184,8 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
     specificHtml =
       `<section>` +
       `<p>${escapeHtml(SERVICIO_ARREGLOS_DATA.subtituloCabecera)}</p>` +
+      `<h2>Las 18 especialidades de costura y arreglos de ropa</h2>` +
+      `<ol>${catalogoHtml}</ol>` +
       `<h2>Preguntas frecuentes sobre costura y arreglos de ropa</h2>` +
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
@@ -240,10 +261,11 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
     `<li><a href="/lavanderia-vigo">Lavandería</a></li>` +
     `<li><a href="/planchado-vigo">Solo planchado</a></li>` +
     `<li><a href="/colada-familiar-vigo">Colada familiar</a></li>` +
-    `<li><a href="/textiles-hogar-vigo">Textiles del hogar</a></li>` +
-    `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras</a></li>` +
+    `<li><a href="/textiles-hogar-vigo">Textiles del hogar (edredones, cortinas y estores)</a></li>` +
+    `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás y tapicerías a domicilio</a></li>` +
+    `<li><a href="/limpieza-alfombras-vigo">Limpieza y arreglo de alfombras</a></li>` +
     `<li><a href="/limpieza-pieles-cuero-vigo">Pieles y cuero</a></li>` +
-    `<li><a href="/arreglos-de-ropa-vigo">Arreglos de ropa</a></li>` +
+    `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa (18 servicios)</a></li>` +
     `<li><a href="/recogida-a-domicilio">Recogida a domicilio</a></li>` +
     `<li><a href="/limpieza-profesional-vigo">Limpieza profesional</a></li>` +
     `<li><a href="/limpieza-apartamentos-turisticos-vigo">Apartamentos turísticos</a></li>` +
@@ -356,10 +378,11 @@ function render404Html(baseHtml: string): string {
     `<nav aria-label="Servicios recomendados">` +
     `<ul>` +
     `<li><a href="/">Portada principal de Tintorería Mimos</a></li>` +
-    `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras con recogida a domicilio</a></li>` +
+    `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás y tapicerías a domicilio</a></li>` +
+    `<li><a href="/limpieza-alfombras-vigo">Limpieza y arreglo de alfombras con recogida a domicilio</a></li>` +
     `<li><a href="/tintoreria-vigo">Tintorería profesional en Vigo</a></li>` +
     `<li><a href="/lavanderia-vigo">Lavandería y colada por kilos</a></li>` +
-    `<li><a href="/arreglos-de-ropa-vigo">Arreglos de ropa y costura</a></li>` +
+    `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa</a></li>` +
     `<li><a href="/contacto">Contacto, teléfonos y horarios</a></li>` +
     `</ul>` +
     `</nav>` +

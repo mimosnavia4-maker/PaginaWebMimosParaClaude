@@ -32,6 +32,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   const [isTrackingModalOpen, setIsTrackingModalOpen] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
   const menuCloseTimeoutRef = useRef<number | null>(null);
+  const trackingLinkRef = useRef<HTMLAnchorElement | null>(null);
+
+  const trackingWhatsAppUrl = buildMimoWhatsAppUrl(
+    orderNumber.trim()
+      ? `Hola, Mimo. Quiero consultar el estado de mi encargo/ticket n.º ${orderNumber.trim()}: `
+      : 'Hola, Mimo. Quiero consultar el estado de mi encargo o ticket oficial: '
+  );
 
   // Limpieza defensiva de cualquier atributo de estilo residual
   useEffect(() => {
@@ -151,59 +158,59 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 4 Columnas milimétricamente alineadas en escritorio
                 ========================================================================= */}
             <nav
-              className="hidden lg:block flex-1 max-w-2xl xl:max-w-3xl mx-1"
+              className="hidden lg:block flex-1 max-w-3xl mx-1"
               aria-label="Navegación principal estructurada"
             >
               <div className="grid grid-cols-4 gap-x-2 gap-y-1">
-                {/* ----------------- FILA SUPERIOR: Accesos directos y teléfono ----------------- */}
+                {/* ----------------- FILA SUPERIOR: Servicios gancho directos y teléfono ----------------- */}
                 {/* Columna 1 Superior: Costura y arreglos */}
                 <div className="flex items-center justify-center">
                   <a
                     href="/arreglos-de-ropa-vigo"
                     onClick={(e) => handleLinkClick('/arreglos-de-ropa-vigo', e)}
                     onMouseEnter={() => setActiveMenu(null)}
-                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold truncate ${
+                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/arreglos-de-ropa-vigo'
                         ? 'bg-white/20 text-white font-extrabold'
                         : 'text-slate-300 hover:text-white hover:bg-white/10'
                     }`}
-                    title="Taller propio de costura y arreglos de ropa en Vigo"
+                    title="Taller propio de costura y 18 especialidades de arreglos de ropa en Vigo"
                   >
                     Costura y arreglos
                   </a>
                 </div>
 
-                {/* Columna 2 Superior: Blog */}
+                {/* Columna 2 Superior: Limpieza de sofás */}
                 <div className="flex items-center justify-center">
                   <a
-                    href="/blog"
-                    onClick={(e) => handleLinkClick('/blog', e)}
+                    href="/limpieza-sofas-vigo"
+                    onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
                     onMouseEnter={() => setActiveMenu(null)}
-                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold truncate ${
-                      currentPath.startsWith('/blog')
+                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
+                      currentPath === '/limpieza-sofas-vigo'
                         ? 'bg-white/20 text-white font-extrabold'
                         : 'text-slate-300 hover:text-white hover:bg-white/10'
                     }`}
-                    title="Blog con consejos y guías prácticas de cuidado textil"
+                    title="Limpieza profesional de sofás, sillones y tapicerías a domicilio en Vigo"
                   >
-                    Blog
+                    Limpieza de sofás
                   </a>
                 </div>
 
-                {/* Columna 3 Superior: Contacto */}
+                {/* Columna 3 Superior: Arreglo de alfombras */}
                 <div className="flex items-center justify-center">
                   <a
-                    href="/contacto"
-                    onClick={(e) => handleLinkClick('/contacto', e)}
+                    href="/limpieza-alfombras-vigo"
+                    onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
                     onMouseEnter={() => setActiveMenu(null)}
-                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold truncate ${
-                      currentPath === '/contacto'
+                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
+                      currentPath === '/limpieza-alfombras-vigo'
                         ? 'bg-white/20 text-white font-extrabold'
                         : 'text-slate-300 hover:text-white hover:bg-white/10'
                     }`}
-                    title="Contacto, horarios, WhatsApp y formulario directo"
+                    title="Limpieza profunda y arreglo de flecos, ribetes y bordes de alfombras"
                   >
-                    Contacto
+                    Arreglo de alfombras
                   </a>
                 </div>
 
@@ -415,7 +422,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                       Trajes, americanas, vestidos de fiesta, novias, comunión y abrigos.
                     </p>
                     <p className="text-[11px] text-slate-500 mt-0.5">
-                      Desmanchado técnico manual y limpieza ecológica en seco Wet Cleaning.
+                      Desmanchado técnico manual, limpieza en seco profesional y Wet Cleaning ecológico.
                     </p>
                     <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
                       <span>Ver prendas y tratamientos</span>
@@ -467,10 +474,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                       </span>
                     </div>
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Edredones de plumas, mantas, colchas, fundas de sofá y cortinas.
+                      Edredones de plumas, mantas, colchas, cortinas, estores y fundas.
                     </p>
                     <p className="text-[11px] text-slate-500 mt-0.5">
-                      Tratamiento antiácaros, desapelmazado térmico y secado controlado.
+                      Maquinaria de gran capacidad, higienización y secado controlado.
                     </p>
                     <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
                       <span>Ver textiles del hogar</span>
@@ -515,20 +522,20 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Limpieza de Alfombras
+                        Limpieza y Arreglo de Alfombras
                       </span>
                       <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold">
-                        A domicilio
+                        Recogida / Tienda
                       </span>
                     </div>
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Lavado en plano, desinfección profunda y recogida en furgoneta.
+                      Limpieza en taller y reparación de flecos, ribetes y bordes.
                     </p>
                     <p className="text-[11px] text-slate-500 mt-0.5">
-                      Servicio en todas nuestras tiendas o recogida directa en Vigo y comarca.
+                      Recogida en domicilio (importe mínimo a consultar) o entrega en nuestras 3 tiendas propias.
                     </p>
                     <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
-                      <span>Ver limpieza de alfombras</span>
+                      <span>Ver limpieza y arreglos</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </a>
@@ -661,8 +668,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   </h3>
                   <div className="space-y-3 pt-1">
                     <a
-                      href="/textiles-hogar-vigo"
-                      onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
+                      href="/limpieza-sofas-vigo"
+                      onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
                       className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#C85A17]/60 hover:shadow-xs transition-all"
                     >
                       <div className="flex items-center justify-between mb-1">
@@ -675,23 +682,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         </span>
                       </div>
                       <p className="text-xs text-slate-600">
-                        Inyección-extracción y desinfección profunda en tu propio hogar o local sin desmontar piezas.
+                        Inyección-extracción e higienización profunda en tu propia vivienda sin desmontar el sofá.
                       </p>
                     </a>
 
                     <a
-                      href="/textiles-hogar-vigo"
-                      onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
+                      href="/limpieza-sofas-vigo"
+                      onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
                       className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#C85A17]/60 hover:shadow-xs transition-all"
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-xs font-bold text-[#002147]">
-                          Higienización in situ de tapicerías
+                          Higienización in situ de tapicerías y colchones
                         </span>
                         <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                       </div>
                       <p className="text-xs text-slate-600">
-                        Sillas de oficina, butacas, cabeceros de cama y banquetas tapizadas.
+                        Sillones, sillas tapizadas, cabeceros de cama, colchones y fundas desenfundables.
                       </p>
                     </a>
 
@@ -908,7 +915,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     ))}
                   </div>
 
-                  <div className="pt-3">
+                  <div className="pt-3 space-y-2.5">
                     <a
                       href="/se-punto-colaborador"
                       onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
@@ -924,6 +931,25 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                       </div>
                       <ArrowRight className="w-4 h-4 text-[#60B5F6] group-hover:translate-x-1 transition-transform" />
                     </a>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <a
+                        href="/contacto"
+                        onClick={(e) => handleLinkClick('/contacto', e)}
+                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#002147] text-xs font-bold text-[#002147] transition-colors"
+                      >
+                        <span>Contacto y horarios</span>
+                        <ArrowRight className="w-3 h-3 text-[#C85A17]" />
+                      </a>
+                      <a
+                        href="/blog"
+                        onClick={(e) => handleLinkClick('/blog', e)}
+                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#002147] text-xs font-bold text-[#002147] transition-colors"
+                      >
+                        <span>Blog y guías textiles</span>
+                        <ArrowRight className="w-3 h-3 text-[#C85A17]" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -978,14 +1004,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                const targetUrl = buildMimoWhatsAppUrl(
-                  orderNumber.trim()
-                    ? `Hola, Mimo. Quiero consultar el estado de mi encargo/ticket n.º ${orderNumber.trim()}: `
-                    : 'Hola, Mimo. Quiero consultar el estado de mi encargo o ticket oficial: '
-                );
-                trackWhatsAppClick(currentPath, 'modal_order_status_submit');
-                window.open(targetUrl, '_blank', 'noopener,noreferrer');
-                setIsTrackingModalOpen(false);
+                trackingLinkRef.current?.click();
               }}
               className="space-y-3.5"
             >
@@ -1007,13 +1026,20 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 </div>
               </div>
 
-              <button
-                type="submit"
+              <a
+                ref={trackingLinkRef}
+                href={trackingWhatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackWhatsAppClick(currentPath, 'modal_order_status_submit');
+                  setIsTrackingModalOpen(false);
+                }}
                 className="w-full py-2.5 px-4 rounded-xl bg-[#178A47] hover:bg-[#126E38] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Consultar por WhatsApp con Mimo</span>
-              </button>
+              </a>
             </form>
 
             <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
@@ -1132,7 +1158,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Limpieza de alfombras a domicilio
+                        • Limpieza y arreglo de alfombras (flecos y bordes)
                       </a>
                       <a
                         href="/limpieza-pieles-cuero-vigo"
@@ -1153,7 +1179,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/servicios-empresas', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Lavandería para empresas y hostelería
+                        • Uniformidad laboral y empresas
                       </a>
                     </div>
                   )}
@@ -1184,14 +1210,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/limpieza-profesional-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Oficinas, despachos y comunidades
+                        • Oficinas, despachos, comunidades y locales
                       </a>
                       <a
-                        href="/textiles-hogar-vigo"
-                        onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
+                        href="/limpieza-sofas-vigo"
+                        onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Limpieza de sofás y tapicerías in situ
+                        • Limpieza de sofás y tapicerías a domicilio
                       </a>
                     </div>
                   )}
@@ -1258,7 +1284,25 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   )}
                 </div>
 
-                {/* 5. Costura y arreglos */}
+                {/* 5. Limpieza de sofás a domicilio */}
+                <a
+                  href="/limpieza-sofas-vigo"
+                  onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
+                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-[#60B5F6] font-extrabold"
+                >
+                  Limpieza de sofás a domicilio
+                </a>
+
+                {/* 6. Arreglo y limpieza de alfombras */}
+                <a
+                  href="/limpieza-alfombras-vigo"
+                  onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-[#60B5F6] font-extrabold"
+                >
+                  Limpieza y arreglo de alfombras
+                </a>
+
+                {/* 7. Costura y arreglos */}
                 <a
                   href="/arreglos-de-ropa-vigo"
                   onClick={(e) => handleLinkClick('/arreglos-de-ropa-vigo', e)}

@@ -18,6 +18,9 @@ const CarpetCleaningPage = React.lazy(() =>
 const LeatherCleaningPage = React.lazy(() =>
   import('./components/LeatherCleaningPage').then((m) => ({ default: m.LeatherCleaningPage }))
 );
+const SofaCleaningPage = React.lazy(() =>
+  import('./components/SofaCleaningPage').then((m) => ({ default: m.SofaCleaningPage }))
+);
 const ClothingAlterationsPage = React.lazy(() =>
   import('./components/ClothingAlterationsPage').then((m) => ({ default: m.ClothingAlterationsPage }))
 );
@@ -468,6 +471,8 @@ export function App() {
           <CarpetCleaningPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-pieles-cuero-vigo' ? (
           <LeatherCleaningPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/limpieza-sofas-vigo' ? (
+          <SofaCleaningPage onNavigate={handleNavigate} />
         ) : effectivePath === '/arreglos-de-ropa-vigo' ? (
           <ClothingAlterationsPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-profesional-vigo' ? (

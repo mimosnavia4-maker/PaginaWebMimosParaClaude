@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowLeft, ExternalLink, FileCheck2 } from 'lucide-react';
 import { CONTACT_INFO } from '../data/mimosData';
 
@@ -9,6 +9,7 @@ interface SubsidiesPageProps {
 
 export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigate }) => {
   const isFeder = variant === 'feder';
+  const [failedImgs, setFailedImgs] = useState<Record<string, boolean>>({});
 
   return (
     <main
@@ -86,13 +87,17 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
 
             <div className="p-6 sm:p-8 space-y-8">
               {/* Cartel oficial FEDER sobre fondo blanco para garantizar contraste institucional */}
-              <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 flex justify-center shadow-xs">
-                <img
-                  src="/images/subvenciones/feder-reacciona-tic.png"
-                  alt="Cartel informativo oficial del Programa Re-Acciona TIC cofinanciado por la Unión Europea (Programa Operativo FEDER Galicia 2014-2020), Xunta de Galicia, IGAPE y AMTEGA"
-                  className="w-full max-w-3xl h-auto object-contain"
-                />
-              </div>
+              {!failedImgs.feder ? (
+                <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 flex justify-center shadow-xs">
+                  <img
+                    src="/images/subvenciones/feder-reacciona-tic.png"
+                    alt="Cartel informativo oficial del Programa Re-Acciona TIC cofinanciado por la Unión Europea (Programa Operativo FEDER Galicia 2014-2020), Xunta de Galicia, IGAPE y AMTEGA"
+                    referrerPolicy="no-referrer"
+                    onError={() => setFailedImgs((prev) => ({ ...prev, feder: true }))}
+                    className="w-full max-w-3xl h-auto object-contain"
+                  />
+                </div>
+              ) : null}
 
               {/* Transcripción accesible íntegra del cartel oficial */}
               <div className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 p-5 sm:p-6 space-y-3 text-center">
@@ -131,13 +136,17 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
             <div className="p-6 sm:p-8 space-y-10">
               {/* 1. Cartel oficial INEGA / Xunta de Galicia */}
               <section aria-labelledby="cartel-bono-energia" className="space-y-4">
-                <div className="bg-white rounded-xl border border-slate-200 p-3 sm:p-5 flex justify-center shadow-xs">
-                  <img
-                    src="/images/subvenciones/programa-bono-energia-peme-2025.jpg"
-                    alt="Cartel informativo oficial de la Convocatoria de Subvencións do Instituto Enerxético de Galicia para proxectos de Mellora Enerxética dirixido ao sector servizos — Programa Bono enerxía Peme 2025 (IN417Z)"
-                    className="w-full max-w-3xl h-auto object-contain"
-                  />
-                </div>
+                {!failedImgs.bono ? (
+                  <div className="bg-white rounded-xl border border-slate-200 p-3 sm:p-5 flex justify-center shadow-xs">
+                    <img
+                      src="/images/subvenciones/programa-bono-energia-peme-2025.jpg"
+                      alt="Cartel informativo oficial de la Convocatoria de Subvencións do Instituto Enerxético de Galicia para proxectos de Mellora Enerxética dirixido ao sector servizos — Programa Bono enerxía Peme 2025 (IN417Z)"
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, bono: true }))}
+                      className="w-full max-w-3xl h-auto object-contain"
+                    />
+                  </div>
+                ) : null}
 
                 <div
                   id="cartel-bono-energia"
@@ -172,14 +181,18 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                   </h2>
                 </div>
 
-                <div className="bg-white dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 flex justify-center">
-                  <img
-                    src="/images/subvenciones/secadora-domus-dtt2-18e.jpg"
-                    alt="Sustitución de secadora Girbau STI-23 por nueva secadora eficiente de doble tambor Domus DTT2-18 E en Tintorería Mimos Navia"
-                    className="w-full max-w-md h-auto rounded-lg object-contain shadow-sm"
-                    loading="lazy"
-                  />
-                </div>
+                {!failedImgs.secadora ? (
+                  <div className="bg-white dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 flex justify-center">
+                    <img
+                      src="/images/subvenciones/secadora-domus-dtt2-18e.jpg"
+                      alt="Sustitución de secadora Girbau STI-23 por nueva secadora eficiente de doble tambor Domus DTT2-18 E en Tintorería Mimos Navia"
+                      className="w-full max-w-md h-auto rounded-lg object-contain shadow-sm"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, secadora: true }))}
+                    />
+                  </div>
+                ) : null}
               </section>
             </div>
           </article>

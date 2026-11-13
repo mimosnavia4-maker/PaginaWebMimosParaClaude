@@ -381,6 +381,77 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
         })),
       }
     );
+  } else if (cleanPath === '/limpieza-sofas-vigo') {
+    const sofaFaqs = [
+      {
+        pregunta: '1. ¿La limpieza del sofá se hace en mi propia casa o os lo lleváis?',
+        respuesta:
+          'La limpieza de sofás y tapicerías fijas se realiza al 100 % en tu domicilio o negocio mediante equipo portátil profesional, sin desmontar estructuras ni trasladar muebles. Si tu sofá tiene fundas desenfundables lavables, también podemos tratarlas en nuestras instalaciones de Vigo.',
+      },
+      {
+        pregunta: '2. ¿Cómo sé el precio de limpiar mi sofá o mis sillas?',
+        respuesta:
+          'No publicamos tarifas estándar cerradas porque el presupuesto depende del número de plazas o piezas, el tipo de tejido, el estado de las manchas y la localidad (sujeto a importe mínimo de visita a consultar). Envía tus fotos a Mimo por WhatsApp para recibir valoración personalizada.',
+      },
+      {
+        pregunta: '3. ¿Cómo seca el sofá y cuánto tiempo tarda?',
+        respuesta:
+          'Durante el servicio extraemos la mayor parte de la humedad aplicada, pero no utilizamos secadores de aire caliente ni ventiladores industriales: la tapicería termina de secar de forma natural al aire. El tiempo depende del grosor de la tela, la humedad ambiental y la ventilación de la estancia; te indicaremos cuándo volver a sentarte.',
+      },
+      {
+        pregunta: '4. ¿Qué métodos utilizáis? ¿Usáis vapor seco u ozono?',
+        respuesta:
+          'Trabajamos principalmente mediante aspirado profundo en seco, pretratamiento localizado e inyección-extracción controlada (o limpieza de baja humedad / en seco en tejidos código S que no admiten agua). No aplicamos vapor seco ni tratamientos gaseosos de ozono ni procesos enzimáticos en domicilio.',
+      },
+      {
+        pregunta: '5. ¿Desaparecen todas las manchas antiguas, de tinta o remediadas en casa?',
+        respuesta:
+          'Cada mancha se valora con franqueza tras ver tus fotos. Las manchas recientes habituales suelen mejorar notablemente; sin embargo, tintas fijadas, transferencia vaquera, humedad incrustada en la espuma interior o cercos ya tratados con lejía, amoníaco, vinagre o bicarbonato pueden dejar marca permanente.',
+      },
+      {
+        pregunta: '6. ¿Los productos son seguros para bebés, alérgicos y mascotas?',
+        respuesta:
+          'Sí. Empleamos formulaciones profesionales de pH equilibrado que se aclaran y extraen mecánicamente durante el proceso, evitando residuos pegajosos. Una vez que el tejido ha secado por completo al aire con ventilación natural, es seguro para toda la familia y mascotas.',
+      },
+      {
+        pregunta: '7. ¿Qué necesitáis en casa el día de la cita y cuánto dura?',
+        respuesta:
+          'Solo necesitamos acceso a una toma de corriente doméstica, un punto de agua, algo de espacio alrededor del mueble, posibilidad de ventilar la habitación y una persona responsable al inicio y al final. La duración habitual ronda entre 1 y 2 horas según tamaño y estado.',
+      },
+      {
+        pregunta: '8. ¿Limpiáis tapicerías de coches o furgonetas?',
+        respuesta:
+          'No. Este servicio a domicilio está enfocado exclusivamente en sofás, sillones, sillas, cabeceros, colchones y mobiliario tapizado de viviendas particulares, alojamientos turísticos, oficinas y locales.',
+      },
+      {
+        pregunta: '9. ¿En qué zonas trabajáis y con qué frecuencia conviene limpiar el sofá?',
+        respuesta:
+          'Atendemos Vigo y su área de influencia según ruta y condiciones de visita (a consultar con Mimo). Se recomienda una limpieza profesional anual como mantenimiento preventivo, o cada seis meses en hogares con niños pequeños, mascotas o alergias al polvo.',
+      },
+    ];
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: meta.h1,
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: { '@type': 'City', name: 'Vigo' },
+        url: meta.canonical,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: sofaFaqs.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
   } else if (cleanPath === '/arreglos-de-ropa-vigo') {
     graph.push(
       ORGANIZATION_SCHEMA,

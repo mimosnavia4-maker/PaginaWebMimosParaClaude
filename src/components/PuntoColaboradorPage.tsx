@@ -42,6 +42,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
   const [aceptoPrivacidad, setAceptoPrivacidad] = useState(false);
   const [errorPrivacidad, setErrorPrivacidad] = useState('');
   const [copied, setCopied] = useState(false);
+  const [failedImgs, setFailedImgs] = useState<Record<string, boolean>>({});
 
   const buildCollaboratorWhatsAppMessage = () => {
     const lines = [
@@ -135,8 +136,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-7 space-y-6">
               {/* Badge azul oscuro institucional idéntico a portada */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#002147] border border-[#0F76BB]/40 text-white text-xs font-bold tracking-wide shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#60B5F6] shrink-0 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#002147] border border-[#0F76BB]/40 text-white text-xs font-bold tracking-wide shadow-xs">
                 <span>Alianza Comercial · Sin Inversión · Sin Riesgo</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.12]">
@@ -186,16 +186,25 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             {/* Imagen Hero / Presentación con foto real de mostrador */}
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-white/15 bg-white/5 p-2 shadow-2xl backdrop-blur-xs">
-                <picture>
-                  <source srcSet="/images/colaboradores/paso-1-recepcion-software.webp" type="image/webp" />
-                  <img
-                    src="/images/colaboradores/paso-1-recepcion-software.jpg"
-                    alt="Comerciante colaboradora atendiendo en mostrador con tablet de gestión de Tintorería Mimos"
-                    width={800}
-                    height={500}
-                    className="w-full aspect-16/10 object-cover rounded-xl"
-                  />
-                </picture>
+                {!failedImgs.hero ? (
+                  <picture>
+                    <source srcSet="/images/colaboradores/paso-1-recepcion-software.webp" type="image/webp" />
+                    <img
+                      src="/images/colaboradores/paso-1-recepcion-software.jpg"
+                      alt="Comerciante colaboradora atendiendo en mostrador con tablet de gestión de Tintorería Mimos"
+                      width={800}
+                      height={500}
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, hero: true }))}
+                      className="w-full aspect-16/10 object-cover rounded-xl"
+                    />
+                  </picture>
+                ) : (
+                  <div className="w-full aspect-16/10 rounded-xl bg-gradient-to-br from-[#002147] to-[#0a254c] flex flex-col items-center justify-center p-6 text-center">
+                    <Store className="w-10 h-10 text-[#60B5F6] mb-2" aria-hidden="true" />
+                    <p className="text-sm font-bold text-white">Recepción ágil en mostrador</p>
+                  </div>
+                )}
                 <div className="p-4 text-xs text-slate-200 space-y-1">
                   <div className="flex items-center gap-2 font-bold text-white">
                     <Sparkles className="w-4 h-4 text-[#60B5F6]" />
@@ -297,17 +306,25 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             {/* Paso 1 */}
             <article className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] overflow-hidden flex flex-col justify-between shadow-xs hover:border-[#0F76BB]/50 transition-all">
               <div className="aspect-16/10 overflow-hidden bg-slate-200 dark:bg-slate-800">
-                <picture>
-                  <source srcSet="/images/colaboradores/paso-1-recepcion-software.webp" type="image/webp" />
-                  <img
-                    src="/images/colaboradores/paso-1-recepcion-software.jpg"
-                    alt="Paso 1: Recepción en mostrador con resguardo oficial numerado"
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
-                  />
-                </picture>
+                {!failedImgs.paso1 ? (
+                  <picture>
+                    <source srcSet="/images/colaboradores/paso-1-recepcion-software.webp" type="image/webp" />
+                    <img
+                      src="/images/colaboradores/paso-1-recepcion-software.jpg"
+                      alt="Paso 1: Recepción en mostrador con resguardo oficial numerado"
+                      width={800}
+                      height={500}
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, paso1: true }))}
+                      className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
+                    />
+                  </picture>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-500 dark:text-slate-300 text-xs font-bold">
+                    Paso 01 · Recepción con resguardo oficial
+                  </div>
+                )}
               </div>
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
@@ -342,17 +359,25 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             {/* Paso 2 */}
             <article className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] overflow-hidden flex flex-col justify-between shadow-xs hover:border-[#0F76BB]/50 transition-all">
               <div className="aspect-16/10 overflow-hidden bg-slate-200 dark:bg-slate-800">
-                <picture>
-                  <source srcSet="/images/colaboradores/paso-2-recogida-furgoneta.webp" type="image/webp" />
-                  <img
-                    src="/images/colaboradores/paso-2-recogida-furgoneta.jpg"
-                    alt="Paso 2: Conductor de Tintorería Mimos recogiendo las prendas en la puerta del comercio"
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
-                  />
-                </picture>
+                {!failedImgs.paso2 ? (
+                  <picture>
+                    <source srcSet="/images/colaboradores/paso-2-recogida-furgoneta.webp" type="image/webp" />
+                    <img
+                      src="/images/colaboradores/paso-2-recogida-furgoneta.jpg"
+                      alt="Paso 2: Conductor de Tintorería Mimos recogiendo las prendas en la puerta del comercio"
+                      width={800}
+                      height={500}
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, paso2: true }))}
+                      className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
+                    />
+                  </picture>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-500 dark:text-slate-300 text-xs font-bold">
+                    Paso 02 · Recogida periódica en furgoneta
+                  </div>
+                )}
               </div>
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
@@ -387,17 +412,25 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             {/* Paso 3 */}
             <article className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] overflow-hidden flex flex-col justify-between shadow-xs hover:border-[#0F76BB]/50 transition-all">
               <div className="aspect-16/10 overflow-hidden bg-slate-200 dark:bg-slate-800">
-                <picture>
-                  <source srcSet="/images/colaboradores/paso-3-taller-tintoreria.webp" type="image/webp" />
-                  <img
-                    src="/images/colaboradores/paso-3-taller-tintoreria.jpg"
-                    alt="Paso 3: Taller central de tintorería y lavandería de Mimos en Navia Vigo con maquinaria Veit"
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
-                  />
-                </picture>
+                {!failedImgs.paso3 ? (
+                  <picture>
+                    <source srcSet="/images/colaboradores/paso-3-taller-tintoreria.webp" type="image/webp" />
+                    <img
+                      src="/images/colaboradores/paso-3-taller-tintoreria.jpg"
+                      alt="Paso 3: Taller central de tintorería y lavandería de Mimos en Navia Vigo con maquinaria Veit"
+                      width={800}
+                      height={500}
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, paso3: true }))}
+                      className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
+                    />
+                  </picture>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-500 dark:text-slate-300 text-xs font-bold">
+                    Paso 03 · Tratamiento en planta central de Navia
+                  </div>
+                )}
               </div>
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
@@ -432,17 +465,25 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             {/* Paso 4 */}
             <article className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] overflow-hidden flex flex-col justify-between shadow-xs hover:border-[#0F76BB]/50 transition-all">
               <div className="aspect-16/10 overflow-hidden bg-slate-200 dark:bg-slate-800">
-                <picture>
-                  <source srcSet="/images/colaboradores/paso-4-entrega-cliente.webp" type="image/webp" />
-                  <img
-                    src="/images/colaboradores/paso-4-entrega-cliente.jpg"
-                    alt="Paso 4: Entrega de prenda limpia en funda protectora al cliente satisfecho en el mostrador"
-                    width={800}
-                    height={500}
-                    loading="lazy"
-                    className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
-                  />
-                </picture>
+                {!failedImgs.paso4 ? (
+                  <picture>
+                    <source srcSet="/images/colaboradores/paso-4-entrega-cliente.webp" type="image/webp" />
+                    <img
+                      src="/images/colaboradores/paso-4-entrega-cliente.jpg"
+                      alt="Paso 4: Entrega de prenda limpia en funda protectora al cliente satisfecho en el mostrador"
+                      width={800}
+                      height={500}
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, paso4: true }))}
+                      className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
+                    />
+                  </picture>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-500 dark:text-slate-300 text-xs font-bold">
+                    Paso 04 · Entrega y cobro de comisión
+                  </div>
+                )}
               </div>
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
@@ -645,7 +686,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 key={pto.id}
                 className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] overflow-hidden flex flex-col justify-between shadow-xs"
               >
-                {pto.foto && (
+                {pto.foto && !failedImgs[pto.id] && (
                   <div className="aspect-16/10 overflow-hidden bg-slate-200 dark:bg-slate-800">
                     <img
                       src={pto.foto}
@@ -653,6 +694,8 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                       width={600}
                       height={375}
                       loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={() => setFailedImgs((prev) => ({ ...prev, [pto.id]: true }))}
                       className="w-full h-full object-cover"
                     />
                   </div>

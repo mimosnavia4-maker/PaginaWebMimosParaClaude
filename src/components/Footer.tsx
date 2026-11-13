@@ -26,134 +26,194 @@ export const Footer: React.FC<FooterProps> = ({
   onToggleDarkMode,
 }) => {
   const activePath = currentPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
+
+  const getStoreHref = (id: string) => {
+    if (id === 'as-teixugueiras') return '/tienda-mimos-navia-vigo';
+    if (id === 'gregorio-espino') return '/tienda-mimos-gregorio-espino-vigo';
+    return '/puntos-mimos';
+  };
+
+  const formatPhoneHref = (phone: string) => `tel:+34${phone.replace(/\s+/g, '')}`;
+
   return (
     <>
-      <footer className="bg-[#002147] text-slate-300 pt-14 pb-36 md:pb-24 border-t border-white/10">
+      <footer className="bg-[#002147] text-slate-300 pt-14 pb-36 md:pb-20 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
-            {/* Brand & 3 Own Stores in Vigo (4 cols) */}
-            <div className="lg:col-span-4 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 xl:gap-10 pb-10 border-b border-white/10">
+            {/* Columna 1: Marca y 3 tiendas propias clicables (3 cols) */}
+            <div className="lg:col-span-3 space-y-4">
               <div className="flex items-center gap-3">
                 <img
                   src={IMAGES.logoMimos}
                   alt="Logotipo de Tintorería Mimos Navia"
                   width={42}
                   height={42}
-                  className="w-10.5 h-10.5 rounded-full object-contain bg-white/10 p-0.5"
+                  className="w-10.5 h-10.5 rounded-full object-contain bg-white/10 p-0.5 shrink-0"
                 />
                 <div>
-                  <p className="text-lg font-extrabold text-white leading-none">
+                  <p className="text-base font-extrabold text-white leading-none tracking-tight">
                     TINTORERÍA <span className="text-[#60B5F6]">MIMOS</span>
                   </p>
                   <p className="text-xs text-slate-300 mt-1">{CONTACT_INFO.legalName}</p>
                 </div>
               </div>
 
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Especialistas en tintorería, lavandería, planchado, cuidado de textiles del hogar y servicios de limpieza profesional para particulares, apartamentos turísticos y empresas en Vigo.
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Tintorería, lavandería, arreglos de ropa, tapicerías a domicilio y limpieza profesional en Vigo y comarca.
               </p>
 
-              <div className="space-y-2 text-xs text-slate-300 pt-1">
-                <p className="font-mono uppercase tracking-wider text-[#60B5F6] font-bold">
-                  Nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo:
+              <div className="space-y-3 pt-1">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-[#60B5F6]">
+                  Nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo
                 </p>
-                {TIENDAS_PROPIAS.map((t) => (
-                  <p key={t.id}>
-                    <strong className="text-white">{t.direccion}</strong> ({t.codigo_postal} {t.localidad}) ·{' '}
-                    {t.horario.resumen} · Tel. {t.telefonos_mostrados}
-                  </p>
-                ))}
+                <ul className="space-y-2.5 text-xs">
+                  {TIENDAS_PROPIAS.map((t) => {
+                    const href = getStoreHref(t.id);
+                    return (
+                      <li key={t.id} className="leading-snug">
+                        <a
+                          href={href}
+                          onClick={(e) => onNavigate(href, e)}
+                          className="font-bold text-white hover:text-[#60B5F6] hover:underline transition-colors block"
+                        >
+                          {t.direccion} ({t.codigo_postal})
+                        </a>
+                        <span className="text-slate-300 block">
+                          {t.horario.resumen}{' '}
+                          <span aria-hidden="true">·</span>{' '}
+                          <a
+                            href={formatPhoneHref(t.telefono)}
+                            onClick={() => trackPhoneClick(activePath, 'footer')}
+                            className="text-[#60B5F6] hover:text-white font-semibold tabular-nums whitespace-nowrap"
+                          >
+                            {t.telefonos_mostrados}
+                          </a>
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             </div>
 
-            {/* Los 8 Servicios y Limpieza (3 cols) */}
-            <div className="lg:col-span-3 space-y-3">
-              <h2 className="text-sm font-bold text-white uppercase tracking-wider">
-                Servicios en Vigo
-              </h2>
-              <ul className="space-y-2 text-xs sm:text-sm">
-                <li>
-                  <a
-                    href="/limpieza-alfombras-vigo"
-                    onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                    className="text-[#60B5F6] font-extrabold hover:underline"
-                  >
-                    ★ Limpieza y reparación de alfombras
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/arreglos-de-ropa-vigo"
-                    onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                    className="text-[#60B5F6] font-extrabold hover:underline"
-                  >
-                    ★ Costura y arreglos de ropa
-                  </a>
-                </li>
-                {SERVICIOS_MIMOS.map((s) => (
-                  <li key={s.id}>
+            {/* Columna 2: Servicios destacados + Áreas principales (3 cols) */}
+            <div className="lg:col-span-3 space-y-4">
+              <div>
+                <h2 className="text-xs font-bold text-[#60B5F6] uppercase tracking-wider mb-2.5">
+                  Destacados a domicilio y taller
+                </h2>
+                <ul className="space-y-1.5 text-xs sm:text-sm">
+                  <li>
                     <a
-                      href={s.url}
-                      onClick={(e) => onNavigate(s.url, e)}
-                      className="hover:text-white transition-colors"
+                      href="/limpieza-sofas-vigo"
+                      onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
+                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
                     >
-                      {s.index}. {s.titulo}
+                      Limpieza de sofás a domicilio
                     </a>
                   </li>
-                ))}
-                <li className="pt-1">
-                  <a
-                    href="/limpieza-profesional-vigo"
-                    onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
-                    className="text-[#60B5F6] font-bold hover:underline"
-                  >
-                    Empresa de Limpieza Profesional en Vigo →
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Red de Puntos y Guías del Blog (3 cols) */}
-            <div className="lg:col-span-3 space-y-3">
-              <h2 className="text-sm font-bold text-white uppercase tracking-wider">
-                Tiendas y Puntos por Localidad
-              </h2>
-              <ul className="space-y-1.5 text-xs sm:text-sm">
-                <li>
-                  <a
-                    href="/puntos-mimos"
-                    onClick={(e) => onNavigate('/puntos-mimos', e)}
-                    className="text-[#60B5F6] font-bold hover:underline"
-                  >
-                    Buscador de Tiendas y Puntos Mimos
-                  </a>
-                </li>
-                {ZONAS_SEO_LOCAL.map((zona) => (
-                  <li key={zona.slug}>
+                  <li>
                     <a
-                      href={zona.url}
-                      onClick={(e) => onNavigate(zona.url, e)}
-                      className="hover:text-white transition-colors"
+                      href="/limpieza-alfombras-vigo"
+                      onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
+                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
                     >
-                      {zona.localidad} ({zona.comarca})
+                      Limpieza y arreglo de alfombras
                     </a>
                   </li>
-                ))}
-              </ul>
+                  <li>
+                    <a
+                      href="/arreglos-de-ropa-vigo"
+                      onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
+                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                    >
+                      Costura y arreglos (18 servicios)
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
               <div className="pt-3 border-t border-white/10">
-                <p className="text-xs font-bold text-white uppercase tracking-wider mb-2">
-                  Guías de cuidado textil
-                </p>
-                <ul className="space-y-1.5 text-xs">
-                  {ARTICULOS_BLOG.map((art) => (
+                <h2 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5">
+                  Servicios en Vigo
+                </h2>
+                <ul className="space-y-1.5 text-xs sm:text-sm">
+                  {SERVICIOS_MIMOS.map((s) => (
+                    <li key={s.id}>
+                      <a
+                        href={s.url}
+                        onClick={(e) => onNavigate(s.url, e)}
+                        className="hover:text-white transition-colors"
+                      >
+                        {s.titulo}
+                      </a>
+                    </li>
+                  ))}
+                  <li className="pt-1">
+                    <a
+                      href="/limpieza-profesional-vigo"
+                      onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
+                      className="text-[#60B5F6] font-bold hover:underline"
+                    >
+                      Limpieza profesional en Vigo →
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Columna 3: Red local y 4 Guías destacadas (3 cols) */}
+            <div className="lg:col-span-3 space-y-4">
+              <div>
+                <h2 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5">
+                  Tiendas y puntos por localidad
+                </h2>
+                <ul className="space-y-1.5 text-xs sm:text-sm">
+                  <li>
+                    <a
+                      href="/puntos-mimos"
+                      onClick={(e) => onNavigate('/puntos-mimos', e)}
+                      className="text-[#60B5F6] font-bold hover:underline"
+                    >
+                      Buscador de Tiendas y Puntos Mimos
+                    </a>
+                  </li>
+                  {ZONAS_SEO_LOCAL.map((zona) => (
+                    <li key={zona.slug}>
+                      <a
+                        href={zona.url}
+                        onClick={(e) => onNavigate(zona.url, e)}
+                        className="hover:text-white transition-colors"
+                      >
+                        {zona.localidad} ({zona.comarca})
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-3 border-t border-white/10">
+                <div className="flex items-center justify-between gap-2 mb-2.5">
+                  <p className="text-xs font-bold text-white uppercase tracking-wider">
+                    Guías de cuidado textil
+                  </p>
+                  <a
+                    href="/blog"
+                    onClick={(e) => onNavigate('/blog', e)}
+                    className="text-[11px] font-bold text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+                  >
+                    Ver todas ({ARTICULOS_BLOG.length}) →
+                  </a>
+                </div>
+                <ul className="space-y-2 text-xs leading-snug">
+                  {ARTICULOS_BLOG.slice(0, 4).map((art) => (
                     <li key={art.slug}>
                       <a
                         href={art.url}
                         onClick={(e) => onNavigate(art.url, e)}
-                        className="hover:text-[#60B5F6] transition-colors line-clamp-1"
+                        className="hover:text-[#60B5F6] transition-colors block"
                       >
-                        • {art.titulo}
+                        {art.titulo}
                       </a>
                     </li>
                   ))}
@@ -161,44 +221,55 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
             </div>
 
-            {/* Contacto y Tema Visual (2 cols) */}
-            <div className="lg:col-span-2 space-y-3">
-              <h2 className="text-sm font-bold text-white uppercase tracking-wider">
-                Contacto y Mimo
-              </h2>
-              <ul className="space-y-2.5 text-xs sm:text-sm">
-                <li>
-                  <a
-                    href={CONTACT_INFO.phoneHref}
-                    onClick={() => trackPhoneClick(activePath, 'footer')}
-                    className="inline-flex items-center gap-2 hover:text-white tabular-nums font-bold"
-                  >
-                    <Phone className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
-                    <span>{CONTACT_INFO.phoneDisplay}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={CONTACT_INFO.whatsappGeneralHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackWhatsAppClick(activePath, 'footer')}
-                    className="inline-flex items-center gap-2 hover:text-white font-bold"
-                  >
-                    <MessageCircle className="w-4 h-4 text-[#4ade80] shrink-0" aria-hidden="true" />
-                    <span>Mimo: {CONTACT_INFO.whatsappNumber}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={CONTACT_INFO.emailHref}
-                    className="inline-flex items-center gap-2 hover:text-white break-all"
-                  >
-                    <Mail className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
-                    <span>{CONTACT_INFO.email}</span>
-                  </a>
-                </li>
-              </ul>
+            {/* Columna 4: Contacto sin cortes de correo, Redes y Colaboraciones (3 cols) */}
+            <div className="lg:col-span-3 space-y-4">
+              <div>
+                <h2 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5">
+                  Contacto y Mimo
+                </h2>
+                <ul className="space-y-2 text-xs sm:text-sm">
+                  <li>
+                    <a
+                      href={CONTACT_INFO.phoneHref}
+                      onClick={() => trackPhoneClick(activePath, 'footer')}
+                      className="inline-flex items-center gap-2 hover:text-white tabular-nums font-bold"
+                    >
+                      <Phone className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
+                      <span>{CONTACT_INFO.phoneDisplay}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={CONTACT_INFO.whatsappGeneralHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackWhatsAppClick(activePath, 'footer')}
+                      className="inline-flex items-center gap-2 hover:text-white font-bold tabular-nums"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#4ade80] shrink-0" aria-hidden="true" />
+                      <span>Mimo: {CONTACT_INFO.whatsappNumber}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={CONTACT_INFO.emailHref}
+                      className="inline-flex items-center gap-2 hover:text-white whitespace-nowrap text-xs sm:text-sm"
+                    >
+                      <Mail className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
+                      <span>{CONTACT_INFO.email}</span>
+                    </a>
+                  </li>
+                  <li className="pt-0.5">
+                    <a
+                      href="/contacto"
+                      onClick={(e) => onNavigate('/contacto', e)}
+                      className="text-xs font-bold text-[#60B5F6] hover:underline"
+                    >
+                      Contacto, horarios y formulario →
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
               {/* Redes Sociales Oficiales */}
               <div className="pt-3 border-t border-white/10 space-y-2">
@@ -255,7 +326,7 @@ export const Footer: React.FC<FooterProps> = ({
 
               <div className="pt-3 border-t border-white/10 space-y-2">
                 <p className="text-xs font-bold text-white uppercase tracking-wider">
-                  Colaboraciones y Empleo
+                  Colaboraciones y empleo
                 </p>
                 <ul className="space-y-1.5 text-xs">
                   <li>
@@ -264,40 +335,40 @@ export const Footer: React.FC<FooterProps> = ({
                       onClick={(e) => onNavigate('/se-punto-colaborador', e)}
                       className="text-[#60B5F6] hover:text-white transition-colors font-bold"
                     >
-                      ★ Sé Punto Colaborador
+                      Sé Punto Colaborador →
                     </a>
                   </li>
                   <li>
                     <a
                       href="/empleo-unete-a-nosotros"
                       onClick={(e) => onNavigate('/empleo-unete-a-nosotros', e)}
-                      className="text-slate-300 hover:text-white transition-colors font-semibold"
+                      className="text-slate-300 hover:text-white transition-colors font-medium"
                     >
-                      • Empleo (Únete a nosotros)
+                      Empleo (Únete a nosotros)
                     </a>
                   </li>
                   <li>
                     <a
                       href="/feder"
                       onClick={(e) => onNavigate('/feder', e)}
-                      className="text-slate-300 hover:text-[#60B5F6] transition-colors font-semibold"
+                      className="text-slate-300 hover:text-[#60B5F6] transition-colors font-medium"
                     >
-                      • FEDER (Re-Acciona TIC)
+                      FEDER (Re-Acciona TIC)
                     </a>
                   </li>
                   <li>
                     <a
                       href="/programa-bono-energia-peme-2025-in417z"
                       onClick={(e) => onNavigate('/programa-bono-energia-peme-2025-in417z', e)}
-                      className="text-slate-300 hover:text-[#60B5F6] transition-colors font-semibold"
+                      className="text-slate-300 hover:text-[#60B5F6] transition-colors font-medium"
                     >
-                      • Programa Bono Energía Peme 2025: IN417Z
+                      Bono Energía Peme 2025: IN417Z
                     </a>
                   </li>
                 </ul>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <button
                   type="button"
                   onClick={onToggleDarkMode}
@@ -319,41 +390,17 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          {/* Enlaces Legales, Empleo, Subvenciones y Copyright */}
-          <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-400">
+          {/* Barra Legal limpia en una línea, con margen derecho para no coincidir con el botón flotante de Mimo */}
+          <div className="pt-6 md:pr-64 lg:pr-72 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-400">
             <p>
               © {new Date().getFullYear()} {CONTACT_INFO.legalName} Todos los derechos reservados.
             </p>
 
-            <nav aria-label="Enlaces legales e institucionales" className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <a
-                href="/empleo-unete-a-nosotros"
-                onClick={(e) => onNavigate('/empleo-unete-a-nosotros', e)}
-                className="text-slate-300 hover:text-white font-semibold underline-offset-4 hover:underline"
-              >
-                Empleo (Únete a nosotros)
-              </a>
-              <span aria-hidden="true">·</span>
-              <a
-                href="/feder"
-                onClick={(e) => onNavigate('/feder', e)}
-                className="text-slate-300 hover:text-white font-semibold underline-offset-4 hover:underline"
-              >
-                FEDER
-              </a>
-              <span aria-hidden="true">·</span>
-              <a
-                href="/programa-bono-energia-peme-2025-in417z"
-                onClick={(e) => onNavigate('/programa-bono-energia-peme-2025-in417z', e)}
-                className="text-slate-300 hover:text-white font-semibold underline-offset-4 hover:underline"
-              >
-                Programa Bono Energía Peme 2025: IN417Z
-              </a>
-              <span aria-hidden="true">·</span>
+            <nav aria-label="Enlaces legales" className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
               <a
                 href="/aviso-legal"
                 onClick={(e) => onNavigate('/aviso-legal', e)}
-                className="hover:text-white underline-offset-4 hover:underline"
+                className="hover:text-white underline-offset-4 hover:underline whitespace-nowrap"
               >
                 Aviso legal
               </a>
@@ -361,7 +408,7 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/privacidad"
                 onClick={(e) => onNavigate('/privacidad', e)}
-                className="hover:text-white underline-offset-4 hover:underline"
+                className="hover:text-white underline-offset-4 hover:underline whitespace-nowrap"
               >
                 Política de privacidad
               </a>
@@ -369,7 +416,7 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/cookies"
                 onClick={(e) => onNavigate('/cookies', e)}
-                className="hover:text-white underline-offset-4 hover:underline"
+                className="hover:text-white underline-offset-4 hover:underline whitespace-nowrap"
               >
                 Política de cookies
               </a>
@@ -377,7 +424,7 @@ export const Footer: React.FC<FooterProps> = ({
               <button
                 type="button"
                 onClick={onOpenCookieSettings}
-                className="hover:text-white underline-offset-4 hover:underline cursor-pointer"
+                className="hover:text-white underline-offset-4 hover:underline cursor-pointer whitespace-nowrap"
               >
                 Gestionar cookies
               </button>

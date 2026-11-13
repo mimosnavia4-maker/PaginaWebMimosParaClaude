@@ -57,6 +57,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
   const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
+  const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada: {
@@ -150,11 +151,21 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           <X className="w-5 h-5" />
         </button>
         <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black flex items-center justify-center">
-          <img
-            src={photos[activeTabPhoto].url}
-            alt={photos[activeTabPhoto].titulo}
-            className="max-h-[75vh] w-full object-contain"
-          />
+          {!failedPhotos[activeTabPhoto] ? (
+            <img
+              src={photos[activeTabPhoto].url}
+              alt={photos[activeTabPhoto].titulo}
+              referrerPolicy="no-referrer"
+              onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+              className="max-h-[75vh] w-full object-contain"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-slate-900 text-slate-200">
+              <Building2 className="w-10 h-10 text-[#60B5F6] mb-3" />
+              <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
+              <p className="text-xs text-slate-400 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
+            </div>
+          )}
         </div>
         <div className="p-4 sm:p-6 bg-slate-950 text-white">
           <div className="flex items-center gap-2 mb-1">
@@ -177,12 +188,22 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           {/* Columna Izquierda: Galería Interactiva con Fotos Reales (1 exterior, 2 interior) */}
           <div className="lg:col-span-7 flex flex-col justify-between bg-slate-950">
             {/* Foto Activa Grande con Zoom */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden group">
-              <img
-                src={photos[activeTabPhoto].url}
-                alt={photos[activeTabPhoto].titulo}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden group bg-slate-900">
+              {!failedPhotos[activeTabPhoto] ? (
+                <img
+                  src={photos[activeTabPhoto].url}
+                  alt={photos[activeTabPhoto].titulo}
+                  referrerPolicy="no-referrer"
+                  onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#002147] to-slate-900 text-slate-200">
+                  <Building2 className="w-10 h-10 text-[#60B5F6] mb-2" />
+                  <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
+                  <p className="text-xs text-slate-400 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/30 pointer-events-none" />
 
               {/* Botón flotante para ampliar foto */}
@@ -265,17 +286,12 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                   Sede Central & Domicilio Social
                 </span>
                 <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-extrabold ${
+                  className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-extrabold ${
                     storeStatus.isOpen
                       ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300'
                       : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
                   }`}
                 >
-                  <span
-                    className={`w-2 h-2 rounded-full ${
-                      storeStatus.isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'
-                    }`}
-                  />
                   {storeStatus.isOpen ? 'Abierto ahora' : 'Cerrado en este momento'}
                 </span>
               </div>
@@ -722,7 +738,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 </h3>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Desde Navia coordinamos nuestras rutas de reparto a domicilio para Vigo y comarca (pedido mínimo 30 €). Puedes pedir recogida o entrega en tu casa por WhatsApp o en la web.
+                Desde Navia coordinamos nuestras rutas de reparto a domicilio para Vigo y comarca (sujeto a importe mínimo de servicio a consultar). Puedes pedir recogida o entrega en tu casa por WhatsApp o en la web.
               </p>
             </div>
             <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-slate-700 pt-3">

@@ -25,40 +25,32 @@
 
 ---
 
-## Las dos grandes líneas de actividad
+## Estructura comercial de servicios (4 familias + 3 ganchos clave)
 
-### 1. Tintorería, lavandería y cuidado textil en Vigo
-1. **Tintorería profesional (`/tintoreria-vigo`):** Limpieza en seco y desmanchado técnico de trajes, vestidos de fiesta, comunión y novia, abrigos y prendas delicadas.
+### 1. Tintorería y lavandería (15 especialidades en Vigo)
+1. **Tintorería profesional (`/tintoreria-vigo`):** Tintorería profesional de prendas, trajes y prendas de vestir, vestidos de fiesta y ceremonia (bautizo, comunión, novia) y prendas delicadas. Técnicas diferenciadas: **Wet Cleaning** y **limpieza en seco profesional**.
 2. **Lavandería (`/lavanderia-vigo`):** Lavado e higienización profesional para ropa de uso diario y prendas textiles.
 3. **Planchado profesional (`/planchado-vigo`):** Servicio especializado de solo planchado para camisas, pantalones, trajes y mantelería.
-4. **Colada familiar (`/colada-familiar-vigo`):** Lavado, secado y doblado de ropa cotidiana para particulares y familias.
-5. **Limpieza de textiles del hogar (`/textiles-hogar-vigo`):** Edredones de plumas y sintéticos, mantas, cortinas, fundas de sofá y ropa de cama.
-6. **Limpieza de pieles y cuero (`/limpieza-pieles-cuero-vigo`):** Tratamiento especializado de cazadoras, abrigos de cuero, ante, nobuk y peletería (con valoración previa).
-7. **Servicio prioritario – Limpieza y restauración de alfombras en Vigo (`/limpieza-alfombras-vigo`):**
-   - Recogida a domicilio en Vigo y área de influencia (según cobertura) o entrega en las 3 tiendas propias.
-   - Tratamiento especializado de lavado, desinfección, eliminación de manchas e intervenciones de flecos y ribetes.
-   - Presupuestos por WhatsApp: se solicitan medidas (*largo × ancho*) y fotografías del estado de la alfombra.
-8. **Servicio destacado – Costura y arreglos de ropa (`/arreglos-de-ropa-vigo`):**
-   - **Talleres propios in situ:** Disponibles en las tiendas propias de **Alcalde Gregorio Espino, 44** y **C/ Venezuela, 41, bajo 1**.
-   - **Recepción en tienda propia:** C/ As Teixugueiras, 11, bajo 9 (Navia, recepción y entrega de prendas para confección en taller).
-   - **Puntos colaboradores independientes con costura confirmada:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño) prestan sus propios servicios de costura y composturas en sus locales.
-    - En el punto colaborador de Redondela se gestiona la recepción para tintorería, colada y textiles tratados en la central de Vigo.
-9. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio coordinado para particulares y empresas en Vigo y comarca con un pedido mínimo de 30 € (sujeto a condiciones y zona de cobertura).
+4. **Colada familiar (`/colada-familiar-vigo`):** Lavado, secado y doblado (o lavado, secado y planchado) para particulares y familias.
+5. **Limpieza de textiles del hogar (`/textiles-hogar-vigo`):** Edredones de plumas y sintéticos, mantas, **cortinas, estores**, fundas de sofá desmontables y ropa de cama.
+6. **Limpieza y restauración de pieles y cuero (`/limpieza-pieles-cuero-vigo`):** Tratamiento especializado de cazadoras, abrigos de cuero, ante, nobuk y peletería (valoración técnica previa).
+7. **Servicio destacado – Limpieza y arreglo de alfombras en Vigo (`/limpieza-alfombras-vigo`):**
+   - Recogida a domicilio en Vigo y área de influencia (sujeto a importe mínimo y cobertura) o entrega en las 3 tiendas propias.
+   - Limpieza e higienización en nuestras instalaciones + **reparación y restauración de alfombras (flecos, ribetes y bordes)** previa foto por WhatsApp.
+8. **Familia – Costura y arreglos de ropa (`/arreglos-de-ropa-vigo`, 18 especialidades):**
+   - **Catálogo completo:** bajos y bastillas, pantalones, faldas y vestidos, abrigos, cambio y reparación de cremalleras, botones, estrechar y ensanchar, ajustes de cintura, zurcidos, descosidos y rotos, prendas delicadas, prendas de piel, **bordados personalizados**, **confección de cortinas, estores y cojines**, y **servicio express**.
+   - **Talleres propios in situ:** Gregorio Espino, 44 y C/ Venezuela, 41, bajo 1. **Recepción y entrega:** Sede Central Navia (Teixugueiras, 11).
+   - **Puntos colaboradores independientes con costura confirmada:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño). En Redondela se gestiona recepción de tintorería, colada y textiles.
+9. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio coordinado en Vigo y comarca sujeto a un importe mínimo de servicio (consultar condiciones y zona de cobertura con Mimo); sin pedido mínimo en tiendas propias y puntos colaboradores.
 
-### 2. División de Limpieza Profesional, Apartamentos Turísticos y Empresas
-Plataforma que integra servicios de limpieza técnica de instalaciones con la capacidad de tintorería y lavandería propia en Vigo:
-
-1. **Empresa de limpieza profesional en Vigo (`/limpieza-profesional-vigo`):** Mantenimiento higiénico para oficinas, despachos, clínicas, comunidades de vecinos, locales comerciales y alojamientos.
-2. **Servicios para apartamentos turísticos (`/limpieza-apartamentos-turisticos-vigo`):**
-   - Propuesta comercial estructurada en **tres modalidades de colaboración** configurables:
-     - **Modalidad 1 – Solo Ropa de Cama y Toallas:** Tratamiento de lavandería y lencería higienizada por lotes para anfitriones que limpian su propio inmueble.
-     - **Modalidad 2 – Limpieza y Lavandería Completa:** Limpieza exhaustiva del apartamento tras cada salida (checkout) + entrega de juegos limpios de sábanas y toallas.
-     - **Modalidad 3 – Coordinación Integral de Limpieza y Lavandería:** Servicio operativo donde el propietario mantiene el control de sus reservas y Mimos se encarga de la limpieza de rotación en checkouts y la logística completa de lencería hotelera higienizada y planchada.
-       * *Nota de transparencia:* El propietario gestiona sus reservas y atención directa a huéspedes; Mimos centra su labor en la limpieza técnica de rotación y el suministro textil.
-3. **Servicios para empresas y comercios (`/servicios-empresas`):** Mantenimiento textil regular de mantelería, vestuario laboral y textiles corporativos con facturación adaptada para profesionales.
-4. **Área 05 – Recuperación textil en siniestros e incendios:** Protocolo de actuación especializada ante incendios, humaredas e inundaciones para particulares y empresas en Vigo:
-   - Descontaminación de hollín, desodorización profunda y recuperación de ajuar del hogar y vestuario.
-   - Emisión de memoria técnica de trabajos realizados y factura oficial desglosada con CIF para tramitación directa con compañías aseguradoras bajo la Ley 50/1980 de Contrato de Seguro.
+### 2. División de Limpieza Profesional, Sofás a Domicilio, Apartamentos Turísticos y Empresas
+1. **Servicio destacado – Limpieza de sofás y tapicerías a domicilio (`/limpieza-sofas-vigo`):**
+   - Limpieza 100 % en vivienda o local sin desmontar muebles: sofás de 2/3 plazas, *chaise longue*, rinconeras, sillones, sillas tapizadas (solo asiento o asiento y respaldo), cabeceros y colchones *(no realizamos tapicerías de coches)*.
+   - Protocolo real: revisión de códigos de etiqueta (`W`, `S`, `WS`, `X`), aspirado en seco, pretratamiento, inyección-extracción controlada (o baja humedad/seco en código `S`) y **secado natural al aire** (sin vapor seco, enzimáticos ni ventiladores).
+2. **Empresa de limpieza profesional en Vigo (`/limpieza-profesional-vigo`):** Oficinas, comunidades de vecinos, locales comerciales, viviendas, espacios empresariales y mantenimiento periódico.
+3. **Servicios para apartamentos turísticos (`/limpieza-apartamentos-turisticos-vigo`):** Limpieza tras cada salida, lavandería de ropa de cama y baño, preparación para siguientes huéspedes y coordinación logística con propietarios y gestores.
+4. **Servicios para empresas y comercios (`/servicios-empresas`):** Limpieza industrial de **uniformidad laboral**, mantelería y lencería corporativa.
+5. **Recuperación textil tras incendios y siniestros (`/blog/ropa-afectada-humo-incendio-siniestro-hogar`):** Descontaminación de hollín, desodorización de humo y factura oficial desglosada con CIF para aseguradoras.
 
 ---
 
@@ -103,20 +95,21 @@ Plataforma que integra servicios de limpieza técnica de instalaciones con la ca
 
 ### Páginas principales y de servicio
 - [Portada principal](https://www.tintoreriamimos.es/)
-- [Limpieza y reparación de alfombras en Vigo](https://www.tintoreriamimos.es/limpieza-alfombras-vigo)
-- [Costura y arreglos de ropa en Vigo](https://www.tintoreriamimos.es/arreglos-de-ropa-vigo)
+- [Limpieza de sofás y tapicerías a domicilio en Vigo](https://www.tintoreriamimos.es/limpieza-sofas-vigo)
+- [Limpieza y arreglo de alfombras en Vigo](https://www.tintoreriamimos.es/limpieza-alfombras-vigo)
+- [Costura y arreglos de ropa en Vigo (18 especialidades)](https://www.tintoreriamimos.es/arreglos-de-ropa-vigo)
 - [Tintorería profesional en Vigo](https://www.tintoreriamimos.es/tintoreria-vigo)
 - [Lavandería profesional en Vigo](https://www.tintoreriamimos.es/lavanderia-vigo)
 - [Planchado profesional en Vigo](https://www.tintoreriamimos.es/planchado-vigo)
 - [Colada familiar en Vigo](https://www.tintoreriamimos.es/colada-familiar-vigo)
-- [Limpieza de edredones y textiles del hogar](https://www.tintoreriamimos.es/textiles-hogar-vigo)
+- [Limpieza de edredones, cortinas, estores y textiles del hogar](https://www.tintoreriamimos.es/textiles-hogar-vigo)
 - [Limpieza especializada de pieles y cuero](https://www.tintoreriamimos.es/limpieza-pieles-cuero-vigo)
 - [Recogida y entrega a domicilio](https://www.tintoreriamimos.es/recogida-a-domicilio)
 
 ### División de limpieza profesional y empresas
 - [Empresa de limpieza profesional en Vigo](https://www.tintoreriamimos.es/limpieza-profesional-vigo)
 - [Limpieza y lavandería para apartamentos turísticos en Vigo](https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo)
-- [Servicios para empresas y negocios](https://www.tintoreriamimos.es/servicios-empresas)
+- [Servicios para empresas y uniformidad laboral](https://www.tintoreriamimos.es/servicios-empresas)
 
 ### Red física, tiendas y zonas locales
 - [Buscador general de tiendas y puntos](https://www.tintoreriamimos.es/puntos-mimos)

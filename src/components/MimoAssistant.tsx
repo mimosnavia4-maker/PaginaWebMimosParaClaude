@@ -33,7 +33,26 @@ function getLocalFaqReply(query: string): {
   whatsappCtaLabel: string;
 } {
   const q = query.toLowerCase();
-  if (/costura|arregl|compostur|bajo|bastill|cremallera|bot[oó]n|zurcid|estrech|ensanch/.test(q)) {
+  if (/sof[aá]|tapicer|sill[oó]n|butaca|chaiselongue|cabecero|colch[oó]n|aquaclean/.test(q)) {
+    const topic = getTopicById('sofas');
+    return {
+      text: topic.respuesta,
+      whatsappUrl: buildMimoWhatsAppUrl(
+        `Hola, Mimo. Quiero consultar limpieza de sofá/tapicería: ${query.trim()}`
+      ),
+      whatsappCtaLabel: topic.whatsappCtaLabel,
+    };
+  }
+  if (/costura|arregl|compostur|bajo|bastill|cremallera|bot[oó]n|zurcid|estrech|ensanch|bordad|confecci[oó]n|fleco|ribete/.test(q)) {
+    if (/alfombra|fleco|ribete/.test(q)) {
+      return {
+        text: `En Tintorería Mimos limpiamos alfombras en nuestras instalaciones y realizamos reparación y restauración de flecos, ribetes y bordes. Envía a Mimo las medidas aproximadas (largo × ancho) y fotos del estado por WhatsApp.`,
+        whatsappUrl: buildMimoWhatsAppUrl(
+          `Hola, Mimo. Quiero consultar sobre alfombra (limpieza o arreglo de flecos/bordes): ${query.trim()}`
+        ),
+        whatsappCtaLabel: 'Valorar alfombra por WhatsApp',
+      };
+    }
     const topic = getTopicById('costura');
     return {
       text: topic.respuesta,
@@ -41,7 +60,7 @@ function getLocalFaqReply(query: string): {
       whatsappCtaLabel: topic.whatsappCtaLabel,
     };
   }
-  if (/precio|cuesta|cu[aá]nto|tarifa|camisa|traje|vestido|edred[oó]n|alfombra|cortina/.test(q)) {
+  if (/precio|cuesta|cu[aá]nto|tarifa|camisa|traje|vestido|edred[oó]n|alfombra|cortina|estor|piel|ante|nobuk|wet cleaning|seco/.test(q)) {
     const topic = getTopicById('precios');
     return {
       text: topic.respuesta,
@@ -59,7 +78,7 @@ function getLocalFaqReply(query: string): {
       whatsappCtaLabel: topic.whatsappCtaLabel,
     };
   }
-  if (/punto|colaborador|redondela|gondomar|ponteareas|porri[ñn]o|arregla2|puntadas|telas/.test(q)) {
+  if (/punto|colaborador|redondela|gondomar|ponteareas|porri[ñn]o|moa[ñn]a|nigr[aá]n|cangas|arregla2|puntadas|telas/.test(q)) {
     const topic = getTopicById('puntos');
     return {
       text: topic.respuesta,
@@ -67,7 +86,7 @@ function getLocalFaqReply(query: string): {
       whatsappCtaLabel: topic.whatsappCtaLabel,
     };
   }
-  if (/recog|domicilio|casa|reparto|wash/.test(q)) {
+  if (/recog|domicilio|casa|reparto|wash|m[ií]nim/.test(q)) {
     const topic = getTopicById('domicilio');
     return {
       text: topic.respuesta,
@@ -75,7 +94,7 @@ function getLocalFaqReply(query: string): {
       whatsappCtaLabel: topic.whatsappCtaLabel,
     };
   }
-  if (/apartamento|empresa|tur[ií]stic|hotel|limpieza|oficina|presupuesto/.test(q)) {
+  if (/apartamento|empresa|tur[ií]stic|hotel|limpieza|oficina|comunidad|uniform|incendio|humo|presupuesto/.test(q)) {
     const topic = getTopicById('apartamentos-empresas');
     return {
       text: topic.respuesta,

@@ -410,7 +410,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   </h3>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Puedes entregar tu prenda personalmente para revisarla juntos o consultar con Mimo la recogida y entrega a domicilio (pedido mínimo de <strong>30 €</strong> para domicilio).
+                  Puedes entregar tu prenda personalmente en nuestras tiendas o puntos para revisarla juntos, o consultar con Mimo la recogida y entrega a domicilio (servicio sujeto a importe mínimo a consultar según zona).
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   {TIENDAS_PROPIAS.map((t) => (
@@ -605,8 +605,8 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   <option value="Depositarla en un punto colaborador de la comarca">
                     Depositarla en un punto colaborador de la comarca
                   </option>
-                  <option value="Consultar recogida a domicilio (pedido mín. 30 €)">
-                    Consultar recogida a domicilio (pedido mín. 30 €)
+                  <option value="Consultar recogida a domicilio (importe mínimo a consultar)">
+                    Consultar recogida a domicilio (importe mínimo a consultar)
                   </option>
                 </select>
               </div>

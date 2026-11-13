@@ -556,9 +556,9 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     titulo: 'Recogida y entrega a domicilio y en puntos',
     subtitulo: 'Pasamos por tu domicilio o te atendemos en tu punto colaborador más cercano',
     descripcion:
-      'Para que cuidar tu ropa resulte todavía más sencillo, disponemos de servicio de recogida y entrega a domicilio con un pedido mínimo de 30 € (sujeto a las condiciones del servicio y a la zona de cobertura en Vigo y alrededores) así como 3 tiendas propias en Vigo y puntos colaboradores en la comarca.',
+      'Para que cuidar tu ropa resulte todavía más sencillo, disponemos de servicio de recogida y entrega a domicilio sujeto a un importe mínimo de servicio (a consultar con Mimo según zona y recogida en Vigo y alrededores), así como 3 tiendas propias en Vigo y puntos colaboradores en la comarca.',
     queTratamos: [
-      'Recogida de prendas de tintorería, pieles, coladas familiares, edredones y alfombras (pedido mínimo: 30 €)',
+      'Recogida de prendas de tintorería, pieles, coladas familiares, edredones y alfombras (importe mínimo a domicilio a consultar)',
       'Seguimiento y solicitud mediante WhatsApp con Mimo, teléfono o la aplicación Wash In Town',
       'Plazos e información del pedido confirmados directamente al gestionar tu solicitud',
     ],
@@ -1017,7 +1017,7 @@ export const FAQ_PORTADA_SIN_PRECIOS = [
   },
   {
     pregunta: '¿Cómo funciona el servicio de recogida y entrega a domicilio?',
-    respuesta: `Puedes solicitar la recogida escribiendo por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}, a través del formulario de esta web o desde la aplicación Wash In Town. El servicio cuenta con un pedido mínimo de 30 € y está sujeto a disponibilidad y zona de cobertura en Vigo y alrededores.`,
+    respuesta: `Puedes solicitar la recogida escribiendo por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}, a través del formulario de esta web o desde la aplicación Wash In Town. El servicio a domicilio está sujeto a un importe mínimo de pedido (a consultar con Mimo) y a la zona de cobertura en Vigo y alrededores; sin importe mínimo si entregas en nuestras 3 tiendas propias o puntos colaboradores.`,
   },
   {
     pregunta: '¿Ofrecéis servicios para apartamentos turísticos y empresas en Vigo?',
@@ -2273,11 +2273,20 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
   {
     id: 'precios',
     label: 'Consultar precios',
-    respuesta: `Para darte el precio exacto según tu prenda, tejido o servicio (trajes, vestidos, camisas, edredones, alfombras, colada familiar o alojamientos), escríbenos por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado} y te informamos detalladamente.`,
+    respuesta: `Para darte el precio exacto según tu prenda, tejido o servicio (trajes, vestidos, Wet Cleaning, limpieza en seco, cortinas y estores, edredones, limpieza o arreglo de alfombras, sofás o colada familiar), escríbenos por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado} y te orientamos detalladamente.`,
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero consultar el precio de un servicio de tintorería'
+      'Hola, Mimo. Quiero consultar el precio de un servicio de tintorería o limpieza'
     ),
     whatsappCtaLabel: 'Consultar precio por WhatsApp',
+  },
+  {
+    id: 'sofas',
+    label: 'Limpieza de sofás',
+    respuesta: `Limpiamos sofás, chaiselongue, sillones, sillas, cabeceros y colchones a domicilio en Vigo y comarca por inyección-extracción controlada (o limpieza en seco en etiquetas código S), con secado natural al aire. No trabajamos tapicerías de coches ni usamos vapor seco, enzimáticos ni ventiladores. Envía foto frontal, manchas y etiqueta (W/S/WS/X) a Mimo.`,
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Quiero pedir presupuesto para limpiar mi sofá o tapicería a domicilio. Te envío foto frontal, manchas y etiqueta.'
+    ),
+    whatsappCtaLabel: 'Enviar foto del sofá a Mimo',
   },
   {
     id: 'horarios-tiendas',
@@ -2304,20 +2313,20 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
   {
     id: 'domicilio',
     label: 'Recogida a domicilio',
-    respuesta: `Disponemos de servicio de recogida y entrega a domicilio sujeto a condiciones y zona de cobertura. Puedes solicitarlo directamente por WhatsApp en el ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}, en el formulario de la web o con la app Wash In Town.`,
+    respuesta: `Disponemos de servicio de recogida y entrega a domicilio en Vigo y alrededores (sujeto a importe mínimo de pedido a consultar con Mimo y zona de cobertura); sin importe mínimo entregando en nuestras 3 tiendas propias o puntos colaboradores. Puedes pedirlo por WhatsApp (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}), formulario web o Wash In Town.`,
     whatsappUrl: CONTACT_INFO.whatsappPickupHref,
     whatsappCtaLabel: 'Solicitar recogida por WhatsApp',
   },
   {
     id: 'costura',
     label: 'Costura y arreglos',
-    respuesta: `Realizamos arreglos y composturas de ropa con taller propio in situ en Gregorio Espino (Alcalde Gregorio Espino 44) y Venezuela (C/ Venezuela 41 bajo 1), punto de recepción y entrega en Navia (C/ Teixugueiras 11 bajo 9), y en los establecimientos colaboradores independientes con costura confirmada: ${PUNTOS_CON_COSTURA.filter(
+    respuesta: `Cubrimos 18 especialidades de costura y arreglos (bajos, cremalleras, botones, cintura, zurcidos, rotos y confección de cortinas, estores y cojines; además de piel, delicadas, bordados y servicio express en taller propio) en Gregorio Espino y Venezuela, recepción en Navia, y en los puntos con costura: ${PUNTOS_CON_COSTURA.filter(
       (p) => p.tipo === 'punto'
     )
       .map((p) => `${p.localidad} (${p.nombre_comercio}, ${p.direccion})`)
       .join(', ')}.`,
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero consultar un arreglo de ropa y mi punto de costura más cercano'
+      'Hola, Mimo. Quiero consultar un arreglo de ropa o confección y mi punto de costura más cercano'
     ),
     whatsappCtaLabel: 'Consultar arreglo con Mimo',
   },
@@ -2325,7 +2334,7 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
     id: 'apartamentos-empresas',
     label: 'Apartamentos y empresas',
     respuesta:
-      'Ofrecemos soluciones de lavandería y limpieza profesional para apartamentos turísticos, viviendas, oficinas y empresas en Vigo con presupuesto a medida.',
+      'Ofrecemos soluciones de lavandería, uniformidad laboral, recuperación textil tras incendios y limpieza profesional para apartamentos turísticos, viviendas, oficinas, comunidades y empresas en Vigo con presupuesto a medida.',
     whatsappUrl: CONTACT_INFO.whatsappApartamentosHref,
     whatsappCtaLabel: 'Pedir presupuesto a medida',
   },
@@ -2552,70 +2561,152 @@ export const SERVICIO_ALFOMBRAS_DATA = {
 export const SERVICIO_ARREGLOS_DATA = {
   url: '/arreglos-de-ropa-vigo',
   canonical: 'https://www.tintoreriamimos.es/arreglos-de-ropa-vigo',
-  seoTitle: 'Arreglos de Ropa en Vigo: Costura y Composturas Profesionales | Mimos',
+  seoTitle: 'Arreglos de Ropa en Vigo: Costura, Piel, Bordados y Confección | Mimos',
   metaDescription:
-    'Arreglos de ropa y costura en Vigo: taller propio in situ en Gregorio Espino y Venezuela, recepción en Navia y puntos colaboradores independientes con costura.',
+    'Taller propio de costura y arreglos en Vigo: bajos, cremalleras, botones, ajustes, piel, bordados, servicio express y confección de cortinas, estores y cojines.',
   h1: 'Arreglos de ropa en Vigo: costura y composturas profesionales',
   subtituloCabecera:
-    'Taller propio de costura y arreglos in situ en Gregorio Espino y Venezuela, recepción de prendas en Navia y red de establecimientos colaboradores independientes con costura.',
+    'Taller propio de costura y composturas in situ en Gregorio Espino y Venezuela, recepción de prendas en Navia y red de puntos colaboradores con costura. Desde arreglos habituales y prendas de piel hasta bordados y confección de cortinas, estores y cojines.',
   trabajosConfirmados: [
     {
       id: 'bajos-bastillas',
+      categoria: 'Composturas habituales',
+      disponibilidad: 'Tiendas propias y puntos con costura',
       titulo: 'Bajos y bastillas',
       descripcion:
-        'Subir o bajar el largo de pantalones de vestir, vaqueros, faldas, vestidos de calle o ceremonia, mangas de camisas, americanas, chaquetas y abrigos respetando el acabado original.',
-      prendasHabituales: 'Pantalones, faldas, vestidos, camisas, chaquetas y abrigos',
+        'Subir o bajar el largo de pantalones de vestir o vaqueros, faldas, vestidos de calle o ceremonia, mangas y abrigos respetando la caída original.',
+      prendasHabituales: 'Pantalones, faldas, vestidos, camisas y abrigos',
     },
     {
-      id: 'cremalleras',
-      titulo: 'Cambio y reparación de cremalleras',
+      id: 'arreglos-pantalones-faldas-vestidos-abrigos',
+      categoria: 'Composturas habituales',
+      disponibilidad: 'Tiendas propias y puntos con costura',
+      titulo: 'Arreglos de pantalones, faldas, vestidos y abrigos',
       descripcion:
-        'Sustitución completa de cremalleras rotas o atascadas (visibles, invisibles o metálicas) y ajuste de cursores en prendas de diario y de abrigo.',
+        'Composturas integrales adaptadas a la estructura de cada prenda: pinzas, hombros, forros interiores, bocamangas, aberturas y bajos en prendas de diario y abrigo.',
       prendasHabituales: 'Pantalones, faldas, vestidos, chaquetas y abrigos',
     },
     {
-      id: 'botones-cierres',
-      titulo: 'Botones, ojales y cierres',
+      id: 'cremalleras-cambio-reparacion',
+      categoria: 'Composturas habituales',
+      disponibilidad: 'Tiendas propias y puntos con costura',
+      titulo: 'Cambio y reparación de cremalleras',
       descripcion:
-        'Reposición y cosido reforzado de botones en camisas, trajes y abrigos, así como ajuste de corchetes, broches y cierres de cintura.',
+        'Sustitución completa de cremalleras rotas (visibles, invisibles o metálicas) y reparación o ajuste de cursores y topes sin cambiar toda la pieza cuando es viable.',
+      prendasHabituales: 'Pantalones, faldas, vestidos, cazadoras y abrigos',
+    },
+    {
+      id: 'botones-ojales-cierres',
+      categoria: 'Composturas habituales',
+      disponibilidad: 'Tiendas propias y puntos con costura',
+      titulo: 'Cambio y reparación de botones y cierres',
+      descripcion:
+        'Reposición y cosido reforzado de botones en camisas, trajes y abrigos, así como reparación de ojales, corchetes y cierres de cintura.',
       prendasHabituales: 'Camisas, pantalones, faldas, chaquetas y abrigos',
     },
     {
-      id: 'estrechar-ensanchar',
-      titulo: 'Estrechar y ensanchar prendas',
+      id: 'estrechar-ensanchar-cintura',
+      categoria: 'Composturas habituales',
+      disponibilidad: 'Tiendas propias y puntos con costura',
+      titulo: 'Estrechar, ensanchar y ajustes de cintura',
       descripcion:
-        'Entallado o ampliación de prendas según las costuras y el margen interior del tejido para recuperar un ajuste favorecedor y cómodo.',
-      prendasHabituales: 'Vestidos, camisas, chaquetas, pantalones y faldas',
+        'Entallado o ampliación según márgenes de costura y ajustes precisos de cintura y tiro para que la prenda siente sin bolsas ni tiranteces.',
+      prendasHabituales: 'Pantalones, faldas, vestidos, camisas y americanas',
     },
     {
-      id: 'ajustes-cintura',
-      titulo: 'Ajustes de cintura y tiro',
+      id: 'zurcidos-descosidos-rotos',
+      categoria: 'Composturas habituales',
+      disponibilidad: 'Tiendas propias y puntos con costura',
+      titulo: 'Zurcidos, reparación de descosidos y rotos',
       descripcion:
-        'Entrar o sacar cintura en pantalones de vestir, vaqueros y faldas para que la prenda asiente con precisión sin hacer bolsas.',
-      prendasHabituales: 'Pantalones, faldas y vestidos',
-    },
-    {
-      id: 'zurcidos-descosidos',
-      titulo: 'Zurcidos, descosidos y rotos',
-      descripcion:
-        'Reparación de costuras abiertas, bajos sueltos, bolsillos o forros descosidos y pequeños rotos o enganchones en tus prendas habituales.',
+        'Reparación limpia de costuras abiertas, bajos sueltos, bolsillos o forros descosidos, zurcidos finos y enganchones en tus prendas habituales.',
       prendasHabituales: 'Pantalones, faldas, vestidos, camisas, chaquetas y abrigos',
     },
+  ],
+  especialidadesTallerPropio: [
+    {
+      id: 'arreglos-delicadas',
+      disponibilidad: 'Tiendas propias en Vigo (taller propio)',
+      titulo: 'Arreglos de prendas delicadas',
+      descripcion:
+        'Ajustes de precisión en vestidos de fiesta, ceremonia, gasas, sedas, encajes y tejidos finos con revisión previa del tejido y el forro.',
+    },
+    {
+      id: 'arreglos-piel',
+      disponibilidad: 'Taller propio Gregorio Espino (recepción en Navia)',
+      titulo: 'Arreglos de prendas de piel',
+      descripcion:
+        'Composturas especializadas con maquinaria adecuada para cazadoras, chaquetas, faldas y abrigos de cuero liso, napa o ante.',
+    },
+    {
+      id: 'bordados-personalizados',
+      disponibilidad: 'Taller propio Gregorio Espino (bajo consulta)',
+      titulo: 'Bordados personalizados',
+      descripcion:
+        'Marcaje y bordado personalizado en prendas textiles, ropa laboral, toallas o textiles de hogar según diseño y tamaño solicitado.',
+    },
+    {
+      id: 'servicio-express',
+      disponibilidad: 'Taller propio Gregorio Espino (según carga)',
+      titulo: 'Servicio de arreglos express',
+      descripcion:
+        'Atención prioritaria para bajos y composturas urgentes en el día cuando la complejidad de la prenda y la disponibilidad del taller lo permiten.',
+    },
+  ],
+  confeccionHogar: [
+    {
+      id: 'confeccion-cortinas',
+      titulo: 'Confección de cortinas',
+      descripcion:
+        'Confección y ajuste de cortinas a medida según altura de techo, tipo de frunce, ollados o riel.',
+    },
+    {
+      id: 'confeccion-estores',
+      titulo: 'Confección de estores',
+      descripcion:
+        'Confección de estores textiles a medida (paqueto o varillas) adaptados a las medidas de tus ventanas.',
+    },
+    {
+      id: 'confeccion-cojines',
+      titulo: 'Confección de cojines',
+      descripcion:
+        'Fundas de cojines a medida con cremallera oculta, vivos o remates para salón, dormitorio o terraza.',
+    },
+  ],
+  catalogoCompleto18Puntos: [
+    'Bajos y bastillas',
+    'Arreglos de pantalones',
+    'Arreglos de faldas y vestidos',
+    'Arreglos de abrigos',
+    'Cambio de cremalleras',
+    'Reparación de cremalleras',
+    'Cambio y reparación de botones',
+    'Estrechar y ensanchar prendas',
+    'Ajustes de cintura',
+    'Zurcidos',
+    'Reparación de descosidos y rotos',
+    'Arreglos de prendas delicadas',
+    'Arreglos de prendas de piel',
+    'Bordados personalizados',
+    'Confección de cortinas',
+    'Confección de estores',
+    'Confección de cojines',
+    'Servicio de arreglos express',
   ],
   prendasConfirmadas: [
     'Pantalones (de vestir, pinzas, chinos y vaqueros)',
     'Faldas de diario, oficina y ceremonia',
-    'Vestidos de calle, fiesta e invitada',
-    'Camisas y blusas',
-    'Chaquetas, americanas y blazers',
-    'Abrigos, gabardinas y prendas de entretiempo',
+    'Vestidos de calle, fiesta, invitada y prendas delicadas',
+    'Camisas, blusas y ropa laboral para bordado',
+    'Chaquetas, americanas, blazers y prendas de piel',
+    'Abrigos, gabardinas, cortinas, estores y cojines',
   ],
   comoPedirloPasos: [
     {
       num: '01',
       titulo: 'Consúltanos por WhatsApp o acude a tu punto de costura',
       descripcion:
-        'Puedes consultar por WhatsApp a Mimo o llevar directamente tu prenda a nuestras tiendas de Gregorio Espino o Venezuela (con taller propio in situ), a Navia (recepción y entrega de arreglos) o a los puntos colaboradores con servicio de costura.',
+        'Para composturas habituales puedes acudir a cualquiera de nuestras 3 tiendas propias en Vigo o a los puntos colaboradores con costura. Para prendas de piel, bordados, confección de hogar (cortinas, estores y cojines) o servicio express, te atendemos desde nuestro taller propio de Gregorio Espino (o recepción previa en Navia).',
     },
     {
       num: '02',
@@ -2632,59 +2723,59 @@ export const SERVICIO_ARREGLOS_DATA = {
   ],
   factoresPresupuestoYPlazo: [
     {
-      titulo: 'Tipo de arreglo y confección',
+      titulo: 'Tipo de arreglo o confección',
       detalle:
-        'No lleva el mismo trabajo coser un botón o repasar un descosido que sustituir la cremallera completa de un abrigo o entallar una chaqueta con forro.',
+        'No lleva el mismo trabajo coser un botón o reparar un descosido que sustituir la cremallera completa de un abrigo, trabajar sobre piel o confeccionar estores y cortinas a medida.',
     },
     {
       titulo: 'Naturaleza y delicadeza del tejido',
       detalle:
-        'Los tejidos finos, vestidos de ceremonia, paños gruesos de abrigo o prendas estructuradas requieren mayor precisión de aguja y acabado.',
+        'Los tejidos finos, vestidos de ceremonia, prendas de cuero o paños gruesos de abrigo requieren aguja, hilo y precisión específicos.',
     },
     {
       titulo: 'Complejidad estructural de la prenda',
       detalle:
-        'La presencia de forros interiores, aberturas traseras, vivos, pliegues o dobles costuras influye tanto en el trabajo de costura como en el tiempo necesario.',
+        'La presencia de forros interiores, aberturas traseras, vivos, pliegues, bordados o dobles costuras influye tanto en el trabajo de costura como en el tiempo necesario.',
     },
     {
-      titulo: 'Disponibilidad de cada establecimiento',
+      titulo: 'Disponibilidad y modalidad de entrega',
       detalle:
-        'El plazo se confirma al recibir y revisar la prenda en la tienda propia o en el taller colaborador correspondiente, según la carga de trabajo de cada punto.',
+        'El plazo se confirma al recibir y revisar la prenda en la tienda propia o en el taller colaborador correspondiente. El servicio express se valora in situ en Gregorio Espino según carga de trabajo.',
     },
   ],
   preguntasFrecuentes: [
     {
-      pregunta: '1. ¿Qué tipos de arreglo de bajos y bastillas realizáis?',
+      pregunta: '1. ¿Qué tipos de arreglo de bajos, pantalones, faldas, vestidos y abrigos realizáis?',
       respuesta:
-        'Realizamos bajos y bastillas en pantalones (de vestir, pinzas o vaqueros), faldas, vestidos, mangas de camisas, chaquetas y abrigos, cuidando que el hilo y la caída respeten el diseño original de la prenda.',
+        'Realizamos bajos y bastillas, arreglos de pantalones (de vestir, pinzas o vaqueros), arreglos de faldas y vestidos de calle o ceremonia, y composturas en chaquetas y abrigos, cuidando que el hilo y la caída respeten el diseño original.',
     },
     {
-      pregunta: '2. ¿Cambiáis cremalleras en pantalones, vestidos, chaquetas y abrigos?',
+      pregunta: '2. ¿Cambiáis y reparáis cremalleras y botones?',
       respuesta:
-        'Sí. Sustituimos y reparamos cremalleras dañadas o atascadas en pantalones, faldas, vestidos, chaquetas y abrigos, seleccionando el tipo de cierre adecuado para cada prenda.',
+        'Sí. Realizamos tanto cambio completo de cremalleras como reparación de cursores o topes cuando no hace falta sustituir toda la cremallera, además de cambio y reparación de botones, ojales y cierres en todo tipo de prendas.',
     },
     {
       pregunta: '3. ¿Hacéis arreglos en prendas delicadas o vestidos de fiesta y ceremonia?',
       respuesta:
-        'Sí, valoramos ajustes de largo, bajos, cierres, cintura o entallado en vestidos y trajes. Al tratarse de tejidos delicados, es imprescindible ver la prenda en el establecimiento para confirmar cómo debe realizarse la compostura y, si lo necesitas, combinarla con nuestro servicio de tintorería y planchado profesional.',
+        'Sí, realizamos ajustes de largo, cintura, entallado y cierres en prendas delicadas, vestidos de fiesta e invitada. Es imprescindible revisar la prenda previamente para confirmar el acabado más adecuado y, si lo necesitas, combinarlo con tintorería y planchado profesional.',
     },
     {
-      pregunta: '4. ¿Arregláis ropa del hogar, cortinas o prendas especiales como pieles?',
+      pregunta: '4. ¿Realizáis arreglos en prendas de piel, bordados personalizados y confección de cortinas, estores o cojines?',
       respuesta:
-        'Nuestros arreglos habituales confirmados se centran en prendas de vestir (pantalones, faldas, vestidos, camisas, chaquetas y abrigos). Para cualquier consulta sobre textiles del hogar, cortinas u otros tejidos especiales, escríbenos antes por WhatsApp a Mimo para confirmar si está disponible y en qué establecimiento puede atenderse.',
+        'Sí. En nuestro taller propio de Mimos Gregorio Espino (Alcalde Gregorio Espino, 44, Vigo) disponemos de maquinaria especializada para arreglos en prendas de piel, bordados personalizados y confección a medida de cortinas, estores y cojines (también puedes consultarnos o gestionar la recepción previa desde Navia). Los puntos colaboradores independientes se centran en composturas habituales de ropa de vestir.',
     },
     {
-      pregunta: '5. ¿Cómo puedo saber el presupuesto de un arreglo de ropa?',
-      respuesta: `No publicamos tarifas estándar cerradas porque cada compostura depende de la prenda, el tejido y la complejidad (por ejemplo, si lleva forro o requiere desmontar piezas). Puedes orientarte escribiendo a Mimo por WhatsApp en el ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado} y el presupuesto definitivo se confirma al revisar la prenda.`,
-    },
-    {
-      pregunta: '6. ¿Cuál es el plazo habitual para los arreglos de costura?',
+      pregunta: '5. ¿Tenéis servicio de arreglos express en el día?',
       respuesta:
-        'El plazo depende del tipo de arreglo, la dificultad técnica del tejido y la disponibilidad de trabajo del establecimiento en ese momento. Al dejar tu prenda te indicaremos la fecha estimada de recogida, sin prometer plazos exprés sin haber revisado antes la prenda.',
+        'Sí, ofrecemos servicio de arreglos express para bajos y composturas sencillas en nuestra tienda propia de Gregorio Espino (Vigo), sujeto siempre a revisión previa de la prenda y disponibilidad de carga del taller en ese momento.',
     },
     {
-      pregunta: '7. ¿En qué tiendas propias y puntos colaboradores puedo entregar una prenda para arreglar?',
-      respuesta: `Puedes acudir a nuestras tiendas propias de Gregorio Espino (Alcalde Gregorio Espino, 44) o Venezuela (C/ Venezuela, 41, bajo 1), ambas con taller propio de costura in situ; a nuestra sede de Navia (C/ Teixugueiras, 11, bajo 9), donde gestionamos la recepción y entrega para taller; y a los establecimientos colaboradores independientes con servicio de costura confirmado en ${PUNTOS_CON_COSTURA.filter(
+      pregunta: '6. ¿Cómo puedo saber el presupuesto de un arreglo o confección?',
+      respuesta: `No publicamos tarifas estándar cerradas porque cada trabajo depende de la prenda, el tejido y la complejidad (forros, piel, bordado o medidas de confección). Puedes orientarte escribiendo a Mimo por WhatsApp en el ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado} y el presupuesto definitivo se confirma al revisar la prenda.`,
+    },
+    {
+      pregunta: '7. ¿En qué tiendas propias y puntos colaboradores puedo entregar mi ropa para arreglar?',
+      respuesta: `Puedes acudir a nuestras tiendas propias de Gregorio Espino (Alcalde Gregorio Espino, 44 — taller completo con especialidades de piel, bordados, confección hogar y express) o Venezuela (C/ Venezuela, 41, bajo 1 — taller propio in situ); a nuestra sede de Navia (C/ Teixugueiras, 11, bajo 9 — recepción y entrega para taller); y para composturas habituales de vestir, a los puntos colaboradores con costura en ${PUNTOS_CON_COSTURA.filter(
         (p) => p.tipo === 'punto'
       )
         .map((p) => `${p.localidad} (${p.nombre_comercio}, ${p.direccion})`)
@@ -2699,10 +2790,10 @@ export const SERVICIO_ARREGLOS_DATA = {
         'Combina el arreglo de tu traje, abrigo o vestido de ceremonia con nuestra limpieza en seco y desmanchado profesional.',
     },
     {
-      titulo: 'Lavandería y planchado profesional',
-      href: '/lavanderia-vigo',
+      titulo: 'Limpieza de pieles y cuero',
+      href: '/limpieza-pieles-cuero-vigo',
       descripcion:
-        'Cuidado en agua y planchado impecable para camisas, pantalones y prendas de diario tras su compostura.',
+        'Tratamiento especializado para cazadoras de cuero, ante, nobuk, doble faz y peletería en Vigo.',
     },
     {
       titulo: 'Localizador de tiendas y puntos Mimos',
@@ -2904,7 +2995,7 @@ export const SERVICIO_PIELES_DATA = {
     },
     {
       pregunta: '6. ¿Dónde entrego mi prenda de piel o cómo pido recogida a domicilio?',
-      respuesta: `Puedes traerla a cualquiera de nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela), depositarla en nuestra red de puntos colaboradores en la comarca o solicitar recogida y entrega a domicilio consultando condiciones con Mimo (pedido mínimo de 30 € para domicilio).`,
+      respuesta: `Puedes traerla a cualquiera de nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela), depositarla en nuestra red de puntos colaboradores en la comarca o solicitar recogida y entrega a domicilio consultando el importe mínimo de servicio y las condiciones con Mimo.`,
     },
     {
       pregunta: '7. ¿Salen las manchas de grasa, tinta, agua o crema aplicada en casa?',
@@ -2929,9 +3020,135 @@ export const SERVICIO_PIELES_DATA = {
       titulo: 'Recogida y entrega a domicilio',
       href: '/recogida-a-domicilio',
       descripcion:
-        'Solicita que pasemos a recoger y entregar tus prendas en Vigo y comarca (pedido mínimo de 30 € a domicilio).',
+        'Solicita que pasemos a recoger y entregar tus prendas en Vigo y comarca (servicio sujeto a importe mínimo a consultar con Mimo).',
     },
   ],
 };
+
+// Catálogo estructurado para portada: Familia 1 (15 servicios en 4 subbloques) + Familias 3 y 4
+export interface SubbloqueTintoreriaPortada {
+  id: string;
+  codigo: string;
+  titulo: string;
+  subtitulo: string;
+  servicios: string[];
+  enlaces: { label: string; href: string }[];
+  whatsappUrl: string;
+}
+
+export const SUBBLOQUES_TINTORERIA_PORTADA: SubbloqueTintoreriaPortada[] = [
+  {
+    id: 'ropa-ceremonia-delicadas',
+    codigo: 'SUBBLOQUE 01 · PRENDAS DE VESTIR',
+    titulo: 'Ropa de vestir, ceremonia y prendas delicadas',
+    subtitulo: 'Limpieza individualizada según fibra, forro y estructura sastre',
+    servicios: [
+      'Tintorería profesional de prendas',
+      'Limpieza de trajes, americanas y prendas de vestir',
+      'Limpieza de vestidos de fiesta y ceremonia (bautizo, comunión y novia)',
+      'Limpieza de prendas delicadas (seda, lana, lino, pedrería o encaje)',
+    ],
+    enlaces: [{ label: 'Tintorería profesional', href: '/tintoreria-vigo' }],
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Quiero consultar el precio para limpiar un traje, vestido de ceremonia o prenda delicada.'
+    ),
+  },
+  {
+    id: 'colada-planchado-diario',
+    codigo: 'SUBBLOQUE 02 · USO DIARIO',
+    titulo: 'Colada familiar y planchado profesional',
+    subtitulo: 'Ahorra tiempo en tu semana con entrega doblada o en percha',
+    servicios: [
+      'Colada familiar: lavado, secado y doblado (o con planchado opcional)',
+      'Planchado profesional de camisas, pantalones, vestidos y lencería de mesa',
+      'Lavandería acuosa profesional para ropa de diario y prendas lavables',
+    ],
+    enlaces: [
+      { label: 'Colada familiar', href: '/colada-familiar-vigo' },
+      { label: 'Planchado', href: '/planchado-vigo' },
+      { label: 'Lavandería', href: '/lavanderia-vigo' },
+    ],
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Quiero consultar tarifas para colada familiar, lavandería o solo planchado.'
+    ),
+  },
+  {
+    id: 'hogar-cortinas-alfombras',
+    codigo: 'SUBBLOQUE 03 · HOGAR Y GRAN FORMATO',
+    titulo: 'Edredones, mantas, cortinas, estores y alfombras',
+    subtitulo: 'Maquinaria de gran capacidad y taller propio para piezas voluminosas',
+    servicios: [
+      'Limpieza e higienización de edredones (plumas y sintéticos) y mantas',
+      'Limpieza de cortinas y estores',
+      'Limpieza e higienización profunda de alfombras en nuestras instalaciones',
+      'Reparación y restauración de alfombras: flecos, ribetes y bordes',
+    ],
+    enlaces: [
+      { label: 'Textiles del hogar', href: '/textiles-hogar-vigo' },
+      { label: 'Alfombras y arreglos', href: '/limpieza-alfombras-vigo' },
+    ],
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Quiero pedir valoración para edredones, mantas, cortinas, estores o alfombras.'
+    ),
+  },
+  {
+    id: 'tecnicas-especiales-industria',
+    codigo: 'SUBBLOQUE 04 · TÉCNICAS ESPECIALES E INDUSTRIA',
+    titulo: 'Wet Cleaning, en seco, pieles, uniformidad y siniestros',
+    subtitulo: 'Procesos técnicos avanzados para materiales críticos y recuperación',
+    servicios: [
+      'Wet Cleaning (limpieza ecológica controlada en medio acuoso)',
+      'Limpieza en seco profesional',
+      'Limpieza y restauración de pieles, cuero, ante y nobuk',
+      'Limpieza industrial de uniformidad laboral y vestuario de trabajo',
+      'Limpieza y recuperación de textiles afectados por incendios o humo',
+    ],
+    enlaces: [
+      { label: 'Pieles y cuero', href: '/limpieza-pieles-cuero-vigo' },
+      { label: 'Empresas y siniestros', href: '/servicios-empresas' },
+    ],
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Quiero consultar un tratamiento especial (Wet Cleaning, en seco, piel/ante, uniformidad o recuperación tras incendio).'
+    ),
+  },
+];
+
+export const RESUMEN_FAMILIAS_EXTENDIDAS_PORTADA = {
+  limpiezaProfesional: {
+    badge: 'FAMILIA 03 · LIMPIEZA PROFESIONAL',
+    titulo: 'Limpieza profesional para particulares y empresas',
+    descripcion:
+      'Equipo propio para mantenimiento periódico o puntual en espacios de trabajo, edificios y hogares, además de tapicerías a domicilio y limpieza textil técnica.',
+    puntos: [
+      'Oficinas, locales comerciales y espacios empresariales',
+      'Comunidades de vecinos, viviendas y mantenimiento periódico',
+      'Apartamentos y alojamientos turísticos',
+      'Limpieza de tapicerías a domicilio (sofás, sillones y colchones)',
+      'Uniformidad laboral industrial y recuperación textil tras incendios',
+    ],
+    enlaces: [
+      { label: 'Ver limpieza profesional', href: '/limpieza-profesional-vigo' },
+      { label: 'Ver empresas y uniformidad', href: '/servicios-empresas' },
+    ],
+    whatsappUrl: CONTACT_INFO.whatsappCleaningHref,
+  },
+  alojamientosTuristicos: {
+    badge: 'FAMILIA 04 · ALOJAMIENTOS TURÍSTICOS',
+    titulo: 'Gestión de limpieza y lavandería para alojamientos turísticos',
+    descripcion:
+      'Nos adaptamos a propietarios y gestores de viviendas vacacionales en Vigo para dejar cada apartamento preparado tras el check-out con rotación controlada de sábanas y toallas.',
+    puntos: [
+      'Limpieza tras el check-out: cocina, baños, dormitorios y zonas comunes',
+      'Lavandería y planchado de ropa de cama y baño + preparación para huéspedes',
+      'Coordinación de entradas y salidas, planificación de turnos y rutas',
+      'Control de rotación de ropa, revisión visual y comunicación de incidencias',
+    ],
+    enlaces: [
+      { label: 'Ver gestión de alojamientos', href: '/limpieza-apartamentos-turisticos-vigo' },
+    ],
+    whatsappUrl: CONTACT_INFO.whatsappApartamentosHref,
+  },
+};
+
 
 

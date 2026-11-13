@@ -84,8 +84,23 @@ async function startServer() {
     ) {
       return res.redirect(301, '/zonas/gondomar');
     }
-    if (cleanPath === '/tienda/gregorio-espino' || cleanPath === '/tienda/gregorio-espino/') {
+    if (
+      cleanPath === '/tienda/gregorio-espino' ||
+      cleanPath === '/tienda/gregorio-espino/' ||
+      cleanPath === '/tienda-gregorio-espino' ||
+      cleanPath === '/tienda-gregorio-espino/'
+    ) {
       return res.redirect(301, '/tienda-mimos-gregorio-espino-vigo');
+    }
+    if (
+      cleanPath === '/tienda/navia' ||
+      cleanPath === '/tienda/navia/' ||
+      cleanPath === '/tienda-navia' ||
+      cleanPath === '/tienda-navia/' ||
+      cleanPath === '/central-navia' ||
+      cleanPath === '/central-navia/'
+    ) {
+      return res.redirect(301, '/tienda-mimos-navia-vigo');
     }
     if (
       cleanPath === '/blog/9-blog/26-la-colada-en-casa.html' ||
@@ -98,6 +113,18 @@ async function startServer() {
       cleanPath === '/blog/9-blog/22-montar-tu-propia-tintoreria-lavanderia'
     ) {
       return res.redirect(301, '/blog/montar-tu-propia-tintoreria-lavanderia');
+    }
+    if (
+      (req.method === 'GET' || req.method === 'HEAD') &&
+      cleanPath.length > 1 &&
+      cleanPath.endsWith('/') &&
+      !cleanPath.startsWith('/assets/') &&
+      !cleanPath.startsWith('/api/')
+    ) {
+      const target = cleanPath.replace(/\/+$/, '');
+      const queryIndex = req.originalUrl.indexOf('?');
+      const querySuffix = queryIndex !== -1 ? req.originalUrl.slice(queryIndex) : '';
+      return res.redirect(301, `${target}${querySuffix}`);
     }
     next();
   });

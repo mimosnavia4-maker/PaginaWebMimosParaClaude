@@ -75,6 +75,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
   const [mapError, setMapError] = useState(!apiKey);
   const [filterType, setFilterType] = useState<'todos' | 'tiendas' | 'colaboradores'>('todos');
   const [activePunto, setActivePunto] = useState<PuntoRegistro | null>(null);
+  const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const handleQuota = () => setMapError(true);
@@ -213,6 +214,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
             <img
               src="/logo-mimos.webp"
               alt=""
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
               className="w-4 h-4 rounded-full bg-white/20 object-contain"
             />
             <span>3 Tiendas propias Vigo ({TIENDAS_PROPIAS.length})</span>
@@ -232,6 +237,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
             <img
               src="/logo-mimos.webp"
               alt=""
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
               className="w-4 h-4 rounded-full bg-white/20 object-contain"
             />
             <span>4 Puntos colaboradores ({PUNTOS_COLABORADORES.length})</span>
@@ -245,6 +254,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               <img
                 src="/logo-mimos.webp"
                 alt=""
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
                 className="w-3.5 h-3.5 object-contain rounded-full"
               />
             </span>
@@ -255,6 +268,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               <img
                 src="/logo-mimos.webp"
                 alt=""
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
                 className="w-3.5 h-3.5 object-contain rounded-full bg-white/10"
               />
             </span>
@@ -304,6 +321,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                         <img
                           src="/logo-mimos.webp"
                           alt="Tintorería Mimos"
+                          referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
                           className="w-8.5 h-8.5 object-contain rounded-full bg-white/20 p-0.5 pointer-events-none"
                         />
                       </div>
@@ -321,6 +342,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                         <img
                           src="/logo-mimos.webp"
                           alt="Punto Colaborador"
+                          referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
                           className="w-7.5 h-7.5 object-contain rounded-full bg-white/10 p-0.5 pointer-events-none"
                         />
                       </div>
@@ -341,11 +366,15 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                 maxWidth={380}
               >
                 <div className="min-w-[270px] max-w-[340px] p-0.5 text-slate-800 space-y-2 font-sans overflow-visible">
-                  {activePunto.foto && (
+                  {activePunto.foto && !failedPhotos[activePunto.id] && (
                     <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden mb-2 shadow-xs">
                       <img
                         src={activePunto.foto}
                         alt={activePunto.nombre_mostrado}
+                        referrerPolicy="no-referrer"
+                        onError={() =>
+                          setFailedPhotos((prev) => ({ ...prev, [activePunto.id]: true }))
+                        }
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -362,6 +391,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                           <img
                             src="/logo-mimos.webp"
                             alt=""
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                            }}
                             className="w-3.5 h-3.5 object-contain rounded-full"
                           />
                           <span>Tienda Propia Mimos</span>
@@ -371,6 +404,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                           <img
                             src="/logo-mimos.webp"
                             alt=""
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                            }}
                             className="w-3.5 h-3.5 object-contain rounded-full bg-white/20"
                           />
                           <span>Punto Colaborador</span>

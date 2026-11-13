@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   Building2,
   Sparkles,
+  ArrowRight,
 } from 'lucide-react';
 import {
   CONTACT_INFO,
@@ -52,6 +53,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
   const [errorMsg, setErrorMsg] = useState('');
   const [preparedReady, setPreparedReady] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [heroImgError, setHeroImgError] = useState(false);
 
   const pageHeader = {
     limpieza: {
@@ -183,6 +185,13 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             >
               Servicios para empresas
             </a>
+            <a
+              href="/limpieza-sofas-vigo"
+              onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
+              className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors bg-white/10 text-[#60B5F6] hover:bg-white/20"
+            >
+              Sofás y tapicerías a domicilio →
+            </a>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -219,13 +228,22 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-white/15 bg-[#071936] shadow-2xl">
-                <img
-                  src={IMAGES.b2bApartamentos}
-                  alt="Ropa de cama y toallas preparadas por Tintorería Mimos para alojamientos turísticos y empresas en Vigo"
-                  width={800}
-                  height={600}
-                  className="w-full aspect-4/3 object-cover"
-                />
+                {!heroImgError ? (
+                  <img
+                    src={IMAGES.b2bApartamentos}
+                    alt="Ropa de cama y toallas preparadas por Tintorería Mimos para alojamientos turísticos y empresas en Vigo"
+                    width={800}
+                    height={600}
+                    referrerPolicy="no-referrer"
+                    onError={() => setHeroImgError(true)}
+                    className="w-full aspect-4/3 object-cover"
+                  />
+                ) : (
+                  <div className="w-full aspect-4/3 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#002147] to-[#0a254c]">
+                    <Building2 className="w-10 h-10 text-[#60B5F6] mb-2" aria-hidden="true" />
+                    <p className="text-sm font-bold text-white">Tintorería Mimos Navia · División Profesional</p>
+                  </div>
+                )}
                 <div className="p-5 text-xs sm:text-sm text-slate-200">
                   <strong className="text-white block mb-1">
                     Atención centralizada en Navia (Vigo)
@@ -290,15 +308,27 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                   </ul>
                 </div>
 
-                <a
-                  href={srv.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-colors w-fit"
-                >
-                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span>Solicitar presupuesto con Mimo</span>
-                </a>
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href={srv.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-colors w-fit"
+                  >
+                    <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                    <span>Solicitar presupuesto con Mimo</span>
+                  </a>
+                  {(srv.id === 'limpieza-oficinas-locales' || srv.id === 'limpieza-hogares-viviendas') && (
+                    <a
+                      href="/limpieza-sofas-vigo"
+                      onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                    >
+                      <span>Ver limpieza de sofás y tapicerías</span>
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
           </div>
@@ -531,6 +561,9 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     </option>
                     <option value="Limpieza de Local Comercial o Clínica">
                       Limpieza de Local Comercial o Clínica
+                    </option>
+                    <option value="Limpieza de sofás y tapicerías en vivienda, alojamiento o negocio">
+                      Limpieza de sofás y tapicerías en vivienda, alojamiento o negocio
                     </option>
                     <option value="Recuperación de ropa y textiles por siniestro o incendio (Seguro)">
                       Recuperación de ropa y textiles por siniestro o incendio (Seguro)

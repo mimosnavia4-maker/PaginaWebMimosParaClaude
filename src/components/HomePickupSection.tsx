@@ -78,37 +78,35 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: How It Works & Channels (Sección 7.4 del Plan Maestro) */}
+          {/* Left Column: How It Works & Channels (Gancho 7: Recogida y entrega a domicilio) */}
           <div className="lg:col-span-6">
-            <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-2">
-              Comodidad sin desplazamientos
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6] mb-2">
+              Servicio destacado 07 · Recogida y entrega · Sin desplazamientos
             </p>
             <h2
               id="recogida-heading"
-              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-4"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance mb-4"
             >
-              Recogida y entrega de prendas a domicilio en Vigo y alrededores
+              Recogida y entrega de prendas y textiles a domicilio en Vigo y comarca
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Para que cuidar tu ropa resulte todavía más sencillo, disponemos de servicio de recogida y entrega a domicilio con un <strong>pedido mínimo de 30 €</strong>, sujeto a las condiciones del servicio y a la zona de cobertura en Vigo y alrededores. También contamos con la aplicación móvil <strong>{CONTACT_INFO.appName}</strong>.
+              Para que cuidar tu ropa y los textiles de tu hogar resulte todavía más cómodo, disponemos de recogida y entrega a domicilio —servicio sujeto a un <strong>importe mínimo de pedido (a consultar con Mimo según zona)</strong> y cobertura en Vigo y alrededores—, además de nuestra aplicación móvil <strong>{CONTACT_INFO.appName}</strong>.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0F76BB]/10 text-[#0F76BB] dark:text-[#60B5F6] font-bold text-xs mb-6 border border-[#0F76BB]/20">
-              <span>★ Pedido mínimo: 30 € por recogida</span>
-              <span>·</span>
-              <span>Vigo y municipios limítrofes</span>
-            </div>
+            <p className="text-xs sm:text-sm font-bold text-[#002147] dark:text-[#60B5F6] mb-6">
+              A domicilio con importe mínimo a consultar · Sin pedido mínimo en nuestras 3 tiendas propias de Vigo y 5 puntos colaboradores
+            </p>
 
             {/* 3 Numbered Steps */}
-            <ol className="space-y-5 mb-8">
+            <ol className="space-y-4 mb-8">
               <li className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]">
                 <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
                   PASO 01
                 </p>
                 <h3 className="text-lg font-bold text-[#002147] dark:text-white mb-1.5">
-                  Escríbenos por WhatsApp (Mimo) o llámanos
+                  Escríbenos por WhatsApp (Mimo) o envíanos el formulario
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Indícanos qué prendas o textiles necesitas tratar (tintorería, lavandería, colada familiar, edredones, alfombras o planchado) y tu dirección o código postal para consultar disponibilidad y precios con Mimo.
+                  Indícanos tus prendas, edredones, alfombras, arreglos o sofás y tu dirección o código postal. Mimo te confirmará el importe mínimo aplicable, la orientación de tarifa y el día de paso en tu zona.
                 </p>
               </li>
 
@@ -117,10 +115,10 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                   PASO 02
                 </p>
                 <h3 className="text-lg font-bold text-[#002147] dark:text-white mb-1.5">
-                  Cuidamos tu ropa en nuestras instalaciones de Navia
+                  Recogemos en casa o te atendemos en tiendas y puntos Mimos
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Procesamos tus prendas en nuestras instalaciones propias de Vigo con tratamientos específicos para cada tejido y control de acabado en cada fase.
+                  Si prefieres entregar un encargo pequeño sin pedido mínimo o aprovechar horarios amplios, puedes acudir a nuestras 3 tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela) o a los 5 puntos colaboradores en Cangas, Nigrán, Redondela, O Porriño y Moaña.
                 </p>
               </li>
 
@@ -129,16 +127,16 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                   PASO 03
                 </p>
                 <h3 className="text-lg font-bold text-[#002147] dark:text-white mb-1.5">
-                  Te avisamos y coordinamos la entrega
+                  Tratamiento en nuestras instalaciones y entrega coordinada
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  En cuanto tu pedido esté listo, nos ponemos en contacto contigo para coordinar la entrega en tu domicilio o la recogida en tienda según lo acordado.
+                  Procesamos tus prendas en nuestra central de Vigo con acabado profesional y te avisamos en cuanto estén listas para entregártelas en tu domicilio o en tu punto elegido.
                 </p>
               </li>
             </ol>
 
             {/* Direct Action Buttons */}
-            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5">
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
               <a
                 href={CONTACT_INFO.whatsappPickupHref}
                 target="_blank"
@@ -149,18 +147,26 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                     'pickup_section'
                   )
                 }
-                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
-                <span>Solicitar recogida con Mimo</span>
+                <span>Consultar recogida con Mimo</span>
               </a>
 
               <a
-                href="/limpieza-alfombras-vigo"
-                onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                href="/puntos-mimos"
+                onClick={(e) => onNavigate('/puntos-mimos', e)}
+                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
               >
-                <span>Limpieza de alfombras a domicilio →</span>
+                <span>Ver 3 tiendas y 5 puntos</span>
+              </a>
+
+              <a
+                href="/limpieza-sofas-vigo"
+                onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#002147] dark:hover:border-white text-[#002147] dark:text-white font-bold text-sm px-4 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+              >
+                <span>Sofás a domicilio</span>
               </a>
 
               <a
@@ -171,7 +177,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                     'pickup_section'
                   )
                 }
-                className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#002147] dark:hover:border-white text-[#002147] dark:text-white font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#002147] dark:hover:border-white text-[#002147] dark:text-white font-bold text-sm px-4 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
               >
                 <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
                 <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
@@ -260,17 +266,29 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       }}
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     >
-                      <option value="Tintorería profesional">Tintorería profesional</option>
-                      <option value="Lavandería">Lavandería</option>
-                      <option value="Planchado profesional">Planchado profesional</option>
-                      <option value="Colada familiar (lavado, secado y doblado)">
-                        Colada familiar (lavado, secado y doblado)
+                      <option value="Tintorería profesional (trajes, vestidos, ceremonia, delicadas)">
+                        Tintorería profesional (trajes, ceremonia, delicadas)
                       </option>
-                      <option value="Limpieza de textiles del hogar (edredones, alfombras, cortinas)">
-                        Textiles del hogar (edredones, alfombras, cortinas)
+                      <option value="Lavandería, colada familiar o planchado profesional">
+                        Lavandería, colada familiar o planchado
                       </option>
-                      <option value="Alojamiento turístico / Empresa">
-                        Alojamiento turístico / Empresa
+                      <option value="Edredones, mantas, cortinas y estores">
+                        Edredones, mantas, cortinas y estores
+                      </option>
+                      <option value="Limpieza o arreglo de alfombras">
+                        Limpieza o arreglo de alfombras
+                      </option>
+                      <option value="Limpieza de sofás y tapicerías a domicilio">
+                        Limpieza de sofás y tapicerías a domicilio
+                      </option>
+                      <option value="Limpieza y restauración de pieles, cuero o ante">
+                        Pieles, cuero y ante
+                      </option>
+                      <option value="Costura y arreglos de ropa">
+                        Costura y arreglos de ropa
+                      </option>
+                      <option value="Alojamiento turístico / Empresa / Uniformidad">
+                        Alojamiento turístico / Empresa / Uniformidad
                       </option>
                     </select>
                   </div>
