@@ -369,8 +369,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
         </div>
 
         {/* =========================================================================
-            DESPLEGABLE 1: TINTORERÍA Y LAVANDERÍA (3 COLUMNAS EXACTAS, ESTILO SASTRERÍA)
-            Fondo blanco algodón/lino #FAF8F5, borde arena #EADBCA, títulos subrayados #C85A17, enlaces #0284C7
+            DESPLEGABLE 1: TINTORERÍA Y LAVANDERÍA (TARJETAS MODULARES ESTILO PUNTOS MIMOS)
             ========================================================================= */}
         {activeMenu === 'tintoreria' && (
           <div
@@ -378,245 +377,207 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             onMouseEnter={() => handleMouseEnterMenu('tintoreria')}
             onMouseLeave={handleMouseLeaveMenu}
           >
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-3 gap-8">
-                {/* COLUMNA 1 */}
-                <div className="space-y-6 border-r border-[#EADBCA]/60 pr-6">
-                  {/* Apartado 1: Tintorería profesional */}
-                  <div>
-                    <a
-                      href="/tintoreria-vigo"
-                      onClick={(e) => handleLinkClick('/tintoreria-vigo', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
-                    >
-                      <span>Tintorería profesional</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </a>
-                    <ul className="mt-2.5 space-y-1">
-                      {[
-                        { label: 'Trajes', url: '/tintoreria-vigo' },
-                        { label: 'Americanas', url: '/tintoreria-vigo' },
-                        { label: 'Vestidos de fiesta', url: '/tintoreria-vigo' },
-                        { label: 'Novia', url: '/tintoreria-vigo' },
-                        { label: 'Comunión', url: '/tintoreria-vigo' },
-                        { label: 'Abrigos', url: '/tintoreria-vigo' },
-                        { label: 'Prendas delicadas', url: '/tintoreria-vigo' },
-                      ].map((item, idx) => (
-                        <li key={idx}>
-                          <a
-                            href={item.url}
-                            onClick={(e) => handleLinkClick(item.url, e)}
-                            className="group flex items-center justify-between px-2.5 py-1 rounded-md text-xs font-semibold text-[#0284C7] hover:text-[#002147] hover:bg-[#FFF2E6] transition-all"
-                          >
-                            <span>{item.label}</span>
-                            <ChevronRight className="w-3 h-3 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-7">
+              {/* Barra superior del menú */}
+              <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#EADBCA]/60">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                  01 · Tintorería, Lavandería y Cuidado Textil en Vigo
+                </span>
+                <a
+                  href="/#servicios"
+                  onClick={(e) => handleLinkClick('/#servicios', e)}
+                  className="text-xs font-bold text-[#0284C7] hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Ver catálogo completo en portada</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
 
-                  {/* Apartado 2: Lavandería de ropa de uso diario */}
-                  <div>
-                    <a
-                      href="/lavanderia-vigo"
-                      onClick={(e) => handleLinkClick('/lavanderia-vigo', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
-                    >
-                      <span>Lavandería de ropa de uso diario</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </a>
-                    <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Lavado higiénico con secado suave y plegado listo para armario.
+              {/* Cuadrícula de tarjetas en 3 columnas */}
+              <div className="grid grid-cols-3 gap-5">
+                {/* COLUMNA 1: Ropa de vestir y Sastrería */}
+                <div className="space-y-4">
+                  {/* Tarjeta 1: Tintorería Profesional */}
+                  <a
+                    href="/tintoreria-vigo"
+                    onClick={(e) => handleLinkClick('/tintoreria-vigo', e)}
+                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Tintorería Profesional
+                      </span>
+                      <span className="text-[10px] font-mono uppercase bg-[#002147] text-white px-2 py-0.5 rounded-sm font-bold">
+                        Prendas delicadas
+                      </span>
+                    </div>
+                    <p className="text-xs font-medium text-slate-700 mt-1.5">
+                      Trajes, americanas, vestidos de fiesta, novias, comunión y abrigos.
                     </p>
-                  </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      Desmanchado técnico manual y limpieza ecológica en seco Wet Cleaning.
+                    </p>
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                      <span>Ver prendas y tratamientos</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </a>
 
-                  {/* Apartado 3: Planchado profesional */}
-                  <div>
-                    <a
-                      href="/planchado-vigo"
-                      onClick={(e) => handleLinkClick('/planchado-vigo', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
-                    >
-                      <span>Planchado profesional</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </a>
-                    <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Acabado de sastrería sin brillos para camisas, pantalones y mantelerías.
+                  {/* Tarjeta 2: Planchado Profesional */}
+                  <a
+                    href="/planchado-vigo"
+                    onClick={(e) => handleLinkClick('/planchado-vigo', e)}
+                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Planchado Artesanal
+                      </span>
+                      <span className="text-[10px] font-mono uppercase bg-[#C85A17] text-white px-2 py-0.5 rounded-sm font-bold">
+                        Sastrería
+                      </span>
+                    </div>
+                    <p className="text-xs font-medium text-slate-700 mt-1.5">
+                      Camisas en percha o dobladas, pantalones y mantelerías.
                     </p>
-                  </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      Acabados sin brillos en mesas de vaporización y aspiración alemanas.
+                    </p>
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                      <span>Ver planchado profesional</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </a>
                 </div>
 
-                {/* COLUMNA 2 */}
-                <div className="space-y-6 border-r border-[#EADBCA]/60 pr-6">
-                  {/* Apartado 4: Limpieza de textiles del hogar */}
-                  <div>
-                    <a
-                      href="/textiles-hogar-vigo"
-                      onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
-                    >
-                      <span>Limpieza de textiles del hogar</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </a>
-                    <ul className="mt-2.5 space-y-1">
-                      {[
-                        { label: 'Edredones', url: '/textiles-hogar-vigo' },
-                        { label: 'Mantas', url: '/textiles-hogar-vigo' },
-                        { label: 'Colchas', url: '/textiles-hogar-vigo' },
-                        { label: 'Sábanas', url: '/textiles-hogar-vigo' },
-                        { label: 'Fundas de sofá', url: '/textiles-hogar-vigo' },
-                        { label: 'Cojines', url: '/textiles-hogar-vigo' },
-                        { label: 'Cortinas', url: '/textiles-hogar-vigo' },
-                      ].map((item, idx) => (
-                        <li key={idx}>
-                          <a
-                            href={item.url}
-                            onClick={(e) => handleLinkClick(item.url, e)}
-                            className="group flex items-center justify-between px-2.5 py-1 rounded-md text-xs font-semibold text-[#0284C7] hover:text-[#002147] hover:bg-[#FFF2E6] transition-all"
-                          >
-                            <span>{item.label}</span>
-                            <ChevronRight className="w-3 h-3 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Apartado 5: Colada familiar */}
-                  <div>
-                    <a
-                      href="/colada-familiar-vigo"
-                      onClick={(e) => handleLinkClick('/colada-familiar-vigo', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
-                    >
-                      <span>Colada familiar</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </a>
-                    <ul className="mt-2 space-y-1">
-                      <li>
-                        <a
-                          href="/colada-familiar-vigo"
-                          onClick={(e) => handleLinkClick('/colada-familiar-vigo', e)}
-                          className="group flex items-center justify-between px-2.5 py-1 rounded-md text-xs font-semibold text-[#0284C7] hover:text-[#002147] hover:bg-[#FFF2E6] transition-all"
-                        >
-                          <span>Lavado, secado y doblado</span>
-                          <ChevronRight className="w-3 h-3 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Apartado 6: Limpieza e higienización de alfombras */}
-                  <div>
-                    <a
-                      href="/limpieza-alfombras-vigo"
-                      onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
-                    >
-                      <span>Limpieza e higienización de alfombras</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </a>
-                    <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                      Lavado en plano, desinfección profunda y recogida/entrega a domicilio en Vigo y comarca.
+                {/* COLUMNA 2: Hogar y Colada */}
+                <div className="space-y-4">
+                  {/* Tarjeta 3: Textiles del Hogar */}
+                  <a
+                    href="/textiles-hogar-vigo"
+                    onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
+                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Textiles del Hogar
+                      </span>
+                      <span className="text-[10px] font-mono uppercase bg-[#0F76BB] text-white px-2 py-0.5 rounded-sm font-bold">
+                        Hogar
+                      </span>
+                    </div>
+                    <p className="text-xs font-medium text-slate-700 mt-1.5">
+                      Edredones de plumas, mantas, colchas, fundas de sofá y cortinas.
                     </p>
-                  </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      Tratamiento antiácaros, desapelmazado térmico y secado controlado.
+                    </p>
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                      <span>Ver textiles del hogar</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </a>
+
+                  {/* Tarjeta 4: Colada Familiar y Ropa Diaria */}
+                  <a
+                    href="/colada-familiar-vigo"
+                    onClick={(e) => handleLinkClick('/colada-familiar-vigo', e)}
+                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Colada Familiar y Ropa Diaria
+                      </span>
+                      <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold">
+                        Por volumen
+                      </span>
+                    </div>
+                    <p className="text-xs font-medium text-slate-700 mt-1.5">
+                      Ropa de uso cotidiano, toallas y sábanas para particulares y familias.
+                    </p>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      Lavado higiénico, secado suave y doblado perfecto listo para armario.
+                    </p>
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                      <span>Ver servicio de colada</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </a>
                 </div>
 
-                {/* COLUMNA 3 */}
-                <div className="space-y-6">
-                  {/* Apartado 7: Limpieza especializada de pieles */}
-                  <div>
+                {/* COLUMNA 3: Especialidades y Empresas */}
+                <div className="space-y-4">
+                  {/* Tarjeta 5: Limpieza de Alfombras */}
+                  <a
+                    href="/limpieza-alfombras-vigo"
+                    onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Limpieza de Alfombras
+                      </span>
+                      <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold">
+                        A domicilio
+                      </span>
+                    </div>
+                    <p className="text-xs font-medium text-slate-700 mt-1.5">
+                      Lavado en plano, desinfección profunda y recogida en furgoneta.
+                    </p>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      Servicio en todas nuestras tiendas o recogida directa en Vigo y comarca.
+                    </p>
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                      <span>Ver limpieza de alfombras</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </a>
+
+                  {/* Tarjetas 6 y 7 en subgrid para Pieles y Siniestros/Empresas */}
+                  <div className="grid grid-cols-2 gap-2.5">
                     <a
                       href="/limpieza-pieles-cuero-vigo"
                       onClick={(e) => handleLinkClick('/limpieza-pieles-cuero-vigo', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
+                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
                     >
-                      <span>Limpieza especializada de pieles</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                          Pieles y Cuero
+                        </span>
+                        <span className="text-[9px] font-mono uppercase bg-[#002147] text-white px-1.5 py-0.5 rounded-xs font-bold">
+                          Peletería
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5">
+                        Ante, nobuk, cuero y prendas delicadas de peletería.
+                      </p>
+                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0284C7] group-hover:text-[#002147]">
+                        <span>Ver pieles</span>
+                        <ArrowRight className="w-2.5 h-2.5" />
+                      </div>
                     </a>
-                    <ul className="mt-2.5 space-y-1">
-                      {[
-                        { label: 'Cuero', url: '/limpieza-pieles-cuero-vigo' },
-                        { label: 'Ante', url: '/limpieza-pieles-cuero-vigo' },
-                        { label: 'Nobuk', url: '/limpieza-pieles-cuero-vigo' },
-                        { label: 'Peletería', url: '/limpieza-pieles-cuero-vigo' },
-                      ].map((item, idx) => (
-                        <li key={idx}>
-                          <a
-                            href={item.url}
-                            onClick={(e) => handleLinkClick(item.url, e)}
-                            className="group flex items-center justify-between px-2.5 py-1 rounded-md text-xs font-semibold text-[#0284C7] hover:text-[#002147] hover:bg-[#FFF2E6] transition-all"
-                          >
-                            <span>{item.label}</span>
-                            <ChevronRight className="w-3 h-3 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
-                  {/* Apartado 8: Recuperación textil tras siniestros */}
-                  <div>
                     <a
                       href="/blog/ropa-afectada-humo-incendio-siniestro-hogar"
                       onClick={(e) => handleLinkClick('/blog/ropa-afectada-humo-incendio-siniestro-hogar', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
+                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
                     >
-                      <span>Recuperación textil tras siniestros</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                          Siniestros
+                        </span>
+                        <span className="text-[9px] font-mono uppercase bg-[#C85A17] text-white px-1.5 py-0.5 rounded-xs font-bold">
+                          Seguros
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5">
+                        Recuperación tras humo, incendios y desodorización técnica.
+                      </p>
+                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0284C7] group-hover:text-[#002147]">
+                        <span>Ver protocolo</span>
+                        <ArrowRight className="w-2.5 h-2.5" />
+                      </div>
                     </a>
-                    <ul className="mt-2.5 space-y-1">
-                      {[
-                        { label: 'Incendios', url: '/blog/ropa-afectada-humo-incendio-siniestro-hogar' },
-                        { label: 'Humo', url: '/blog/ropa-afectada-humo-incendio-siniestro-hogar' },
-                        { label: 'Inundaciones', url: '/blog/ropa-afectada-humo-incendio-siniestro-hogar' },
-                      ].map((item, idx) => (
-                        <li key={idx}>
-                          <a
-                            href={item.url}
-                            onClick={(e) => handleLinkClick(item.url, e)}
-                            className="group flex items-center justify-between px-2.5 py-1 rounded-md text-xs font-semibold text-[#0284C7] hover:text-[#002147] hover:bg-[#FFF2E6] transition-all"
-                          >
-                            <span>{item.label}</span>
-                            <ChevronRight className="w-3 h-3 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Apartado 9: Servicios para empresas */}
-                  <div>
-                    <a
-                      href="/servicios-empresas"
-                      onClick={(e) => handleLinkClick('/servicios-empresas', e)}
-                      className="group inline-flex items-center gap-1.5 pb-1 text-sm font-extrabold uppercase tracking-wider text-[#002147] border-b-2 border-[#C85A17] hover:text-[#C85A17] transition-colors"
-                    >
-                      <span>Servicios de lavandería para empresas</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </a>
-                    <ul className="mt-2.5 space-y-1">
-                      {[
-                        { label: 'Uniformes', url: '/servicios-empresas' },
-                        { label: 'Batas', url: '/servicios-empresas' },
-                        { label: 'Ropa laboral', url: '/servicios-empresas' },
-                        { label: 'Mantelerías', url: '/servicios-empresas' },
-                        { label: 'Servilletas', url: '/servicios-empresas' },
-                        { label: 'Textiles de hostelería', url: '/servicios-empresas' },
-                      ].map((item, idx) => (
-                        <li key={idx}>
-                          <a
-                            href={item.url}
-                            onClick={(e) => handleLinkClick(item.url, e)}
-                            className="group flex items-center justify-between px-2.5 py-1 rounded-md text-xs font-semibold text-[#0284C7] hover:text-[#002147] hover:bg-[#FFF2E6] transition-all"
-                          >
-                            <span>{item.label}</span>
-                            <ChevronRight className="w-3 h-3 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
               </div>

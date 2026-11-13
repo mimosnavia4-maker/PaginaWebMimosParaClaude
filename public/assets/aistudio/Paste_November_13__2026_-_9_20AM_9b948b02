@@ -1,0 +1,564 @@
+He cruzado el informe de Gemini que has adjuntado con la radiografía que habíamos hecho del repositorio de Mimos. Mi recomendación es que no rehagamos la web desde cero ni nos pongamos a crear páginas indiscriminadamente. Tenemos una estructura aprovechable; lo que necesitamos es corregir los problemas, especializar las páginas comerciales y construir una red de enlaces mucho más coherente.
+
+Hay una conclusión que cambia el orden de prioridades:
+- Tintorería y lavandería: conservar la buena cobertura de servicios y reforzar autoridad, tiendas y conversión.
+- Costura: mejorar la especialización de los arreglos y dar más protagonismo a los dos talleres propios.
+- Limpieza profesional: reconstruir su contenido para que realmente hable de limpieza de oficinas, comunidades, clínicas y locales.
+- Apartamentos turísticos: convertir esta página en una de las mejores herramientas comerciales de Mimos. Es donde veo más recorrido para diferenciaros.
+El informe de Gemini señala problemas potencialmente graves: tres páginas B2B con contenidos prácticamente iguales, una página de apartamentos que podría no mostrar todo su contenido en el HTML inicial y una página de limpieza profesional cuyo contenido no correspondería a su título. También detecta incidencias concretas de enlaces y navegación. Markdown pegado(20261113-081307).md
+
+
+Una precaución: algunas afirmaciones de Gemini todavía necesitan comprobación directa antes de modificar el proyecto. Por ejemplo, que exista una calandra industrial propia, que se pueda ofrecer custodia de llaves, reposición de amenities, servicios en festivos o una ventana garantizada de 11:00 a 15:00. No debemos convertir posibilidades en promesas comerciales. Tampoco aceptaría como válida su afirmación de que podemos garantizar un Top 1–3: nadie puede garantizar posiciones de Google.
+Plan maestro de mejora en 20 fases
+Lo ordenaría así, de manera que cada fase deje una base firme para la siguiente.
+BLOQUE 1. Diagnóstico y arquitectura
+Fases 1–4 · Primero ordenar
+Fase 1. Auditoría de la situación real y fijación del punto de partida
+Objetivo: saber exactamente qué tenemos antes de cambiar nada.
+
+Tareas:
+1. Revisar las 40 rutas registradas y comprobar cuáles existen realmente.
+2. Contrastar las rutas del enrutador, routesSeoData.ts, seo.ts y las redirecciones del servidor.
+3. Comprobar los títulos SEO, H1, metadescripciones, canonical, robots y datos estructurados.
+4. Comprobar qué contenido aparece en el HTML prerenderizado y cuál depende de JavaScript.
+5. Detectar páginas duplicadas, enlaces 404, redirecciones encadenadas y páginas sin enlaces relevantes.
+6. Comprobar sitemap, robots.txt, llms.txt y Search Console.
+Resultado que buscamos: un inventario fiable de la web, con todos los errores identificados y clasificados.
+
+No modificaría todavía el diseño ni el contenido. Primero necesitamos saber qué está bien y qué está mal.
+Fase 2. Definir la arquitectura SEO definitiva
+Objetivo: que Google entienda perfectamente las cuatro actividades de Mimos.
+
+La arquitectura comercial debe quedar así:
+TINTORERÍA MIMOS
+
+Marca y página principal
+
+01. Tintorería y lavandería
+
+Prendas, hogar, colada, planchado y recogida
+
+
+02. Costura y arreglos
+
+Dos talleres propios y puntos colaboradores
+
+
+03. Limpieza profesional
+
+Oficinas, comunidades, clínicas y locales
+
+
+04. Alojamientos turísticos
+
+Limpieza, lavandería y gestión operativa
+
+
+
+Blog · Tiendas · Zonas · Contacto
+
+Apoyo, autoridad, captación y confianza
+
+
+Hay que asignar a cada URL una palabra clave principal, una intención de búsqueda y un público objetivo.
+
+Por ejemplo:
+Página	Intención principal
+Tintorería	Tintorería en Vigo
+Lavandería	Lavandería en Vigo
+Arreglos	Arreglos de ropa en Vigo
+Limpieza profesional	Limpieza de oficinas y comunidades en Vigo
+Apartamentos	Limpieza de apartamentos turísticos en Vigo
+Empresas	Lavandería industrial y textil para empresas, si corresponde a los servicios reales
+
+Resultado: un mapa de URLs definitivo. No se crearán páginas nuevas hasta saber qué necesidad concreta cubren.
+Fase 3. Eliminar la canibalización entre las tres páginas profesionales
+Objetivo: que cada página tenga contenido propio y no compita con las otras dos.
+
+Esta fase es prioritaria porque Gemini señala que las tres páginas utilizan una plantilla y bloques de contenido prácticamente iguales. Hay que comprobarlo en el código y en el HTML generado. Markdown pegado(20261113-081307).md
+
+
+Las tres páginas tendrán funciones distintas:
+- /limpieza-profesional-vigo: limpieza de inmuebles y espacios profesionales.
+- /limpieza-apartamentos-turisticos-vigo: servicio especializado para propietarios y gestores de alojamientos.
+- /servicios-empresas: lavandería, tintorería y cuidado textil para empresas.
+No basta con cambiar el título y el primer párrafo. Cada una debe tener estructura, contenido, fotografías, preguntas frecuentes y llamadas a la acción propias.
+
+Resultado: tres páginas comerciales diferenciadas, sin bloques clonados.
+Fase 4. Corregir la arquitectura de navegación y enlazado interno
+Objetivo: que el usuario y Google puedan recorrer la web de forma lógica.
+
+Aquí resolveremos las incidencias que aparecen en los dos análisis:
+- Corregir el enlace roto /edredones-mimos-vigo, si se confirma que sigue sin existir.
+- Recuperar el enlace a /lavanderia-vigo en el menú de escritorio.
+- Corregir la etiqueta «Vigo (As Travesas)» que actualmente conduce a /zonas/vigo.
+- Diferenciar los destinos de las dos modalidades de alojamientos turísticos.
+- Hacer que las opciones comerciales de limpieza conduzcan a páginas de contratación y no directamente a artículos del blog.
+- Corregir los enlaces de sofás y tapicerías si apuntan a una página demasiado genérica.
+- Corregir las migas de pan para que conduzcan a los destinos adecuados.
+- Añadir la ficha de Ponteareas al popup del mapa.
+- Revisar los enlaces que envían a /#recogida cuando existe una página específica de recogida a domicilio.
+Gemini también señala que el footer enlaza a los diez artículos del blog desde todas las páginas. Revisaremos si conviene reducir ese bloque y reservar más protagonismo a las páginas comerciales. Markdown pegado(20261113-081307).md
+
+
+Resultado: una red de enlaces jerárquica, sin enlaces rotos ni destinos confusos.
+
+BLOQUE 2. Construir las páginas que realmente venden
+Fases 5–9 · Prioridad comercial
+Fase 5. Reconstruir la página de apartamentos turísticos
+Máxima prioridad
+Esta es la fase más importante de todo el plan.
+
+No quiero que sea una página más dentro de la web de una tintorería. Quiero que tenga entidad comercial propia y que cualquier propietario de un apartamento en Vigo entienda inmediatamente qué puede contratar.
+
+Propuesta de estructura:
+1. Hero: limpieza y lavandería para apartamentos turísticos en Vigo.
+2. Propuesta de valor: un único proveedor para limpieza y textiles.
+3. Dos modalidades de servicio:
+   - Limpieza y lavandería.
+   - Gestión integral de la operativa de limpieza y lavandería del apartamento.
+4. Qué incluye la limpieza: dormitorios, baños, cocina, salón y zonas correspondientes.
+5. Servicio de lavandería: sábanas, toallas, recogida, lavado, secado, planchado y entrega, según el servicio realmente disponible.
+6. Cómo funciona el cambio de huéspedes: explicación paso a paso.
+7. Para quién trabajamos: propietarios particulares, gestores y empresas de apartamentos.
+8. Cobertura geográfica: Vigo y zonas atendidas.
+9. Preguntas frecuentes específicas.
+10. Solicitud de presupuesto: formulario pensado para captar propietarios con uno o varios apartamentos.
+La gran diferenciación debe ser la combinación de limpieza y lavandería. Si podemos acreditar que la ropa se procesa en nuestras propias instalaciones y que contamos con medios de planchado adecuados, eso debe tener mucho protagonismo.
+
+No afirmaría que podemos garantizar cambios en tres horas, atender festivos o proporcionar stock de ropa hasta que esté confirmado.
+
+Resultado: una landing especializada, convincente y orientada a captar contratos recurrentes.
+Fase 6. Crear el contenido operativo que necesita un propietario de apartamentos
+Objetivo: responder las dudas reales del cliente antes de que contacte.
+
+Desarrollaremos contenido específico sobre:
+- Qué se limpia en cada estancia.
+- Qué sucede con las sábanas y las toallas.
+- Cómo se prepara el apartamento entre huéspedes.
+- Cómo se coordina limpieza y lavandería.
+- Cómo se comunican las incidencias.
+- Qué información necesitamos para presupuestar.
+- Cómo se trabaja cuando un cliente tiene varios apartamentos.
+- Qué servicios adicionales se pueden contratar, únicamente si Mimos los presta.
+También prepararemos una lista de preguntas frecuentes, pero con respuestas reales:
+- ¿Trabajáis con propietarios que tienen un único apartamento?
+- ¿Podéis atender varios alojamientos?
+- ¿Incluís lavandería de sábanas y toallas?
+- ¿Trabajáis con ropa del propietario?
+- ¿Cómo se organiza la limpieza entre huéspedes?
+- ¿Qué zonas de Vigo cubrís?
+- ¿Cómo se calcula el presupuesto?
+El informe de Gemini propone además cuestiones sobre llaves, smart locks, amenities, festivos y horarios de rotación. Las incorporaremos solamente si podemos confirmar que forman parte de nuestra operativa. Markdown pegado(20261113-081307).md
+
+
+Resultado: una página que habla el idioma del propietario, no el de una empresa de limpieza genérica.
+Fase 7. Reconstruir la página de limpieza profesional
+Objetivo: que la página responda de verdad a las búsquedas de empresas y administradores.
+
+La dividiría en cuatro servicios claramente identificados:
+
+
+
+
+
+
+
+
+
+
+Oficinas y despachos
+
+Limpieza de puestos de trabajo, salas, baños y zonas comunes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Comunidades de propietarios
+
+Portales, escaleras, ascensores y otras zonas comunes, si se ofrecen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Clínicas y consultas
+
+Limpieza de espacios profesionales sanitarios, sin prometer protocolos especiales no acreditados.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Locales comerciales
+
+Limpieza y mantenimiento de espacios comerciales.
+
+
+
+Cada bloque debe explicar qué incluye, para quién es, cómo se contrata y cómo solicitar un presupuesto.
+
+Resultado: una página que pueda competir por búsquedas como «limpieza de oficinas en Vigo» o «limpieza de comunidades en Vigo».
+Fase 8. Reorientar la página de servicios para empresas
+Objetivo: separar la limpieza de inmuebles del cuidado textil empresarial.
+
+Esta página debe convertirse en la puerta de entrada para negocios que necesitan servicios textiles.
+
+Propondría trabajar:
+- Hostelería y restauración: mantelerías, textiles y lavandería.
+- Alojamientos: ropa de cama y toallas.
+- Clínicas y consultas: prendas y textiles profesionales, si se prestan esos servicios.
+- Empresas: uniformes y vestuario laboral.
+- Otros clientes profesionales que necesiten tintorería y lavandería.
+No mezclaría aquí la limpieza de oficinas, comunidades y locales. Eso pertenece a la fase 7.
+
+Resultado: una página B2B con un público y una intención de búsqueda diferentes.
+Fase 9. Reforzar la página de costura y arreglos
+Objetivo: pasar de una página que explica dónde entregar las prendas a otra que demuestra lo que sabemos hacer.
+
+Trabajaría estos grupos de servicios:
+- Arreglos de pantalones y vaqueros.
+- Bajos y ajustes de prendas.
+- Entallados de trajes y vestidos.
+- Vestidos de fiesta y ceremonia.
+- Arreglos y transformaciones de prendas de piel, si se realizan.
+- Cambios de forros y cremalleras, si se realizan.
+- Cortinas y textiles del hogar, si se realizan.
+Hay que destacar los dos talleres propios de Gregorio Espino y Venezuela y explicar correctamente el papel de Navia como punto de recepción. Los colaboradores deben aparecer claramente identificados como establecimientos independientes.
+
+También daría más protagonismo a la costura en la portada.
+
+Resultado: competir no solo por «arreglos de ropa en Vigo», sino por búsquedas más específicas y con intención de contratación.
+
+BLOQUE 3. Mejorar la autoridad de las actividades particulares
+Fases 10–12 · Diferenciación
+Fase 10. Potenciar tintorería y lavandería
+Objetivo: consolidar el área que ya tiene una buena base de páginas específicas.
+
+Revisaremos y mejoraremos:
+- Tintorería en Vigo.
+- Lavandería en Vigo.
+- Planchado.
+- Colada familiar.
+- Textiles del hogar.
+- Limpieza de alfombras.
+- Limpieza de piel y cuero.
+- Recogida a domicilio.
+Cada página debe explicar con claridad el servicio, las prendas o textiles que admite, cómo funciona y dónde se puede contratar.
+
+Añadiremos fotografías propias, ejemplos reales y enlaces hacia servicios complementarios.
+
+No crearemos cinco páginas nuevas para explicar lo mismo con nombres distintos.
+
+Resultado: un conjunto de páginas especializadas que se apoyan entre sí.
+Fase 11. Mejorar la página de alfombras y textiles del hogar
+Objetivo: aprovechar la especialización en alfombras y evitar que las páginas se pisen entre sí.
+
+La página /limpieza-alfombras-vigo debe ser la principal para las búsquedas relacionadas con limpieza de alfombras.
+
+/textiles-hogar-vigo debe centrarse en edredones, mantas, cortinas y otros textiles del hogar que realmente se atiendan.
+
+Incluiremos:
+- Fotografías reales de los trabajos.
+- Tipos de textiles atendidos.
+- Explicación del servicio.
+- Recogida y entrega, si procede.
+- Preguntas frecuentes.
+- Enlaces entre páginas con sentido comercial.
+Resultado: dos páginas diferenciadas, no dos páginas intentando posicionar por la misma búsqueda.
+Fase 12. Reforzar recogida a domicilio y cobertura geográfica
+Objetivo: aprovechar la red de Mimos para captar clientes fuera de las tres tiendas.
+
+La página de recogida a domicilio debe tener una función propia, no quedar eclipsada por un ancla de la portada.
+
+La cobertura geográfica debe explicar:
+- Dónde están las tres tiendas propias.
+- Qué localidades cuentan con puntos colaboradores.
+- Dónde existe recogida a domicilio.
+- Qué servicios se prestan en cada ubicación.
+- Qué diferencias existen entre un establecimiento propio y un colaborador.
+Revisaremos especialmente las páginas de Vigo, Redondela, Gondomar, Ponteareas y O Porriño.
+
+No debemos crear páginas locales con un texto idéntico cambiando únicamente el nombre de la localidad.
+
+Resultado: un sistema de cobertura local creíble y útil.
+
+BLOQUE 4. Portada, confianza y conversión
+Fases 13–15 · Conseguir clientes
+Fase 13. Rediseñar la portada con la arquitectura comercial definitiva
+Objetivo: que el visitante entienda en pocos segundos todo lo que hace Mimos.
+
+Mantendría la línea visual que hemos estado trabajando: clara, luminosa, azul, blanca y crema, con botones de acción verdes para WhatsApp y llamadas a la acción muy visibles.
+
+Mi orden propuesto:
+1. Hero: quiénes somos y qué resolvemos.
+2. Barra de confianza y reseñas.
+3. Tintorería, lavandería y cuidado de prendas.
+4. Costura y arreglos.
+5. Limpieza de alfombras y textiles del hogar.
+6. Recogida a domicilio.
+7. Tiendas propias y puntos colaboradores.
+8. Limpieza profesional y empresas.
+9. Apartamentos turísticos, con un bloque destacado.
+10. Cómo trabajamos y preguntas frecuentes.
+11. Blog, contacto y footer.
+No convertiría la portada en un catálogo interminable. Cada bloque debe conducir a una página especializada.
+Fase 14. Crear un sistema sólido de confianza y prueba social
+Objetivo: que un visitante tenga motivos para elegir Mimos frente a otra empresa.
+
+Añadiremos, cuando estén disponibles:
+- Reseñas reales.
+- Fotografías de las instalaciones.
+- Fotografías de los trabajos.
+- Fotografías de los talleres de costura.
+- Fotografías de los procesos de lavandería.
+- Experiencia empresarial demostrable.
+- Testimonios de clientes particulares y profesionales.
+- Casos reales de trabajos realizados.
+Especialmente para apartamentos turísticos, sería muy valioso poder mostrar un caso real, con autorización, explicando cómo se organiza la limpieza y lavandería de varios alojamientos.
+
+Resultado: pasar de decir «somos profesionales» a demostrarlo.
+Fase 15. Optimizar los formularios, WhatsApp y llamadas a la acción
+Objetivo: que las visitas se conviertan en contactos y presupuestos.
+
+No todos los clientes necesitan el mismo formulario.
+
+Para particulares, facilitaría:
+- Servicio solicitado.
+- Localidad.
+- Forma de contacto.
+Para apartamentos turísticos:
+- Número de apartamentos.
+- Ubicación.
+- Número de dormitorios o capacidad.
+- Servicios necesarios.
+- Frecuencia estimada.
+- Datos de contacto.
+Para empresas:
+- Tipo de negocio.
+- Servicio solicitado.
+- Volumen aproximado de trabajo.
+- Frecuencia.
+- Datos de contacto.
+También revisaría los botones de WhatsApp, teléfono, solicitud de presupuesto y consulta de pedidos.
+
+La consulta del resguardo debe describirse correctamente: si prepara un mensaje para WhatsApp, no debemos presentarla como seguimiento automático de pedidos.
+
+Resultado: formularios adecuados a cada actividad y menos fricción para solicitar un presupuesto.
+
+BLOQUE 5. SEO técnico, local y autoridad
+Fases 16–19 · Consolidar posicionamiento
+Fase 16. Optimizar el SEO técnico de todas las páginas
+Objetivo: que Google pueda rastrear, entender e indexar correctamente el proyecto.
+
+Revisaremos:
+- Titles y metadescripciones.
+- Un único H1 claro por página.
+- Jerarquía H2 y H3.
+- Canonical.
+- Robots y noindex.
+- Sitemap.
+- Redirecciones 301.
+- Errores 404.
+- Datos estructurados.
+- Imágenes y atributos ALT.
+- Enlaces internos.
+- Rendimiento móvil.
+- Core Web Vitals.
+- HTML prerenderizado.
+Comprobaremos que los textos comerciales, las tarjetas y las preguntas frecuentes importantes estén presentes en el HTML inicial.
+
+El informe de Gemini señala que la página de apartamentos podría estar perdiendo contenido en el prerenderizado. Esto merece una comprobación específica antes de dar por terminada esa página. Markdown pegado(20261113-081307).md
+
+
+Resultado: una web técnicamente sólida, sin errores que impidan aprovechar el trabajo de contenido.
+Fase 17. Revisar y mejorar Schema.org y los datos estructurados
+Objetivo: que Google entienda las entidades, actividades y ubicaciones de Mimos.
+
+Revisaremos:
+- Organization.
+- LocalBusiness para las tiendas propias.
+- Service para los servicios realmente ofrecidos.
+- BreadcrumbList.
+- Article para los artículos del blog.
+- WebSite.
+- Datos de contacto.
+- Direcciones, horarios y teléfonos.
+Cada tienda debe tener su propia información real y coherente.
+
+No utilizaremos datos estructurados para afirmar que tenemos tres talleres propios de costura, ni para inventar precios, horarios, valoraciones o servicios.
+
+Las preguntas frecuentes pueden llevar marcado cuando corresponda, pero no contaría con que Google muestre siempre resultados enriquecidos FAQ: incluir Schema no garantiza que aparezcan.
+
+Resultado: datos estructurados coherentes con el negocio real.
+Fase 18. Consolidar el SEO local y las fichas de Google
+Objetivo: mejorar la visibilidad en Vigo y comarca, especialmente en búsquedas locales.
+
+Acciones:
+1. Revisar las tres fichas de Google Business Profile.
+2. Corregir la dirección de Venezuela y comprobar que el número oficial es el 41, bajo 1.
+3. Unificar nombre, dirección y teléfono en directorios.
+4. Revisar categorías y servicios de cada ficha.
+5. Añadir fotografías actuales.
+6. Mantener horarios correctos.
+7. Responder reseñas.
+8. Conseguir nuevas reseñas reales de clientes satisfechos.
+9. Separar claramente las tiendas propias de los puntos colaboradores.
+Para los apartamentos turísticos, buscaría testimonios auténticos de propietarios y gestores, siempre sin pedirles que utilicen palabras clave artificiales.
+
+Resultado: una presencia local consistente y una reputación que respalde a la web.
+Fase 19. Construir autoridad temática y enlaces externos
+Objetivo: que Mimos no dependa únicamente de su propia web para demostrar relevancia.
+
+Trabajaremos tres líneas:
+- Tintorería y costura: contenidos especializados, colaboraciones locales, medios y asociaciones.
+- Limpieza profesional: relaciones con administradores de fincas, empresas, comunidades y proveedores.
+- Apartamentos turísticos: colaboraciones con gestores de alojamientos, propietarios, empresas turísticas y asociaciones del sector.
+El blog también debe evolucionar.
+
+En lugar de publicar artículos aislados, crearemos grupos temáticos:
+- Cuidado de prendas y tejidos.
+- Alfombras y textiles del hogar.
+- Arreglos y mantenimiento de ropa.
+- Limpieza y lavandería de alojamientos turísticos.
+- Limpieza de espacios profesionales.
+Cada artículo deberá enlazar a su página comercial relacionada, y a otros artículos del mismo tema.
+
+Resultado: una red de contenidos con sentido y una autoridad que se va acumulando.
+BLOQUE 6. Medición y mejora continua
+Fase 20 · Convertir el trabajo en resultados
+Fase 20. Medir posiciones, tráfico y clientes conseguidos
+Objetivo: saber si las modificaciones están funcionando y dónde debemos seguir mejorando.
+
+Configuraremos un cuadro de seguimiento con cuatro bloques:
+Área	Qué mediremos
+Posicionamiento	Impresiones, clics, posición y palabras clave
+SEO local	Visibilidad de las fichas, llamadas, solicitudes y rutas
+Conversión	Formularios, WhatsApp, llamadas y presupuestos
+Negocio	Clientes nuevos, recurrencia y contratos profesionales
+
+Crearemos grupos de palabras clave separados:
+
+Tintorería
+- Tintorería Vigo.
+- Lavandería Vigo.
+- Limpieza de alfombras Vigo.
+- Tintorería a domicilio Vigo.
+Costura
+- Arreglos de ropa Vigo.
+- Costurera Vigo.
+- Arreglos de vestidos Vigo.
+- Arreglos de trajes Vigo.
+Limpieza profesional
+- Limpieza de oficinas Vigo.
+- Limpieza de comunidades Vigo.
+- Empresa de limpieza Vigo.
+Apartamentos turísticos
+- Limpieza de apartamentos turísticos Vigo.
+- Limpieza de pisos turísticos Vigo.
+- Lavandería para apartamentos turísticos Vigo.
+- Servicio de limpieza para Airbnb Vigo.
+No nos limitaremos a observar si subimos posiciones. Queremos saber qué búsquedas generan contactos y cuáles generan clientes reales.
+
+Haremos una revisión mensual y una revisión más profunda cada trimestre.
+
+Resultado: un proceso de mejora continua basado en datos, no en impresiones.
+
+Calendario de ejecución recomendado
+No intentaría completar las 20 fases de golpe. Este sería el orden de trabajo:
+Plan de trabajo por etapas
+1. Etapa 1 · Diagnóstico y arquitectura
+   
+   Fases 1–4. Auditoría, estructura definitiva y corrección de navegación.
+   Primero
+2. Etapa 2 · Apartamentos turísticos y B2B
+   
+   Fases 5–8. Reconstrucción de las páginas profesionales, empezando por apartamentos.
+   Máxima prioridad comercial
+3. Etapa 3 · Costura y servicios particulares
+   
+   Fases 9–12. Mejoras en arreglos, tintorería, textiles y cobertura local.
+4. Etapa 4 · Diseño y conversión
+   
+   Fases 13–15. Portada, confianza y captación de clientes.
+5. Etapa 5 · Consolidación SEO
+   
+   Fases 16–19. SEO técnico, datos estructurados, Google y autoridad.
+6. Etapa 6 · Seguimiento
+   
+   Fase 20. Medición y optimización continua.
+
+Cómo trabajaría cada fase con Google AI Studio
+Esto es tan importante como el propio plan. No le daría a Gemini una instrucción enorme para modificar 20 cosas a la vez.
+
+Trabajaría con este método:
+1. Le entregamos una fase concreta.
+2. Primero le pedimos que analice los archivos implicados y proponga los cambios.
+3. Revisamos su propuesta antes de permitir modificaciones.
+4. Le pedimos que implemente únicamente esa fase.
+5. Revisamos los archivos modificados y comprobamos que no haya roto nada.
+6. Ejecutamos las comprobaciones pertinentes.
+7. Guardamos una versión estable antes de pasar a la siguiente.
+Una fase no se considera terminada porque Gemini diga que ha acabado. Se considera terminada cuando hemos comprobado el resultado.
+
+También mantendría un documento de control con las 20 fases, archivos modificados, cambios realizados, pruebas y cuestiones pendientes.
+
+Mis cinco decisiones estratégicas más importantes
+Después de cruzar los dos análisis, estas son las cinco decisiones que no perdería de vista:
+
+1. Apartamentos turísticos tiene que ser una prioridad absoluta.
+
+Es donde podemos diferenciarnos con una oferta que combina limpieza y lavandería. No quiero una página genérica de limpieza, sino una página especializada que ayude a conseguir propietarios y contratos recurrentes.
+
+2. No mezclar limpieza profesional con lavandería empresarial.
+
+Son clientes diferentes, necesidades diferentes y búsquedas diferentes. Las páginas deben reflejarlo.
+
+3. No sacrificar la actividad principal por potenciar la nueva.
+
+Tintorería y lavandería siguen siendo el origen de Mimos y deben conservar su protagonismo y su cobertura SEO.
+
+4. No inventar una empresa más grande de lo que somos.
+
+Tenemos tres tiendas propias, dos talleres propios de arreglos y una red de colaboradores. Esa realidad, bien explicada, es una fortaleza. No necesitamos adornarla.
+
+5. No confundir SEO técnico con posicionamiento conseguido.
+
+Tener prerenderizado, Schema, sitemap y 40 rutas no garantiza estar arriba. Necesitamos contenido superior, relevancia local, reputación, enlaces y conversiones.
+Por dónde empezaría realmente
+Mi recomendación es comenzar por la fase 1, pero con una atención especial a las fases 3 y 5.
+
+Antes de rediseñar nada, quiero que tengamos tres cosas perfectamente claras:
+- Qué contenido real está mostrando cada una de las tres páginas profesionales.
+- Si las tres comparten realmente la misma plantilla y los mismos bloques.
+- Qué contenido está llegando a Google en el HTML prerenderizado de la página de apartamentos.
+Y después abordaría directamente la página de apartamentos turísticos.
+
+Este plan debe ser nuestra hoja de ruta para toda la web. No ir cambiando cosas según se nos ocurran, sino avanzar fase a fase, sin perder decisiones ni volver atrás innecesariamente.
+
+Mi objetivo no sería simplemente que Mimos tenga una web mejor que las de sus competidores. Sería que cada una de las cuatro actividades tenga una presencia comercial y SEO capaz de generar negocio de forma independiente.

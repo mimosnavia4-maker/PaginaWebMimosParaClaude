@@ -15,6 +15,9 @@ import { MimoAssistant } from './components/MimoAssistant';
 const CarpetCleaningPage = React.lazy(() =>
   import('./components/CarpetCleaningPage').then((m) => ({ default: m.CarpetCleaningPage }))
 );
+const LeatherCleaningPage = React.lazy(() =>
+  import('./components/LeatherCleaningPage').then((m) => ({ default: m.LeatherCleaningPage }))
+);
 const ClothingAlterationsPage = React.lazy(() =>
   import('./components/ClothingAlterationsPage').then((m) => ({ default: m.ClothingAlterationsPage }))
 );
@@ -463,6 +466,8 @@ export function App() {
           </main>
         ) : effectivePath === '/limpieza-alfombras-vigo' ? (
           <CarpetCleaningPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/limpieza-pieles-cuero-vigo' ? (
+          <LeatherCleaningPage onNavigate={handleNavigate} />
         ) : effectivePath === '/arreglos-de-ropa-vigo' ? (
           <ClothingAlterationsPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-profesional-vigo' ? (

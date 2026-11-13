@@ -6,13 +6,14 @@ import {
   SERVICIOS_MIMOS,
   SERVICIO_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
+  SERVICIO_PIELES_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SEO_LOCAL,
   FAQ_PORTADA_SIN_PRECIOS,
-} from '../data/mimosData';
+} from '../data/mimosData.ts';
 
-import { ALL_ROUTE_PATHS, ROUTE_SEO_MAP } from '../data/routesSeoData';
-import type { RouteMeta } from '../data/routesSeoData';
+import { ALL_ROUTE_PATHS, ROUTE_SEO_MAP } from '../data/routesSeoData.ts';
+import type { RouteMeta } from '../data/routesSeoData.ts';
 
 export interface PageSEOConfig {
   title: string;
@@ -347,6 +348,30 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         '@type': 'FAQPage',
         mainEntity: SERVICIO_ALFOMBRAS_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/limpieza-pieles-cuero-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: SERVICIO_PIELES_DATA.h1,
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: { '@type': 'City', name: 'Vigo' },
+        url: meta.canonical,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: SERVICIO_PIELES_DATA.preguntasFrecuentes.map((f) => ({
           '@type': 'Question',
           name: f.pregunta,
           acceptedAnswer: {

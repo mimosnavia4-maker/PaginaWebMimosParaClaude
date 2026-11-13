@@ -2713,3 +2713,225 @@ export const SERVICIO_ARREGLOS_DATA = {
   ],
 };
 
+// Página especializada de limpieza de pieles, cuero, ante, nobuk y peletería (/limpieza-pieles-cuero-vigo)
+export const SERVICIO_PIELES_DATA = {
+  url: '/limpieza-pieles-cuero-vigo',
+  canonical: 'https://www.tintoreriamimos.es/limpieza-pieles-cuero-vigo',
+  seoTitle: 'Limpieza de Pieles, Cuero, Ante y Nobuk en Vigo | Tintorería Mimos',
+  metaDescription:
+    'Limpieza especializada de cazadoras de cuero, ante, nobuk, doble faz y peletería en Vigo. Nutrición, acabado y valoración previa por foto con Mimo o en nuestras 3 tiendas propias.',
+  h1: 'Limpieza especializada de pieles, cuero, ante y nobuk en Vigo',
+  subtituloCabecera:
+    'Tratamiento específico para cuero liso, napa, ante, nobuk, doble faz, peletería y prendas mixtas. Valoración individualizada de cada pieza para conservar su flexibilidad, tacto y tonalidad sin acartonar la piel.',
+  aclaracionServicio:
+    'Cada piel responde de forma distinta según su curtido, acabado y estado previo. Por eso no aplicamos tarifas estándar cerradas ni plazos exprés sin revisar antes la prenda en tienda o mediante fotos por WhatsApp con Mimo.',
+  tiposPieles: [
+    {
+      id: 'napa-liso',
+      grupo: 'Pieles lisas · Lado flor',
+      titulo: 'Napa y cuero liso',
+      descripcion:
+        'Piel depilada del lado exterior del animal, flexible y compacta. Puede ser pigmentada (protegida con acabado superficial), anilina/semi-anilina (más natural y sensible a rozaduras) o engrasada. Conserva mejor la estructura ante el uso diario.',
+    },
+    {
+      id: 'ante',
+      grupo: 'Pieles afelpadas · Lado carne',
+      titulo: 'Ante (gamuza)',
+      descripcion:
+        'Se obtiene lijando la cara interior de la piel. Presenta fibra más larga, tacto suave homogéneo y sin poro superficial, por lo que absorbe agua y manchas con mayor rapidez que el cuero liso.',
+    },
+    {
+      id: 'nobuk',
+      grupo: 'Pieles esmeriladas · Lado flor',
+      titulo: 'Nobuk',
+      descripcion:
+        'Parte de la cara exterior sometida a un pulido muy fino que aporta textura aterciopelada (tacto melocotón) con pelo corto y apretado. Es más resistente que el ante, pero exige cepillado y reengrase controlados.',
+    },
+    {
+      id: 'serraje-pecari',
+      grupo: 'Curtidos porosos',
+      titulo: 'Serraje y pecarí',
+      descripcion:
+        'El serraje procede de capas internas divididas de piel gruesa con acabado más rústico; el pecarí destaca por sus microporos característicos donde las manchas penetran en profundidad y requieren inspección previa.',
+    },
+    {
+      id: 'doble-faz',
+      grupo: 'Pieles con lana o acabado técnico',
+      titulo: 'Doble faz y napalán',
+      descripcion:
+        'Prendas habitualmente de ovino con la lana hacia el interior y el ante al exterior (doble faz) o con tratamiento superficial liso tipo napa (napalán). Se limpian manteniendo el equilibrio entre el pelo interno y la piel exterior.',
+    },
+    {
+      id: 'mixtas-peleteria',
+      grupo: 'Combinados y pelo natural',
+      titulo: 'Prendas mixtas y peletería',
+      descripcion:
+        'Cazadoras y abrigos de paño o tejido técnico con mangas, cuellos o vivos de piel, así como abrigos o apliques de peletería natural que se revisan pieza a pieza antes de definir el tratamiento adecuado.',
+    },
+  ],
+  comparativaSinteticos: [
+    {
+      material: 'Polipiel y Skay',
+      identificacion: 'Recubrimiento sintético sobre base textil, aspecto uniforme sin poros ni grano natural.',
+      comportamiento: 'Limpieza suave superficial o según indicaciones estrictas de la etiqueta interior.',
+      riesgo: 'El paso del tiempo, la humedad acumulada y los disolventes pueden cuartear o despegar la capa plástica.',
+    },
+    {
+      material: 'Cuero reconstituido',
+      identificacion: 'Aglomerado de fibras con recubrimiento superior; suele diferenciarse en el etiquetado.',
+      comportamiento: 'Admisión condicionada a revisión previa del estado de la superficie y etiqueta.',
+      riesgo: 'Muy sensible al frotado y a la insolación previa: puede pelarse o descamarse durante el proceso.',
+    },
+    {
+      material: 'Charol y charol arrugado',
+      identificacion: 'Cuero cubierto con película barnizada de alto brillo.',
+      comportamiento: 'Tratamiento controlado sin disolventes agresivos ni cepillado áspero.',
+      riesgo: 'Extrema sensibilidad a rayaduras finas y a transferencias irreversibles de tintes en tonos claros.',
+    },
+  ],
+  fasesProceso: [
+    {
+      num: '01',
+      titulo: 'Inspección y clasificación',
+      descripcion:
+        'Revisamos elasticidad, costuras, zonas rozadas, pegamentos internos, etiqueta y solidez del tinte, separando piezas por tonos y tipo de curtido.',
+    },
+    {
+      num: '02',
+      titulo: 'Limpieza controlada',
+      descripcion:
+        'Aplicamos el método más seguro para cada piel —limpieza técnica controlada, trabajo manual específico o sistema acuoso adaptado— evitando choques térmicos o mecánicos.',
+    },
+    {
+      num: '03',
+      titulo: 'Nutrición y reengrase',
+      descripcion:
+        'Todo proceso de limpieza retira parte de los aceites naturales del cuero. Reponemos aceites y emulsiones específicas para devolver flexibilidad, suavidad y levantar el pelo del ante o nobuk.',
+    },
+    {
+      num: '04',
+      titulo: 'Igualado y ajuste de color',
+      descripcion:
+        'Tras valorar la prenda, trabajamos el reavivado de zonas desgastadas o el ajuste uniforme del tono. En cambios de color sobre piel natural siempre se orienta hacia un tono más oscuro.',
+    },
+    {
+      num: '05',
+      titulo: 'Hidrofugación y acabado sin vapor',
+      descripcion:
+        'Aplicamos protección hidrófuga transpirable cuando la piel lo requiere (ante, nobuk, serraje o doble faz) y realizamos el planchado específico de la piel sin vapor y del forro interior.',
+    },
+  ],
+  riesgosInherentes: [
+    {
+      titulo: 'Defectos camuflados de origen',
+      detalle:
+        'Cicatrices, picaduras o diferencias entre retales disimuladas en fábrica con masillas o tintes superficiales pueden hacerse visibles al retirar la suciedad.',
+    },
+    {
+      titulo: 'Tintes y adhesivos inestables',
+      detalle:
+        'En muchas prendas de cuero la etiqueta de mantenimiento es orientativa o no se ensaya la solidez del tinte ni de los pegamentos de cuellos, puños o cremalleras.',
+    },
+    {
+      titulo: 'Relajación de fibras y mal guardado previo',
+      detalle:
+        'Pieles sobrestiradas durante su confección o guardadas en ambientes muy cálidos o húmedos pierden aceites y pueden acusar rigidez o ligera contracción al limpiarse.',
+    },
+    {
+      titulo: 'Manchas profundas de tinta o proteínas',
+      detalle:
+        'Tinta, sangre, leche, huevo o grasa antigua en pieles muy porosas (como serraje o pecarí) se fijan en profundidad; actuamos hasta donde es seguro sin quemar el color.',
+    },
+  ],
+  garantiasResguardo: [
+    'Revisión de la prenda en mostrador y confirmación de presupuesto y plazo estimado antes de intervenir.',
+    'Emisión de resguardo de depósito conforme a la normativa española vigente (Real Decreto 1453/1987), con detalle del servicio y observaciones del estado previo.',
+    'Aviso claro y conformidad escrita en el resguardo siempre que existan desgastes, materiales sintéticos envejecidos o riesgos previos de deterioro.',
+    'Ninguna tintorería profesional puede prometer que una prenda usada quede «como nueva», pero sí aplicar el protocolo más seguro para recuperar al máximo su aspecto y flexibilidad.',
+  ],
+  consejosCasa: [
+    'Si se moja con lluvia, sacude suavemente la prenda, retira la humedad superficial con un paño limpio sin frotar y déjala secar al aire en un lugar ventilado.',
+    'Utiliza siempre perchas anchas (de madera o acolchadas) para respetar los hombros y guárdala en fundas de algodón o tejido transpirable.',
+    'Ante una mancha fresca de aceite o grasa, posa un paño suave sin frotar y espolvorea polvos de talco durante unas horas antes de cepillar con extrema suavidad o traerla.',
+    'En pieles lisas o con pelo natural, airea la prenda de forma periódica y evita rociar perfumes, colonias o laca directamente sobre ella.',
+  ],
+  mitosEvitar: [
+    {
+      practica: 'Crema Nivea, vaselina o grasa de caballo',
+      motivo:
+        'Contienen ceras y parafinas no formuladas para curtidos: no se absorben bien, atrapan polvo y generan cercos grasos o manchas blanquecinas.',
+    },
+    {
+      practica: 'Secadores, radiadores, plancha o sol directo',
+      motivo:
+        'El calor directo reseca de golpe las fibras del cuero, provoca acartonamiento, encogimiento irreversible y oxida los tintes.',
+    },
+    {
+      practica: 'Bolsas de plástico y bolas de naftalina',
+      motivo:
+        'El plástico impide transpirar y favorece moho y manchas oscuras; la naftalina reseca la piel e impregna un olor muy difícil de eliminar.',
+    },
+    {
+      practica: 'Lavadora, sumergir en agua, toallitas o acetona',
+      motivo:
+        'El agua sin control ni reengrase acartona el curtido, y productos como acetona, alcohol o limpiadores domésticos queman el acabado y el color.',
+    },
+  ],
+  preguntasFrecuentes: [
+    {
+      pregunta: '1. ¿Por qué limpiar una cazadora de piel cuesta más y tarda más que un abrigo textil?',
+      respuesta:
+        'Porque la piel es un material natural vivo que no admite ciclos textiles convencionales. Exige inspección previa, limpieza controlada en cargas reducidas o trabajo manual, secado natural sin calor, reposición de aceites (reengrase), igualado de tono cuando es necesario, hidrofugación y planchado sin vapor.',
+    },
+    {
+      pregunta: '2. ¿Podéis asegurar que una prenda de ante o cuero quede exactamente como nueva?',
+      respuesta:
+        'Trabajamos para lograr el mejor resultado posible manteniendo la suavidad, flexibilidad y tonalidad de la piel, pero con total transparencia: existen factores previos ajenos al lavado (manchas antiguas fijadas, rozaduras profundas, pegamentos solubles o defectos disimulados en confección) que condicionan el acabado final.',
+    },
+    {
+      pregunta: '3. ¿Qué diferencia hay entre cuero liso (napa), ante y nobuk?',
+      respuesta:
+        'La napa conserva la cara exterior lisa del animal y soporta mejor el roce y la protección superficial. El nobuk pule esa cara exterior logrando un tacto fino aterciopelado de pelo muy corto. El ante se lija por la cara interior, tiene fibra más larga y absorbe agua y manchas con mucha más facilidad.',
+    },
+    {
+      pregunta: '4. ¿Limpiáis prendas de polipiel, skay o charol?',
+      respuesta:
+        'Las valoramos previamente en tienda o mediante foto con Mimo revisando la etiqueta y el estado del recubrimiento. Al ser laminados sintéticos o barnizados, si el material presenta envejecimiento o grietas puede existir riesgo de pelado o descamación, algo que siempre te advertimos antes en el resguardo.',
+    },
+    {
+      pregunta: '5. ¿Cuánto tarda el servicio y cómo sé el presupuesto?',
+      respuesta: `No publicamos tarifas estándar cerradas ni prometemos entregas exprés sin ver la prenda. Puedes enviar fotos por WhatsApp a Mimo (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}) para recibir una orientación inicial, y al entregar la pieza en tienda o tras revisarla confirmamos presupuesto cerrado y fecha estimada en el resguardo.`,
+    },
+    {
+      pregunta: '6. ¿Dónde entrego mi prenda de piel o cómo pido recogida a domicilio?',
+      respuesta: `Puedes traerla a cualquiera de nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela), depositarla en nuestra red de puntos colaboradores en la comarca o solicitar recogida y entrega a domicilio consultando condiciones con Mimo (pedido mínimo de 30 € para domicilio).`,
+    },
+    {
+      pregunta: '7. ¿Salen las manchas de grasa, tinta, agua o crema aplicada en casa?',
+      respuesta:
+        'Cada mancha se analiza caso por caso según el tipo de piel. Las manchas recientes tratadas solo con un paño suave sin frotar tienen mejor pronóstico; en cambio, las tintas antiguas, proteínas (sangre, leche) o cercos causados por cremas caseras (Nivea, vaselina, betún) se fijan con fuerza y evaluamos hasta dónde es seguro actuar sin dañar el tinte.',
+    },
+  ],
+  enlacesRelacionados: [
+    {
+      titulo: 'Tintorería profesional en Vigo',
+      href: '/tintoreria-vigo',
+      descripcion:
+        'Limpieza en seco y cuidado específico para trajes, abrigos de paño, vestidos de ceremonia y prendas delicadas.',
+    },
+    {
+      titulo: 'Arreglos de ropa y costura',
+      href: '/arreglos-de-ropa-vigo',
+      descripcion:
+        'Taller propio de costura en Gregorio Espino y Venezuela, recepción en Navia y puntos colaboradores con costura.',
+    },
+    {
+      titulo: 'Recogida y entrega a domicilio',
+      href: '/recogida-a-domicilio',
+      descripcion:
+        'Solicita que pasemos a recoger y entregar tus prendas en Vigo y comarca (pedido mínimo de 30 € a domicilio).',
+    },
+  ],
+};
+
+

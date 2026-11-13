@@ -52,7 +52,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Limpieza de Pieles, Cuero, Ante y Nobuk en Vigo | Tintorería Mimos',
     h1: 'Limpieza especializada de pieles, cuero, ante y nobuk en Vigo',
     description:
-      'Servicio especializado de limpieza y cuidado de prendas de piel, cuero, ante, nobuk y peletería en Vigo. Recepción en tiendas propias, puntos colaboradores o a domicilio.',
+      'Limpieza especializada de cazadoras de cuero, ante, nobuk, doble faz y peletería en Vigo. Nutrición, acabado y valoración previa por foto con Mimo o en nuestras 3 tiendas propias.',
     canonical: 'https://www.tintoreriamimos.es/limpieza-pieles-cuero-vigo',
     robots: 'index, follow',
     ogType: 'website',

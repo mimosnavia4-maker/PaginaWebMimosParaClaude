@@ -18,6 +18,7 @@ import {
   SERVICIOS_MIMOS,
   SERVICIO_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
+  SERVICIO_PIELES_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SEO_LOCAL,
 } from '../src/data/mimosData.ts';
@@ -129,6 +130,29 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<section>` +
       `<p>${escapeHtml(SERVICIO_ALFOMBRAS_DATA.subtituloCabecera)}</p>` +
       `<h2>Preguntas frecuentes sobre limpieza de alfombras en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
+  } else if (routePath === '/limpieza-pieles-cuero-vigo') {
+    const tiposHtml = SERVICIO_PIELES_DATA.tiposPieles
+      .map((t) => `<li><strong>${escapeHtml(t.titulo)}:</strong> ${escapeHtml(t.descripcion)}</li>`)
+      .join('');
+    const fasesHtml = SERVICIO_PIELES_DATA.fasesProceso
+      .map((p) => `<li><strong>${escapeHtml(p.num)}. ${escapeHtml(p.titulo)}:</strong> ${escapeHtml(p.descripcion)}</li>`)
+      .join('');
+    const faqsHtml = SERVICIO_PIELES_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(SERVICIO_PIELES_DATA.subtituloCabecera)}</p>` +
+      `<h2>Tipos de pieles y acabados que tratamos</h2>` +
+      `<ul>${tiposHtml}</ul>` +
+      `<h2>Protocolo profesional en 5 fases</h2>` +
+      `<ol>${fasesHtml}</ol>` +
+      `<h2>Preguntas frecuentes sobre limpieza de pieles y cuero en Vigo</h2>` +
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/arreglos-de-ropa-vigo') {
