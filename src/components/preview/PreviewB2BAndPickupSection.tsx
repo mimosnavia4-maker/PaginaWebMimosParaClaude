@@ -51,9 +51,9 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
     {
       num: '04',
       title: 'Recuperación textil tras siniestros',
-      text: 'Tratamiento especializado de textiles afectados por humo, hollín o incidencias en viviendas y negocios.',
-      href: '/servicios-empresas',
-      cta: 'Consultar recuperación',
+      text: 'Tratamiento especializado de ropa, cortinas y alfombras afectados por humo, hollín o inundaciones con factura para seguros.',
+      href: '/limpieza-incendios-siniestros-vigo',
+      cta: 'Ver protocolo y seguros',
     },
   ];
 
@@ -301,6 +301,9 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                       <option value="Edredones, mantas o cortinas">Edredones, mantas o cortinas</option>
                       <option value="Colada familiar y planchado">Colada familiar y planchado</option>
                       <option value="Costura y arreglos de ropa">Costura y arreglos de ropa</option>
+                      <option value="Recuperación textil tras incendio, humo o inundación (Seguro)">
+                        Recuperación textil tras incendio, humo o inundación
+                      </option>
                     </select>
                   </div>
                 </div>

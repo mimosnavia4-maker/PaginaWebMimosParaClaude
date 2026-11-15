@@ -115,6 +115,27 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
             <TextileCareSymbols onNavigate={onNavigate} />
           )}
 
+          {articulo.slug === 'ropa-afectada-humo-incendio-siniestro-hogar' && (
+            <div className="p-5 sm:p-6 rounded-2xl border border-[#0F76BB]/30 bg-[#0F76BB]/5 dark:bg-[#0b1d36] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                  Servicio técnico en Vigo · Documentación Art. 38 LCS
+                </p>
+                <p className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white">
+                  ¿Necesitas recuperar tu ropa ya o descargar la plantilla oficial de inventario (PDF/Excel) para tu aseguradora?
+                </p>
+              </div>
+              <a
+                href="/limpieza-incendios-siniestros-vigo"
+                onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
+                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors whitespace-nowrap shrink-0"
+              >
+                <span>Ir a Recuperación de Siniestros</span>
+                <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
+          )}
+
           {articulo.secciones.map((sec) => (
             <section key={sec.h2} className="pt-4 space-y-4">
               <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white tracking-tight">

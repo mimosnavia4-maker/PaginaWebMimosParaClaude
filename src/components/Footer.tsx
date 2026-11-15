@@ -118,7 +118,25 @@ export const Footer: React.FC<FooterProps> = ({
                       onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
                       className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
                     >
-                      Limpieza y arreglo de alfombras
+                      Limpieza de alfombras a domicilio
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/reparacion-alfombras-vigo"
+                      onClick={(e) => onNavigate('/reparacion-alfombras-vigo', e)}
+                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                    >
+                      Reparación de alfombras (flecos y bordes)
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/limpieza-vestidos-novia-ceremonia-vigo"
+                      onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                    >
+                      Vestidos de novia, fiesta y ceremonia
                     </a>
                   </li>
                   <li>
@@ -128,6 +146,15 @@ export const Footer: React.FC<FooterProps> = ({
                       className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
                     >
                       Costura y arreglos (18 servicios)
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/limpieza-incendios-siniestros-vigo"
+                      onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
+                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                    >
+                      Incendios, humo y siniestros (Seguros)
                     </a>
                   </li>
                 </ul>

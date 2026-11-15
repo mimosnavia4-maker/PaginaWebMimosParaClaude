@@ -352,14 +352,26 @@ export const PreviewInteractiveShowcase: React.FC<PreviewInteractiveShowcaseProp
                         <span>Consultar con Mimo por WhatsApp</span>
                       </a>
 
-                      <a
-                        href={activeCategory.pageHref}
-                        onClick={(e) => onNavigate(activeCategory.pageHref, e)}
-                        className="inline-flex items-center gap-1 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline"
-                      >
-                        <span>{activeCategory.pageLabel}</span>
-                        <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                      </a>
+                      <div className="flex flex-wrap items-center gap-4">
+                        <a
+                          href={activeCategory.pageHref}
+                          onClick={(e) => onNavigate(activeCategory.pageHref, e)}
+                          className="inline-flex items-center gap-1 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline"
+                        >
+                          <span>{activeCategory.pageLabel}</span>
+                          <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                        </a>
+                        {activeCategory.id === 'tintoreria' && (
+                          <a
+                            href="/limpieza-vestidos-novia-ceremonia-vigo"
+                            onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                            className="inline-flex items-center gap-1 text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                          >
+                            <span>Especial novia y ceremonia</span>
+                            <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

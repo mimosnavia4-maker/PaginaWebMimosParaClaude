@@ -161,6 +161,64 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         </div>
       </section>
 
+      {/* Destacado a página propia de Vestidos de Novia, Fiesta y Ceremonia dentro de Tintorería */}
+      {servicio.id === 'tintoreria-profesional' && (
+        <section className="py-10 bg-slate-50 dark:bg-[#0b1d36] border-t border-slate-200 dark:border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl border border-[#0F76BB]/30 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-2 max-w-2xl">
+                <p className="text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                  Sección especializada · Ceremonia y celebración
+                </p>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+                  ¿Buscas limpieza de vestidos de novia, madrina, fiesta o comunión?
+                </h2>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Consulta nuestro protocolo específico en 5 fases para revisión de pedrería y encajes, tratamiento de bajos rozados, coordinación con costura propia y entrega en funda protectora transpirable.
+                </p>
+              </div>
+              <a
+                href="/limpieza-vestidos-novia-ceremonia-vigo"
+                onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+              >
+                <span>Ver especialidad en novia y ceremonia</span>
+                <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Destacado desde Solo Planchado hacia puesta a punto previa a bodas, comuniones y eventos */}
+      {servicio.id === 'planchado-profesional' && (
+        <section className="py-10 bg-slate-50 dark:bg-[#0b1d36] border-t border-slate-200 dark:border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl border border-[#0F76BB]/30 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-2 max-w-2xl">
+                <p className="text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                  Puesta a punto previa a celebración
+                </p>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+                  ¿Necesitas vaporizar un vestido de novia, invitada, comunión o chaqué antes del evento?
+                </h2>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Quitamos arrugas de viaje o portatrajes, revisamos costuras y preparamos tejidos delicados (tul, seda, gasa, lino o lana fría) sin brillos antes de la ceremonia o sesión de fotos.
+                </p>
+              </div>
+              <a
+                href="/limpieza-vestidos-novia-ceremonia-vigo#planchado-antes-evento"
+                onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+              >
+                <span>Ver planchado pre-evento de ceremonia</span>
+                <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Si es la página de recogida a domicilio, mostramos el formulario interactivo */}
       {servicio.id === 'recogida-a-domicilio' && (
         <HomePickupSection onNavigate={onNavigate} />

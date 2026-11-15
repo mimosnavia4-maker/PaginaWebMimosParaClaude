@@ -484,6 +484,28 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
             ))}
           </div>
 
+          <div className="mb-10 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1 max-w-2xl">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                Urgencias textiles en {zona.localidad} y comarca
+              </p>
+              <p className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white">
+                ¿Has sufrido un incendio, humareda o fuga de agua en casa o en tu local?
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                Preparamos triaje técnico con prueba de viabilidad previa, inventario Art. 38 y factura oficial con CIF para tu seguro.
+              </p>
+            </div>
+            <a
+              href="/limpieza-incendios-siniestros-vigo"
+              onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
+              className="inline-flex items-center justify-center gap-1.5 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors whitespace-nowrap shrink-0"
+            >
+              <span>Recuperación tras incendios y siniestros</span>
+              <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+            </a>
+          </div>
+
           {/* Otras zonas */}
           <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <a

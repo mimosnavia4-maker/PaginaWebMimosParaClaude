@@ -192,6 +192,13 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             >
               Sofás y tapicerías a domicilio →
             </a>
+            <a
+              href="/limpieza-incendios-siniestros-vigo"
+              onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
+              className="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors bg-white/10 text-[#60B5F6] hover:bg-white/20"
+            >
+              Incendios y siniestros (Seguros) →
+            </a>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -325,6 +332,16 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
                     >
                       <span>Ver limpieza de sofás y tapicerías</span>
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </a>
+                  )}
+                  {srv.id === 'recuperacion-siniestros' && (
+                    <a
+                      href="/limpieza-incendios-siniestros-vigo"
+                      onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                    >
+                      <span>Ver servicio de siniestros y plantilla seguro</span>
                       <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </a>
                   )}

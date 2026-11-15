@@ -434,28 +434,28 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     index: '05',
     id: 'textiles-hogar',
     url: '/textiles-hogar-vigo',
-    seoTitle: 'Limpieza de Edredones, Alfombras y Textiles del Hogar en Vigo | Mimos',
+    seoTitle: 'Limpieza de Edredones, Mantas, Cortinas y Estores en Vigo | Mimos',
     metaDescription:
-      'Lavado e higienización profesional de edredones de plumas y sintéticos, mantas, ropa de cama, fundas de sofá, cortinas y alfombras en Vigo.',
-    h1: 'Limpieza profesional de edredones, alfombras y textiles del hogar en Vigo',
+      'Lavado y secado en gran formato de edredones nórdicos de plumas y sintéticos, mantas, colchas, cortinas (con retirada y colocación), estores textiles y fundas desenfundables en Vigo.',
+    h1: 'Limpieza y secado en gran formato de edredones, mantas, cortinas y estores en Vigo',
     titulo: 'Limpieza de textiles del hogar',
-    subtitulo: 'Edredones, mantas, ropa de cama, alfombras y cortinas',
+    subtitulo: 'Edredones de plumas y sintéticos, mantas, cortinas y estores de tela',
     descripcion:
-      'Cuidado de grandes piezas textiles que no caben o no se secan correctamente en una lavadora doméstica. Utilizamos maquinaria de gran capacidad y secado controlado para devolver la esponjosidad e higiene a toda la ropa de tu hogar.',
+      'Lavado y secado completo en maquinaria de gran capacidad para piezas que no caben ni se secan bien en casa frente a la humedad de Vigo. Además, vamos a domicilio a desmontar y volver a colocar cortinajes o puedes entregarlos en nuestras tiendas.',
     queTratamos: [
-      'Edredones nórdicos de pluma/plumón natural y edredones sintéticos de todos los tamaños',
-      'Mantas, colchas, juegos de sábanas, protectores de cuna y fundas de colchón',
-      'Fundas de sofá, cojines, mantelerías y cortinajes',
-      'Limpieza e higienización de alfombras',
+      'Edredones nórdicos de pluma/plumón natural y sintéticos de todas las medidas',
+      'Mantas, colchas, boutís, sábanas, protectores de colchón y cuna',
+      'Cortinas y visillos (con servicio de retirada y colocación a domicilio bajo consulta)',
+      'Estores textiles de tela (paqueto, plegables y con varillas) y fundas desenfundables',
     ],
     comoSeContrata: [
-      'Entrégalos directamente en cualquiera de nuestras 3 tiendas propias en Vigo o deposítalos en nuestra red de puntos colaboradores de recogida y entrega en la comarca para su tratamiento en nuestras instalaciones de Mimos Navia.',
-      'Para piezas voluminosas como alfombras o varios edredones, consulta con Mimo o solicita recogida a domicilio por WhatsApp.',
+      'Entrégalos en cualquiera de nuestras 3 tiendas propias en Vigo o en nuestros 5 puntos colaboradores.',
+      'Para cortinajes pesados o varios edredones, consulta con Mimo por WhatsApp la retirada/colocación de cortinas o recogida a domicilio.',
     ],
-    ctaTexto: 'Preguntar precio por WhatsApp',
-    whatsappMensaje: 'Hola, Mimo. Quiero consultar el precio de lavar un edredón',
+    ctaTexto: 'Consultar pieza por WhatsApp',
+    whatsappMensaje: 'Hola, Mimo. Quiero consultar el precio de lavar un edredón o unas cortinas',
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero consultar el precio de lavar un edredón'
+      'Hola, Mimo. Quiero consultar el precio de lavar un edredón o unas cortinas'
     ),
   },
   {
@@ -1850,9 +1850,15 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
       'Tras un siniestro de fuego o humo, el tiempo es determinante: cada hora que las prendas permanecen saturadas de hollín ácido aumenta el riesgo de degradación irreversible de la fibra. En Tintorería Mimos activamos un protocolo de respuesta rápida para recoger los textiles, realizar la valoración técnica inicial y desodorizar tus prendas con rigor en Vigo.',
     enlacesInternos: [
       {
+        texto: 'Servicio Urgente de Recuperación Textil tras Incendios y Siniestros',
+        href: '/limpieza-incendios-siniestros-vigo',
+        descripcion:
+          'Triaje técnico, prueba de viabilidad, plantilla de inventario Art. 38 (PDF/Excel), carta modelo para el seguro y recogida en Vigo.',
+      },
+      {
         texto: 'Servicios Profesionales de Limpieza y Siniestros en Vigo',
         href: '/limpieza-profesional-vigo',
-        descripcion: 'Protocolo de intervención urgente ante siniestros de hogar y desinfección.',
+        descripcion: 'División profesional para viviendas, comunidades y empresas.',
       },
       {
         texto: 'Tintorería Profesional y Cuidado Textil en Vigo',
@@ -2331,27 +2337,36 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
     whatsappCtaLabel: 'Consultar arreglo con Mimo',
   },
   {
+    id: 'siniestros',
+    label: 'Incendios, humo y seguros',
+    respuesta: `Recuperamos vestuario, abrigos, cortinas, edredones y alfombras afectados por incendio, humo, hollín o inundaciones en Vigo y comarca (exclusivamente textiles; no realizamos limpieza de obra en paredes ni muebles). Hacemos triaje con prueba de viabilidad previa, lote prioritario urgente y factura oficial con CIF ${CONTACT_INFO.cif} para tu aseguradora. Consulta la página /limpieza-incendios-siniestros-vigo (con plantilla PDF/Excel Art. 38 y carta para el seguro) o escríbenos al WhatsApp ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}.`,
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Necesito consultar la recuperación urgente de ropa y textiles tras un siniestro (incendio, humo o inundación) en Vigo para tramitar con mi seguro.'
+    ),
+    whatsappCtaLabel: 'Consultar siniestro con Mimo',
+  },
+  {
     id: 'apartamentos-empresas',
     label: 'Apartamentos y empresas',
     respuesta:
-      'Ofrecemos soluciones de lavandería, uniformidad laboral, recuperación textil tras incendios y limpieza profesional para apartamentos turísticos, viviendas, oficinas, comunidades y empresas en Vigo con presupuesto a medida.',
+      'Ofrecemos soluciones de lavandería, uniformidad laboral y limpieza profesional para apartamentos turísticos, viviendas, oficinas, comunidades y empresas en Vigo con presupuesto a medida.',
     whatsappUrl: CONTACT_INFO.whatsappApartamentosHref,
     whatsappCtaLabel: 'Pedir presupuesto a medida',
   },
 ];
 
-// SECCIÓN 16 DEL PLAN MAESTRO: Servicio prioritario de limpieza y reparación de alfombras con recogida y entrega (/limpieza-alfombras-vigo)
+// SECCIÓN 16 DEL PLAN MAESTRO: Servicio prioritario de limpieza de alfombras con recogida y entrega (/limpieza-alfombras-vigo)
 export const SERVICIO_ALFOMBRAS_DATA = {
   url: '/limpieza-alfombras-vigo',
   canonical: 'https://www.tintoreriamimos.es/limpieza-alfombras-vigo',
-  seoTitle: 'Limpieza y Reparación de Alfombras en Vigo con Recogida a Domicilio | Mimos',
+  seoTitle: 'Limpieza de Alfombras en Vigo con Recogida a Domicilio | Tintorería Mimos',
   metaDescription:
-    'Servicio profesional de limpieza y reparación de alfombras en Vigo con recogida y entrega a domicilio o en nuestras 3 tiendas propias. Pide presupuesto con Mimo.',
-  h1: 'Limpieza y reparación de alfombras en Vigo con recogida y entrega a domicilio',
+    'Servicio profesional de limpieza e higienización de alfombras en Vigo con recogida y entrega a domicilio o en nuestras 3 tiendas propias. Pide presupuesto con Mimo.',
+  h1: 'Limpieza de alfombras en Vigo con recogida y entrega a domicilio',
   subtituloCabecera:
-    'Recogemos tu alfombra en tu domicilio o en nuestras tiendas propias de Vigo para limpiarla o restaurar sus bordes y flecos en nuestras instalaciones, devolviéndotela cuidada y lista para colocar.',
+    'Recogemos tu alfombra en tu domicilio o en nuestras tiendas propias de Vigo para limpiarla e higienizarla en nuestras instalaciones, devolviéndotela seca, cuidada y lista para colocar.',
   aclaracionDomicilio:
-    'Importante: nuestro servicio «a domicilio» consiste en recoger tu alfombra en tu vivienda u oficina, trasladarla a nuestras instalaciones para su limpieza, secado controlado o reparación, y entregártela de vuelta una vez lista (no realizamos limpiezas en húmedo dentro del domicilio del cliente).',
+    'Importante: nuestro servicio «a domicilio» consiste en recoger tu alfombra en tu vivienda u oficina, trasladarla a nuestras instalaciones para su limpieza y secado controlado, y entregártela de vuelta una vez lista (no realizamos limpiezas en húmedo dentro del domicilio del cliente).',
   pasosComoFunciona: [
     {
       num: '01',
@@ -2418,18 +2433,19 @@ export const SERVICIO_ALFOMBRAS_DATA = {
     ejemploPractico: 'Ejemplo práctico: Alfombra de salón de 2,50 m de largo × 1,80 m de ancho.',
   },
   reparacionYRestauracion: {
-    titulo: 'Reparación y restauración de alfombras (flecos, bordes y descosidos)',
-    subtitulo: 'Valoración previa por fotografía con Mimo antes de intervenir',
+    titulo: '¿Tu alfombra tiene flecos sueltos, bordes deshilachados o el festón abierto?',
+    subtitulo: 'Página especializada · Solo reparación o limpieza + arreglo',
     descripcion:
-      'Con el uso diario o el paso del aspirador es frecuente que los extremos de una alfombra se deshilachen o pierdan parte del festón lateral. Además de su higienización, gestionamos la reparación y restauración de alfombras para frenar el deterioro y recuperar su acabado.',
+      'Además de la limpieza en nuestras instalaciones, disponemos de un servicio específico de reparación y restauración de alfombras en Vigo mediante restaurador especialista colaborador. Puedes contratarlo de forma independiente (solo reparación) o combinado con la limpieza.',
+    href: '/reparacion-alfombras-vigo',
     trabajos: [
-      'Reparación, reposición e igualado de flecos deteriorados, sueltos o desgastados',
-      'Remate y refuerzo de bordes laterales, ribetes (festón) y esquinas abiertas',
-      'Revisión y arreglo de descosidos perimetrales o pequeñas roturas en la base de la alfombra',
-      'Posibilidad de combinar la limpieza e higienización completa con la restauración de bordes o flecos',
+      'Reposición, ajuste e igualado de flecos desgastados o sueltos',
+      'Remate y refuerzo de festón lateral, ribetes y esquinas abiertas',
+      'Contratación flexible: solo reparación o limpieza + arreglo juntos',
+      'Valoración técnica previa por foto directamente por el restaurador',
     ],
     comoSolicitarlo:
-      'Para valorar cualquier reparación o restauración en tu alfombra, envíanos por WhatsApp a Mimo una foto general de la pieza y una foto de cerca del fleco, borde o zona dañada. Nuestro equipo confirmará la viabilidad del arreglo, el presupuesto y el plazo estimado antes de recogerla.',
+      'Consulta la sección dedicada de reparación de alfombras para ver ejemplos de daños frecuentes, fotos recomendadas y valoración directa con el restaurador.',
     whatsappReparacionUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero consultar la reparación o restauración de una alfombra en Vigo. Te envío fotos del estado de los bordes o flecos.'
     ),
@@ -2534,11 +2550,17 @@ export const SERVICIO_ALFOMBRAS_DATA = {
         'Si la alfombra presenta roturas previas, bordes deshilachados, manchas de humedad antiguas o un soporte trasero engomado deteriorado por el paso del tiempo, conviene avisarlo y enviar fotografías por WhatsApp antes de la recogida para valorar si admite tratamiento.',
     },
     {
-      pregunta: '10. ¿Hacéis reparación de flecos, bordes o restauración de alfombras?',
-      respuesta: `Sí, gestionamos trabajos de reparación y restauración de alfombras (reposición o igualado de flecos, refuerzo de bordes y ribetes desgastados o descosidos). Envíanos una fotografía detallada de la zona dañada por WhatsApp a Mimo (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}) para valorar tu alfombra y confirmarte viabilidad, presupuesto y plazo antes de intervenir.`,
+      pregunta: '10. ¿Hacéis también reparación de flecos, bordes o restauración de alfombras?',
+      respuesta: `Sí. Gestionamos reparaciones de alfombras mediante un restaurador especialista colaborador, tanto de forma independiente (solo reparación) como combinada con la limpieza. Tienes toda la información específica en nuestra página de reparación de alfombras (/reparacion-alfombras-vigo) o enviando fotos por WhatsApp al ${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}.`,
     },
   ],
   enlacesRelacionados: [
+    {
+      titulo: 'Reparación y restauración de alfombras',
+      href: '/reparacion-alfombras-vigo',
+      descripcion:
+        'Flecos, festón lateral y bordes mediante restaurador especialista colaborador. Solo reparación o con limpieza.',
+    },
     {
       titulo: 'Cortinas, edredones y textiles del hogar',
       href: '/textiles-hogar-vigo',
@@ -2550,9 +2572,9 @@ export const SERVICIO_ALFOMBRAS_DATA = {
       descripcion: 'Consulta cómo solicitar que pasemos a recoger tus prendas y textiles en tu domicilio.',
     },
     {
-      titulo: 'Limpieza para apartamentos turísticos',
-      href: '/limpieza-apartamentos-turisticos-vigo',
-      descripcion: 'Soluciones de lavandería, textil de hogar y limpieza para alojamientos turísticos en Vigo.',
+      titulo: 'Limpieza de sofás a domicilio',
+      href: '/limpieza-sofas-vigo',
+      descripcion: 'Limpieza por inyección-extracción en vivienda para sofás, sillones y sillas tapizadas en Vigo.',
     },
   ],
 };
@@ -2784,16 +2806,16 @@ export const SERVICIO_ARREGLOS_DATA = {
   ],
   enlacesRelacionados: [
     {
+      titulo: 'Vestidos de novia, fiesta y ceremonia',
+      href: '/limpieza-vestidos-novia-ceremonia-vigo',
+      descripcion:
+        'Limpieza y repaso de bajos, pedrería, encajes y costura integrada para vestidos de novia, madrina, comunión, bautizo y chaqués.',
+    },
+    {
       titulo: 'Tintorería profesional en Vigo',
       href: '/tintoreria-vigo',
       descripcion:
-        'Combina el arreglo de tu traje, abrigo o vestido de ceremonia con nuestra limpieza en seco y desmanchado profesional.',
-    },
-    {
-      titulo: 'Limpieza de pieles y cuero',
-      href: '/limpieza-pieles-cuero-vigo',
-      descripcion:
-        'Tratamiento especializado para cazadoras de cuero, ante, nobuk, doble faz y peletería en Vigo.',
+        'Combina el arreglo de tu traje o abrigo con nuestra limpieza en seco y desmanchado profesional.',
     },
     {
       titulo: 'Localizador de tiendas y puntos Mimos',
@@ -3048,7 +3070,10 @@ export const SUBBLOQUES_TINTORERIA_PORTADA: SubbloqueTintoreriaPortada[] = [
       'Limpieza de vestidos de fiesta y ceremonia (bautizo, comunión y novia)',
       'Limpieza de prendas delicadas (seda, lana, lino, pedrería o encaje)',
     ],
-    enlaces: [{ label: 'Tintorería profesional', href: '/tintoreria-vigo' }],
+    enlaces: [
+      { label: 'Tintorería profesional', href: '/tintoreria-vigo' },
+      { label: 'Novia y ceremonia', href: '/limpieza-vestidos-novia-ceremonia-vigo' },
+    ],
     whatsappUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero consultar el precio para limpiar un traje, vestido de ceremonia o prenda delicada.'
     ),
@@ -3104,8 +3129,9 @@ export const SUBBLOQUES_TINTORERIA_PORTADA: SubbloqueTintoreriaPortada[] = [
       'Limpieza y recuperación de textiles afectados por incendios o humo',
     ],
     enlaces: [
+      { label: 'Incendios y siniestros', href: '/limpieza-incendios-siniestros-vigo' },
       { label: 'Pieles y cuero', href: '/limpieza-pieles-cuero-vigo' },
-      { label: 'Empresas y siniestros', href: '/servicios-empresas' },
+      { label: 'Empresas y uniformidad', href: '/servicios-empresas' },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero consultar un tratamiento especial (Wet Cleaning, en seco, piel/ante, uniformidad o recuperación tras incendio).'
@@ -3149,6 +3175,1000 @@ export const RESUMEN_FAMILIAS_EXTENDIDAS_PORTADA = {
     whatsappUrl: CONTACT_INFO.whatsappApartamentosHref,
   },
 };
+
+export interface ServicioNoviaCeremoniaData {
+  url: string;
+  canonical: string;
+  seoTitle: string;
+  metaDescription: string;
+  h1: string;
+  subtituloCabecera: string;
+  aclaracionServicio: string;
+  momentosUso: {
+    id: string;
+    titulo: string;
+    subtitulo: string;
+    casos: string[];
+    enfoque: string;
+  }[];
+  prendasTratadas: {
+    id: string;
+    titulo: string;
+    tejidos: string;
+    descripcion: string;
+    atencionEspecial: string;
+  }[];
+  flujosCostura: {
+    titulo: string;
+    cuando: string;
+    detalle: string;
+  }[];
+  fasesProtocolo: {
+    num: string;
+    titulo: string;
+    descripcion: string;
+  }[];
+  factoresClimaVigo: {
+    dato: string;
+    impacto: string;
+    recomendacion: string;
+  }[];
+  criteriosPresupuesto: {
+    titulo: string;
+    detalle: string;
+  }[];
+  erroresEvitar: {
+    titulo: string;
+    motivo: string;
+  }[];
+  consejosConservacion: string[];
+  preguntasFrecuentes: {
+    pregunta: string;
+    respuesta: string;
+  }[];
+  enlacesRelacionados: {
+    titulo: string;
+    href: string;
+    descripcion: string;
+  }[];
+}
+
+export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
+  url: '/limpieza-vestidos-novia-ceremonia-vigo',
+  canonical: 'https://www.tintoreriamimos.es/limpieza-vestidos-novia-ceremonia-vigo',
+  seoTitle: 'Limpieza de Vestidos de Novia, Fiesta, Comunión y Bautizo en Vigo | Mimos',
+  metaDescription:
+    'Puesta a punto antes del evento y limpieza artesanal de vestidos de novia, madrina, fiesta, comunión, faldones de bautizo y chaqués en Vigo. Taller propio de costura y entrega protegida.',
+  h1: 'Limpieza, costura y cuidado artesanal de vestidos de novia, fiesta, comunión y bautizo en Vigo',
+  subtituloCabecera:
+    'Dejamos tu prenda impecable antes del evento o recuperamos bajos, encajes y tejidos delicados tras la celebración. Todo el proceso se realiza en nuestras instalaciones en Vigo, sin envíos externos.',
+  aclaracionServicio:
+    'Revisamos la prenda contigo antes de empezar y entregamos un resguardo detallado con presupuesto acordado. No publicamos tarifas cerradas ni plazos exprés a ciegas porque cada vestido varía por capas, pedrería y bajos; si insistir en una mancha antigua pudiera dañar la fibra, te avisamos con franqueza.',
+  momentosUso: [
+    {
+      id: 'pre-evento',
+      titulo: 'Antes del evento: puesta a punto y planchado al vapor',
+      subtitulo: 'Preparación previa a la boda, comunión, bautizo o sesión de fotos',
+      casos: [
+        'Higienizar y vaporizar vestidos comprados online, de muestrario o outlet',
+        'Quitar arrugas de viaje o maleta en vestidos de fiesta, madrina y chaqués',
+        'Devolver luminosidad a un faldón de bautizo familiar con tono amarillo de armario',
+        'Recuperar el cuerpo y la caída de trajes y vestidos de comunión en lino o batista',
+      ],
+      enfoque: 'Revisión de costuras, vaporizado capa a capa y planchado sin brillos ni marcas.',
+    },
+    {
+      id: 'post-evento',
+      titulo: 'Después del evento: recuperación de bajos y conservación',
+      subtitulo: 'Para guardar en armario en Vigo, ceder entre hermanos o dar segunda vida',
+      casos: [
+        'Desmanchado localizado de bajos oscurecidos por asfalto, tierra o césped',
+        'Eliminación de champán, vino blanco o sudor antes de que amarilleen en el armario',
+        'Repaso de costuras, botones, presillas de cola o enganches en taller propio',
+        'Entrega colgada por cintas interiores en funda transpirable para proteger del polvo',
+      ],
+      enfoque: 'Pretratamiento manual y elección selectiva entre limpieza en seco suave o Wet Cleaning.',
+    },
+  ],
+  prendasTratadas: [
+    {
+      id: 'novia',
+      titulo: 'Vestidos de novia, velos, cancanes y colas',
+      tejidos: 'Tul, crepé, mikado, raso, organza y encaje',
+      descripcion:
+        'Tratamos cada capa por separado según su fibra y caída. Trabajamos a mano los bajos con grasa urbana, barro seco o hierba sin arrastrar cerco hacia la falda.',
+      atencionEspecial:
+        'Comprobación previa de ballenas, botones forrados, tules finos y sujeción interna de colas.',
+    },
+    {
+      id: 'madrina-fiesta',
+      titulo: 'Madrina, fiesta e invitada',
+      tejidos: 'Seda natural, gasa, muselina, lentejuelas, pedrería y plisados',
+      descripcion:
+        'Cuidado específico para tejidos fluidos que dejan cerco con agua casera. Distinguimos siempre si la pedrería va cosida o pegada antes de elegir el baño.',
+      atencionEspecial:
+        'Prueba en zona oculta para comprobar solidez del tinte, plisados permanentes y brillo de abalorios.',
+    },
+    {
+      id: 'comunion-bautizo',
+      titulo: 'Primera Comunión y Bautizo (incl. faldones heredados)',
+      tejidos: 'Lino, batista, algodón fino, vainicas, jaretas y puntillas',
+      descripcion:
+        'Baño suave sin lejía ni centrifugados que encogen el lino o abren los entredoses. Planchado manual paciente para definir jaretas, recuperar blanco natural y mantener el porte.',
+      atencionEspecial:
+        'Prueba previa de resistencia en fibras antiguas y puntillas de faldones heredados.',
+    },
+    {
+      id: 'chaques-novio',
+      titulo: 'Chaqués, levitas, trajes de novio, padrino y pajes',
+      tejidos: 'Lana fría, chalecos de vestir, camisas finas y pajes',
+      descripcion:
+        'Limpieza equilibrada que conserva la estructura interior de solapas y hombreras, eliminando rozaduras en cuellos, puños y manchas de banquete.',
+      atencionEspecial:
+        'Acabado en prensa de vapor y plancha manual para evitar brillos en paños oscuros.',
+    },
+  ],
+  flujosCostura: [
+    {
+      titulo: 'Coser primero, limpiar después',
+      cuando: 'Enganches en tul, encajes abiertos o botones sueltos tras el baile',
+      detalle:
+        'Si una rotura abierta puede ceder o soltar cuentas durante el baño de limpieza, nuestro taller propio en Gregorio Espino 44 o Venezuela 41 refuerza primero la estructura.',
+    },
+    {
+      titulo: 'Limpiar primero, coser después',
+      cuando: 'Bajos rozados con suciedad o ajustes de largo antes del evento',
+      detalle:
+        'Cuando el bajo arrastra barro o asfalto limpiamos primero para no coser sobre tela sucia; antes del evento, vaporizamos y ajustamos largos o presillas en el mismo circuito.',
+    },
+  ],
+  fasesProtocolo: [
+    {
+      num: '01',
+      titulo: 'Revisión compartida contigo y resguardo claro',
+      descripcion:
+        'Miramos juntos costuras, bajos, botones, pedrería floja y zonas manchadas para que todo quede reflejado en tu resguardo oficial antes de tocar la prenda.',
+    },
+    {
+      num: '02',
+      titulo: 'Prueba de fibra y comprobación de pedrería cosida o pegada',
+      descripcion:
+        'Comprobamos la firmeza del tinte y si los adornos están cosidos a hilo o fijados con adhesivo, evitando disolventes o temperaturas que puedan soltarlos.',
+    },
+    {
+      num: '03',
+      titulo: 'Desmanchado a mano y método selectivo (en seco suave o Wet Cleaning)',
+      descripcion:
+        'La limpieza en seco disuelve grasas, maquillaje y asfalto manteniendo intactas sedas y entretelas; el Wet Cleaning en agua controlada elimina sudor, sales y azúcares respetando linos y algodones.',
+    },
+    {
+      num: '04',
+      titulo: 'Secado al aire, planchado artesanal y repaso de costura',
+      descripcion:
+        'Secamos de forma natural sin secadora agresiva, vaporizamos capa por capa para devolver la caída original y coordinamos cualquier arreglo con nuestros talleres en Vigo.',
+    },
+    {
+      num: '05',
+      titulo: 'Entrega colgada en percha ancha con funda transpirable',
+      descripcion:
+        'Sujetamos el peso desde las cintas interiores de la cintura —nunca desde tirantes finos o encajes frágiles— y entregamos con funda transpirable para proteger del polvo en el armario.',
+    },
+  ],
+  factoresClimaVigo: [
+    {
+      dato: '77 % de humedad media anual en Vigo',
+      impacto:
+        'Entre octubre y enero superamos el 80 % de humedad ambiental en Vigo (datos AEMET). Guardar un vestido dentro de una bolsa de plástico cerrada encierra esa humedad en el armario y acaba amarilleando el blanco o generando olor a cerrado.',
+      recomendacion:
+        'Si llueve el día que vienes a recogerlo, el plástico solo debe acompañarte en el trayecto: al llegar a casa, déjalo en funda transpirable.',
+    },
+    {
+      dato: 'Manchas transparentes de champán y sudor',
+      impacto:
+        'Tras la boda o la comunión muchas salpicaduras se secan sin verse. Con el paso de los meses sus azúcares y sales se oxidan y dejan cercos ocres muy difíciles de sacar.',
+      recomendacion:
+        'No lo guardes «porque parece limpio»: revisarlo y limpiarlo poco después del evento mantiene el tono original.',
+    },
+    {
+      dato: 'Cómo conservarlo en casa a largo plazo',
+      impacto:
+        'La luz solar directa, los radiadores y la tensión en tirantes finos apagan el brillo de blancos y marfiles y deforman la caída del cuerpo.',
+      recomendacion:
+        'Guárdalo en funda transpirable dentro de un armario seco y oscuro (o doblado con papel tisú neutro sin ácido si prefieres caja en casa).',
+    },
+  ],
+  criteriosPresupuesto: [
+    {
+      titulo: 'Capas y volumen total',
+      detalle: 'Número de faldas, colas, cancanes, velos o complementos incluidos.',
+    },
+    {
+      titulo: 'Delicadeza del tejido',
+      detalle: 'Comportamiento de seda natural, gasa, tul fino, crepé, mikado o lino artesanal.',
+    },
+    {
+      titulo: 'Pedrería y ornamentación',
+      detalle: 'Horas de protección manual sobre lentejuelas, encajes, jaretas y puntillas.',
+    },
+    {
+      titulo: 'Bajos y manchas fijadas',
+      detalle: 'Nivel de roce con asfalto o tierra, antigüedad de la mancha o posible repunte.',
+    },
+  ],
+  erroresEvitar: [
+    {
+      titulo: 'No frotes seda, gasa ni bajos rozados con toallitas o agua en casa',
+      motivo:
+        'Extiende la suciedad y deja halos visibles al secar. Si el bajo tiene barro, déjalo secar por completo y no lo cepilles fuerte.',
+    },
+    {
+      titulo: 'No guardes el vestido dentro de plástico cerrado',
+      motivo:
+        'Con la humedad de Vigo, la bolsa hermética retiene condensación y favorece manchas amarillas y humedad en el armario.',
+    },
+    {
+      titulo: 'No apliques lejía ni quitamanchas fuertes en puntillas o pedrería',
+      motivo:
+        'Quema fibras antiguas de faldones heredados, amarillea la seda y puede despegar o apagar el brillo de cristales y perlas.',
+    },
+    {
+      titulo: 'No pases la plancha doméstica sobre tul, encajes o plisados',
+      motivo:
+        'La suela caliente puede fundir el tul en segundos o aplastar para siempre relieves de guipur, vainicas y pliegues.',
+    },
+  ],
+  consejosConservacion: [
+    'Trae o consulta la prenda cuanto antes tras la celebración: los restos invisibles de bebida o sudor salen mucho mejor antes de oxidarse.',
+    'Conserva las etiquetas interiores y cualquier botón o cuenta de repuesto que entregara la boutique para la revisión previa.',
+    'Al llegar a casa, retira cualquier plástico exterior de lluvia y guárdalo en lugar seco, lejos de luz solar y radiadores.',
+    'Cuelga siempre los vestidos pesados desde sus cintas interiores de cintura, evitando que tirantes finos o escotes soporten el peso.',
+  ],
+  preguntasFrecuentes: [
+    {
+      pregunta: '1. ¿Cuánto cuesta limpiar un vestido de novia, fiesta, comunión o bautizo en Vigo?',
+      respuesta:
+        'No aplicamos una tarifa fija cerrada en web porque el trabajo artesanal varía según el número de capas, la delicadeza del tejido, los apliques de pedrería y el estado de los bajos o manchas. Puedes enviarnos 3 fotos por WhatsApp a Mimo para recibir orientación previa y confirmamos el presupuesto exacto en tienda antes de empezar.',
+    },
+    {
+      pregunta: '2. ¿Por qué no se debe guardar un vestido de novia o faldón de bautizo en bolsa de plástico en Vigo?',
+      respuesta:
+        'Porque Vigo tiene una humedad relativa media anual del 77 % (y superior al 80 % entre octubre y enero), por encima del umbral ideal de conservación textil (<65 %), y el plástico cerrado atrapa esa humedad favoreciendo el moho y reacciones químicas de amarilleamiento fenólico. Usa plástico solo para resguardarlo de la lluvia en el trayecto y consérvalo después en funda transpirable (o en caja y papel tisú libres de ácido si lo guardas doblado).',
+    },
+    {
+      pregunta: '3. ¿Puedo llevar mi vestido de novia, invitada o chaqué solo a planchar antes de la boda?',
+      respuesta:
+        'Sí. Realizamos higienización suave, repaso de cuerpo y caída en tejidos como lino o batista, y planchado o vaporizado artesanal previo al evento para vestidos comprados online o en outlet, prendas arrugadas de viaje, chaqués y trajes de comunión. Trae la prenda o consúltanos por WhatsApp con antelación para confirmar fecha segura.',
+    },
+    {
+      pregunta: '4. ¿Salen los bajos negros de asfalto, barro o césped en un vestido de novia?',
+      respuesta:
+        'En la gran mayoría de los casos logramos limpiar o atenuar notablemente los bajos rozados mediante desmanchado manual previo adaptado a grasa urbana, barro seco o hierba. Cuando existe desgaste físico severo del hilo o manchas muy oxidadas, actuamos con honestidad técnica y nos detenemos antes de que insistir pueda debilitar la fibra.',
+    },
+    {
+      pregunta: '5. ¿Podéis limpiar y quitar el tono amarillo de un faldón de bautizo antiguo o heredado?',
+      respuesta:
+        'Sí. Tratamos faldones familiares de batista, lino, algodón fino y puntillas con procesos delicados sin lejía ni centrifugados para devolver luminosidad y respetar vainicas y jaretas. En piezas con décadas de antigüedad hacemos pruebas previas para comprobar la resistencia del tejido antes de intervenir.',
+    },
+    {
+      pregunta: '6. ¿Cuánto tiempo tarda la limpieza de un vestido de ceremonia?',
+      respuesta:
+        'El plazo depende de la complejidad de capas, del tiempo que exija el desmanchado manual, del secado natural sin secadora y de si precisa algún ajuste de costura. Por rigor profesional no prometemos plazos exprés a ciegas: te damos una fecha estimada realista al revisar la prenda o ver tus fotos.',
+    },
+    {
+      pregunta: '7. ¿Cómo limpiáis vestidos de fiesta o novia con lentejuelas y pedrería pegada?',
+      respuesta:
+        'Antes de elegir el ciclo comprobamos si los adornos van cosidos o fijados con adhesivo, ya que la pedrería pegada puede despegarse o perder brillo con disolventes o agua caliente. Hacemos pruebas en zona oculta, protegemos zonas sensibles y trabajamos a mano los sectores delicados.',
+    },
+    {
+      pregunta: '8. ¿Qué pasa si el vestido tiene el bajo descosido, un enganche en el tul o la presilla de la cola rota?',
+      respuesta:
+        'Al contar con taller propio de costura y modistería in situ en Avda. Gregorio Espino 44 y C/ Venezuela 41 (con recepción también en Navia), integramos el arreglo y la limpieza en el mismo circuito, decidiendo en mostrador si conviene asegurar la costura antes del lavado o rematar el ajuste después.',
+    },
+    {
+      pregunta: '9. ¿Hace falta limpiar un vestido tras la boda o comunión si parece que no tiene manchas?',
+      respuesta:
+        'Sí, porque el champán, el vino blanco y el sudor se secan transparentes, pero contienen azúcares y componentes que se oxidan o caramelizan con los meses dejando cercos amarillos o pardos difíciles de revertir. Limpiarlo poco después protege el tono original.',
+    },
+    {
+      pregunta: '10. ¿Usáis limpieza en seco tradicional o Wet Cleaning en agua?',
+      respuesta:
+        'Aplicamos ambos sistemas de manera selectiva según la etiqueta, fibras y manchas, nunca un programa único automático. La limpieza en seco suave disuelve grasas, maquillaje y asfalto respetando estructuras y sedas, mientras que el Wet Cleaning controlado elimina sudor, sales y azúcares respetando linos y algodones.',
+    },
+    {
+      pregunta: '11. ¿Dónde puedo entregar mi vestido en Vigo y en localidades cercanas?',
+      respuesta:
+        'Puedes traerlo a cualquiera de nuestras 3 tiendas propias en Vigo: Sede Central Navia (C/ Teixugueiras 11), C/ Venezuela 41 y Avda. Gregorio Espino 44. También tenemos puntos colaboradores de recepción en Vigo (As Travesas), Redondela, Gondomar, Ponteareas y O Porriño, además de recogida y entrega a domicilio bajo consulta e importe mínimo.',
+    },
+    {
+      pregunta: '12. ¿Qué debo hacer si se mancha el vestido durante la boda antes de traéroslo?',
+      respuesta:
+        'No frotes ni apliques quitamanchas domésticos, jabón de manos ni calor; absorbe el exceso dando toques suaves con un paño blanco limpio y, si hay barro, déjalo secar por completo antes de manipularlo. Cuanto antes nos envíes fotos o lo acerques, menos se fija la mancha.',
+    },
+  ],
+  enlacesRelacionados: [
+    {
+      titulo: 'Taller propio de costura y arreglos',
+      href: '/arreglos-de-ropa-vigo',
+      descripcion:
+        'Modistería en Gregorio Espino 44 y Venezuela 41 (recepción en Navia) para bajos descosidos, enganches de tul y presillas de cola.',
+    },
+    {
+      titulo: 'Tintorería profesional en Vigo',
+      href: '/tintoreria-vigo',
+      descripcion:
+        'Limpieza en seco y Wet Cleaning para trajes de sastrería, abrigos de paño y prendas delicadas de diario.',
+    },
+    {
+      titulo: 'Solo planchado artesanal',
+      href: '/planchado-vigo',
+      descripcion:
+        'Servicio específico de planchado al vapor en percha o doblado para camisas, pantalones y textiles antes o después de tus eventos.',
+    },
+    {
+      titulo: 'Recogida y entrega a domicilio',
+      href: '/recogida-a-domicilio',
+      descripcion:
+        'Coordinación de recogida y entrega cómoda en Vigo y área de influencia bajo consulta e importe mínimo.',
+    },
+  ],
+};
+
+export interface ServicioTextilesHogarData {
+  url: string;
+  canonical: string;
+  seoTitle: string;
+  metaDescription: string;
+  h1: string;
+  subtituloCabecera: string;
+  aclaracionServicio: string;
+  especialidades: {
+    id: string;
+    tituloCorto: string;
+    tejidos: string;
+    titulo: string;
+    descripcion: string;
+    claves: string[];
+    avisoHonesto: string;
+  }[];
+  problemaCasaVsMimos: {
+    enCasa: {
+      titulo: string;
+      subtitulo: string;
+      puntos: {
+        titulo: string;
+        detalle: string;
+      }[];
+    };
+    enMimos: {
+      titulo: string;
+      subtitulo: string;
+      puntos: {
+        titulo: string;
+        detalle: string;
+      }[];
+    };
+  };
+  ventajasDiferenciales: {
+    retiradaCortinas: {
+      titulo: string;
+      subtitulo: string;
+      descripcion: string;
+      detalles: string[];
+    };
+    costuraHogar: {
+      titulo: string;
+      subtitulo: string;
+      descripcion: string;
+      detalles: string[];
+    };
+  };
+  criteriosPresupuesto: {
+    titulo: string;
+    detalle: string;
+  }[];
+  consejosEntregaYGuarda: string[];
+  preguntasFrecuentes: {
+    pregunta: string;
+    respuesta: string;
+  }[];
+  enlacesRelacionados: {
+    titulo: string;
+    href: string;
+    descripcion: string;
+  }[];
+}
+
+export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
+  url: '/textiles-hogar-vigo',
+  canonical: 'https://www.tintoreriamimos.es/textiles-hogar-vigo',
+  seoTitle: 'Limpieza de Edredones, Mantas, Cortinas y Estores en Vigo | Mimos',
+  metaDescription:
+    'Lavado y secado completo en gran formato de edredones de plumas y sintéticos, mantas, colchas, cortinas (vamos a tu casa a desmontar y volver a colocar), estores textiles y fundas en Vigo.',
+  h1: 'Limpieza y secado en gran formato de edredones, mantas, cortinas y estores en Vigo',
+  subtituloCabecera:
+    'Lavamos y secamos hasta el núcleo piezas grandes que no caben ni secan bien frente a la humedad de Vigo. Además, vamos a tu casa a desmontar, limpiar, planchar y volver a colgar cortinas o puedes traerlas a tienda.',
+  aclaracionServicio:
+    'Cada pieza se valora según su medida, relleno y tejido antes de empezar (sin precios cerrados a ciegas ni plazos estándar forzados). Aclaración importante: en estores trabajamos únicamente estores textiles de tela (no realizamos estores enrollables técnicos de PVC, screen rígido o fibra de vidrio).',
+  especialidades: [
+    {
+      id: 'edredones',
+      tituloCorto: 'Edredones nórdicos (plumas y fibra)',
+      tejidos: 'Pluma natural, plumón, fibra hueca y todas las medidas',
+      titulo: 'Edredones nórdicos de plumas, plumón y relleno sintético',
+      descripcion:
+        'Para camas de 90, 105, 135, 150, 180 y 200 cm. Lavamos en tambores de gran diámetro para que el nórdico flote sin tensionar costuras ni apelmazar el relleno, aclarando a fondo para que no queden restos de detergente.',
+      claves: [
+        'Cero suavizante en pluma y plumón natural: el suavizante recubre los filamentos y apelmaza el aire interior',
+        'Secado progresivo hasta el núcleo sin humedad oculta que genere olor o cercos amarillos en armario',
+        'Inspección previa de tabiques y costuras para evitar fugas de pluma durante el ciclo',
+      ],
+      avisoHonesto:
+        'Respetamos siempre la etiqueta original: si la funda exterior es de seda o batista muy fina que exige limpieza profesional específica, adaptamos el proceso.',
+    },
+    {
+      id: 'cortinas',
+      tituloCorto: 'Cortinas y visillos (con desmontaje)',
+      tejidos: 'Lino, algodón, terciopelo, poliéster y cortinas forradas',
+      titulo: 'Cortinas, visillos y caídas (retirada y colocación a domicilio)',
+      descripcion:
+        'Eliminamos el polvo urbano, grasa de cocina, nicotina y humedad acumulada devolviendo luminosidad y caída natural mediante vaporizado vertical sin brillos ni marcas de doblez.',
+      claves: [
+        'Servicio completo a domicilio: vamos a tu casa a descolgarlas, lavarlas, plancharlas y volver a colocarlas',
+        'También puedes entregarlas directamente en nuestras 3 tiendas propias o 5 puntos colaboradores',
+        'Revisión previa de zonas muy quemadas por el sol en ventanas con mucha insolación antes de lavar',
+      ],
+      avisoHonesto:
+        'Antes de limpiar cortinas antiguas de lino o fibras naturales que nunca se han mojado, evaluamos el riesgo de encogimiento o debilitamiento solar y te lo indicamos con franqueza.',
+    },
+    {
+      id: 'estores-textiles',
+      tituloCorto: 'Estores de tela (sin PVC ni screen)',
+      tejidos: 'Paqueto, estores plegables y de varillas en tejido textil',
+      titulo: 'Estores textiles de tela (paqueto, varillas y visillo)',
+      descripcion:
+        'Limpieza delicada adaptada a estores confeccionados en tejido textil, cuidando jaretas, bolsillos de varillas, cordones laterales y apresto para que mantengan el ancho y el pliegue exactos.',
+      claves: [
+        'Tratamiento suave para evitar encogimientos que descuadren el ancho de las varillas',
+        'Planchado manual entre varillas y cordones manteniendo una caída limpia en ventana',
+        'Si alguna varilla, bolsillo o cinta necesita repaso, lo resolvemos en nuestro taller de costura propio',
+      ],
+      avisoHonesto:
+        'Importante: limpiamos exclusivamente estores confeccionados en tela. No trabajamos estores enrollables técnicos de PVC, fibra de vidrio o tejido screen rígido.',
+    },
+    {
+      id: 'mantas-fundas',
+      tituloCorto: 'Mantas, colchas y fundas de sofá',
+      tejidos: 'Mantas de lana o coralina, boutís, protectores y fundas con cremallera',
+      titulo: 'Mantas, colchas, boutís y fundas desenfundables de sofá o colchón',
+      descripcion:
+        'Higienización profunda de piezas pesadas de cama y fundas desmontables con cremallera (cojines, respaldos, asientos o fundas de colchón), recuperando suavidad al tacto y frescor sin ácaros.',
+      claves: [
+        'Mantas gruesas de lana, pelo largo, acrílicas, coralina, colchas piqué y edredones boutí',
+        'Lavado en seco o Wet Cleaning en fundas de sofá desmontables para evitar encogimientos de cremalleras',
+        'Protectores acolchados, almohadas (según etiqueta) y mantelerías familiares de gran tamaño',
+      ],
+      avisoHonesto:
+        '¿Tu sofá es fijo y no se desenfunda? Entonces corresponde nuestra limpieza de tapicerías a domicilio en /limpieza-sofas-vigo.',
+    },
+  ],
+  problemaCasaVsMimos: {
+    enCasa: {
+      titulo: 'Qué ocurre en la lavadora doméstica y con la humedad de Vigo',
+      subtitulo: 'Por qué muchos nórdicos y cortinas acaban estropeados al lavarlos en casa',
+      puntos: [
+        {
+          titulo: 'Tambor saturado sin circulación real',
+          detalle:
+            'En seco parece que entra, pero al empaparse el edredón multiplica su peso, bloquea el giro y deja jabón atrapado dentro.',
+        },
+        {
+          titulo: 'Seco por fuera, húmedo por dentro',
+          detalle:
+            'Con más del 77 % de humedad media anual en Vigo (y más del 80 % de octubre a enero), el interior del plumón tarda días en secar: salen bloques duros, cercos amarillos y olor a humedad.',
+        },
+        {
+          titulo: 'Cortinas arrugadas o encogidas en la cintura de casa',
+          detalle:
+            'Centrifugados fuertes o agua inadecuada marcan pliegues imposibles de planchar en una tabla doméstica y pueden encoger el bajo.',
+        },
+      ],
+    },
+    enMimos: {
+      titulo: 'Cómo lo resolvemos en nuestras instalaciones de gran formato',
+      subtitulo: 'Capacidad amplia, secado completo hasta el núcleo y planchado de taller',
+      puntos: [
+        {
+          titulo: 'Flotación libre y aclarado total sin residuos',
+          detalle:
+            'Nuestras lavadoras de gran diámetro permiten que la pieza se mueva holgadamente en el baño con dosis exactas y aclarado completo (y sin suavizante en plumas).',
+        },
+        {
+          titulo: 'Secado controlado hasta el centro del relleno',
+          detalle:
+            'Secamos en ciclos progresivos de temperatura cuidada para descompactar la pluma o fibra y devolver todo su volumen térmico sin riesgo de humedad residual.',
+        },
+        {
+          titulo: 'Vaporización amplia en mesa profesional',
+          detalle:
+            'Las cortinas y colchas salen estiradas al vapor en toda su caída, listas para colgar o doblar sin arrugas de centrifugado.',
+        },
+      ],
+    },
+  },
+  ventajasDiferenciales: {
+    retiradaCortinas: {
+      titulo: 'Desmontaje, lavado, planchado y colocación de cortinas en tu casa',
+      subtitulo: 'Servicio a domicilio para cortinajes completos',
+      descripcion:
+        'Si no quieres subirte a una escalera, desmontar paños pesados ni pelearte luego con los ganchos y rieles, acudimos a tu domicilio en Vigo y área de influencia: descolgamos las cortinas, las tratamos en nuestras instalaciones y volvemos a dejarlas colgadas y vaporizadas.',
+      detalles: [
+        'Ideal para salones grandes, techos altos, cortinajes antiguos o segundas residencias',
+        'Valoración transparente según número de ventanas, altura, rieles y localidad',
+        'Si prefieres traerlas tú mismo, te atendemos sin pedido mínimo en nuestras 3 tiendas y 5 puntos',
+      ],
+    },
+    costuraHogar: {
+      titulo: 'Limpieza y taller propio de costura y confección para el hogar',
+      subtitulo: 'Gregorio Espino 44 y C/ Venezuela 41 (recepción en Navia)',
+      descripcion:
+        'Al contar con talleres propios de modistería y máquina industrial en Vigo, si al desmontar o lavar detectamos un bajo descosido, una cinta fruncidora gastada o una cremallera rota en una funda de sofá, lo arreglamos en el mismo circuito.',
+      detalles: [
+        'Bajos de cortinas, colocación de cinta fruncidora, ollaos, presillas y trabillas',
+        'Repaso de estores textiles (bolsillos de varilla, cordones o contrapesos) y cojines',
+        'Cambio de cremalleras en fundas de colchón, cojines y sofás desenfundables',
+      ],
+    },
+  },
+  criteriosPresupuesto: [
+    {
+      titulo: 'Tipo de pieza y dimensiones',
+      detalle: 'Cama de 90/105 frente a 150/200 cm, peso de la manta o metros y número de paños de cortina.',
+    },
+    {
+      titulo: 'Relleno y delicadeza del tejido',
+      detalle: 'Pluma/plumón natural vs. fibra hueca, o lino/terciopelo/seda frente a poliéster lavable.',
+    },
+    {
+      titulo: 'Desmanchado o servicio de desmontaje',
+      detalle: 'Si requiere tratamiento previo de manchas o desplazamiento para descolgar y recolocar en casa.',
+    },
+    {
+      titulo: 'Posibles repasos en costura propia',
+      detalle: 'Arreglos opcionales de bajos, cintas, cremalleras de fundas o varillas de estor.',
+    },
+  ],
+  consejosEntregaYGuarda: [
+    'Si traes tú las cortinas o estores a tienda, retira antes ganchos metálicos sueltos, contrapesos rígidos y varillas si salen con facilidad (o indícanoslo en mostrador para revisarlo juntos).',
+    'Avísanos si una cortina lleva muchos años expuesta al sol directo o si el bajo rozó con radiadores o humedad de ventana: así probamos antes la resistencia del hilo.',
+    'Nunca guardes un edredón nórdico de plumas en bolsas de plástico al vacío ni cerradas herméticamente en el armario de Vigo: comprimen la caña del plumón y retienen humedad.',
+    'Te entregamos los edredones completamente secos, aireados y protegidos, listos para usar en la cama o guardar en bolsa textil transpirable.',
+  ],
+  preguntasFrecuentes: [
+    {
+      pregunta: '1. ¿Cuánto cuesta lavar un edredón nórdico de plumas, una manta o unas cortinas en Vigo?',
+      respuesta:
+        'No publicamos tarifas estándar fijas porque el coste depende del tamaño (cama individual, 135/150 o King Size), de si el relleno es pluma natural o fibra sintética, del número de paños o tejido en cortinas y de si solicitas retirada y colocación a domicilio. Envíanos medidas o una foto a Mimo por WhatsApp para recibir orientación previa.',
+    },
+    {
+      pregunta: '2. ¿Vais a casa a desmontar y volver a colgar las cortinas después de limpiarlas?',
+      respuesta:
+        'Sí. Además de poder entregarlas en cualquiera de nuestras 3 tiendas propias o 5 puntos colaboradores, disponemos de servicio de retirada de cortinajes a domicilio, lavado, planchado profesional y posterior colocación en tu vivienda o local (bajo consulta y presupuesto previo según número de ventanas, altura y ubicación en Vigo y alrededores).',
+    },
+    {
+      pregunta: '3. ¿Por qué un edredón de plumas lavado en casa sale apelmazado, huele a humedad o le salen manchas amarillas?',
+      respuesta:
+        'En una lavadora doméstica el nórdico entra apretado, no aclara bien el detergente y al tenderlo en un clima húmedo como el de Vigo (77 % de humedad media anual y más del 80 % en otoño/invierno), la tela exterior seca antes que el núcleo del plumón. Esa humedad interior apelmaza la pluma en bloques y genera cercos ocres y mal olor.',
+    },
+    {
+      pregunta: '4. ¿Limpiáis estores enrollables de PVC, fibra de vidrio o tejido técnico screen?',
+      respuesta:
+        'No. Únicamente limpiamos estores confeccionados en tejido textil (estores tipo paqueto, plegables de tela o estores con varillas textiles). No realizamos limpieza de estores enrollables rígidos de PVC, láminas plásticas o screen técnico.',
+    },
+    {
+      pregunta: '5. ¿Las cortinas de lino o algodón pueden encoger al lavarlas?',
+      respuesta:
+        'Los tejidos naturales como lino o algodón que nunca han sido lavados presentan un riesgo natural de ligero encogimiento según la composición y apresto del fabricante. Por eso revisamos siempre la etiqueta y el estado previo del tejido, y aplicamos limpieza en seco o lavado controlado en frío cuando corresponde para minimizar ese riesgo.',
+    },
+    {
+      pregunta: '6. ¿Qué diferencia hay entre traer aquí las fundas del sofá o contratar la limpieza de sofás?',
+      respuesta:
+        'Si las fundas de tus cojines, respaldos o estructura llevan cremallera y se pueden desmontar siguiendo su etiqueta (código W o P), puedes traerlas dentro de este servicio para lavarlas e higienizarlas en taller. Si tu tapicería es fija y no se desenfunda, lo realizamos directamente en tu vivienda mediante inyección-extracción en /limpieza-sofas-vigo.',
+    },
+    {
+      pregunta: '7. ¿Puedo aprovechar el lavado para arreglar el bajo de una cortina o cambiar la cremallera de una funda?',
+      respuesta:
+        'Sí. Contamos con taller propio de costura en Avda. Gregorio Espino 44 y C/ Venezuela 41 (con recepción también en Navia), donde confeccionamos y ajustamos cortinas, estores textiles, cojines y cremalleras de fundas sin que tengas que llevar el encargo a otro establecimiento.',
+    },
+    {
+      pregunta: '8. ¿Usáis suavizante al lavar edredones de pluma y plumón?',
+      respuesta:
+        'Nunca. El suavizante convencional recubre los filamentos microscópicos de la pluma natural, impidiendo que atrapen aire y reduciendo su ligereza y poder térmico. Empleamos detergentes neutros específicos, aclarado completo y secado progresivo para devolver su esponjosidad original.',
+    },
+    {
+      pregunta: '9. ¿Cómo debo guardar el edredón en el armario hasta el próximo invierno en Vigo?',
+      respuesta:
+        'Asegúrate de guardarlo completamente limpio y seco, siempre en una bolsa de tela o funda transpirable (algodón o tejido TNT). Evita bolsas de plástico cerradas herméticamente y no utilices bolsas al vacío en nórdicos de pluma o plumón natural, ya que rompen y deforman la estructura de las cañas.',
+    },
+    {
+      pregunta: '10. ¿Dónde puedo entregar edredones, mantas o cortinas, o pedir recogida a domicilio?',
+      respuesta:
+        'Puedes entregarlos sin importe mínimo en nuestras 3 tiendas propias en Vigo (Navia Teixugueiras 11, C/ Venezuela 41 y Avda. Gregorio Espino 44) o en los 5 puntos colaboradores de As Travesas, Redondela, Gondomar, Ponteareas y O Porriño. También coordinamos recogida y entrega a domicilio consultando previamente con Mimo el importe mínimo y zona.',
+    },
+  ],
+  enlacesRelacionados: [
+    {
+      titulo: 'Limpieza de alfombras en Vigo',
+      href: '/limpieza-alfombras-vigo',
+      descripcion:
+        'Lavado plano en instalaciones, recogida a domicilio en Vigo y enlace con restauración de flecos y bordes.',
+    },
+    {
+      titulo: 'Limpieza de sofás a domicilio',
+      href: '/limpieza-sofas-vigo',
+      descripcion:
+        'Para sofás, chaiselongues, sillas, cabeceros y colchones de tapicería fija tratados directamente en tu vivienda.',
+    },
+    {
+      titulo: 'Taller propio de costura (cortinas y fundas)',
+      href: '/arreglos-de-ropa-vigo',
+      descripcion:
+        'Confección y ajuste de cortinas, estores textiles, cojines y cambio de cremalleras en Gregorio Espino 44 y Venezuela 41.',
+    },
+    {
+      titulo: 'Guía práctica: cómo cuidar un edredón de plumas',
+      href: '/blog/como-lavar-edredon-de-plumas-guia-practica',
+      descripcion:
+        'Qué comprobar en la etiqueta, por qué evitar el tambor justo y claves para el secado sin olor a humedad.',
+    },
+  ],
+};
+
+// =========================================================================
+// SERVICIO ESPECIALIZADO: REPARACIÓN Y RESTAURACIÓN DE ALFOMBRAS (/reparacion-alfombras-vigo)
+// =========================================================================
+export interface ServicioReparacionAlfombrasData {
+  url: string;
+  canonical: string;
+  seoTitle: string;
+  metaDescription: string;
+  h1: string;
+  subtituloCabecera: string;
+  aclaracionOperativa: string;
+  modalidades: {
+    id: 'solo-reparacion' | 'limpieza-mas-reparacion';
+    etiqueta: string;
+    titulo: string;
+    resumen: string;
+    puntos: string[];
+  }[];
+  especialidades: {
+    id: string;
+    tituloCorto: string;
+    soporte: string;
+    titulo: string;
+    descripcion: string;
+    causasHabituales: string[];
+    criterioRestaurador: string;
+  }[];
+  pasosColaborador: {
+    num: string;
+    titulo: string;
+    descripcion: string;
+  }[];
+  criteriosValoracion: {
+    titulo: string;
+    detalle: string;
+  }[];
+  fotosNecesarias: {
+    titulo: string;
+    detalle: string;
+  }[];
+  preguntasFrecuentes: {
+    pregunta: string;
+    respuesta: string;
+  }[];
+  enlacesRelacionados: {
+    titulo: string;
+    href: string;
+    descripcion: string;
+  }[];
+}
+
+export const SERVICIO_REPARACION_ALFOMBRAS_DATA: ServicioReparacionAlfombrasData = {
+  url: '/reparacion-alfombras-vigo',
+  canonical: 'https://www.tintoreriamimos.es/reparacion-alfombras-vigo',
+  seoTitle: 'Reparación de Alfombras en Vigo: Flecos, Ribetes y Bordes | Mimos',
+  metaDescription:
+    'Reparación y restauración de alfombras en Vigo mediante restaurador especialista colaborador: flecos, festón lateral, bordes y descosidos. Contrata solo reparación o limpieza + arreglo.',
+  h1: 'Reparación y restauración de alfombras en Vigo: flecos, ribetes y bordes',
+  subtituloCabecera:
+    'Frena el deshilachado antes de que alcance el tejido principal de tu alfombra. Puedes contratar solo reparación (sin necesidad de limpiar la pieza) o combinar limpieza + arreglo a través de nuestro restaurador especialista colaborador.',
+  aclaracionOperativa:
+    'Transparencia de servicio: la intervención técnica la realiza un restaurador especialista colaborador. Tú entregas y recoges cómodamente en nuestras 3 tiendas propias de Vigo (o consultas recogida a domicilio con Mimo), y es el restaurador quien valora caso por caso la viabilidad, la solución técnica y el presupuesto a partir de tus fotos y del reverso de la pieza.',
+  modalidades: [
+    {
+      id: 'solo-reparacion',
+      etiqueta: 'Opción 1 · Encargo independiente',
+      titulo: 'Solo reparación (sin obligación de limpiar)',
+      resumen:
+        'Si tu alfombra está limpia pero se le han soltado los flecos, abierto el festón de un lateral o despegado una esquina, puedes contratar únicamente el arreglo.',
+      puntos: [
+        'Sin tener que pagar ni incluir limpieza si la pieza no la necesita',
+        'Recepción directa en nuestras 3 tiendas propias en Vigo o recogida a domicilio según cobertura',
+        'Valoración previa por foto directamente por el restaurador antes de desplazarte',
+      ],
+    },
+    {
+      id: 'limpieza-mas-reparacion',
+      etiqueta: 'Opción 2 · Todo en un viaje',
+      titulo: 'Limpieza en taller + reparación de flecos o bordes',
+      resumen:
+        'Si la alfombra lleva meses puesta o acumula suciedad, combinamos la higienización en nuestras instalaciones con la restauración posterior del colaborador en un solo encargo.',
+      puntos: [
+        'Una sola entrega en tienda o una sola logística de recogida y devolución en tu domicilio',
+        'Higienización previa para trabajar con el hilo limpio, asentado y el tono real a la vista',
+        'Presupuesto desglosado tras revisar medidas, tejido y tramo afectado',
+      ],
+    },
+  ],
+  especialidades: [
+    {
+      id: 'flecos',
+      tituloCorto: 'Flecos sueltos o rotos',
+      soporte: 'Alfombras anudadas a mano, lana, algodón, seda y clásicas',
+      titulo: 'Reposición, remate e igualado de flecos en cabeceras',
+      descripcion:
+        'El cepillo del aspirador, los robots limpiadores o el paso constante suelen arrancar o desgastar los flecos de las cabeceras hasta amenazar la primera fila de nudos. Valoramos fijar el borde, igualar flecos deteriorados o reponer tramos perdidos.',
+      causasHabituales: [
+        'Tirones de aspirador o mordeduras de mascotas en uno de los extremos',
+        'Deshilachado progresivo de la urdimbre que empieza a soltar los primeros nudos del dibujo',
+        'Flecos ennegrecidos, acortados de forma desigual o desprendidos parcialmente',
+      ],
+      criterioRestaurador:
+        'El restaurador revisa si la cabecera admite reposición de fleco, consolidación con hilo o remate limpio de seguridad para evitar que siga deshaciéndose.',
+    },
+    {
+      id: 'feston-ribete',
+      tituloCorto: 'Festón y ribetes laterales',
+      soporte: 'Lanas, sintéticas tejidas, kilims y alfombras de salón',
+      titulo: 'Festón perimetral, ribetes y sobrehilado de bordes',
+      descripcion:
+        'Cuando el cordón lateral que remata el perímetro se abre o se deshilacha por el roce contra zócalos o puertas, la estructura lateral pierde sujeción. Reforzamos o reparamos el tramo dañado antes de que afecte a la trama.',
+      causasHabituales: [
+        'Rozamiento frecuente junto a puertas, sillas de escritorio o zonas de paso estrechas',
+        'Rotura puntual del hilo del festón que se abre longitudinalmente varios centímetros',
+        'Desgaste del ribete original por el paso del tiempo manteniendo sano el cuerpo central',
+      ],
+      criterioRestaurador:
+        'Con tus fotos de frente y del reverso, el restaurador confirma qué tipo de remate (festón o ribete) encaja con el grosor y color de tu alfombra.',
+    },
+    {
+      id: 'esquinas-descosidos',
+      tituloCorto: 'Esquinas y descosidos',
+      soporte: 'Bordes doblados, esquinas levantadas y refuerzos perimetrales',
+      titulo: 'Esquinas abiertas, descosidos y consolidación de bordes',
+      descripcion:
+        'Las esquinas son la zona que más sufre tropiezos y dobleces. Cuando se descose la unión entre el remate lateral y la cabecera o cede el ribete de la esquina, actuamos sobre el foco para recuperar estabilidad y evitar tropiezos.',
+      causasHabituales: [
+        'Esquinas despegadas o abiertas tras enganches con muebles o patas de sofá',
+        'Separación entre el lateral festoneado y la cabecera de flecos',
+        'Bordes ondulados o debilitados que requieren estabilización por el reverso',
+      ],
+      criterioRestaurador:
+        'Algunas piezas con látex trasero endurecido o cuarteado presentan limitaciones técnicas; el restaurador evalúa el reverso antes de confirmar el arreglo.',
+    },
+    {
+      id: 'roturas-valoracion',
+      tituloCorto: 'Roturas o daños a valorar',
+      soporte: 'Cortes, quemaduras, polilla o daños puntuales en el campo',
+      titulo: 'Roturas puntuales y restauraciones evaluadas caso por caso',
+      descripcion:
+        'Ante un desgarro accidental, un agujero puntual, daño localizado por humedad o ataque de polilla, no aplicamos recetas estándar: derivamos las imágenes directamente al restaurador especialista para confirmar si resulta viable recuperar la zona.',
+      causasHabituales: [
+        'Pequeños cortes, desgarros o quemaduras localizadas cerca de chimeneas o estufas',
+        'Zonas debilitadas tras humedad prolongada debajo de macetas o fugas',
+        'Pérdida localizada de pelo o trama en alfombras familiares con valor sentimental',
+      ],
+      criterioRestaurador:
+        'La viabilidad técnica, el nivel de disimulo esperable y el coste los valora directamente el restaurador examinando la pieza antes de comprometer el encargo.',
+    },
+  ],
+  pasosColaborador: [
+    {
+      num: '01',
+      titulo: 'Envías fotos claras por WhatsApp',
+      descripcion:
+        'Con el configurador inferior preparas tu mensaje indicando si buscas solo reparación o limpieza + arreglo, los centímetros o metros aproximados del daño y adjuntas fotos de la pieza y del reverso.',
+    },
+    {
+      num: '02',
+      titulo: 'Valoración del restaurador colaborador',
+      descripcion:
+        'Nuestro restaurador especialista colaborador estudia las imágenes (tejido, nudo y estado de la base) para confirmar si el arreglo es viable, qué técnica recomienda y cuál es el presupuesto estimado.',
+    },
+    {
+      num: '03',
+      titulo: 'Entrega en tienda o recogida en Vigo',
+      descripcion:
+        'Si aceptas la valoración, dejas la alfombra en cualquiera de nuestras 3 tiendas propias en Vigo (sin importe mínimo) o coordinas recogida a domicilio con Mimo según cobertura y condiciones.',
+    },
+    {
+      num: '04',
+      titulo: 'Restauración, revisión y entrega',
+      descripcion:
+        'El colaborador realiza el trabajo artesanal (y si solicitaste limpieza previa, la higienizamos antes en nuestras instalaciones). Cuando todo está revisado, te avisamos para la entrega.',
+    },
+  ],
+  criteriosValoracion: [
+    {
+      titulo: 'Longitud lineal del daño (cm o metros)',
+      detalle:
+        'No es lo mismo consolidar 30 cm de esquina abierta que rehacer los dos extremos completos de flecos o festonear varios metros de lateral.',
+    },
+    {
+      titulo: 'Tipo de alfombra, nudo y fibra',
+      detalle:
+        'La técnica y el hilo de igualación varían si la alfombra es de lana anudada a mano, kilim plano, algodón, seda o tejido mecánico de salón.',
+    },
+    {
+      titulo: 'Estado real del reverso y la urdimbre',
+      detalle:
+        'El restaurador comprueba si la base aguanta puntada nueva o si existen soportes engomados/látex cuarteados que limiten la reparación.',
+    },
+    {
+      titulo: 'Solo reparación vs limpieza + arreglo y recogida',
+      detalle:
+        'Se presupuesta por separado si únicamente contratas la reparación o si sumas limpieza previa y recogida/entrega a domicilio en Vigo.',
+    },
+  ],
+  fotosNecesarias: [
+    {
+      titulo: '01. Vista general de la alfombra completa',
+      detalle: 'Para ver proporción, estilo de tejido y ubicación exacta del desperfecto.',
+    },
+    {
+      titulo: '02. Primer plano del fleco, borde o rotura',
+      detalle: 'Con buena luz natural para que el restaurador distinga el tipo de punto, color y alcance.',
+    },
+    {
+      titulo: '03. Foto de la parte trasera (reverso) en la zona afectada',
+      detalle: 'Imprescindible para comprobar si lleva yute, algodón o base engomada/látex y si admite costura.',
+    },
+    {
+      titulo: '04. Medida aproximada del tramo a reparar',
+      detalle: 'Por ejemplo: «1,70 m de flecos en un lado» o «unos 40 cm de festón suelto».',
+    },
+  ],
+  preguntasFrecuentes: [
+    {
+      pregunta: '1. ¿Puedo contratar solo la reparación de mi alfombra sin tener que limpiarla?',
+      respuesta:
+        'Sí. Puedes contratar únicamente el servicio de reparación (flecos, festón lateral, ribetes o esquinas) sin obligación de añadir limpieza. Y si además quieres higienizarla, puedes combinar limpieza + arreglo en el mismo encargo.',
+    },
+    {
+      pregunta: '2. ¿Quién realiza exactamente la reparación y restauración de la alfombra?',
+      respuesta:
+        'Los trabajos técnicos de reparación y restauración de alfombras se realizan a través de un restaurador especialista colaborador. En Tintorería Mimos nos encargamos de recibir tu consulta con Mimo, gestionar la entrega/recogida en nuestras 3 tiendas propias de Vigo o a domicilio, y coordinar el acabado.',
+    },
+    {
+      pregunta: '3. ¿Todas las alfombras admiten reparación o hay casos que no se pueden arreglar?',
+      respuesta:
+        'La viabilidad la valora siempre el restaurador especialista caso por caso. Mientras la urdimbre y los bordes mantengan consistencia, suelen admitir muy bien refuerzos de flecos, festones y esquinas; en cambio, soportes traseros con látex muy pasado o cuarteado o bases muy podridas por humedad pueden limitar o impedir la costura.',
+    },
+    {
+      pregunta: '4. ¿Por qué no publicáis precios fijos por metro de fleco o festón?',
+      respuesta:
+        'Porque cada alfombra tiene distinta densidad de nudo, grosor de hilo, estado del borde y longitud dañada. El restaurador revisa primero tus fotografías y las medidas del tramo para darte un presupuesto realista antes de que entregues la pieza.',
+    },
+    {
+      pregunta: '5. Si también quiero limpiarla, ¿qué se hace antes: la limpieza o la reparación?',
+      respuesta:
+        'Por regla general se recomienda higienizar la alfombra antes de restaurar (o coordinarlo según el criterio del restaurador) para trabajar sobre fibras limpias, fijar el tono real del hilo y evitar tensiones durante el lavado. Si un borde corre riesgo de soltarse al manipularlo, el especialista decide el orden más seguro.',
+    },
+    {
+      pregunta: '6. ¿Cómo y dónde entrego mi alfombra para repararla en Vigo?',
+      respuesta: `Puedes entregarla sin pedido mínimo en cualquiera de nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo (${TIENDAS_PROPIAS.map(
+        (t) => `${t.nombre_mostrado} en ${t.direccion}`
+      ).join(', ')}). También puedes consultar con Mimo recogida y entrega a domicilio según zona de cobertura e importe mínimo de servicio.`,
+    },
+    {
+      pregunta: '7. ¿Qué fotos debo enviar por WhatsApp para que la valore el restaurador?',
+      respuesta: `Envía al WhatsApp de Mimo (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}) una foto general de la alfombra, un primer plano nítido del fleco, borde o daño, una foto del reverso en esa zona y la longitud aproximada afectada en centímetros o metros.`,
+    },
+    {
+      pregunta: '8. ¿Qué plazo tarda una reparación de alfombra?',
+      respuesta:
+        'Al tratarse de un trabajo artesanal gestionado con restaurador colaborador, el plazo depende de la complejidad de la costura, de los metros a reponer y de si se combina con limpieza y secado completo. Al confirmar la valoración previa te indicamos el plazo estimado.',
+    },
+  ],
+  enlacesRelacionados: [
+    {
+      titulo: 'Limpieza de alfombras en Vigo',
+      href: '/limpieza-alfombras-vigo',
+      descripcion:
+        'Lavado e higienización en nuestras instalaciones con secado completo y recogida a domicilio.',
+    },
+    {
+      titulo: 'Recogida y entrega a domicilio',
+      href: '/recogida-a-domicilio',
+      descripcion:
+        'Condiciones de recogida en vivienda, zonas cubiertas y entrega sin mínimo en nuestras 3 tiendas propias.',
+    },
+    {
+      titulo: 'Textiles del hogar (edredones y cortinas)',
+      href: '/textiles-hogar-vigo',
+      descripcion:
+        'Limpieza en gran formato de nórdicos, mantas, estores de tela y cortinajes con desmontaje en casa.',
+    },
+    {
+      titulo: 'Taller propio de costura y arreglos de ropa',
+      href: '/arreglos-de-ropa-vigo',
+      descripcion:
+        'Bajos, cremalleras, composturas de prendas, piel y confección de cortinas y cojines en Vigo.',
+    },
+  ],
+};
+
+export interface ServicioFaqItem {
+  pregunta: string;
+  respuesta: string;
+}
+
+export const SERVICIO_SINIESTROS_FAQS: ServicioFaqItem[] = [
+  {
+    pregunta: '1. ¿Qué textiles recuperáis tras un incendio, humareda o inundación en Vigo?',
+    respuesta: `Recuperamos exclusivamente ropa y textiles del hogar o negocio: armarios completos, abrigos, trajes, prendas delicadas (lana, seda, punto), pieles y cuero bajo valoración previa, cortinajes (con desmontaje y colocación si lo necesitas), edredones, mantas y alfombras. No realizamos limpieza de obra en paredes, techos, suelos, muebles ni retirada de escombros (${CONTACT_INFO.legalName}, CIF ${CONTACT_INFO.cif}).`,
+  },
+  {
+    pregunta: '2. ¿Qué debo hacer en las primeras 24–48 horas y qué errores destruyen la ropa?',
+    respuesta:
+      'Ventila el inmueble si es seguro, haz fotos generales y de detalle antes de mover o tirar nada, y guarda las prendas por lotes en sacos o cajas transpirables (nunca en bolsas de plástico cerradas herméticamente). No laves en la lavadora doméstica ni frotes el hollín ni apliques secador o plancha: el agua fija el hollín seco (celulosa), los gases ácidos (HCl de plásticos/PVC) atacan las fibras y el calor sella el olor a humo de forma irreversible.',
+  },
+  {
+    pregunta: '3. ¿Por qué el clima húmedo de Vigo agrava tanto una fuga de agua o extinción?',
+    respuesta:
+      'En Vigo la humedad ambiental media ronda el 77 % anual y supera el 81–84 % en otoño e invierno. Con una rotura de tubería o agua de bomberos, la ropa mojada colgada en una vivienda sin deshumidificación no seca a tiempo y en apenas 24–48 horas brotan moho, olor persistente a humedad y migración de tintes. Retirar las piezas rápido a nuestras instalaciones evita el deterioro biológico.',
+  },
+  {
+    pregunta: '4. ¿Qué textiles mojados se recuperan según la categoría del agua (Cat. 1, 2 y 3)?',
+    respuesta:
+      'En Categoría 1 (agua limpia de tubería o lluvia limpia), la mayoría de prendas y textiles del hogar se recuperan mediante separación por colores, higienización y secado controlado si se actúa antes del brote de moho. En Categoría 2 (aguas grises de electrodomésticos, desagües domésticos o agua de extinción sucia), aplicamos desinfección reforzada y valoración textil individual. En Categoría 3 (aguas negras o fecales con riesgo biológico grave), el dictamen habitual es pérdida total obligatoria y emitimos informe técnico de baja para tu seguro.',
+  },
+  {
+    pregunta: '5. ¿Qué es la prueba de viabilidad previa y por qué no laváis el lote sin consultarme?',
+    respuesta:
+      'En piezas críticas o muy impregnadas (cuero, ante, sedas, trajes de sastrería o edredones de pluma con hollín untuoso o agua estancada), realizamos primero una prueba técnica puntual y te mostramos el resultado y un presupuesto previo cerrado tras revisar el lote antes de procesar el resto. Si el coste de recuperación supera el valor o la prenda es irrecuperable, emitimos dictamen de descarte honesto.',
+  },
+  {
+    pregunta: '6. ¿Cuánto tarda la recuperación y tenéis lote prioritario para trabajo o colegio?',
+    respuesta:
+      'El ciclo habitual completo para armarios y ajuares tras un siniestro es de entre 1 y 3 semanas, según el volumen de prendas y las pasadas necesarias de aspiración en seco, desengrase, neutralización molecular y verificación olfativa. Además, separamos y adelantamos un lote prioritario con ropa de trabajo, uniformes escolares y básicos urgentes para que puedas seguir con tu rutina diaria.',
+  },
+  {
+    pregunta: '7. ¿Qué plazos y artículos de la Ley 50/1980 debo tener en cuenta con mi aseguradora?',
+    respuesta:
+      'La Ley 50/1980 de Contrato de Seguro establece el deber de comunicar el siniestro en un plazo máximo de 7 días (Art. 16, recomendable antes de 72 horas), el deber y derecho de adoptar medidas urgentes de salvamento textil para aminorar el daño con gasto reembolsable (Art. 17) y la entrega por escrito de la relación de objetos dañados en los 5 días siguientes a la notificación (Art. 38). En nuestra web puedes generar gratuitamente tu pre-inventario de 5 días en PDF/Excel y la carta modelo.',
+  },
+  {
+    pregunta: '8. ¿Me puede obligar el seguro a usar su contrata general de limpieza? (Arts. 18 y 46)',
+    respuesta:
+      'Conforme al Art. 18 de la Ley 50/1980, la aseguradora no puede imponer la reparación o sustitución mediante sus propios medios «si el asegurado no lo consiente», y en ramos específicos el Art. 46 refuerza los gastos de salvamento y cobertura conforme a póliza. Puedes elegir una tintorería especializada local en Vigo para tratar tus prendas presentando presupuesto previo y factura oficial desglosada, salvo condiciones particulares expresas o franquicias de tu póliza.',
+  },
+  {
+    pregunta: '9. ¿Qué documentación emitís para el perito y la compañía de seguros?',
+    respuesta: `Emitimos presupuesto previo cerrado tras revisar el lote, inventario de prendas tratadas, informe de prueba de viabilidad y certificado de pérdida total o irrecuperabilidad para aquellas piezas que no admitan rescate, además de factura oficial desglosada con IVA y datos fiscales completos de ${CONTACT_INFO.legalName} (CIF ${CONTACT_INFO.cif}). Nunca tires prendas dañadas sin fotografiarlas y documentarlas antes.`,
+  },
+  {
+    pregunta: '10. ¿Dónde entrego mis prendas en Vigo o cómo solicito recogida urgente?',
+    respuesta: `Puedes entregar bultos en sacos o cajas transpirables sin pedido mínimo en nuestras ${TIENDAS_PROPIAS.length} tiendas propias de Vigo (${TIENDAS_PROPIAS.map(
+      (t) => `${t.nombre_mostrado} en ${t.direccion}, Tel. ${t.telefonos_mostrados}`
+    ).join('; ')}), o en nuestros puntos colaboradores de la comarca. Para volúmenes grandes de armario, solicita recogida urgente a domicilio con Mimo por WhatsApp (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}), teléfono (${CONTACT_INFO.phoneDisplay}) o correo (${CONTACT_INFO.email}), sujeta a ruta e importe mínimo según volumen y zona.`,
+  },
+];
+
+
+
+
 
 
 

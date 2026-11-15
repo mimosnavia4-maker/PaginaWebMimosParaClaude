@@ -15,6 +15,9 @@ import { MimoAssistant } from './components/MimoAssistant';
 const CarpetCleaningPage = React.lazy(() =>
   import('./components/CarpetCleaningPage').then((m) => ({ default: m.CarpetCleaningPage }))
 );
+const CarpetRepairPage = React.lazy(() =>
+  import('./components/CarpetRepairPage').then((m) => ({ default: m.CarpetRepairPage }))
+);
 const LeatherCleaningPage = React.lazy(() =>
   import('./components/LeatherCleaningPage').then((m) => ({ default: m.LeatherCleaningPage }))
 );
@@ -24,8 +27,19 @@ const SofaCleaningPage = React.lazy(() =>
 const ClothingAlterationsPage = React.lazy(() =>
   import('./components/ClothingAlterationsPage').then((m) => ({ default: m.ClothingAlterationsPage }))
 );
+const BridalCeremonyPage = React.lazy(() =>
+  import('./components/BridalCeremonyPage').then((m) => ({ default: m.BridalCeremonyPage }))
+);
+const HomeTextilesPage = React.lazy(() =>
+  import('./components/HomeTextilesPage').then((m) => ({ default: m.HomeTextilesPage }))
+);
 const CleaningDivisionPage = React.lazy(() =>
   import('./components/CleaningDivisionPage').then((m) => ({ default: m.CleaningDivisionPage }))
+);
+const DisasterTextileRecoveryPage = React.lazy(() =>
+  import('./components/DisasterTextileRecoveryPage').then((m) => ({
+    default: m.DisasterTextileRecoveryPage,
+  }))
 );
 const ServiceDetailPage = React.lazy(() =>
   import('./components/ServiceDetailPage').then((m) => ({ default: m.ServiceDetailPage }))
@@ -477,18 +491,26 @@ export function App() {
           </main>
         ) : effectivePath === '/limpieza-alfombras-vigo' ? (
           <CarpetCleaningPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/reparacion-alfombras-vigo' ? (
+          <CarpetRepairPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-pieles-cuero-vigo' ? (
           <LeatherCleaningPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-sofas-vigo' ? (
           <SofaCleaningPage onNavigate={handleNavigate} />
         ) : effectivePath === '/arreglos-de-ropa-vigo' ? (
           <ClothingAlterationsPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/limpieza-vestidos-novia-ceremonia-vigo' ? (
+          <BridalCeremonyPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/textiles-hogar-vigo' ? (
+          <HomeTextilesPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-profesional-vigo' ? (
           <CleaningDivisionPage variant="limpieza" onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-apartamentos-turisticos-vigo' ? (
           <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
         ) : effectivePath === '/servicios-empresas' ? (
           <CleaningDivisionPage variant="empresas" onNavigate={handleNavigate} />
+        ) : effectivePath === '/limpieza-incendios-siniestros-vigo' ? (
+          <DisasterTextileRecoveryPage onNavigate={handleNavigate} />
         ) : servicioIndividualActivo ? (
           <ServiceDetailPage
             servicio={servicioIndividualActivo}

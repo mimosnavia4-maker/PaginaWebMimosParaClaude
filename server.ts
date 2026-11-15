@@ -21,11 +21,16 @@ async function startServer() {
       cleanPath === '/alfombras-vigo' ||
       cleanPath === '/alfombras-vigo/' ||
       cleanPath === '/servicios/limpieza-de-alfombras.html' ||
-      cleanPath === '/servicios/limpieza-de-alfombras' ||
-      cleanPath === '/servicios/reparacion-de-alfombras.html' ||
-      cleanPath === '/servicios/reparacion-de-alfombras'
+      cleanPath === '/servicios/limpieza-de-alfombras'
     ) {
       return res.redirect(301, '/limpieza-alfombras-vigo');
+    }
+    if (
+      cleanPath === '/servicios/reparacion-de-alfombras.html' ||
+      cleanPath === '/servicios/reparacion-de-alfombras' ||
+      cleanPath === '/servicios/reparacion-de-alfombras/'
+    ) {
+      return res.redirect(301, '/reparacion-alfombras-vigo');
     }
     if (
       cleanPath === '/servicios/limpieza-de-pieles-y-cuero.html' ||
@@ -115,6 +120,16 @@ async function startServer() {
       return res.redirect(301, '/blog/montar-tu-propia-tintoreria-lavanderia');
     }
     if (
+      cleanPath === '/siniestros-vigo' ||
+      cleanPath === '/siniestros-vigo/' ||
+      cleanPath === '/limpieza-incendios-vigo' ||
+      cleanPath === '/limpieza-incendios-vigo/' ||
+      cleanPath === '/recuperacion-textil-siniestros' ||
+      cleanPath === '/recuperacion-textil-siniestros/'
+    ) {
+      return res.redirect(301, '/limpieza-incendios-siniestros-vigo');
+    }
+    if (
       (req.method === 'GET' || req.method === 'HEAD') &&
       cleanPath.length > 1 &&
       cleanPath.endsWith('/') &&
@@ -133,8 +148,8 @@ async function startServer() {
   const isProduction = process.env.NODE_ENV === 'production' || fs.existsSync(distPath);
 
   if (isProduction && fs.existsSync(distPath)) {
-    // 1. Servir activos estáticos (.js, .css, .jpg, .webp, .svg, etc.)
-    app.use(express.static(distPath, { index: false }));
+    // 1. Servir activos estáticos (.js, .css, .jpg, .webp, .svg, etc.) sin redirigir directorios pre-renderizados
+    app.use(express.static(distPath, { index: false, redirect: false }));
 
     // 2. Servir rutas pre-renderizadas HTML
     app.use((req, res, next) => {

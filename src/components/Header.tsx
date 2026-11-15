@@ -200,15 +200,15 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 {/* Columna 3 Superior: Arreglo de alfombras */}
                 <div className="flex items-center justify-center">
                   <a
-                    href="/limpieza-alfombras-vigo"
-                    onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                    href="/reparacion-alfombras-vigo"
+                    onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
-                      currentPath === '/limpieza-alfombras-vigo'
+                      currentPath === '/reparacion-alfombras-vigo'
                         ? 'bg-white/20 text-white font-extrabold'
                         : 'text-slate-300 hover:text-white hover:bg-white/10'
                     }`}
-                    title="Limpieza profunda y arreglo de flecos, ribetes y bordes de alfombras"
+                    title="Reparación y restauración de flecos, ribetes y bordes de alfombras en Vigo"
                   >
                     Arreglo de alfombras
                   </a>
@@ -430,6 +430,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     </div>
                   </a>
 
+                  {/* Tarjeta 1B: Vestidos de Novia, Fiesta y Ceremonia */}
+                  <a
+                    href="/limpieza-vestidos-novia-ceremonia-vigo"
+                    onClick={(e) => handleLinkClick('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                    className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Vestidos de Novia y Ceremonia
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                    <p className="text-[11px] text-slate-600 mt-1">
+                      Novia, madrina, fiesta, comunión y chaqués · Pedrería, encajes y bajos.
+                    </p>
+                  </a>
+
                   {/* Tarjeta 2: Planchado Profesional */}
                   <a
                     href="/planchado-vigo"
@@ -514,31 +531,42 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
 
                 {/* COLUMNA 3: Especialidades y Empresas */}
                 <div className="space-y-4">
-                  {/* Tarjeta 5: Limpieza de Alfombras */}
-                  <a
-                    href="/limpieza-alfombras-vigo"
-                    onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Limpieza y Arreglo de Alfombras
-                      </span>
-                      <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold">
+                  {/* Tarjeta 5: Limpieza y Reparación de Alfombras (dos enlaces limpios sin anidar) */}
+                  <div className="p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all">
+                    <div className="flex items-center justify-between gap-2">
+                      <a
+                        href="/limpieza-alfombras-vigo"
+                        onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                        className="text-sm font-extrabold text-[#002147] hover:text-[#0F76BB] transition-colors"
+                      >
+                        Alfombras en Vigo
+                      </a>
+                      <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold shrink-0">
                         Recogida / Tienda
                       </span>
                     </div>
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Limpieza en taller y reparación de flecos, ribetes y bordes.
+                      Limpieza en taller y reparación de flecos, ribetes y bordes por restaurador.
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">
-                      Recogida en domicilio (importe mínimo a consultar) o entrega en nuestras 3 tiendas propias.
-                    </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
-                      <span>Ver limpieza y arreglos</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                      <a
+                        href="/limpieza-alfombras-vigo"
+                        onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] hover:text-[#002147]"
+                      >
+                        <span>Limpieza</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </a>
+                      <a
+                        href="/reparacion-alfombras-vigo"
+                        onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#002147] hover:text-[#0F76BB]"
+                      >
+                        <span>Reparación y flecos</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </a>
                     </div>
-                  </a>
+                  </div>
 
                   {/* Tarjetas 6 y 7 en subgrid para Pieles y Siniestros/Empresas */}
                   <div className="grid grid-cols-2 gap-2.5">
@@ -565,8 +593,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     </a>
 
                     <a
-                      href="/blog/ropa-afectada-humo-incendio-siniestro-hogar"
-                      onClick={(e) => handleLinkClick('/blog/ropa-afectada-humo-incendio-siniestro-hogar', e)}
+                      href="/limpieza-incendios-siniestros-vigo"
+                      onClick={(e) => handleLinkClick('/limpieza-incendios-siniestros-vigo', e)}
                       className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
                     >
                       <div className="flex items-center justify-between mb-1">
@@ -578,7 +606,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         </span>
                       </div>
                       <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5">
-                        Recuperación tras humo, incendios y desodorización técnica.
+                        Recuperación tras humo, incendios e inundaciones (Art. 38 y CIF).
                       </p>
                       <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0284C7] group-hover:text-[#002147]">
                         <span>Ver protocolo</span>
@@ -1123,7 +1151,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/tintoreria-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Tintorería profesional (Trajes, vestidos, novia)
+                        • Tintorería profesional (Trajes, abrigos, delicadas)
+                      </a>
+                      <a
+                        href="/limpieza-vestidos-novia-ceremonia-vigo"
+                        onClick={(e) => handleLinkClick('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                        className="block py-1 hover:text-[#60B5F6] font-bold text-[#60B5F6]"
+                      >
+                        • Vestidos de novia, fiesta y ceremonia
                       </a>
                       <a
                         href="/lavanderia-vigo"
@@ -1158,7 +1193,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Limpieza y arreglo de alfombras (flecos y bordes)
+                        • Limpieza de alfombras (recogida y taller)
+                      </a>
+                      <a
+                        href="/reparacion-alfombras-vigo"
+                        onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
+                        className="block py-1 hover:text-[#60B5F6]"
+                      >
+                        • Reparación de alfombras (flecos y bordes)
                       </a>
                       <a
                         href="/limpieza-pieles-cuero-vigo"
@@ -1168,11 +1210,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         • Pieles, cuero y peletería
                       </a>
                       <a
-                        href="/blog/ropa-afectada-humo-incendio-siniestro-hogar"
-                        onClick={(e) => handleLinkClick('/blog/ropa-afectada-humo-incendio-siniestro-hogar', e)}
+                        href="/limpieza-incendios-siniestros-vigo"
+                        onClick={(e) => handleLinkClick('/limpieza-incendios-siniestros-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Recuperación tras siniestros e incendios
+                        • Recuperación tras incendios y siniestros
                       </a>
                       <a
                         href="/servicios-empresas"
@@ -1293,13 +1335,20 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   Limpieza de sofás a domicilio
                 </a>
 
-                {/* 6. Arreglo y limpieza de alfombras */}
+                {/* 6. Limpieza y reparación de alfombras */}
                 <a
                   href="/limpieza-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
                   className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-[#60B5F6] font-extrabold"
                 >
-                  Limpieza y arreglo de alfombras
+                  Limpieza de alfombras a domicilio
+                </a>
+                <a
+                  href="/reparacion-alfombras-vigo"
+                  onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
+                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-[#60B5F6] font-extrabold"
+                >
+                  Reparación de alfombras (flecos y bordes)
                 </a>
 
                 {/* 7. Costura y arreglos */}

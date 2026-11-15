@@ -21,6 +21,8 @@ interface ChatMessage {
   text: string;
   whatsappUrl?: string;
   whatsappCtaLabel?: string;
+  routeHref?: string;
+  routeLabel?: string;
 }
 
 function getTopicById(id: string) {
@@ -31,8 +33,22 @@ function getLocalFaqReply(query: string): {
   text: string;
   whatsappUrl: string;
   whatsappCtaLabel: string;
+  routeHref?: string;
+  routeLabel?: string;
 } {
   const q = query.toLowerCase();
+  if (/incendio|humo|holl[ií]n|inundaci[oó]n|fuga de agua|moho|siniestro|aseguradora|perito/.test(q)) {
+    const topic = getTopicById('siniestros');
+    return {
+      text: topic.respuesta,
+      whatsappUrl: buildMimoWhatsAppUrl(
+        `Hola, Mimo. Necesito consultar recuperación textil tras un siniestro (incendio, humo o inundación): ${query.trim()}`
+      ),
+      whatsappCtaLabel: topic.whatsappCtaLabel,
+      routeHref: '/limpieza-incendios-siniestros-vigo',
+      routeLabel: 'Abrir guía de siniestros y plantilla Art. 38',
+    };
+  }
   if (/sof[aá]|tapicer|sill[oó]n|butaca|chaiselongue|cabecero|colch[oó]n|aquaclean/.test(q)) {
     const topic = getTopicById('sofas');
     return {
@@ -94,7 +110,7 @@ function getLocalFaqReply(query: string): {
       whatsappCtaLabel: topic.whatsappCtaLabel,
     };
   }
-  if (/apartamento|empresa|tur[ií]stic|hotel|limpieza|oficina|comunidad|uniform|incendio|humo|presupuesto/.test(q)) {
+  if (/apartamento|empresa|tur[ií]stic|hotel|limpieza|oficina|comunidad|uniform|presupuesto/.test(q)) {
     const topic = getTopicById('apartamentos-empresas');
     return {
       text: topic.respuesta,
@@ -213,6 +229,9 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
         text: topic.respuesta,
         whatsappUrl: topic.whatsappUrl,
         whatsappCtaLabel: topic.whatsappCtaLabel,
+        routeHref: topic.id === 'siniestros' ? '/limpieza-incendios-siniestros-vigo' : undefined,
+        routeLabel:
+          topic.id === 'siniestros' ? 'Abrir guía de siniestros y plantilla Art. 38' : undefined,
       },
     ]);
   };
@@ -232,6 +251,8 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
         text: reply.text,
         whatsappUrl: reply.whatsappUrl,
         whatsappCtaLabel: reply.whatsappCtaLabel,
+        routeHref: reply.routeHref,
+        routeLabel: reply.routeLabel,
       },
     ]);
   };
@@ -360,6 +381,20 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                 }`}
               >
                 <p>{m.text}</p>
+                {m.routeHref && (
+                  <a
+                    href={m.routeHref}
+                    onClick={(e) => {
+                      if (onNavigate) {
+                        onNavigate(m.routeHref!, e);
+                        setOpen(false);
+                      }
+                    }}
+                    className="mt-2 inline-flex items-center gap-1.5 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white mr-2"
+                  >
+                    <span>{m.routeLabel || 'Ver página del servicio →'}</span>
+                  </a>
+                )}
                 {m.whatsappUrl && (
                   <a
                     href={m.whatsappUrl}

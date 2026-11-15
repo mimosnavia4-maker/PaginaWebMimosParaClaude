@@ -5,8 +5,12 @@ import {
   REGISTROS_PUNTOS,
   SERVICIOS_MIMOS,
   SERVICIO_ALFOMBRAS_DATA,
+  SERVICIO_REPARACION_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
+  SERVICIO_NOVIA_CEREMONIA_DATA,
   SERVICIO_PIELES_DATA,
+  SERVICIO_SINIESTROS_FAQS,
+  SERVICIO_TEXTILES_HOGAR_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SEO_LOCAL,
   FAQ_PORTADA_SIN_PRECIOS,
@@ -36,8 +40,8 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/alfombras-vigo': '/limpieza-alfombras-vigo',
   '/servicios/limpieza-de-alfombras.html': '/limpieza-alfombras-vigo',
   '/servicios/limpieza-de-alfombras': '/limpieza-alfombras-vigo',
-  '/servicios/reparacion-de-alfombras.html': '/limpieza-alfombras-vigo',
-  '/servicios/reparacion-de-alfombras': '/limpieza-alfombras-vigo',
+  '/servicios/reparacion-de-alfombras.html': '/reparacion-alfombras-vigo',
+  '/servicios/reparacion-de-alfombras': '/reparacion-alfombras-vigo',
   '/servicios/limpieza-de-pieles-y-cuero.html': '/limpieza-pieles-cuero-vigo',
   '/servicios/limpieza-de-pieles-y-cuero': '/limpieza-pieles-cuero-vigo',
   '/pieles-y-cuero-vigo': '/limpieza-pieles-cuero-vigo',
@@ -64,6 +68,9 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/se-punto-de-recogida.html': '/se-punto-colaborador',
   '/se-punto-de-recogida': '/se-punto-colaborador',
   '/punto-colaborador': '/se-punto-colaborador',
+  '/siniestros-vigo': '/limpieza-incendios-siniestros-vigo',
+  '/limpieza-incendios-vigo': '/limpieza-incendios-siniestros-vigo',
+  '/recuperacion-textil-siniestros': '/limpieza-incendios-siniestros-vigo',
 };
 
 export function resolveCanonicalRoute(rawPath: string): string {
@@ -357,6 +364,36 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
         })),
       }
     );
+  } else if (cleanPath === '/reparacion-alfombras-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: SERVICIO_REPARACION_ALFOMBRAS_DATA.h1,
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+        ],
+        url: meta.canonical,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
   } else if (cleanPath === '/limpieza-pieles-cuero-vigo') {
     graph.push(
       ORGANIZATION_SCHEMA,
@@ -372,6 +409,66 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         '@type': 'FAQPage',
         mainEntity: SERVICIO_PIELES_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/limpieza-vestidos-novia-ceremonia-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: SERVICIO_NOVIA_CEREMONIA_DATA.h1,
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+        ],
+        url: meta.canonical,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: SERVICIO_NOVIA_CEREMONIA_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/textiles-hogar-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: SERVICIO_TEXTILES_HOGAR_DATA.h1,
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+        ],
+        url: meta.canonical,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: SERVICIO_TEXTILES_HOGAR_DATA.preguntasFrecuentes.map((f) => ({
           '@type': 'Question',
           name: f.pregunta,
           acceptedAnswer: {
@@ -472,6 +569,79 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         '@type': 'FAQPage',
         mainEntity: SERVICIO_ARREGLOS_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/limpieza-incendios-siniestros-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: meta.h1,
+        serviceType: 'Recuperación y descontaminación textil tras incendios, humo e inundaciones',
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+        ],
+        url: meta.canonical,
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Protocolos técnicos de recuperación textil tras siniestros en Vigo',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Descontaminación y desodorización de ropa y textiles tras incendio, humo y hollín',
+                description:
+                  'Aspiración mecánica en seco, desengrase lipofílico, neutralización molecular y tratamiento en Dry Cleaning o Wet Cleaning según fibra y origen del residuo.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Rescate e higienización de textiles afectados por agua e inundaciones (Categorías 1 y 2)',
+                description:
+                  'Separación de tintes, lavado desinfectante y secado controlado en instalaciones de Vigo frente a la humedad ambiental.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Prueba técnica de viabilidad previa y lote prioritario de urgencia',
+                description:
+                  'Test puntual en prendas críticas antes de facturar el grueso del lote y adelanto de vestuario de trabajo o uniformes escolares.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Expediente pericial Art. 38 LCS, certificado de pérdida total y factura oficial con CIF',
+                description:
+                  'Presupuesto previo cerrado tras revisar el lote, inventario desglosado, certificado técnico de prendas irrecuperables y factura oficial de Tintorería Mimos Navia, S.L. (CIF B27755925).',
+              },
+            },
+          ],
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: SERVICIO_SINIESTROS_FAQS.map((f) => ({
           '@type': 'Question',
           name: f.pregunta,
           acceptedAnswer: {

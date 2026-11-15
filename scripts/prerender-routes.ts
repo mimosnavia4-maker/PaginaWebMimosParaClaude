@@ -17,8 +17,12 @@ import {
   SERVICIOS_LIMPIEZA_PROFESIONAL,
   SERVICIOS_MIMOS,
   SERVICIO_ALFOMBRAS_DATA,
+  SERVICIO_REPARACION_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
+  SERVICIO_NOVIA_CEREMONIA_DATA,
   SERVICIO_PIELES_DATA,
+  SERVICIO_SINIESTROS_FAQS,
+  SERVICIO_TEXTILES_HOGAR_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SEO_LOCAL,
 } from '../src/data/mimosData.ts';
@@ -132,6 +136,30 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<h2>Preguntas frecuentes sobre limpieza de alfombras en Vigo</h2>` +
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
+  } else if (routePath === '/reparacion-alfombras-vigo') {
+    const especialidadesHtml = SERVICIO_REPARACION_ALFOMBRAS_DATA.especialidades
+      .map(
+        (e) =>
+          `<li><strong>${escapeHtml(e.titulo)}:</strong> ${escapeHtml(e.descripcion)} ${escapeHtml(
+            e.criterioRestaurador
+          )}</li>`
+      )
+      .join('');
+    const faqsHtml = SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(SERVICIO_REPARACION_ALFOMBRAS_DATA.subtituloCabecera)}</p>` +
+      `<p>${escapeHtml(SERVICIO_REPARACION_ALFOMBRAS_DATA.aclaracionOperativa)}</p>` +
+      `<h2>Especialidades de reparación y restauración de alfombras</h2>` +
+      `<ul>${especialidadesHtml}</ul>` +
+      `<h2>Preguntas frecuentes sobre reparación de alfombras en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
   } else if (routePath === '/limpieza-pieles-cuero-vigo') {
     const tiposHtml = SERVICIO_PIELES_DATA.tiposPieles
       .map((t) => `<li><strong>${escapeHtml(t.titulo)}:</strong> ${escapeHtml(t.descripcion)}</li>`)
@@ -153,6 +181,68 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<h2>Protocolo profesional en 5 fases</h2>` +
       `<ol>${fasesHtml}</ol>` +
       `<h2>Preguntas frecuentes sobre limpieza de pieles y cuero en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
+  } else if (routePath === '/limpieza-vestidos-novia-ceremonia-vigo') {
+    const momentosHtml = SERVICIO_NOVIA_CEREMONIA_DATA.momentosUso
+      .map(
+        (m) =>
+          `<li><strong>${escapeHtml(m.titulo)}:</strong> ${escapeHtml(m.casos.join('; '))}.</li>`
+      )
+      .join('');
+    const prendasHtml = SERVICIO_NOVIA_CEREMONIA_DATA.prendasTratadas
+      .map((p) => `<li><strong>${escapeHtml(p.titulo)} (${escapeHtml(p.tejidos)}):</strong> ${escapeHtml(p.descripcion)}</li>`)
+      .join('');
+    const fasesHtml = SERVICIO_NOVIA_CEREMONIA_DATA.fasesProtocolo
+      .map((f) => `<li><strong>${escapeHtml(f.num)}. ${escapeHtml(f.titulo)}:</strong> ${escapeHtml(f.descripcion)}</li>`)
+      .join('');
+    const faqsHtml = SERVICIO_NOVIA_CEREMONIA_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(SERVICIO_NOVIA_CEREMONIA_DATA.subtituloCabecera)}</p>` +
+      `<h2>Antes o después de la celebración</h2>` +
+      `<ul>${momentosHtml}</ul>` +
+      `<h2>Prendas de novia, fiesta, comunión, bautizo y chaqués que tratamos</h2>` +
+      `<ul>${prendasHtml}</ul>` +
+      `<h2>Protocolo artesanal en 5 fases</h2>` +
+      `<ol>${fasesHtml}</ol>` +
+      `<h2>Preguntas frecuentes sobre vestidos de ceremonia en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
+  } else if (routePath === '/textiles-hogar-vigo') {
+    const especialidadesHtml = SERVICIO_TEXTILES_HOGAR_DATA.especialidades
+      .map(
+        (e) =>
+          `<li><strong>${escapeHtml(e.titulo)} (${escapeHtml(e.tejidos)}):</strong> ${escapeHtml(
+            e.descripcion
+          )} ${escapeHtml(e.avisoHonesto)}</li>`
+      )
+      .join('');
+    const faqsHtml = SERVICIO_TEXTILES_HOGAR_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(SERVICIO_TEXTILES_HOGAR_DATA.subtituloCabecera)}</p>` +
+      `<p>${escapeHtml(SERVICIO_TEXTILES_HOGAR_DATA.aclaracionServicio)}</p>` +
+      `<h2>Edredones, cortinas, estores de tela, mantas y fundas desenfundables</h2>` +
+      `<ul>${especialidadesHtml}</ul>` +
+      `<h2>Desmontaje y colocación de cortinas a domicilio y costura propia</h2>` +
+      `<p>${escapeHtml(
+        SERVICIO_TEXTILES_HOGAR_DATA.ventajasDiferenciales.retiradaCortinas.descripcion
+      )}</p>` +
+      `<p>${escapeHtml(
+        SERVICIO_TEXTILES_HOGAR_DATA.ventajasDiferenciales.costuraHogar.descripcion
+      )}</p>` +
+      `<h2>Preguntas frecuentes sobre textiles del hogar en Vigo</h2>` +
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/limpieza-sofas-vigo') {
@@ -218,6 +308,23 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<li>Comisión periódica directa por prenda y aumento de tráfico de clientes a tu tienda.</li>` +
       `</ul>` +
       `</section>`;
+  } else if (routePath === '/limpieza-incendios-siniestros-vigo') {
+    const faqsHtml = SERVICIO_SINIESTROS_FAQS.map(
+      (f) =>
+        `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+    ).join('');
+    specificHtml =
+      `<section>` +
+      `<p>Servicio técnico exclusivamente textil en Vigo (${escapeHtml(CONTACT_INFO.legalName)}, CIF ${escapeHtml(CONTACT_INFO.cif)}) para recuperar ropa, abrigos, trajes, cortinas, edredones y alfombras afectados por incendio, humo, hollín o inundaciones. No realizamos limpieza estructural de vivienda (paredes, techos ni escombros).</p>` +
+      `<h2>Claves operativas y documentación para aseguradoras (Ley 50/1980)</h2>` +
+      `<ul>` +
+      `<li><strong>Ventana crítica 24–48 h:</strong> aspiración en seco previa, neutralización de hollín ácido (PVC) o grasas y secado técnico frente a la humedad de Vigo.</li>` +
+      `<li><strong>Prueba de viabilidad previa y lote prioritario:</strong> test puntual en piezas críticas y adelanto de vestuario de trabajo o colegio dentro de un ciclo habitual de 1 a 3 semanas.</li>` +
+      `<li><strong>Documentación pericial:</strong> plantilla interactiva de pre-inventario (Art. 38 LCS, 5 días) con exportación PDF/Excel (.xlsx), carta modelo (Arts. 17 y 18 LCS), certificado de pérdida total y factura oficial con CIF.</li>` +
+      `</ul>` +
+      `<h2>Preguntas frecuentes sobre recuperación textil tras siniestros en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `</section>`;
   } else if (routePath === '/') {
     const faqsHtml = FAQ_PORTADA_SIN_PRECIOS.map(
       (f) =>
@@ -258,18 +365,21 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
     `<ul>` +
     `<li><a href="/">Inicio</a></li>` +
     `<li><a href="/tintoreria-vigo">Tintorería profesional</a></li>` +
+    `<li><a href="/limpieza-vestidos-novia-ceremonia-vigo">Vestidos de novia, fiesta y ceremonia</a></li>` +
     `<li><a href="/lavanderia-vigo">Lavandería</a></li>` +
     `<li><a href="/planchado-vigo">Solo planchado</a></li>` +
     `<li><a href="/colada-familiar-vigo">Colada familiar</a></li>` +
     `<li><a href="/textiles-hogar-vigo">Textiles del hogar (edredones, cortinas y estores)</a></li>` +
     `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás y tapicerías a domicilio</a></li>` +
-    `<li><a href="/limpieza-alfombras-vigo">Limpieza y arreglo de alfombras</a></li>` +
+    `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras a domicilio</a></li>` +
+    `<li><a href="/reparacion-alfombras-vigo">Reparación y restauración de alfombras</a></li>` +
     `<li><a href="/limpieza-pieles-cuero-vigo">Pieles y cuero</a></li>` +
     `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa (18 servicios)</a></li>` +
     `<li><a href="/recogida-a-domicilio">Recogida a domicilio</a></li>` +
     `<li><a href="/limpieza-profesional-vigo">Limpieza profesional</a></li>` +
     `<li><a href="/limpieza-apartamentos-turisticos-vigo">Apartamentos turísticos</a></li>` +
     `<li><a href="/servicios-empresas">Servicios para empresas</a></li>` +
+    `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios, humo e inundaciones</a></li>` +
     `<li><a href="/puntos-mimos">Tiendas y Puntos Mimos</a></li>` +
     `<li><a href="/contacto">Contacto y horarios</a></li>` +
     `<li><a href="/blog">Blog y consejos</a></li>` +
@@ -379,10 +489,12 @@ function render404Html(baseHtml: string): string {
     `<ul>` +
     `<li><a href="/">Portada principal de Tintorería Mimos</a></li>` +
     `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás y tapicerías a domicilio</a></li>` +
-    `<li><a href="/limpieza-alfombras-vigo">Limpieza y arreglo de alfombras con recogida a domicilio</a></li>` +
+    `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras con recogida a domicilio</a></li>` +
+    `<li><a href="/reparacion-alfombras-vigo">Reparación y restauración de alfombras</a></li>` +
     `<li><a href="/tintoreria-vigo">Tintorería profesional en Vigo</a></li>` +
     `<li><a href="/lavanderia-vigo">Lavandería y colada por kilos</a></li>` +
     `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa</a></li>` +
+    `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios y siniestros</a></li>` +
     `<li><a href="/contacto">Contacto, teléfonos y horarios</a></li>` +
     `</ul>` +
     `</nav>` +

@@ -39,14 +39,35 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     breadcrumbName: 'Inicio',
   },
   '/limpieza-alfombras-vigo': {
-    title: 'Limpieza y Reparación de Alfombras en Vigo con Recogida a Domicilio | Mimos',
-    h1: 'Limpieza y reparación de alfombras en Vigo con recogida y entrega a domicilio',
+    title: 'Limpieza de Alfombras en Vigo con Recogida a Domicilio | Tintorería Mimos',
+    h1: 'Limpieza de alfombras en Vigo con recogida y entrega a domicilio',
     description:
-      'Servicio profesional de limpieza y reparación de alfombras en Vigo con recogida y entrega a domicilio o en nuestras 3 tiendas propias. Pide presupuesto con Mimo.',
+      'Servicio profesional de limpieza e higienización de alfombras en Vigo con recogida y entrega a domicilio o en nuestras 3 tiendas propias. Pide presupuesto con Mimo.',
     canonical: 'https://www.tintoreriamimos.es/limpieza-alfombras-vigo',
     robots: 'index, follow',
     ogType: 'website',
     breadcrumbName: 'Limpieza de alfombras en Vigo',
+  },
+  '/reparacion-alfombras-vigo': {
+    title: 'Reparación de Alfombras en Vigo: Flecos, Ribetes y Bordes | Mimos',
+    h1: 'Reparación y restauración de alfombras en Vigo: flecos, ribetes y bordes',
+    description:
+      'Reparación de flecos, festón lateral, ribetes y descosidos en alfombras en Vigo mediante restaurador especialista colaborador. Contrata solo reparación o limpieza + arreglo.',
+    canonical: 'https://www.tintoreriamimos.es/reparacion-alfombras-vigo',
+    robots: 'index, follow',
+    ogType: 'website',
+    breadcrumbName: 'Reparación de alfombras en Vigo',
+    breadcrumbParent: {
+      name: 'Limpieza de alfombras',
+      url: 'https://www.tintoreriamimos.es/limpieza-alfombras-vigo',
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Vigo' },
+      { '@type': 'City', name: 'Redondela' },
+      { '@type': 'City', name: 'Gondomar' },
+      { '@type': 'City', name: 'Ponteareas' },
+      { '@type': 'City', name: 'O Porriño' },
+    ],
   },
   '/limpieza-pieles-cuero-vigo': {
     title: 'Limpieza de Pieles, Cuero, Ante y Nobuk en Vigo | Tintorería Mimos',
@@ -84,6 +105,27 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     ogType: 'website',
     breadcrumbName: 'Tintorería profesional en Vigo',
   },
+  '/limpieza-vestidos-novia-ceremonia-vigo': {
+    title: 'Limpieza de Vestidos de Novia, Fiesta, Comunión y Bautizo en Vigo | Mimos',
+    h1: 'Limpieza, costura y cuidado artesanal de vestidos de novia, fiesta, comunión y bautizo en Vigo',
+    description:
+      'Puesta a punto pre-evento y limpieza artesanal de vestidos de novia, fiesta, comunión, faldones de bautizo y chaqués en Vigo. Taller propio de costura y entrega protegida.',
+    canonical: 'https://www.tintoreriamimos.es/limpieza-vestidos-novia-ceremonia-vigo',
+    robots: 'index, follow',
+    ogType: 'website',
+    breadcrumbName: 'Vestidos de novia y ceremonia',
+    breadcrumbParent: {
+      name: 'Tintorería profesional',
+      url: 'https://www.tintoreriamimos.es/tintoreria-vigo',
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Vigo' },
+      { '@type': 'City', name: 'Redondela' },
+      { '@type': 'City', name: 'Gondomar' },
+      { '@type': 'City', name: 'Ponteareas' },
+      { '@type': 'City', name: 'O Porriño' },
+    ],
+  },
   '/lavanderia-vigo': {
     title: 'Lavandería Profesional en Vigo | Cuidado de Ropa y Textiles | Mimos',
     h1: 'Lavandería profesional en Vigo adaptada a cada tipo de tejido',
@@ -115,10 +157,10 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     breadcrumbName: 'Colada familiar en Vigo',
   },
   '/textiles-hogar-vigo': {
-    title: 'Limpieza de Edredones, Alfombras y Textiles del Hogar en Vigo | Mimos',
-    h1: 'Limpieza profesional de edredones, alfombras y textiles del hogar en Vigo',
+    title: 'Limpieza de Edredones, Mantas, Cortinas y Estores en Vigo | Mimos',
+    h1: 'Limpieza y secado en gran formato de edredones, mantas, cortinas y estores en Vigo',
     description:
-      'Lavado e higienización profesional de edredones de plumas y sintéticos, mantas, ropa de cama, fundas de sofá, cortinas y alfombras en Vigo.',
+      'Lavado y secado completo de edredones de plumas y sintéticos, mantas, colchas, cortinas (con desmontaje y colocación a domicilio), estores de tela y fundas en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/textiles-hogar-vigo',
     robots: 'index, follow',
     ogType: 'website',
@@ -179,6 +221,28 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     robots: 'index, follow',
     ogType: 'website',
     breadcrumbName: 'Servicios para empresas',
+  },
+  '/limpieza-incendios-siniestros-vigo': {
+    title: 'Limpieza Ropa Incendios y Humo Vigo | Seguros · Mimos',
+    h1: 'Recuperación textil tras incendios, humo e inundaciones en Vigo',
+    description:
+      'Servicio técnico exclusivamente textil en Vigo para recuperar ropa, abrigos, cortinas, edredones y alfombras tras incendios, humo, hollín o inundaciones. Prueba de viabilidad previa, lote prioritario y factura oficial con CIF para tu seguro.',
+    canonical: 'https://www.tintoreriamimos.es/limpieza-incendios-siniestros-vigo',
+    robots: 'index, follow',
+    ogType: 'website',
+    breadcrumbName: 'Recuperación textil tras incendios y siniestros',
+    breadcrumbParent: {
+      name: 'Tintorería profesional',
+      url: 'https://www.tintoreriamimos.es/tintoreria-vigo',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/images/articulos/blog-siniestros-incendio.jpg',
+    areaServed: [
+      { '@type': 'City', name: 'Vigo' },
+      { '@type': 'City', name: 'Redondela' },
+      { '@type': 'City', name: 'Gondomar' },
+      { '@type': 'City', name: 'Ponteareas' },
+      { '@type': 'City', name: 'O Porriño' },
+    ],
   },
   '/puntos-mimos': {
     title: 'Tiendas Mimos en Vigo y Red de Puntos de Recogida Colaboradores | Tintorería Mimos',

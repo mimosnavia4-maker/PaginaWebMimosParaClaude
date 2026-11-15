@@ -285,8 +285,8 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             </div>
           </div>
 
-          {/* 4.B. REPARACIÓN Y RESTAURACIÓN DE ALFOMBRAS */}
-          <div className="mt-12 rounded-2xl border-2 border-[#002147]/25 dark:border-[#0F76BB]/50 bg-slate-50 dark:bg-[#0b1d36] p-6 sm:p-8 lg:p-10">
+          {/* 4.B. ENLACE DEDICADO A REPARACIÓN Y RESTAURACIÓN DE ALFOMBRAS */}
+          <div className="mt-12 rounded-2xl border-2 border-[#002147]/20 dark:border-[#0F76BB]/45 bg-slate-50 dark:bg-[#0b1d36] p-6 sm:p-8 lg:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
                 <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
@@ -316,13 +316,21 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.comoSolicitarlo}
                 </p>
                 <a
+                  href="/reparacion-alfombras-vigo"
+                  onClick={(e) => onNavigate('/reparacion-alfombras-vigo', e)}
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
+                >
+                  <span>Ir a reparación de alfombras</span>
+                  <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                </a>
+                <a
                   href={SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.whatsappReparacionUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 border border-[#178A47] text-[#178A47] dark:text-emerald-400 hover:bg-[#178A47] hover:text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span>Consultar reparación con Mimo</span>
+                  <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <span>Enviar fotos de borde o fleco a Mimo</span>
                 </a>
               </div>
             </div>
@@ -739,7 +747,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             Servicios relacionados con el cuidado del hogar y alojamientos en Vigo
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {SERVICIO_ALFOMBRAS_DATA.enlacesRelacionados.map((rel) => (
               <a
                 key={rel.href}
