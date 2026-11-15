@@ -57,6 +57,9 @@ const TiendaGregorioEspinoPage = React.lazy(() =>
 const NotFoundPage = React.lazy(() =>
   import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 );
+const PreviewPortadaPage = React.lazy(() =>
+  import('./components/PreviewPortadaPage').then((m) => ({ default: m.PreviewPortadaPage }))
+);
 import {
   ARTICULOS_BLOG,
   SERVICIOS_MIMOS,
@@ -122,6 +125,10 @@ export function App() {
   // Apply SEO & Schema.org on route change, manage GA4, and focus h1 for accessibility
   useEffect(() => {
     applyPageSEO(currentPath);
+    const cleanRoute = (currentPath || '/').split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
+    if (cleanRoute === '/preview-portada') {
+      document.title = 'Vista previa Portada (Piloto 2) | Tintorería Mimos';
+    }
     if (hasAnalyticsConsent()) {
       initGA4();
       trackPageView(currentPath, document.title);
@@ -390,7 +397,8 @@ export function App() {
   const normalizedRoute =
     cleanCurrentPath.length > 1 ? cleanCurrentPath.replace(/\/+$/, '') : '/';
   const effectivePath = resolveCanonicalRoute(normalizedRoute);
-  const isKnown = KNOWN_ROUTES.includes(effectivePath);
+  const isPreviewPortada = effectivePath === '/preview-portada';
+  const isKnown = KNOWN_ROUTES.includes(effectivePath) || isPreviewPortada;
 
   // Match route
   const articuloActivo = ARTICULOS_BLOG.find((a) => a.url === effectivePath);
@@ -513,6 +521,8 @@ export function App() {
           <TiendaNaviaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
           <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
+        ) : isPreviewPortada ? (
+          <PreviewPortadaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (
           /* Portada con los bloques de Sección 7 + el Bloque Propio Prioritario de Limpieza de Alfombras (Sección 16) */
           <main id="main-content" tabIndex={-1} className="focus:outline-hidden">

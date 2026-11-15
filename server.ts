@@ -153,6 +153,20 @@ async function startServer() {
         }
       }
 
+      // Vista previa privada de portada (sin indexación)
+      if (cleanPath === '/preview-portada') {
+        const rootPreviewHtml = path.join(distPath, 'index.html');
+        if (fs.existsSync(rootPreviewHtml)) {
+          return res
+            .status(200)
+            .set({
+              'Content-Type': 'text/html; charset=utf-8',
+              'X-Robots-Tag': 'noindex, nofollow',
+            })
+            .sendFile(rootPreviewHtml);
+        }
+      }
+
       // Archivo pre-renderizado específico: dist/<ruta>/index.html
       const subIndexHtml = path.join(distPath, cleanPath.slice(1), 'index.html');
       if (fs.existsSync(subIndexHtml)) {
