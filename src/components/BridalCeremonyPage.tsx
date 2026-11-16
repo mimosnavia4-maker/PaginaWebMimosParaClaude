@@ -22,10 +22,10 @@ import {
   Truck,
   XCircle,
 } from 'lucide-react';
-import heroNoviaImg from '../assets/images/limpieza_vestido_novia_taller_1794727830953.jpg';
-import tejidosCeremoniaImg from '../assets/images/tejidos_ceremonia_pedreria_1794727830540.jpg';
-import comunionBautizoImg from '../assets/images/comunion_bautizo_lino_1794729699892.jpg';
-import fiestaChaqueImg from '../assets/images/fiesta_chaque_ceremonia_1794729700180.jpg';
+import heroNoviaImg from '../assets/images/limpieza_vestido_novia_taller_1794727830953.webp';
+import tejidosCeremoniaImg from '../assets/images/tejidos_ceremonia_pedreria_1794727830540.webp';
+import comunionBautizoImg from '../assets/images/comunion_bautizo_lino_1794729699892.webp';
+import fiestaChaqueImg from '../assets/images/fiesta_chaque_ceremonia_1794729700180.webp';
 import {
   SERVICIO_NOVIA_CEREMONIA_DATA,
   TIENDAS_PROPIAS,
@@ -75,7 +75,7 @@ const SOLUTION_OPTIONS = [
 const DELIVERY_POINTS = [
   'Navia — Sede Central (C/ Teixugueiras, 11)',
   'Vigo Centro — C/ Venezuela, 41 (taller de costura in situ)',
-  'Vigo — Avda. Gregorio Espino, 44 (taller de costura in situ)',
+  'Vigo — Avda. Gregorio Espino, 42 (taller de costura in situ)',
   "Vigo As Travesas — Punto colaborador D'Passo",
   'Redondela — Punto colaborador (C/ José Regojo, 29)',
   'Gondomar — Punto colaborador (Puntadas No Aire)',
@@ -321,6 +321,9 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       <img
                         src={heroNoviaImg}
                         alt="Vestido de novia con encaje preparado para inspección y vaporizado artesanal en Tintorería Mimos Vigo"
+                        width={1200}
+                        height={896}
+                        fetchPriority="high"
                         referrerPolicy="no-referrer"
                         onError={() => setHeroImgError(true)}
                         className="w-full h-full object-cover"
@@ -576,6 +579,9 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                           <img
                             src={activeCategoryMeta.image}
                             alt={activeCategoryMeta.alt}
+                            width={1200}
+                            height={896}
+                            loading="lazy"
                             referrerPolicy="no-referrer"
                             onError={() =>
                               setShowcaseImgError((prev) => ({
@@ -668,6 +674,9 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       <img
                         src={tejidosCeremoniaImg}
                         alt="Detalle de encaje bordado, tul y perlas sobre tejido de ceremonia revisado antes del tratamiento"
+                        width={1200}
+                        height={896}
+                        loading="lazy"
                         referrerPolicy="no-referrer"
                         onError={() => setDetailImgError(true)}
                         className="w-full h-full object-cover"
@@ -693,7 +702,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                   <div className="flex items-center gap-2 text-[#60B5F6]">
                     <Scissors className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <p className="text-xs sm:text-sm font-bold">
-                      Modistería propia en Gregorio Espino 44 y Venezuela 41
+                      Modistería propia en Gregorio Espino 42 y Venezuela 41
                     </p>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">

@@ -130,6 +130,15 @@ async function startServer() {
       return res.redirect(301, '/limpieza-incendios-siniestros-vigo');
     }
     if (
+      cleanPath === '/se-punto-de-recogida.html' ||
+      cleanPath === '/se-punto-de-recogida' ||
+      cleanPath === '/se-punto-de-recogida/' ||
+      cleanPath === '/punto-colaborador' ||
+      cleanPath === '/punto-colaborador/'
+    ) {
+      return res.redirect(301, '/se-punto-colaborador');
+    }
+    if (
       (req.method === 'GET' || req.method === 'HEAD') &&
       cleanPath.length > 1 &&
       cleanPath.endsWith('/') &&

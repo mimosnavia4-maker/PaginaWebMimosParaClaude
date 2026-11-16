@@ -16,7 +16,7 @@ import {
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
 import { trackWhatsAppClick } from '../utils/analytics';
-import limpiezaSofasImg from '../assets/images/limpieza_sofas_domicilio_1794599721481.jpg';
+import limpiezaSofasImg from '../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
 
 interface CarpetCleaningSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;

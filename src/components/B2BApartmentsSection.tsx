@@ -50,10 +50,10 @@ export const B2BApartmentsSection: React.FC<B2BApartmentsSectionProps> = ({ onNa
 
               <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                 <h3 className="text-base font-bold text-[#60B5F6] mb-1.5">
-                  Viviendas, oficinas y empresas en Vigo
+                  Peluquerías, clínicas, comercios y vestuario laboral
                 </h3>
                 <p className="text-sm text-slate-200 leading-relaxed">
-                  Lavandería para negocios y hostelería, junto con servicios de limpieza profesional en Vigo sujetos a valoración y presupuesto personalizado.
+                  Lavandería y tintorería para tus propias toallas, batas y uniformes con suciedad habitual en carros separados, sin renting impuesto y con factura mensual con CIF.
                 </p>
               </div>
             </div>
@@ -71,14 +71,25 @@ export const B2BApartmentsSection: React.FC<B2BApartmentsSectionProps> = ({ onNa
               </a>
 
               {onNavigate && (
-                <a
-                  href="/limpieza-profesional-vigo"
-                  onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-                >
-                  <span>Ver página de Limpieza Profesional</span>
-                  <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
-                </a>
+                <>
+                  <a
+                    href="/servicios-empresas"
+                    onClick={(e) => onNavigate('/servicios-empresas', e)}
+                    className="inline-flex items-center justify-center gap-2 bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
+                  >
+                    <span>Ver Lavandería para Empresas</span>
+                    <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  </a>
+
+                  <a
+                    href="/limpieza-profesional-vigo"
+                    onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
+                    className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
+                  >
+                    <span>Limpieza de locales y oficinas</span>
+                    <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  </a>
+                </>
               )}
 
               <a

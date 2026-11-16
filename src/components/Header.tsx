@@ -474,7 +474,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   </a>
                 </div>
 
-                {/* COLUMNA 2: Hogar y Colada */}
+                {/* COLUMNA 2: Hogar, Lavandería y Colada */}
                 <div className="space-y-4">
                   {/* Tarjeta 3: Textiles del Hogar */}
                   <a
@@ -502,6 +502,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     </div>
                   </a>
 
+                  {/* Tarjeta 3B: Lavandería Profesional */}
+                  <a
+                    href="/lavanderia-vigo"
+                    onClick={(e) => handleLinkClick('/lavanderia-vigo', e)}
+                    className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Lavandería Profesional
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                    <p className="text-[11px] text-slate-600 mt-1">
+                      Servicio atendido (no autoservicio): separación real, anoraks y secado anti-humedad.
+                    </p>
+                  </a>
+
                   {/* Tarjeta 4: Colada Familiar y Ropa Diaria */}
                   <a
                     href="/colada-familiar-vigo"
@@ -513,14 +530,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         Colada Familiar y Ropa Diaria
                       </span>
                       <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold">
-                        Por volumen
+                        Lavar y doblar / planchar
                       </span>
                     </div>
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Ropa de uso cotidiano, toallas y sábanas para particulares y familias.
+                      Ropa cotidiana, toallas y sábanas con opción de lavar y doblar o lavar y planchar.
                     </p>
                     <p className="text-[11px] text-slate-500 mt-0.5">
-                      Lavado higiénico, secado suave y doblado perfecto listo para armario.
+                      Combina ropa doblada con camisas o prendas concretas planchadas en el mismo encargo.
                     </p>
                     <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
                       <span>Ver servicio de colada</span>
@@ -737,12 +754,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-xs font-bold text-[#002147]">
-                          Cuidado textil regular para empresas
+                          Lavandería para empresas y negocios
                         </span>
                         <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                       </div>
                       <p className="text-xs text-slate-600">
-                        Servicio programado de recogida y entrega para hoteles, restaurantes y comercios.
+                        Toallas de peluquerías y clínicas, vestuario laboral (suciedad normal) y factura mensual con CIF.
                       </p>
                     </a>
                   </div>
@@ -882,7 +899,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         </span>
                       </div>
                       <p className="text-xs text-slate-600 mt-1">
-                        Alcalde Gregorio Espino, 44 · Tel. 986 19 27 87
+                        Alcalde Gregorio Espino, 42 · Tel. 986 19 27 87
                       </p>
                       <p className="text-[11px] text-slate-500 mt-0.5">
                         Taller propio de costura, arreglos de ropa y tintorería directa.
@@ -1165,7 +1182,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/lavanderia-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Lavandería de ropa de diario
+                        • Lavandería profesional (servicio atendido)
                       </a>
                       <a
                         href="/planchado-vigo"
@@ -1186,7 +1203,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/colada-familiar-vigo', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Colada familiar (por kilos)
+                        • Colada familiar (lavar y doblar / planchar)
                       </a>
                       <a
                         href="/limpieza-alfombras-vigo"
@@ -1221,7 +1238,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         onClick={(e) => handleLinkClick('/servicios-empresas', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Uniformidad laboral y empresas
+                        • Lavandería para empresas (peluquerías, clínicas y uniformes)
                       </a>
                     </div>
                   )}

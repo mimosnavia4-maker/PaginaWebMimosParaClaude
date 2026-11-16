@@ -350,28 +350,30 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     index: '02',
     id: 'lavanderia-profesional',
     url: '/lavanderia-vigo',
-    seoTitle: 'Lavandería Profesional en Vigo | Cuidado de Ropa y Textiles | Mimos',
+    seoTitle: 'Lavandería Profesional en Vigo: Plumíferos, Anoraks y Ropa Técnica | Mimos',
     metaDescription:
-      'Lavandería profesional en Vigo para tu ropa de diario, prendas de temporada y textiles. Soluciones adaptadas a cada tejido con atención en tienda o a domicilio.',
-    h1: 'Lavandería profesional en Vigo adaptada a cada tipo de tejido',
+      'Lavandería 100 % atendida en Vigo (sin monedas): plumíferos, anoraks, cazadoras impermeables, jerséis delicados y secado anti-humedad en planta de Navia.',
+    h1: 'Lavandería profesional atendida en Vigo para tus prendas técnicas, delicadas y de abrigo',
     titulo: 'Lavandería',
-    subtitulo: 'Lavado profesional de ropa de uso diario y textiles',
+    subtitulo: 'Lavado acuoso 100 % atendido de plumíferos, anoraks, ropa técnica y jerséis',
     descripcion:
-      'Lavado acuoso profesional con control de temperatura y productos específicos para cada fibra. Una alternativa cómoda y segura para mantener tu ropa limpia, fresca y cuidada sin preocuparte por el trabajo que supone hacerlo en casa.',
+      'Somos una lavandería 100 % atendida en nuestra planta propia de Navia (Vigo), sin máquinas de autoservicio ni monedas. Clasificamos por color y fibra, revisamos cada etiqueta, realizamos desmanchado previo y aplicamos lavado acuoso controlado con secado completo anti-humedad para tus plumíferos, anoraks, cazadoras impermeables y prendas delicadas.',
     queTratamos: [
-      'Camisas, blusas, polos, camisetas y pantalones de uso cotidiano',
-      'Jerséis de punto, chaquetas, faldas y prendas de entretiempo',
-      'Cazadoras lavables en agua, anoraks y ropa deportiva o de nieve',
-      'Ropa blanca y prendas de color separadas rigurosamente por composición',
+      'Plumíferos, anoraks, parkas y chaquetas acolchadas de pluma o fibra lavables en agua',
+      'Cazadoras impermeables, cortavientos y ropa técnica o deportiva con membrana',
+      'Jerséis de punto, prendas de lana lavables en agua y piezas delicadas',
+      'Prendas particulares con olor persistente a humedad acumulada o humo',
     ],
     comoSeContrata: [
-      'Acércate a nuestras tiendas propias en Vigo o a tu punto Mimos colaborador más cercano.',
-      'Pregunta a Mimo por WhatsApp para conocer el importe exacto según tus prendas o solicitar recogida en casa.',
+      'Envía una foto de tu prenda y de su etiqueta por WhatsApp a Mimo para recibir valoración previa antes de venir.',
+      'Entrega sin pedido mínimo en nuestras 3 tiendas propias de Vigo (Navia Teixugueiras 11 bajo 9, Gregorio Espino 42 y Vigo centro en C/ Venezuela 41 bajo 1, entorno Urzáiz/Gran Vía) o en nuestros 5 puntos colaboradores.',
+      'También puedes consultar con Mimo por WhatsApp la recogida y entrega a domicilio en Vigo y área metropolitana (sujeta a importe mínimo).',
     ],
-    ctaTexto: 'Preguntar precio por WhatsApp',
-    whatsappMensaje: 'Hola, Mimo. Quiero consultar el precio de un servicio de lavandería',
+    ctaTexto: 'Pedir valoración por WhatsApp con Mimo',
+    whatsappMensaje:
+      'Hola, Mimo. Quiero consultar el precio de lavandería para un plumífero, anorak o prenda delicada en Vigo',
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero consultar el precio de un servicio de lavandería'
+      'Hola, Mimo. Quiero consultar el precio de lavandería para un plumífero, anorak o prenda delicada en Vigo'
     ),
   },
   {
@@ -385,11 +387,11 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     titulo: 'Planchado profesional',
     subtitulo: 'Acabado de plancha profesional listo para guardar o utilizar',
     descripcion:
-      'Trae tus prendas ya lavadas y nuestro equipo se encarga de devolverles una caída perfecta, sin brillos ni marcas de plancha doméstica. Ideal para quienes necesitan camisas de trabajo, pantalones o vestidos siempre impecables.',
+      'Trae tus prendas ya lavadas y nuestro equipo se encarga de devolverles una caída perfecta con vapor y prensas profesionales, sin brillos ni marcas de plancha doméstica. Entrega en percha o doblada según necesites.',
     queTratamos: [
       'Camisas de vestir y blusas entregadas en percha o dobladas',
-      'Pantalones de pinzas, trajes, americanas y faldas',
-      'Vestidos de calle o de ceremonia que requieren vapor profesional',
+      'Pantalones de pinzas, trajes, americanas y faldas sin brillos',
+      'Vestidos de calle o ceremonia que requieren vapor profesional',
       'Sábanas, fundas nórdicas, mantelerías y cortinas',
     ],
     comoSeContrata: [
@@ -406,22 +408,22 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     index: '04',
     id: 'colada-familiar',
     url: '/colada-familiar-vigo',
-    seoTitle: 'Colada Familiar en Vigo | Lavado, Secado y Doblado de Ropa | Mimos',
+    seoTitle: 'Colada Familiar en Vigo | Lavar y Doblar o Lavar y Planchar | Mimos',
     metaDescription:
-      'Servicio de colada familiar en Vigo: nos ocupamos de lavar, secar y doblar tu ropa semanal para que ahorres tiempo en casa. Consulta condiciones con Mimo.',
-    h1: 'Colada familiar en Vigo: lavado, secado y doblado de tu ropa de diario',
-    titulo: 'Colada familiar (lavado, secado y doblado)',
-    subtitulo: 'Simplifica las tareas domésticas y dedica tu tiempo a lo que importa',
+      'Servicio de colada familiar en Vigo con modalidad de lavar y doblar, lavar y planchar o opción combinada por prenda. Secado completo frente a la humedad de Vigo.',
+    h1: 'Colada familiar en Vigo: lavar y doblar, lavar y planchar o combinada por prenda',
+    titulo: 'Colada familiar (lavar y doblar / lavar y planchar)',
+    subtitulo: 'Elige lavar y doblar, lavar y planchar o combina según cada prenda',
     descripcion:
-      'Con nuestro servicio de colada familiar nos ocupamos de lavar, secar y doblar tu ropa cotidiana con equipos profesionales. Una solución práctica para familias, profesionales con poco tiempo y cualquier persona que quiera olvidarse de poner lavadoras y tender en los meses húmedos de Vigo.',
+      'Con nuestro servicio de colada familiar nos ocupamos de tu ropa cotidiana en dos modalidades principales —lavar y doblar o lavar y planchar— y con flexibilidad total para combinarlas: si traes ropa diaria junto con camisas o piezas concretas, puedes elegir qué va doblado y qué prendas quieres planchadas.',
     queTratamos: [
-      'Ropa cotidiana de toda la familia (camisetas, pantalones, ropa interior, pijamas, sudaderas)',
-      'Ropa de cama de uso diario y toallas domésticas',
-      'Posibilidad de añadir planchado para las prendas del pedido que nos indiques',
-      'Valoración personalizada con Mimo según el volumen y las prendas de tu colada',
+      'Ropa cotidiana de toda la familia (camisetas, pantalones de diario, ropa interior, pijamas, sudaderas)',
+      'Modalidad Lavar y doblar, Lavar y planchar, o combinada eligiendo qué prendas van planchadas (p. ej. camisas)',
+      'Ropa de cama de uso diario y toallas domésticas con secado completo anti-humedad',
+      'Valoración transparente con Mimo según el volumen, composición y modalidad elegida (sin tarifas cerradas por kilo)',
     ],
     comoSeContrata: [
-      'Escríbenos por WhatsApp para que Mimo te explique las condiciones de la colada familiar.',
+      'Escríbenos por WhatsApp para que Mimo te indique las condiciones según volumen y modalidad.',
       'Entrégala en tienda, en tu punto colaborador o solicita recogida a domicilio según tu zona.',
     ],
     ctaTexto: 'Consulta tu precio con Mimo',
@@ -521,28 +523,29 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     index: '08',
     id: 'servicios-empresas',
     url: '/servicios-empresas',
-    seoTitle: 'Lavandería y Tintorería para Empresas y Profesionales en Vigo | Mimos',
+    seoTitle: 'Lavandería y Tintorería para Empresas en Vigo | Ropa Laboral y Negocios | Mimos',
     metaDescription:
-      'Soluciones de lavandería, planchado y tintorería para empresas, hostelería, comercios y profesionales en Vigo. Presupuesto adaptado a cada negocio.',
-    h1: 'Servicios de lavandería y tintorería para empresas y profesionales en Vigo',
-    titulo: 'Servicios para empresas y profesionales',
-    subtitulo: 'Mantenimiento textil de confianza para negocios en Vigo',
+      'Lavandería para empresas en Vigo: toallas de peluquerías y clínicas, uniformes y ropa laboral con suciedad normal. Tiendas o recogida y factura CIF.',
+    h1: 'Lavandería y tintorería para empresas y negocios en Vigo',
+    titulo: 'Lavandería para empresas y negocios',
+    subtitulo: 'Toallas, vestuario laboral y lencería profesional en Vigo',
     descripcion:
-      'Ponemos nuestras instalaciones de Navia al servicio de empresas y profesionales que necesitan mantener su vestuario laboral, mantelería o lencería impecables con un proveedor local serio y cercano.',
+      'Servicio profesional para peluquerías, centros de estética, clínicas, comercios, oficinas y vestuario laboral con suciedad habitual. Atendemos en nuestras 3 tiendas de Vigo o mediante recogida coordinada, con factura mensual agrupada con CIF.',
     queTratamos: [
-      'Uniformes corporativos, batas, ropa de trabajo y vestuario de personal',
-      'Mantelerías, servilletas y textiles para restaurantes, eventos y hostelería',
-      'Toallas y lencería para clínicas, centros de estética, fisioterapia y gimnasios',
+      'Toallas, capas y batas para peluquerías, barberías y centros de estética',
+      'Batas, toallas y sábanas de camilla para clínicas médicas, dentales, fisioterapia y veterinarias',
+      'Uniformes corporativos, polos, camisas, trajes de empresa y ropa laboral con suciedad normal (sin grasa industrial pesada)',
+      'Piezas sueltas o lotes pequeños de cocina y eventos (chaquetillas, mandiles o 2–3 manteles)',
     ],
     comoSeContrata: [
-      'Solicita presupuesto por WhatsApp o teléfono indicando el tipo de prenda, volumen y frecuencia.',
-      'Acordamos la recogida y entrega en tus instalaciones o en nuestras tiendas de Vigo.',
+      'Indícanos por WhatsApp o teléfono el tipo de negocio, prendas habituales y si prefieres entrega en tienda o recogida coordinada.',
+      'Adaptamos el ritmo de recogida y entrega al volumen de tu negocio, con factura mensual agrupada con CIF para empresas y autónomos.',
     ],
-    ctaTexto: 'Pide presupuesto para tu empresa',
+    ctaTexto: 'Pedir presupuesto para mi negocio',
     whatsappMensaje:
-      'Hola, Mimo. Quiero solicitar un presupuesto de lavandería y tintorería para mi empresa en Vigo',
+      'Hola, Mimo. Quiero consultar condiciones de lavandería para mi empresa o negocio en Vigo',
     whatsappUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Quiero solicitar un presupuesto de lavandería y tintorería para mi empresa en Vigo'
+      'Hola, Mimo. Quiero consultar condiciones de lavandería para mi empresa o negocio en Vigo'
     ),
   },
   {
@@ -676,6 +679,13 @@ export interface ZonaSEOLocal {
   localidad: string;
   comarca: string;
   codigosPostales: string;
+  modoCobertura?: 'punto-fisico' | 'solo-domicilio';
+  opcionesCercanas?: {
+    nombre: string;
+    direccion: string;
+    href: string;
+    detalle: string;
+  }[];
   tienePendientes: boolean;
   seoTitle: string;
   metaDescription: string;
@@ -922,12 +932,12 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     seoTitle:
       'Tiendas Propias de Tintorería Mimos en Vigo | Navia, Venezuela y Gregorio Espino',
     metaDescription:
-      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (C/ Teixugueiras 11, C/ Venezuela 41 y Avda. Alcalde Gregorio Espino 44) con servicios completos, talleres propios de costura en Gregorio Espino y Venezuela, recepción en Navia y recogida a domicilio.',
+      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (C/ Teixugueiras 11, C/ Venezuela 41 y Avda. Alcalde Gregorio Espino 42) con servicios completos, talleres propios de costura en Gregorio Espino y Venezuela, recepción en Navia y recogida a domicilio.',
     h1: 'Nuestras 3 tiendas propias en Vigo y servicio de recogida a domicilio',
     subtitulo:
       'Atención directa en nuestras 3 tiendas propias de Vigo (taller propio de costura in situ en Gregorio Espino y Venezuela, y recepción en Navia), con limpieza de alfombras y recogida a domicilio.',
     explicacionEspecificaZona: [
-      'En Vigo contamos con 3 tiendas propias de Tintorería Mimos Navia, S.L.: la sede central en C/ Teixugueiras, 11, bajo 9 (Navia, punto de recepción para arreglos), la tienda de C/ Venezuela, 41, bajo 1 (con taller propio de costura in situ) y la de Avda. Alcalde Gregorio Espino, 44 (con taller propio de costura y modistería in situ). En nuestras 3 tiendas ofrecemos el catálogo completo de cuidado textil, tintorería, lavandería, limpieza de alfombras y servicio coordinado de arreglos de ropa.',
+      'En Vigo contamos con 3 tiendas propias de Tintorería Mimos Navia, S.L.: la sede central en C/ Teixugueiras, 11, bajo 9 (Navia, punto de recepción para arreglos), la tienda de C/ Venezuela, 41, bajo 1 (con taller propio de costura in situ) y la de Avda. Alcalde Gregorio Espino, 42 (con taller propio de costura y modistería in situ). En nuestras 3 tiendas ofrecemos el catálogo completo de cuidado textil, tintorería, lavandería, limpieza de alfombras y servicio coordinado de arreglos de ropa.',
       'Para mayor comodidad de particulares, empresas y viviendas turísticas, disponemos también de servicio coordinado de recogida y entrega a domicilio en Vigo y comarca con solicitud directa a través de nuestro asistente Mimo por WhatsApp o formulario web.',
     ],
     pasosEntregaRecogida: [
@@ -955,23 +965,190 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
         pregunta:
           '¿Dónde están ubicadas las 3 tiendas propias de Mimos en Vigo y qué servicios ofrecen?',
         respuesta:
-          'Nuestras 3 tiendas propias se encuentran en C/ Teixugueiras, 11, bajo 9 (Navia, CP 36212), C/ Venezuela, 41, bajo 1 (Centro, CP 36203) y Avda. Alcalde Gregorio Espino, 44 (O Calvario, CP 36205). Ofrecemos el catálogo completo de tintorería, lavandería, planchado, colada y limpieza de alfombras en las 3 tiendas. Para arreglos de ropa, disponemos de taller propio de costura in situ en Gregorio Espino y Venezuela, mientras que en Navia atendemos la recepción y entrega de prendas para su confección en nuestros talleres.',
+          'Nuestras 3 tiendas propias se encuentran en C/ Teixugueiras, 11, bajo 9 (Navia, CP 36212), C/ Venezuela, 41, bajo 1 (Centro, CP 36203) y Avda. Alcalde Gregorio Espino, 42 (O Calvario, CP 36205). Ofrecemos el catálogo completo de tintorería, lavandería, planchado, colada y limpieza de alfombras en las 3 tiendas. Para arreglos de ropa, disponemos de taller propio de costura in situ en Gregorio Espino y Venezuela, mientras que en Navia atendemos la recepción y entrega de prendas para su confección en nuestros talleres.',
       },
       {
         pregunta: '¿Qué tiendas propias de Vigo abren los sábados por la mañana?',
         respuesta:
-          'Abren los sábados por la mañana nuestras tiendas de Navia (C/ Teixugueiras, 11, bajo 9, de 10:00 a 13:30) y Gregorio Espino (Avda. Alcalde Gregorio Espino, 44, de 09:30 a 13:00). La tienda de C/ Venezuela, 41 atiende de lunes a viernes de 09:30 a 13:30 y de 16:30 a 19:30.',
+          'Abren los sábados por la mañana nuestras tiendas de Navia (C/ Teixugueiras, 11, bajo 9, de 10:00 a 13:30) y Gregorio Espino (Avda. Alcalde Gregorio Espino, 42, de 09:30 a 13:00). La tienda de C/ Venezuela, 41 atiende de lunes a viernes de 09:30 a 13:30 y de 16:30 a 19:30.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero consultar un servicio de tintorería o costura en Vigo'
     ),
   },
+  {
+    slug: 'mos',
+    url: '/zonas/mos',
+    canonical: 'https://www.tintoreriamimos.es/zonas/mos',
+    localidad: 'Mos',
+    comarca: 'Recogida a domicilio',
+    codigosPostales: '36415 - 36419',
+    modoCobertura: 'solo-domicilio',
+    opcionesCercanas: [
+      {
+        nombre: 'Punto colaborador O Porriño · Telas y Más',
+        direccion: 'C/ Manuel Rodríguez, 30 · 36400 O Porriño',
+        href: '/zonas/o-porrino',
+        detalle:
+          'Sin importe mínimo. Recepción de tintorería, lavandería, alfombras y costura confirmada.',
+      },
+      {
+        nombre: 'Tienda propia Gregorio Espino (Vigo)',
+        direccion: 'Alcalde Gregorio Espino, 42 · 36205 Vigo',
+        href: '/tienda-mimos-gregorio-espino-vigo',
+        detalle:
+          'A unos 15 minutos desde Mos por la A-55. Taller propio de costura in situ, tintorería y colada.',
+      },
+      {
+        nombre: 'Sede central Mimos Navia (Vigo)',
+        direccion: 'C/ Teixugueiras, 11, bajo 9 · 36212 Vigo',
+        href: '/tienda-mimos-navia-vigo',
+        detalle:
+          'Planta central de tintorería, gran formato y limpieza de alfombras con sábados abiertos.',
+      },
+    ],
+    tienePendientes: false,
+    seoTitle: 'Tintorería y Lavandería con Recogida en Mos | Tintorería Mimos',
+    metaDescription:
+      'Tintorería, lavandería, alfombras y sofás en Mos mediante recogida a domicilio con Mimo o entrega en O Porriño y Vigo. Consulta ruta hoy.',
+    h1: 'Tintorería, lavandería y limpieza de alfombras con recogida en Mos',
+    subtitulo:
+      'Actualmente no contamos con tienda propia ni punto colaborador físico en Mos: atendemos el municipio mediante recogida y entrega a domicilio (sujeta a ruta e importe mínimo) y en nuestros puntos cercanos de O Porriño y Vigo.',
+    explicacionEspecificaZona: [
+      'Si vives o trabajas en Mos (Puxeiros, Tameiga, Petelos, Sanguiñeda, Louredo o Dornelas) y necesitas limpiar alfombras grandes, edredones de plumas, cortinas o trajes, podemos coordinar la recogida y devolución directamente en tu vivienda o empresa dentro de nuestra ruta de área metropolitana.',
+      'Con total transparencia: en Mos todavía no disponemos de comercio colaborador ni tienda física propia. Si tienes pocas prendas sueltas y prefieres evitar el importe mínimo del servicio a domicilio, puedes entregarlas sin mínimo en nuestro punto colaborador de O Porriño (Telas y Más, C/ Manuel Rodríguez, 30) o en nuestras tiendas propias de Vigo.',
+    ],
+    pasosEntregaRecogida: [
+      {
+        paso: '01',
+        titulo: 'Consulta ruta e importe mínimo con Mimo por WhatsApp',
+        detalle:
+          'Indícanos tu parroquia o código postal en Mos y las piezas que quieres tratar (ropa, edredones, alfombras o sofá a domicilio) para confirmarte día de ruta y orientación de precio.',
+      },
+      {
+        paso: '02',
+        titulo: 'Recogida en domicilio o entrega en O Porriño / Vigo',
+        detalle:
+          'Recogemos tu encargo con furgoneta propia o, si prefieres entregar sin pedido mínimo, puedes acudir al punto colaborador Telas y Más (O Porriño) o a nuestras tiendas propias en Vigo.',
+      },
+      {
+        paso: '03',
+        titulo: 'Tratamiento en nuestra planta de Navia y devolución',
+        detalle:
+          'Procesamos tus prendas, alfombras o textiles del hogar en nuestras instalaciones propias de Vigo con secado completo anti-humedad y te los entregamos listos.',
+      },
+    ],
+    preguntasFrecuentes: [
+      {
+        pregunta: '¿Tenéis tienda física o punto colaborador en Mos?',
+        respuesta:
+          'No todavía. Queremos ser 100 % transparentes: en Mos no hay tienda propia ni punto colaborador por ahora. Atendemos el municipio mediante recogida y entrega a domicilio (sujeta a ruta e importe mínimo) o en los establecimientos cercanos de O Porriño y Vigo.',
+      },
+      {
+        pregunta: '¿Qué servicios ofrecéis a domicilio en Mos?',
+        respuesta:
+          'Recogida y entrega de tintorería, lavandería, colada familiar, edredones, cortinas (con desmontaje y colocación opcional), limpieza y reparación de alfombras, además de limpieza de sofás y tapicerías directamente en tu casa.',
+      },
+      {
+        pregunta: '¿Cuál es la opción más cercana si no llego al pedido mínimo a domicilio?',
+        respuesta:
+          'Puedes depositar cualquier cantidad de prendas sin pedido mínimo en nuestro punto colaborador Telas y Más (C/ Manuel Rodríguez, 30, O Porriño) o acercarte por la A-55 a nuestra tienda propia de Gregorio Espino, 42 en Vigo.',
+      },
+      {
+        pregunta: '¿Cómo pido presupuesto y fecha de recogida en Mos?',
+        respuesta:
+          'Escríbenos por WhatsApp al 655 536 844 con tu zona de Mos y fotos o listado de tus piezas, o llámanos al 986 12 51 41 para confirmarte ruta.',
+      },
+    ],
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Vivo en Mos y quiero consultar ruta e importe mínimo para una recogida a domicilio'
+    ),
+  },
+  {
+    slug: 'nigran',
+    url: '/zonas/nigran',
+    canonical: 'https://www.tintoreriamimos.es/zonas/nigran',
+    localidad: 'Nigrán',
+    comarca: 'Recogida a domicilio',
+    codigosPostales: '36340 - 36370',
+    modoCobertura: 'solo-domicilio',
+    opcionesCercanas: [
+      {
+        nombre: 'Punto colaborador Gondomar · Puntadas No Aire',
+        direccion: 'Avda. Elduayen, 9 · 36380 Gondomar',
+        href: '/zonas/gondomar',
+        detalle:
+          'En el mismo Val Miñor, sin importe mínimo. Recogida de tintorería/hogar y costura confirmada.',
+      },
+      {
+        nombre: 'Sede central Mimos Navia (Vigo)',
+        direccion: 'C/ Teixugueiras, 11, bajo 9 · 36212 Vigo',
+        href: '/tienda-mimos-navia-vigo',
+        detalle:
+          'A unos 10 minutos por la VG-20 desde A Ramallosa o Panxón. Sábados mañana abierto.',
+      },
+    ],
+    tienePendientes: false,
+    seoTitle: 'Tintorería y Lavandería con Recogida en Nigrán | Mimos Val Miñor',
+    metaDescription:
+      'Tintorería, lavandería, edredones, alfombras y sofás en Nigrán (Val Miñor) por recogida a domicilio o en Gondomar y Navia. Consulta con Mimo.',
+    h1: 'Tintorería, lavandería y limpieza de alfombras en Nigrán (Val Miñor)',
+    subtitulo:
+      'Actualmente no disponemos de tienda ni punto colaborador físico en Nigrán: cubrimos todo el municipio mediante recogida y entrega a domicilio (sujeta a ruta e importe mínimo) y en nuestros puntos vecinos de Gondomar y Vigo Navia.',
+    explicacionEspecificaZona: [
+      'En Nigrán, Panxón, Praia América, A Ramallosa, Priegue y Camos la humedad costera del Val Miñor dificulta el secado de nórdicos de plumas, mantas, cortinas y alfombras en casa. Atendemos Nigrán con ruta programada de recogida y entrega a domicilio, además de servicio in situ para limpieza de sofás y tapicerías.',
+      'De forma transparente: todavía no tenemos tienda propia ni comercio colaborador dentro del término municipal de Nigrán. Si quieres entregar una prenda suelta sin importe mínimo, estamos muy cerca tanto en nuestro punto colaborador de Gondomar (Puntadas No Aire, Avda. Elduayen, 9) como en nuestra sede central de Navia (Vigo) por la VG-20.',
+    ],
+    pasosEntregaRecogida: [
+      {
+        paso: '01',
+        titulo: 'Consulta ruta en Nigrán con Mimo por WhatsApp',
+        detalle:
+          'Escríbenos indicando tu zona de Nigrán (Panxón, A Ramallosa, Priegue, centro...) y qué necesitas limpiar para confirmarte ventana de recogida e importe mínimo.',
+      },
+      {
+        paso: '02',
+        titulo: 'Recogida a domicilio o entrega en Gondomar / Navia',
+        detalle:
+          'Pasamos a recoger alfombras, cortinas, edredones o vestuario en ruta, o puedes acercarte sin mínimo a Puntadas No Aire (Gondomar) o a Mimos Navia (Vigo).',
+      },
+      {
+        paso: '03',
+        titulo: 'Lavado, secado completo anti-humedad y devolución',
+        detalle:
+          'Tratamos cada pieza en nuestra planta central de Vigo con secado completo controlado y la devolvemos embolsada o en percha lista para usar o guardar.',
+      },
+    ],
+    preguntasFrecuentes: [
+      {
+        pregunta: '¿Hay tienda física o punto colaborador de Mimos en Nigrán?',
+        respuesta:
+          'No todavía. Actualmente no tenemos local ni punto colaborador en Nigrán: atendemos el municipio mediante recogida y entrega a domicilio (sujeta a ruta e importe mínimo) y desde las ubicaciones contiguas de Gondomar y Navia (Vigo).',
+      },
+      {
+        pregunta: '¿Limpiáis sofás, alfombras y cortinas a domicilio en Nigrán?',
+        respuesta:
+          'Sí. Realizamos limpieza de sofás y colchones 100 % en tu vivienda de Nigrán, Panxón o A Ramallosa sin trasladar muebles, y recogemos alfombras y cortinas (con desmontaje y colocación opcional).',
+      },
+      {
+        pregunta: '¿Dónde puedo dejar una prenda suelta cerca de Nigrán sin mínimo de pedido?',
+        respuesta:
+          'Tienes dos opciones muy próximas sin importe mínimo: nuestro punto colaborador Puntadas No Aire en el centro de Gondomar (Avda. Elduayen, 9) o nuestra sede central en Navia (C/ Teixugueiras, 11, bajo 9, Vigo) subiendo directo por la VG-20.',
+      },
+      {
+        pregunta: '¿Atendéis viviendas vacacionales y pisos turísticos en el Val Miñor?',
+        respuesta:
+          'Sí, ofrecemos lavado y secado completo anti-humedad de sábanas, toallas, protectores y nórdicos para propietarios y gestores de alojamientos en Nigrán consultando frecuencia con Mimo.',
+      },
+    ],
+    whatsappUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. Vivo en Nigrán y quiero consultar ruta e importe mínimo para una recogida a domicilio'
+    ),
+  },
 ];
 
-export const ZONAS_SEO_LOCAL: ZonaSEOLocal[] = ZONAS_SEO_LOCAL_BASE.filter((z) =>
-  ZONAS_SERVICIO.includes(z.localidad)
-);
+export const ZONAS_SEO_LOCAL: ZonaSEOLocal[] = ZONAS_SEO_LOCAL_BASE;
 
 export interface ResenaCliente {
   autor: string;
@@ -1873,7 +2050,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
       {
         texto: 'Tiendas Mimos y Contacto Central en Navia',
         href: '/puntos-mimos',
-        descripcion: 'Sede central en C/ As Teixugueiras 11, local 9, Navia (Vigo).',
+        descripcion: 'Sede central en C/ Teixugueiras, 11, bajo 9, Navia (Vigo).',
       },
     ],
     whatsappCtaUrl: buildMimoWhatsAppUrl(
@@ -2201,14 +2378,14 @@ export const SERVICIOS_LIMPIEZA_PROFESIONAL: ServicioLimpiezaProfesional[] = [
     index: '02',
     id: 'empresas-y-comercios',
     titulo: 'Lavandería para empresas, comercios y profesionales',
-    subtitulo: 'Cuidado textil regular para negocios y profesionales de Vigo',
+    subtitulo: 'Cuidado textil regular para negocios y autónomos de Vigo',
     descripcion:
-      'Servicio continuado de lavado, desmanchado y planchado para negocios que precisan un mantenimiento textil regular de prendas de trabajo o mantelería.',
+      'Servicio continuado o puntual de lavado, higienización y planchado para negocios que necesitan cuidar su vestuario laboral con suciedad normal, toallas o batas.',
     incluye: [
-      'Lavado y planchado de prendas de trabajo y textiles de uso profesional',
-      'Lavado de mantelería, toallas y piezas textiles para hostelería y comercios',
-      'Facturación adaptada para empresas y profesionales autónomos',
-      'Atención directa y concertada desde nuestra central en Vigo',
+      'Toallas, capas y batas de peluquerías, barberías, estética y clínicas',
+      'Uniformes corporativos, polos, camisas y vestuario laboral con suciedad habitual',
+      'Factura mensual agrupada con CIF para empresas y profesionales autónomos',
+      'Atención en nuestras 3 tiendas de Vigo o recogida concertada según volumen',
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero solicitar un presupuesto de lavandería para mi empresa o negocio en Vigo'
@@ -2784,7 +2961,7 @@ export const SERVICIO_ARREGLOS_DATA = {
     {
       pregunta: '4. ¿Realizáis arreglos en prendas de piel, bordados personalizados y confección de cortinas, estores o cojines?',
       respuesta:
-        'Sí. En nuestro taller propio de Mimos Gregorio Espino (Alcalde Gregorio Espino, 44, Vigo) disponemos de maquinaria especializada para arreglos en prendas de piel, bordados personalizados y confección a medida de cortinas, estores y cojines (también puedes consultarnos o gestionar la recepción previa desde Navia). Los puntos colaboradores independientes se centran en composturas habituales de ropa de vestir.',
+        'Sí. En nuestro taller propio de Mimos Gregorio Espino (Alcalde Gregorio Espino, 42, Vigo) disponemos de maquinaria especializada para arreglos en prendas de piel, bordados personalizados y confección a medida de cortinas, estores y cojines (también puedes consultarnos o gestionar la recepción previa desde Navia). Los puntos colaboradores independientes se centran en composturas habituales de ropa de vestir.',
     },
     {
       pregunta: '5. ¿Tenéis servicio de arreglos express en el día?',
@@ -2797,7 +2974,7 @@ export const SERVICIO_ARREGLOS_DATA = {
     },
     {
       pregunta: '7. ¿En qué tiendas propias y puntos colaboradores puedo entregar mi ropa para arreglar?',
-      respuesta: `Puedes acudir a nuestras tiendas propias de Gregorio Espino (Alcalde Gregorio Espino, 44 — taller completo con especialidades de piel, bordados, confección hogar y express) o Venezuela (C/ Venezuela, 41, bajo 1 — taller propio in situ); a nuestra sede de Navia (C/ Teixugueiras, 11, bajo 9 — recepción y entrega para taller); y para composturas habituales de vestir, a los puntos colaboradores con costura en ${PUNTOS_CON_COSTURA.filter(
+      respuesta: `Puedes acudir a nuestras tiendas propias de Gregorio Espino (Alcalde Gregorio Espino, 42 — taller completo con especialidades de piel, bordados, confección hogar y express) o Venezuela (C/ Venezuela, 41, bajo 1 — taller propio in situ); a nuestra sede de Navia (C/ Teixugueiras, 11, bajo 9 — recepción y entrega para taller); y para composturas habituales de vestir, a los puntos colaboradores con costura en ${PUNTOS_CON_COSTURA.filter(
         (p) => p.tipo === 'punto'
       )
         .map((p) => `${p.localidad} (${p.nombre_comercio}, ${p.direccion})`)
@@ -3125,13 +3302,13 @@ export const SUBBLOQUES_TINTORERIA_PORTADA: SubbloqueTintoreriaPortada[] = [
       'Wet Cleaning (limpieza ecológica controlada en medio acuoso)',
       'Limpieza en seco profesional',
       'Limpieza y restauración de pieles, cuero, ante y nobuk',
-      'Limpieza industrial de uniformidad laboral y vestuario de trabajo',
+      'Lavandería de uniformidad laboral (suciedad normal), toallas de clínicas y peluquerías',
       'Limpieza y recuperación de textiles afectados por incendios o humo',
     ],
     enlaces: [
       { label: 'Incendios y siniestros', href: '/limpieza-incendios-siniestros-vigo' },
       { label: 'Pieles y cuero', href: '/limpieza-pieles-cuero-vigo' },
-      { label: 'Empresas y uniformidad', href: '/servicios-empresas' },
+      { label: 'Lavandería para empresas', href: '/servicios-empresas' },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero consultar un tratamiento especial (Wet Cleaning, en seco, piel/ante, uniformidad o recuperación tras incendio).'
@@ -3150,11 +3327,11 @@ export const RESUMEN_FAMILIAS_EXTENDIDAS_PORTADA = {
       'Comunidades de vecinos, viviendas y mantenimiento periódico',
       'Apartamentos y alojamientos turísticos',
       'Limpieza de tapicerías a domicilio (sofás, sillones y colchones)',
-      'Uniformidad laboral industrial y recuperación textil tras incendios',
+      'Lavandería para empresas (toallas, uniformidad y vestuario laboral) y recuperación tras incendios',
     ],
     enlaces: [
       { label: 'Ver limpieza profesional', href: '/limpieza-profesional-vigo' },
-      { label: 'Ver empresas y uniformidad', href: '/servicios-empresas' },
+      { label: 'Ver lavandería para empresas', href: '/servicios-empresas' },
     ],
     whatsappUrl: CONTACT_INFO.whatsappCleaningHref,
   },
@@ -3313,7 +3490,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
       titulo: 'Coser primero, limpiar después',
       cuando: 'Enganches en tul, encajes abiertos o botones sueltos tras el baile',
       detalle:
-        'Si una rotura abierta puede ceder o soltar cuentas durante el baño de limpieza, nuestro taller propio en Gregorio Espino 44 o Venezuela 41 refuerza primero la estructura.',
+        'Si una rotura abierta puede ceder o soltar cuentas durante el baño de limpieza, nuestro taller propio en Gregorio Espino 42 o Venezuela 41 refuerza primero la estructura.',
     },
     {
       titulo: 'Limpiar primero, coser después',
@@ -3462,7 +3639,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
     {
       pregunta: '8. ¿Qué pasa si el vestido tiene el bajo descosido, un enganche en el tul o la presilla de la cola rota?',
       respuesta:
-        'Al contar con taller propio de costura y modistería in situ en Avda. Gregorio Espino 44 y C/ Venezuela 41 (con recepción también en Navia), integramos el arreglo y la limpieza en el mismo circuito, decidiendo en mostrador si conviene asegurar la costura antes del lavado o rematar el ajuste después.',
+        'Al contar con taller propio de costura y modistería in situ en Avda. Gregorio Espino 42 y C/ Venezuela 41 (con recepción también en Navia), integramos el arreglo y la limpieza en el mismo circuito, decidiendo en mostrador si conviene asegurar la costura antes del lavado o rematar el ajuste después.',
     },
     {
       pregunta: '9. ¿Hace falta limpiar un vestido tras la boda o comunión si parece que no tiene manchas?',
@@ -3477,7 +3654,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
     {
       pregunta: '11. ¿Dónde puedo entregar mi vestido en Vigo y en localidades cercanas?',
       respuesta:
-        'Puedes traerlo a cualquiera de nuestras 3 tiendas propias en Vigo: Sede Central Navia (C/ Teixugueiras 11), C/ Venezuela 41 y Avda. Gregorio Espino 44. También tenemos puntos colaboradores de recepción en Vigo (As Travesas), Redondela, Gondomar, Ponteareas y O Porriño, además de recogida y entrega a domicilio bajo consulta e importe mínimo.',
+        'Puedes traerlo a cualquiera de nuestras 3 tiendas propias en Vigo: Sede Central Navia (C/ Teixugueiras 11), C/ Venezuela 41 y Avda. Gregorio Espino 42. También tenemos puntos colaboradores de recepción en Vigo (As Travesas), Redondela, Gondomar, Ponteareas y O Porriño, además de recogida y entrega a domicilio bajo consulta e importe mínimo.',
     },
     {
       pregunta: '12. ¿Qué debo hacer si se mancha el vestido durante la boda antes de traéroslo?',
@@ -3490,7 +3667,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
       titulo: 'Taller propio de costura y arreglos',
       href: '/arreglos-de-ropa-vigo',
       descripcion:
-        'Modistería en Gregorio Espino 44 y Venezuela 41 (recepción en Navia) para bajos descosidos, enganches de tul y presillas de cola.',
+        'Modistería en Gregorio Espino 42 y Venezuela 41 (recepción en Navia) para bajos descosidos, enganches de tul y presillas de cola.',
     },
     {
       titulo: 'Tintorería profesional en Vigo',
@@ -3709,7 +3886,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
     },
     costuraHogar: {
       titulo: 'Limpieza y taller propio de costura y confección para el hogar',
-      subtitulo: 'Gregorio Espino 44 y C/ Venezuela 41 (recepción en Navia)',
+      subtitulo: 'Gregorio Espino 42 y C/ Venezuela 41 (recepción en Navia)',
       descripcion:
         'Al contar con talleres propios de modistería y máquina industrial en Vigo, si al desmontar o lavar detectamos un bajo descosido, una cinta fruncidora gastada o una cremallera rota en una funda de sofá, lo arreglamos en el mismo circuito.',
       detalles: [
@@ -3777,7 +3954,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
     {
       pregunta: '7. ¿Puedo aprovechar el lavado para arreglar el bajo de una cortina o cambiar la cremallera de una funda?',
       respuesta:
-        'Sí. Contamos con taller propio de costura en Avda. Gregorio Espino 44 y C/ Venezuela 41 (con recepción también en Navia), donde confeccionamos y ajustamos cortinas, estores textiles, cojines y cremalleras de fundas sin que tengas que llevar el encargo a otro establecimiento.',
+        'Sí. Contamos con taller propio de costura en Avda. Gregorio Espino 42 y C/ Venezuela 41 (con recepción también en Navia), donde confeccionamos y ajustamos cortinas, estores textiles, cojines y cremalleras de fundas sin que tengas que llevar el encargo a otro establecimiento.',
     },
     {
       pregunta: '8. ¿Usáis suavizante al lavar edredones de pluma y plumón?',
@@ -3792,7 +3969,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
     {
       pregunta: '10. ¿Dónde puedo entregar edredones, mantas o cortinas, o pedir recogida a domicilio?',
       respuesta:
-        'Puedes entregarlos sin importe mínimo en nuestras 3 tiendas propias en Vigo (Navia Teixugueiras 11, C/ Venezuela 41 y Avda. Gregorio Espino 44) o en los 5 puntos colaboradores de As Travesas, Redondela, Gondomar, Ponteareas y O Porriño. También coordinamos recogida y entrega a domicilio consultando previamente con Mimo el importe mínimo y zona.',
+        'Puedes entregarlos sin importe mínimo en nuestras 3 tiendas propias en Vigo (Navia Teixugueiras 11, C/ Venezuela 41 y Avda. Gregorio Espino 42) o en los 5 puntos colaboradores de As Travesas, Redondela, Gondomar, Ponteareas y O Porriño. También coordinamos recogida y entrega a domicilio consultando previamente con Mimo el importe mínimo y zona.',
     },
   ],
   enlacesRelacionados: [
@@ -3812,7 +3989,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
       titulo: 'Taller propio de costura (cortinas y fundas)',
       href: '/arreglos-de-ropa-vigo',
       descripcion:
-        'Confección y ajuste de cortinas, estores textiles, cojines y cambio de cremalleras en Gregorio Espino 44 y Venezuela 41.',
+        'Confección y ajuste de cortinas, estores textiles, cojines y cambio de cremalleras en Gregorio Espino 42 y Venezuela 41.',
     },
     {
       titulo: 'Guía práctica: cómo cuidar un edredón de plumas',
@@ -4165,6 +4342,957 @@ export const SERVICIO_SINIESTROS_FAQS: ServicioFaqItem[] = [
     ).join('; ')}), o en nuestros puntos colaboradores de la comarca. Para volúmenes grandes de armario, solicita recogida urgente a domicilio con Mimo por WhatsApp (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}), teléfono (${CONTACT_INFO.phoneDisplay}) o correo (${CONTACT_INFO.email}), sujeta a ruta e importe mínimo según volumen y zona.`,
   },
 ];
+
+export interface ServicioDetalleModalidad {
+  id: string;
+  titulo: string;
+  etiqueta: string;
+  descripcion: string;
+  puntos: string[];
+  whatsappEjemplo: string;
+}
+
+export interface ServicioDetalleProcesoPaso {
+  numero: string;
+  titulo: string;
+  descripcion: string;
+}
+
+export interface ServicioDetalleEnlace {
+  titulo: string;
+  descripcion: string;
+  href: string;
+  cta: string;
+}
+
+export interface ServicioDetalleComparativa {
+  titulo: string;
+  subtitulo: string;
+  columnas: [string, string, string];
+  filas: {
+    criterio: string;
+    valores: [string, string, string];
+  }[];
+}
+
+export interface ServicioDetalleEnriquecido {
+  serviceId: string;
+  badgeSuperior: string;
+  aclaracionHonesta: string;
+  modalidadesTitulo: string;
+  modalidadesSubtitulo: string;
+  modalidades: ServicioDetalleModalidad[];
+  procesoTitulo: string;
+  procesoSubtitulo: string;
+  procesoPasos: ServicioDetalleProcesoPaso[];
+  comparativaTabla?: ServicioDetalleComparativa;
+  consejosTitulo: string;
+  consejos: string[];
+  enlacesEspecializados: ServicioDetalleEnlace[];
+  consultaOpcionesLabel: string;
+  consultaOpciones: string[];
+  consultaPlaceholder: string;
+  preguntasFrecuentes: ServicioFaqItem[];
+}
+
+export const SERVICIO_DETALLE_ENRIQUECIDO: Record<string, ServicioDetalleEnriquecido> = {
+  'tintoreria-profesional': {
+    serviceId: 'tintoreria-profesional',
+    badgeSuperior: 'Técnicas en planta Navia · Wet Cleaning, Limpieza en Seco y Desmanchado',
+    aclaracionHonesta:
+      'No aplicamos procesos en serie ni tarifas cerradas a ciegas: en planta evaluamos la etiqueta, entretelas, botones y origen de cada mancha antes de decidir si la prenda va en limpieza en seco o Wet Cleaning. Si requiere costura previa o posterior, coordinamos directamente con nuestros talleres propios de Gregorio Espino y Venezuela.',
+    modalidadesTitulo: 'Cómo tratamos cada prenda según su tejido y confección',
+    modalidadesSubtitulo:
+      'Elegimos el protocolo más seguro entre limpieza en seco y Wet Cleaning ecológico, junto con desmanchado técnico localizado y acabado al vapor profesional.',
+    modalidades: [
+      {
+        id: 'limpieza-seco',
+        titulo: 'Limpieza en seco profesional (P / F)',
+        etiqueta: 'Sastrería y fibras sensibles al agua',
+        descripcion:
+          'Imprescindible en americanas con entretelas de crin, trajes de lana estructurados, abrigos de paño, sedas delicadas o mezclas que encogerían o perderían forma en lavado acuoso.',
+        puntos: [
+          'Mantiene la estructura de hombreras, solapas y caídas de sastrería',
+          'Disuelve grasas corporales, aceites y suciedad ambiental sin hinchar la fibra',
+          'Acabado en prensa y vapor Veit sin brillos en tejidos oscuros',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar el precio de limpieza en seco para un traje o abrigo',
+      },
+      {
+        id: 'wet-cleaning',
+        titulo: 'Wet Cleaning ecológico (W)',
+        etiqueta: 'Limpieza en agua controlada por ordenador',
+        descripcion:
+          'Sistema profesional en medio acuoso con dosificación biodegradable, temperatura regulada y acción mecánica mínima para prendas delicadas compatibles y rellenos técnicos.',
+        puntos: [
+          'Ideal para prendas con etiqueta W, blusas delicadas, punto fino y plumíferos técnicos',
+          'Elimina manchas hidrosolubles (sudor, azúcar, vino o barro) respetando colores y tacto',
+          'Secado controlado y rehidratación textil sin apelmazar la prenda',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar una prenda delicada para tratamiento en Wet Cleaning',
+      },
+      {
+        id: 'desmanchado-costura',
+        titulo: 'Desmanchado técnico + Costura propia',
+        etiqueta: 'Revisión previa de botones y composturas',
+        descripcion:
+          'Tratamiento previo mancha a mancha (grasa, tinta, vino, maquillaje o rozaduras) junto con protección de fornituras y enlace directo con taller propio si hace falta reparar algo.',
+        puntos: [
+          'Revisión previa de botones de nácar/cuerno, cremalleras, forros y lentejuelas',
+          'Talleres propios de costura in situ en Gregorio Espino y Venezuela (recepción en Navia)',
+          'Opción de entrega en funda protectora y percha lista para armario',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Tengo una prenda con una mancha concreta o que necesita repaso de costura y limpieza',
+      },
+    ],
+    procesoTitulo: 'Protocolo en 4 fases en nuestra planta de Navia',
+    procesoSubtitulo:
+      'Así protegemos tus trajes, abrigos y prendas delicadas desde que entran en mostrador hasta su entrega.',
+    procesoPasos: [
+      {
+        numero: '01',
+        titulo: 'Inspección de etiqueta, costuras y fornituras',
+        descripcion:
+          'Comprobamos composición, símbolos de lavado, firmeza del tinte, botones especiales, cremalleras, forros y bolsillos antes de iniciar cualquier ciclo.',
+      },
+      {
+        numero: '02',
+        titulo: 'Pretratamiento localizado en mesa de desmanchado',
+        descripcion:
+          'Identificamos el origen de cada mancha (proteica, grasa, tánica o tinta) y la tratamos puntualmente sin frotados agresivos que abran el tejido.',
+      },
+      {
+        numero: '03',
+        titulo: 'Limpieza en seco o Wet Cleaning según fibra',
+        descripcion:
+          'Seleccionamos disolvente profesional o sistema acuoso computerizado para conseguir máxima higiene respetando el tallaje y la caída original.',
+      },
+      {
+        numero: '04',
+        titulo: 'Prensado Veit, revisión y embolsado',
+        descripcion:
+          'Planchamos con vapor y mesas aspirantes para evitar marcas o brillos, revisamos el resultado final y avisamos para recoger en tienda o domicilio.',
+      },
+    ],
+    consejosTitulo: 'Qué evitar antes de traernos una prenda delicada',
+    consejos: [
+      'No frotes manchas recientes con toallitas, lejía, amoniaco ni agua caliente: el calor y los productos alcalinos fijan el pigmento y dañan lanas o sedas.',
+      'Conserva la etiqueta interior de composición y dinos qué causó la mancha o si ya intentaste limpiarla en casa para elegir el reactivo seguro.',
+      'Revisa siempre bolsillos interiores (bolígrafos, tickets térmicos, bálsamos labiales o pañuelos) antes de entregar abrigos y americanas.',
+    ],
+    enlacesEspecializados: [
+      {
+        titulo: 'Vestidos de novia, fiesta, comunión y bautizo',
+        descripcion:
+          'Protocolo artesanal en 5 fases con revisión de pedrería y encajes, bajos rozados y puesta a punto pre-evento.',
+        href: '/limpieza-vestidos-novia-ceremonia-vigo',
+        cta: 'Ver especialidad de ceremonia',
+      },
+      {
+        titulo: 'Pieles, cuero, ante, nobuk y peletería',
+        descripcion:
+          'Limpieza, nutrición e hidratación especializada para cazadoras y abrigos de piel bajo valoración previa.',
+        href: '/limpieza-pieles-cuero-vigo',
+        cta: 'Ver cuidado de pieles y cuero',
+      },
+      {
+        titulo: 'Taller propio de costura y arreglos (18 especialidades)',
+        descripcion:
+          'Bajos, entallar americanas, cambiar forros o cremalleras junto con tu servicio de tintorería.',
+        href: '/arreglos-de-ropa-vigo',
+        cta: 'Ver taller de costura',
+      },
+      {
+        titulo: 'Guía de símbolos de etiquetas y lavado',
+        descripcion:
+          'Aprende qué significan los símbolos P, F, W y las advertencias de plancha y lavado en tus prendas.',
+        href: '/blog/guia-simbolos-etiquetas-ropa-significado',
+        cta: 'Leer guía de etiquetas',
+      },
+    ],
+    consultaOpcionesLabel: '¿Qué prenda necesitas llevar a tintorería?',
+    consultaOpciones: [
+      'Traje completo o americana + pantalón',
+      'Abrigo de paño, gabardina o plumífero',
+      'Vestido de fiesta, seda o prenda delicada',
+      'Prenda con mancha difícil (vino, grasa, tinta...)',
+      'Limpieza + arreglo de costura',
+    ],
+    consultaPlaceholder: 'Ej.: abrigo de lana camel con roce en cuello y dos americanas...',
+    preguntasFrecuentes: [
+      {
+        pregunta: '¿Qué diferencia hay entre limpieza en seco y Wet Cleaning?',
+        respuesta:
+          'La limpieza en seco emplea solventes profesionales específicos para prendas estructuradas, entretelas sastre, lana o seda que encogerían o perderían forma en agua. El Wet Cleaning es una limpieza ecológica en agua con control informático de temperatura, detergentes biodegradables y mínima acción mecánica para tejidos delicados compatibles.',
+      },
+      {
+        pregunta: '¿Cómo sabéis qué proceso aplicar a mi traje o abrigo?',
+        respuesta:
+          'Revisamos siempre la etiqueta de conservación (símbolos P, F, W o cubo de lavado), la composición real de tejido y forro, los entretelados y los botones antes de iniciar el ciclo en nuestra planta de Navia.',
+      },
+      {
+        pregunta: '¿Revisáis botones, cremalleras y forros antes de limpiar?',
+        respuesta:
+          'Sí. Inspeccionamos fornituras sensibles (botones forrados, nácar, hebillas o aplicaciones) para protegerlas o desmontarlas si hace falta, y si detectamos un descosido o botón flojo podemos coordinarlo con nuestros talleres propios de costura en Gregorio Espino y Venezuela.',
+      },
+      {
+        pregunta: '¿Qué debo hacer si mi prenda tiene una mancha reciente de vino, grasa o tinta?',
+        respuesta:
+          'No la frotes ni apliques remedios caseros con calor o quitamanchas agresivos. Tráela cuanto antes o envíanos una foto por WhatsApp a Mimo indicándonos qué la provocó para tratarla en mesa de desmanchado sin fijar el cerco.',
+      },
+      {
+        pregunta: '¿Limpiáis vestidos de novia, comunión o prendas de cuero en este servicio?',
+        respuesta:
+          'Sí, contamos con protocolos propios diferenciados para ambas especialidades: vestidos de ceremonia en /limpieza-vestidos-novia-ceremonia-vigo y prendas de cuero, ante o nobuk en /limpieza-pieles-cuero-vigo.',
+      },
+      {
+        pregunta: '¿Cómo consulto el precio y dónde puedo entregar las prendas en Vigo?',
+        respuesta: `No publicamos tarifas genéricas sin ver la prenda. Escribe a Mimo por WhatsApp (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}) indicando el tipo de pieza o acércate sin cita a nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo o ${PUNTOS_COLABORADORES.length} puntos colaboradores de la comarca.`,
+      },
+    ],
+  },
+  'lavanderia-profesional': {
+    serviceId: 'lavanderia-profesional',
+    badgeSuperior: 'Lavandería 100 % Atendida en Planta Navia (Sin Autoservicio ni Monedas)',
+    aclaracionHonesta:
+      'No tenemos máquinas de autoservicio con monedas ni mezclas tus prendas: nuestro equipo clasifica por color y fibra, revisa la etiqueta y aplica lavado acuoso controlado y secado completo anti-humedad en Navia. Si buscas lavar y doblar (o planchar) tu colada semanal, visita /colada-familiar-vigo; si la etiqueta pide limpieza en seco, /tintoreria-vigo.',
+    modalidadesTitulo: 'Qué prendas lavamos en este servicio de lavandería en Vigo',
+    modalidadesSubtitulo:
+      'Atención individual por prenda para abrigos técnicos, plumíferos, jerséis delicados y recuperación de olores que en una lavadora casera o en un autoservicio corren riesgo de estropearse.',
+    modalidades: [
+      {
+        id: 'plumiferos-anoraks',
+        titulo: 'Plumíferos, anoraks y chaquetas acolchadas',
+        etiqueta: 'Sin apelmazar la pluma ni el relleno',
+        descripcion:
+          'Lavado en programas suaves y sin suavizante para respetar las cámaras aislantes del plumón o la fibra sintética y devolverle su volumen y capacidad térmica.',
+        puntos: [
+          'Cero suavizantes que recubran o apelmacen el relleno interior de pluma',
+          'Revisión previa de cremalleras, corchetes, puños y cuellos manchados',
+          'Secado completo controlado en Navia para evitar grumos húmedos internos',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar el precio de lavandería para un plumífero o anorak en Vigo',
+      },
+      {
+        id: 'tecnica-impermeable',
+        titulo: 'Cazadoras impermeables y ropa técnica o deportiva',
+        etiqueta: 'Programas suaves sin suavizante en membranas',
+        descripcion:
+          'Prendas cortavientos, impermeables y equipamiento deportivo lavables en agua, siempre revisando antes la etiqueta del fabricante y sin añadir suavizantes ni lejías.',
+        puntos: [
+          'Respeto a membranas transpirables y acabados técnicos según etiqueta',
+          'Desmanchado localizado previo en zonas de roce antes del ciclo acuoso',
+          'Secado completo controlado respetando costuras termoselladas y etiqueta',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar el lavado de una cazadora impermeable o prenda técnica',
+      },
+      {
+        id: 'jerseis-olores',
+        titulo: 'Jerséis delicados y eliminación de olores persistentes',
+        etiqueta: 'Cuidado del punto y desodorización real',
+        descripcion:
+          'Lavado mecánico suave para jerséis y prendas delicadas que admiten agua, además de protocolo para eliminar olor a humedad acumulada o humo sin taparlo con perfume.',
+        puntos: [
+          'Separación estricta por color y fibra para evitar encogimientos o transferencias',
+          'Eliminación de olor a humedad de armario en Vigo o humo (derivación a /tintoreria-vigo si exige seco)',
+          'Secado profesional completo frente a la lluvia y la humedad ambiental de Vigo',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar el lavado de unos jerséis delicados o prendas con olor a humedad',
+      },
+    ],
+    procesoTitulo: 'Cómo lavamos tu ropa en nuestra planta de Navia: control por prenda y cero autoservicio',
+    procesoSubtitulo:
+      'Tú no manipulas máquinas ni pierdes una hora vigilando ciclos: nosotros nos encargamos de todo en cuatro pasos reales.',
+    procesoPasos: [
+      {
+        numero: '01',
+        titulo: 'Clasificación por color, fibra y lectura de etiqueta',
+        descripcion:
+          'Evaluamos cada prenda en recepción para asignarle lavado acuoso controlado o derivarla a /tintoreria-vigo si exige limpieza en seco.',
+      },
+      {
+        numero: '02',
+        titulo: 'Desmanchado localizado previo',
+        descripcion:
+          'Tratamos puntualmente cuellos, puños y manchas difíciles antes del lavado en lugar de depender de un único ciclo estándar.',
+      },
+      {
+        numero: '03',
+        titulo: 'Lavado acuoso suave sin suavizantes en plumas ni membranas',
+        descripcion:
+          'Suprimimos suavizantes y lejías en plumíferos, anoraks y ropa técnica para proteger la membrana transpirable y el relleno aislante.',
+      },
+      {
+        numero: '04',
+        titulo: 'Secado completo anti-humedad en el clima de Vigo',
+        descripcion:
+          'Aseguramos el secado total desde el interior del relleno y las costuras para que no quede humedad oculta ni olor a cerrado.',
+      },
+    ],
+    comparativaTabla: {
+      titulo: 'Lavandería atendida Mimos frente a autoservicio con monedas y lavado en casa',
+      subtitulo:
+        'Comparativa práctica cuando lavas un plumífero, anorak, cazadora técnica o prenda delicada en Vigo.',
+      columnas: [
+        'Lavandería atendida Mimos (/lavanderia-vigo)',
+        'Autoservicio con monedas (Vigo)',
+        'Lavadora y secadora doméstica',
+      ],
+      filas: [
+        {
+          criterio: 'Operación y revisión técnica',
+          valores: [
+            '100 % atendida en planta de Navia: lectura de etiqueta, clasificación y desmanchado previo',
+            'Autogestionada por el usuario sin cribado de etiqueta ni pretratamiento de manchas',
+            'Depende del tiempo y criterio en casa para interpretar cada tejido',
+          ],
+        },
+        {
+          criterio: 'Uso de suavizantes en plumas y membranas',
+          valores: [
+            'Sin suavizante en plumas, anoraks ni ropa técnica para no apelmazar ni obstruir membranas',
+            'Dosificación automática preconfigurada que suele incluir suavizante estándar',
+            'Riesgo de restos de suavizante en el cajetín o exceso de detergente convencional',
+          ],
+        },
+        {
+          criterio: 'Espacio de tambor y trato en abrigos',
+          valores: [
+            'Maquinaria profesional de planta y programas suaves ajustados a cada prenda',
+            'Ciclos fijos estándar orientados a volumen rápido de colada común',
+            'Tambor doméstico ajustado donde los abrigos acolchados apenas flotan',
+          ],
+        },
+        {
+          criterio: 'Secado en el clima húmedo de Vigo',
+          valores: [
+            'Secado completo en planta hasta eliminar la humedad interna de rellenos y costuras',
+            'Secado por tiempo fijo; obliga a vigilar y ahuecar manualmente en plumas',
+            'En otoño e invierno en Vigo, tender en casa genera secado lento, grumos y olor a cerrado',
+          ],
+        },
+        {
+          criterio: 'Tiempo y puntos de entrega',
+          valores: [
+            'Solo dejas y recoges en 3 tiendas de Vigo (Navia, Gregorio Espino 42, Vigo centro C/ Venezuela 41) o 5 puntos colaboradores, más recogida bajo mínimo',
+            'Exige desplazarte y esperar o vigilar presencialmente durante el ciclo',
+            'Requiere varias horas entre lavado, ciclos repetidos y tendido',
+          ],
+        },
+        {
+          criterio: 'Valoración previa',
+          valores: [
+            'Valoración personalizada por foto con «Mimo» por WhatsApp o en tienda antes de confirmar',
+            'Pago por ciclo cerrado sin revisión ni respaldo técnico si la prenda sufre',
+            'El particular asume íntegramente el riesgo sobre abrigos o jerséis delicados',
+          ],
+        },
+      ],
+    },
+    consejosTitulo: 'Qué servicio elegir según tus prendas en Tintorería Mimos',
+    consejos: [
+      'Elige Lavandería profesional (/lavanderia-vigo) para plumíferos, anoraks, cazadoras impermeables, jerséis lavables en agua o prendas con olor persistente.',
+      'Si traes la colada cotidiana semanal para lavar y doblar (o lavar y planchar), elige Colada Familiar (/colada-familiar-vigo); si solo necesitas plancha o camisas, /planchado-vigo.',
+      'Si la etiqueta marca limpieza en seco o es un traje sastre o abrigo de paño, pasa por Tintorería (/tintoreria-vigo); y para edredones o cortinas, por Textiles del Hogar (/textiles-hogar-vigo).',
+    ],
+    enlacesEspecializados: [
+      {
+        titulo: 'Colada familiar (lavar y doblar o planchar)',
+        descripcion:
+          'La opción práctica para tu ropa semanal cotidiana, con opción combinada por prenda.',
+        href: '/colada-familiar-vigo',
+        cta: 'Ver colada familiar',
+      },
+      {
+        titulo: 'Solo planchado de camisas y prendas',
+        descripcion:
+          'Acabado profesional en percha o doblado sin brillos para camisas, pantalones y vestidos.',
+        href: '/planchado-vigo',
+        cta: 'Ver solo planchado',
+      },
+      {
+        titulo: 'Tintorería (limpieza en seco y trajes)',
+        descripcion:
+          'Limpieza en seco y Wet Cleaning para trajes sastre, abrigos de paño, sedas y ceremonia.',
+        href: '/tintoreria-vigo',
+        cta: 'Ver tintorería',
+      },
+      {
+        titulo: 'Edredones, mantas, cortinas y estores',
+        descripcion:
+          'Limpieza y secado en gran formato (y desmontaje de cortinas a domicilio).',
+        href: '/textiles-hogar-vigo',
+        cta: 'Ver textiles del hogar',
+      },
+    ],
+    consultaOpcionesLabel: '¿Qué prenda quieres consultar con Mimo?',
+    consultaOpciones: [
+      'Plumífero, anorak o parka acolchada',
+      'Cazadora impermeable o prenda técnica/deportiva',
+      'Jerséis delicados o prendas lavables en agua',
+      'Eliminación de olor a humedad acumulada o humo',
+    ],
+    consultaPlaceholder: 'Ej.: Un plumífero largo y una cazadora cortavientos en zona Vigo centro...',
+    preguntasFrecuentes: [
+      {
+        pregunta: '¿En Mimos tenéis máquinas de autoservicio con monedas o laváis vosotros las prendas?',
+        respuesta:
+          'En Tintorería Mimos no tenemos máquinas de autoservicio: nuestra lavandería es 100 % atendida por personal propio en nuestra planta de Navia. Tú dejas tus prendas en tienda, en un punto colaborador o mediante recogida a domicilio y nuestro equipo se encarga de clasificarlas, desmancharlas, lavarlas en agua y secarlas por completo sin que tengas que esperar en el local.',
+      },
+      {
+        pregunta: '¿Cómo laváis un plumífero o anorak sin que se apelotone la pluma ni pierda abrigo?',
+        respuesta:
+          'Lavamos cada plumífero o anorak en ciclos suaves sin añadir suavizante y aplicando un secado completo controlado en planta hasta eliminar la humedad del relleno. El suavizante recubre y apelmaza el plumón anulando el aislamiento, y un secado insuficiente con la humedad de Vigo genera grumos internos y mal olor.',
+      },
+      {
+        pregunta: '¿Podéis lavar chaquetas impermeables o ropa técnica sin estropear la membrana?',
+        respuesta:
+          'Sí, siempre revisamos antes la etiqueta del fabricante y aplicamos lavado acuoso en programa suave sin suavizantes ni lejías para limpiar la prenda respetando la membrana transpirable y secarla de forma segura sin dañar las costuras.',
+      },
+      {
+        pregunta: '¿Qué prendas van a lavandería profesional en agua y cuáles pasan a otros servicios?',
+        respuesta:
+          'En /lavanderia-vigo lavamos plumíferos, anoraks, cazadoras técnicas, jerséis delicados lavables en agua y prendas con olor persistente. Si se trata de trajes sastre, abrigos de paño o limpieza en seco pasan a /tintoreria-vigo; la colada diaria semanal va a /colada-familiar-vigo; solo planchado o camisas a /planchado-vigo; y edredones, mantas o cortinas a /textiles-hogar-vigo.',
+      },
+      {
+        pregunta: '¿Podéis lavar jerséis de punto o prendas delicadas sin encogerlas ni estropearlas?',
+        respuesta:
+          'Sí, siempre que la etiqueta admita lavado en agua seleccionamos programas mecánicos suaves y clasificamos por color y tipo de fibra para evitar encogimientos o transferencias de tinte. Si al revisar la etiqueta detectamos que requiere limpieza en seco, derivamos la prenda directamente a nuestro servicio de tintorería en la misma planta de Navia.',
+      },
+      {
+        pregunta: '¿Podéis eliminar el olor a humedad acumulada o a humo en prendas guardadas?',
+        respuesta:
+          'Sí, contamos con experiencia específica en la recuperación y desodorización de prendas con olor persistente a humedad o humo. Valoramos primero el estado real del tejido en tienda o por foto y aplicamos el lavado y secado completo adecuados para eliminar el origen del olor en lugar de taparlo con perfume.',
+      },
+      {
+        pregunta: '¿Por qué no publicáis precios fijos en la web y cómo pido presupuesto o sé el plazo?',
+        respuesta:
+          'No publicamos tarifas estándar cerradas porque el importe depende de cada prenda, su composición, el relleno y las manchas que presente. Envía una foto de tu prenda y su etiqueta por WhatsApp a Mimo (655 536 844) o acércate a nuestras tiendas en Vigo para recibir tu presupuesto y confirmar el plazo estimado al entregarla.',
+      },
+      {
+        pregunta: '¿Dónde puedo entregar mis prendas en Vigo o comarca y cómo funciona la recogida a domicilio?',
+        respuesta:
+          'Puedes entregar y recoger sin pedido mínimo en nuestras 3 tiendas propias de Vigo —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Vigo centro en C/ Venezuela 41 bajo 1 (entorno Urzáiz y Gran Vía)— o en nuestros 5 puntos colaboradores: D’Passo (Vigo As Travesas, Camiño Espedrigada 9), Redondela, Gondomar, Ponteareas y O Porriño. La recogida y entrega a domicilio está sujeta a importe mínimo consultable con Mimo por WhatsApp.',
+      },
+    ],
+  },
+  'planchado-profesional': {
+    serviceId: 'planchado-profesional',
+    badgeSuperior: 'Solo Planchado Profesional o Lavado + Plancha · Sin brillos',
+    aclaracionHonesta:
+      'Puedes traer tus prendas ya lavadas de casa para contratar únicamente el planchado profesional, o encargar el lavado y planchado completo. Entregamos en percha o doblado para maleta o cajón.',
+    modalidadesTitulo: 'Acabado de plancha profesional adaptado a cómo usas y guardas tu ropa',
+    modalidadesSubtitulo:
+      'Trabajamos con prensas, vapor profesional y mesas aspirantes Veit para dejar cada prenda impecable sin dañar las fibras ni sacar brillos.',
+    modalidades: [
+      {
+        id: 'solo-planchado',
+        titulo: 'Solo planchado (ropa ya lavada)',
+        etiqueta: 'Traes tus prendas limpias de casa',
+        descripcion:
+          'Ideal cuando tú pones la lavadora pero quieres ahorrarte horas frente a la tabla y conseguir un resultado uniforme en camisas, pantalones y vestidos.',
+        puntos: [
+          'Cuellos, puños, tapetas y costuras marcadas con vapor profesional',
+          'Pantalones de pinzas y americanas sin brillos ni marcas de plancha doméstica',
+          'Sin pedido mínimo en cualquiera de nuestras 3 tiendas propias o puntos colaboradores',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar el precio de solo planchado para unas camisas o prendas ya lavadas',
+      },
+      {
+        id: 'percha-o-doblado',
+        titulo: 'Entrega en percha o doblada según necesites',
+        etiqueta: 'Lista para colgar o viajar en maleta',
+        descripcion:
+          'Preparamos las camisas, blusas, americanas y vestidos en percha para el armario, o cuidadosamente doblados si necesitas transportarlos en maleta.',
+        puntos: [
+          'Perchas suministradas por Mimos listas para guardar directamente en tu vestidor',
+          'Doblado compacto para viajes de trabajo o falta de espacio en barra',
+          'Ropa de hogar (sábanas, fundas nórdicas y mantelerías) doblada en formato armario',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar el planchado de un lote de ropa de trabajo y ropa de hogar',
+      },
+      {
+        id: 'puesta-punto-eventos',
+        titulo: 'Vaporizado pre-evento y tejidos delicados',
+        etiqueta: 'Bodas, comuniones y ropa de ceremonia',
+        descripcion:
+          'Si tienes un vestido de fiesta, traje, chaqué o camisa de ceremonia arrugada del portatrajes o un viaje, la vaporizamos sin brillos antes del evento.',
+        puntos: [
+          'Seguro en seda, gasa, tul, lino natural, lana fría y aplicaciones delicadas',
+          'Eliminación de pliegues de maleta o funda de tienda antes de la sesión de fotos',
+          'Coordinación con nuestros talleres de costura si detectas un botón o bajo pendiente',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Necesito solo planchar o vaporizar un traje o vestido antes de un evento',
+      },
+    ],
+    procesoTitulo: 'Por qué el planchado profesional dura más y no saca brillos',
+    procesoSubtitulo:
+      'La diferencia entre una plancha doméstica y una mesa aspirante con caldera profesional se nota al primer vistazo.',
+    procesoPasos: [
+      {
+        numero: '01',
+        titulo: 'Clasificación por temperatura y tejido',
+        descripcion:
+          'Agrupamos sedas, viscosas, linos, algodones y lanas frías para ajustar presión de vapor y temperatura exacta sin riesgos.',
+      },
+      {
+        numero: '02',
+        titulo: 'Vapor a presión y mesas aspirantes Veit',
+        descripcion:
+          'El vapor penetra en la fibra para alisar sin aplastar el hilo y la aspiración fija el acabado al instante en seco, evitando brillos.',
+      },
+      {
+        numero: '03',
+        titulo: 'Remate manual de zonas clave',
+        descripcion:
+          'Repasamos cuellos, puños, botones ocultos, pinzas, hombros de americanas y caídas de vestidos o faldas.',
+      },
+      {
+        numero: '04',
+        titulo: 'Presentación en percha o doblada sin arrugas',
+        descripcion:
+          'Preparamos el pedido en percha o doblado con papel de protección cuando hace falta para que llegue intacto a casa.',
+      },
+    ],
+    consejosTitulo: 'Consejos prácticos para traer tu ropa a solo planchar',
+    consejos: [
+      'Asegúrate de que las prendas vengan limpias y completamente secas: si alguna trae una mancha pendiente, consúltanos antes porque el calor del planchado puede fijarla.',
+      'Indica al entregar si prefieres las camisas en percha o dobladas para maleta/cajón.',
+      'Si tu prenda viene aún por lavar, puedes optar directamente por nuestro servicio de Lavandería o Colada familiar en modalidad lavar y planchar.',
+    ],
+    enlacesEspecializados: [
+      {
+        titulo: 'Planchado pre-evento de vestidos de novia, fiesta y chaqués',
+        descripcion:
+          'Puesta a punto al vapor antes de bodas, comuniones y eventos sin marcar tul, gasa o lana fría.',
+        href: '/limpieza-vestidos-novia-ceremonia-vigo#planchado-antes-evento',
+        cta: 'Ver planchado pre-evento',
+      },
+      {
+        titulo: 'Colada familiar (lavar y planchar o combinada)',
+        descripcion:
+          'Delega también el lavado y secado y elige qué prendas van dobladas y cuáles planchadas.',
+        href: '/colada-familiar-vigo',
+        cta: 'Ver colada familiar',
+      },
+      {
+        titulo: 'Lavandería profesional atendida',
+        descripcion:
+          'Lavado profesional por prenda si prefieres entregarnos la ropa sin lavar antes.',
+        href: '/lavanderia-vigo',
+        cta: 'Ver servicio de lavandería',
+      },
+      {
+        titulo: 'Cortinas y estores de tela con vapor vertical',
+        descripcion:
+          'Desmontaje, lavado, planchado y colocación de cortinajes en Vigo.',
+        href: '/textiles-hogar-vigo',
+        cta: 'Ver textiles del hogar',
+      },
+    ],
+    consultaOpcionesLabel: '¿Qué quieres planchar con Mimos?',
+    consultaOpciones: [
+      'Solo planchado de lote de camisas / blusas',
+      'Solo planchado de pantalones, faldas o trajes',
+      'Planchado de sábanas, fundas nórdicas o mantelería',
+      'Vaporizado pre-evento (vestido, invitada o chaqué)',
+      'Lavado + planchado completo',
+    ],
+    consultaPlaceholder: 'Ej.: 6 camisas de vestir en percha y 2 pantalones de pinzas...',
+    preguntasFrecuentes: [
+      {
+        pregunta: '¿Puedo contratar solo el planchado trayendo la ropa ya lavada de casa?',
+        respuesta:
+          'Sí. El servicio de solo planchado está pensado precisamente para eso: nos traes tus prendas limpias y secas y nosotros las planchamos con equipos profesionales.',
+      },
+      {
+        pregunta: '¿Entregáis las camisas en percha o dobladas?',
+        respuesta:
+          'Como tú prefieras: entregamos camisas, blusas, vestidos y chaquetas en percha listas para el armario (ponemos nuestras perchas), o dobladas si vas a viajar en maleta o prefieres guardarlas en cajón.',
+      },
+      {
+        pregunta: '¿Cómo evitáis que queden brillos en pantalones oscuros o americanas?',
+        respuesta:
+          'Trabajamos con mesas aspirantes, suelas de teflón y vapor profesional controlado que relaja la fibra sin aplastar ni quemar el tejido superficial.',
+      },
+      {
+        pregunta: '¿Plancháis sábanas grandes, mantelerías o vestidos antes de una boda?',
+        respuesta:
+          'Sí, planchamos ropa de hogar de gran formato (sábanas, fundas nórdicas, manteles) y realizamos puesta a punto al vapor previa a ceremonias para quitar arrugas de portatrajes o viaje.',
+      },
+      {
+        pregunta: '¿Cómo consulto el precio para mi lote de planchado?',
+        respuesta: `Escríbenos por WhatsApp a Mimo (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}) indicando cuántas camisas, pantalones o piezas quieres planchar y te orientamos al instante antes de acercarte a tienda.`,
+      },
+    ],
+  },
+  'colada-familiar': {
+    serviceId: 'colada-familiar',
+    badgeSuperior: 'Lavar y doblar · Lavar y planchar · Combinada por prenda',
+    aclaracionHonesta:
+      'Nos adaptamos exactamente a tu semana: puedes elegir lavar y doblar, lavar y planchar o combinar ambas en una misma entrega eligiendo qué prendas concretas quieres planchadas (por ejemplo, una camisa planchada y el resto de tu colada doblada). No publicamos tarifas genéricas por kilo; Mimo valora cada volumen de forma clara.',
+    modalidadesTitulo: 'Dos modalidades principales y libertad para combinar por prenda',
+    modalidadesSubtitulo:
+      'Tú decides si quieres toda la colada doblada, toda planchada o indicar qué piezas concretas necesitan plancha dentro del mismo lote.',
+    modalidades: [
+      {
+        id: 'lavar-y-doblar',
+        titulo: 'Modalidad 1 · Lavar y doblar',
+        etiqueta: 'Ropa cotidiana lista para guardar',
+        descripcion:
+          'Lavamos tu ropa diaria, la secamos por completo en planta y te la entregamos doblada y clasificada para meterla directamente en cajones y baldas.',
+        puntos: [
+          'Camisetas, pantalones de diario, ropa interior, pijamas, sudaderas, toallas y sábanas cotidianas',
+          'Secado 100 % garantizado frente a la humedad habitual de Vigo (sin olor a cerrado)',
+          'Ahorra horas de lavadora, tendal y doblado cada semana',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar las condiciones de la colada familiar en modalidad lavar y doblar',
+      },
+      {
+        id: 'lavar-y-planchar',
+        titulo: 'Modalidad 2 · Lavar y planchar',
+        etiqueta: 'Colada completa lavada, seca y planchada',
+        descripcion:
+          'La solución integral para olvidarte por completo de la ropa semanal: lavado, secado completo y planchado profesional de todas las prendas del lote.',
+        puntos: [
+          'Acabado profesional con vapor tanto en prendas de vestir cotidianas como en ropa de cama',
+          'Entrega en percha o doblada según el tipo de prenda',
+          'Ideal para semanas con poco tiempo, cambios de estación o vuelta de vacaciones',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero consultar el servicio de colada familiar en modalidad lavar y planchar',
+      },
+      {
+        id: 'modalidad-combinada',
+        titulo: 'Opción combinada · Elige prenda a prenda',
+        etiqueta: 'Doblado + planchado solo donde tú quieras',
+        descripcion:
+          '¿Traes ropa interior, camisetas y además una o varias camisas o pantalones? Puedes pedir el grueso de la colada doblada y que planchemos solo esas prendas concretas.',
+        puntos: [
+          'Ejemplo real: ropa interior, calcetines y camisetas dobladas + camisas planchadas',
+          'Pagas solo por el planchado de las piezas que realmente quieres planchar',
+          'Flexibilidad total al entregar en mostrador o al hablar con Mimo',
+        ],
+        whatsappEjemplo:
+          'Hola, Mimo. Quiero entregar una colada combinando ropa doblada y planchar solo algunas prendas concretas',
+      },
+    ],
+    procesoTitulo: 'Cómo funciona tu colada familiar en Mimos de principio a fin',
+    procesoSubtitulo:
+      'Proceso pensado para familias, personas con poco tiempo y pisos de Vigo donde tender en casa es un problema.',
+    procesoPasos: [
+      {
+        numero: '01',
+        titulo: 'Eliges modalidad al entregar o por WhatsApp',
+        descripcion:
+          'Nos indicas si va todo a lavar y doblar, lavar y planchar, o separas las prendas concretas (como camisas) que quieres planchadas.',
+      },
+      {
+        numero: '02',
+        titulo: 'Clasificación de colores y lavado en planta',
+        descripcion:
+          'Separamos tu colada en nuestras instalaciones para evitar traslados de tinte y aplicamos programas higiénicos adaptados a uso diario.',
+      },
+      {
+        numero: '03',
+        titulo: 'Secado completo anti-humedad',
+        descripcion:
+          'Con un promedio del 77 % de humedad anual en Vigo, nuestro secado en planta deja toallas, vaqueros y sudaderas totalmente secos hasta las costuras.',
+      },
+      {
+        numero: '04',
+        titulo: 'Doblado ordenado o plancha lista para armario',
+        descripcion:
+          'Entregamos todo clasificado, doblado o en percha en nuestras 3 tiendas de Vigo, puntos colaboradores o mediante recogida a domicilio con Mimo.',
+      },
+    ],
+    consejosTitulo: 'Qué entra en Colada Familiar y qué va por servicio especializado',
+    consejos: [
+      'En Colada Familiar entra tu ropa cotidiana lavable en agua que no requiere tratamiento individual de tintorería ni desmanchado complejo.',
+      'Trajes de chaqueta, vestidos de seda o fiesta, abrigos de paño y prendas con manchas difíciles se tratan aparte en Tintorería (/tintoreria-vigo) para proteger cada tejido.',
+      'Para edredones nórdicos, mantas gruesas, cortinas o estores de tela trabajamos lavado en gran formato en Textiles del Hogar (/textiles-hogar-vigo).',
+    ],
+    enlacesEspecializados: [
+      {
+        titulo: 'Solo planchado profesional',
+        descripcion:
+          'Si ya lavaste en casa y quieres planchar un lote de camisas, pantalones o sábanas.',
+        href: '/planchado-vigo',
+        cta: 'Ver solo planchado',
+      },
+      {
+        titulo: 'Edredones nórdicos, mantas, cortinas y estores',
+        descripcion:
+          'Maquinaria de gran formato para rellenos voluminosos y servicio de retirada de cortinas en casa.',
+        href: '/textiles-hogar-vigo',
+        cta: 'Ver textiles del hogar',
+      },
+      {
+        titulo: 'Tintorería profesional (trajes y prendas delicadas)',
+        descripcion:
+          'Limpieza en seco y Wet Cleaning para prendas que requieren tratamiento individual.',
+        href: '/tintoreria-vigo',
+        cta: 'Ver tintorería',
+      },
+      {
+        titulo: '¿Compensa hacer toda la colada en casa?',
+        descripcion:
+          'Análisis práctico de tiempos, consumo eléctrico, secado y humedad en nuestro blog.',
+        href: '/blog/la-colada-en-casa',
+        cta: 'Leer análisis completo',
+      },
+    ],
+    consultaOpcionesLabel: '¿Qué modalidad prefieres consultar con Mimo?',
+    consultaOpciones: [
+      'Lavar y doblar (ropa cotidiana lista para armario)',
+      'Lavar y planchar (colada completa planchada)',
+      'Combinada (ropa doblada + planchar camisas/prendas concretas)',
+      'Colada semanal con recogida y entrega a domicilio',
+    ],
+    consultaPlaceholder: 'Ej.: 1 bolsa semanal con ropa diaria doblada y 3 camisas planchadas...',
+    preguntasFrecuentes: [
+      {
+        pregunta: '¿Qué modalidades tiene el servicio de colada familiar en Tintorería Mimos?',
+        respuesta:
+          'Disponemos de dos modalidades principales —Lavar y doblar (ropa limpia, seca y doblada lista para guardar) y Lavar y planchar (colada completa lavada, seca y planchada)— además de la opción combinada por prenda dentro del mismo encargo.',
+      },
+      {
+        pregunta: '¿Puedo pedir la colada doblada y que me planchéis solo algunas prendas como una camisa?',
+        respuesta:
+          'Sí, exactamente. Si traes por ejemplo ropa interior, camisetas, toallas y una o varias camisas, puedes elegir que el resto de la colada vaya doblada y que únicamente las camisas o las prendas que nos indiques vayan planchadas.',
+      },
+      {
+        pregunta: '¿Qué tipo de ropa entra en la colada familiar y cuál debe ir por tintorería?',
+        respuesta:
+          'Entra la ropa de diario lavable en agua (camisetas, pantalones cotidianos, ropa interior, pijamas, sudaderas, sábanas y toallas de uso diario). Los trajes, vestidos delicados, abrigos de paño, pieles y manchas difíciles se atienden por tintorería individual, y los edredones o cortinas por textiles del hogar en gran formato.',
+      },
+      {
+        pregunta: '¿Tenéis un precio cerrado por kilo publicado en la web?',
+        respuesta: `No publicamos precios cerrados genéricos por kilo en la web porque valoramos la modalidad elegida (lavar y doblar, lavar y planchar o combinada), el volumen real y el tipo de prendas. Puedes consultar las condiciones al momento con Mimo por WhatsApp (${CANALES_CONTACTO_CENTRAL.whatsappNumeroMostrado}).`,
+      },
+      {
+        pregunta: '¿La ropa vuelve seca del todo frente a la humedad de Vigo?',
+        respuesta:
+          'Sí. Secamos la colada por completo en nuestra planta de Navia antes de doblarla o plancharla, evitando que coja olor a humedad o tarde días en secar en casa durante el otoño e invierno en Vigo.',
+      },
+      {
+        pregunta: '¿Dónde entrego mi colada o cómo solicito recogida a domicilio?',
+        respuesta: `Puedes entregarla sin pedido mínimo en nuestras ${TIENDAS_PROPIAS.length} tiendas propias de Vigo (Navia, Venezuela y Gregorio Espino) o en los ${PUNTOS_COLABORADORES.length} puntos colaboradores de Vigo As Travesas, Redondela, Gondomar, Ponteareas y O Porriño. También ofrecemos recogida a domicilio según zona e importe mínimo consultando con Mimo.`,
+      },
+    ],
+  },
+};
+
+export const SERVICIO_EMPRESAS_B2B_DATA = {
+  badgeSuperior: 'LAVANDERÍA Y TINTORERÍA PARA EMPRESAS · PLANTA PROPIA EN VIGO',
+  h1: 'Lavandería y tintorería para empresas, peluquerías y clínicas en Vigo',
+  subtitulo:
+    'Lavamos, secamos y planchamos las toallas, batas y uniformes propios de tu negocio en nuestra planta de Navia, siempre en carros separados y sin obligarte a contratar renting de lencería ni grandes contratos. La alternativa local y directa frente a la gran lavandería industrial.',
+  microResumenHero:
+    'Tus propias prendas en lotes separados · Sin permanencia · 3 tiendas en Vigo (Navia, Gregorio Espino y Venezuela) o recogida · Factura mensual con CIF',
+  sectoresTitulo: 'Qué prendas profesionales cuidamos para tu negocio',
+  sectoresSubtitulo:
+    'Cada negocio tiene un tejido y una rotación distinta. Trabajamos sobre tus propias prendas para que recuperes exactamente tu stock, sin alquiler impuesto.',
+  sectores: [
+    {
+      id: 'peluquerias-estetica',
+      etiqueta: 'Peluquerías · Barberías · Estética',
+      titulo: 'Toallas, capas, kimonos y batas de cabina',
+      descripcion:
+        'Olvídate de poner lavadoras en la rebotica y tender con la humedad de Vigo: tus toallas salen completamente secas, con tacto agradable y listas para el siguiente cliente.',
+      items: [
+        'Toallas de mano, tocador y lavacabezas en rotación continua',
+        'Capas de corte, kimonos y batas del equipo',
+        'Secado completo en planta para evitar el olor a cerrado en el local',
+      ],
+      whatsappTexto:
+        'Hola, Mimo. Tengo una peluquería o centro de estética en Vigo y quiero valorar el lavado de toallas, capas o batas con nuestras propias prendas.',
+    },
+    {
+      id: 'clinicas-sanitario',
+      etiqueta: 'Clínicas · Fisioterapia · Veterinaria',
+      titulo: 'Batas, casacas, toallas y sábanas de camilla',
+      descripcion:
+        'Procesamos la lencería propia de tu consulta por separado —siempre con suciedad habitual de trabajo, sin material biológico ni infeccioso— con aclarado profundo y acabado en planchas de vapor.',
+      items: [
+        'Batas médicas, pijamas sanitarios y casacas de consulta',
+        'Toallas, cubrecamillas y sábanas de fisioterapia, podología o dental',
+        'Prendas de clínicas veterinarias con suciedad habitual',
+      ],
+      whatsappTexto:
+        'Hola, Mimo. Consulto por lavandería para una clínica o centro de fisioterapia en Vigo (batas, toallas o camillas con suciedad habitual).',
+    },
+    {
+      id: 'comercios-oficinas-laboral',
+      etiqueta: 'Comercios · Oficinas · Gimnasios · Laboral',
+      titulo: 'Uniformes corporativos y vestuario con suciedad normal',
+      descripcion:
+        'Lavado en agua o limpieza en seco según cada etiqueta y acabado profesional en planchas de vapor para reforzar la imagen diaria de tu equipo.',
+      items: [
+        'Trajes corporativos, americanas, camisas y blusas de comercio u oficina',
+        'Polos, sudaderas, chaquetas, pantalones de trabajo y toallas de gimnasio',
+        'Vestuario laboral con suciedad habitual (sin grasa pesada de motor)',
+      ],
+      whatsappTexto:
+        'Hola, Mimo. Quiero pedir valoración para el lavado y planchado de uniformes o ropa laboral de nuestra empresa en Vigo.',
+    },
+    {
+      id: 'pequenos-lotes-cocina',
+      etiqueta: 'Pequeños lotes · Eventos · Cocina puntual',
+      titulo: 'Chaquetillas, mandiles y piezas concretas',
+      descripcion:
+        'Si necesitas cuidar prendas sueltas o pequeños lotes de cocina, sala o eventos sin atarte a contratos de gran volumen industrial, te atendemos sin problema.',
+      items: [
+        'Chaquetillas de cocina, mandiles y uniformes de atención',
+        'Pequeños lotes puntuales (por ejemplo, 2 o 3 manteles o servilletas)',
+        'Atención directa sin exigir grandes sacas ni volúmenes de hotel',
+      ],
+      whatsappTexto:
+        'Hola, Mimo. Quiero consultar el lavado o planchado de un pequeño lote de prendas para restaurante o evento en Vigo.',
+    },
+  ],
+  procesoPlantaTitulo: 'Así lavamos y acabamos tus textiles en nuestra planta propia de Navia',
+  procesoPlantaSubtitulo:
+    'Cinco pasos operativos reales pensados para conservar tus prendas propias sin mezclas, sin pérdidas y sin humedad residual.',
+  procesoPlanta: [
+    {
+      numero: '01',
+      titulo: 'Separación en carros de lavado',
+      descripcion:
+        'Clasificamos y mantenemos las prendas de cada negocio separadas mediante carros de lavado para no mezclar cargas entre clientes.',
+    },
+    {
+      numero: '02',
+      titulo: 'Marcado de prendas repetidas',
+      descripcion:
+        'Cuando hay prendas repetidas o similares entre piezas, las marcamos e identificamos para mantener la trazabilidad completa y evitar pérdidas.',
+    },
+    {
+      numero: '03',
+      titulo: 'Lavado en agua o limpieza en seco',
+      descripcion:
+        'Combinamos lavado profesional en agua y limpieza en seco según el tejido, con aclarado profundo para cuidar tanto las fibras como el tacto de cada pieza.',
+    },
+    {
+      numero: '04',
+      titulo: 'Secado completo frente al clima de Vigo',
+      descripcion:
+        'Garantizamos secado integral en planta para que los rizos gruesos, costuras y batas salgan listos para guardar sin riesgo de olor a humedad.',
+    },
+    {
+      numero: '05',
+      titulo: 'Acabado con planchas de vapor',
+      descripcion:
+        'Planchamos batas, casacas, camisas, pantalones y manteles puntuales en nuestras planchas de vapor para entregar una imagen impecable.',
+    },
+  ],
+  exclusividadTitulo: 'Por qué cuidamos tus prendas por separado y a la medida de tu negocio',
+  exclusividadSubtitulo:
+    'Nuestro foco en lotes controlados protege directamente la limpieza, el tacto y la durabilidad de la ropa de tu empresa.',
+  exclusividadPuntos: [
+    {
+      id: 'sin-renting',
+      titulo: 'Trabajamos sobre tu propia ropa, sin renting ni permanencia',
+      descripcion:
+        'A diferencia de las grandes lavanderías industriales orientadas al alquiler de lencería estándar, cuotas rígidas o toneladas de hotel, lavamos las prendas propias de tu negocio sin contratos de permanencia. Conservas tus colores corporativos, bordados y toallas, y recuperas siempre exactamente tu ropa.',
+    },
+    {
+      id: 'bombos-protegidos',
+      titulo: 'Bombos dedicados solo a suciedad habitual y sin riesgo biológico',
+      descripcion:
+        'Para proteger la higiene y el tacto de batas clínicas, toallas de estética y uniformes de comercio, procesamos exclusivamente suciedad normal. Dejamos fuera buzos o fundas de taller mecánico con grasa pesada de motor, aceites minerales o pinturas industriales, material biológico o infeccioso regulado y grandes contratos de sábanas o mantelerías de hotel.',
+    },
+    {
+      id: 'ritmo-adaptado',
+      titulo: 'Ritmo de servicio y valoración adaptados a tu local',
+      descripcion:
+        'Cada peluquería, clínica o despacho tiene una rotación distinta. En lugar de imponer tarifas rígidas o plazos estándar iguales para todos, Mimo valora directamente tus prendas, el volumen real y la frecuencia que mejor encaja contigo.',
+    },
+  ],
+  ventajasTitulo: 'Tres tiendas en Vigo o recogida en tu local y factura mensual con CIF',
+  ventajas: [
+    {
+      numero: '01',
+      titulo: 'Entrega flexible en Vigo',
+      descripcion:
+        'Puedes entregar y recoger directamente en nuestras 3 tiendas propias —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Venezuela 41 bajo 1 (Vigo centro)— o acordar recogida y entrega en tu local con Mimo según volumen y ruta.',
+    },
+    {
+      numero: '02',
+      titulo: 'Cadencia adaptada a tu rotación',
+      descripcion:
+        'Con los clientes habituales ajustamos días de entrega y recogida directamente a la necesidad operativa de su negocio, sin promesas cerradas irreales.',
+    },
+    {
+      numero: '03',
+      titulo: 'Sin permanencia y factura mensual con CIF',
+      descripcion: `Sin contratos de permanencia ni cuotas fijas: pagas solo por las prendas enviadas y emitimos factura mensual agrupada con CIF a nombre de ${CONTACT_INFO.legalName} (CIF ${CONTACT_INFO.cif}).`,
+    },
+    {
+      numero: '04',
+      titulo: 'Control real sin pérdidas',
+      descripcion:
+        'El uso de carros de lavado por lote y el marcado de prendas repetidas asegura que tus toallas, batas y uniformes vuelvan siempre completos.',
+    },
+  ],
+  preguntasFrecuentes: [
+    {
+      pregunta: '¿Laváis las toallas y batas propias de mi negocio o tengo que contratar renting textil?',
+      respuesta:
+        'Lavamos las prendas propias de tu negocio sin obligarte a alquilar lencería ni contratar un servicio de renting. Conservas tus toallas corporativas, kimonos, batas bordadas o uniformes y evitas depender de contratos pensados para grandes volúmenes.',
+    },
+    {
+      pregunta: '¿Mezcláis nuestras prendas con ropa de otros negocios o se pueden extraviar?',
+      respuesta:
+        'No mezclamos lotes entre clientes: en nuestra planta propia de Navia utilizamos carros de lavado para separar la ropa de cada negocio, y cuando existen prendas repetidas las marcamos de forma controlada para evitar confusiones y asegurar que no haya pérdidas.',
+    },
+    {
+      pregunta: '¿Qué ropa laboral aceptáis y qué pasa con buzos de taller con grasa o material biológico?',
+      respuesta:
+        'Lavamos y planchamos uniformes corporativos, trajes de empresa, camisas, polos, chaquetas, batas de consulta, toallas, sábanas de camilla, mandiles y pequeños lotes puntuales de chaquetillas o 2–3 manteles con suciedad habitual. Para proteger la higiene de los bombos, dejamos fuera buzos o fundas con grasa pesada de motor, aceites minerales o pinturas industriales, así como material biológico o infeccioso.',
+    },
+    {
+      pregunta: '¿Trabajáis grandes volúmenes de mantelería o sábanas de hoteles y restaurantes?',
+      respuesta:
+        'No competimos en contratos de gran volumen industrial (toneladas de sábanas de hotel o grandes banquetes). Sí atendemos sin problema lotes pequeños o piezas sueltas como chaquetillas de cocina, mandiles o 2 o 3 manteles puntuales.',
+    },
+    {
+      pregunta: '¿Cómo funciona la recogida y entrega en Vigo para una peluquería, clínica o comercio pequeño?',
+      respuesta: `Puedes entregar y recoger directamente en nuestras ${TIENDAS_PROPIAS.length} tiendas propias de Vigo —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Venezuela 41 bajo 1 (Vigo centro)— o acordar con Mimo por WhatsApp la recogida y entrega en tu local según el volumen y la ruta disponible.`,
+    },
+    {
+      pregunta: '¿Emitís factura mensual agrupada con CIF y exigís permanencia?',
+      respuesta: `Sí emitimos factura mensual agrupada con los datos fiscales y CIF de tu empresa o actividad como autónomo desde ${CONTACT_INFO.legalName} (${CONTACT_INFO.cif}). No exigimos contratos de permanencia ni cuotas fijas mensuales: pagas únicamente por las prendas que envías.`,
+    },
+    {
+      pregunta: '¿Cómo se calculan las tarifas y el ritmo de entrega para empresas?',
+      respuesta:
+        'Cada negocio recibe una valoración personalizada y una frecuencia de recogida y entrega adaptada a su volumen real y tipo de prenda. Contactando con Mimo por WhatsApp revisamos tu rotación semanal para ajustar el servicio a medida, sin tarifas estándar cerradas ni plazos rígidos iguales para todos.',
+    },
+    {
+      pregunta: '¿En esta misma página contratamos lavandería de apartamentos turísticos o limpieza de oficinas?',
+      respuesta:
+        'No; esta página se centra exclusivamente en la lavandería y tintorería de vestuario laboral y lencería de peluquerías, clínicas, comercios y autónomos. Si gestionas pisos turísticos disponemos de sección propia en /limpieza-apartamentos-turisticos-vigo, y para limpieza de despachos o locales en /limpieza-profesional-vigo.',
+    },
+    {
+      pregunta: '¿Compensa externalizar frente a lavar toallas o batas en la lavadora del local?',
+      respuesta:
+        'Para la mayoría de peluquerías, clínicas y comercios en Vigo, sí: evitas dedicar horas del equipo a poner lavadoras, tender o planchar, reduces el consumo de agua, luz y desgaste en máquinas domésticas, y eliminas el riesgo de secado lento y olor a humedad en invierno. En nuestra planta de Navia las prendas salen completamente secas y acabadas en planchas de vapor.',
+    },
+  ],
+} as const;
+
+
 
 
 

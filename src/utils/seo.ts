@@ -4,6 +4,7 @@ import {
   CANALES_CONTACTO_CENTRAL,
   REGISTROS_PUNTOS,
   SERVICIOS_MIMOS,
+  SERVICIO_DETALLE_ENRIQUECIDO,
   SERVICIO_ALFOMBRAS_DATA,
   SERVICIO_REPARACION_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
@@ -11,6 +12,7 @@ import {
   SERVICIO_PIELES_DATA,
   SERVICIO_SINIESTROS_FAQS,
   SERVICIO_TEXTILES_HOGAR_DATA,
+  SERVICIO_EMPRESAS_B2B_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SEO_LOCAL,
   FAQ_PORTADA_SIN_PRECIOS,
@@ -65,6 +67,9 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/central-navia': '/tienda-mimos-navia-vigo',
   '/tienda/gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
   '/tienda-gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
+  '/punto-dpasso-vigo': '/punto-mimos-dpasso-vigo',
+  '/punto/dpasso': '/punto-mimos-dpasso-vigo',
+  '/ficha/dpasso': '/punto-mimos-dpasso-vigo',
   '/se-punto-de-recogida.html': '/se-punto-colaborador',
   '/se-punto-de-recogida': '/se-punto-colaborador',
   '/punto-colaborador': '/se-punto-colaborador',
@@ -110,7 +115,7 @@ export const ORGANIZATION_SCHEMA: Record<string, unknown> = {
   logo: 'https://www.tintoreriamimos.es/logo-mimos.webp',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'C/ Teixugueiras, 11, bajo 9',
+    streetAddress: CONTACT_INFO.streetAddress,
     addressLocality: 'Vigo',
     postalCode: '36212',
     addressRegion: 'Pontevedra',
@@ -144,7 +149,7 @@ export const TIENDA_NAVIA_SCHEMA: Record<string, unknown> = {
   parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'C/ As Teixugueiras, 11, local 9',
+    streetAddress: CONTACT_INFO.streetAddress,
     addressLocality: 'Vigo',
     postalCode: '36212',
     addressRegion: 'Pontevedra',
@@ -186,7 +191,7 @@ export const TIENDA_GREGORIO_ESPINO_SCHEMA: Record<string, unknown> = {
   parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Alcalde Gregorio Espino, 44, bajo',
+    streetAddress: 'Alcalde Gregorio Espino, 42, bajo',
     addressLocality: 'Vigo',
     postalCode: '36205',
     addressRegion: 'Pontevedra',
@@ -300,17 +305,135 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       TIENDA_NAVIA_SCHEMA
     );
   } else if (cleanPath === '/tienda-mimos-gregorio-espino-vigo') {
+    const gregorioFaqs = [
+      {
+        pregunta: '¿Tengo que pedir cita previa para llevar prendas a arreglar o limpiar?',
+        respuesta:
+          'No, no hace falta cita previa en ningún momento. Puedes acudir libremente en nuestro horario de apertura (lunes a viernes de 09:30 a 13:30 y de 16:30 a 20:00, y sábados de 09:30 a 13:00). Te atenderemos directamente en el mostrador.',
+      },
+      {
+        pregunta: '¿Se pueden probar las prendas en la tienda para tomar la medida del bajo?',
+        respuesta:
+          'Sí, por supuesto. Disponemos de espacio para que puedas probarte pantalones, faldas, vestidos o chaquetas, y nuestra modista tomará la medida exacta con alfileres según tus indicaciones y el calzado que vayas a utilizar.',
+      },
+      {
+        pregunta: '¿Puedo entregar alfombras grandes viniendo en coche?',
+        respuesta:
+          'Sí, es una de las mayores comodidades de esta tienda. Justo en la bocacalle lateral de Rúa do Escultor Nogueira dispones de zona de carga y descarga a pocos metros de la puerta. Si nos avisas al llegar, nuestro personal te ayuda a bajarlas del vehículo.',
+      },
+      {
+        pregunta: '¿Disponéis de servicio de arreglos express o urgentes?',
+        respuesta:
+          'Sí, para arreglos sencillos como bajos de pantalón o cremalleras comunes podemos ofrecer plazo express en el mismo día o en 24 horas según el volumen de trabajo del taller en ese momento.',
+      },
+      {
+        pregunta: '¿Cómo me notificáis cuando las prendas están listas para recoger?',
+        respuesta:
+          'Te enviamos un aviso personalizado por WhatsApp o SMS en el mismo instante en que la prenda sale planchada y revisada por nuestro control de calidad. Así evitas viajes innecesarios.',
+      },
+      {
+        pregunta: '¿Qué métodos de pago aceptáis en la tienda de Gregorio Espino?',
+        respuesta:
+          'Aceptamos pago con tarjeta de crédito/débito (contactless, Apple Pay, Google Pay), Bizum para mayor agilidad y dinero en efectivo. Entregamos siempre resguardo oficial con IVA desglosado.',
+      },
+      {
+        pregunta: 'Si después no puedo desplazarme a recogerlas, ¿podéis llevármelas a casa?',
+        respuesta:
+          'Sí. Si por cualquier motivo prefieres que te entreguemos tus prendas limpias en tu domicilio o lugar de trabajo en Vigo, solo tienes que indicárnoslo por WhatsApp y coordinamos la entrega con nuestra furgoneta propia de reparto.',
+      },
+    ];
     graph.push(
       ORGANIZATION_SCHEMA,
-      TIENDA_GREGORIO_ESPINO_SCHEMA
+      TIENDA_GREGORIO_ESPINO_SCHEMA,
+      {
+        '@type': 'FAQPage',
+        mainEntity: gregorioFaqs.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/punto-mimos-dpasso-vigo') {
+    const dpassoFaqs = [
+      {
+        pregunta: "¿Cómo funciona la entrega de ropa para Tintorería Mimos en D'Passo?",
+        respuesta:
+          "Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a D'Passo en Camiño Espedrigada, 9 bajo, Vigo. Allí registran tu encargo con tu resguardo oficial y nuestra furgoneta las traslada a la central de Mimos en Navia para devolverlas listas y protegidas al punto.",
+      },
+      {
+        pregunta: "¿Cuál es el horario de apertura de D'Passo en Vigo?",
+        respuesta:
+          'Atiende de lunes a viernes en horario partido de 09:30 a 13:30 y de 16:30 a 20:30. Los sábados, domingos y festivos permanece cerrado.',
+      },
+      {
+        pregunta: "¿Se realizan arreglos de costura o composturas en D'Passo?",
+        respuesta:
+          "No. D'Passo actúa como punto colaborador oficial de recogida y entrega para tintorería, lavandería, planchado, colada familiar, ropa de hogar y alfombras, sin taller de costura en el local. Para arreglos de ropa atendemos en nuestras tiendas propias de Vigo (Navia, Rúa Venezuela y Gregorio Espino).",
+      },
+      {
+        pregunta: '¿Se pueden entregar edredones nórdicos y alfombras grandes en este punto?',
+        respuesta:
+          'Sí. En D’Passo recibimos edredones sintéticos y de plumón natural, mantas, colchas, cortinas y alfombras de cualquier formato. En nuestra central de Navia realizamos el desempolvado, lavado especializado, higienización y secado controlado.',
+      },
+      {
+        pregunta: '¿Los precios son los mismos que en las tiendas propias de Tintorería Mimos?',
+        respuesta:
+          'Sí. Se aplican exactamente las mismas tarifas oficiales de Tintorería Mimos que en nuestras 3 tiendas propias de Vigo, sin recargos por recepción ni transporte desde el punto colaborador.',
+      },
+      {
+        pregunta: '¿Puedo consultar por WhatsApp antes de llevar la prenda o pedir entrega en casa?',
+        respuesta:
+          'Por supuesto. Puedes escribir directamente a Mimo por WhatsApp al 655 536 844 o llamar a D’Passo al 986 23 06 43. Si después prefieres que te entreguemos los encargos limpios en tu domicilio o trabajo en Vigo, también puedes coordinarlo con Mimo por WhatsApp.',
+      },
+    ];
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: "Punto Colaborador Oficial Tintorería Mimos en D'Passo (Vigo)",
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: { '@type': 'City', name: 'Vigo' },
+        url: meta.canonical,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: dpassoFaqs.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
     );
   } else if (cleanPath === '/zonas/vigo') {
+    const zonaVigo = ZONAS_SEO_LOCAL.find((z) => z.url === '/zonas/vigo');
     graph.push(
       ORGANIZATION_SCHEMA,
       TIENDA_NAVIA_SCHEMA,
       TIENDA_GREGORIO_ESPINO_SCHEMA,
       TIENDA_VENEZUELA_SCHEMA
     );
+    if (zonaVigo?.preguntasFrecuentes && zonaVigo.preguntasFrecuentes.length > 0) {
+      graph.push({
+        '@type': 'FAQPage',
+        mainEntity: zonaVigo.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      });
+    }
   } else if (cleanPath.startsWith('/zonas/')) {
     const zona = ZONAS_SEO_LOCAL.find((z) => z.url === cleanPath);
     if (zona) {
@@ -578,6 +701,49 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
         })),
       }
     );
+  } else if (cleanPath === '/servicios-empresas') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: SERVICIO_EMPRESAS_B2B_DATA.h1,
+        serviceType: 'Lavandería y tintorería para empresas, peluquerías, clínicas y uniformidad laboral',
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+        ],
+        url: meta.canonical,
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: SERVICIO_EMPRESAS_B2B_DATA.sectoresTitulo,
+          itemListElement: SERVICIO_EMPRESAS_B2B_DATA.sectores.map((sec) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: `${sec.etiqueta}: ${sec.titulo}`,
+              description: sec.descripcion,
+            },
+          })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: SERVICIO_EMPRESAS_B2B_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
   } else if (cleanPath === '/limpieza-incendios-siniestros-vigo') {
     graph.push(
       ORGANIZATION_SCHEMA,
@@ -727,18 +893,46 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
   } else {
     const servicio = SERVICIOS_MIMOS.find((s) => s.url === cleanPath);
     if (servicio || cleanPath === '/limpieza-profesional-vigo') {
-      graph.push(
-        ORGANIZATION_SCHEMA,
-        {
-          '@type': 'Service',
-          '@id': `${meta.canonical}#servicio`,
-          name: meta.h1,
-          description: meta.description,
-          provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
-          areaServed: meta.areaServed || { '@type': 'City', name: 'Vigo' },
-          url: meta.canonical,
-        }
-      );
+      const detalle = servicio ? SERVICIO_DETALLE_ENRIQUECIDO[servicio.id] : undefined;
+      const serviceNode: Record<string, unknown> = {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: meta.h1,
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || { '@type': 'City', name: 'Vigo' },
+        url: meta.canonical,
+      };
+      if (detalle) {
+        serviceNode.serviceType = servicio?.titulo ?? meta.h1;
+        serviceNode.hasOfferCatalog = {
+          '@type': 'OfferCatalog',
+          name: detalle.modalidadesTitulo,
+          itemListElement: detalle.modalidades.map((m) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: m.titulo,
+              description: m.descripcion,
+            },
+          })),
+        };
+      }
+      graph.push(ORGANIZATION_SCHEMA, serviceNode);
+
+      if (detalle && detalle.preguntasFrecuentes.length > 0) {
+        graph.push({
+          '@type': 'FAQPage',
+          mainEntity: detalle.preguntasFrecuentes.map((f) => ({
+            '@type': 'Question',
+            name: f.pregunta,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: f.respuesta,
+            },
+          })),
+        });
+      }
     } else {
       graph.push(ORGANIZATION_SCHEMA);
     }

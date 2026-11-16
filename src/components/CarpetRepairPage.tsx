@@ -19,7 +19,7 @@ import {
   Store,
   Truck,
 } from 'lucide-react';
-import reparacionAlfombrasImg from '../assets/images/reparacion_alfombras_flecos_1794732541809.jpg';
+import reparacionAlfombrasImg from '../assets/images/reparacion_alfombras_flecos_1794732541809.webp';
 import {
   SERVICIO_REPARACION_ALFOMBRAS_DATA,
   TIENDAS_PROPIAS,
@@ -58,7 +58,7 @@ const RUG_TYPES = [
 const DELIVERY_MODES = [
   'Entrega y recogida en Tienda Navia (C/ Teixugueiras, 11)',
   'Entrega y recogida en Tienda Venezuela (C/ Venezuela, 41)',
-  'Entrega y recogida en Tienda Gregorio Espino (Avda. Gregorio Espino, 44)',
+  'Entrega y recogida en Tienda Gregorio Espino (Avda. Gregorio Espino, 42)',
   'Quiero consultar recogida y entrega a domicilio (con Mimo)',
 ];
 

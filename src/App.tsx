@@ -36,6 +36,9 @@ const HomeTextilesPage = React.lazy(() =>
 const CleaningDivisionPage = React.lazy(() =>
   import('./components/CleaningDivisionPage').then((m) => ({ default: m.CleaningDivisionPage }))
 );
+const BusinessLaundryPage = React.lazy(() =>
+  import('./components/BusinessLaundryPage').then((m) => ({ default: m.BusinessLaundryPage }))
+);
 const DisasterTextileRecoveryPage = React.lazy(() =>
   import('./components/DisasterTextileRecoveryPage').then((m) => ({
     default: m.DisasterTextileRecoveryPage,
@@ -67,6 +70,9 @@ const TiendaNaviaPage = React.lazy(() =>
 );
 const TiendaGregorioEspinoPage = React.lazy(() =>
   import('./components/TiendaGregorioEspinoPage').then((m) => ({ default: m.TiendaGregorioEspinoPage }))
+);
+const PuntoDPassoPage = React.lazy(() =>
+  import('./components/PuntoDPassoPage').then((m) => ({ default: m.PuntoDPassoPage }))
 );
 const NotFoundPage = React.lazy(() =>
   import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
@@ -508,7 +514,7 @@ export function App() {
         ) : effectivePath === '/limpieza-apartamentos-turisticos-vigo' ? (
           <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
         ) : effectivePath === '/servicios-empresas' ? (
-          <CleaningDivisionPage variant="empresas" onNavigate={handleNavigate} />
+          <BusinessLaundryPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-incendios-siniestros-vigo' ? (
           <DisasterTextileRecoveryPage onNavigate={handleNavigate} />
         ) : servicioIndividualActivo ? (
@@ -543,6 +549,8 @@ export function App() {
           <TiendaNaviaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
           <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/punto-mimos-dpasso-vigo' ? (
+          <PuntoDPassoPage onNavigate={handleNavigate} />
         ) : isPreviewPortada ? (
           <PreviewPortadaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (

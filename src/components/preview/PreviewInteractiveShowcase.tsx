@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { IMAGES, buildMimoWhatsAppUrl } from '../../data/mimosData';
 import { trackWhatsAppClick } from '../../utils/analytics';
-import limpiezaSofasImg from '../../assets/images/limpieza_sofas_domicilio_1794599721481.jpg';
+import limpiezaSofasImg from '../../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
 
 interface PreviewInteractiveShowcaseProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -274,6 +274,9 @@ export const PreviewInteractiveShowcase: React.FC<PreviewInteractiveShowcaseProp
                     <img
                       src={activeCategory.imageUrl}
                       alt={activeCategory.imageAlt}
+                      width={1200}
+                      height={675}
+                      loading="lazy"
                       referrerPolicy="no-referrer"
                       onError={() =>
                         setFailedImages((prev) => ({

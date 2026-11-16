@@ -16,6 +16,7 @@ import {
   REGISTROS_PUNTOS,
   SERVICIOS_LIMPIEZA_PROFESIONAL,
   SERVICIOS_MIMOS,
+  SERVICIO_DETALLE_ENRIQUECIDO,
   SERVICIO_ALFOMBRAS_DATA,
   SERVICIO_REPARACION_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
@@ -23,6 +24,7 @@ import {
   SERVICIO_PIELES_DATA,
   SERVICIO_SINIESTROS_FAQS,
   SERVICIO_TEXTILES_HOGAR_DATA,
+  SERVICIO_EMPRESAS_B2B_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SEO_LOCAL,
 } from '../src/data/mimosData.ts';
@@ -36,7 +38,7 @@ function escapeHtml(str: unknown): string {
     .replace(/"/g, '&quot;');
 }
 
-function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
+function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
   let specificHtml = '';
 
   if (meta.ogType === 'article') {
@@ -45,56 +47,83 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       const seccionesHtml = articulo.secciones
         .map(
           (s) =>
-            `<li><h3>${escapeHtml(s.h2)}</h3>` +
+            `<li><h3 class="font-bold text-slate-900 mt-3">${escapeHtml(s.h2)}</h3>` +
             (s.subsecciones && s.subsecciones.length > 0
-              ? `<ul>${s.subsecciones.map((sub) => `<li>${escapeHtml(sub.h3)}</li>`).join('')}</ul>`
+              ? `<ul class="list-disc pl-5 space-y-1">${s.subsecciones.map((sub) => `<li>${escapeHtml(sub.h3)}</li>`).join('')}</ul>`
               : '') +
             `</li>`
         )
         .join('');
 
+      const introHtml = Array.isArray(articulo.introduccion)
+        ? articulo.introduccion.map((p) => `<p>${escapeHtml(p)}</p>`).join('')
+        : articulo.introduccion
+        ? `<p>${escapeHtml(articulo.introduccion)}</p>`
+        : '';
+
       specificHtml =
-        `<section>` +
-        (articulo.introduccion ? `<p>${escapeHtml(articulo.introduccion)}</p>` : '') +
-        `<h2>Estructura y claves del artículo</h2>` +
-        `<ul>${seccionesHtml}</ul>` +
+        `<section class="space-y-4">` +
+        introHtml +
+        `<h2 class="text-xl font-bold text-[#002147] dark:text-white">Estructura y claves del artículo</h2>` +
+        `<ul class="space-y-2">${seccionesHtml}</ul>` +
         `</section>`;
     }
   } else if (routePath.startsWith('/zonas/')) {
     const zona = ZONAS_SEO_LOCAL.find((z) => z.url === routePath);
     if (zona) {
       const puntos = REGISTROS_PUNTOS.filter((p) => p.zona_slug === zona.slug);
-      const puntosHtml = puntos
-        .map(
-          (p) =>
-            `<article>` +
-            `<h3>${escapeHtml(p.nombre_mostrado)}</h3>` +
-            `<p><strong>Dirección:</strong> ${escapeHtml(p.direccion)}, ${escapeHtml(p.codigo_postal)} ${escapeHtml(p.localidad)}</p>` +
-            `<p><strong>Horario:</strong> ${escapeHtml(p.horario.resumen)}</p>` +
-            `<p><strong>Teléfono:</strong> ${escapeHtml(p.telefonos_mostrados)}</p>` +
-            `<p><strong>Servicios confirmados:</strong> ${escapeHtml(
-              p.servicios_confirmados.map((s) => ETIQUETAS_SERVICIOS_CONFIRMADOS[s] || s).join(', ')
-            )}</p>` +
-            `</article>`
-        )
-        .join('');
+      const puntosHtml =
+        puntos.length > 0
+          ? puntos
+              .map(
+                (p) =>
+                  `<article class="border border-slate-200 rounded-xl p-4 space-y-1">` +
+                  `<h3 class="font-bold text-lg text-[#002147]">${escapeHtml(p.nombre_mostrado)}</h3>` +
+                  `<p><strong>Dirección:</strong> ${escapeHtml(p.direccion)}, ${escapeHtml(p.codigo_postal)} ${escapeHtml(p.localidad)}</p>` +
+                  `<p><strong>Horario:</strong> ${escapeHtml(p.horario.resumen)}</p>` +
+                  `<p><strong>Teléfono:</strong> ${escapeHtml(p.telefonos_mostrados)}</p>` +
+                  `<p><strong>Servicios confirmados:</strong> ${escapeHtml(
+                    p.servicios_confirmados.map((s) => ETIQUETAS_SERVICIOS_CONFIRMADOS[s] || s).join(', ')
+                  )}</p>` +
+                  `</article>`
+              )
+              .join('')
+          : `<div class="space-y-3">` +
+            zona.explicacionEspecificaZona.map((p) => `<p>${escapeHtml(p)}</p>`).join('') +
+            (zona.opcionesCercanas && zona.opcionesCercanas.length > 0
+              ? `<h3>Puntos físicos más cercanos a ${escapeHtml(zona.localidad)}</h3><ul class="list-disc pl-5 space-y-1">` +
+                zona.opcionesCercanas
+                  .map(
+                    (op) =>
+                      `<li><a href="${escapeHtml(op.href)}"><strong>${escapeHtml(op.nombre)}</strong></a> (${escapeHtml(
+                        op.direccion
+                      )}): ${escapeHtml(op.detalle)}</li>`
+                  )
+                  .join('') +
+                `</ul>`
+              : '') +
+            `</div>`;
 
       const faqsHtml =
         zona.preguntasFrecuentes && zona.preguntasFrecuentes.length > 0
-          ? `<h3>Preguntas frecuentes en ${escapeHtml(zona.localidad)}</h3><dl>` +
+          ? `<h3 class="text-lg font-bold text-[#002147] mt-4">Preguntas frecuentes en ${escapeHtml(zona.localidad)}</h3><dl class="space-y-2">` +
             zona.preguntasFrecuentes
               .map(
                 (f) =>
-                  `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+                  `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd class="text-slate-600 mb-2">${escapeHtml(f.respuesta)}</dd>`
               )
               .join('') +
             `</dl>`
           : '';
 
       specificHtml =
-        `<section>` +
+        `<section class="space-y-4">` +
         (zona.subtitulo ? `<p>${escapeHtml(zona.subtitulo)}</p>` : '') +
-        `<h2>Puntos de atención y recogida en ${escapeHtml(zona.localidad)}</h2>` +
+        `<h2 class="text-xl font-bold text-[#002147]">${
+          puntos.length > 0
+            ? `Puntos de atención y recogida en ${escapeHtml(zona.localidad)}`
+            : `Cobertura a domicilio y puntos cercanos en ${escapeHtml(zona.localidad)}`
+        }</h2>` +
         puntosHtml +
         faqsHtml +
         `</section>`;
@@ -103,24 +132,60 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
     const punto = TIENDAS_PROPIAS.find((t) => t.id === 'as-teixugueiras');
     if (punto) {
       specificHtml =
-        `<section>` +
-        `<h2>Sede Central Tintorería Mimos Navia (Vigo)</h2>` +
+        `<section class="space-y-3">` +
+        `<h2 class="text-xl font-bold text-[#002147]">Sede Central Tintorería Mimos Navia (Vigo)</h2>` +
         `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)}</p>` +
         `<p><strong>Horario:</strong> ${escapeHtml(punto.horario.resumen)}</p>` +
         `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)}</p>` +
-        `<p><strong>Servicios disponibles:</strong> Tintorería profesional, lavandería, centro de planchado, colada familiar por kilos, limpieza de alfombras, edredones y mantas, coordinación de recogida a domicilio y recepción para taller propio de costura.</p>` +
+        `<p><strong>Servicios disponibles:</strong> Tintorería profesional, lavandería atendida, planchado profesional, colada familiar (lavar y doblar / planchar), limpieza de alfombras, edredones y mantas, coordinación de recogida a domicilio y recepción para taller propio de costura.</p>` +
         `</section>`;
     }
   } else if (routePath === '/tienda-mimos-gregorio-espino-vigo') {
     const punto = TIENDAS_PROPIAS.find((t) => t.id === 'gregorio-espino');
     if (punto) {
       specificHtml =
-        `<section>` +
-        `<h2>Tienda propia Tintorería Mimos Gregorio Espino (Vigo)</h2>` +
-        `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)}</p>` +
+        `<section class="space-y-3">` +
+        `<h2 class="text-xl font-bold text-[#002147]">Tienda propia Tintorería Mimos Gregorio Espino (Vigo)</h2>` +
+        `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)} (esquina con Rúa do Escultor Nogueira)</p>` +
         `<p><strong>Horario:</strong> ${escapeHtml(punto.horario.resumen)}</p>` +
-        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)}</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)} · WhatsApp Mimos: +34 655 536 844</p>` +
+        `<p><strong>Aparcamiento y carga/descarga:</strong> ${escapeHtml(punto.aparcamiento)}</p>` +
         `<p><strong>Servicios disponibles:</strong> Tintorería profesional, lavandería, planchado profesional, colada familiar, limpieza de alfombras y taller propio de costura y arreglos in situ.</p>` +
+        `<h3>Preguntas frecuentes en Mimos Gregorio Espino</h3>` +
+        `<dl class="space-y-2">` +
+        `<dt><strong>¿Tengo que pedir cita previa para llevar prendas a arreglar o limpiar?</strong></dt><dd>No, no hace falta cita previa en ningún momento. Puedes acudir libremente en nuestro horario de apertura (lunes a viernes de 09:30 a 13:30 y de 16:30 a 20:00, y sábados de 09:30 a 13:00).</dd>` +
+        `<dt><strong>¿Se pueden probar las prendas en la tienda para tomar la medida del bajo?</strong></dt><dd>Sí, disponemos de espacio para probarte pantalones, faldas, vestidos o chaquetas y nuestra modista toma la medida exacta in situ.</dd>` +
+        `<dt><strong>¿Puedo entregar alfombras grandes viniendo en coche?</strong></dt><dd>Sí, en la bocacalle lateral de Rúa do Escultor Nogueira dispones de zona de carga y descarga a unos 15 metros de la puerta.</dd>` +
+        `<dt><strong>¿Disponéis de servicio de arreglos express o urgentes?</strong></dt><dd>Sí, para arreglos sencillos como bajos de pantalón o cremalleras comunes ofrecemos plazo express según volumen de taller.</dd>` +
+        `<dt><strong>¿Cómo me notificáis cuando las prendas están listas para recoger?</strong></dt><dd>Enviamos aviso personalizado por WhatsApp o SMS en cuanto el encargo queda terminado y revisado.</dd>` +
+        `<dt><strong>¿Qué métodos de pago aceptáis en la tienda de Gregorio Espino?</strong></dt><dd>Aceptamos tarjeta contactless (Apple Pay, Google Pay), Bizum y efectivo, siempre con resguardo oficial e IVA desglosado.</dd>` +
+        `<dt><strong>Si después no puedo desplazarme a recogerlas, ¿podéis llevármelas a casa?</strong></dt><dd>Sí, puedes coordinar la entrega a domicilio en Vigo con Mimo por WhatsApp.</dd>` +
+        `</dl>` +
+        `</section>`;
+    }
+  } else if (routePath === '/punto-mimos-dpasso-vigo') {
+    const punto = REGISTROS_PUNTOS.find((p) => p.id === 'punto-vigo-dpasso');
+    if (punto) {
+      specificHtml =
+        `<section class="space-y-3">` +
+        `<h2 class="text-xl font-bold text-[#002147]">Punto Colaborador Oficial Tintorería Mimos · D'Passo (Vigo)</h2>` +
+        `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)} (Pontevedra) · entorno As Travesas / Balaídos</p>` +
+        `<p><strong>Horario:</strong> ${escapeHtml(punto.horario.resumen)} · Domingos y festivos: Cerrado</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)} · WhatsApp Mimos: +34 655 536 844</p>` +
+        `<p><strong>Aparcamiento y acceso:</strong> ${escapeHtml(punto.aparcamiento)}</p>` +
+        `<p><strong>Servicios confirmados:</strong> ${escapeHtml(
+          punto.servicios_confirmados.map((s) => ETIQUETAS_SERVICIOS_CONFIRMADOS[s] || s).join(', ')
+        )}.</p>` +
+        `<p><strong>Nota sobre costura:</strong> D'Passo actúa como punto colaborador oficial de recepción y entrega, sin taller de costura en el local. Para arreglos de ropa, acude a nuestras tiendas propias de Vigo (Navia, Rúa Venezuela o Gregorio Espino).</p>` +
+        `<h3>Preguntas frecuentes sobre el punto colaborador D'Passo en Vigo</h3>` +
+        `<dl class="space-y-2">` +
+        `<dt><strong>¿Cómo funciona la entrega de ropa para Tintorería Mimos en D'Passo?</strong></dt><dd>Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a D'Passo en ${escapeHtml(punto.direccion)}, Vigo. Allí registran tu encargo con tu resguardo oficial y nuestra furgoneta las traslada a la central de Mimos en Navia para devolverlas listas y protegidas al punto.</dd>` +
+        `<dt><strong>¿Cuál es el horario de apertura de D'Passo en Vigo?</strong></dt><dd>Atiende de lunes a viernes en horario partido de 09:30 a 13:30 y de 16:30 a 20:30. Los sábados, domingos y festivos permanece cerrado.</dd>` +
+        `<dt><strong>¿Se realizan arreglos de costura o composturas en D'Passo?</strong></dt><dd>No. D'Passo actúa como punto colaborador oficial de recogida y entrega para tintorería, lavandería, planchado, colada familiar, ropa de hogar y alfombras, sin taller de costura en el local. Para arreglos de ropa atendemos en nuestras tiendas propias de Vigo (Navia, Rúa Venezuela y Gregorio Espino).</dd>` +
+        `<dt><strong>¿Se pueden entregar edredones nórdicos y alfombras grandes en este punto?</strong></dt><dd>Sí. En D’Passo recibimos edredones sintéticos y de plumón natural, mantas, colchas, cortinas y alfombras de cualquier formato para su tratamiento en nuestra planta de Navia.</dd>` +
+        `<dt><strong>¿Los precios son los mismos que en las tiendas propias de Tintorería Mimos?</strong></dt><dd>Sí. Se aplican exactamente las mismas tarifas oficiales de Tintorería Mimos que en nuestras 3 tiendas propias de Vigo, sin recargos por recepción ni transporte.</dd>` +
+        `<dt><strong>¿Puedo consultar por WhatsApp antes de llevar la prenda o pedir entrega en casa?</strong></dt><dd>Sí, puedes escribir directamente a Mimo por WhatsApp al 655 536 844 o llamar a D’Passo al 986 23 06 43, y también coordinar entrega posterior a domicilio en Vigo.</dd>` +
+        `</dl>` +
         `</section>`;
     }
   } else if (routePath === '/limpieza-alfombras-vigo') {
@@ -280,20 +345,32 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/limpieza-profesional-vigo') {
-    const subdivisionesHtml = SERVICIOS_LIMPIEZA_PROFESIONAL.map(
-      (s) =>
-        `<article>` +
-        `<h3>${escapeHtml(s.titulo)}</h3>` +
-        `<p>${escapeHtml(s.descripcion)}</p>` +
-        `<ul>` +
-        s.incluye.map((i) => `<li>${escapeHtml(i)}</li>`).join('') +
-        `</ul>` +
-        `</article>`
-    ).join('');
+    const subdivisionesHtml = SERVICIOS_LIMPIEZA_PROFESIONAL.filter(
+      (s) => s.id !== 'empresas-y-comercios' && s.id !== 'apartamentos-turisticos'
+    )
+      .map(
+        (s) =>
+          `<article>` +
+          `<h3>${escapeHtml(s.titulo)}</h3>` +
+          `<p>${escapeHtml(s.descripcion)}</p>` +
+          `<ul>` +
+          s.incluye.map((i) => `<li>${escapeHtml(i)}</li>`).join('') +
+          `</ul>` +
+          `</article>`
+      )
+      .join('');
     specificHtml =
       `<section>` +
+      `<p>Limpieza profesional para oficinas y despachos, comunidades de propietarios, locales comerciales, clínicas y sofás a domicilio en Vigo y área de influencia.</p>` +
       `<h2>Servicios de la división de limpieza profesional</h2>` +
       subdivisionesHtml +
+      `<h3>Divisiones especializadas con página propia</h3>` +
+      `<ul>` +
+      `<li><a href="/servicios-empresas">Lavandería y tintorería para empresas, peluquerías y clínicas en Vigo</a></li>` +
+      `<li><a href="/limpieza-apartamentos-turisticos-vigo">Limpieza y lavandería para apartamentos turísticos en Vigo</a></li>` +
+      `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás y tapicerías a domicilio en Vigo</a></li>` +
+      `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios, humo e inundaciones</a></li>` +
+      `</ul>` +
       `</section>`;
   } else if (routePath === '/se-punto-colaborador') {
     specificHtml =
@@ -307,6 +384,51 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
       `<li>Tratamiento profesional en taller propio central en Vigo con acabado al vapor Veit.</li>` +
       `<li>Comisión periódica directa por prenda y aumento de tráfico de clientes a tu tienda.</li>` +
       `</ul>` +
+      `</section>`;
+  } else if (routePath === '/servicios-empresas') {
+    const sectoresHtml = SERVICIO_EMPRESAS_B2B_DATA.sectores
+      .map(
+        (sec) =>
+          `<li><h3>${escapeHtml(sec.titulo)} (${escapeHtml(sec.etiqueta)})</h3><p>${escapeHtml(
+            sec.descripcion
+          )}</p><ul>${sec.items.map((it) => `<li>${escapeHtml(it)}</li>`).join('')}</ul></li>`
+      )
+      .join('');
+    const procesoHtml = SERVICIO_EMPRESAS_B2B_DATA.procesoPlanta
+      .map(
+        (p) =>
+          `<li><strong>${escapeHtml(p.numero)}. ${escapeHtml(p.titulo)}:</strong> ${escapeHtml(
+            p.descripcion
+          )}</li>`
+      )
+      .join('');
+    const exclusividadHtml = SERVICIO_EMPRESAS_B2B_DATA.exclusividadPuntos
+      .map(
+        (ex) =>
+          `<li><h3>${escapeHtml(ex.titulo)}</h3><p>${escapeHtml(ex.descripcion)}</p></li>`
+      )
+      .join('');
+    const faqsHtml = SERVICIO_EMPRESAS_B2B_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(SERVICIO_EMPRESAS_B2B_DATA.subtitulo)}</p>` +
+      `<h2>${escapeHtml(SERVICIO_EMPRESAS_B2B_DATA.sectoresTitulo)}</h2>` +
+      `<ul>${sectoresHtml}</ul>` +
+      `<h2>${escapeHtml(SERVICIO_EMPRESAS_B2B_DATA.procesoPlantaTitulo)}</h2>` +
+      `<ol>${procesoHtml}</ol>` +
+      `<h2>${escapeHtml(SERVICIO_EMPRESAS_B2B_DATA.exclusividadTitulo)}</h2>` +
+      `<ul>${exclusividadHtml}</ul>` +
+      `<h2>${escapeHtml(SERVICIO_EMPRESAS_B2B_DATA.ventajasTitulo)}</h2>` +
+      `<ul>${SERVICIO_EMPRESAS_B2B_DATA.ventajas
+        .map((v) => `<li><strong>${escapeHtml(v.titulo)}:</strong> ${escapeHtml(v.descripcion)}</li>`)
+        .join('')}</ul>` +
+      `<h2>Preguntas frecuentes sobre nuestro servicio de lavandería para empresas en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/limpieza-incendios-siniestros-vigo') {
     const faqsHtml = SERVICIO_SINIESTROS_FAQS.map(
@@ -338,6 +460,43 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
   } else {
     const servicio = SERVICIOS_MIMOS.find((s) => s.url === routePath);
     if (servicio) {
+      const detalle = SERVICIO_DETALLE_ENRIQUECIDO[servicio.id];
+      const modalidadesHtml = detalle
+        ? `<h2>${escapeHtml(detalle.modalidadesTitulo)}</h2><ul>` +
+          detalle.modalidades
+            .map(
+              (m) =>
+                `<li><strong>${escapeHtml(m.titulo)}:</strong> ${escapeHtml(m.descripcion)}</li>`
+            )
+            .join('') +
+          `</ul>`
+        : '';
+      const procesoHtml = detalle
+        ? `<h2>${escapeHtml(detalle.procesoTitulo)}</h2><ol>` +
+          detalle.procesoPasos
+            .map(
+              (p) =>
+                `<li><strong>${escapeHtml(p.titulo)}:</strong> ${escapeHtml(p.descripcion)}</li>`
+            )
+            .join('') +
+          `</ol>`
+        : '';
+      const comparativaHtml = detalle?.comparativaTabla
+        ? `<h2>${escapeHtml(detalle.comparativaTabla.titulo)}</h2>` +
+          `<p>${escapeHtml(detalle.comparativaTabla.subtitulo)}</p>` +
+          `<table><thead><tr><th>Criterio técnico y operativo</th>` +
+          detalle.comparativaTabla.columnas.map((col) => `<th>${escapeHtml(col)}</th>`).join('') +
+          `</tr></thead><tbody>` +
+          detalle.comparativaTabla.filas
+            .map(
+              (f) =>
+                `<tr><th>${escapeHtml(f.criterio)}</th>${f.valores
+                  .map((v) => `<td>${escapeHtml(v)}</td>`)
+                  .join('')}</tr>`
+            )
+            .join('') +
+          `</tbody></table>`
+        : '';
       const queTratamosHtml =
         servicio.queTratamos && servicio.queTratamos.length > 0
           ? `<h3>Prendas y textiles que tratamos</h3><ul>` +
@@ -350,11 +509,27 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
             servicio.comoSeContrata.map((item) => `<li>${escapeHtml(item)}</li>`).join('') +
             `</ul>`
           : '';
+      const faqsHtml =
+        detalle && detalle.preguntasFrecuentes.length > 0
+          ? `<h2>Preguntas frecuentes sobre ${escapeHtml(servicio.titulo)}</h2><dl>` +
+            detalle.preguntasFrecuentes
+              .map(
+                (f) =>
+                  `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+              )
+              .join('') +
+            `</dl>`
+          : '';
       specificHtml =
         `<section>` +
         `<p>${escapeHtml(servicio.descripcion)}</p>` +
+        (detalle?.aclaracionHonesta ? `<p>${escapeHtml(detalle.aclaracionHonesta)}</p>` : '') +
+        modalidadesHtml +
+        procesoHtml +
+        comparativaHtml +
         queTratamosHtml +
         comoSeContrataHtml +
+        faqsHtml +
         `</section>`;
     }
   }
@@ -378,9 +553,17 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
     `<li><a href="/recogida-a-domicilio">Recogida a domicilio</a></li>` +
     `<li><a href="/limpieza-profesional-vigo">Limpieza profesional</a></li>` +
     `<li><a href="/limpieza-apartamentos-turisticos-vigo">Apartamentos turísticos</a></li>` +
-    `<li><a href="/servicios-empresas">Servicios para empresas</a></li>` +
+    `<li><a href="/servicios-empresas">Lavandería para empresas</a></li>` +
     `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios, humo e inundaciones</a></li>` +
     `<li><a href="/puntos-mimos">Tiendas y Puntos Mimos</a></li>` +
+    `<li><a href="/punto-mimos-dpasso-vigo">Punto colaborador D'Passo (Vigo)</a></li>` +
+    `<li><a href="/zonas/vigo">Vigo (3 tiendas propias)</a></li>` +
+    `<li><a href="/zonas/redondela">Redondela</a></li>` +
+    `<li><a href="/zonas/gondomar">Gondomar</a></li>` +
+    `<li><a href="/zonas/ponteareas">Ponteareas</a></li>` +
+    `<li><a href="/zonas/o-porrino">O Porriño</a></li>` +
+    `<li><a href="/zonas/mos">Mos (recogida a domicilio)</a></li>` +
+    `<li><a href="/zonas/nigran">Nigrán (recogida a domicilio)</a></li>` +
     `<li><a href="/contacto">Contacto y horarios</a></li>` +
     `<li><a href="/blog">Blog y consejos</a></li>` +
     `</ul>` +
@@ -408,15 +591,13 @@ function buildNoscriptContent(routePath: string, meta: RouteMeta): string {
     `</footer>`;
 
   return (
-    `<noscript id="aeo-static-summary">` +
-    `<main id="main-content">` +
-    `<h1>${escapeHtml(meta.h1)}</h1>` +
-    `<p>${escapeHtml(meta.description)}</p>` +
+    `<main id="main-content" class="max-w-4xl mx-auto px-4 sm:px-6 py-10 bg-white dark:bg-[#071324] text-slate-800 dark:text-slate-100 space-y-6">` +
+    `<h1 class="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">${escapeHtml(meta.h1)}</h1>` +
+    `<p class="text-slate-600 dark:text-slate-300 leading-relaxed">${escapeHtml(meta.description)}</p>` +
     specificHtml +
     navHtml +
     footerHtml +
-    `</main>` +
-    `</noscript>`
+    `</main>`
   );
 }
 
@@ -426,7 +607,7 @@ function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta
     seo.jsonLd
   )}</script>`;
 
-  const aeoNoscriptBlock = buildNoscriptContent(routePath, meta);
+  const aeoRootContent = buildRootPrerenderContent(routePath, meta);
 
   return baseHtml
     .replace(/<script\s+type="application\/ld\+json"\s+id="schema-localbusiness">[\s\S]*?<\/script>\s*/, '')
@@ -476,30 +657,28 @@ function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta
       `<meta name="twitter:image" content="${meta.ogImage || 'https://www.tintoreriamimos.es/osito-mimos.jpg'}" />`
     )
     .replace('</head>', `    ${routeSchemaTag}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root"></div>\n    ${aeoNoscriptBlock}`);
+    .replace('<div id="root"></div>', `<div id="root">${aeoRootContent}</div>`);
 }
 
 function render404Html(baseHtml: string): string {
-  const notFoundNoscriptBlock =
-    `<noscript id="aeo-static-summary">` +
-    `<main id="main-content">` +
-    `<h1>Página no encontrada</h1>` +
-    `<p>La dirección que has introducido no existe o ha sido trasladada a una nueva sección. Tintorería Mimos ofrece servicios profesionales de tintorería, lavandería y limpieza de alfombras en Vigo y comarca con recogida a domicilio y 3 tiendas propias.</p>` +
+  const notFoundRootBlock =
+    `<main id="main-content" class="max-w-4xl mx-auto px-4 sm:px-6 py-10 text-slate-800 space-y-6">` +
+    `<h1 class="text-2xl sm:text-3xl font-extrabold text-[#002147]">Página no encontrada</h1>` +
+    `<p class="text-slate-600 leading-relaxed">La dirección que has introducido no existe o ha sido trasladada a una nueva sección. Tintorería Mimos ofrece servicios profesionales de tintorería, lavandería y limpieza de alfombras en Vigo y comarca con recogida a domicilio y 3 tiendas propias.</p>` +
     `<nav aria-label="Servicios recomendados">` +
-    `<ul>` +
+    `<ul class="list-disc pl-5 space-y-1">` +
     `<li><a href="/">Portada principal de Tintorería Mimos</a></li>` +
     `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás y tapicerías a domicilio</a></li>` +
     `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras con recogida a domicilio</a></li>` +
     `<li><a href="/reparacion-alfombras-vigo">Reparación y restauración de alfombras</a></li>` +
     `<li><a href="/tintoreria-vigo">Tintorería profesional en Vigo</a></li>` +
-    `<li><a href="/lavanderia-vigo">Lavandería y colada por kilos</a></li>` +
+    `<li><a href="/lavanderia-vigo">Lavandería atendida y ropa de diario</a></li>` +
     `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa</a></li>` +
     `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios y siniestros</a></li>` +
     `<li><a href="/contacto">Contacto, teléfonos y horarios</a></li>` +
     `</ul>` +
     `</nav>` +
-    `</main>` +
-    `</noscript>`;
+    `</main>`;
 
   return baseHtml
     .replace(/<title>[\s\S]*?<\/title>/, `<title>Página no encontrada | Tintorería Mimos</title>`)
@@ -535,7 +714,7 @@ function render404Html(baseHtml: string): string {
       /<meta\s+name="twitter:description"\s+id="twitter-description"\s+content="[^"]*"\s*\/>/,
       `<meta name="twitter:description" id="twitter-description" content="La página solicitada no existe o ha sido movida." />`
     )
-    .replace('<div id="root"></div>', `<div id="root"></div>\n    ${notFoundNoscriptBlock}`);
+    .replace('<div id="root"></div>', `<div id="root">${notFoundRootBlock}</div>`);
 }
 
 function getBlogArticleLastmod(path: string): string | null {

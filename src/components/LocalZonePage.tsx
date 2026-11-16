@@ -13,6 +13,8 @@ import {
   ArrowUpRight,
   Navigation,
   Car,
+  Truck,
+  Info,
 } from 'lucide-react';
 import {
   ZonaSEOLocal,
@@ -283,6 +285,17 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
             </a>
           )}
 
+          {punto.id === 'punto-vigo-dpasso' && (
+            <a
+              href="/punto-mimos-dpasso-vigo"
+              onClick={(e) => onNavigate('/punto-mimos-dpasso-vigo', e)}
+              className="inline-flex items-center gap-1.5 bg-[#0F76BB] hover:bg-[#0b5f97] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-lg transition-colors"
+            >
+              <Store className="w-4 h-4" aria-hidden="true" />
+              <span>Ver ficha y fotos de D&apos;Passo</span>
+            </a>
+          )}
+
           {punto.id === 'punto-gondomar' && (
             <a
               href="/zonas/gondomar"
@@ -434,6 +447,87 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {puntosColaboradoresZona.map(renderEstablecimientoZona)}
               </div>
+            </div>
+          )}
+          {tiendasPropiasZona.length === 0 && puntosColaboradoresZona.length === 0 && (
+            <div className="space-y-8">
+              <div className="rounded-3xl border-2 border-[#0F76BB]/30 dark:border-[#0F76BB]/50 bg-white dark:bg-[#071324] p-6 sm:p-8 shadow-xs">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                  <div className="space-y-3 max-w-3xl">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 text-xs font-bold">
+                      <Info className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                      <span>Sin tienda propia ni punto colaborador físico en {zona.localidad}</span>
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+                      Cobertura en {zona.localidad} mediante recogida y entrega a domicilio
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Para ser completamente transparentes: actualmente no contamos con establecimiento físico ni comercio colaborador en {zona.localidad}. Atendemos el municipio mediante{' '}
+                      <strong>recogida y entrega a domicilio</strong> (sujeta a ruta semanal e importe mínimo de pedido), además de limpieza de sofás y tapicerías in situ y desmontaje de cortinas.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+                    <a
+                      href={zona.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
+                    >
+                      <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      <span>Consultar ruta con Mimo</span>
+                    </a>
+                    <a
+                      href="/recogida-a-domicilio"
+                      onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
+                      className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#0F76BB] text-[#002147] dark:text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap"
+                    >
+                      <Truck className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                      <span>Condiciones recogida a domicilio</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {zona.opcionesCercanas && zona.opcionesCercanas.length > 0 && (
+                <div>
+                  <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white mb-4">
+                    Puntos físicos más cercanos a {zona.localidad} (sin importe mínimo):
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {zona.opcionesCercanas.map((op) => (
+                      <a
+                        key={op.href}
+                        href={op.href}
+                        onClick={(e) => onNavigate(op.href, e)}
+                        className="rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-white dark:bg-[#071324] p-6 flex flex-col justify-between gap-4 transition-colors group"
+                      >
+                        <div className="space-y-2">
+                          <div className="flex items-start justify-between gap-2">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                              <Store className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                              <span>Punto físico cercano</span>
+                            </span>
+                            <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                          </div>
+                          <h4 className="text-base sm:text-lg font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6]">
+                            {op.nombre}
+                          </h4>
+                          <p className="text-xs font-bold text-slate-700 dark:text-slate-200">
+                            {op.direccion}
+                          </p>
+                          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            {op.detalle}
+                          </p>
+                        </div>
+                        <span className="text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6] group-hover:underline">
+                          Ver ficha de ubicación y horarios →
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

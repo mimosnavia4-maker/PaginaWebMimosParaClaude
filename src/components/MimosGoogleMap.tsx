@@ -472,7 +472,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                   </div>
 
                   {/* Botones de acción directa con color oficial de WhatsApp */}
-                  <div className="pt-2 flex items-center gap-2">
+                  <div className="pt-2 flex flex-wrap items-center gap-2">
                     <a
                       href={buildGoogleMapsUrl(activePunto)}
                       target="_blank"
@@ -541,6 +541,16 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                       >
                         <Store className="w-3.5 h-3.5" />
                         <span>Ver ficha y fotos de Redondela</span>
+                      </a>
+                    )}
+                    {activePunto.id === 'punto-vigo-dpasso' && (
+                      <a
+                        href="/punto-mimos-dpasso-vigo"
+                        onClick={(e) => onNavigate?.('/punto-mimos-dpasso-vigo', e)}
+                        className="w-full inline-flex items-center justify-center gap-1.5 bg-[#0F76BB] hover:bg-[#0b5f97] text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors shadow-xs"
+                      >
+                        <Store className="w-3.5 h-3.5" />
+                        <span>Ver ficha y fotos del punto</span>
                       </a>
                     )}
                   </div>

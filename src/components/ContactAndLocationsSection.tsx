@@ -453,6 +453,15 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   <FileText className="w-4 h-4" aria-hidden="true" />
                   <span>Ver ficha y fotos</span>
                 </a>
+              ) : punto.id === 'punto-vigo-dpasso' ? (
+                <a
+                  href="/punto-mimos-dpasso-vigo"
+                  onClick={(e) => onNavigate('/punto-mimos-dpasso-vigo', e)}
+                  className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
+                >
+                  <FileText className="w-4 h-4" aria-hidden="true" />
+                  <span>Ver ficha y fotos</span>
+                </a>
               ) : (
                 <button
                   type="button"
@@ -578,10 +587,10 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               Selecciona tu municipio para ver su página local e instrucciones paso a paso:
             </h3>
             <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-              {ZONAS_SERVICIO.join(' · ')}
+              {ZONAS_SEO_LOCAL.map((z) => z.localidad).join(' · ')}
             </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {ZONAS_SEO_LOCAL.map((zona) => (
               <a
                 key={zona.slug}
@@ -601,7 +610,9 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   </p>
                 </div>
                 <span className="mt-3 text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6] group-hover:underline">
-                  Ver puntos en {zona.localidad} →
+                  {zona.modoCobertura === 'solo-domicilio'
+                    ? `Cobertura a domicilio en ${zona.localidad} →`
+                    : `Ver puntos en ${zona.localidad} →`}
                 </span>
               </a>
             ))}

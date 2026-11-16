@@ -13,7 +13,7 @@ import {
   Sparkles,
   Tag,
 } from 'lucide-react';
-import heroSofasImg from '../assets/images/limpieza_sofas_domicilio_1794599721481.jpg';
+import heroSofasImg from '../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
 import {
   CONTACT_INFO,
   ZONAS_SERVICIO,

@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { MessageCircle, ArrowRight, ArrowUpRight, Sofa, Scissors, Layers } from 'lucide-react';
 import { CONTACT_INFO, IMAGES, buildMimoWhatsAppUrl } from '../../data/mimosData';
 import { trackWhatsAppClick } from '../../utils/analytics';
-import limpiezaSofasImg from '../../assets/images/limpieza_sofas_domicilio_1794599721481.jpg';
+import limpiezaSofasImg from '../../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
 
 interface PreviewCraftSpotlightProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -57,6 +57,9 @@ export const PreviewCraftSpotlight: React.FC<PreviewCraftSpotlightProps> = ({
                 <img
                   src={limpiezaSofasImg}
                   alt="Limpieza de sofás y tapicerías a domicilio en Vigo por Tintorería Mimos"
+                  width={1200}
+                  height={896}
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                   onError={() => setFailedImages((prev) => ({ ...prev, sofa: true }))}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"

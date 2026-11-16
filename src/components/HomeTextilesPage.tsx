@@ -22,8 +22,8 @@ import {
   Truck,
   XCircle,
 } from 'lucide-react';
-import edredonPlumasImg from '../assets/images/edredon_plumas_taller_1794731040431.jpg';
-import cortinasEstoresImg from '../assets/images/cortinas_estores_taller_1794731040136.jpg';
+import edredonPlumasImg from '../assets/images/edredon_plumas_taller_1794731040431.webp';
+import cortinasEstoresImg from '../assets/images/cortinas_estores_taller_1794731040136.webp';
 import {
   SERVICIO_TEXTILES_HOGAR_DATA,
   TIENDAS_PROPIAS,
@@ -76,7 +76,7 @@ const EXTRA_SERVICE_OPTIONS = [
 const DELIVERY_POINTS = [
   'Navia — Sede Central (C/ Teixugueiras, 11)',
   'Vigo Centro — C/ Venezuela, 41 (taller de costura in situ)',
-  'Vigo — Avda. Gregorio Espino, 44 (taller de costura in situ)',
+  'Vigo — Avda. Gregorio Espino, 42 (taller de costura in situ)',
   "Vigo As Travesas — Punto colaborador D'Passo",
   'Redondela — Punto colaborador (C/ José Regojo, 29)',
   'Gondomar — Punto colaborador (Puntadas No Aire)',
@@ -317,6 +317,9 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       <img
                         src={edredonPlumasImg}
                         alt="Edredón nórdico de plumas recién lavado y aireado en nuestras instalaciones de gran formato en Vigo"
+                        width={1200}
+                        height={896}
+                        fetchPriority="high"
                         referrerPolicy="no-referrer"
                         onError={() => setHeroImgError(true)}
                         className="w-full h-full object-cover"
@@ -467,6 +470,9 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                         <img
                           src={activeMeta.image}
                           alt={activeMeta.alt}
+                          width={1200}
+                          height={896}
+                          loading="lazy"
                           referrerPolicy="no-referrer"
                           onError={() =>
                             setShowcaseImgError((prev) => ({

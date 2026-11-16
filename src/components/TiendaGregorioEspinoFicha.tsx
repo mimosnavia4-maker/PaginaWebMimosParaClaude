@@ -62,7 +62,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
     fachada: {
       url: '/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.jpg',
       titulo: 'Fachada Principal y Rótulo Mimos',
-      subtitulo: 'Rótulo azul distintivo Tintorería Lavandería Mimos, toldos amarillos y escaparate luminoso en Gregorio Espino 44.',
+      subtitulo: 'Rótulo azul distintivo Tintorería Lavandería Mimos, toldos amarillos y escaparate luminoso en Gregorio Espino 42.',
       tag: 'Fachada Principal',
       detalle: 'Entrada a cota cero sin barreras arquitectónicas, con visibilidad completa desde la acera ajardinada de Alcalde Gregorio Espino.',
     },
@@ -84,7 +84,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
 
   const storeStatus = getStoreStatusById('gregorio-espino');
   const whatsappUrl = buildMimoWhatsAppUrl(
-    'Hola, Mimo. Quiero hacer una consulta sobre la tienda propia de Gregorio Espino (Alcalde Gregorio Espino, 44, Vigo).'
+    'Hola, Mimo. Quiero hacer una consulta sobre la tienda propia de Gregorio Espino (Alcalde Gregorio Espino, 42, Vigo).'
   );
   const mapsUrl = buildGoogleMapsUrl(punto);
 
@@ -315,7 +315,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 <p className="text-slate-700 dark:text-slate-300 flex items-start gap-2">
                   <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
                   <span>
-                    <strong>Rúa do Alcalde Gregorio Espino, 44, bajo</strong> (esquina con Rúa do Escultor Nogueira), 36205 Vigo (Pontevedra).
+                    <strong>Rúa do Alcalde Gregorio Espino, 42, bajo</strong> (esquina con Rúa do Escultor Nogueira), 36205 Vigo (Pontevedra).
                   </span>
                 </p>
 
@@ -936,7 +936,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           <div className="space-y-1">
             <h4 className="text-sm sm:text-base font-bold">¿Quieres que tu navegador te guíe hasta la puerta?</h4>
             <p className="text-xs text-blue-200">
-              Coordenadas GPS: 42.22836, -8.707589 · Alcalde Gregorio Espino, 44, Vigo
+              Coordenadas GPS: 42.22836, -8.707589 · Alcalde Gregorio Espino, 42, Vigo
             </p>
           </div>
           <a
@@ -1011,7 +1011,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               Cuidado profesional con el trato cercano de toda la vida
             </h2>
             <p className="text-xs sm:text-sm text-blue-100 leading-relaxed">
-              En nuestra tienda de Alcalde Gregorio Espino 44 no eres un número de orden. Nuestro equipo y nuestra mascota, el <strong>Oso Mimos</strong>, te reciben en mostrador para asesorarte sobre cómo quitar esa mancha difícil, coger el bajo justo a tu medida o renovar tus edredones y alfombras para el invierno.
+              En nuestra tienda de Alcalde Gregorio Espino 42 no eres un número de orden. Nuestro equipo y nuestra mascota, el <strong>Oso Mimos</strong>, te reciben en mostrador para asesorarte sobre cómo quitar esa mancha difícil, coger el bajo justo a tu medida o renovar tus edredones y alfombras para el invierno.
             </p>
           </div>
           <div className="md:col-span-4 flex flex-col gap-2.5">

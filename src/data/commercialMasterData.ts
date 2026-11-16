@@ -281,7 +281,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     localidad: 'Vigo',
     provincia: 'Pontevedra',
     zonaSlug: 'vigo',
-    direccion: 'Alcalde Gregorio Espino, 44',
+    direccion: 'Alcalde Gregorio Espino, 42',
     codigoPostal: '36205',
     coordenadas: { latitud: 42.22836, longitud: -8.707589 },
     telefono: '986192787',
@@ -320,7 +320,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     plazo: 'Se confirma en tienda o por WhatsApp según prenda y tratamiento',
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
-      'Entrega y recogida directa en nuestra tienda propia de Alcalde Gregorio Espino, 44 para tintorería, lavandería, textiles del hogar y arreglos de ropa.',
+      'Entrega y recogida directa en nuestra tienda propia de Alcalde Gregorio Espino, 42 para tintorería, lavandería, textiles del hogar y arreglos de ropa.',
     foto: '/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.jpg',
     referenciaLocal:
       'Esquina con Rúa do Escultor Nogueira, frente a la zona ajardinada de Alcalde Gregorio Espino.',
@@ -646,7 +646,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       "Deposita y recoge tus prendas y textiles del hogar para los servicios de Tintorería Mimos en el establecimiento colaborador D'Passo (Camiño Espedrigada, 9 bajo, Vigo).",
-    foto: '',
+    foto: '/images/dpasso-vigo/fachada-dpasso-vigo.webp',
     referenciaLocal: 'En Camiño Espedrigada, 9 bajo (Vigo).',
     aparcamiento: 'Zona de carga/descarga y parada rápida en las inmediaciones.',
     cierreTemporal: false,

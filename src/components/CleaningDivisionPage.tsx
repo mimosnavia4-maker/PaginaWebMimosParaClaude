@@ -183,7 +183,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                   : 'bg-white/10 text-slate-200 hover:bg-white/20'
               }`}
             >
-              Servicios para empresas
+              Lavandería para empresas
             </a>
             <a
               href="/limpieza-sofas-vigo"
@@ -255,7 +255,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                   <strong className="text-white block mb-1">
                     Atención centralizada en Navia (Vigo)
                   </strong>
-                  Combinamos limpieza profesional con nuestra propia planta de tintorería y lavandería en C/ As Teixugueiras, 11, local 9.
+                  Combinamos limpieza profesional con nuestra propia planta de tintorería y lavandería en C/ Teixugueiras, 11, bajo 9.
                 </div>
               </div>
             </div>
@@ -332,6 +332,26 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
                     >
                       <span>Ver limpieza de sofás y tapicerías</span>
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </a>
+                  )}
+                  {srv.id === 'empresas-y-comercios' && (
+                    <a
+                      href="/servicios-empresas"
+                      onClick={(e) => onNavigate('/servicios-empresas', e)}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                    >
+                      <span>Ver lavandería y tintorería para empresas</span>
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </a>
+                  )}
+                  {srv.id === 'apartamentos-turisticos' && (
+                    <a
+                      href="/limpieza-apartamentos-turisticos-vigo"
+                      onClick={(e) => onNavigate('/limpieza-apartamentos-turisticos-vigo', e)}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                    >
+                      <span>Ver servicio para apartamentos turísticos</span>
                       <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </a>
                   )}
