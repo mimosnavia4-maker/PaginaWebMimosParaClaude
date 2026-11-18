@@ -36,6 +36,8 @@ type FilterKind = 'todos' | 'tienda' | 'punto';
 function getPointDetailHref(punto: PuntoRegistro): string | null {
   if (punto.id === 'as-teixugueiras') return '/tienda-mimos-navia-vigo';
   if (punto.id === 'gregorio-espino') return '/tienda-mimos-gregorio-espino-vigo';
+  if (punto.id === 'rua-venezuela') return '/tienda-mimos-venezuela-vigo';
+  if (punto.id === 'punto-vigo-dpasso') return '/punto-mimos-dpasso-vigo';
   if (punto.id === 'punto-redondela') return '/zonas/redondela';
   if (punto.id === 'punto-gondomar') return '/zonas/gondomar';
   if (punto.id === 'punto-ponteareas') return '/zonas/ponteareas';

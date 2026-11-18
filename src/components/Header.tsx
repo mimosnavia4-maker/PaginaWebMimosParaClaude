@@ -908,8 +908,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
 
                     {/* Tienda Venezuela */}
                     <a
-                      href="/puntos-mimos"
-                      onClick={(e) => handleLinkClick('/puntos-mimos', e)}
+                      href="/tienda-mimos-venezuela-vigo"
+                      onClick={(e) => handleLinkClick('/tienda-mimos-venezuela-vigo', e)}
                       className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] transition-all"
                     >
                       <div className="flex items-center justify-between">
@@ -921,7 +921,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         </span>
                       </div>
                       <p className="text-xs text-slate-600 mt-1">
-                        C/ Venezuela, 41, bajo 1 · Tel. 646 94 67 64
+                        Rúa de Venezuela, 29, Entreplanta · Tel. 646 94 67 64
                       </p>
                       <p className="text-[11px] text-slate-500 mt-0.5">
                         Taller propio de costura y punto directo de atención en el centro de Vigo.
@@ -1326,11 +1326,18 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         • Mimos Gregorio Espino (Taller in situ)
                       </a>
                       <a
+                        href="/tienda-mimos-venezuela-vigo"
+                        onClick={(e) => handleLinkClick('/tienda-mimos-venezuela-vigo', e)}
+                        className="block py-1 hover:text-[#60B5F6]"
+                      >
+                        • Mimos Venezuela 29 (Taller in situ)
+                      </a>
+                      <a
                         href="/puntos-mimos"
                         onClick={(e) => handleLinkClick('/puntos-mimos', e)}
                         className="block py-1 hover:text-[#60B5F6]"
                       >
-                        • Mimos Venezuela y comarca
+                        • Todos los puntos y comarca
                       </a>
                       <a
                         href="/se-punto-colaborador"

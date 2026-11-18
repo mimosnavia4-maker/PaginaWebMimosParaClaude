@@ -718,7 +718,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 </h3>
                 <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                   {t.direccion} · {t.codigo_postal} {t.localidad}
-                  {t.id === 'rua-venezuela' ? ' (Centro de Vigo · entorno Urzáiz / Gran Vía)' : ''}
+                  {t.id === 'rua-venezuela' ? ' (Santiago de Vigo · entorno Urzáiz / Gran Vía / El Corte Inglés)' : ''}
                 </p>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                   {t.horario.resumen}

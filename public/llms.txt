@@ -43,7 +43,7 @@
    - Ejecución técnica mediante **restaurador especialista colaborador** (flecos, festón lateral, ribetes, esquinas y roturas puntuales); viabilidad y presupuesto evaluados directamente por el restaurador a partir de fotos de frente y reverso.
 10. **Familia – Costura y arreglos de ropa (`/arreglos-de-ropa-vigo`, 18 especialidades):**
    - **Catálogo completo:** bajos y bastillas, pantalones, faldas y vestidos, abrigos, cambio y reparación de cremalleras, botones, estrechar y ensanchar, ajustes de cintura, zurcidos, descosidos y rotos, prendas delicadas, prendas de piel, **bordados personalizados**, **confección de cortinas, estores y cojines**, y **servicio express**.
-   - **Talleres propios in situ:** Gregorio Espino, 42 y C/ Venezuela, 41, bajo 1. **Recepción y entrega:** Sede Central Navia (Teixugueiras, 11).
+   - **Talleres propios in situ:** Gregorio Espino, 42 y Rúa de Venezuela, 29, Entreplanta. **Recepción y entrega:** Sede Central Navia (Teixugueiras, 11).
    - **Puntos colaboradores independientes con costura confirmada:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño). En Redondela se gestiona recepción de tintorería, colada y textiles.
 11. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio coordinado en Vigo y comarca sujeto a un importe mínimo de servicio (consultar condiciones y zona de cobertura con Mimo); sin pedido mínimo en tiendas propias y puntos colaboradores.
 
@@ -63,9 +63,9 @@
    C/ Teixugueiras, 11, bajo 9 · 36212 Vigo (Pontevedra) · Tel.: 986 12 51 41  
    Horario: L-V 09:30-14:00 y 16:00-20:00 · Sábados 10:00-13:30.  
    *(Punto de recepción y entrega de arreglos para confección en taller)*.
-2. **Tienda Mimos Venezuela (con taller propio de costura in situ):**  
-   C/ Venezuela, 41, bajo 1 · 36203 Vigo (Pontevedra) · Tel.: 646 94 67 64  
-   Horario: L-V 09:30-13:30 y 16:30-19:30 · Sábados: cerrado.
+2. **Tienda Mimos Venezuela (`/tienda-mimos-venezuela-vigo`, con taller propio de costura in situ):**  
+   Rúa de Venezuela, 29, Entreplanta · Santiago de Vigo, 36203 Vigo (Pontevedra) · Tel.: 646 94 67 64  
+   Horario: L-V 09:30-13:30 y 16:30-19:30 · Sábados: cerrado. Pago en tienda con tarjeta o efectivo (sin Bizum). Parking de pago enfrente (Parking Venezuela).
 3. **Tienda Mimos Gregorio Espino (con taller propio de costura in situ):**  
    Avda. Alcalde Gregorio Espino, 42 · 36205 Vigo (Pontevedra) · Tel.: 986 19 27 87  
    Horario: L-V 09:30-13:30 y 16:30-20:00 · Sábados 09:30-13:00.
@@ -126,6 +126,7 @@
 - [Buscador general de tiendas y puntos](https://www.tintoreriamimos.es/puntos-mimos)
 - [Sede central Tintorería Mimos Navia (Vigo)](https://www.tintoreriamimos.es/tienda-mimos-navia-vigo)
 - [Tienda propia Mimos Gregorio Espino (Vigo)](https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo)
+- [Tienda propia Mimos Venezuela (Vigo centro)](https://www.tintoreriamimos.es/tienda-mimos-venezuela-vigo)
 - [Punto colaborador Mimos en Vigo – D'Passo](https://www.tintoreriamimos.es/punto-mimos-dpasso-vigo)
 - [Puntos Mimos y tiendas propias en Vigo](https://www.tintoreriamimos.es/zonas/vigo)
 - [Punto colaborador Mimos en Redondela](https://www.tintoreriamimos.es/zonas/redondela)

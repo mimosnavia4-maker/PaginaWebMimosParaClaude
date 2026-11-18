@@ -67,6 +67,8 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/central-navia': '/tienda-mimos-navia-vigo',
   '/tienda/gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
   '/tienda-gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
+  '/tienda/venezuela': '/tienda-mimos-venezuela-vigo',
+  '/tienda-venezuela': '/tienda-mimos-venezuela-vigo',
   '/punto-dpasso-vigo': '/punto-mimos-dpasso-vigo',
   '/punto/dpasso': '/punto-mimos-dpasso-vigo',
   '/ficha/dpasso': '/punto-mimos-dpasso-vigo',
@@ -227,13 +229,14 @@ export const TIENDA_GREGORIO_ESPINO_SCHEMA: Record<string, unknown> = {
 export const TIENDA_VENEZUELA_SCHEMA: Record<string, unknown> = {
   '@type': 'DryCleaningOrLaundry',
   '@id': 'https://www.tintoreriamimos.es/#tienda-venezuela',
-  name: 'Tintorería Mimos – Venezuela',
-  url: 'https://www.tintoreriamimos.es/zonas/vigo',
+  name: 'Tintorería y Costura Mimos – Rúa de Venezuela 29 (Vigo Centro)',
+  url: 'https://www.tintoreriamimos.es/tienda-mimos-venezuela-vigo',
   telephone: '+34646946764',
+  paymentAccepted: 'Cash, Credit Card',
   parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'C/ Venezuela, 41, bajo 1',
+    streetAddress: 'Rúa de Venezuela, 29, Entreplanta',
     addressLocality: 'Vigo',
     postalCode: '36203',
     addressRegion: 'Pontevedra',
@@ -241,8 +244,8 @@ export const TIENDA_VENEZUELA_SCHEMA: Record<string, unknown> = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 42.23268,
-    longitude: -8.719311,
+    latitude: 42.233117,
+    longitude: -8.720276,
   },
   openingHoursSpecification: [
     {
@@ -348,6 +351,54 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         '@type': 'FAQPage',
         mainEntity: gregorioFaqs.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/tienda-mimos-venezuela-vigo') {
+    const venezuelaFaqs = [
+      {
+        pregunta: '¿Dónde está exactamente la tienda y cómo se entra a la entreplanta?',
+        respuesta:
+          'Estamos en Rúa de Venezuela, 29, Entreplanta (Santiago de Vigo, 36203 Vigo), a pocos minutos a pie de El Corte Inglés, Gran Vía y Urzáiz. En la acera verás nuestro cartel azul de Tintorería Arreglos Mimos junto al árbol y, al lado de la puerta del portal, la placa azul oficial de MIMOS que te guía hacia la entreplanta.',
+      },
+      {
+        pregunta: '¿Cuál es el horario de Mimos Venezuela? ¿Abrís los sábados?',
+        respuesta:
+          'Atendemos de lunes a viernes de 09:30 a 13:30 y de 16:30 a 19:30. Los sábados, domingos y festivos esta tienda permanece cerrada. Si necesitas venir un sábado por la mañana, nuestras tiendas propias de Navia (10:00–13:30) y Gregorio Espino 42 (09:30–13:00) sí abren.',
+      },
+      {
+        pregunta: '¿Tenéis taller propio de costura y probador en la tienda de Venezuela?',
+        respuesta:
+          'Sí. Contamos con taller propio de costura in situ con máquina industrial y espejo probador para tomar la medida exacta de bajos, estrechar o ensanchar prendas, cambiar cremalleras y ajustar vestidos o pantalones directamente en tienda.',
+      },
+      {
+        pregunta: '¿Qué métodos de pago aceptáis en Mimos Venezuela? ¿Aceptáis Bizum?',
+        respuesta:
+          'En nuestra tienda de Rúa de Venezuela 29 aceptamos pago con tarjeta bancaria (contactless) y en efectivo. No se acepta Bizum en este establecimiento. Entregamos siempre tu resguardo oficial de depósito.',
+      },
+      {
+        pregunta: '¿Dónde puedo aparcar si vengo en coche al centro con edredones o alfombras?',
+        respuesta:
+          'Justo enfrente de nuestro portal se encuentra el aparcamiento subterráneo de pago Parking Venezuela (accesos en Rúa de Venezuela 34–36), muy práctico para bajar prendas de abrigo, trajes, edredones o alfombras sin dar vueltas por el centro.',
+      },
+      {
+        pregunta: '¿Necesito pedir cita previa o puedo pedir entrega a domicilio después?',
+        respuesta:
+          'No hace falta cita previa para entregar o probar prendas en horario de apertura. Y si tras dejar tu encargo en Rúa de Venezuela 29 prefieres recibirlo limpio en tu casa u oficina de Vigo, puedes coordinar la entrega a domicilio con Mimo por WhatsApp.',
+      },
+    ];
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      TIENDA_VENEZUELA_SCHEMA,
+      {
+        '@type': 'FAQPage',
+        mainEntity: venezuelaFaqs.map((f) => ({
           '@type': 'Question',
           name: f.pregunta,
           acceptedAnswer: {

@@ -74,7 +74,7 @@ const SOLUTION_OPTIONS = [
 
 const DELIVERY_POINTS = [
   'Navia — Sede Central (C/ Teixugueiras, 11)',
-  'Vigo Centro — C/ Venezuela, 41 (taller de costura in situ)',
+  'Vigo Centro — Rúa de Venezuela, 29, Entreplanta (taller de costura in situ)',
   'Vigo — Avda. Gregorio Espino, 42 (taller de costura in situ)',
   "Vigo As Travesas — Punto colaborador D'Passo",
   'Redondela — Punto colaborador (C/ José Regojo, 29)',
@@ -702,7 +702,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                   <div className="flex items-center gap-2 text-[#60B5F6]">
                     <Scissors className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <p className="text-xs sm:text-sm font-bold">
-                      Modistería propia en Gregorio Espino 42 y Venezuela 41
+                      Modistería propia en Gregorio Espino 42 y Rúa de Venezuela 29 (Entreplanta)
                     </p>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">

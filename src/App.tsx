@@ -71,6 +71,9 @@ const TiendaNaviaPage = React.lazy(() =>
 const TiendaGregorioEspinoPage = React.lazy(() =>
   import('./components/TiendaGregorioEspinoPage').then((m) => ({ default: m.TiendaGregorioEspinoPage }))
 );
+const TiendaVenezuelaPage = React.lazy(() =>
+  import('./components/TiendaVenezuelaPage').then((m) => ({ default: m.TiendaVenezuelaPage }))
+);
 const PuntoDPassoPage = React.lazy(() =>
   import('./components/PuntoDPassoPage').then((m) => ({ default: m.PuntoDPassoPage }))
 );
@@ -549,6 +552,8 @@ export function App() {
           <TiendaNaviaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
           <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
+        ) : effectivePath === '/tienda-mimos-venezuela-vigo' || effectivePath === '/tienda/venezuela' ? (
+          <TiendaVenezuelaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/punto-mimos-dpasso-vigo' ? (
           <PuntoDPassoPage onNavigate={handleNavigate} />
         ) : isPreviewPortada ? (

@@ -417,6 +417,15 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   <FileText className="w-4 h-4" aria-hidden="true" />
                   <span>Ver ficha detallada</span>
                 </a>
+              ) : punto.id === 'rua-venezuela' ? (
+                <a
+                  href="/tienda-mimos-venezuela-vigo"
+                  onClick={(e) => onNavigate('/tienda-mimos-venezuela-vigo', e)}
+                  className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
+                >
+                  <FileText className="w-4 h-4" aria-hidden="true" />
+                  <span>Ver ficha y fotos</span>
+                </a>
               ) : punto.id === 'punto-o-porrino' ? (
                 <a
                   href="/zonas/o-porrino"

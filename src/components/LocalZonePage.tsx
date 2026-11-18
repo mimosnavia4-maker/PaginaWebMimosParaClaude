@@ -285,6 +285,17 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
             </a>
           )}
 
+          {punto.id === 'rua-venezuela' && (
+            <a
+              href="/tienda-mimos-venezuela-vigo"
+              onClick={(e) => onNavigate('/tienda-mimos-venezuela-vigo', e)}
+              className="inline-flex items-center gap-1.5 bg-[#0F76BB] hover:bg-[#0b5f97] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-lg transition-colors"
+            >
+              <Store className="w-4 h-4" aria-hidden="true" />
+              <span>Ver ficha y fotos de la tienda</span>
+            </a>
+          )}
+
           {punto.id === 'punto-vigo-dpasso' && (
             <a
               href="/punto-mimos-dpasso-vigo"

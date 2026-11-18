@@ -163,6 +163,30 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
         `</dl>` +
         `</section>`;
     }
+  } else if (routePath === '/tienda-mimos-venezuela-vigo') {
+    const punto = TIENDAS_PROPIAS.find((t) => t.id === 'rua-venezuela');
+    if (punto) {
+      specificHtml =
+        `<section class="space-y-3">` +
+        `<h2 class="text-xl font-bold text-[#002147]">Tienda propia Tintorería y Costura Mimos Venezuela (Vigo centro)</h2>` +
+        `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, Santiago de Vigo, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)} (Pontevedra)</p>` +
+        `<p><strong>Acceso:</strong> Portal nº 29 señalizado en la acera con cartel azul de Tintorería Arreglos Mimos y placa azul MIMOS junto a la puerta para acceder a la entreplanta.</p>` +
+        `<p><strong>Horario:</strong> ${escapeHtml(punto.horario.resumen)} · Domingos y festivos: Cerrado</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)} · WhatsApp Mimos: +34 655 536 844</p>` +
+        `<p><strong>Métodos de pago:</strong> Tarjeta bancaria (contactless) y Efectivo. Importante: en Mimos Venezuela no se acepta Bizum.</p>` +
+        `<p><strong>Aparcamiento:</strong> ${escapeHtml(punto.aparcamiento)}</p>` +
+        `<p><strong>Servicios disponibles:</strong> Taller propio de costura in situ con probador y máquina industrial, tintorería profesional, lavandería atendida, planchado profesional, colada familiar, edredones, cortinas y recepción de alfombras.</p>` +
+        `<h3>Preguntas frecuentes sobre Mimos Venezuela (Rúa de Venezuela, 29)</h3>` +
+        `<dl class="space-y-2">` +
+        `<dt><strong>¿Dónde está exactamente la tienda y cómo se entra a la entreplanta?</strong></dt><dd>Estamos en Rúa de Venezuela, 29, Entreplanta (Santiago de Vigo, 36203 Vigo), a pocos minutos a pie de El Corte Inglés, Gran Vía y Urzáiz. En la acera verás nuestro cartel azul de Tintorería Arreglos Mimos junto al árbol y, al lado de la puerta del portal, la placa azul oficial de MIMOS que te guía hacia la entreplanta.</dd>` +
+        `<dt><strong>¿Cuál es el horario de Mimos Venezuela? ¿Abrís los sábados?</strong></dt><dd>Atendemos de lunes a viernes de 09:30 a 13:30 y de 16:30 a 19:30. Los sábados, domingos y festivos esta tienda permanece cerrada. Si necesitas venir un sábado por la mañana, nuestras tiendas propias de Navia (10:00–13:30) y Gregorio Espino 42 (09:30–13:00) sí abren.</dd>` +
+        `<dt><strong>¿Tenéis taller propio de costura y probador en la tienda de Venezuela?</strong></dt><dd>Sí. Contamos con taller propio de costura in situ con máquina industrial y espejo probador para tomar la medida exacta de bajos, estrechar o ensanchar prendas, cambiar cremalleras y ajustar vestidos o pantalones directamente en tienda.</dd>` +
+        `<dt><strong>¿Qué métodos de pago aceptáis en Mimos Venezuela? ¿Aceptáis Bizum?</strong></dt><dd>En nuestra tienda de Rúa de Venezuela 29 aceptamos pago con tarjeta bancaria (contactless) y en efectivo. No se acepta Bizum en este establecimiento. Entregamos siempre tu resguardo oficial de depósito.</dd>` +
+        `<dt><strong>¿Dónde puedo aparcar si vengo en coche al centro con edredones o alfombras?</strong></dt><dd>Justo enfrente de nuestro portal se encuentra el aparcamiento subterráneo de pago Parking Venezuela (accesos en Rúa de Venezuela 34–36), muy práctico para bajar prendas de abrigo, trajes, edredones o alfombras sin dar vueltas por el centro.</dd>` +
+        `<dt><strong>¿Necesito pedir cita previa o puedo pedir entrega a domicilio después?</strong></dt><dd>No hace falta cita previa para entregar o probar prendas en horario de apertura. Y si tras dejar tu encargo en Rúa de Venezuela 29 prefieres recibirlo limpio en tu casa u oficina de Vigo, puedes coordinar la entrega a domicilio con Mimo por WhatsApp.</dd>` +
+        `</dl>` +
+        `</section>`;
+    }
   } else if (routePath === '/punto-mimos-dpasso-vigo') {
     const punto = REGISTROS_PUNTOS.find((p) => p.id === 'punto-vigo-dpasso');
     if (punto) {
@@ -556,6 +580,9 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
     `<li><a href="/servicios-empresas">Lavandería para empresas</a></li>` +
     `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios, humo e inundaciones</a></li>` +
     `<li><a href="/puntos-mimos">Tiendas y Puntos Mimos</a></li>` +
+    `<li><a href="/tienda-mimos-navia-vigo">Tienda propia Mimos Navia (Sede Central)</a></li>` +
+    `<li><a href="/tienda-mimos-gregorio-espino-vigo">Tienda propia Mimos Gregorio Espino (Vigo)</a></li>` +
+    `<li><a href="/tienda-mimos-venezuela-vigo">Tienda propia Mimos Venezuela (Vigo centro)</a></li>` +
     `<li><a href="/punto-mimos-dpasso-vigo">Punto colaborador D'Passo (Vigo)</a></li>` +
     `<li><a href="/zonas/vigo">Vigo (3 tiendas propias)</a></li>` +
     `<li><a href="/zonas/redondela">Redondela</a></li>` +
@@ -681,6 +708,7 @@ function render404Html(baseHtml: string): string {
     `</main>`;
 
   return baseHtml
+    .replace(/<script\s+type="application\/ld\+json"\s+id="schema-localbusiness">[\s\S]*?<\/script>\s*/, '')
     .replace(/<title>[\s\S]*?<\/title>/, `<title>Página no encontrada | Tintorería Mimos</title>`)
     .replace(
       /<meta\s+name="description"\s+content="[^"]*"\s*\/>/,

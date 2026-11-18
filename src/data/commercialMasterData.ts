@@ -194,7 +194,7 @@ export const DISCREPANCIAS_COMERCIALES: DiscrepanciaRegistrada[] = [
   {
     campo: 'Ubicación 3ª Tienda Propia en Vigo',
     solicitudInicial: 'Bouzas',
-    valorActivoEnCodigo: 'Venezuela (C/ Venezuela, 41, bajo 1, 36203 Vigo · Tel. 646 94 67 64)',
+    valorActivoEnCodigo: 'Venezuela (Rúa de Venezuela, 29, Entreplanta, Santiago de Vigo, 36203 Vigo · Tel. 646 94 67 64)',
     estado: 'CONFIRMADA_Y_CERRADA',
     observaciones:
       'Confirmado definitivamente por el cliente: Tintorería Mimos cuenta con exactamente 3 tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela). Bouzas no es tienda propia de Mimos y queda excluida como sucursal o ficha.',
@@ -339,9 +339,9 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     localidad: 'Vigo',
     provincia: 'Pontevedra',
     zonaSlug: 'vigo',
-    direccion: 'C/ Venezuela, 41, bajo 1',
+    direccion: 'Rúa de Venezuela, 29, Entreplanta',
     codigoPostal: '36203',
-    coordenadas: { latitud: 42.23268, longitud: -8.719311 },
+    coordenadas: { latitud: 42.233117, longitud: -8.720276 },
     telefono: '646946764',
     telefonoMostrado: '646 94 67 64',
     telefonoHref: 'tel:+34646946764',
@@ -376,10 +376,12 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     plazo: 'Se confirma en tienda o por WhatsApp según prenda y tratamiento',
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
-      'Entrega y recogida directa en nuestra tienda propia de C/ Venezuela, 41, bajo 1 para servicios de tintorería, lavandería, textiles del hogar y arreglos de ropa.',
-    foto: '',
-    referenciaLocal: 'En el centro urbano de Vigo, C/ Venezuela, 41, bajo 1.',
-    aparcamiento: 'Aparcamientos públicos cercanos y zona de parada rápida en C/ Venezuela.',
+      'Entrega y recogida directa en nuestra tienda propia de Rúa de Venezuela, 29, Entreplanta (Santiago de Vigo) para servicios de tintorería, lavandería, textiles del hogar y arreglos de ropa. Pago en tienda con tarjeta o efectivo (no Bizum).',
+    foto: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.jpg',
+    referenciaLocal:
+      'En Santiago de Vigo (centro urbano), Rúa de Venezuela, 29, Entreplanta (entorno Gran Vía / El Corte Inglés / Urzáiz). Portal señalizado con placa azul MIMOS y cartel en acera.',
+    aparcamiento:
+      'Parking subterráneo de pago justo enfrente (Parking Venezuela, Rúa de Venezuela 34-36) y fácil acceso a pie desde El Corte Inglés y Gran Vía.',
     cierreTemporal: false,
   },
 ];

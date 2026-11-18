@@ -317,6 +317,23 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
     areaServed: { '@type': 'City', name: 'Vigo' },
   },
+  '/tienda-mimos-venezuela-vigo': {
+    title: 'Mimos Venezuela 29 (Vigo) | Tintorería y Costura Centro',
+    h1: 'Tintorería y Costura Mimos Venezuela (Centro de Vigo)',
+    description:
+      'Tienda propia Mimos en Rúa de Venezuela 29, Entreplanta (Santiago de Vigo). Taller de costura in situ, tintorería, colada, edredones y parking enfrente.',
+    canonical: 'https://www.tintoreriamimos.es/tienda-mimos-venezuela-vigo',
+    robots: 'index, follow',
+    ogType: 'website',
+    ogImage:
+      'https://www.tintoreriamimos.es/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.jpg',
+    breadcrumbName: 'Mimos Venezuela',
+    breadcrumbParent: {
+      name: 'Tiendas y Puntos Mimos',
+      url: 'https://www.tintoreriamimos.es/puntos-mimos',
+    },
+    areaServed: { '@type': 'City', name: 'Vigo' },
+  },
   '/punto-mimos-dpasso-vigo': {
     title: "Tintorería Mimos en D'Passo (Vigo) | Camiño Espedrigada 9",
     h1: "Tintorería y lavandería Mimos en D'Passo (Vigo · As Travesas)",

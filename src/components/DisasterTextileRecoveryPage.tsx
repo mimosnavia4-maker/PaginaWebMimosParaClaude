@@ -2291,6 +2291,8 @@ Teléfono de contacto: [Tu teléfono]`;
                   ? '/tienda-mimos-navia-vigo'
                   : tienda.id === 'gregorio-espino'
                   ? '/tienda-mimos-gregorio-espino-vigo'
+                  : tienda.id === 'rua-venezuela'
+                  ? '/tienda-mimos-venezuela-vigo'
                   : '/zonas/vigo';
               return (
                 <article

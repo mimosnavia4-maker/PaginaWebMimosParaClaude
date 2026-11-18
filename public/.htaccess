@@ -55,6 +55,8 @@ ErrorDocument 404 /404.html
   # Redirección 301 de fichas y alias de tiendas propias hacia sus URLs canónicas
   RewriteRule ^tienda/gregorio-espino/?$ /tienda-mimos-gregorio-espino-vigo [L,R=301]
   RewriteRule ^tienda-gregorio-espino/?$ /tienda-mimos-gregorio-espino-vigo [L,R=301]
+  RewriteRule ^tienda/venezuela/?$ /tienda-mimos-venezuela-vigo [L,R=301]
+  RewriteRule ^tienda-venezuela/?$ /tienda-mimos-venezuela-vigo [L,R=301]
   RewriteRule ^tienda/navia/?$ /tienda-mimos-navia-vigo [L,R=301]
   RewriteRule ^tienda-navia/?$ /tienda-mimos-navia-vigo [L,R=301]
   RewriteRule ^central-navia/?$ /tienda-mimos-navia-vigo [L,R=301]

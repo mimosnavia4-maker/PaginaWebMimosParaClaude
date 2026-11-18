@@ -75,7 +75,7 @@ const EXTRA_SERVICE_OPTIONS = [
 
 const DELIVERY_POINTS = [
   'Navia — Sede Central (C/ Teixugueiras, 11)',
-  'Vigo Centro — C/ Venezuela, 41 (taller de costura in situ)',
+  'Vigo Centro — Rúa de Venezuela, 29, Entreplanta (taller de costura in situ)',
   'Vigo — Avda. Gregorio Espino, 42 (taller de costura in situ)',
   "Vigo As Travesas — Punto colaborador D'Passo",
   'Redondela — Punto colaborador (C/ José Regojo, 29)',

@@ -366,7 +366,7 @@ export const SERVICIOS_MIMOS: ServicioMimos[] = [
     ],
     comoSeContrata: [
       'Envía una foto de tu prenda y de su etiqueta por WhatsApp a Mimo para recibir valoración previa antes de venir.',
-      'Entrega sin pedido mínimo en nuestras 3 tiendas propias de Vigo (Navia Teixugueiras 11 bajo 9, Gregorio Espino 42 y Vigo centro en C/ Venezuela 41 bajo 1, entorno Urzáiz/Gran Vía) o en nuestros 5 puntos colaboradores.',
+      'Entrega sin pedido mínimo en nuestras 3 tiendas propias de Vigo (Navia Teixugueiras 11 bajo 9, Gregorio Espino 42 y Vigo centro en Rúa de Venezuela 29, Entreplanta, entorno Urzáiz/Gran Vía) o en nuestros 5 puntos colaboradores.',
       'También puedes consultar con Mimo por WhatsApp la recogida y entrega a domicilio en Vigo y área metropolitana (sujeta a importe mínimo).',
     ],
     ctaTexto: 'Pedir valoración por WhatsApp con Mimo',
@@ -932,12 +932,12 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     seoTitle:
       'Tiendas Propias de Tintorería Mimos en Vigo | Navia, Venezuela y Gregorio Espino',
     metaDescription:
-      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (C/ Teixugueiras 11, C/ Venezuela 41 y Avda. Alcalde Gregorio Espino 42) con servicios completos, talleres propios de costura en Gregorio Espino y Venezuela, recepción en Navia y recogida a domicilio.',
+      'Conoce nuestras 3 tiendas propias de Tintorería Mimos en Vigo (C/ Teixugueiras 11, Rúa de Venezuela 29 Entreplanta y Alcalde Gregorio Espino 42) con servicios completos, talleres propios de costura en Gregorio Espino y Venezuela, recepción en Navia y recogida a domicilio.',
     h1: 'Nuestras 3 tiendas propias en Vigo y servicio de recogida a domicilio',
     subtitulo:
       'Atención directa en nuestras 3 tiendas propias de Vigo (taller propio de costura in situ en Gregorio Espino y Venezuela, y recepción en Navia), con limpieza de alfombras y recogida a domicilio.',
     explicacionEspecificaZona: [
-      'En Vigo contamos con 3 tiendas propias de Tintorería Mimos Navia, S.L.: la sede central en C/ Teixugueiras, 11, bajo 9 (Navia, punto de recepción para arreglos), la tienda de C/ Venezuela, 41, bajo 1 (con taller propio de costura in situ) y la de Avda. Alcalde Gregorio Espino, 42 (con taller propio de costura y modistería in situ). En nuestras 3 tiendas ofrecemos el catálogo completo de cuidado textil, tintorería, lavandería, limpieza de alfombras y servicio coordinado de arreglos de ropa.',
+      'En Vigo contamos con 3 tiendas propias de Tintorería Mimos Navia, S.L.: la sede central en C/ Teixugueiras, 11, bajo 9 (Navia, punto de recepción para arreglos), la tienda de Rúa de Venezuela, 29, Entreplanta (Santiago de Vigo, con taller propio de costura in situ) y la de Avda. Alcalde Gregorio Espino, 42 (con taller propio de costura y modistería in situ). En nuestras 3 tiendas ofrecemos el catálogo completo de cuidado textil, tintorería, lavandería, limpieza de alfombras y servicio coordinado de arreglos de ropa.',
       'Para mayor comodidad de particulares, empresas y viviendas turísticas, disponemos también de servicio coordinado de recogida y entrega a domicilio en Vigo y comarca con solicitud directa a través de nuestro asistente Mimo por WhatsApp o formulario web.',
     ],
     pasosEntregaRecogida: [
@@ -965,12 +965,12 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
         pregunta:
           '¿Dónde están ubicadas las 3 tiendas propias de Mimos en Vigo y qué servicios ofrecen?',
         respuesta:
-          'Nuestras 3 tiendas propias se encuentran en C/ Teixugueiras, 11, bajo 9 (Navia, CP 36212), C/ Venezuela, 41, bajo 1 (Centro, CP 36203) y Avda. Alcalde Gregorio Espino, 42 (O Calvario, CP 36205). Ofrecemos el catálogo completo de tintorería, lavandería, planchado, colada y limpieza de alfombras en las 3 tiendas. Para arreglos de ropa, disponemos de taller propio de costura in situ en Gregorio Espino y Venezuela, mientras que en Navia atendemos la recepción y entrega de prendas para su confección en nuestros talleres.',
+          'Nuestras 3 tiendas propias se encuentran en C/ Teixugueiras, 11, bajo 9 (Navia, CP 36212), Rúa de Venezuela, 29, Entreplanta (Centro / Santiago de Vigo, CP 36203) y Avda. Alcalde Gregorio Espino, 42 (O Calvario, CP 36205). Ofrecemos el catálogo completo de tintorería, lavandería, planchado, colada y limpieza de alfombras en las 3 tiendas. Para arreglos de ropa, disponemos de taller propio de costura in situ en Gregorio Espino y Venezuela, mientras que en Navia atendemos la recepción y entrega de prendas para su confección en nuestros talleres.',
       },
       {
         pregunta: '¿Qué tiendas propias de Vigo abren los sábados por la mañana?',
         respuesta:
-          'Abren los sábados por la mañana nuestras tiendas de Navia (C/ Teixugueiras, 11, bajo 9, de 10:00 a 13:30) y Gregorio Espino (Avda. Alcalde Gregorio Espino, 42, de 09:30 a 13:00). La tienda de C/ Venezuela, 41 atiende de lunes a viernes de 09:30 a 13:30 y de 16:30 a 19:30.',
+          'Abren los sábados por la mañana nuestras tiendas de Navia (C/ Teixugueiras, 11, bajo 9, de 10:00 a 13:30) y Gregorio Espino (Avda. Alcalde Gregorio Espino, 42, de 09:30 a 13:00). La tienda de Rúa de Venezuela, 29, Entreplanta atiende de lunes a viernes de 09:30 a 13:30 y de 16:30 a 19:30.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -2974,7 +2974,7 @@ export const SERVICIO_ARREGLOS_DATA = {
     },
     {
       pregunta: '7. ¿En qué tiendas propias y puntos colaboradores puedo entregar mi ropa para arreglar?',
-      respuesta: `Puedes acudir a nuestras tiendas propias de Gregorio Espino (Alcalde Gregorio Espino, 42 — taller completo con especialidades de piel, bordados, confección hogar y express) o Venezuela (C/ Venezuela, 41, bajo 1 — taller propio in situ); a nuestra sede de Navia (C/ Teixugueiras, 11, bajo 9 — recepción y entrega para taller); y para composturas habituales de vestir, a los puntos colaboradores con costura en ${PUNTOS_CON_COSTURA.filter(
+      respuesta: `Puedes acudir a nuestras tiendas propias de Gregorio Espino (Alcalde Gregorio Espino, 42 — taller completo con especialidades de piel, bordados, confección hogar y express) o Venezuela (Rúa de Venezuela, 29, Entreplanta — taller propio in situ); a nuestra sede de Navia (C/ Teixugueiras, 11, bajo 9 — recepción y entrega para taller); y para composturas habituales de vestir, a los puntos colaboradores con costura en ${PUNTOS_CON_COSTURA.filter(
         (p) => p.tipo === 'punto'
       )
         .map((p) => `${p.localidad} (${p.nombre_comercio}, ${p.direccion})`)
@@ -3490,7 +3490,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
       titulo: 'Coser primero, limpiar después',
       cuando: 'Enganches en tul, encajes abiertos o botones sueltos tras el baile',
       detalle:
-        'Si una rotura abierta puede ceder o soltar cuentas durante el baño de limpieza, nuestro taller propio en Gregorio Espino 42 o Venezuela 41 refuerza primero la estructura.',
+        'Si una rotura abierta puede ceder o soltar cuentas durante el baño de limpieza, nuestro taller propio en Gregorio Espino 42 o Venezuela 29 (Entreplanta) refuerza primero la estructura.',
     },
     {
       titulo: 'Limpiar primero, coser después',
@@ -3639,7 +3639,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
     {
       pregunta: '8. ¿Qué pasa si el vestido tiene el bajo descosido, un enganche en el tul o la presilla de la cola rota?',
       respuesta:
-        'Al contar con taller propio de costura y modistería in situ en Avda. Gregorio Espino 42 y C/ Venezuela 41 (con recepción también en Navia), integramos el arreglo y la limpieza en el mismo circuito, decidiendo en mostrador si conviene asegurar la costura antes del lavado o rematar el ajuste después.',
+        'Al contar con taller propio de costura y modistería in situ en Avda. Gregorio Espino 42 y Rúa de Venezuela 29, Entreplanta (con recepción también en Navia), integramos el arreglo y la limpieza en el mismo circuito, decidiendo en mostrador si conviene asegurar la costura antes del lavado o rematar el ajuste después.',
     },
     {
       pregunta: '9. ¿Hace falta limpiar un vestido tras la boda o comunión si parece que no tiene manchas?',
@@ -3654,7 +3654,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
     {
       pregunta: '11. ¿Dónde puedo entregar mi vestido en Vigo y en localidades cercanas?',
       respuesta:
-        'Puedes traerlo a cualquiera de nuestras 3 tiendas propias en Vigo: Sede Central Navia (C/ Teixugueiras 11), C/ Venezuela 41 y Avda. Gregorio Espino 42. También tenemos puntos colaboradores de recepción en Vigo (As Travesas), Redondela, Gondomar, Ponteareas y O Porriño, además de recogida y entrega a domicilio bajo consulta e importe mínimo.',
+        'Puedes traerlo a cualquiera de nuestras 3 tiendas propias en Vigo: Sede Central Navia (C/ Teixugueiras 11), Rúa de Venezuela 29 (Entreplanta) y Avda. Gregorio Espino 42. También tenemos puntos colaboradores de recepción en Vigo (As Travesas), Redondela, Gondomar, Ponteareas y O Porriño, además de recogida y entrega a domicilio bajo consulta e importe mínimo.',
     },
     {
       pregunta: '12. ¿Qué debo hacer si se mancha el vestido durante la boda antes de traéroslo?',
@@ -3667,7 +3667,7 @@ export const SERVICIO_NOVIA_CEREMONIA_DATA: ServicioNoviaCeremoniaData = {
       titulo: 'Taller propio de costura y arreglos',
       href: '/arreglos-de-ropa-vigo',
       descripcion:
-        'Modistería en Gregorio Espino 42 y Venezuela 41 (recepción en Navia) para bajos descosidos, enganches de tul y presillas de cola.',
+        'Modistería en Gregorio Espino 42 y Venezuela 29, Entreplanta (recepción en Navia) para bajos descosidos, enganches de tul y presillas de cola.',
     },
     {
       titulo: 'Tintorería profesional en Vigo',
@@ -3886,7 +3886,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
     },
     costuraHogar: {
       titulo: 'Limpieza y taller propio de costura y confección para el hogar',
-      subtitulo: 'Gregorio Espino 42 y C/ Venezuela 41 (recepción en Navia)',
+      subtitulo: 'Gregorio Espino 42 y Rúa de Venezuela 29, Entreplanta (recepción en Navia)',
       descripcion:
         'Al contar con talleres propios de modistería y máquina industrial en Vigo, si al desmontar o lavar detectamos un bajo descosido, una cinta fruncidora gastada o una cremallera rota en una funda de sofá, lo arreglamos en el mismo circuito.',
       detalles: [
@@ -3954,7 +3954,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
     {
       pregunta: '7. ¿Puedo aprovechar el lavado para arreglar el bajo de una cortina o cambiar la cremallera de una funda?',
       respuesta:
-        'Sí. Contamos con taller propio de costura en Avda. Gregorio Espino 42 y C/ Venezuela 41 (con recepción también en Navia), donde confeccionamos y ajustamos cortinas, estores textiles, cojines y cremalleras de fundas sin que tengas que llevar el encargo a otro establecimiento.',
+        'Sí. Contamos con taller propio de costura en Avda. Gregorio Espino 42 y Rúa de Venezuela 29, Entreplanta (con recepción también en Navia), donde confeccionamos y ajustamos cortinas, estores textiles, cojines y cremalleras de fundas sin que tengas que llevar el encargo a otro establecimiento.',
     },
     {
       pregunta: '8. ¿Usáis suavizante al lavar edredones de pluma y plumón?',
@@ -3969,7 +3969,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
     {
       pregunta: '10. ¿Dónde puedo entregar edredones, mantas o cortinas, o pedir recogida a domicilio?',
       respuesta:
-        'Puedes entregarlos sin importe mínimo en nuestras 3 tiendas propias en Vigo (Navia Teixugueiras 11, C/ Venezuela 41 y Avda. Gregorio Espino 42) o en los 5 puntos colaboradores de As Travesas, Redondela, Gondomar, Ponteareas y O Porriño. También coordinamos recogida y entrega a domicilio consultando previamente con Mimo el importe mínimo y zona.',
+        'Puedes entregarlos sin importe mínimo en nuestras 3 tiendas propias en Vigo (Navia Teixugueiras 11, Rúa de Venezuela 29 Entreplanta y Avda. Gregorio Espino 42) o en los 5 puntos colaboradores de As Travesas, Redondela, Gondomar, Ponteareas y O Porriño. También coordinamos recogida y entrega a domicilio consultando previamente con Mimo el importe mínimo y zona.',
     },
   ],
   enlacesRelacionados: [
@@ -3989,7 +3989,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
       titulo: 'Taller propio de costura (cortinas y fundas)',
       href: '/arreglos-de-ropa-vigo',
       descripcion:
-        'Confección y ajuste de cortinas, estores textiles, cojines y cambio de cremalleras en Gregorio Espino 42 y Venezuela 41.',
+        'Confección y ajuste de cortinas, estores textiles, cojines y cambio de cremalleras en Gregorio Espino 42 y Venezuela 29 (Entreplanta).',
     },
     {
       titulo: 'Guía práctica: cómo cuidar un edredón de plumas',
@@ -4680,7 +4680,7 @@ export const SERVICIO_DETALLE_ENRIQUECIDO: Record<string, ServicioDetalleEnrique
         {
           criterio: 'Tiempo y puntos de entrega',
           valores: [
-            'Solo dejas y recoges en 3 tiendas de Vigo (Navia, Gregorio Espino 42, Vigo centro C/ Venezuela 41) o 5 puntos colaboradores, más recogida bajo mínimo',
+            'Solo dejas y recoges en 3 tiendas de Vigo (Navia, Gregorio Espino 42, Vigo centro Rúa de Venezuela 29 Entreplanta) o 5 puntos colaboradores, más recogida bajo mínimo',
             'Exige desplazarte y esperar o vigilar presencialmente durante el ciclo',
             'Requiere varias horas entre lavado, ciclos repetidos y tendido',
           ],
@@ -4778,7 +4778,7 @@ export const SERVICIO_DETALLE_ENRIQUECIDO: Record<string, ServicioDetalleEnrique
       {
         pregunta: '¿Dónde puedo entregar mis prendas en Vigo o comarca y cómo funciona la recogida a domicilio?',
         respuesta:
-          'Puedes entregar y recoger sin pedido mínimo en nuestras 3 tiendas propias de Vigo —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Vigo centro en C/ Venezuela 41 bajo 1 (entorno Urzáiz y Gran Vía)— o en nuestros 5 puntos colaboradores: D’Passo (Vigo As Travesas, Camiño Espedrigada 9), Redondela, Gondomar, Ponteareas y O Porriño. La recogida y entrega a domicilio está sujeta a importe mínimo consultable con Mimo por WhatsApp.',
+          'Puedes entregar y recoger sin pedido mínimo en nuestras 3 tiendas propias de Vigo —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Vigo centro en Rúa de Venezuela 29, Entreplanta (entorno Urzáiz y Gran Vía)— o en nuestros 5 puntos colaboradores: D’Passo (Vigo As Travesas, Camiño Espedrigada 9), Redondela, Gondomar, Ponteareas y O Porriño. La recogida y entrega a domicilio está sujeta a importe mínimo consultable con Mimo por WhatsApp.',
       },
     ],
   },
@@ -5225,7 +5225,7 @@ export const SERVICIO_EMPRESAS_B2B_DATA = {
       numero: '01',
       titulo: 'Entrega flexible en Vigo',
       descripcion:
-        'Puedes entregar y recoger directamente en nuestras 3 tiendas propias —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Venezuela 41 bajo 1 (Vigo centro)— o acordar recogida y entrega en tu local con Mimo según volumen y ruta.',
+        'Puedes entregar y recoger directamente en nuestras 3 tiendas propias —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Rúa de Venezuela 29, Entreplanta (Vigo centro)— o acordar recogida y entrega en tu local con Mimo según volumen y ruta.',
     },
     {
       numero: '02',
@@ -5268,7 +5268,7 @@ export const SERVICIO_EMPRESAS_B2B_DATA = {
     },
     {
       pregunta: '¿Cómo funciona la recogida y entrega en Vigo para una peluquería, clínica o comercio pequeño?',
-      respuesta: `Puedes entregar y recoger directamente en nuestras ${TIENDAS_PROPIAS.length} tiendas propias de Vigo —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Venezuela 41 bajo 1 (Vigo centro)— o acordar con Mimo por WhatsApp la recogida y entrega en tu local según el volumen y la ruta disponible.`,
+      respuesta: `Puedes entregar y recoger directamente en nuestras ${TIENDAS_PROPIAS.length} tiendas propias de Vigo —Navia (C/ Teixugueiras 11 bajo 9), Gregorio Espino 42 y Rúa de Venezuela 29, Entreplanta (Vigo centro)— o acordar con Mimo por WhatsApp la recogida y entrega en tu local según el volumen y la ruta disponible.`,
     },
     {
       pregunta: '¿Emitís factura mensual agrupada con CIF y exigís permanencia?',

@@ -30,6 +30,7 @@ export const Footer: React.FC<FooterProps> = ({
   const getStoreHref = (id: string) => {
     if (id === 'as-teixugueiras') return '/tienda-mimos-navia-vigo';
     if (id === 'gregorio-espino') return '/tienda-mimos-gregorio-espino-vigo';
+    if (id === 'rua-venezuela') return '/tienda-mimos-venezuela-vigo';
     return '/puntos-mimos';
   };
 

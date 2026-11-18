@@ -57,7 +57,7 @@ const RUG_TYPES = [
 
 const DELIVERY_MODES = [
   'Entrega y recogida en Tienda Navia (C/ Teixugueiras, 11)',
-  'Entrega y recogida en Tienda Venezuela (C/ Venezuela, 41)',
+  'Entrega y recogida en Tienda Venezuela (Rúa de Venezuela, 29, Entreplanta)',
   'Entrega y recogida en Tienda Gregorio Espino (Avda. Gregorio Espino, 42)',
   'Quiero consultar recogida y entrega a domicilio (con Mimo)',
 ];

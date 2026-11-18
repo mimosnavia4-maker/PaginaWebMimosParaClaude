@@ -426,6 +426,8 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                       ? '/tienda-mimos-navia-vigo'
                       : t.id === 'gregorio-espino'
                       ? '/tienda-mimos-gregorio-espino-vigo'
+                      : t.id === 'rua-venezuela'
+                      ? '/tienda-mimos-venezuela-vigo'
                       : '/zonas/vigo';
 
                   return (

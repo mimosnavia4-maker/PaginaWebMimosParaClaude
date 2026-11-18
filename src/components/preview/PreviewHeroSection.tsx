@@ -122,15 +122,15 @@ function resolveCoverageByQuery(rawQuery: string): CoverageResult {
   if (q.includes('36201') || q.includes('36202') || q.includes('36203') || q.includes('36211') || q.includes('venezuela') || q.includes('centro') || q.includes('corte ingles') || q.includes('urzaiz') || q.includes('gran via')) {
     const p = findPoint('rua-venezuela');
     return {
-      zonaLabel: 'Centro de Vigo / Rúa Venezuela',
-      summary: 'Tienda propia céntrica con modistería in situ, recepción diaria de prendas y recogida a domicilio en el centro de Vigo.',
+      zonaLabel: 'Centro de Vigo / Rúa de Venezuela 29',
+      summary: 'Tienda propia céntrica con modistería in situ, recepción diaria de prendas y parking público justo enfrente.',
       pointName: `${p.nombre_mostrado} (Tienda Propia + Taller)`,
       pointAddress: `${p.direccion}, ${p.codigo_postal} ${p.localidad}`,
       pointSchedule: p.horario.resumen,
       pointPhone: p.telefonos_mostrados,
-      pointRoute: '/zonas/vigo',
-      pickupNote: 'Atención en tienda sin pedido mínimo y ruta de recogida a domicilio para viviendas y oficinas.',
-      whatsappHref: buildMimoWhatsAppUrl('Hola, Mimo. Estoy en el centro de Vigo / C/ Venezuela y quiero hacer una consulta.'),
+      pointRoute: '/tienda-mimos-venezuela-vigo',
+      pickupNote: 'Atención en entreplanta sin pedido mínimo (pago tarjeta/efectivo, sin Bizum) y ruta de recogida a domicilio.',
+      whatsappHref: buildMimoWhatsAppUrl('Hola, Mimo. Estoy en el centro de Vigo / Rúa de Venezuela y quiero hacer una consulta.'),
     };
   }
 
@@ -143,7 +143,7 @@ function resolveCoverageByQuery(rawQuery: string): CoverageResult {
       pointAddress: `${p.direccion}, ${p.codigo_postal} ${p.localidad}`,
       pointSchedule: p.horario.resumen,
       pointPhone: p.telefonos_mostrados,
-      pointRoute: '/zonas/vigo',
+      pointRoute: '/punto-mimos-dpasso-vigo',
       pickupNote: 'Sin pedido mínimo en punto colaborador; también recogemos y limpiamos sofás a domicilio en tu barrio.',
       whatsappHref: buildMimoWhatsAppUrl('Hola, Mimo. Estoy en la zona de Balaídos / As Travesas / Coia (Vigo) y quiero consultar cobertura.'),
     };
