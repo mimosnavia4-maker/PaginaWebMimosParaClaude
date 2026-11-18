@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 import { ArrowLeft, MessageCircle, Phone, ArrowUpRight } from 'lucide-react';
+import { ARTICULOS_BLOG } from '../data/blogArticlesFull';
 import {
-  ArticuloBlog,
-  ARTICULOS_BLOG,
   CONTACT_INFO,
   TIENDAS_PROPIAS,
 } from '../data/mimosData';
 import { TextileCareSymbols } from './TextileCareSymbols';
 
 interface BlogArticlePageProps {
-  articulo: ArticuloBlog;
+  articuloSlug: string;
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
-  articulo,
+  articuloSlug,
   onNavigate,
 }) => {
   const [imgError, setImgError] = useState(false);
   React.useEffect(() => {
     setImgError(false);
-  }, [articulo.slug]);
-  const currentIndex = ARTICULOS_BLOG.findIndex((a) => a.slug === articulo.slug);
+  }, [articuloSlug]);
+  const foundIndex = ARTICULOS_BLOG.findIndex((a) => a.slug === articuloSlug);
+  const currentIndex = foundIndex >= 0 ? foundIndex : 0;
+  const articulo = ARTICULOS_BLOG[currentIndex];
   const nextIndex = (currentIndex + 1) % ARTICULOS_BLOG.length;
   const otroArticulo = ARTICULOS_BLOG[nextIndex];
 

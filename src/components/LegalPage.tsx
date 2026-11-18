@@ -172,7 +172,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
                 <strong>Canal de mensajería WhatsApp:</strong> Al pulsar en los botones o enlaces de contacto por WhatsApp, la comunicación se gestiona a través de la infraestructura externa de Meta Platforms Ireland Ltd. (WhatsApp Ireland Limited). El tratamiento de los mensajes y metadatos en dicha plataforma se rige por su respectiva política de privacidad y las condiciones aceptadas por el usuario al utilizar dicha aplicación.
               </li>
               <li>
-                <strong>Google Maps y Google Fonts:</strong> Esta web integra recursos técnicos de Google Ireland Limited para la visualización de fuentes tipográficas y mapas interactivos de localización de tiendas y puntos colaboradores. La carga de estos componentes técnicos puede requerir la transmisión de la dirección IP del usuario a los servidores del proveedor con fines estrictamente técnicos de visualización y geolocalización.
+                <strong>Google Maps y Google Fonts:</strong> Esta web utiliza fuentes tipográficas de Google Fonts y ofrece un mapa interactivo de localización mediante Google Maps (Google Ireland Limited). Por respeto a tu privacidad, el mapa interactivo de Google Maps permanece bloqueado por defecto y no realiza conexiones ni carga recursos de Google Maps hasta que aceptas las cookies o pulsas expresamente el botón «Cargar mapa interactivo». La carga voluntaria de estos recursos implica la transmisión técnica de la dirección IP al proveedor para mostrar las ubicaciones.
               </li>
             </ul>
             <h2 className="text-lg font-extrabold text-[#002147] dark:text-white">
@@ -234,7 +234,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
               3. Cómo cambiar o retirar tu consentimiento
             </h2>
             <p>
-              Puedes modificar tu elección o retirar tu consentimiento en cualquier momento pulsando el botón inferior o el enlace permanente <strong>«Configurar cookies»</strong> situado en el pie de página de toda la web. Si pasas de «Aceptar» a «Rechazar», se detiene la medición en curso, se desactiva el script analítico y se solicita la eliminación de las cookies de Google Analytics en tu navegador. También puedes borrar las cookies y los datos de sitios web desde los ajustes de privacidad de tu navegador.
+              Puedes modificar tu elección o retirar tu consentimiento en cualquier momento pulsando el botón inferior o el enlace permanente <strong>«Gestionar cookies»</strong> situado en el pie de página de toda la web. Si pasas de «Aceptar» a «Rechazar», se detiene la medición en curso, se desactiva el script analítico, vuelve a bloquearse la carga automática del mapa interactivo y se solicita la eliminación de las cookies de Google Analytics en tu navegador. También puedes borrar las cookies y los datos de sitios web desde los ajustes de privacidad de tu navegador.
             </p>
 
             <div>

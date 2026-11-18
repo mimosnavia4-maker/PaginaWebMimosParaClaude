@@ -9,5 +9,6 @@ coverage/
 
 # AI Studio and local backups
 .aistudio/
+public/assets/aistudio/
 .backup-*
 .gmp_cache/

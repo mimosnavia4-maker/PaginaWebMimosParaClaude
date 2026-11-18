@@ -309,7 +309,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
       'costura_arreglos',
     ],
     arreglosConfirmados: [
-      'Servicio express: bajos y arreglos en el día',
+      'Servicio exprés para bajos y arreglos sencillos (preguntar siempre primero en taller según carga de trabajo)',
       'Cambio y reparación de cremalleras y botones',
       'Estrechar, ensanchar y ajustes de cintura en trajes, faldas y pantalones',
       'Especialistas en arreglos y tratamiento de prendas de piel',
@@ -377,7 +377,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
       'Entrega y recogida directa en nuestra tienda propia de Rúa de Venezuela, 29, Entreplanta (Santiago de Vigo) para servicios de tintorería, lavandería, textiles del hogar y arreglos de ropa. Pago en tienda con tarjeta o efectivo (no Bizum).',
-    foto: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.jpg',
+    foto: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.webp',
     referenciaLocal:
       'En Santiago de Vigo (centro urbano), Rúa de Venezuela, 29, Entreplanta (entorno Gran Vía / El Corte Inglés / Urzáiz). Portal señalizado con placa azul MIMOS y cartel en acera.',
     aparcamiento:
@@ -488,7 +488,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Entrega tus prendas y textiles del hogar en Puntadas No Aire (Avda. Elduayen, 9, Gondomar), establecimiento colaborador de recogida y entrega para los servicios de Tintorería Mimos que cuenta además con servicio confirmado de costura y arreglos de ropa.',
-    foto: '/images/puntadas-no-aire/fachada-puntadas-no-aire-gondomar.jpg',
+    foto: '/images/puntadas-no-aire/fachada-puntadas-no-aire-gondomar.webp',
     referenciaLocal:
       'En pleno centro de Gondomar, Avda. Elduayen, 9 (taller y tienda de costura Puntadas No Aire).',
     aparcamiento:

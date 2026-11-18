@@ -333,7 +333,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                 </h2>
               ) : (
                 <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                  Arregla2 (Ponteareas)
+                  Tintorería, lavandería y costura Mimos en Ponteareas (Arregla2)
                 </h1>
               )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
@@ -423,7 +423,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           <div>
             <h3 className="text-xs sm:text-sm font-black text-[#002147] dark:text-white">Taller Propio In Situ</h3>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-              Modistería y costura en la propia tienda con maquinaria para bajos express y arreglos a medida.
+              Modistería y costura en la propia tienda con maquinaria para bajos exprés (preguntando antes en taller) y arreglos a medida.
             </p>
           </div>
         </div>
@@ -519,7 +519,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
-              <span><strong>Formas de pago:</strong> Efectivo, Tarjeta y Bizum.</span>
+              <span><strong>Formas de pago:</strong> Efectivo y Tarjeta (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -818,8 +818,8 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                 </td>
                 <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">24 a 48 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                    Mismo día / 24h
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                    Consultar en taller
                   </span>
                 </td>
                 <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">

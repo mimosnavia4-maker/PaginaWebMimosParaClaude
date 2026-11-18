@@ -61,6 +61,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
   const photos = {
     fachada: {
       url: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.jpg',
+      webpUrl: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.webp',
       titulo: 'Portal en Rúa de Venezuela, 29 y Señalización Mimos',
       subtitulo:
         'Cartel azul de Tintorería Arreglos Mimos en la acera junto al portal nº 29 y placa oficial azul MIMOS indicando acceso a la entreplanta.',
@@ -70,6 +71,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
     },
     interior: {
       url: '/images/mimos-venezuela/interior-taller-mimos-venezuela-vigo.jpg',
+      webpUrl: '/images/mimos-venezuela/interior-taller-mimos-venezuela-vigo.webp',
       titulo: 'Interior: Taller de Costura In Situ, Probador y Mostrador',
       subtitulo:
         'Máquina de coser industrial en tienda, espejo probador para toma de medidas exacta y mostrador de atención al público.',
@@ -79,6 +81,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
     },
     calle: {
       url: '/images/mimos-venezuela/calle-senalizacion-mimos-venezuela-vigo.jpg',
+      webpUrl: '/images/mimos-venezuela/calle-senalizacion-mimos-venezuela-vigo.webp',
       titulo: 'Entorno Rúa de Venezuela y Parking Subterráneo Enfrente',
       subtitulo:
         'Perspectiva desde la acera de la tienda frente al acceso del aparcamiento de pago Parking Venezuela (nº 34–36), en pleno Santiago de Vigo.',
@@ -153,13 +156,16 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         </button>
         <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black flex items-center justify-center">
           {!failedPhotos[activeTabPhoto] ? (
-            <img
-              src={photos[activeTabPhoto].url}
-              alt={photos[activeTabPhoto].titulo}
-              referrerPolicy="no-referrer"
-              onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
-            />
+            <picture className="w-full h-full flex items-center justify-center">
+              <source srcSet={photos[activeTabPhoto].webpUrl} type="image/webp" />
+              <img
+                src={photos[activeTabPhoto].url}
+                alt={photos[activeTabPhoto].titulo}
+                referrerPolicy="no-referrer"
+                onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+                className="max-h-[75vh] w-full object-contain"
+              />
+            </picture>
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-slate-900 text-slate-200">
               <Store className="w-10 h-10 text-[#60B5F6] mb-3" />
@@ -190,13 +196,16 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           <div className="lg:col-span-7 flex flex-col justify-between bg-slate-950">
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden group bg-slate-900">
               {!failedPhotos[activeTabPhoto] ? (
-                <img
-                  src={photos[activeTabPhoto].url}
-                  alt={photos[activeTabPhoto].titulo}
-                  referrerPolicy="no-referrer"
-                  onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <picture className="block w-full h-full">
+                  <source srcSet={photos[activeTabPhoto].webpUrl} type="image/webp" />
+                  <img
+                    src={photos[activeTabPhoto].url}
+                    alt={photos[activeTabPhoto].titulo}
+                    referrerPolicy="no-referrer"
+                    onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </picture>
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#002147] to-slate-900 text-slate-200">
                   <Store className="w-10 h-10 text-[#60B5F6] mb-2" />
@@ -305,7 +314,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                 </h2>
               ) : (
                 <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                  Mimos Venezuela
+                  Tintorería y Costura Mimos Venezuela (Centro de Vigo)
                 </h1>
               )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">

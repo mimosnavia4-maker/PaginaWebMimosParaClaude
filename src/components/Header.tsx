@@ -118,6 +118,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
         }
       `}</style>
 
+      {/* Enlace accesible para saltar directamente al contenido principal con Tab */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#002147] focus:text-white focus:text-sm focus:font-bold focus:shadow-lg focus:ring-2 focus:ring-[#60B5F6]"
+      >
+        Saltar al contenido principal
+      </a>
+
       {/* Cabecera Principal Sticky con Fondo Azul Marino Corporativo */}
       <header
         className="sticky top-0 z-50 bg-[#002147] text-white border-b border-white/10 shadow-md select-none transition-colors"

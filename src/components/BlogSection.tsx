@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { ARTICULOS_BLOG, CONTACT_INFO } from '../data/mimosData';
+import { ARTICULOS_BLOG_RESUMEN, CONTACT_INFO } from '../data/mimosData';
 
 interface BlogSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -43,7 +43,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = f
 
         {/* Guías y artículos del Blog */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {ARTICULOS_BLOG.map((articulo) => (
+          {ARTICULOS_BLOG_RESUMEN.map((articulo) => (
             <article
               key={articulo.slug}
               className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] overflow-hidden flex flex-col justify-between transition-colors hover:border-[#0F76BB]/60"

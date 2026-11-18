@@ -80,11 +80,13 @@ const PuntoDPassoPage = React.lazy(() =>
 const NotFoundPage = React.lazy(() =>
   import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 );
-const PreviewPortadaPage = React.lazy(() =>
-  import('./components/PreviewPortadaPage').then((m) => ({ default: m.PreviewPortadaPage }))
-);
+const PreviewPortadaPage = import.meta.env.DEV
+  ? React.lazy(() =>
+      import('./components/PreviewPortadaPage').then((m) => ({ default: m.PreviewPortadaPage }))
+    )
+  : null;
 import {
-  ARTICULOS_BLOG,
+  ARTICULOS_BLOG_RESUMEN,
   SERVICIOS_MIMOS,
   ZONAS_SEO_LOCAL,
 } from './data/mimosData';
@@ -149,7 +151,7 @@ export function App() {
   useEffect(() => {
     applyPageSEO(currentPath);
     const cleanRoute = (currentPath || '/').split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
-    if (cleanRoute === '/preview-portada') {
+    if (import.meta.env.DEV && cleanRoute === '/preview-portada') {
       document.title = 'Vista previa Portada (Piloto 2) | Tintorería Mimos';
     }
     if (hasAnalyticsConsent()) {
@@ -297,7 +299,7 @@ export function App() {
     };
   }, [currentPath]);
 
-  // Delegated listener for WhatsApp and phone clicks (single source, no PII or URLs sent)
+  // Delegated listener for WhatsApp and phone clicks (fallback with data-cta-zone / data-service-id / data-store-id)
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
       if (!hasAnalyticsConsent()) {
@@ -305,7 +307,7 @@ export function App() {
       }
       const target = e.target as HTMLElement | null;
       const anchor = target?.closest('a[href]') as HTMLAnchorElement | null;
-      if (!anchor || (e as unknown as { __mimosTracked?: boolean }).__mimosTracked) {
+      if (!anchor) {
         return;
       }
 
@@ -324,19 +326,27 @@ export function App() {
         return;
       }
 
-      let ctaZone: CtaZone = 'page_content';
-      if (anchor.closest('header')) {
-        ctaZone = 'header';
-      } else if (anchor.closest('[aria-label="Mimo, asistente de Tintorería Mimos"]')) {
-        ctaZone = 'mimo_assistant';
-      } else if (anchor.closest('[aria-label="Accesos rápidos en móvil"]')) {
-        ctaZone = 'mobile_bar';
+      let ctaZone: CtaZone | string = anchor.dataset.ctaZone || 'page_content';
+      if (!anchor.dataset.ctaZone) {
+        if (anchor.closest('header')) {
+          ctaZone = 'header';
+        } else if (anchor.closest('[aria-label="Mimo, asistente de Tintorería Mimos"]')) {
+          ctaZone = 'mimo_assistant';
+        } else if (anchor.closest('[aria-label="Accesos rápidos en móvil"]')) {
+          ctaZone = 'mobile_bar';
+        } else if (anchor.closest('footer')) {
+          ctaZone = 'footer';
+        }
       }
 
       trackContactClick(
         isWhatsApp ? 'whatsapp_click' : 'phone_click',
         currentPath,
-        ctaZone
+        ctaZone,
+        {
+          service_id: anchor.dataset.serviceId || undefined,
+          store_id: anchor.dataset.storeId || undefined,
+        }
       );
     };
 
@@ -420,22 +430,12 @@ export function App() {
   const normalizedRoute =
     cleanCurrentPath.length > 1 ? cleanCurrentPath.replace(/\/+$/, '') : '/';
   const effectivePath = resolveCanonicalRoute(normalizedRoute);
-  const isPreviewPortada = effectivePath === '/preview-portada';
+  const isPreviewPortada = import.meta.env.DEV && effectivePath === '/preview-portada';
   const isKnown = KNOWN_ROUTES.includes(effectivePath) || isPreviewPortada;
 
   // Match route
-  const articuloActivo = ARTICULOS_BLOG.find((a) => a.url === effectivePath);
-  const zonaActiva =
-    ZONAS_SEO_LOCAL.find((z) => z.url === effectivePath) ||
-    (effectivePath === '/punto-telas-mas-porrino' ||
-    effectivePath === '/punto/telas-mas' ||
-    effectivePath === '/ficha/telas-mas'
-      ? ZONAS_SEO_LOCAL.find((z) => z.slug === 'o-porrino')
-      : effectivePath === '/punto-puntadas-no-aire-gondomar' ||
-        effectivePath === '/punto/puntadas-no-aire' ||
-        effectivePath === '/ficha/puntadas-no-aire'
-      ? ZONAS_SEO_LOCAL.find((z) => z.slug === 'gondomar')
-      : undefined);
+  const articuloActivo = ARTICULOS_BLOG_RESUMEN.find((a) => a.url === effectivePath);
+  const zonaActiva = ZONAS_SEO_LOCAL.find((z) => z.url === effectivePath);
   const servicioIndividualActivo = SERVICIOS_MIMOS.find(
     (s) =>
       s.url === effectivePath &&
@@ -493,7 +493,7 @@ export function App() {
         {!isKnown ? (
           <NotFoundPage onNavigate={handleNavigate} />
         ) : articuloActivo ? (
-          <BlogArticlePage articulo={articuloActivo} onNavigate={handleNavigate} />
+          <BlogArticlePage articuloSlug={articuloActivo.slug} onNavigate={handleNavigate} />
         ) : effectivePath === '/blog' ? (
           <main id="main-content" tabIndex={-1} className="focus:outline-hidden">
             <BlogSection onNavigate={handleNavigate} isPage={true} />
@@ -548,15 +548,15 @@ export function App() {
           <CareersPage onNavigate={handleNavigate} />
         ) : effectivePath === '/se-punto-colaborador' ? (
           <PuntoColaboradorPage onNavigate={handleNavigate} />
-        ) : effectivePath === '/tienda-mimos-navia-vigo' || effectivePath === '/tienda/navia' ? (
+        ) : effectivePath === '/tienda-mimos-navia-vigo' ? (
           <TiendaNaviaPage onNavigate={handleNavigate} />
-        ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' || effectivePath === '/tienda/gregorio-espino' ? (
+        ) : effectivePath === '/tienda-mimos-gregorio-espino-vigo' ? (
           <TiendaGregorioEspinoPage onNavigate={handleNavigate} />
-        ) : effectivePath === '/tienda-mimos-venezuela-vigo' || effectivePath === '/tienda/venezuela' ? (
+        ) : effectivePath === '/tienda-mimos-venezuela-vigo' ? (
           <TiendaVenezuelaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/punto-mimos-dpasso-vigo' ? (
           <PuntoDPassoPage onNavigate={handleNavigate} />
-        ) : isPreviewPortada ? (
+        ) : isPreviewPortada && PreviewPortadaPage ? (
           <PreviewPortadaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (
           /* Portada con los bloques de Sección 7 + el Bloque Propio Prioritario de Limpieza de Alfombras (Sección 16) */

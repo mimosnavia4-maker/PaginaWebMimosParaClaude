@@ -66,9 +66,12 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
   const [selectedMapPuntoId, setSelectedMapPuntoId] = useState<string | null>(null);
   const [puntoModalFicha, setPuntoModalFicha] = useState<PuntoRegistro | null>(null);
 
-  // Carga diferida inteligente de Google Maps: solo cuando se acerca al viewport o el usuario lo activa
+  // Carga diferida del componente mapa (sin peticiones a Google Maps hasta consentimiento o clic manual)
   const mapRef = React.useRef<HTMLDivElement>(null);
-  const [mapShouldLoad, setMapShouldLoad] = useState<boolean>(pageMode === 'puntos');
+  const [mapShouldLoad, setMapShouldLoad] = useState<boolean>(
+    pageMode === 'puntos' || pageMode === 'contacto'
+  );
+  const [manualOuterMapLoad, setManualOuterMapLoad] = useState<boolean>(false);
 
   useEffect(() => {
     if (mapShouldLoad || typeof window === 'undefined') return;
@@ -87,7 +90,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           observer.disconnect();
         }
       },
-      { rootMargin: '300px' }
+      { rootMargin: '600px' }
     );
 
     observer.observe(el);
@@ -654,11 +657,14 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 Mapa interactivo de tiendas y puntos Mimos
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-md mb-5 leading-relaxed">
-                3 tiendas propias en Vigo y 5 puntos colaboradores oficiales en Redondela, Gondomar, Ponteareas, O Porriño y As Travesas.
+                3 tiendas propias en Vigo y 5 puntos colaboradores oficiales en Redondela, Gondomar, Ponteareas, O Porriño y As Travesas. Al pulsar se conectará con Google Maps.
               </p>
               <button
                 type="button"
-                onClick={() => setMapShouldLoad(true)}
+                onClick={() => {
+                  setManualOuterMapLoad(true);
+                  setMapShouldLoad(true);
+                }}
                 className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors cursor-pointer shadow-xs"
               >
                 <MapIcon className="w-4 h-4" />
@@ -673,7 +679,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     <MapPin className="w-6 h-6 text-[#0F76BB] animate-bounce" />
                   </div>
                   <p className="font-extrabold text-[#002147] dark:text-white text-base">
-                    Cargando mapa interactivo de Mimos...
+                    Cargando mapa y ubicaciones de Mimos...
                   </p>
                   <p className="text-xs text-slate-500 mt-1 max-w-sm">
                     Preparando tiendas propias y puntos colaboradores en Vigo y comarca.
@@ -685,6 +691,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 selectedPuntoId={selectedMapPuntoId}
                 onSelectPunto={(p) => setSelectedMapPuntoId(p ? p.id : null)}
                 onNavigate={onNavigate}
+                initialManualLoad={manualOuterMapLoad}
               />
             </React.Suspense>
           )}

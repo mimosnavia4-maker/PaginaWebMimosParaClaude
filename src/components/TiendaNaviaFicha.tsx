@@ -124,7 +124,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
     },
     {
       q: '¿Qué formas de pago tenéis disponibles en el mostrador de Navia?',
-      a: 'Aceptamos tarjeta de débito y crédito (contactless, móvil, Apple Pay, Google Pay), Bizum y dinero en efectivo. Entregamos siempre justificante y ticket oficial con IVA desglosado.',
+      a: 'Aceptamos tarjeta de débito y crédito (contactless, móvil, Apple Pay, Google Pay) y dinero en efectivo (no se acepta Bizum). Entregamos siempre justificante y ticket oficial con IVA desglosado.',
     },
     {
       q: '¿Puedo pedir que me entreguen en mi casa las prendas que dejé en Navia?',
@@ -305,7 +305,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 </h2>
               ) : (
                 <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                  Tintorería Mimos Navia (Sede Central)
+                  Tintorería Mimos Navia – Sede Central en Vigo
                 </h1>
               )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
@@ -492,7 +492,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
-              <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay / Google Pay), Bizum y Efectivo.</span>
+              <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay / Google Pay) y Efectivo (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -901,17 +901,26 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">En Autobús Urbano (Vitrasa)</h3>
             </div>
             <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Líneas con parada en Teixugueiras y proximidades de Navia:
+              Líneas urbanas verificadas con paso por Rúa das Teixugueiras (Navia):
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {['L5A', 'L5B', 'L15A', 'L15B', 'L15C', 'C3'].map((linea) => (
+              {['L13', 'L15A', 'N2 (nocturna)', 'N4 (nocturna)'].map((linea) => (
                 <span key={linea} className="px-2 py-0.5 rounded-md text-[11px] font-mono font-bold bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white">
                   {linea}
                 </span>
               ))}
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400">
-              Parada a menos de 2 minutos caminando del bajo 9 de Teixugueiras 11.
+              Parada en Rúa das Teixugueiras a pocos metros del bajo 9. Consulta paradas y horarios actualizados en{' '}
+              <a
+                href="https://www.vitrasa.es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] underline hover:text-[#002147]"
+              >
+                vitrasa.es
+              </a>
+              .
             </p>
           </div>
 

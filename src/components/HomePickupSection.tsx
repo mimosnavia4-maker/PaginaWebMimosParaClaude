@@ -118,7 +118,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                   Recogemos en casa o te atendemos en tiendas y puntos Mimos
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Si prefieres entregar un encargo pequeño sin pedido mínimo o aprovechar horarios amplios, puedes acudir a nuestras 3 tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela) o a los 5 puntos colaboradores en Cangas, Nigrán, Redondela, O Porriño y Moaña.
+                  Si prefieres entregar un encargo pequeño sin pedido mínimo o aprovechar horarios amplios, puedes acudir a nuestras 3 tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela) o a nuestros 5 puntos colaboradores en Redondela, Gondomar, Ponteareas, O Porriño y Vigo (Camiño Espedrigada).
                 </p>
               </li>
 

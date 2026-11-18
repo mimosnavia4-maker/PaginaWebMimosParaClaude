@@ -95,7 +95,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
     }
     setErrorMsg('');
     setPreparedReady(true);
-    trackFormPrepared('/servicios-empresas', 'quote_empresas_lavanderia');
+    trackFormPrepared('/servicios-empresas', 'quote_empresas');
   };
 
   const handleCopy = async () => {

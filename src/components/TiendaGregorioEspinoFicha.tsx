@@ -115,7 +115,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
     },
     {
       q: '¿Disponéis de servicio de arreglos express o urgentes?',
-      a: 'Sí, para arreglos sencillos como bajos de pantalón o cremalleras comunes podemos ofrecer plazo express en el mismo día o en 24 horas según el volumen de trabajo del taller en ese momento.',
+      a: 'Para arreglos sencillos como bajos de pantalón o cremalleras comunes podemos valorar un plazo exprés, pero siempre hay que preguntar primero en tienda/taller si es posible hacerlo según la carga de trabajo de ese momento.',
     },
     {
       q: '¿Cómo me notificáis cuando las prendas están listas para recoger?',
@@ -123,7 +123,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
     },
     {
       q: '¿Qué métodos de pago aceptáis en la tienda de Gregorio Espino?',
-      a: 'Aceptamos pago con tarjeta de crédito/débito (contactless, Apple Pay, Google Pay), Bizum para mayor agilidad y dinero en efectivo. Entregamos siempre resguardo oficial con IVA desglosado.',
+      a: 'Aceptamos pago con tarjeta de crédito/débito (contactless, Apple Pay, Google Pay) y dinero en efectivo (no se acepta Bizum). Entregamos siempre resguardo oficial con IVA desglosado.',
     },
     {
       q: 'Si después no puedo desplazarme a recogerlas, ¿podéis llevármelas a casa?',
@@ -304,7 +304,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 </h2>
               ) : (
                 <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                  Mimos Gregorio Espino
+                  Tintorería y Costura Mimos Gregorio Espino (Vigo)
                 </h1>
               )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
@@ -491,7 +491,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
-              <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay), Bizum y Efectivo.</span>
+              <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay) y Efectivo (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -519,7 +519,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               </div>
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black bg-[#0F76BB] text-white">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                Servicio Express
+                Servicio Exprés (bajo consulta)
               </span>
             </div>
 
@@ -529,7 +529,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {[
-                { tit: 'Bajos de pantalón express', desc: 'Vaquero (acabado original), traje (invisible) o deportivo en 24h.' },
+                { tit: 'Bajos de pantalón exprés', desc: 'Vaquero (acabado original), traje (invisible) o deportivo; pregunta antes en taller si es posible según carga.' },
                 { tit: 'Cambio de cremalleras', desc: 'Metálicas, espiral e invisibles en abrigos, faldas, anoraks y mochilas.' },
                 { tit: 'Ajuste de vestidos y trajes', desc: 'Entallar silueta, estrechar costados, subir tirantes y ajustar hombros.' },
                 { tit: 'Especialistas en cuero y piel', desc: 'Costura reforzada en ante, cuero, cazadoras moteras y bolsos.' },
@@ -790,8 +790,8 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 </td>
                 <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">24 a 48 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                    Mismo día / 24h
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                    Consultar en taller
                   </span>
                 </td>
                 <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">
@@ -900,17 +900,26 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">En Autobús Urbano (Vitrasa)</h3>
             </div>
             <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Líneas con parada inmediata en Gregorio Espino o Martínez Garrido:
+              Líneas urbanas verificadas con paso directo por Alcalde Gregorio Espino:
             </p>
             <div className="flex flex-wrap gap-1.5">
-              {['L4A', 'L4C', 'L11', 'L15A', 'L23', 'H2'].map((linea) => (
+              {['4C', 'H2', '23', 'N4 (nocturna)'].map((linea) => (
                 <span key={linea} className="px-2 py-0.5 rounded-md text-[11px] font-mono font-bold bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white">
                   {linea}
                 </span>
               ))}
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400">
-              Parada a menos de 2 minutos caminando del portal 44.
+              Parada a menos de 2 minutos caminando del número 42. Consulta horarios en{' '}
+              <a
+                href="https://www.vitrasa.es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] underline hover:text-[#002147]"
+              >
+                vitrasa.es
+              </a>
+              .
             </p>
           </div>
 

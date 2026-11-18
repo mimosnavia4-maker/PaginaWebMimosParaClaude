@@ -18,15 +18,14 @@ export type CtaZone =
   | 'pickup_form'
   | 'contact_form'
   | 'point_card'
-  | 'point_modal';
+  | 'point_modal'
+  | 'map_infowindow';
 
 export type MimosEventName =
   | ContactEventName
   | 'form_prepared'
   | 'request_prepared'
-  | 'form_submit'
-  | 'locator_search'
-  | 'ficha_view';
+  | 'locator_search';
 
 declare global {
   interface Window {
@@ -62,6 +61,8 @@ export function getCookieConsentChoice(): CookieConsentChoice | null {
   }
 }
 
+export const COOKIE_CONSENT_CHANGE_EVENT = 'mimos-cookie-consent-change';
+
 export function setCookieConsentChoice(choice: CookieConsentChoice): void {
   if (typeof window === 'undefined') {
     return;
@@ -71,6 +72,11 @@ export function setCookieConsentChoice(choice: CookieConsentChoice): void {
     window.localStorage.removeItem('ck');
   } catch {
     // Ignore storage errors in restricted browsing modes
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_CHANGE_EVENT, { detail: choice }));
+  } catch {
+    // Ignore custom event errors
   }
 }
 
@@ -244,12 +250,20 @@ export function trackPageView(path: string, title?: string): boolean {
 // Throttler global unificado para eventos de contacto (WhatsApp y teléfono)
 // Previene dobles conversiones entre el listener global de App.tsx y los manejadores locales en componentes
 let lastContactThrottle: { type: string; timestamp: number } | null = null;
+const sameTickContactTracked: Record<string, boolean> = {};
 
-export function shouldThrottleContact(type: string, windowMs = 1500): boolean {
+export function shouldThrottleContact(type: string, windowMs = 600): boolean {
+  if (sameTickContactTracked[type]) {
+    return true;
+  }
   const now = Date.now();
   if (lastContactThrottle && lastContactThrottle.type === type && now - lastContactThrottle.timestamp < windowMs) {
     return true;
   }
+  sameTickContactTracked[type] = true;
+  Promise.resolve().then(() => {
+    sameTickContactTracked[type] = false;
+  });
   lastContactThrottle = { type, timestamp: now };
   return false;
 }
@@ -261,7 +275,8 @@ export function shouldThrottleContact(type: string, windowMs = 1500): boolean {
 export function trackContactClick(
   eventName: ContactEventName,
   pagePath: string,
-  ctaZone: CtaZone = 'page_content'
+  ctaZone: CtaZone | string = 'page_content',
+  options?: TrackClickOptions
 ): boolean {
   if (typeof window === 'undefined' || !hasAnalyticsConsent()) {
     return false;
@@ -276,20 +291,24 @@ export function trackContactClick(
     return false;
   }
 
-  // Prevenir duplicaciones unificadas (1,5 s de ventana)
-  if (shouldThrottleContact(eventName, 1500)) {
+  // Prevenir duplicaciones unificadas en el mismo clic o ventana corta
+  if (shouldThrottleContact(eventName, 600)) {
     return false;
   }
 
   const cleanPath = sanitizePagePath(pagePath);
 
   try {
-    window.gtag('event', eventName, {
+    const payload: Record<string, unknown> = {
       page_path: cleanPath,
       cta_location: ctaZone,
       cta_zone: ctaZone,
       send_to: GA4_MEASUREMENT_ID,
-    });
+    };
+    if (options?.service_id) payload.service_id = options.service_id;
+    if (options?.store_id) payload.store_id = options.store_id;
+
+    window.gtag('event', eventName, payload);
     return true;
   } catch {
     return false;
@@ -325,8 +344,8 @@ export function trackWhatsAppClick(
     return false;
   }
 
-  // Prevenir duplicaciones unificadas (1,5 s de ventana)
-  if (shouldThrottleContact('whatsapp_click', 1500)) {
+  // Prevenir duplicaciones unificadas
+  if (shouldThrottleContact('whatsapp_click', 600)) {
     return false;
   }
 
@@ -372,8 +391,8 @@ export function trackPhoneClick(
     return false;
   }
 
-  // Prevenir duplicaciones unificadas (1,5 s de ventana)
-  if (shouldThrottleContact('phone_click', 1500)) {
+  // Prevenir duplicaciones unificadas
+  if (shouldThrottleContact('phone_click', 600)) {
     return false;
   }
 

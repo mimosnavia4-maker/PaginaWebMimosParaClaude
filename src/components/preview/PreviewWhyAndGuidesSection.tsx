@@ -9,7 +9,7 @@ import {
   BookOpen,
 } from 'lucide-react';
 import {
-  ARTICULOS_BLOG,
+  ARTICULOS_BLOG_RESUMEN,
   CONTACT_INFO,
   FAQ_PORTADA_SIN_PRECIOS,
   PUNTOS_COLABORADORES,
@@ -49,7 +49,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
   ];
 
   // Destacamos 3 guías editoriales en portada (estilo revista Celsious), manteniendo acceso completo en /blog
-  const featuredGuides = ARTICULOS_BLOG.slice(0, 3);
+  const featuredGuides = ARTICULOS_BLOG_RESUMEN.slice(0, 3);
 
   return (
     <>
@@ -202,7 +202,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
               className="inline-flex items-center gap-2 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
             >
               <BookOpen className="w-4 h-4" aria-hidden="true" />
-              <span>Ver las {ARTICULOS_BLOG.length} guías del blog</span>
+              <span>Ver las {ARTICULOS_BLOG_RESUMEN.length} guías del blog</span>
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </a>
           </motion.div>

@@ -6,7 +6,7 @@ import {
   SERVICIOS_MIMOS,
   TIENDAS_PROPIAS,
   ZONAS_SEO_LOCAL,
-  ARTICULOS_BLOG,
+  ARTICULOS_BLOG_RESUMEN,
 } from '../data/mimosData';
 import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
 
@@ -230,11 +230,11 @@ export const Footer: React.FC<FooterProps> = ({
                     onClick={(e) => onNavigate('/blog', e)}
                     className="text-[11px] font-bold text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
                   >
-                    Ver todas ({ARTICULOS_BLOG.length}) →
+                    Ver todas ({ARTICULOS_BLOG_RESUMEN.length}) →
                   </a>
                 </div>
                 <ul className="space-y-2 text-xs leading-snug">
-                  {ARTICULOS_BLOG.slice(0, 4).map((art) => (
+                  {ARTICULOS_BLOG_RESUMEN.slice(0, 4).map((art) => (
                     <li key={art.slug}>
                       <a
                         href={art.url}

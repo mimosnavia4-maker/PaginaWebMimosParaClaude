@@ -62,6 +62,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
   const photos = {
     fachada1: {
       url: '/images/puntadas-no-aire/fachada-puntadas-no-aire-gondomar.jpg',
+      webpUrl: '/images/puntadas-no-aire/fachada-puntadas-no-aire-gondomar.webp',
       titulo: 'Fachada Principal y Entrada Oficial',
       subtitulo: 'Entrada comercial de Puntadas No Aire en Avda. Elduayen, 9 (Gondomar).',
       tag: 'Fachada Principal',
@@ -70,6 +71,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
     },
     interior: {
       url: '/images/puntadas-no-aire/interior-taller-puntadas-no-aire-gondomar.jpg',
+      webpUrl: '/images/puntadas-no-aire/interior-taller-puntadas-no-aire-gondomar.webp',
       titulo: 'Interior: Taller de Costura y Mostrador',
       subtitulo: 'Mostrador de atención al público, taller de confección y recepción de prendas.',
       tag: 'Taller In Situ & Mostrador',
@@ -78,6 +80,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
     },
     fachada2: {
       url: '/images/puntadas-no-aire/escaparate-puntadas-no-aire-gondomar.jpg',
+      webpUrl: '/images/puntadas-no-aire/escaparate-puntadas-no-aire-gondomar.webp',
       titulo: 'Perspectiva Exterior y Escaparate',
       subtitulo: 'Escaparate y visibilidad comercial en Avda. Elduayen (Val Miñor).',
       tag: 'Escaparate y Acceso',
@@ -178,13 +181,16 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
         </button>
         <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black flex items-center justify-center">
           {!failedPhotos[activeTabPhoto] ? (
-            <img
-              src={photos[activeTabPhoto].url}
-              alt={photos[activeTabPhoto].titulo}
-              referrerPolicy="no-referrer"
-              onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
-            />
+            <picture className="w-full h-full flex items-center justify-center">
+              <source srcSet={photos[activeTabPhoto].webpUrl} type="image/webp" />
+              <img
+                src={photos[activeTabPhoto].url}
+                alt={photos[activeTabPhoto].titulo}
+                referrerPolicy="no-referrer"
+                onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+                className="max-h-[75vh] w-full object-contain"
+              />
+            </picture>
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-slate-900 text-slate-200">
               <Handshake className="w-10 h-10 text-[#60B5F6] mb-3" />
@@ -218,13 +224,16 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
             {/* Foto Activa Grande con Zoom */}
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden group bg-slate-900">
               {!failedPhotos[activeTabPhoto] ? (
-                <img
-                  src={photos[activeTabPhoto].url}
-                  alt={photos[activeTabPhoto].titulo}
-                  referrerPolicy="no-referrer"
-                  onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <picture className="block w-full h-full">
+                  <source srcSet={photos[activeTabPhoto].webpUrl} type="image/webp" />
+                  <img
+                    src={photos[activeTabPhoto].url}
+                    alt={photos[activeTabPhoto].titulo}
+                    referrerPolicy="no-referrer"
+                    onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </picture>
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#002147] to-slate-900 text-slate-200">
                   <Handshake className="w-10 h-10 text-[#60B5F6] mb-2" />
@@ -423,7 +432,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
           <div>
             <h3 className="text-xs sm:text-sm font-black text-[#002147] dark:text-white">Taller Propio In Situ</h3>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-              Modistería y costura en la tienda con maquinaria para bajos express y arreglos personalizados.
+              Modistería y costura en la tienda con maquinaria para bajos exprés (preguntando antes disponibilidad en taller) y arreglos personalizados.
             </p>
           </div>
         </div>
@@ -540,7 +549,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
           <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
-              <span><strong>Formas de pago:</strong> Efectivo, Tarjeta y Bizum.</span>
+              <span><strong>Formas de pago:</strong> Efectivo y Tarjeta (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -839,8 +848,8 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
                 </td>
                 <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">24 a 48 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                    Mismo día / 24h
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                    Consultar en taller
                   </span>
                 </td>
                 <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">

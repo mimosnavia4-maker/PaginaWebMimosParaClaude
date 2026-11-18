@@ -98,6 +98,24 @@ async function startServer() {
       return res.redirect(301, '/tienda-mimos-gregorio-espino-vigo');
     }
     if (
+      cleanPath === '/tienda/venezuela' ||
+      cleanPath === '/tienda/venezuela/' ||
+      cleanPath === '/tienda-venezuela' ||
+      cleanPath === '/tienda-venezuela/'
+    ) {
+      return res.redirect(301, '/tienda-mimos-venezuela-vigo');
+    }
+    if (
+      cleanPath === '/punto-dpasso-vigo' ||
+      cleanPath === '/punto-dpasso-vigo/' ||
+      cleanPath === '/punto/dpasso' ||
+      cleanPath === '/punto/dpasso/' ||
+      cleanPath === '/ficha/dpasso' ||
+      cleanPath === '/ficha/dpasso/'
+    ) {
+      return res.redirect(301, '/punto-mimos-dpasso-vigo');
+    }
+    if (
       cleanPath === '/tienda/navia' ||
       cleanPath === '/tienda/navia/' ||
       cleanPath === '/tienda-navia' ||
@@ -174,20 +192,6 @@ async function startServer() {
         const rootHtml = path.join(distPath, 'index.html');
         if (fs.existsSync(rootHtml)) {
           return res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).sendFile(rootHtml);
-        }
-      }
-
-      // Vista previa privada de portada (sin indexación)
-      if (cleanPath === '/preview-portada') {
-        const rootPreviewHtml = path.join(distPath, 'index.html');
-        if (fs.existsSync(rootPreviewHtml)) {
-          return res
-            .status(200)
-            .set({
-              'Content-Type': 'text/html; charset=utf-8',
-              'X-Robots-Tag': 'noindex, nofollow',
-            })
-            .sendFile(rootPreviewHtml);
         }
       }
 

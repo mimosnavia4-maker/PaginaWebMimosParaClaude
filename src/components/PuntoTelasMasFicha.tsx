@@ -396,7 +396,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           <div>
             <h3 className="text-xs sm:text-sm font-black text-[#002147] dark:text-white">Taller Propio In Situ</h3>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-              Modistería y costura en la tienda con maquinaria para bajos express y composturas.
+              Modistería y costura en la tienda con maquinaria para bajos exprés (preguntando antes disponibilidad en taller) y composturas.
             </p>
           </div>
         </div>
@@ -492,7 +492,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
-              <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay), Bizum y Efectivo.</span>
+              <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay) y Efectivo (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -520,7 +520,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               </div>
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black bg-[#0F76BB] text-white">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                Servicio Express
+                Servicio Exprés (bajo consulta)
               </span>
             </div>
 
@@ -530,7 +530,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {[
-                { tit: 'Bajos de pantalón express', desc: 'Vaquero (acabado original), traje (invisible) o casual con rapidez.' },
+                { tit: 'Bajos de pantalón exprés', desc: 'Vaquero (acabado original), traje (invisible) o casual; pregunta primero en taller si es posible según carga.' },
                 { tit: 'Cambio de cremalleras', desc: 'Metálicas, espiral e invisibles en abrigos, chaquetas, faldas y anoraks.' },
                 { tit: 'Ajuste de vestidos y trajes', desc: 'Entallar silueta, estrechar costados, subir tirantes y ajustar hombros.' },
                 { tit: 'Venta experta de telas', desc: 'Amplio catálogo de telas por metros, retales y asesoramiento en costura.' },
@@ -791,8 +791,8 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                 </td>
                 <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">24 a 48 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                    Mismo día / 24h
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                    Consultar en taller
                   </span>
                 </td>
                 <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">

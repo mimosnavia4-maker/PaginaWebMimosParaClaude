@@ -8,8 +8,8 @@ import fs from 'fs';
 import path from 'path';
 import { ROUTE_SEO_MAP, RouteMeta } from '../src/data/routesSeoData.ts';
 import { getPageSEO } from '../src/utils/seo.ts';
+import { ARTICULOS_BLOG } from '../src/data/blogArticlesFull.ts';
 import {
-  ARTICULOS_BLOG,
   CONTACT_INFO,
   ETIQUETAS_SERVICIOS_CONFIRMADOS,
   FAQ_PORTADA_SIN_PRECIOS,
@@ -26,6 +26,7 @@ import {
   SERVICIO_TEXTILES_HOGAR_DATA,
   SERVICIO_EMPRESAS_B2B_DATA,
   TIENDAS_PROPIAS,
+  PUNTOS_COLABORADORES,
   ZONAS_SEO_LOCAL,
 } from '../src/data/mimosData.ts';
 
@@ -136,8 +137,20 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
         `<h2 class="text-xl font-bold text-[#002147]">Sede Central Tintorería Mimos Navia (Vigo)</h2>` +
         `<p><strong>Dirección:</strong> ${escapeHtml(punto.direccion)}, ${escapeHtml(punto.codigo_postal)} ${escapeHtml(punto.localidad)}</p>` +
         `<p><strong>Horario:</strong> ${escapeHtml(punto.horario.resumen)}</p>` +
-        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)}</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(punto.telefonos_mostrados)} · WhatsApp Mimos: +34 655 536 844</p>` +
+        `<p><strong>Métodos de pago:</strong> Tarjeta bancaria (contactless, Apple Pay, Google Pay) y Efectivo (no se acepta Bizum).</p>` +
+        `<p><strong>Aparcamiento:</strong> ${escapeHtml(punto.aparcamiento)}</p>` +
         `<p><strong>Servicios disponibles:</strong> Tintorería profesional, lavandería atendida, planchado profesional, colada familiar (lavar y doblar / planchar), limpieza de alfombras, edredones y mantas, coordinación de recogida a domicilio y recepción para taller propio de costura.</p>` +
+        `<h3>Preguntas frecuentes en Tintorería Mimos Navia</h3>` +
+        `<dl class="space-y-2">` +
+        `<dt><strong>¿Tengo que pedir cita previa para acudir a la tienda de Navia?</strong></dt><dd>No, no necesitas cita previa. Puedes venir libremente de lunes a viernes (09:30–14:00 y 16:00–20:00) y sábados (10:00–13:30).</dd>` +
+        `<dt><strong>¿Cómo funciona el servicio de arreglos y costura en la tienda de Navia?</strong></dt><dd>En Navia recepcionamos tus prendas, tomamos nota de todas las especificaciones, las derivamos a nuestros talleres propios in situ (Gregorio Espino y Venezuela) y te las entregamos de vuelta planchadas y terminadas.</dd>` +
+        `<dt><strong>¿Se puede aparcar fácilmente cerca de la tienda en Teixugueiras?</strong></dt><dd>Sí, Rúa das Teixugueiras dispone de amplio aparcamiento público en batería y en línea frente a los soportales.</dd>` +
+        `<dt><strong>¿Puedo entregar alfombras grandes de lana o seda en la tienda de Navia?</strong></dt><dd>Sí, la sede de Navia es punto central de recepción de alfombras para lavado plano, desinfección y secado controlado.</dd>` +
+        `<dt><strong>¿Cómo me avisáis cuando la ropa está lista para recoger?</strong></dt><dd>Te notificamos por WhatsApp o SMS en cuanto tus prendas pasan el control de calidad final.</dd>` +
+        `<dt><strong>¿Qué formas de pago tenéis disponibles en el mostrador de Navia?</strong></dt><dd>Aceptamos tarjeta (contactless, móvil, Apple Pay, Google Pay) y efectivo (no se acepta Bizum), siempre con ticket oficial con IVA desglosado.</dd>` +
+        `<dt><strong>¿Puedo pedir que me entreguen en mi casa las prendas que dejé en Navia?</strong></dt><dd>Sí, coordinamos reparto a domicilio en Vigo y comarca con nuestra furgoneta propia por WhatsApp.</dd>` +
+        `</dl>` +
         `</section>`;
     }
   } else if (routePath === '/tienda-mimos-gregorio-espino-vigo') {
@@ -156,9 +169,9 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
         `<dt><strong>¿Tengo que pedir cita previa para llevar prendas a arreglar o limpiar?</strong></dt><dd>No, no hace falta cita previa en ningún momento. Puedes acudir libremente en nuestro horario de apertura (lunes a viernes de 09:30 a 13:30 y de 16:30 a 20:00, y sábados de 09:30 a 13:00).</dd>` +
         `<dt><strong>¿Se pueden probar las prendas en la tienda para tomar la medida del bajo?</strong></dt><dd>Sí, disponemos de espacio para probarte pantalones, faldas, vestidos o chaquetas y nuestra modista toma la medida exacta in situ.</dd>` +
         `<dt><strong>¿Puedo entregar alfombras grandes viniendo en coche?</strong></dt><dd>Sí, en la bocacalle lateral de Rúa do Escultor Nogueira dispones de zona de carga y descarga a unos 15 metros de la puerta.</dd>` +
-        `<dt><strong>¿Disponéis de servicio de arreglos express o urgentes?</strong></dt><dd>Sí, para arreglos sencillos como bajos de pantalón o cremalleras comunes ofrecemos plazo express según volumen de taller.</dd>` +
+        `<dt><strong>¿Disponéis de servicio de arreglos express o urgentes?</strong></dt><dd>Para arreglos sencillos como bajos de pantalón o cremalleras comunes podemos valorar plazo exprés, siempre preguntando primero en taller si es posible según carga de trabajo.</dd>` +
         `<dt><strong>¿Cómo me notificáis cuando las prendas están listas para recoger?</strong></dt><dd>Enviamos aviso personalizado por WhatsApp o SMS en cuanto el encargo queda terminado y revisado.</dd>` +
-        `<dt><strong>¿Qué métodos de pago aceptáis en la tienda de Gregorio Espino?</strong></dt><dd>Aceptamos tarjeta contactless (Apple Pay, Google Pay), Bizum y efectivo, siempre con resguardo oficial e IVA desglosado.</dd>` +
+        `<dt><strong>¿Qué métodos de pago aceptáis en la tienda de Gregorio Espino?</strong></dt><dd>Aceptamos tarjeta contactless (Apple Pay, Google Pay) y efectivo (no se acepta Bizum), siempre con resguardo oficial e IVA desglosado.</dd>` +
         `<dt><strong>Si después no puedo desplazarme a recogerlas, ¿podéis llevármelas a casa?</strong></dt><dd>Sí, puedes coordinar la entrega a domicilio en Vigo con Mimo por WhatsApp.</dd>` +
         `</dl>` +
         `</section>`;
@@ -470,6 +483,65 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
       `</ul>` +
       `<h2>Preguntas frecuentes sobre recuperación textil tras siniestros en Vigo</h2>` +
       `<dl>${faqsHtml}</dl>` +
+      `</section>`;
+  } else if (routePath === '/contacto') {
+    const tiendasContactoHtml = TIENDAS_PROPIAS.map(
+      (t) =>
+        `<li><strong>${escapeHtml(t.nombre_mostrado)}:</strong> ${escapeHtml(t.direccion)}, ${escapeHtml(
+          t.codigo_postal
+        )} ${escapeHtml(t.localidad)} · Teléfono: <a href="tel:+34${escapeHtml(
+          t.telefono
+        )}">${escapeHtml(t.telefonos_mostrados)}</a> · Horario: ${escapeHtml(
+          t.horario.resumen
+        )}</li>`
+    ).join('');
+    specificHtml =
+      `<section class="space-y-3">` +
+      `<h2 class="text-xl font-bold text-[#002147]">Canales directos de atención y presupuestos</h2>` +
+      `<ul>` +
+      `<li><strong>Teléfono Sede Central Navia:</strong> <a href="tel:+34986125141">+34 986 12 51 41</a></li>` +
+      `<li><strong>WhatsApp Mimo (presupuestos, recogida a domicilio y consultas):</strong> <a href="https://wa.me/34655536844">+34 655 536 844</a></li>` +
+      `<li><strong>Correo electrónico:</strong> <a href="mailto:${escapeHtml(
+        CONTACT_INFO.email
+      )}">${escapeHtml(CONTACT_INFO.email)}</a></li>` +
+      `<li><strong>Métodos de pago en tienda:</strong> Tarjeta bancaria (contactless) y efectivo. No se acepta Bizum.</li>` +
+      `<li><strong>Recogida y entrega a domicilio:</strong> Vigo, Redondela, Gondomar, Ponteareas, O Porriño, Mos y Nigrán.</li>` +
+      `</ul>` +
+      `<h3>Teléfonos y horarios de las 3 tiendas propias en Vigo</h3>` +
+      `<ul>${tiendasContactoHtml}</ul>` +
+      `</section>`;
+  } else if (routePath === '/puntos-mimos') {
+    const propiasHtml = TIENDAS_PROPIAS.map(
+      (t) =>
+        `<article class="border border-slate-200 rounded-xl p-4 space-y-1">` +
+        `<h3>${escapeHtml(t.nombre_mostrado)} (Tienda propia)</h3>` +
+        `<p><strong>Dirección:</strong> ${escapeHtml(t.direccion)}, ${escapeHtml(
+          t.codigo_postal
+        )} ${escapeHtml(t.localidad)}</p>` +
+        `<p><strong>Horario:</strong> ${escapeHtml(t.horario.resumen)}</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(t.telefonos_mostrados)}</p>` +
+        `</article>`
+    ).join('');
+    const colaboradoresHtml = PUNTOS_COLABORADORES.map(
+      (p) =>
+        `<article class="border border-slate-200 rounded-xl p-4 space-y-1">` +
+        `<h3>${escapeHtml(p.nombre_mostrado)} — ${escapeHtml(p.localidad)} (Punto colaborador)</h3>` +
+        `<p><strong>Dirección:</strong> ${escapeHtml(p.direccion)}, ${escapeHtml(
+          p.codigo_postal
+        )} ${escapeHtml(p.localidad)}</p>` +
+        `<p><strong>Horario:</strong> ${escapeHtml(p.horario.resumen)}</p>` +
+        `<p><strong>Teléfono:</strong> ${escapeHtml(p.telefonos_mostrados)}</p>` +
+        `<p><strong>Servicios confirmados:</strong> ${escapeHtml(
+          p.servicios_confirmados.map((s) => ETIQUETAS_SERVICIOS_CONFIRMADOS[s] || s).join(', ')
+        )}</p>` +
+        `</article>`
+    ).join('');
+    specificHtml =
+      `<section class="space-y-4">` +
+      `<h2 class="text-xl font-bold text-[#002147]">Las 3 tiendas propias de Tintorería Mimos en Vigo</h2>` +
+      propiasHtml +
+      `<h2 class="text-xl font-bold text-[#002147]">Los 5 puntos colaboradores oficiales en Vigo y comarca</h2>` +
+      colaboradoresHtml +
       `</section>`;
   } else if (routePath === '/') {
     const faqsHtml = FAQ_PORTADA_SIN_PRECIOS.map(

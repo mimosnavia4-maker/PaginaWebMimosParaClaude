@@ -1,5 +1,5 @@
 import {
-  ARTICULOS_BLOG,
+  ARTICULOS_BLOG_RESUMEN,
   CONTACT_INFO,
   CANALES_CONTACTO_CENTRAL,
   REGISTROS_PUNTOS,
@@ -147,7 +147,9 @@ export const TIENDA_NAVIA_SCHEMA: Record<string, unknown> = {
   '@id': 'https://www.tintoreriamimos.es/#tienda-navia',
   name: 'Tintorería Mimos – Sede Central Navia',
   url: 'https://www.tintoreriamimos.es/tienda-mimos-navia-vigo',
+  image: 'https://www.tintoreriamimos.es/images/navia/fachada-mimos-navia-vigo.jpg',
   telephone: '+34986125141',
+  paymentAccepted: 'Cash, Credit Card',
   parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
   address: {
     '@type': 'PostalAddress',
@@ -189,7 +191,9 @@ export const TIENDA_GREGORIO_ESPINO_SCHEMA: Record<string, unknown> = {
   '@id': 'https://www.tintoreriamimos.es/#tienda-gregorio-espino',
   name: 'Tintorería Lavandería Mimos – Gregorio Espino',
   url: 'https://www.tintoreriamimos.es/tienda-mimos-gregorio-espino-vigo',
+  image: 'https://www.tintoreriamimos.es/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.jpg',
   telephone: '+34986192787',
+  paymentAccepted: 'Cash, Credit Card',
   parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
   address: {
     '@type': 'PostalAddress',
@@ -231,6 +235,7 @@ export const TIENDA_VENEZUELA_SCHEMA: Record<string, unknown> = {
   '@id': 'https://www.tintoreriamimos.es/#tienda-venezuela',
   name: 'Tintorería y Costura Mimos – Rúa de Venezuela 29 (Vigo Centro)',
   url: 'https://www.tintoreriamimos.es/tienda-mimos-venezuela-vigo',
+  image: 'https://www.tintoreriamimos.es/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.jpg',
   telephone: '+34646946764',
   paymentAccepted: 'Cash, Credit Card',
   parentOrganization: { '@id': 'https://www.tintoreriamimos.es/#organization' },
@@ -303,9 +308,57 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       }
     );
   } else if (cleanPath === '/tienda-mimos-navia-vigo') {
+    const naviaFaqs = [
+      {
+        pregunta: '¿Tengo que pedir cita previa para acudir a la tienda de Navia?',
+        respuesta:
+          'No, no necesitas cita previa. Puedes venir libremente dentro de nuestro horario habitual (lunes a viernes de 09:30 a 14:00 y de 16:00 a 20:00, y sábados de 10:00 a 13:30). Te atendemos directamente en el mostrador.',
+      },
+      {
+        pregunta: '¿Cómo funciona el servicio de arreglos y costura en la tienda de Navia?',
+        respuesta:
+          'En Navia recepcionamos tus prendas de vestir (bajos de pantalón, cremalleras, composturas, estrechar, etc.) y tomamos nota de todas las especificaciones. Las prendas se trasladan a nuestros talleres propios de costura in situ (en Gregorio Espino y Venezuela) y te las entregamos de vuelta en Navia perfectamente planchadas y terminadas.',
+      },
+      {
+        pregunta: '¿Se puede aparcar fácilmente cerca de la tienda en Teixugueiras?',
+        respuesta:
+          'Sí, Rúa das Teixugueiras dispone de un amplio bulevar con numerosas plazas de aparcamiento público en batería y en línea justo frente a la manzana de soportales. Puedes detenerte cómodamente para bajar o subir alfombras, mantas o lotes voluminosos de ropa.',
+      },
+      {
+        pregunta: '¿Puedo entregar alfombras grandes de lana o seda en la tienda de Navia?',
+        respuesta:
+          'Por supuesto. La sede de Navia es punto central de recepción de alfombras. Medimos tu alfombra en el mostrador, revisamos el estado de las fibras y la procesamos con lavado plano, desinfección y secado en ambiente controlado.',
+      },
+      {
+        pregunta: '¿Cómo me avisáis cuando la ropa está lista para recoger?',
+        respuesta:
+          'Te notificamos de forma automática por WhatsApp o SMS en cuanto tus prendas salen de la sección de planchado y pasan nuestro control de calidad. Así no realizas ningún desplazamiento innecesario.',
+      },
+      {
+        pregunta: '¿Qué formas de pago tenéis disponibles en el mostrador de Navia?',
+        respuesta:
+          'Aceptamos tarjeta de débito y crédito (contactless, móvil, Apple Pay, Google Pay) y dinero en efectivo (no se acepta Bizum). Entregamos siempre justificante y ticket oficial con IVA desglosado.',
+      },
+      {
+        pregunta: '¿Puedo pedir que me entreguen en mi casa las prendas que dejé en Navia?',
+        respuesta:
+          'Sí. Navia coordina además nuestra flota propia de reparto a domicilio en Vigo y comarca. Si después prefieres recibir tus prendas, colada o alfombras directamente en tu casa u oficina, puedes solicitárnoslo por WhatsApp y acordamos la franja de entrega.',
+      },
+    ];
     graph.push(
       ORGANIZATION_SCHEMA,
-      TIENDA_NAVIA_SCHEMA
+      TIENDA_NAVIA_SCHEMA,
+      {
+        '@type': 'FAQPage',
+        mainEntity: naviaFaqs.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
     );
   } else if (cleanPath === '/tienda-mimos-gregorio-espino-vigo') {
     const gregorioFaqs = [
@@ -327,7 +380,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         pregunta: '¿Disponéis de servicio de arreglos express o urgentes?',
         respuesta:
-          'Sí, para arreglos sencillos como bajos de pantalón o cremalleras comunes podemos ofrecer plazo express en el mismo día o en 24 horas según el volumen de trabajo del taller en ese momento.',
+          'Para arreglos sencillos como bajos de pantalón o cremalleras comunes podemos valorar un plazo exprés, pero siempre hay que preguntar primero en tienda/taller si es posible hacerlo según la carga de trabajo de ese momento.',
       },
       {
         pregunta: '¿Cómo me notificáis cuando las prendas están listas para recoger?',
@@ -337,7 +390,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         pregunta: '¿Qué métodos de pago aceptáis en la tienda de Gregorio Espino?',
         respuesta:
-          'Aceptamos pago con tarjeta de crédito/débito (contactless, Apple Pay, Google Pay), Bizum para mayor agilidad y dinero en efectivo. Entregamos siempre resguardo oficial con IVA desglosado.',
+          'Aceptamos pago con tarjeta de crédito/débito (contactless, Apple Pay, Google Pay) y dinero en efectivo (no se acepta Bizum). Entregamos siempre resguardo oficial con IVA desglosado.',
       },
       {
         pregunta: 'Si después no puedo desplazarme a recogerlas, ¿podéis llevármelas a casa?',
@@ -523,7 +576,15 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
         name: SERVICIO_ALFOMBRAS_DATA.h1,
         description: meta.description,
         provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
-        areaServed: { '@type': 'City', name: 'Vigo' },
+        areaServed: [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+          { '@type': 'City', name: 'Mos' },
+          { '@type': 'City', name: 'Nigrán' },
+        ],
         url: meta.canonical,
       },
       {
@@ -708,7 +769,15 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
         name: meta.h1,
         description: meta.description,
         provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
-        areaServed: { '@type': 'City', name: 'Vigo' },
+        areaServed: [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+          { '@type': 'City', name: 'Mos' },
+          { '@type': 'City', name: 'Nigrán' },
+        ],
         url: meta.canonical,
       },
       {
@@ -869,7 +938,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       }
     );
   } else if (meta.ogType === 'article') {
-    const articulo = ARTICULOS_BLOG.find((a) => a.url === cleanPath);
+    const articulo = ARTICULOS_BLOG_RESUMEN.find((a) => a.url === cleanPath);
     if (articulo) {
       graph.push(
         ORGANIZATION_SCHEMA,

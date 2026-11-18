@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowLeft, Mail, Briefcase, CheckCircle2, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, Mail, Briefcase, CheckCircle2, ShieldCheck, Copy, Check } from 'lucide-react';
 import { CONTACT_INFO } from '../data/mimosData';
 
 interface CareersPageProps {
@@ -7,6 +7,17 @@ interface CareersPageProps {
 }
 
 export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_INFO.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 3000);
+    } catch {
+      // ignore clipboard errors
+    }
+  };
   return (
     <main
       id="main-content"
@@ -189,15 +200,34 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
               </p>
             </div>
 
-            <a
-              href={`mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(
-                'Currículum - Bolsa de Empleo Tintorería Mimos'
-              )}`}
-              className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors shrink-0"
-            >
-              <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>Abrir correo para enviar CV</span>
-            </a>
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a
+                href={`mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(
+                  'Currículum - Bolsa de Empleo Tintorería Mimos'
+                )}`}
+                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors"
+              >
+                <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Abrir correo para enviar CV</span>
+              </a>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 font-bold text-sm px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer"
+              >
+                {copiedEmail ? (
+                  <>
+                    <Check className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
+                    <span>Correo copiado</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" aria-hidden="true" />
+                    <span>Copiar correo</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
 
           <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-start gap-2.5 text-xs text-slate-500 dark:text-slate-400">
