@@ -687,7 +687,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Humedad y Ácaros en Colchones y Sofás en Vigo | Mimos',
     h1: 'Humedad y ácaros en Vigo: cómo cuidar colchones, sofás y tapicerías',
     description:
-      'Por qué la humedad de Vigo favorece ácaros y cercos en colchones y sofás. Qué errores caseros evitar, códigos W/S/WS/X y limpieza a domicilio.',
+      'Guía técnica para cuidar colchones y sofás en Vigo (77 % humedad): códigos W/S/WS/X, tejidos, riesgos de vaporeta/lejía y limpieza sin empapar.',
     canonical: 'https://www.tintoreriamimos.es/blog/humedad-acaros-colchones-sofas-vigo',
     robots: 'index, follow',
     ogType: 'article',

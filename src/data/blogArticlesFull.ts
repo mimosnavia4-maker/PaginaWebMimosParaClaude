@@ -1423,91 +1423,241 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     seoTitle:
       'Humedad y Ácaros en Colchones y Sofás en Vigo | Guía Mimos',
     metaDescription:
-      'Por qué la humedad de Vigo favorece ácaros y cercos en colchones y sofás. Qué errores caseros evitar, códigos W/S/WS/X y limpieza controlada a domicilio.',
+      'Guía técnica para cuidar colchones y sofás en Vigo (77 % humedad): códigos W/S/WS/X, tejidos, riesgos de vaporeta/lejía y limpieza sin empapar.',
     categoria: 'Hogar, Colchones y Tapicerías',
     fechaPublicacion: '19 de noviembre de 2026',
     fechaISO: '2026-11-19',
-    tiempoLectura: '6 min de lectura',
+    tiempoLectura: '9 min de lectura',
     extracto:
-      'Con más del 77 % de humedad media anual en Vigo, colchones, cabeceros y sofás retienen polvo y ácaros si se aplican trucos domésticos con exceso de agua o vapor. Repasamos los 4 errores que fijan cercos y cómo higienizamos por inyección-extracción controlada.',
+      'Con un 77 % de humedad media anual en Vigo (80–85 % entre octubre y enero), colchones, canapés y sofás entran en la franja óptima para ácaros y moho. Analizamos los códigos W/S/WS/X, seis tejidos habituales (Aquaclean, microfibra, chenilla, lino, terciopelo y viscosa), por qué la vaporeta, la lejía o el bicarbonato con vinagre dañan la espuma o fijan cercos y cómo higienizar por inyección-extracción controlada con secado natural al aire.',
     imagen: IMAGES.blogColchonesTapicerias,
     imagenAlt:
       'Interior luminoso con sofá y dormitorio higienizados sin cercos ni exceso de humedad en Vigo',
     introduccion: [
-      'Dormimos una media de ocho horas al día sobre un colchón que rara vez recibe más limpieza que un cambio semanal de sábanas, y descansamos en un sofá textil que absorbe polvo en suspensión, pelo de mascotas, sudoración y roces de ropa vaquera.',
-      'En una ciudad atlántica como Vigo, donde la humedad relativa supera con facilidad el 77 % durante meses, mantener la higiene de colchones, cabeceros y sofás fijos exige controlar muy bien la cantidad de humedad aplicada: empapar el acolchado o recurrir a remedios caseros suele empeorar tanto el olor como las manchas.',
+      'En una vivienda de Vigo y las Rías Baixas, la combinación de clima atlántico húmedo (77 % de humedad relativa media anual y picos del 80–85 % entre octubre y enero), transpiración nocturna y tapicerías cerradas mantiene colchones, cabeceros y sofás dentro de la franja biológica ideal para ácaros domésticos y hongos ambientales.',
+      'Esta guía resume la evidencia climática, química y textil aplicada a nuestro protocolo real 100 % a domicilio sobre colchones, sofás, sillones, sillas tapizadas y cabeceros —sin limpiar tapicerías de coches ni trasladar muebles fuera de casa, salvo fundas desenfundables aptas en planta—, mediante lectura de etiqueta (W, S, WS, X), aspirado profundo en seco, inyección-extracción controlada o baja humedad para código S y secado natural al aire sin vapor seco, ozono, enzimáticos in situ ni ventiladores industriales.',
     ],
     secciones: [
       {
-        h2: '1. Humedad atlántica en Vigo, polvo fino y ácaros en colchones y sofás',
+        h2: '1. Climatología de Vigo y Rías Baixas frente al ácaro y el moho',
         parrafos: [
-          'El polvo doméstico, las escamas cutáneas y la transpiración nocturna se acumulan en los primeros milímetros de acolchado de colchones y asientos tapizados. Cuando la humedad ambiental de Vigo es elevada y falta ventilación cruzada diaria, el interior de la espuma tarda en evaporar y favorece la proliferación de ácaros y alérgenos respiratorios.',
-          'Ventilar el dormitorio con la cama destapada durante 20–30 minutos cada mañana, aspirar suavemente sin cepillos abrasivos y utilizar fundas protectoras transpirables lavables frena gran parte de la suciedad diaria, pero no sustituye a una extracción profunda periódica.',
+          'De acuerdo con las normales climatológicas de AEMET (periodo 1991–2020 en Vigo/Peinador), la ciudad registra una temperatura media anual de 14,3 °C, una precipitación total de 1.696 mm y 126,2 días de lluvia al año, con una humedad relativa media anual del 77 % que alcanza el 80–85 % en otoño e invierno.',
+          'Dentro de las viviendas costeras gallegas, ese ambiente exterior se amplifica en dormitorios y salones: el cuerpo libera en torno a medio litro de humedad por noche entre sudoración y respiración, y el vapor cotidiano de duchas o cocina condensa sobre muros exteriores fríos. Como muestran los modelos higrotérmicos universitarios sobre colchones, la temperatura y la humedad en el interior del colchón superan a las del aire ambiental.',
         ],
-      },
-      {
-        h2: '2. Los 4 errores domésticos que estropean colchones y tapicerías',
-        parrafos: [
-          'Antes de aplicar cualquier truco encontrado en redes sobre un cerco de café, sudor, orina o roce de mascotas, ten en cuenta por qué estas prácticas habituales generan daños difíciles de revertir:',
-        ],
-        puntosClave: [
-          'Usar vaporetas o exceso de agua sin succión industrial: el vapor a alta presión y el agua abundante atraviesan la tela y empapan la espuma o el núcleo del colchón, provocando olores a humedad, moho interior y encogimiento en linos o algodones.',
-          'Aplicar lejía, amoníaco, vinagre o pasta de bicarbonato: alteran el pH de la fibra, fijan cercos amarillentos permanentes y destruyen el escudo hidrofóbico de las telas antimanchas (como Aquaclean).',
-          'Frotar con fuerza o aplicar secadores de aire caliente: el frotado abre el pelo del terciopelo, chenilla o bouclé dejando calvas visibles, y el calor directo fija proteínas (sangre, leche, sudor) dentro del tejido.',
-          'Ignorar la etiqueta del fabricante (código S o X): humedecer una tapicería que solo admite limpieza en seco deja cercos inmediatos imposibles de disimular sin retapizar.',
-        ],
-      },
-      {
-        h2: '3. Cómo interpretar los códigos de tapicería (W, S, WS, X) antes de limpiar',
-        parrafos: [
-          'Revisa siempre la etiqueta cosida bajo los cojines del sofá o en el ribete del colchón. Si nos envías una foto por WhatsApp junto con el estado de la pieza, adaptamos el método desde el primer mensaje:',
+        subsecciones: [
+          {
+            h3: 'Umbrales biológicos de ácaros (SEAIC) y moho (OMS, EPA y ASHRAE)',
+            texto:
+              'La SEAIC identifica a Dermatophagoides pteronyssinus como principal alérgeno en la España húmeda, con umbral favorable por encima del 70–75 % de humedad y 25–30 °C (y mínimo de supervivencia del 40 %). Para control microbiológico y moho, la OMS fija el confort entre 40 % y 70 %, la EPA recomienda mantenerse por debajo del 60 % (óptimo anti-moho 30–50 %) y ASHRAE aconseja no rebasar el 65 %.',
+          },
+          {
+            h3: 'Canapés abatibles pegados a paredes frías',
+            texto:
+              'Si el colchón apoya sobre un canapé abatible pegado a una pared exterior fría o lleno de textiles guardados sin circulación de aire, el vapor queda atrapado y genera condensación y manchas de moho en el tapizado interior del canapé aunque la cara superior del colchón parezca limpia.',
+          },
         ],
         tabla: {
           encabezados: [
-            'Código de etiqueta',
+            'Mes / Periodo en Vigo',
+            'Temp. media (°C)',
+            'Precipitación (mm)',
+            'Días lluvia (≥ 1 mm)',
+            'Humedad relativa media (%)',
+          ],
+          filas: [
+            ['Enero (invierno)', '8,9', '222', '14,4', '84 %'],
+            ['Febrero (invierno)', '9,7', '143', '11,2', '77 %'],
+            ['Marzo (primavera)', '11,7', '153', '12,2', '73 %'],
+            ['Abril (primavera)', '12,9', '150', '12,8', '73 %'],
+            ['Mayo (primavera)', '15,3', '113', '10,7', '72 %'],
+            ['Octubre (otoño)', '15,4', '208', '12,5', '80 %'],
+            ['Noviembre (otoño)', '11,5', '236', '13,5', '85 %'],
+            ['Diciembre (invierno)', '9,5', '231', '14,4', '85 %'],
+            ['Media / Total anual', '14,3', '1.696', '126,2', '77 %'],
+          ],
+          pie: 'Referencia climática de Vigo basada en normales AEMET 1991–2020 y series históricas de humedad relativa ambiental.',
+        },
+      },
+      {
+        h2: '2. Códigos de etiqueta en tapicería (W, S, WS, X) y el error de las cremalleras',
+        parrafos: [
+          'Antes de aplicar cualquier producto sobre un sofá o sillón es imprescindible revisar la etiqueta alfabética del fabricante tapicero —estandarizada por el Drycleaning & Laundry Institute (DLI)—, distinta a los símbolos textiles de la ropa de vestir.',
+          'Un fallo doméstico habitual es suponer que cualquier cojín con cremallera puede lavarse en la lavadora de casa: muchas cremalleras responden únicamente al proceso industrial de tapizado en fábrica y lavar esas fundas en agua las encoge e impide volver a cerrarlas. En Mimos verificamos la etiqueta y solo trasladamos a planta en Vigo fundas desenfundables autorizadas.',
+        ],
+        tabla: {
+          encabezados: [
+            'Código',
             'Significado técnico',
-            'Actuación recomendada en casa y a domicilio',
+            'Química y método permitidos',
+            'Riesgos y aplicación en Tintorería Mimos',
           ],
           filas: [
             [
-              'W (Water)',
-              'Limpieza con solución acuosa controlada',
-              'Admite inyección-extracción controlada de baja humedad en sofá o colchón, extrayendo suciedad al instante sin saturar la espuma.',
+              'W',
+              'Base acuosa (Water-based)',
+              'Detergente neutro o solución de base acuosa con humedad controlada',
+              'Riesgo de saturar espumas o cercos minerales. Aplicamos aspirado en seco, pretratamiento e inyección-extracción controlada con secado natural al aire.',
             ],
             [
-              'S (Solvent)',
-              'Solo limpieza en seco',
-              'Prohibido usar agua o espuma comercial. Requiere tratamiento específico en seco / mínima humedad para evitar encogimiento o cercos.',
+              'S',
+              'Solo disolvente (Solvent-based)',
+              'Disolvente anhidro específico de limpieza en seco para tapicería',
+              'Aplicar agua (incluso un paño húmedo) provoca encogimiento, migración de tintes o cercos permanentes. En Mimos aplicamos aspirado y limpieza de baja humedad en seco sin agua.',
             ],
             [
-              'WS',
-              'Compatible con agua o disolvente',
-              'Permite seleccionar entre limpieza acuosa controlada o en seco tras realizar una prueba discreta de estabilidad del tinte.',
+              'WS o SW',
+              'Mixto (Agua o disolvente)',
+              'Base agua o disolvente suave tras prueba discreta en zona oculta',
+              'Asumir resistencia universal o mezclar productos incompatibles fija manchas. Diagnosticamos el origen y elegimos entre extracción controlada o método en seco.',
             ],
             [
               'X',
               'Solo aspirado en seco',
-              'No admite ningún producto líquido ni disolvente; únicamente aspiración suave en seco con boquilla tapicera.',
+              'Aspiración en seco y cepillado muy suave con cerda blanda',
+              'Prohibido agua, disolventes o quitamanchas líquidos. Limitado a aspirado profundo en seco y cepillado suave informando de la restricción del fabricante.',
             ],
           ],
-          pie: 'Nota importante: en piel natural o polipiel no se realiza inyección-extracción acuosa; requerimos foto previa para valorar el tratamiento específico.',
+          pie: 'Nota importante: en tapizados de piel natural o polipiel no se emplea inyección-extracción acuosa; requerimos foto previa por WhatsApp para valorar la viabilidad.',
         },
       },
       {
-        h2: '4. Higienización a domicilio en Vigo con secado natural al aire',
+        h2: '3. Comportamiento de 6 tejidos habituales: de Aquaclean a viscosa y lino',
         parrafos: [
-          'En Tintorería Mimos acudimos a tu domicilio en Vigo y área de influencia con equipo portátil profesional para tratar sofás, chaiselongue, sillones, sillas tapizadas, cabeceros y colchones sin desmontar estructuras (no realizamos tapicerías de coches).',
-          'Nuestro protocolo combina aspirado profundo en seco, pretratamiento localizado de pH equilibrado, inyección-extracción controlada sin empapar el núcleo —o método código S cuando la etiqueta lo exige— y secado natural al aire ventilando la habitación (no empleamos vapor seco, enzimáticos, ozono ni ventiladores industriales). Al aclarar y extraer mecánicamente el producto, el descanso resulta limpio y seguro para bebés, personas alérgicas y mascotas.',
+          'Junto al código de limpieza, la fibra y el acabado condicionan si el agua limpia o estropea la tapicería. Mientras tecnologías como Aquaclean prescinden de perfluorocarbonos (PFC) e integran hidrofilia en la estructura del hilo junto con barrera antimicrobiana, los acabados convencionales de teflón o nanoprotección superficial se degradan con el roce y químicos alcalinos.',
+          'Además, cada fibra responde de manera opuesta ante la grasa, el pH y la humedad residual:',
+        ],
+        tabla: {
+          encabezados: [
+            'Tejido habitual',
+            'Propiedad o vulnerabilidad clave',
+            'Riesgos principales al limpiarlo',
+            'Criterio seguro de intervención',
+          ],
+          filas: [
+            [
+              'Antimanchas (Aquaclean vs. teflón/PFC)',
+              'Aquaclean integra hidrofilia en el hilo sin PFC; el teflón es barrera superficial',
+              'Lejía, amoníaco o químicos fuertes degradan la protección; en teflón el roce abre paso a la mancha',
+              'Limpieza suave de base agua y pH neutro tras verificar etiqueta (evitar alcohol y secadora).',
+            ],
+            [
+              'Microfibra',
+              'Poliéster de alta resistencia y secado rápido con comportamiento oleofílico',
+              'Repele líquidos acuosos pero absorbe aceites y grasas corporales con rapidez fijando oscurecimientos',
+              'Desengrasante compatible o extracción controlada según código W/WS y peinado en un sentido.',
+            ],
+            [
+              'Chenilla',
+              'Hilo con pelo que absorbe líquido en profundidad y seca lento',
+              'Exceso de agua favorece moho y deforma marcos; el frotado aplasta el pelo; en rayón encoge con calor',
+              'Humedad mínima o disolvente según código, sin cepillos duros ni agua caliente.',
+            ],
+            [
+              'Lino y algodón natural',
+              'Fibras celulósicas vegetales con lignina natural',
+              'Encogen al mojarse, sufren pardeamiento celulósico con humedad y álcalis y se dañan con lejía',
+              'Código S frecuente en lino; si admite agua, humedad mínima, pH controlado y secado ágil.',
+            ],
+            [
+              'Terciopelo',
+              'Pelo vertical muy sensible a la presión, la humedad y la fricción',
+              'El agua excesiva deja cercos y aplasta el pelo; el calor directo y frotar alteran el brillo',
+              'Aspirado suave en el sentido del pelo y limpieza sin saturación ni calor directo.',
+            ],
+            [
+              'Viscosa y rayón',
+              'Celulosa regenerada que pierde gran parte de su resistencia en mojado',
+              'Al mojarse en limpieza húmeda absorbe agua, se hincha y puede estallar o rajarse de forma irreversible',
+              'Evitar limpieza húmeda convencional; evaluar mínima humedad o método en seco según etiqueta.',
+            ],
+          ],
+        },
+      },
+      {
+        h2: '4. Evidencia química sobre errores caseros: lejía, bicarbonato y vaporeta',
+        parrafos: [
+          'Gran parte de los cercos amarillentos y espumas hundidas en colchones y sofás proceden de remedios caseros aparentemente inofensivos. En fibras vegetales (algodón, lino, viscosa o refuerzo de yute), el agua aplicada sin succión disuelve la lignina natural y la arrastra por capilaridad hacia los bordes al secar lento (pardeamiento celulósico), agravándose con limpiadores alcalinos como amoníaco o pastas domésticas.',
+          'Por otro lado, mezclar lejía con amoníaco u orina libera gases cloramina altamente irritantes; combinar lejía con vinagre produce gas cloro corrosivo; y con alcohol genera cloroformo tóxico. Al mismo tiempo, tanto la lejía como el calor de una vaporeta coagulan y sellan proteínas (sangre, orina, sudor, vómito) dentro de la fibra y reblandecen la espuma viscoelástica.',
+        ],
+        tabla: {
+          encabezados: [
+            'Error casero frecuente',
+            'Mecanismo químico o mecánico',
+            'Consecuencia en la espuma o el tejido',
+          ],
+          filas: [
+            [
+              'Bicarbonato + vinagre o jabones sin extracción',
+              'Humectación sin aspiración profunda y residuos alcalinos que movilizan lignina',
+              'Cercos amarillos o marrones por capilaridad (wick-back), parches rígidos y retorno de la mancha; no elimina ácaros.',
+            ],
+            [
+              'Usar agua en lino, algodón, viscosa o código S',
+              'Arrastre capilar de lignina y debilitamiento e hinchamiento de celulosa regenerada',
+              'Pardeamiento en los bordes, encogimiento de fundas y rotura irreversible de fibras en viscosa o rayón.',
+            ],
+            [
+              'Vaporeta o agua caliente en sangre, orina o sudor',
+              'Coagulación térmica de proteínas (fibrina) y empuje hacia capas profundas',
+              'Fijación permanente de la mancha proteica en el textil y olor orgánico persistente.',
+            ],
+            [
+              'Vaporeta o empapado en viscoelástica / poliuretano',
+              'Inyección de vapor en celdas finas y pérdida mecánica de rigidez por calor y humedad',
+              'Reblandecimiento permanente de la espuma (prohibido por fabricantes de viscoelástica) y moho interno tras 48 h húmedo.',
+            ],
+            [
+              'Lejía sola o mezclada con orina, amoníaco, vinagre o alcohol',
+              'Oxidación agresiva y liberación de gases cloramina, gas cloro o cloroformo',
+              'Fijación de orina y sangre, decoloración desigual, deterioro de espuma y toxicidad respiratoria grave.',
+            ],
+            [
+              'Frotar con fuerza o cepillo duro en chenilla o terciopelo',
+              'Abrasión mecánica del pelo y dispersión lateral del pigmento',
+              'Aplastamiento permanente del pelo, desgaste blanquecino localizado y extensión de la mancha.',
+            ],
+          ],
+        },
+        destacado: {
+          titulo: 'Por qué el colchón no admite vapor ni superar 48 horas húmedo',
+          texto:
+            'Las espumas de poliuretano y viscoelástica actúan como esponjas de celda fina. El vapor a presión fuerza humedad hacia cavidades internas que tardan días en evaporar, causando pérdida duradera de firmeza y colonización profunda de moho si supera las 48 horas húmedo.',
+        },
+      },
+      {
+        h2: '5. Protocolo seguro en casa, secado natural en Vigo y cuándo llamar a Mimos',
+        parrafos: [
+          'Aunque abrir la cama al levantarse ayuda a disipar calor y sudoración nocturna (conviene retirar el edredón hacia los pies 20–60 minutos cada mañana mientras se ventila en cruz unos 10 minutos), los estudios higrotérmicos muestran que en viviendas húmedas dejar la cama deshecha por sí solo no reduce la carga alergénica sin medidas físicas constantes.',
+          'Estas cinco pautas diarias reducen de forma real polvo, alérgenos y riesgo de cercos en Vigo:',
+        ],
+        puntosClave: [
+          'Lavado semanal de sábanas, fundas y protectores a 54–60 °C (si la etiqueta lo permite) para arrastrar polvo y desnaturalizar alérgenos principales de ácaros (Der p 1 y Der p 2).',
+          'Funda protectora antiácaros impermeable y transpirable de poliuretano (PU) certificado (>99 % de barrera física), ya que una sábana normal no frena los ácaros.',
+          'Aspirado quincenal o semanal del colchón por ambas caras y del sofá con boquilla lisa de tapicería y filtro HEPA, siguiendo la dirección del pelo en terciopelo y chenilla.',
+          'Control ambiental en dormitorio y canapé: mantener humedad interior <60 %, evitar tender ropa dentro, separar el canapé 5–10 cm de paredes exteriores frías y abrir su tapa con frecuencia.',
+          'Actuación inmediata ante derrames: retirar sólidos con cuchara, presionar en vertical sin frotar con papel absorbente o paño blanco de fuera hacia el centro y revisar código W/S/WS/X antes de aplicar nada.',
+        ],
+        subsecciones: [
+          {
+            h3: 'Secado natural al aire en Vigo: referencia realista bajo 48 horas',
+            texto:
+              'La referencia habitual en interiores bien ventilados tras una inyección-extracción es de 8 a 12 horas; con el 80–85 % de humedad otoñal de Vigo puede prolongarse según el grosor de la espuma y la fibra (la microfibra seca mucho antes que algodón, lino o viscosa). En Mimos no usamos aire caliente ni ventiladores industriales: minimizamos el agua residual en la extracción y pautamos ventilación cruzada continua.',
+          },
+          {
+            h3: 'Cuándo acudir a Tintorería Mimos y franqueza de resultados',
+            texto:
+              'Solicita valoración cuando la etiqueta indique S, X o falte; en fibras sensibles (viscosa, lino, seda); tras episodios de orina o derrames calados en espuma; ante cercos recurrentes o moho superficial; o para fundas desenfundables aptas en planta. En manchas antiguas fijadas, tinta o cercos quemados con lejía, mejoramos notablemente aspecto e higiene sin prometer desaparición del 100 %.',
+          },
         ],
       },
     ],
     advertenciaProfesional:
-      'Nunca prometemos eliminar el 100 % de cercos antiguos fijados con lejía o líquidos que ya calaron en el núcleo interior: envíanos 3 fotos por WhatsApp a Mimo (vista general, mancha de cerca y tejido/etiqueta) junto con la medida del colchón o plazas del sofá para darte valoración honesta sin compromiso.',
+      'Servicio 100 % a domicilio en Vigo y área de influencia sobre colchones, sofás, sillones, sillas tapizadas y cabeceros (no realizamos tapicerías de coches ni trasladamos muebles, salvo fundas desenfundables aptas en planta; tampoco aplicamos vapor seco, ozono, enzimáticos in situ ni ventiladores industriales). Envía foto general, detalle de manchas y etiqueta W/S/WS/X a Mimo por WhatsApp.',
     enlacesInternos: [
       {
         texto: 'Limpieza de Sofás, Tapicerías y Colchones a Domicilio en Vigo',
         href: '/limpieza-sofas-vigo',
-        descripcion: 'Checklist de fotos, configurador WhatsApp y detalles de visita en tu hogar.',
+        descripcion: 'Checklist de fotos, códigos W/S/WS/X, configurador WhatsApp y condiciones de visita.',
       },
       {
         texto: 'Edredones, Fundas Desenfundables, Mantas y Cortinas',
@@ -1526,7 +1676,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
       },
     ],
     whatsappCtaUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. He leído la guía sobre humedad y ácaros y quiero pedir valoración con foto para limpiar mi colchón o sofá en Vigo.'
+      'Hola, Mimo. He leído la guía técnica sobre humedad y ácaros y quiero pedir valoración con foto para limpiar mi colchón o sofá en Vigo.'
     ),
   },
 ];

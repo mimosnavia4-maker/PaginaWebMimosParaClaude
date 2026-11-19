@@ -16,6 +16,7 @@ import {
 import heroSofasImg from '../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
 import {
   CONTACT_INFO,
+  SERVICIO_SOFAS_FAQS,
   ZONAS_SERVICIO,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
@@ -69,19 +70,19 @@ const TAPICERIAS_ATENDIDAS = [
     id: 'cabeceros-bases',
     titulo: 'Cabeceros tapizados, canapés y pufs',
     descripcion:
-      'Limpieza controlada o de baja humedad en piezas fijas de dormitorio para atenuar roces de cabeza, polvo y manchas puntuales sin dañar la pared ni el bastidor.',
+      'Limpieza controlada o de baja humedad en piezas fijas de dormitorio para atenuar roces de cabeza, polvo y condensación en canapés sin dañar la pared ni el bastidor.',
   },
   {
     id: 'colchones',
     titulo: 'Colchones (higienización de caras accesibles)',
     descripcion:
-      'Aspirado profundo y tratamiento in situ frente a polvo, ácaros superficiales y manchas tras valoración previa por fotografía del tejido y estado del colchón.',
+      'Aspirado profundo en seco, pretratamiento y extracción controlada de baja humedad frente a ácaros y cercos sin saturar la espuma viscoelástica ni usar vaporeta.',
   },
   {
     id: 'fundas-desenfundables',
-    titulo: 'Fundas desenfundables (en nuestras instalaciones)',
+    titulo: 'Fundas desenfundables (en nuestra planta de Vigo)',
     descripcion:
-      'Si tu sofá o cojines permiten retirar las fundas de forma segura según etiqueta, también podemos lavarlas y plancharlas en nuestras tiendas propias de Vigo.',
+      'Que un cojín tenga cremallera suele ser para el tapizado de fábrica: revisamos primero la etiqueta y solo trasladamos a planta las fundas aptas sin riesgo de encogimiento.',
   },
 ];
 
@@ -149,24 +150,34 @@ const CODIGOS_ETIQUETA = [
 
 const MATERIALES_TAPICERIA = [
   {
-    material: 'Poliéster y microfibras',
-    cuidado: 'Habitualmente W o WS. Soportan bien la extracción controlada; conviene peinar en un único sentido mientras secan al aire.',
+    material: 'Telas antimanchas (Aquaclean frente a teflón/PFC)',
+    cuidado:
+      'Aquaclean integra hidrofilia en el hilo sin PFC y exige limpieza suave de base agua y pH neutro. Evita siempre lejía, amoníaco, alcohol, secadora y plancha para no degradar la protección ni abrir la barrera en recubrimientos superficiales.',
   },
   {
-    material: 'Telas antimanchas (tipo Aquaclean)',
-    cuidado: 'Evitar siempre alcohol, disolventes, lejía, secadora y plancha. Si se lavan fundas desmontables, máximo 30 °C y sin centrifugado agresivo.',
+    material: 'Poliéster y microfibras',
+    cuidado:
+      'Alta resistencia y secado ágil con comportamiento oleofílico (repelen agua pero atrapan aceites y grasas corporales). Suelen admitir extracción controlada W/WS y peinado en un único sentido.',
   },
   {
     material: 'Lino, algodón y lana',
-    cuidado: 'Fibras naturales sensibles al exceso de humedad y al roce fuerte: requieren mínima agua, control de tinte y secado natural sin calor directo.',
+    cuidado:
+      'Fibras celulósicas con lignina natural: encogen al mojarse y sufren pardeamiento amarillento si se saturan o reciben álcalis como amoníaco. Exigen mínima humedad (o código S en lino) y secado ágil.',
   },
   {
     material: 'Terciopelo, chenilla y bouclé',
-    cuidado: 'Pelo o bucles delicados sensibles al aplastamiento: se aspira sin presión excesiva, se extrae suavemente y se peina al finalizar.',
+    cuidado:
+      'Pelo sensible a la fricción y la humedad lenta: nunca frotar en círculos ni usar calor o cepillos duros. Se aspira siguiendo el pelo, se extrae con mínima humedad y se peina al finalizar.',
+  },
+  {
+    material: 'Viscosa y rayón',
+    cuidado:
+      'Celulosa regenerada que pierde resistencia al mojarse y puede hincharse o rasgarse de forma irreversible en limpieza húmeda convencional. Evaluamos mínima humedad o método en seco según etiqueta.',
   },
   {
     material: 'Piel natural y polipiel',
-    cuidado: 'No admiten inyección-extracción acuosa ni amoníaco o toallitas. Valoración obligatoria por foto para indicar viabilidad o limpieza específica.',
+    cuidado:
+      'No admiten inyección-extracción acuosa ni amoníaco o toallitas. Valoración obligatoria por foto para indicar viabilidad o limpieza específica.',
   },
 ];
 
@@ -177,54 +188,6 @@ const CHECKLIST_FOTOS_SOFA = [
   'Número exacto de plazas, módulos o sillas (y si quieres incluir cojines o trasera).',
   'Origen y antigüedad aproximada de la mancha (y si aplicaste algún producto casero antes).',
   'Tu municipio y barrio o código postal para confirmar cobertura, ruta e importe mínimo aplicable.',
-];
-
-const FAQS_SOFAS = [
-  {
-    pregunta: '1. ¿La limpieza del sofá se hace en mi propia casa o os lo lleváis?',
-    respuesta:
-      'La limpieza de sofás y tapicerías fijas se realiza al 100 % en tu domicilio o negocio mediante equipo portátil profesional, sin desmontar estructuras ni trasladar muebles. Si tu sofá tiene fundas desenfundables lavables, también podemos tratarlas en nuestras instalaciones de Vigo.',
-  },
-  {
-    pregunta: '2. ¿Cómo sé el precio de limpiar mi sofá o mis sillas?',
-    respuesta:
-      'No publicamos tarifas estándar cerradas porque el presupuesto depende del número de plazas o piezas, el tipo de tejido, el estado de las manchas y la localidad (sujeto a importe mínimo de visita a consultar). Envía tus fotos a Mimo por WhatsApp para recibir valoración personalizada.',
-  },
-  {
-    pregunta: '3. ¿Cómo seca el sofá y cuánto tiempo tarda?',
-    respuesta:
-      'Durante el servicio extraemos la mayor parte de la humedad aplicada, pero no utilizamos secadores de aire caliente ni ventiladores industriales: la tapicería termina de secar de forma natural al aire. El tiempo depende del grosor de la tela, la humedad ambiental y la ventilación de la estancia; te indicaremos cuándo volver a sentarte.',
-  },
-  {
-    pregunta: '4. ¿Qué métodos utilizáis? ¿Usáis vapor seco u ozono?',
-    respuesta:
-      'Trabajamos principalmente mediante aspirado profundo en seco, pretratamiento localizado e inyección-extracción controlada (o limpieza de baja humedad / en seco en tejidos código S que no admiten agua). No aplicamos vapor seco ni tratamientos gaseosos de ozono ni procesos enzimáticos en domicilio.',
-  },
-  {
-    pregunta: '5. ¿Desaparecen todas las manchas antiguas, de tinta o remediadas en casa?',
-    respuesta:
-      'Cada mancha se valora con franqueza tras ver tus fotos. Las manchas recientes habituales suelen mejorar notablemente; sin embargo, tintas fijadas, transferencia vaquera, humedad incrustada en la espuma interior o cercos ya tratados con lejía, amoníaco, vinagre o bicarbonato pueden dejar marca permanente.',
-  },
-  {
-    pregunta: '6. ¿Los productos son seguros para bebés, alérgicos y mascotas?',
-    respuesta:
-      'Sí. Empleamos formulaciones profesionales de pH equilibrado que se aclaran y extraen mecánicamente durante el proceso, evitando residuos pegajosos. Una vez que el tejido ha secado por completo al aire con ventilación natural, es seguro para toda la familia y mascotas.',
-  },
-  {
-    pregunta: '7. ¿Qué necesitáis en casa el día de la cita y cuánto dura?',
-    respuesta:
-      'Solo necesitamos acceso a una toma de corriente doméstica, un punto de agua, algo de espacio alrededor del mueble, posibilidad de ventilar la habitación y una persona responsable al inicio y al final. La duración habitual ronda entre 1 y 2 horas según tamaño y estado.',
-  },
-  {
-    pregunta: '8. ¿Limpiáis tapicerías de coches o furgonetas?',
-    respuesta:
-      'No. Este servicio a domicilio está enfocado exclusivamente en sofás, sillones, sillas, cabeceros, colchones y mobiliario tapizado de viviendas particulares, alojamientos turísticos, oficinas y locales.',
-  },
-  {
-    pregunta: '9. ¿En qué zonas trabajáis y con qué frecuencia conviene limpiar el sofá?',
-    respuesta:
-      'Atendemos Vigo y su área de influencia según ruta y condiciones de visita (a consultar con Mimo). Se recomienda una limpieza profesional anual como mantenimiento preventivo, o cada seis meses en hogares con niños pequeños, mascotas o alergias al polvo.',
-  },
 ];
 
 const ENLACES_RELACIONADOS = [
@@ -479,10 +442,10 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 Limpieza de colchones frente a humedad, ácaros y cercos sin empapar el núcleo
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Con la humedad ambiental de Vigo (&gt;77 %), los colchones acumulan polvo fino, sudoración nocturna y ácaros en las capas superficiales del acolchado. Realizamos aspirado profundo en seco, pretratamiento puntual y extracción controlada de baja humedad en caras accesibles sin saturar la espuma interior, dejando secar al aire de forma natural (sin vapor seco ni ventiladores industriales).
+                Con la humedad atlántica de Vigo (77 % anual y 80–85 % entre octubre y enero), los colchones y canapés retienen sudoración nocturna, polvo fino y ácaros (Dermatophagoides) en las capas del acolchado. Aplicamos aspirado profundo en seco, pretratamiento puntual y extracción controlada de baja humedad en caras accesibles sin saturar la espuma ni usar vaporeta (que reblandece la viscoelástica, coagula sangre/orina y dispara el riesgo de moho si supera las 48 h húmedo).
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <strong className="text-[#002147] dark:text-white">Para valorar tu colchón por WhatsApp:</strong> indica la medida (90, 135, 150 o 180 cm), si quieres tratar una cara o ambas caras accesibles y adjunta foto general y de cerca de cualquier cerco o mancha.
+                <strong className="text-[#002147] dark:text-white">Para valorar tu colchón por WhatsApp:</strong> indica la medida (90, 135, 150 o 180 cm), si quieres tratar una o ambas caras accesibles, si aplicaste lejía/bicarbonato previo y adjunta foto general y de cerca de cualquier cerco o mancha.
               </p>
             </div>
 
@@ -661,7 +624,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
                   <span>
-                    <strong>Secado natural al aire:</strong> no usamos secadores de aire caliente ni ventiladores industriales; el tejido seca al aire ventilando la estancia de forma natural antes de volver a sentarse.
+                    <strong>Secado natural al aire:</strong> no usamos secadores de aire caliente ni ventiladores industriales; el tejido seca al aire (referencia de 8–12 horas con ventilación cruzada continua, variando según grosor de espuma, tejido y humedad ambiental de Vigo) antes de volver a sentarse o vestir la cama.
                   </span>
                 </li>
               </ul>
@@ -681,7 +644,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 <li className="flex items-start gap-2.5">
                   <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-1" aria-hidden="true" />
                   <span>
-                    Manchas muy antiguas, tintas fijadas, transferencia de tinte vaquero o cercos quemados previamente con lejía, amoníaco o limpiadores domésticos pueden dejar marca permanente.
+                    Manchas muy antiguas, tintas penetradas, transferencia vaquera o cercos alterados previamente con lejía, amoníaco, bicarbonato con vinagre o vaporeta (que fijan proteínas y provocan pardeamiento celulósico) pueden dejar marca permanente.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -934,7 +897,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {FAQS_SOFAS.map((faq) => (
+            {SERVICIO_SOFAS_FAQS.map((faq) => (
               <details
                 key={faq.pregunta}
                 className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5"

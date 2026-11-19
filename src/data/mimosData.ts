@@ -1509,13 +1509,13 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     seoTitle:
       'Humedad y Ácaros en Colchones y Sofás en Vigo | Guía Mimos',
     metaDescription:
-      'Por qué la humedad de Vigo favorece ácaros y cercos en colchones y sofás. Qué errores caseros evitar, códigos W/S/WS/X y limpieza controlada a domicilio.',
+      'Guía técnica para cuidar colchones y sofás en Vigo (77 % humedad): códigos W/S/WS/X, tejidos, riesgos de vaporeta/lejía y limpieza sin empapar.',
     categoria: 'Hogar, Colchones y Tapicerías',
     fechaPublicacion: '19 de noviembre de 2026',
     fechaISO: '2026-11-19',
-    tiempoLectura: '6 min de lectura',
+    tiempoLectura: '9 min de lectura',
     extracto:
-      'Con más del 77 % de humedad media anual en Vigo, colchones, cabeceros y sofás retienen polvo y ácaros si se aplican trucos domésticos con exceso de agua o vapor. Repasamos los 4 errores que fijan cercos y cómo higienizamos por inyección-extracción controlada.',
+      'Con un 77 % de humedad media anual en Vigo (80–85 % entre octubre y enero), colchones, canapés y sofás entran en la franja óptima para ácaros y moho. Analizamos los códigos W/S/WS/X, seis tejidos habituales (Aquaclean, microfibra, chenilla, lino, terciopelo y viscosa), por qué la vaporeta, la lejía o el bicarbonato con vinagre dañan la espuma o fijan cercos y cómo higienizar por inyección-extracción controlada con secado natural al aire.',
     imagen: IMAGES.blogColchonesTapicerias,
     imagenAlt:
       'Interior luminoso con sofá y dormitorio higienizados sin cercos ni exceso de humedad en Vigo',
@@ -4868,6 +4868,64 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
   ] as ServicioFaqItem[],
 };
 
+export const SERVICIO_SOFAS_FAQS: ServicioFaqItem[] = [
+  {
+    pregunta: '1. ¿La limpieza del sofá o colchón se hace en mi propia casa o os lo lleváis?',
+    respuesta:
+      'El servicio de sofás, colchones, sillones, sillas tapizadas y cabeceros se realiza al 100 % en tu domicilio o negocio mediante equipo portátil profesional, sin desmontar ni trasladar muebles. Que un cojín lleve cremallera responde a menudo al tapizado de fábrica: solo retiramos a nuestra planta de Vigo las fundas desenfundables cuya etiqueta autorice expresamente su limpieza.',
+  },
+  {
+    pregunta: '2. ¿Cómo sé el precio de limpiar mi sofá, colchón o mis sillas?',
+    respuesta:
+      'No publicamos tarifas estándar cerradas porque el presupuesto depende del número de plazas o medida del colchón, el código y tipo de tejido, el estado de las manchas y la localidad (sujeto a importe mínimo de visita a consultar). Envía tus fotos a Mimo por WhatsApp para recibir valoración personalizada.',
+  },
+  {
+    pregunta: '3. ¿Cómo seca el sofá o colchón y cuánto tiempo tarda en Vigo?',
+    respuesta:
+      'Extraemos mecánicamente la solución aplicada y dejamos terminar el secado de forma natural al aire con ventilación cruzada de la estancia; no utilizamos secadores de aire caliente ni ventiladores industriales. La referencia habitual en interiores es de 8 a 12 horas, pudiendo prolongarse en Vigo (donde la humedad alcanza el 80–85 % de octubre a enero) según densidad de espuma y tejido.',
+  },
+  {
+    pregunta: '4. ¿Qué métodos utilizáis? ¿Usáis vapor seco, ozono o enzimáticos?',
+    respuesta:
+      'Trabajamos mediante lectura previa de etiqueta (W, S, WS, X), aspirado profundo en seco, pretratamiento localizado e inyección-extracción controlada (o limpieza de baja humedad en seco en tejidos código S). Quedan excluidos el vapor seco a alta presión, los tratamientos gaseosos con ozono, los procesos enzimáticos in situ y el calor forzado.',
+  },
+  {
+    pregunta: '5. ¿Desaparecen todas las manchas antiguas, de tinta o remediadas en casa?',
+    respuesta:
+      'Valoramos tus fotografías con franqueza antes de acudir. Las manchas recientes habituales suelen mejorar notablemente; sin embargo, tintas fijadas, humedad incrustada en el núcleo de espuma o cercos alterados previamente con lejía, amoníaco, bicarbonato con vinagre o vaporeta (que fija proteínas y provoca pardeamiento celulósico) no permiten prometer una eliminación del 100 %.',
+  },
+  {
+    pregunta: '6. ¿Cómo limpiáis colchones y sofás antimanchas, terciopelo, lino o viscosa?',
+    respuesta:
+      'Adaptamos el método a la etiqueta y la fibra: los tejidos Aquaclean (hidrofilia en el hilo sin PFC) exigen pH neutro sin lejía ni amoníaco; la microfibra es oleofílica y requiere desengrasado controlado; y el lino, el algodón, el terciopelo y especialmente la viscosa/rayón rechazan la saturación acuosa por riesgo de pardeamiento, cercos o rotura de fibras.',
+  },
+  {
+    pregunta: '7. ¿Los productos son seguros para bebés, alérgicos y mascotas?',
+    respuesta:
+      'Sí. Empleamos formulaciones profesionales de pH equilibrado que se aclaran y extraen mecánicamente durante el servicio, evitando residuos jabonosos pegajosos (wick-back) que atraen suciedad. Una vez el mueble seca al aire por completo con ventilación natural, es seguro para toda la familia y mascotas.',
+  },
+  {
+    pregunta: '8. ¿Qué necesitáis en casa el día de la cita y cuánto dura?',
+    respuesta:
+      'Solo necesitamos acceso a una toma de corriente doméstica, un punto de agua, algo de espacio alrededor de la pieza, posibilidad de abrir ventanas para ventilación cruzada y una persona responsable al inicio y al final. La duración habitual ronda entre 1 y 2 horas según tamaño y estado.',
+  },
+  {
+    pregunta: '9. ¿Por qué aparece moho en el canapé abatible o bajo el colchón en Vigo?',
+    respuesta:
+      'Con la humedad atlántica de Vigo (77 % anual y 80–85 % en otoño e invierno), el vapor corporal nocturno condensa si el canapé está pegado a una pared exterior fría o lleno de textiles sin aireación. Recomendamos separarlo 5–10 cm del muro, ventilar la habitación y limpiar superficialmente antes de valorar el colchón.',
+  },
+  {
+    pregunta: '10. ¿Limpiáis tapicerías de coches o furgonetas?',
+    respuesta:
+      'No. Este servicio a domicilio está enfocado exclusivamente en colchones, sofás, sillones, sillas tapizadas, cabeceros y mobiliario tapizado de viviendas particulares, alojamientos turísticos, oficinas y locales.',
+  },
+  {
+    pregunta: '11. ¿En qué zonas trabajáis y con qué frecuencia conviene limpiar?',
+    respuesta:
+      'Atendemos Vigo y su área de influencia según ruta y condiciones de visita (a consultar con Mimo). Se recomienda una higienización profesional anual como mantenimiento preventivo frente a polvo y ácaros (Dermatophagoides), o cada seis meses en hogares con niños pequeños, mascotas o alergias respiratorias.',
+  },
+];
+
 export const BLOG_FAQS_MAP: Record<string, ServicioFaqItem[]> = {
   'protocolo-rotacion-apartamentos-turisticos-vigo': [
     {
@@ -4993,19 +5051,64 @@ export const BLOG_FAQS_MAP: Record<string, ServicioFaqItem[]> = {
   ],
   'humedad-acaros-colchones-sofas-vigo': [
     {
-      pregunta: '¿Cómo seca un colchón o sofá limpio a domicilio con la humedad de Vigo?',
+      pregunta: '1. ¿Cómo quitar las manchas amarillas de sudor del colchón sin que salga un cerco alrededor?',
       respuesta:
-        'Usamos inyección-extracción controlada de baja humedad que recupera la solución al instante sin empapar el núcleo de espuma o látex, y dejamos secar de forma natural al aire ventilando la estancia, sin vapor seco ni ventiladores industriales.',
+        'Las marcas amarillas proceden de sales, grasas corporales y sudor oxidado acumulado en las fibras. Frotar o humedecer sin extracción suele desplazar la suciedad hacia los bordes creando un cerco por capilaridad (wick-back). En casa conviene aspirar en seco y proteger el colchón con funda transpirable; los cercos ya formados requieren pretratamiento localizado e inyección-extracción profesional controlada para retirar el residuo sin saturar la espuma.',
     },
     {
-      pregunta: '¿Por qué no conviene usar vaporeta, lejía o bicarbonato en sofás y colchones?',
+      pregunta: '2. ¿El bicarbonato y el vinagre realmente limpian el colchón y eliminan los ácaros?',
       respuesta:
-        'El vapor caliente y el exceso de agua penetran en el relleno favoreciendo ácaros, moho y encogimientos en lino o algodón; la lejía, el amoníaco y los remedios abrasivos queman tintes y degradan tratamientos antimanchas.',
+        'No. El bicarbonato puede absorber parte de la humedad y olores superficiales y el vinagre aporta acidez suave, pero ninguno desinfecta en profundidad ni elimina de forma fiable los ácaros y sus alérgenos del interior del colchón. Además, pulverizar líquidos innecesarios sin extracción mecánica empuja la humedad al núcleo y eleva el riesgo de moho y cercos.',
     },
     {
-      pregunta: '¿Qué necesito enviar a Mimo por WhatsApp para pedir presupuesto de colchón o sofá?',
+      pregunta: '3. ¿Se puede limpiar un colchón viscoelástico o de muelles con vaporeta o vapor caliente?',
       respuesta:
-        'Basta con una foto general de la pieza, fotos de cerca de manchas y tejido (y etiqueta W/S/WS/X si la tiene), la medida del colchón o plazas del sofá y tu zona en Vigo o comarca.',
+        'No es aconsejable. Principales fabricantes de colchones viscoelásticos prohíben explícitamente la limpieza con vapor —incluido el vapor seco— porque la humedad introducida a presión y el calor reblandecen y degradan de forma duradera la espuma viscoelástica y de poliuretano, además de generar riesgo de moho interno si retiene humedad más de 48 horas.',
+    },
+    {
+      pregunta: '4. ¿Cómo limpiar una mancha de sangre fresca en el colchón sin fijarla?',
+      respuesta:
+        'Actúa al momento absorbiendo en vertical con un paño blanco limpio y agua fría, presionando desde fuera hacia el centro sin frotar. Nunca utilices agua caliente ni vapor: el calor coagula las proteínas de la sangre (como la fibrina) y sella la mancha en las fibras.',
+    },
+    {
+      pregunta: '5. ¿Por qué sale moho debajo del colchón o dentro del canapé aunque la habitación parezca limpia?',
+      respuesta:
+        'En zonas húmedas como Vigo (77 % de humedad media anual y 80–85 % entre octubre y enero), el moho del canapé aparece por condensación y falta de circulación de aire. El vapor del cuerpo al dormir choca con paredes exteriores o suelos fríos y queda atrapado si el canapé está pegado al muro o lleno de textiles. Sepáralo 5–10 cm de la pared, ventila a diario y limpia el moho con protección antes de valorar el colchón.',
+    },
+    {
+      pregunta: '6. ¿Qué hacer si se ha orinado un niño o mascota en el colchón y persiste el olor?',
+      respuesta:
+        'Seca de inmediato presionando con papel absorbente o toallas secas sin frotar ni añadir abundante agua para no empujar la orina al núcleo. No apliques lejía, ya que fija la mancha proteica y libera gases cloramina tóxicos al reaccionar con el amoníaco de la orina. Cuando la orina alcanza la espuma interior, la limpieza casera superficial no resuelve el foco y conviene recurrir a extracción profesional.',
+    },
+    {
+      pregunta: '7. ¿Se puede usar lejía o amoníaco para desinfectar y blanquear colchones o sofás?',
+      respuesta:
+        'No. La lejía debilita y decolora los tejidos de forma desigual, fija manchas proteicas de sangre, orina y sudor, y produce gases tóxicos peligrosos (cloramina, gas cloro o cloroformo) si entra en contacto con orina, amoníaco, vinagre o alcohol. El amoníaco puro también daña la espuma interna y acelera el pardeamiento celulósico en algodón y lino.',
+    },
+    {
+      pregunta: '8. ¿Se pueden meter en la lavadora las fundas con cremallera de los cojines del sofá?',
+      respuesta:
+        'Solo si la etiqueta del fabricante autoriza expresamente el lavado a máquina. En muchos sofás, la cremallera responde únicamente al proceso de tapizado en fábrica y lavar las fundas en casa provoca encogimiento, impidiendo volver a cerrarlas. En Tintorería Mimos revisamos la etiqueta y solo retiramos a planta en Vigo las fundas desenfundables aptas.',
+    },
+    {
+      pregunta: '9. ¿Qué significan las letras W, S, WS y X en la etiqueta del sofá?',
+      respuesta:
+        'Indican la química segura de limpieza: W admite productos de base agua con humedad controlada; S exige disolventes en seco sin nada de agua; WS (o SW) permite base agua o disolvente suave tras prueba en zona oculta; y X restringe el cuidado únicamente a aspirado y cepillado suave en seco sin líquidos.',
+    },
+    {
+      pregunta: '10. ¿Cómo limpiar un sofá antimanchas tipo Aquaclean, de microfibra, terciopelo o viscosa sin dañarlo?',
+      respuesta:
+        'En tejidos Aquaclean suele bastar agua y jabón neutro con un paño blanco para manchas recientes, evitando siempre lejía o amoníaco. La microfibra resiste bien líquidos acuosos pero absorbe con rapidez aceites y grasas corporales. En terciopelo y chenilla evita empapar o frotar y aspira en el sentido del pelo; y en viscosa o rayón evita la limpieza húmeda convencional por riesgo de hinchamiento y rotura de la fibra.',
+    },
+    {
+      pregunta: '11. ¿Los ácaros del polvo pican y basta con dejar la cama sin hacer para eliminarlos?',
+      respuesta:
+        'No. Los ácaros domésticos del género Dermatophagoides no muerden ni pican; sus alérgenos provocan síntomas respiratorios o cutáneos por exposición. Retirar la ropa de cama entre 20 y 60 minutos cada mañana ayuda a disipar la humedad nocturna, pero en climas húmedos requiere complementarse con lavado semanal de sábanas a 54–60 °C, fundas antiácaros transpirables y aspirado con filtro HEPA.',
+    },
+    {
+      pregunta: '12. ¿Cuánto tarda en secar al aire un sofá o colchón limpio en un clima húmedo como Vigo?',
+      respuesta:
+        'Tras una inyección-extracción controlada, la referencia habitual en interiores bien ventilados es de 8 a 12 horas, aunque en Vigo —donde la humedad exterior alcanza el 80–85 % entre octubre y enero— varía según el grosor y densidad de la espuma y el tipo de tejido. Mantener ventilación cruzada continua permite un secado natural seguro sin usar ventiladores industriales ni aire caliente, muy por debajo del umbral de 48 horas.',
     },
   ],
 };

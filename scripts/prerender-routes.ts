@@ -27,6 +27,7 @@ import {
   SERVICIO_NOVIA_CEREMONIA_DATA,
   SERVICIO_PIELES_DATA,
   SERVICIO_SINIESTROS_FAQS,
+  SERVICIO_SOFAS_FAQS,
   SERVICIO_TEXTILES_HOGAR_DATA,
   SERVICIO_EMPRESAS_B2B_DATA,
   TIENDAS_PROPIAS,
@@ -420,22 +421,22 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/limpieza-sofas-vigo') {
+    const faqsHtml = SERVICIO_SOFAS_FAQS.map(
+      (f) =>
+        `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+    ).join('');
     specificHtml =
       `<section>` +
-      `<p>Servicio 100 % a domicilio en Vigo y área de influencia para limpieza de sofás de 2, 3 o más plazas, chaiselongue, sillones, sillas tapizadas, cabeceros y colchones (higienización en el propio domicilio; no realizamos tapicerías de coches). Método mediante aspirado en seco, pretratamiento e inyección-extracción controlada o baja humedad/seco en código S, con secado natural al aire sin vapor seco, enzimáticos ni ventiladores.</p>` +
-      `<h2>Higienización de colchones a domicilio en Vigo (humedad y ácaros)</h2>` +
-      `<p>Aspirado profundo en seco, pretratamiento localizado y extracción controlada de baja humedad en caras accesibles sin saturar el núcleo de espuma, con secado natural al aire frente a la humedad atlántica (&gt;77 %).</p>` +
+      `<p>Servicio 100 % a domicilio en Vigo y área de influencia para limpieza de sofás de 2, 3 o más plazas, chaiselongue, rinconeras, sillones, sillas tapizadas, cabeceros y colchones (no realizamos tapicerías de coches ni trasladamos muebles fuera de casa, salvo fundas desenfundables aptas en planta de Vigo). Método mediante lectura de etiqueta (W, S, WS, X), aspirado profundo en seco, pretratamiento e inyección-extracción controlada o baja humedad en código S, con secado natural al aire sin vapor seco, ozono, enzimáticos ni ventiladores.</p>` +
+      `<h2>Higienización de colchones y canapés a domicilio en Vigo (humedad 77–85 % y ácaros)</h2>` +
+      `<p>Aspirado profundo en seco, pretratamiento localizado y extracción controlada de baja humedad en caras accesibles sin saturar la espuma viscoelástica ni usar vaporeta, con secado natural al aire con ventilación cruzada continua.</p>` +
       `<h2>Cómo solicitar presupuesto por foto de tu sofá o colchón con Mimo</h2>` +
       `<ul>` +
       `<li>Foto frontal completa del sofá, colchón o piezas, fotos de cerca de manchas y foto del tejido junto con la etiqueta W, S, WS o X si la conserva.</li>` +
-      `<li>Número de plazas, medida del colchón (90, 135, 150, 180 cm) o piezas, origen aproximado de manchas (y si se aplicó remedio casero previo) y localidad o código postal.</li>` +
+      `<li>Número de plazas, medida del colchón (90, 135, 150, 180 cm) o piezas, origen aproximado de manchas (y si se aplicó lejía, amoníaco, bicarbonato/vinagre o vaporeta previo) y localidad o código postal.</li>` +
       `</ul>` +
       `<h2>Preguntas frecuentes sobre limpieza de sofás, tapicerías y colchones</h2>` +
-      `<dl>` +
-      `<dt><strong>¿La limpieza del sofá o colchón se hace en casa o os lo lleváis?</strong></dt><dd>100 % en tu vivienda o local sin desmontar muebles; fundas desenfundables también en nuestras tiendas de Vigo.</dd>` +
-      `<dt><strong>¿Cómo seca el sofá o colchón y qué métodos usáis?</strong></dt><dd>Inyección-extracción controlada o método en seco código S, con secado natural al aire ventilando la estancia (sin vapor seco, enzimáticos, ozono ni ventiladores).</dd>` +
-      `<dt><strong>¿Limpiáis tapicerías de coches?</strong></dt><dd>No; el servicio se centra exclusivamente en sofás, colchones y mobiliario tapizado de hogares, alojamientos y empresas.</dd>` +
-      `</dl>` +
+      `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/arreglos-de-ropa-vigo') {
     const catalogoHtml = SERVICIO_ARREGLOS_DATA.catalogoCompleto18Puntos
