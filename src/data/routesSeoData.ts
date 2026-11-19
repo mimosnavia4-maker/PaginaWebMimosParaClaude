@@ -246,7 +246,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Limpieza y Lavandería Apartamentos Turísticos Vigo | Mimos',
     h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',
     description:
-      'Limpieza y lavandería VUT en Vigo en franja 11:00–15:00 (sábados, festivos y agosto): amenities, llaves, reporte fotográfico y Decreto 12/2017.',
+      'Limpieza y lavandería VUT en Vigo en franja 11:00–15:00 (sábados, festivos y agosto): amenities, llaves, foto-reporte y Decreto 12/2017 (REAT).',
     canonical:
       'https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo',
     robots: 'index, follow',
@@ -562,10 +562,10 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
   },
   '/blog/como-preparar-apartamento-turistico-entre-huespedes': {
-    title: 'Apartamento Turístico en Vigo: Decreto 12/2017 y Lencería | Mimos',
+    title: 'Apartamento Turístico Vigo: Decreto 12/2017 | Mimos',
     h1: 'Cómo organizar la limpieza y los textiles de un apartamento turístico entre huéspedes',
     description:
-      'Guía para anfitriones VUT en Vigo: requisitos del Decreto 12/2017 de la Xunta, lencería propia separada frente a renting estándar y ventana 11:00–15:00.',
+      'Guía VUT Vigo: cumplimiento higiénico Decreto 12/2017 (REAT), lencería propia separada frente a renting estándar y rotación 11:00–15:00.',
     canonical:
       'https://www.tintoreriamimos.es/blog/como-preparar-apartamento-turistico-entre-huespedes',
     robots: 'index, follow',
@@ -578,7 +578,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
   },
   '/blog/la-colada-en-casa': {
-    title: 'La Colada en Casa vs Autoservicio y Lavandería en Vigo | Mimos',
+    title: 'Colada en Casa vs Autoservicio y Lavandería Vigo | Mimos',
     h1: 'La colada en casa: ¿Ahorro o pérdida de tiempo y calidad?',
     description:
       'Comparativa práctica en Vigo: lavadora en casa vs autoservicio de monedas vs lavandería atendida. Plumas, humedad atlántica y ahorro real de tiempo.',
@@ -669,7 +669,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     ogImage: 'https://www.tintoreriamimos.es/images/articulos/blog-limpieza-oficinas.jpg',
   },
   '/blog/guia-arreglos-ropa-bajo-vaquero-vigo': {
-    title: 'Arreglos de Ropa en Vigo: Bajo Original Vaquero y Modista | Mimos',
+    title: 'Arreglos de Ropa Vigo: Bajo Original y Modista | Mimos',
     h1: 'Arreglos de ropa en Vigo: bajo original vaquero, ceremonia y modista in situ',
     description:
       'Guía técnica de arreglos de ropa en Vigo sin cita previa: bajo original vaquero, encogimiento, prueba de ceremonia, piel y talleres in situ de Mimos.',

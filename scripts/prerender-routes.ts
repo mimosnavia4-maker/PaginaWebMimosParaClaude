@@ -530,6 +530,11 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
       integralHtml +
       `<h2>Preguntas frecuentes sobre apartamentos turísticos en Vigo</h2>` +
       `<dl>${faqsHtml}</dl>` +
+      `<h3>Guías recomendadas para anfitriones VUT</h3>` +
+      `<ul>` +
+      `<li><a href="/blog/protocolo-rotacion-apartamentos-turisticos-vigo">Checklist de rotación en apartamentos turísticos en Vigo (11:00–15:00)</a></li>` +
+      `<li><a href="/blog/como-preparar-apartamento-turistico-entre-huespedes">Cómo organizar limpieza y textiles VUT según Decreto 12/2017 (REAT)</a></li>` +
+      `</ul>` +
       `</section>`;
   } else if (routePath === '/se-punto-colaborador') {
     specificHtml =
@@ -738,15 +743,33 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
               .join('') +
             `</dl>`
           : '';
+      const enlacesEspecializadosHtml =
+        detalle?.enlacesEspecializados && detalle.enlacesEspecializados.length > 0
+          ? `<h2>Guías y servicios relacionados</h2><ul>` +
+            detalle.enlacesEspecializados
+              .map(
+                (l) =>
+                  `<li><a href="${escapeHtml(l.href)}"><strong>${escapeHtml(l.titulo)}</strong></a>: ${escapeHtml(l.descripcion)}</li>`
+              )
+              .join('') +
+            `</ul>`
+          : '';
+      const recogidaZonasHtml =
+        servicio.id === 'recogida-a-domicilio'
+          ? `<h2>Cobertura por municipio y puntos físicos cercanos</h2>` +
+            `<p>Consulta condiciones de ruta en <a href="/zonas/vigo">Vigo</a>, <a href="/zonas/mos">Mos (solo recogida a domicilio)</a>, <a href="/zonas/nigran">Nigrán (solo recogida a domicilio)</a>, <a href="/zonas/o-porrino">O Porriño</a>, <a href="/zonas/gondomar">Gondomar</a>, <a href="/zonas/redondela">Redondela</a> y <a href="/zonas/ponteareas">Ponteareas</a>.</p>`
+          : '';
       specificHtml =
         `<section>` +
         `<p>${escapeHtml(servicio.descripcion)}</p>` +
         (detalle?.aclaracionHonesta ? `<p>${escapeHtml(detalle.aclaracionHonesta)}</p>` : '') +
+        recogidaZonasHtml +
         modalidadesHtml +
         procesoHtml +
         comparativaHtml +
         queTratamosHtml +
         comoSeContrataHtml +
+        enlacesEspecializadosHtml +
         faqsHtml +
         `</section>`;
     }

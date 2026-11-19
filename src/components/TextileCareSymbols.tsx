@@ -980,7 +980,23 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
             Chuleta de símbolos de lavado para imprimir en A4
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-            Hemos maquetado esta guía en formato imprimible limpio para que puedas colgarla junto a tu lavadora o en el cuarto de plancha y resolver cualquier duda en 2 segundos.
+            Hemos maquetado esta guía en formato imprimible limpio para que puedas colgarla junto a tu lavadora o en el cuarto de plancha y resolver cualquier duda en 2 segundos. Si tu prenda pide P, F o W o tienes dudas con el tejido,{' '}
+            <a
+              href="/tintoreria-vigo"
+              onClick={(e) => onNavigate('/tintoreria-vigo', e)}
+              className="font-bold text-[#0F76BB] dark:text-[#60B5F6] underline underline-offset-2"
+            >
+              consulta nuestra tintorería
+            </a>{' '}
+            o{' '}
+            <a
+              href="/lavanderia-vigo"
+              onClick={(e) => onNavigate('/lavanderia-vigo', e)}
+              className="font-bold text-[#0F76BB] dark:text-[#60B5F6] underline underline-offset-2"
+            >
+              lavandería atendida en Vigo
+            </a>
+            .
           </p>
         </div>
         <button

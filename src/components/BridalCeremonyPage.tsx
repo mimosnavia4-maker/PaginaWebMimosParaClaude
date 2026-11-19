@@ -1104,6 +1104,16 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       </li>
                     ))}
                   </ul>
+                  <p className="pt-2 text-xs text-slate-600 leading-relaxed">
+                    ¿Mancha reciente de vino tinto en un vestido de invitada o seda?{' '}
+                    <a
+                      href="/blog/como-quitar-mancha-vino-tinto-ropa-delicada"
+                      onClick={(e) => onNavigate('/blog/como-quitar-mancha-vino-tinto-ropa-delicada', e)}
+                      className="font-bold text-[#0F76BB] underline underline-offset-2 hover:text-[#002147]"
+                    >
+                      Lee nuestro protocolo de primeros minutos →
+                    </a>
+                  </p>
                 </div>
 
                 <a

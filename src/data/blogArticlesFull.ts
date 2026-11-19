@@ -7,7 +7,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     url: '/blog/como-quitar-mancha-vino-tinto-ropa-delicada',
     canonical: 'https://www.tintoreriamimos.es/blog/como-quitar-mancha-vino-tinto-ropa-delicada',
     titulo: 'Cómo quitar una mancha de vino tinto sin dañar tu ropa delicada',
-    seoTitle: 'Cómo quitar una mancha de vino tinto en ropa delicada | Mimos Vigo',
+    seoTitle: 'Quitar Mancha de Vino Tinto en Ropa Delicada | Mimos',
     metaDescription:
       'Guía práctica para actuar ante una mancha de vino tinto en prendas delicadas: qué hacer en los primeros minutos, por qué evitar frotar o aplicar calor y cuándo acudir a la tintorería.',
     categoria: 'Cuidado de prendas delicadas',
@@ -90,6 +90,16 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
         descripcion: 'Descubre cómo cuidamos tus trajes, vestidos de fiesta, blusas y abrigos delicados.',
       },
       {
+        texto: 'Limpieza de Vestidos de Novia, Fiesta y Ceremonia',
+        href: '/limpieza-vestidos-novia-ceremonia-vigo',
+        descripcion: 'Protocolo en 5 fases para seda, tul, pedrería, mantillas y trajes de evento.',
+      },
+      {
+        texto: 'Limpieza de Sofás y Tapicerías a Domicilio',
+        href: '/limpieza-sofas-vigo',
+        descripcion: 'Si el derrame cayó sobre el sofá o una silla tapizada en casa.',
+      },
+      {
         texto: 'Solicitar recogida y entrega a domicilio',
         href: '/recogida-a-domicilio',
         descripcion: 'Consulta con Mimo cómo programar la recogida de tus prendas en Vigo y comarca.',
@@ -104,7 +114,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     url: '/blog/como-lavar-edredon-de-plumas-guia-practica',
     canonical: 'https://www.tintoreriamimos.es/blog/como-lavar-edredon-de-plumas-guia-practica',
     titulo: 'Cómo lavar un edredón de plumas: guía práctica para cuidarlo correctamente',
-    seoTitle: 'Cómo lavar un edredón de plumas y secarlo bien | Mimos Vigo',
+    seoTitle: 'Cómo Lavar un Edredón de Plumas y Secarlo | Mimos',
     metaDescription:
       'Aprende cómo lavar un edredón de plumas paso a paso: lectura de la etiqueta, capacidad de la lavadora, ciclo adecuado y claves para secar completamente el relleno.',
     categoria: 'Ropa de cama y hogar',
@@ -201,7 +211,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     url: '/blog/guia-simbolos-etiquetas-ropa-significado',
     canonical: 'https://www.tintoreriamimos.es/blog/guia-simbolos-etiquetas-ropa-significado',
     titulo: 'Guía práctica de los símbolos de lavado y etiquetas de tu ropa',
-    seoTitle: 'Símbolos de Lavado en Etiquetas de Ropa (ISO 3758:2023) | Mimos Vigo',
+    seoTitle: 'Símbolos de Lavado en Etiquetas (ISO 3758) | Mimos',
     metaDescription:
       'Guía técnica completa según la norma internacional ISO 3758:2023: significado de los 5 símbolos de las etiquetas de ropa (lavado, blanqueo, secado, plancha y tintorería P, F, W), tablas de temperaturas y consejos de tintorero.',
     categoria: 'Etiquetado textil y cuidado de prendas',
@@ -314,27 +324,27 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     canonical:
       'https://www.tintoreriamimos.es/blog/como-preparar-apartamento-turistico-entre-huespedes',
     titulo: 'Cómo organizar la limpieza y los textiles de un apartamento turístico entre huéspedes',
-    seoTitle: 'Apartamento Turístico en Vigo: Decreto 12/2017 y Lencería | Mimos',
+    seoTitle: 'Apartamento Turístico Vigo: Decreto 12/2017 | Mimos',
     metaDescription:
-      'Guía para anfitriones VUT en Vigo: requisitos del Decreto 12/2017 de la Xunta, lencería propia separada frente a renting estándar y ventana 11:00–15:00.',
+      'Guía VUT Vigo: cumplimiento higiénico Decreto 12/2017 (REAT), lencería propia separada frente a renting estándar y rotación 11:00–15:00.',
     categoria: 'Alojamientos turísticos y limpieza',
     fechaPublicacion: '9 de octubre de 2026 (Actualizado nov. 2026)',
     fechaISO: '2026-10-09',
     tiempoLectura: '6 min de lectura',
     extracto:
-      'Organizar una Vivienda de Uso Turístico (VUT) en Vigo exige cumplir el Decreto 12/2017 de la Xunta de Galicia, cuidar los textiles de fondo y elegir entre lencería propia separada o renting estándar para responder sin agobios en la ventana de 11:00 a 15:00.',
+      'Organizar una Vivienda de Uso Turístico (VUT) en Vigo exige cumplir el Decreto 12/2017 (REAT) de la Xunta de Galicia, cuidar los textiles de fondo y elegir entre lencería propia separada o renting estándar para responder sin agobios en la ventana de 11:00 a 15:00.',
     imagen: IMAGES.b2bApartamentos,
     imagenAlt:
       'Cama de apartamento turístico vestida con sábanas blancas planchadas y juego de toallas dobladas',
     introduccion: [
       'La primera impresión de un huésped al abrir la puerta de un apartamento turístico en Vigo depende directamente de dos factores: la sensación de limpieza e higiene del espacio y el tacto impecable de las sábanas y las toallas.',
-      'Más allá de limpiar el piso en el cambio de estancia, quienes ponen en marcha o profesionalizan una Vivienda de Uso Turístico (VUT) en Galicia deben ordenar su dotación textil conforme al Decreto 12/2017 de la Xunta de Galicia y evitar el error más frecuente: depender de lavadoras domésticas en un clima húmedo con rotaciones entre las 11:00 y las 15:00.',
+      'Más allá de limpiar el piso en el cambio de estancia, quienes ponen en marcha o profesionalizan una Vivienda de Uso Turístico (VUT) inscrita en el REAT (Rexistro de Empresas e Actividades Turísticas) en Galicia deben ordenar su dotación textil conforme al Decreto 12/2017 de la Xunta de Galicia y evitar depender de lavadoras domésticas en un clima húmedo con rotaciones entre las 11:00 y las 15:00.',
     ],
     secciones: [
       {
-        h2: '1. Requisitos higiénico-textiles y estándar del Decreto 12/2017 en Galicia',
+        h2: '1. Requisitos higiénico-textiles del Decreto 12/2017 y estándar REAT en Galicia',
         parrafos: [
-          'En Galicia, las Viviendas de Uso Turístico están reguladas por el Decreto 12/2017, que exige mantener el alojamiento en óptimas condiciones de higiene y limpieza antes de la entrada de cada huésped, con ropa de cama y baño limpia, sin manchas ni deterioro visible.',
+          'En Galicia, las Viviendas de Uso Turístico reguladas por el Decreto 12/2017 e inscritas en el REAT de la Xunta de Galicia deben mantenerse en óptimas condiciones de higiene y limpieza antes de la entrada de cada huésped, con ropa de cama y baño limpia, sin manchas ni deterioro visible.',
           'En Vigo, con una humedad relativa media superior al 77 % gran parte del año, secar toallas gruesas y juegos de cama en tendales interiores entre estancias provoca olores cerrados que penalizan rápidamente las reseñas en plataformas. Procesar la lencería en planta profesional garantiza higienización térmica, secado completo y planchado en calandra.',
         ],
         puntosClave: [
@@ -408,7 +418,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     url: '/blog/la-colada-en-casa',
     canonical: 'https://www.tintoreriamimos.es/blog/la-colada-en-casa',
     titulo: 'La colada en casa: ¿Ahorro o pérdida de tiempo y calidad?',
-    seoTitle: 'La Colada en Casa vs Autoservicio y Lavandería en Vigo | Mimos',
+    seoTitle: 'Colada en Casa vs Autoservicio y Lavandería Vigo | Mimos',
     metaDescription:
       'Comparativa práctica en Vigo: lavadora en casa vs autoservicio de monedas vs lavandería atendida. Plumas, humedad atlántica, Navia, Calvario y ahorro de tiempo.',
     categoria: 'Colada y cuidado de ropa',
@@ -533,7 +543,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     url: '/blog/montar-tu-propia-tintoreria-lavanderia',
     canonical: 'https://www.tintoreriamimos.es/blog/montar-tu-propia-tintoreria-lavanderia',
     titulo: 'Montar tu propia tintorería o lavandería: las claves de un negocio moderno',
-    seoTitle: 'Montar una Tintorería o Lavandería Moderna: Claves y Rentabilidad | Tintorería Mimos',
+    seoTitle: 'Montar una Tintorería o Lavandería Moderna | Mimos',
     metaDescription:
       '¿Pensando en abrir una tintorería o lavandería? Analizamos costes, wetcleaning vs seco, hábitos de consumo, tecnología RFID, taquillas inteligentes y el modelo de éxito de Mimos.',
     categoria: 'Emprendimiento y sector',
@@ -636,7 +646,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     titulo:
       'Restauración textil tras incendios, humo y hollín: guía técnica y seguro',
     seoTitle:
-      'Restauración Textil por Humo e Incendio en Vigo | Guía Técnica y Seguro',
+      'Recuperar Ropa tras Humo e Incendio en Vigo | Mimos',
     metaDescription:
       'Guía técnica para recuperar ropa y textiles dañados por humo y hollín tras un incendio. Desodorización profunda, lavado técnico especializado y documentación para tramitar con el seguro del hogar en Vigo.',
     categoria: 'Siniestros del Hogar y Restauración Textil',
@@ -894,7 +904,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     titulo:
       'Protocolo de rotación en apartamentos turísticos en Vigo: checklist textil',
     seoTitle:
-      'Protocolo de Limpieza y Rotación de Pisos Turísticos en Vigo | Mimos',
+      'Rotación de Apartamentos Turísticos en Vigo | Mimos',
     metaDescription:
       'Checklist operativo para anfitriones de Airbnb y Booking en Vigo: gestión de lencería de cama y toallas, desinfección ágil entre huéspedes y cómo delegar la operativa completa.',
     categoria: 'Alojamientos Turísticos y Anfitriones',
@@ -971,6 +981,11 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
         descripcion: 'Lencería hotelera embolsada y colaboración operativa integral.',
       },
       {
+        texto: 'Cómo organizar textiles VUT: Decreto 12/2017 y renting vs lencería propia',
+        href: '/blog/como-preparar-apartamento-turistico-entre-huespedes',
+        descripcion: 'Requisitos higiénico-textiles REAT y organización previa de juegos de cama.',
+      },
+      {
         texto: 'División de Limpieza Profesional en Vigo',
         href: '/limpieza-profesional-vigo',
         descripcion: 'Soluciones integrales de mantenimiento e higienización.',
@@ -998,7 +1013,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     titulo:
       'Limpieza de comunidades de propietarios en Vigo: portales y escaleras',
     seoTitle:
-      'Limpieza de Comunidades de Vecinos en Vigo | Tintorería Mimos',
+      'Limpieza de Comunidades de Vecinos en Vigo | Mimos',
     metaDescription:
       'Frecuencias recomendadas, cuidado de granito y checklist LPH (CAE, RC, PRL y sustituciones) para juntas y administradores de fincas en Vigo.',
     categoria: 'Comunidades y Mantenimiento',
@@ -1194,7 +1209,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     titulo:
       'Arreglos de ropa en Vigo: bajo original vaquero, ceremonia y modista in situ',
     seoTitle:
-      'Arreglos de Ropa en Vigo: Bajo Original Vaquero y Modista | Mimos',
+      'Arreglos de Ropa Vigo: Bajo Original y Modista | Mimos',
     metaDescription:
       'Guía técnica de arreglos de ropa en Vigo sin cita previa: bajo original vaquero, encogimiento, prueba de ceremonia, piel y talleres in situ de Mimos.',
     categoria: 'Costura y Arreglos de Ropa',
@@ -1421,7 +1436,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     titulo:
       'Humedad y ácaros en Vigo: cómo cuidar colchones, sofás y tapicerías',
     seoTitle:
-      'Humedad y Ácaros en Colchones y Sofás en Vigo | Guía Mimos',
+      'Humedad y Ácaros en Colchones y Sofás en Vigo | Mimos',
     metaDescription:
       'Guía técnica para cuidar colchones y sofás en Vigo (77 % humedad): códigos W/S/WS/X, tejidos, riesgos de vaporeta/lejía y limpieza sin empapar.',
     categoria: 'Hogar, Colchones y Tapicerías',

@@ -458,6 +458,36 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {puntosColaboradoresZona.map(renderEstablecimientoZona)}
               </div>
+              {zona.slug === 'vigo' && (
+                <div className="mt-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1 max-w-2xl">
+                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                      Municipios limítrofes sin tienda física
+                    </p>
+                    <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+                      ¿Vives en <strong>Mos</strong> o en <strong>Nigrán</strong>? Allí atendemos mediante ruta de recogida a domicilio o en nuestras tiendas propias y puntos colaboradores cercanos.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5 shrink-0">
+                    <a
+                      href="/zonas/mos"
+                      onClick={(e) => onNavigate('/zonas/mos', e)}
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-[#0F76BB] hover:text-white text-xs font-bold text-[#002147] dark:text-white transition-colors"
+                    >
+                      <span>Servicio en Mos</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                    </a>
+                    <a
+                      href="/zonas/nigran"
+                      onClick={(e) => onNavigate('/zonas/nigran', e)}
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-[#0F76BB] hover:text-white text-xs font-bold text-[#002147] dark:text-white transition-colors"
+                    >
+                      <span>Servicio en Nigrán</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {tiendasPropiasZona.length === 0 && puntosColaboradoresZona.length === 0 && (

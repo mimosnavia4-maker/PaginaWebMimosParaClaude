@@ -437,6 +437,56 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
       {/* 2. QUÉ ARREGLAMOS: Los 18 servicios completos organizados por categoría y disponibilidad */}
       <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          {/* Guía rápida antes de acudir */}
+          <div className="rounded-2xl border border-[#0F76BB]/25 bg-slate-50/90 dark:bg-[#0b1d36] p-6 sm:p-8 space-y-5">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div className="space-y-1">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                  Consejos prácticos antes de venir (sin cita previa)
+                </p>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+                  Cómo preparar tu prenda y qué centro elegir en Vigo
+                </h2>
+              </div>
+              <a
+                href="/blog/guia-arreglos-ropa-bajo-vaquero-vigo"
+                onClick={(e) => onNavigate('/blog/guia-arreglos-ropa-bajo-vaquero-vigo', e)}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#0F76BB] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+              >
+                <span>Leer guía técnica de bajo original y ceremonia</span>
+                <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-4 space-y-1.5">
+                <h3 className="font-extrabold text-[#002147] dark:text-white">
+                  1. Calzado y margen de encogimiento
+                </h3>
+                <p className="leading-relaxed">
+                  Trae el calzado definitivo (misma altura de tacón o suela) para marcar bajos o ceremonia, y lava antes vaqueros crudos o lino nuevo si aún no han tocado el agua.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-4 space-y-1.5">
+                <h3 className="font-extrabold text-[#002147] dark:text-white">
+                  2. Taller propio con probador in situ
+                </h3>
+                <p className="leading-relaxed">
+                  Modista y probador propios en{' '}
+                  <strong>Alcalde Gregorio Espino, 42</strong> (L–V y sábados mañana; piel, bordados, hogar) y{' '}
+                  <strong>Rúa de Venezuela, 29, Entreplanta</strong> (L–V; cerrado sábados).
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-4 space-y-1.5">
+                <h3 className="font-extrabold text-[#002147] dark:text-white">
+                  3. Navia y puntos colaboradores
+                </h3>
+                <p className="leading-relaxed">
+                  En <strong>Navia</strong> (C/ Teixugueiras, 11, bajo 9) recepcionamos arreglos sin prueba con traslado gratuito; en Gondomar, Ponteareas y O Porriño disponen de costura local. D’Passo (As Travesas) y Redondela son solo tintorería/lavandería.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-8 space-y-6">
               <div>

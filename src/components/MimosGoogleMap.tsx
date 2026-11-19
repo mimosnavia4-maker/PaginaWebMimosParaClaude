@@ -783,6 +783,33 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
             );
           })}
         </div>
+        <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-300">
+          <span>
+            <strong>¿Sin tienda física en tu municipio?</strong> Cobertura a domicilio (bajo ruta e importe mínimo):
+          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href="/zonas/mos"
+              onClick={(e) => {
+                if (onNavigate) onNavigate('/zonas/mos', e);
+              }}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] hover:border-[#0F76BB] font-bold text-[#002147] dark:text-white transition-colors"
+            >
+              <span>Mos</span>
+              <ExternalLink className="w-3 h-3 text-[#0F76BB]" aria-hidden="true" />
+            </a>
+            <a
+              href="/zonas/nigran"
+              onClick={(e) => {
+                if (onNavigate) onNavigate('/zonas/nigran', e);
+              }}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] hover:border-[#0F76BB] font-bold text-[#002147] dark:text-white transition-colors"
+            >
+              <span>Nigrán</span>
+              <ExternalLink className="w-3 h-3 text-[#0F76BB]" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

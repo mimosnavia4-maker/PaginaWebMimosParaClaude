@@ -90,7 +90,63 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               Recogida y entrega de prendas y textiles a domicilio en Vigo y comarca
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Para que cuidar tu ropa y los textiles de tu hogar resulte todavía más cómodo, disponemos de recogida y entrega a domicilio —servicio sujeto a <strong>ruta e importe mínimo de pedido a consultar con Mimo</strong>— con cobertura en <strong>Vigo, comarca</strong> (Redondela, Nigrán, Baiona, Mos, O Porriño, Gondomar, Ponteareas, Cangas, Moaña) y <strong>polígonos industriales</strong> (PTL Valladares, Zona Franca, Porriño y Mos).
+              Para que cuidar tu ropa y los textiles de tu hogar resulte todavía más cómodo, disponemos de recogida y entrega a domicilio —servicio sujeto a <strong>ruta e importe mínimo de pedido a consultar con Mimo</strong>— con cobertura en{' '}
+              <a
+                href="/zonas/vigo"
+                onClick={(e) => onNavigate('/zonas/vigo', e)}
+                className="font-bold text-[#002147] dark:text-[#60B5F6] underline underline-offset-2 hover:text-[#0F76BB]"
+              >
+                Vigo
+              </a>
+              , <strong>comarca</strong> (
+              <a
+                href="/zonas/redondela"
+                onClick={(e) => onNavigate('/zonas/redondela', e)}
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+              >
+                Redondela
+              </a>
+              ,{' '}
+              <a
+                href="/zonas/nigran"
+                onClick={(e) => onNavigate('/zonas/nigran', e)}
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+              >
+                Nigrán
+              </a>
+              , Baiona,{' '}
+              <a
+                href="/zonas/mos"
+                onClick={(e) => onNavigate('/zonas/mos', e)}
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+              >
+                Mos
+              </a>
+              ,{' '}
+              <a
+                href="/zonas/o-porrino"
+                onClick={(e) => onNavigate('/zonas/o-porrino', e)}
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+              >
+                O Porriño
+              </a>
+              ,{' '}
+              <a
+                href="/zonas/gondomar"
+                onClick={(e) => onNavigate('/zonas/gondomar', e)}
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+              >
+                Gondomar
+              </a>
+              ,{' '}
+              <a
+                href="/zonas/ponteareas"
+                onClick={(e) => onNavigate('/zonas/ponteareas', e)}
+                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+              >
+                Ponteareas
+              </a>
+              , Cangas, Moaña) y <strong>polígonos industriales</strong> (PTL Valladares, Zona Franca, Porriño y Mos).
             </p>
             <p className="text-xs sm:text-sm font-bold text-[#002147] dark:text-[#60B5F6] mb-6">
               A domicilio con importe mínimo a consultar · Sin pedido mínimo en nuestras 3 tiendas propias de Vigo y 5 puntos colaboradores

@@ -602,7 +602,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     Sin tarifas estándar cerradas públicas. Analizamos el tamaño, número de camas y calendario real de tu apartamento en Vigo para diseñar una propuesta a medida.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 shrink-0">
                   <a
                     href={buildMimoWhatsAppUrl(
                       'Hola, Mimo. Quiero delegar la coordinación operativa de mi apartamento turístico en Vigo y consultar una propuesta a medida.'
@@ -619,7 +619,15 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     onClick={(e) => onNavigate('/blog/protocolo-rotacion-apartamentos-turisticos-vigo', e)}
                     className="inline-flex items-center justify-center gap-1.5 border border-white/30 hover:border-white text-white font-bold text-xs sm:text-sm px-4 py-4 rounded-xl transition-colors whitespace-nowrap shrink-0"
                   >
-                    <span>Ver protocolo VUT completo</span>
+                    <span>Checklist rotación 11:00–15:00</span>
+                    <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  </a>
+                  <a
+                    href="/blog/como-preparar-apartamento-turistico-entre-huespedes"
+                    onClick={(e) => onNavigate('/blog/como-preparar-apartamento-turistico-entre-huespedes', e)}
+                    className="inline-flex items-center justify-center gap-1.5 border border-white/30 hover:border-white text-white font-bold text-xs sm:text-sm px-4 py-4 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                  >
+                    <span>Guía Decreto 12/2017 y lencería</span>
                     <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                   </a>
                 </div>

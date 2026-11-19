@@ -548,22 +548,70 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   Quitamos arrugas de viaje o portatrajes, revisamos costuras y preparamos tejidos delicados (tul, seda, gasa, lino o lana fría) sin brillos antes de la ceremonia o sesión de fotos.
                 </p>
               </div>
-              <a
-                href="/limpieza-vestidos-novia-ceremonia-vigo#planchado-antes-evento"
-                onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
-                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
-              >
-                <span>Ver planchado pre-evento de ceremonia</span>
-                <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <a
+                  href="/limpieza-vestidos-novia-ceremonia-vigo#planchado-antes-evento"
+                  onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                  className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                >
+                  <span>Ver planchado pre-evento de ceremonia</span>
+                  <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                </a>
+                <a
+                  href="/colada-familiar-vigo"
+                  onClick={(e) => onNavigate('/colada-familiar-vigo', e)}
+                  className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#0F76BB] text-[#002147] dark:text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                >
+                  <span>¿Lavar y planchar? Colada familiar</span>
+                  <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                </a>
+              </div>
             </div>
           </div>
         </section>
       )}
 
-      {/* Si es la página de recogida a domicilio, mostramos el formulario interactivo */}
+      {/* Si es la página de recogida a domicilio, mostramos cobertura comarcal enlazada y el formulario interactivo */}
       {servicio.id === 'recogida-a-domicilio' && (
-        <HomePickupSection onNavigate={onNavigate} />
+        <>
+          <section className="py-10 bg-slate-50 dark:bg-[#0b1d36] border-b border-slate-200 dark:border-slate-800">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+              <div className="max-w-3xl space-y-1.5">
+                <p className="text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                  Rutas comarcales y entregas sin mínimo
+                </p>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+                  Consulta las condiciones y puntos físicos por localidad
+                </h2>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  En <strong>Mos</strong> y <strong>Nigrán</strong> no disponemos de tienda física, por lo que trabajamos mediante recogida y entrega a domicilio (sujeta a ruta e importe mínimo) o entrega sin mínimo en los puntos físicos cercanos de O Porriño, Gondomar y Vigo.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                {[
+                  { label: 'Vigo (3 tiendas propias)', href: '/zonas/vigo' },
+                  { label: 'Mos (solo recogida a domicilio)', href: '/zonas/mos' },
+                  { label: 'Nigrán (solo recogida a domicilio)', href: '/zonas/nigran' },
+                  { label: 'O Porriño (Telas y Más)', href: '/zonas/o-porrino' },
+                  { label: 'Gondomar (Puntadas No Aire)', href: '/zonas/gondomar' },
+                  { label: 'Redondela (Punto colaborador)', href: '/zonas/redondela' },
+                  { label: 'Ponteareas (Arregla2)', href: '/zonas/ponteareas' },
+                ].map((z) => (
+                  <a
+                    key={z.href}
+                    href={z.href}
+                    onClick={(e) => onNavigate(z.href, e)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#071324] hover:border-[#0F76BB] text-xs sm:text-sm font-bold text-[#002147] dark:text-white transition-colors"
+                  >
+                    <MapPin className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                    <span>{z.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+          <HomePickupSection onNavigate={onNavigate} />
+        </>
       )}
 
       {/* Micro-bloque puente limpio hacia Empresas (solo al final antes de FAQs, sin ensuciar el embudo B2C superior) */}

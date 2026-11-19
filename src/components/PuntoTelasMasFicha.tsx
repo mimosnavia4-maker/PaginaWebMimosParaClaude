@@ -991,6 +991,22 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             );
           })}
         </div>
+
+        <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <strong>¿Vives en Mos?</strong> Mos no cuenta con punto físico propio; puedes entregar sin pedido mínimo aquí en O Porriño o solicitar ruta a domicilio.
+          </p>
+          <a
+            href="/zonas/mos"
+            onClick={(e) => {
+              if (onNavigate) onNavigate('/zonas/mos', e);
+            }}
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#0F76BB] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+          >
+            <span>Ver servicio en Mos</span>
+            <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+          </a>
+        </div>
       </section>
 
       {/* 8. CERCANÍA, CONFIANZA Y CONTACTO DIRECTO */}

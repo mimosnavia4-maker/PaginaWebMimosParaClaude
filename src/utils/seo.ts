@@ -936,53 +936,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
           },
         }
       );
-      if (articulo.slug === 'guia-simbolos-etiquetas-ropa-significado') {
-        graph.push({
-          '@type': 'FAQPage',
-          mainEntity: [
-            {
-              '@type': 'Question',
-              name: '¿Qué significa el círculo con una P en la etiqueta de la ropa?',
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'El círculo con una letra P autoriza la limpieza en seco profesional utilizando percloroetileno y solventes habituales. Es exclusivo de tintorerías y no debe lavarse en agua en lavadoras domésticas.',
-              },
-            },
-            {
-              '@type': 'Question',
-              name: '¿Qué significan los puntos dentro del símbolo de la plancha?',
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Indican la temperatura máxima de planchado: 1 punto (máx. 110 °C, sin vapor para sintéticos y sedas), 2 puntos (máx. 150 °C para lana y poliéster) y 3 puntos (máx. 200 °C para algodón y lino).',
-              },
-            },
-            {
-              '@type': 'Question',
-              name: '¿Qué significan las barras debajo del símbolo de la cubeta de lavado?',
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Una barra horizontal inferior indica acción mecánica reducida (programa para sintéticos delicados y centrifugado suave). Dos barras horizontales indican acción mecánica muy reducida (programa especial para lana o seda).',
-              },
-            },
-            {
-              '@type': 'Question',
-              name: '¿Qué significa el círculo con la letra W?',
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'El círculo con la letra W identifica el sistema Wet Cleaning (limpieza profesional ecológica en agua con control informático de humedad), una alternativa avanzada al lavado en seco que preserva tejidos delicados sin disolventes.',
-              },
-            },
-            {
-              '@type': 'Question',
-              name: '¿Por qué encogen los jerséis de lana al lavarlos en lavadora?',
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'La lana encoge por el fenómeno del afieltrado: el agua caliente combinada con la fricción mecánica del tambor abre las escamas de la cutícula del pelo de lana, entrelazándolas de forma irreversible al enfriarse.',
-              },
-            },
-          ],
-        });
-      } else if (BLOG_FAQS_MAP[articulo.slug] && BLOG_FAQS_MAP[articulo.slug].length > 0) {
+      if (BLOG_FAQS_MAP[articulo.slug] && BLOG_FAQS_MAP[articulo.slug].length > 0) {
         graph.push({
           '@type': 'FAQPage',
           mainEntity: BLOG_FAQS_MAP[articulo.slug].map((f) => ({

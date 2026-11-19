@@ -1257,7 +1257,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     url: '/blog/como-quitar-mancha-vino-tinto-ropa-delicada',
     canonical: 'https://www.tintoreriamimos.es/blog/como-quitar-mancha-vino-tinto-ropa-delicada',
     titulo: 'Cómo quitar una mancha de vino tinto sin dañar tu ropa delicada',
-    seoTitle: 'Cómo quitar una mancha de vino tinto en ropa delicada | Mimos Vigo',
+    seoTitle: 'Quitar Mancha de Vino Tinto en Ropa Delicada | Mimos',
     metaDescription:
       'Guía práctica para actuar ante una mancha de vino tinto en prendas delicadas: qué hacer en los primeros minutos, por qué evitar frotar o aplicar calor y cuándo acudir a la tintorería.',
     categoria: 'Cuidado de prendas delicadas',
@@ -1278,7 +1278,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     url: '/blog/como-lavar-edredon-de-plumas-guia-practica',
     canonical: 'https://www.tintoreriamimos.es/blog/como-lavar-edredon-de-plumas-guia-practica',
     titulo: 'Cómo lavar un edredón de plumas: guía práctica para cuidarlo correctamente',
-    seoTitle: 'Cómo lavar un edredón de plumas y secarlo bien | Mimos Vigo',
+    seoTitle: 'Cómo Lavar un Edredón de Plumas y Secarlo | Mimos',
     metaDescription:
       'Aprende cómo lavar un edredón de plumas paso a paso: lectura de la etiqueta, capacidad de la lavadora, ciclo adecuado y claves para secar completamente el relleno.',
     categoria: 'Ropa de cama y hogar',
@@ -1299,7 +1299,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     url: '/blog/guia-simbolos-etiquetas-ropa-significado',
     canonical: 'https://www.tintoreriamimos.es/blog/guia-simbolos-etiquetas-ropa-significado',
     titulo: 'Guía práctica de los símbolos de lavado y etiquetas de tu ropa',
-    seoTitle: 'Símbolos de Lavado en Etiquetas de Ropa (ISO 3758:2023) | Mimos Vigo',
+    seoTitle: 'Símbolos de Lavado en Etiquetas (ISO 3758) | Mimos',
     metaDescription:
       'Guía técnica completa según la norma internacional ISO 3758:2023: significado de los 5 símbolos de las etiquetas de ropa (lavado, blanqueo, secado, plancha y tintorería P, F, W), tablas de temperaturas y consejos de tintorero.',
     categoria: 'Etiquetado textil y cuidado de prendas',
@@ -1321,7 +1321,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     canonical:
       'https://www.tintoreriamimos.es/blog/como-preparar-apartamento-turistico-entre-huespedes',
     titulo: 'Cómo organizar la limpieza y los textiles de un apartamento turístico entre huéspedes',
-    seoTitle: 'Apartamento Turístico en Vigo: Decreto 12/2017 y Lencería | Mimos',
+    seoTitle: 'Apartamento Turístico Vigo: Decreto 12/2017 | Mimos',
     metaDescription:
       'Guía para anfitriones VUT en Vigo: requisitos del Decreto 12/2017 de la Xunta, lencería propia separada frente a renting estándar y ventana 11:00–15:00.',
     categoria: 'Alojamientos turísticos y limpieza',
@@ -1329,7 +1329,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     fechaISO: '2026-10-09',
     tiempoLectura: '6 min de lectura',
     extracto:
-      'Organizar una Vivienda de Uso Turístico (VUT) en Vigo exige cumplir el Decreto 12/2017 de la Xunta de Galicia, cuidar los textiles de fondo y elegir entre lencería propia separada o renting estándar para responder sin agobios en la ventana de 11:00 a 15:00.',
+      'Organizar una Vivienda de Uso Turístico (VUT) en Vigo exige cumplir el Decreto 12/2017 (REAT) de la Xunta de Galicia, cuidar los textiles de fondo y elegir entre lencería propia separada o renting estándar para responder sin agobios en la ventana de 11:00 a 15:00.',
     imagen: IMAGES.b2bApartamentos,
     imagenAlt:
       'Cama de apartamento turístico vestida con sábanas blancas planchadas y juego de toallas dobladas',
@@ -1342,7 +1342,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     url: '/blog/la-colada-en-casa',
     canonical: 'https://www.tintoreriamimos.es/blog/la-colada-en-casa',
     titulo: 'La colada en casa: ¿Ahorro o pérdida de tiempo y calidad?',
-    seoTitle: 'La Colada en Casa vs Autoservicio y Lavandería en Vigo | Mimos',
+    seoTitle: 'Colada en Casa vs Autoservicio y Lavandería Vigo | Mimos',
     metaDescription:
       'Comparativa práctica en Vigo: lavadora en casa vs autoservicio de monedas vs lavandería atendida. Plumas, humedad atlántica, Navia, Calvario y ahorro de tiempo.',
     categoria: 'Colada y cuidado de ropa',
@@ -1363,7 +1363,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     url: '/blog/montar-tu-propia-tintoreria-lavanderia',
     canonical: 'https://www.tintoreriamimos.es/blog/montar-tu-propia-tintoreria-lavanderia',
     titulo: 'Montar tu propia tintorería o lavandería: las claves de un negocio moderno',
-    seoTitle: 'Montar una Tintorería o Lavandería Moderna: Claves y Rentabilidad | Tintorería Mimos',
+    seoTitle: 'Montar una Tintorería o Lavandería Moderna | Mimos',
     metaDescription:
       '¿Pensando en abrir una tintorería o lavandería? Analizamos costes, wetcleaning vs seco, hábitos de consumo, tecnología RFID, taquillas inteligentes y el modelo de éxito de Mimos.',
     categoria: 'Emprendimiento y sector',
@@ -1387,7 +1387,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     titulo:
       'Restauración textil tras incendios, humo y hollín: guía técnica y seguro',
     seoTitle:
-      'Restauración Textil por Humo e Incendio en Vigo | Guía Técnica y Seguro',
+      'Recuperar Ropa tras Humo e Incendio en Vigo | Mimos',
     metaDescription:
       'Guía técnica para recuperar ropa y textiles dañados por humo y hollín tras un incendio. Desodorización profunda, lavado técnico especializado y documentación para tramitar con el seguro del hogar en Vigo.',
     categoria: 'Siniestros del Hogar y Restauración Textil',
@@ -1411,7 +1411,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     titulo:
       'Protocolo de rotación en apartamentos turísticos en Vigo: checklist textil',
     seoTitle:
-      'Protocolo de Limpieza y Rotación de Pisos Turísticos en Vigo | Mimos',
+      'Rotación de Apartamentos Turísticos en Vigo | Mimos',
     metaDescription:
       'Checklist operativo para anfitriones de Airbnb y Booking en Vigo: gestión de lencería de cama y toallas, desinfección ágil entre huéspedes y cómo delegar la operativa completa.',
     categoria: 'Alojamientos Turísticos y Anfitriones',
@@ -1435,7 +1435,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     titulo:
       'Limpieza de comunidades de propietarios en Vigo: portales y escaleras',
     seoTitle:
-      'Limpieza de Comunidades de Vecinos en Vigo | Tintorería Mimos',
+      'Limpieza de Comunidades de Vecinos en Vigo | Mimos',
     metaDescription:
       'Frecuencias recomendadas, cuidado de granito y checklist LPH (CAE, RC, PRL y sustituciones) para juntas y administradores de fincas en Vigo.',
     categoria: 'Comunidades y Mantenimiento',
@@ -1483,7 +1483,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     titulo:
       'Arreglos de ropa en Vigo: bajo original vaquero, ceremonia y modista in situ',
     seoTitle:
-      'Arreglos de Ropa en Vigo: Bajo Original Vaquero y Modista | Mimos',
+      'Arreglos de Ropa Vigo: Bajo Original y Modista | Mimos',
     metaDescription:
       'Guía técnica de arreglos de ropa en Vigo sin cita previa: bajo original vaquero, encogimiento, prueba de ceremonia, piel y talleres in situ de Mimos.',
     categoria: 'Costura y Arreglos de Ropa',
@@ -1507,7 +1507,7 @@ export const ARTICULOS_BLOG_RESUMEN: ArticuloBlogResumen[] = [
     titulo:
       'Humedad y ácaros en Vigo: cómo cuidar colchones, sofás y tapicerías',
     seoTitle:
-      'Humedad y Ácaros en Colchones y Sofás en Vigo | Guía Mimos',
+      'Humedad y Ácaros en Colchones y Sofás en Vigo | Mimos',
     metaDescription:
       'Guía técnica para cuidar colchones y sofás en Vigo (77 % humedad): códigos W/S/WS/X, tejidos, riesgos de vaporeta/lejía y limpieza sin empapar.',
     categoria: 'Hogar, Colchones y Tapicerías',
@@ -3692,6 +3692,13 @@ export const SERVICIO_DETALLE_ENRIQUECIDO: Record<string, ServicioDetalleEnrique
         href: '/blog/guia-simbolos-etiquetas-ropa-significado',
         cta: 'Leer guía de etiquetas',
       },
+      {
+        titulo: 'Cómo actuar ante manchas de vino tinto en ropa delicada',
+        descripcion:
+          'Qué hacer en los primeros minutos sobre seda, lana o vestidos de fiesta antes de acudir a mesa de desmanchado.',
+        href: '/blog/como-quitar-mancha-vino-tinto-ropa-delicada',
+        cta: 'Leer protocolo anti-manchas',
+      },
     ],
     consultaOpcionesLabel: '¿Qué prenda necesitas llevar a tintorería?',
     consultaOpciones: [
@@ -3863,6 +3870,14 @@ export const SERVICIO_DETALLE_ENRIQUECIDO: Record<string, ServicioDetalleEnrique
             'Solo dejas y recoges en 3 tiendas de Vigo (Navia, Gregorio Espino 42, Vigo centro Rúa de Venezuela 29 Entreplanta) o 5 puntos colaboradores, más recogida bajo mínimo',
             'Exige desplazarte y esperar o vigilar presencialmente durante el ciclo',
             'Requiere varias horas entre lavado, ciclos repetidos y tendido',
+          ],
+        },
+        {
+          criterio: 'Barbour (encerado), Gore-Tex y lana/punto delicado',
+          valores: [
+            'Encerado específico para Barbour, impermeabilización sin suavizante en membranas tipo Gore-Tex y programa suave anti-afieltrado en lana y punto',
+            'Ciclos automáticos estándar que pueden llevar suavizante y obstruir membranas técnicas o encoger el punto de lana',
+            'Riesgo de saturar membranas transpirables, aplicar temperatura excesiva o estropear la cera y el fieltrado',
           ],
         },
         {
@@ -4808,10 +4823,10 @@ export const LIMPIEZA_PROFESIONAL_DATA = {
 };
 
 export const APARTAMENTOS_TURISTICOS_DATA = {
-  badgeSuperior: 'ALOJAMIENTOS TURÍSTICOS VUT EN VIGO · FRANJA 11:00–15:00 · DECRETO 12/2017',
+  badgeSuperior: 'ALOJAMIENTOS TURÍSTICOS VUT EN VIGO · FRANJA 11:00–15:00 · DECRETO 12/2017 (REAT)',
   h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',
   subtitulo:
-    'Operativa diseñada para rotaciones reales entre huéspedes en Vigo: limpieza en la franja crítica de 11:00 a 15:00 incluidos sábados, festivos y agosto, lavandería de tu propia lencería separada por vivienda, reposición de amenities, entrega de llaves y reporte fotográfico.',
+    'Operativa diseñada para rotaciones reales entre huéspedes en Vigo: limpieza en la franja crítica de 11:00 a 15:00 incluidos sábados, festivos y agosto, lavandería de tu propia lencería separada por vivienda, reposición de amenities, entrega de llaves y reporte fotográfico alineado con los estándares de higiene textil del Decreto 12/2017 y el REAT.',
   clavesDiferenciales: [
     {
       titulo: 'Franja crítica 11:00–15:00 todo el año',
@@ -4829,9 +4844,9 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
         'Más que limpiar: reponemos amenities básicos, coordinamos entrega de llaves/check-in y enviamos reporte fotográfico de incidencias tras cada salida.',
     },
     {
-      titulo: 'Estándar Decreto 12/2017 Xunta de Galicia',
+      titulo: 'Estándar Decreto 12/2017 y REAT (Xunta de Galicia)',
       detalle:
-        'Protocolos alineados con las exigencias higiénicas y de presentación para Viviendas de Uso Turístico (VUT) en Galicia, evitando humedades en toallas.',
+        'Protocolos higiénicos y de lencería pensados para Viviendas de Uso Turístico (VUT) inscritas en el REAT (Rexistro de Empresas e Actividades Turísticas), evitando humedades y fallos de presentación.',
     },
   ],
   checklistPresupuesto: [
@@ -4864,6 +4879,11 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
       pregunta: '¿Cómo evitáis el olor a humedad en toallas y sábanas con el clima de Vigo?',
       respuesta:
         'Toda la lencería se lava a temperatura controlada en nuestra planta propia de Navia y se seca íntegramente antes de pasar por calandra y embolsarse por apartamento, eliminando la humedad residual que dejan los tendederos y lavadoras domésticas.',
+    },
+    {
+      pregunta: '¿Vuestro protocolo ayuda a cumplir el Decreto 12/2017 y las exigencias del REAT en Galicia?',
+      respuesta:
+        'Sí en todo lo relativo a limpieza e higiene textil: las VUT registradas en el REAT (Rexistro de Empresas e Actividades Turísticas de la Xunta de Galicia) deben presentarse en óptimas condiciones de limpieza y dotación textil para cada huésped, algo que cubrimos con limpieza entre estancias, higienización de lencería propia en planta y reporte fotográfico de estado.',
     },
   ] as ServicioFaqItem[],
 };
@@ -4927,6 +4947,101 @@ export const SERVICIO_SOFAS_FAQS: ServicioFaqItem[] = [
 ];
 
 export const BLOG_FAQS_MAP: Record<string, ServicioFaqItem[]> = {
+  'como-quitar-mancha-vino-tinto-ropa-delicada': [
+    {
+      pregunta: '¿Qué hago en los primeros minutos si cae vino tinto sobre una prenda delicada?',
+      respuesta:
+        'Coloca un paño blanco limpio o papel absorbente sin tintes debajo y encima de la mancha y presiona en vertical con toques suaves para absorber el exceso de líquido, sin frotar el tejido ni extender el cerco.',
+    },
+    {
+      pregunta: '¿Puedo echar sal o usar agua caliente, secador o plancha sobre el vino tinto?',
+      respuesta:
+        'No. Frotar, cubrir con sal en tintes delicados o aplicar agua caliente, secadora o plancha oxida los taninos y azúcares del vino, caramelizando la mancha y fijándola de forma permanente dentro de la fibra.',
+    },
+    {
+      pregunta: '¿Qué hago si la prenda indica limpieza en seco (P o F) o es de seda o ceremonia?',
+      respuesta:
+        'No apliques agua ni jabón doméstico, ya que pueden desplazar el apresto y dejar aureolas más difíciles de corregir que el propio vino. Tráela cuanto antes a Tintorería Mimos tras absorber el exceso en seco e indícanos si se aplicó algún producto previo.',
+    },
+  ],
+  'como-lavar-edredon-de-plumas-guia-practica': [
+    {
+      pregunta: '¿Se puede lavar un edredón de plumas en una lavadora doméstica pequeña?',
+      respuesta:
+        'No es recomendable si el edredón llena demasiado el tambor. Un nórdico de pluma o plumón natural necesita espacio para flotar y aclararse sin apelmazar el relleno ni forzar la máquina.',
+    },
+    {
+      pregunta: '¿Por qué no debe usarse suavizante ni quedar humedad en un relleno de plumón?',
+      respuesta:
+        'El suavizante recubre las plumas, apelmaza las cámaras aislantes y reduce la capacidad térmica del edredón; además, si el núcleo queda ligeramente húmedo al retirarlo, aparecen grumos, mal olor y moho interior.',
+    },
+    {
+      pregunta: '¿Qué garantiza el lavado en gran formato y secado en planta de Navia?',
+      respuesta:
+        'Permite lavar el edredón en maquinaria de alta capacidad sin suavizantes y someterlo a un secado completo y progresivo hasta el centro del relleno para recuperar volumen, ligereza e higiene frente a la humedad de Vigo.',
+    },
+  ],
+  'guia-simbolos-etiquetas-ropa-significado': [
+    {
+      pregunta: '¿Qué significa el círculo con una P en la etiqueta de la ropa?',
+      respuesta:
+        'El círculo con una letra P autoriza la limpieza en seco profesional utilizando percloroetileno y solventes habituales. Es exclusivo de tintorerías y no debe lavarse en agua en lavadoras domésticas.',
+    },
+    {
+      pregunta: '¿Qué significan los puntos dentro del símbolo de la plancha?',
+      respuesta:
+        'Indican la temperatura máxima de planchado: 1 punto (máx. 110 °C, sin vapor para sintéticos y sedas), 2 puntos (máx. 150 °C para lana y poliéster) y 3 puntos (máx. 200 °C para algodón y lino).',
+    },
+    {
+      pregunta: '¿Qué significan las barras debajo del símbolo de la cubeta de lavado?',
+      respuesta:
+        'Una barra horizontal inferior indica acción mecánica reducida (programa para sintéticos delicados y centrifugado suave). Dos barras horizontales indican acción mecánica muy reducida (programa especial para lana o seda).',
+    },
+    {
+      pregunta: '¿Qué significa el círculo con la letra W?',
+      respuesta:
+        'El círculo con la letra W identifica el sistema Wet Cleaning (limpieza profesional ecológica en agua con control informático de humedad), una alternativa avanzada al lavado en seco que preserva tejidos delicados sin disolventes.',
+    },
+    {
+      pregunta: '¿Por qué encogen los jerséis de lana al lavarlos en lavadora?',
+      respuesta:
+        'La lana encoge por el fenómeno del afieltrado: el agua caliente combinada con la fricción mecánica del tambor abre las escamas de la cutícula del pelo de lana, entrelazándolas de forma irreversible al enfriarse.',
+    },
+  ],
+  'montar-tu-propia-tintoreria-lavanderia': [
+    {
+      pregunta: '¿Es suficiente montar solo limpieza en agua (Wet Cleaning) o hace falta limpieza en seco?',
+      respuesta:
+        'Para ofrecer un servicio integral es clave disponer de ambos sistemas: aunque el Wet Cleaning moderno resuelve la mayoría de prendas, la limpieza en seco sigue siendo insustituible en fibras nobles, forros sastre estructurados y determinadas manchas grasas.',
+    },
+    {
+      pregunta: '¿Qué pesa más en la rentabilidad actual de una tintorería o lavandería?',
+      respuesta:
+        'Conocer los costes reales de producción (energía, mano de obra, químicos y amortización) en lugar de copiar tarifas de la competencia, mantener trazabilidad con resguardos oficiales y diversificar hacia colada por kilos, textiles del hogar y puntos de recogida.',
+    },
+    {
+      pregunta: '¿Puedo colaborar con Tintorería Mimos desde mi comercio de barrio sin montar planta propia?',
+      respuesta:
+        'Sí. Los comercios de proximidad en Vigo y comarca pueden sumarse como Punto Colaborador Mimos operando recepción rápida con resguardo sin asumir maquinaria industrial ni planta de lavado.',
+    },
+  ],
+  'ropa-afectada-humo-incendio-siniestro-hogar': [
+    {
+      pregunta: '¿Por qué no debo lavar ni meter en bolsas de plástico la ropa afectada por humo tras un incendio?',
+      respuesta:
+        'Las bolsas herméticas impiden la desgasificación y favorecen condensación y moho, mientras que lavar en casa con agua caliente o suavizante emulsiona el hollín oleoso y sella los compuestos orgánicos del humo en el interior de la fibra de forma permanente.',
+    },
+    {
+      pregunta: '¿Qué documentación facilita Tintorería Mimos para el seguro de hogar (Ley 50/1980)?',
+      respuesta:
+        'Realizamos triaje técnico con prueba de viabilidad previa, inventario detallado de prendas recuperables e inviables (Pérdida Total) compatible con la gestión pericial del Art. 38 de la Ley 50/1980 y factura oficial desglosada con CIF corporativo.',
+    },
+    {
+      pregunta: '¿Qué prendas tienen mayor recuperación y cuáles suelen declararse pérdida total?',
+      respuesta:
+        'Las fibras naturales y sintéticas sin daño térmico ni fusión suelen alcanzar buenas tasas de recuperación tras aspiración en seco, neutralización de hollín y desodorización; en cambio, fibras carbonizadas o sintéticos fundidos por calor se declaran pérdida total para el seguro.',
+    },
+  ],
   'protocolo-rotacion-apartamentos-turisticos-vigo': [
     {
       pregunta: '¿Cuánto tiempo margen es recomendable dejar entre check-out y check-in en Vigo?',
