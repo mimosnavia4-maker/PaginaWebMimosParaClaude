@@ -639,6 +639,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                       </div>
                     </a>
                   </div>
+
+                  {/* Tarjeta 8: Recogida a domicilio */}
+                  <a
+                    href="/recogida-a-domicilio"
+                    onClick={(e) => handleLinkClick('/recogida-a-domicilio', e)}
+                    className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                        Recogida y Entrega a Domicilio
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                    <p className="text-[11px] text-slate-600 mt-1">
+                      Vigo, comarca y polígonos industriales (a consultar con Mimo según ruta y mínimo).
+                    </p>
+                  </a>
                 </div>
               </div>
             </div>
@@ -813,7 +830,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     Servicio completo de limpieza del apartamento en cada rotación y suministro de ropa de cama y toallas higienizadas con planchado profesional entre huéspedes.
                   </p>
                   <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] group-hover:text-[#C85A17]">
-                    <span>Ver modalidad y tarifas orientativas</span>
+                    <span>Ver modalidad y presupuesto a medida</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
@@ -1247,6 +1264,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         className="block py-1 hover:text-[#60B5F6]"
                       >
                         • Lavandería para empresas (peluquerías, clínicas y uniformes)
+                      </a>
+                      <a
+                        href="/recogida-a-domicilio"
+                        onClick={(e) => handleLinkClick('/recogida-a-domicilio', e)}
+                        className="block py-1 hover:text-[#60B5F6]"
+                      >
+                        • Recogida y entrega a domicilio (Vigo, comarca y polígonos)
                       </a>
                     </div>
                   )}

@@ -383,6 +383,26 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   ))}
                 </ol>
               </div>
+
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6 sm:p-8 space-y-3">
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+                  ¿De qué depende el presupuesto y qué enviar por WhatsApp a Mimo?
+                </h2>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  No aplicamos tarifas genéricas sin ver la prenda: el importe exacto depende de la composición del tejido, el tratamiento indicado en etiqueta (seco, Wet Cleaning o acabado técnico), el tamaño o volumen y si requiere desmanchado especial o recogida a domicilio.
+                </p>
+                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                  <li>
+                    <strong className="text-[#002147] dark:text-white">1. Foto o tipo de prenda/artículo:</strong> muestra el tejido completo y, si hay manchas o rozaduras, un detalle cercano.
+                  </li>
+                  <li>
+                    <strong className="text-[#002147] dark:text-white">2. Etiqueta de composición y cuidado:</strong> ayuda a confirmar tratamiento al instante (o si pide teñido / impermeabilizado).
+                  </li>
+                  <li>
+                    <strong className="text-[#002147] dark:text-white">3. Tienda o zona de entrega:</strong> indícanos si prefieres entregar sin mínimo en tiendas/puntos o consultar ruta a domicilio.
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div className="lg:col-span-5 rounded-2xl border border-[#002147]/15 dark:border-slate-700 bg-[#002147] text-white p-6 sm:p-8 space-y-5">

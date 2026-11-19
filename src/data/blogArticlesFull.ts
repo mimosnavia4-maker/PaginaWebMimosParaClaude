@@ -314,49 +314,89 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     canonical:
       'https://www.tintoreriamimos.es/blog/como-preparar-apartamento-turistico-entre-huespedes',
     titulo: 'Cómo organizar la limpieza y los textiles de un apartamento turístico entre huéspedes',
-    seoTitle: 'Cómo preparar un apartamento turístico entre huéspedes | Guía Mimos Vigo',
+    seoTitle: 'Apartamento Turístico en Vigo: Decreto 12/2017 y Lencería | Mimos',
     metaDescription:
-      'Claves prácticas para propietarios y gestores de apartamentos turísticos en Vigo: rotación de sábanas y toallas, revisión en el check-out y cuidado de edredones.',
+      'Guía para anfitriones VUT en Vigo: requisitos del Decreto 12/2017 de la Xunta, lencería propia separada frente a renting estándar y ventana 11:00–15:00.',
     categoria: 'Alojamientos turísticos y limpieza',
-    fechaPublicacion: '9 de octubre de 2026',
+    fechaPublicacion: '9 de octubre de 2026 (Actualizado nov. 2026)',
     fechaISO: '2026-10-09',
-    tiempoLectura: '5 min de lectura',
+    tiempoLectura: '6 min de lectura',
     extracto:
-      'En las viviendas vacacionales, la ventana de pocas horas entre la salida de un huésped y la entrada del siguiente exige un protocolo claro de limpieza y gestión de ropa de cama y toallas.',
+      'Organizar una Vivienda de Uso Turístico (VUT) en Vigo exige cumplir el Decreto 12/2017 de la Xunta de Galicia, cuidar los textiles de fondo y elegir entre lencería propia separada o renting estándar para responder sin agobios en la ventana de 11:00 a 15:00.',
     imagen: IMAGES.b2bApartamentos,
     imagenAlt:
       'Cama de apartamento turístico vestida con sábanas blancas planchadas y juego de toallas dobladas',
     introduccion: [
       'La primera impresión de un huésped al abrir la puerta de un apartamento turístico en Vigo depende directamente de dos factores: la sensación de limpieza e higiene del espacio y el tacto impecable de las sábanas y las toallas.',
-      'Cuando se encadenan reservas en temporada alta o puentes festivos, lavar, secar y planchar varios juegos de cama y toallas en una lavadora doméstica dentro del propio piso resulta inviable por tiempo y humedad.',
+      'Más allá de limpiar el piso en el cambio de estancia, quienes ponen en marcha o profesionalizan una Vivienda de Uso Turístico (VUT) en Galicia deben ordenar su dotación textil conforme al Decreto 12/2017 de la Xunta de Galicia y evitar el error más frecuente: depender de lavadoras domésticas en un clima húmedo con rotaciones entre las 11:00 y las 15:00.',
     ],
     secciones: [
       {
-        h2: '1. Trabaja siempre con juegos de ropa de cama y toallas de rotación',
+        h2: '1. Requisitos higiénico-textiles y estándar del Decreto 12/2017 en Galicia',
         parrafos: [
-          'Disponer de varios juegos completos por cama permite que, en el mismo instante en que se retira la lencería usada tras el check-out, el apartamento quede vestido de inmediato con sábanas y toallas limpias, secas y planchadas.',
-          'Mientras el nuevo huésped ya disfruta de su estancia, el lote retirado se procesa en lavandería profesional con control de temperatura para eliminar cualquier mancha de maquillaje, cremas solares o uso diario.',
+          'En Galicia, las Viviendas de Uso Turístico están reguladas por el Decreto 12/2017, que exige mantener el alojamiento en óptimas condiciones de higiene y limpieza antes de la entrada de cada huésped, con ropa de cama y baño limpia, sin manchas ni deterioro visible.',
+          'En Vigo, con una humedad relativa media superior al 77 % gran parte del año, secar toallas gruesas y juegos de cama en tendales interiores entre estancias provoca olores cerrados que penalizan rápidamente las reseñas en plataformas. Procesar la lencería en planta profesional garantiza higienización térmica, secado completo y planchado en calandra.',
+        ],
+        puntosClave: [
+          'Ropa de cama y toallas libres de restos de maquillaje, cremas solares o humedad residual.',
+          'Ventilación completa y revisión de protectores impermeables transpirables en colchones y almohadas.',
+          'Cobertura operativa en la franja real de cambios de 11:00 a 15:00, incluidos sábados, festivos y mes de agosto.',
         ],
       },
       {
-        h2: '2. No descuides los textiles de fondo: protectores, edredones, cortinas y sofás',
+        h2: '2. Lencería propia separada por apartamento frente a renting estándar',
         parrafos: [
-          'Además del cambio de sábanas y toallas en cada reserva, programar la higienización periódica de protectores de colchón, almohadas, rellenos nórdicos, fundas de sofá y cortinas mantiene el apartamento libre de olores y alarga la vida útil del equipamiento.',
+          'Muchos anfitriones dudan entre alquilar lencería genérica (renting industrial cerrado) o invertir en su propia dotación de sábanas y toallas. Con nuestra operativa en Vigo trabajamos lavando y planchando tu propia lencería separada por apartamento para que nunca se mezcle ni pierda calidad con textiles de terceros, aunque estamos abiertos a negociar acuerdos personalizados según el volumen de viviendas.',
+        ],
+        tabla: {
+          encabezados: [
+            'Modelo de lencería VUT',
+            'Control de calidad y tacto',
+            'Mezcla con otros pisos',
+            'Cuándo conviene en Vigo',
+          ],
+          filas: [
+            [
+              'Lencería propia lavada por Mimos',
+              'Conservas la calidad y gramaje de tus sábanas y toallas.',
+              'Nunca: lotes separados y trazables por apartamento.',
+              'Anfitriones con 1 a varias VUT que cuidan sus valoraciones y evitan permanencias.',
+            ],
+            [
+              'Renting industrial estándar',
+              'Textil estándar uniforme pensado para grandes hoteles.',
+              'Rotación común entre distintos establecimientos.',
+              'Grandes volúmenes hoteleros con rotación masiva estandarizada.',
+            ],
+          ],
+          pie: 'Recomendación práctica: contar con 2,5 a 3 juegos propios completos por cama y baño para encadenar salidas y entradas sin esperar al lavado.',
+        },
+      },
+      {
+        h2: '3. Textiles de fondo, amenities, entrega de llaves y reporte fotográfico',
+        parrafos: [
+          'Además del cambio de sábanas y toallas en cada reserva, programar la limpieza periódica de protectores, almohadas, rellenos nórdicos, cortinas y tapicerías alarga la vida útil del mobiliario y mantiene el apartamento fresco todo el año.',
+          'Si necesitas delegar el conjunto de la operativa entre huéspedes (limpieza del piso, lavandería en lotes separados, reposición de amenities, coordinación de entrega de llaves y reporte fotográfico de incidencias), puedes combinarlo con nuestro protocolo específico para cada salida.',
         ],
       },
     ],
     advertenciaProfesional:
-      'En Tintorería Mimos Navia ayudamos a propietarios y gestores de apartamentos turísticos en Vigo con soluciones de lavandería y limpieza adaptadas a su volumen de reservas. Escribe a Mimo por WhatsApp para pedir un presupuesto personalizado.',
+      'En Tintorería Mimos Navia ayudamos a propietarios y gestores de apartamentos turísticos en Vigo con soluciones adaptadas a su cartera (desde un piso hasta gestoras VUT, abiertos a acuerdos negociables por volumen). Escribe a Mimo por WhatsApp para pedir propuesta personalizada.',
     enlacesInternos: [
       {
         texto: 'Limpieza y Lavandería para Apartamentos Turísticos en Vigo',
         href: '/limpieza-apartamentos-turisticos-vigo',
-        descripcion: 'Consulta nuestras soluciones y pide presupuesto a medida para tu alojamiento.',
+        descripcion: 'Operativa completa 11:00–15:00, amenities, llaves, reporte fotográfico y Decreto 12/2017.',
       },
       {
-        texto: 'División de Limpieza Profesional en Vigo',
-        href: '/limpieza-profesional-vigo',
-        descripcion: 'Servicios de limpieza para alojamientos, viviendas, oficinas y locales.',
+        texto: 'Protocolo paso a paso de rotación en apartamentos turísticos',
+        href: '/blog/protocolo-rotacion-apartamentos-turisticos-vigo',
+        descripcion: 'Checklist operativo del día de cambio entre check-out y check-in.',
+      },
+      {
+        texto: 'Limpieza de sofás y colchones a domicilio en Vigo',
+        href: '/limpieza-sofas-vigo',
+        descripcion: 'Higienización in situ de sofás y colchones de tu alojamiento entre temporadas.',
       },
     ],
     whatsappCtaUrl: buildMimoWhatsAppUrl(
@@ -368,86 +408,120 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     url: '/blog/la-colada-en-casa',
     canonical: 'https://www.tintoreriamimos.es/blog/la-colada-en-casa',
     titulo: 'La colada en casa: ¿Ahorro o pérdida de tiempo y calidad?',
-    seoTitle: 'La colada en casa: ¿Ahorro o pérdida de tiempo? | Tintorería Mimos Vigo',
+    seoTitle: 'La Colada en Casa vs Autoservicio y Lavandería en Vigo | Mimos',
     metaDescription:
-      '¿Compensa hacer la colada en casa o en autoservicio? Analizamos el tiempo del fin de semana, el coste de energía, el desgaste textil y las ventajas de externalizar el lavado profesional.',
+      'Comparativa práctica en Vigo: lavadora en casa vs autoservicio de monedas vs lavandería atendida. Plumas, humedad atlántica, Navia, Calvario y ahorro de tiempo.',
     categoria: 'Colada y cuidado de ropa',
-    fechaPublicacion: '12 de octubre de 2026',
+    fechaPublicacion: '12 de octubre de 2026 (Actualizado nov. 2026)',
     fechaISO: '2026-10-12',
-    tiempoLectura: '4 min de lectura',
+    tiempoLectura: '6 min de lectura',
     extracto:
-      'Una de las tareas domésticas menos reconfortantes es hacer la colada. Entre lavar, clasificar, tender y planchar se va buena parte del fin de semana. Analizamos por qué externalizar este servicio a profesionales alarga la vida de tus prendas y te devuelve tu tiempo libre.',
+      'Comparativa práctica en Vigo entre lavar en casa, usar autoservicios de monedas o confiar en nuestra lavandería atendida: ahorro real de tiempo, control de temperatura y secado completo frente a la humedad atlántica.',
     imagen: IMAGES.blogColadaCasa,
     imagenAlt:
       'Ropa limpia, recién lavada, planchada y doblada con mimo en un hogar ordenado',
     introduccion: [
-      'Una de las tareas domésticas menos reconfortantes es la de realizar la colada. Multitud de unidades familiares dedican buena parte del tiempo del fin de semana a realizar esta tarea: clasificar por colores, lavar, tender, clasificar y planchar la ropa.',
-      'Es evidente el gasto de energía y tiempo que se van en esta labor, y normalmente con resultados poco profesionales, bien por falta de experiencia o bien por descuido (ropa desteñida, prendas encogidas, manchas que no salen, etc.).',
+      'Una de las tareas domésticas que más horas consume en casa es hacer la colada. Entre clasificar por colores, poner varios ciclos, tender, esperar a que seque con la humedad de Vigo, recoger y planchar se pierde buena parte del fin de semana.',
+      'A ese tiempo se suma el consumo eléctrico y de agua, la falta de espacio en pisos actuales y los errores habituales al mezclar temperaturas o tejidos: camisetas que pierden color, jerséis encogidos y toallas que nunca terminan de secar.',
     ],
     secciones: [
       {
-        h2: '1. El problema del espacio: cuartos pequeños y sin tendales adecuados',
+        h2: '1. El problema del espacio y la humedad atlántica en Vigo',
         parrafos: [
-          'Otro de los problemas con los que nos encontramos habitualmente en casa es la falta de un lugar adecuado para realizar bien esta labor. Los cuartos de colada suelen ser sitios pequeños donde apenas disponemos del espacio suficiente para tener una lavadora y una secadora.',
-          'En muchas ocasiones se carece de tendales o estos son insuficientes, algo altamente recomendable para según qué tipo de prendas que no admiten secadora ni centrifugados agresivos.',
+          'En barrios residenciales de Vigo como Navia, Coia, O Calvario o el Centro, los cuartos de lavado suelen ser reducidos y muchas viviendas carecen de tendales cubiertos ventilados. En otoño e invierno, con más del 77 % de humedad ambiental en las Rías Baixas, sábanas, toallas y vaqueros tardan días en secar y generan condensación interior.',
+          'El reto se multiplica en prendas voluminosas como edredones nórdicos de plumas o sintéticos, mantas y abrigos plumíferos: si el relleno no entra holgado en el tambor ni seca completamente por dentro, la pluma se apelmaza y aparece olor a humedad.',
         ],
         puntosClave: [
-          'Falta de ventilación natural para secar adecuadamente sábanas y toallas sin acumular humedad en la vivienda.',
-          'Riesgo de malos olores si la ropa tarda en secarse en épocas de lluvia o invierno en Galicia.',
-          'Dificultad para mantener una separación estricta de tejidos delicados sin espacio físico suficiente.',
+          'Falta de ventilación natural para secar sábanas y toallas sin acumular humedad en la vivienda.',
+          'Riesgo de olor a cerrado y deterioro de rellenos cuando el secado se alarga varios días.',
+          'Dificultad para separar prendas blancas, oscuras, ropa técnica y tejidos finos en cargas pequeñas.',
         ],
       },
       {
-        h2: '2. Las lavanderías autoservicio: limitaciones y costes reales',
+        h2: '2. Comparativa: lavadora en casa vs. autoservicio de monedas vs. lavandería atendida',
         parrafos: [
-          'Muchas personas están optando por acudir a las lavanderías autoservicio, donde por unos euros logran tener un entorno más propicio para realizar la colada. Sin embargo, el problema de estos espacios es la falta de control sobre los productos utilizados, ciclos de lavado, temperaturas de secado, etc.',
-          'Si eres alguien que realmente quiere mimar tus prendas, sufres al no poder adecuar el lavado al tipo de ropa por la inflexibilidad de este tipo de establecimientos. O bien, porque de usar el lavado adecuado para cada prenda, este tipo de servicios sería realmente costoso económicamente, al necesitar poner 5 ó 6 lavadoras a la semana para separar blancos, colores, ropa de diario y prendas finas.',
+          'Muchas personas prueban las lavanderías autoservicio de monedas para ahorrar tiempo o lavar mantas grandes. Sin embargo, el autoservicio obliga a desplazarte con bolsas, esperar allí mientras terminan los ciclos y asumir programas estándar y secadoras de alta temperatura que no distinguen fibras ni desmanchan previamente.',
+          'Frente al modelo de autoservicio sin personal, en nuestra lavandería 100 % atendida en Vigo clasificamos cada prenda según su etiqueta, ajustamos programa y temperatura, aplicamos secado técnico completo y te entregamos la ropa doblada o planchada lista para guardar.',
         ],
+        tabla: {
+          encabezados: [
+            'Criterio práctico',
+            'Lavadora y tendal en casa',
+            'Autoservicio de monedas',
+            'Lavandería atendida Mimos (Vigo)',
+          ],
+          filas: [
+            [
+              'Tu tiempo libre',
+              'Varias horas cada semana entre ciclos, tendal y plancha.',
+              '45–90 min esperando en el local y cargando bolsas.',
+              'Solo entregas en tienda (o recogida) y recoges todo listo.',
+            ],
+            [
+              'Clasificación y etiquetas',
+              'Manual, con riesgo frecuente de desteñidos o encogimientos.',
+              'Programas genéricos y detergente estándar sin pretratamiento.',
+              'Separación por color/tejido y revisión previa de manchas.',
+            ],
+            [
+              'Edredones, plumas y anoraks',
+              'Tambor pequeño; riesgo de apelmazar relleno y romper costuras.',
+              'Secado estándar agresivo; riesgo de sobrecalentar membranas.',
+              'Gran formato en planta de Navia sin suavizante en plumas ni membranas.',
+            ],
+            [
+              'Humedad atlántica de Vigo',
+              'Secado lento en invierno y olor a humedad en toallas.',
+              'A menudo sale templada o ligeramente húmeda por dentro.',
+              'Secado técnico completo y control de acabado sin olores.',
+            ],
+            [
+              'Planchado profesional',
+              'Plancha doméstica lenta sobre camisas y sábanas.',
+              'No incluye servicio de planchado.',
+              'Eliges lavar y doblar, lavar y planchar o combinada por prenda.',
+            ],
+          ],
+          pie: 'Disponible sin pedido mínimo en nuestras 3 tiendas propias (Navia, Gregorio Espino y Rúa Venezuela) y 5 puntos colaboradores, o con recogida a domicilio según ruta e importe mínimo.',
+        },
       },
       {
-        h2: '3. La solución óptima: externalizar la colada a un equipo profesional',
+        h2: '3. Colada familiar a medida y lavandería atendida en tu barrio de Vigo',
         parrafos: [
-          'Tras darle muchas vueltas a este tema, nos damos cuenta de que una solución óptima es la de externalizar este tipo de servicio a una empresa profesional que lo realice. La cual nos garantice que va a tratar cada prenda de nuestra colada según el etiquetado del fabricante y seleccionando la ropa por colores para proceder a su lavado.',
-          'Si bien externalizar supone un coste económico frente a hacerlo uno mismo, el ahorro de tiempo y el alargamiento de la vida útil de las prendas compensa con creces el desembolso. Evitas accidentes de desteñidos, quemaduras de plancha y el desgaste prematuro de tus prendas favoritas.',
+          'No hace falta enviar toda tu ropa semanal bajo la misma fórmula: en Tintorería Mimos puedes elegir colada familiar (lavar y doblar o lavar y planchar) e incluso modalidad combinada por prenda —por ejemplo, tu colada diaria doblada más tus camisas y pantalones en percha planchados sin brillos—.',
+          'Si te mueves por Navia (C/ Teixugueiras, 11, bajo 9), O Calvario / Travesía (Alcalde Gregorio Espino, 42) o Vigo Centro (Rúa de Venezuela, 29, Entreplanta), cuentas con atención directa de mostrador sin monedas ni esperas.',
         ],
         subsecciones: [
           {
             h3: 'Tratamiento según etiquetado y selección por colores',
             texto:
-              'Cada colada se clasifica minuciosamente antes del lavado: ropa blanca, tonos claros, prendas oscuras y tejidos técnicos reciben el programa y los productos óptimos sin mezclas arriesgadas.',
+              'Cada lote se revisa y clasifica antes del lavado: ropa blanca, tonos claros, prendas oscuras y textiles técnicos reciben el programa y los productos óptimos.',
           },
           {
-            h3: 'Lavado, secado suave y opción de planchado profesional',
+            h3: 'Edredones, mantas y abrigos de plumas sin riesgos',
             texto:
-              'Entregamos tus prendas listas para usar o guardar: puedes elegir entrega doblada por kilos o planchado impecable de camisas y prendas de vestir.',
+              'Separamos la colada diaria de las piezas de gran formato o pluma natural para aplicar el volumen de agua y el secado controlado que devuelven el ahuecado original.',
           },
-        ],
-      },
-      {
-        h2: '4. Recupera tu tiempo libre: nosotros lo tenemos claro, ¿y tú?',
-        parrafos: [
-          'Así que al final, como casi todo en esta vida, podemos optar por hacerlo nosotros mismos y perder nuestro tiempo en esta ardua tarea, o pagar a alguien para que nos libere de la misma.',
-          'En Tintorería Mimos Navia disponemos de servicio de colada familiar (lavado, secado y doblado profesional) con recepción en nuestras 3 tiendas propias en Vigo, recogida y entrega a domicilio y puntos colaboradores en Gondomar, Redondela, Ponteareas y O Porriño.',
         ],
       },
     ],
     advertenciaProfesional:
-      'En Tintorería Mimos Navia nos ocupamos de tu colada semanal para que disfrutes de tu fin de semana sin horas perdidas entre lavadoras y planchas. Consulta nuestras condiciones de colada familiar por kilos o recogida a domicilio por WhatsApp.',
+      'En Tintorería Mimos Navia nos ocupamos de tu colada semanal para que recuperes tu fin de semana sin renunciar al cuidado real de cada tejido. Consulta modalidades o recogida a domicilio con Mimo por WhatsApp.',
     enlacesInternos: [
       {
         texto: 'Servicio de Colada Familiar en Vigo',
         href: '/colada-familiar-vigo',
-        descripcion: 'Lavado, secado y doblado de tu ropa de diario para ahorrar tiempo en casa.',
+        descripcion: 'Lavar y doblar, lavar y planchar o modalidad combinada por prenda.',
       },
       {
-        texto: 'Recogida y Entrega a Domicilio',
-        href: '/recogida-a-domicilio',
-        descripcion: 'Servicio de recogida a domicilio en Vigo y área metropolitana.',
+        texto: 'Lavandería Profesional Atendida en Vigo',
+        href: '/lavanderia-vigo',
+        descripcion: 'Plumíferos, anoraks, ropa técnica, encerado Barbour y jerséis delicados.',
       },
       {
-        texto: 'Servicio de Planchado Profesional en Vigo',
-        href: '/planchado-vigo',
-        descripcion: 'Planchado individual de camisas, trajes y vestidos de diario.',
+        texto: 'Textiles del Hogar: Edredones, Mantas y Cortinas',
+        href: '/textiles-hogar-vigo',
+        descripcion: 'Lavado en gran formato y secado completo anti-humedad en Navia.',
       },
     ],
     whatsappCtaUrl: buildMimoWhatsAppUrl(
@@ -560,7 +634,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     canonical:
       'https://www.tintoreriamimos.es/blog/ropa-afectada-humo-incendio-siniestro-hogar',
     titulo:
-      'Guía Técnica de Restauración Textil Post-Incendio: Descontaminación de Humo, Hollín y Cobertura del Seguro del Hogar en España',
+      'Restauración textil tras incendios, humo y hollín: guía técnica y seguro',
     seoTitle:
       'Restauración Textil por Humo e Incendio en Vigo | Guía Técnica y Seguro',
     metaDescription:
@@ -818,7 +892,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     canonical:
       'https://www.tintoreriamimos.es/blog/protocolo-rotacion-apartamentos-turisticos-vigo',
     titulo:
-      'Protocolo de rotación en apartamentos turísticos en Vigo: checklist profesional de limpieza y gestión textil',
+      'Protocolo de rotación en apartamentos turísticos en Vigo: checklist textil',
     seoTitle:
       'Protocolo de Limpieza y Rotación de Pisos Turísticos en Vigo | Mimos',
     metaDescription:
@@ -922,23 +996,23 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     canonical:
       'https://www.tintoreriamimos.es/blog/limpieza-comunidades-propietarios-vigo',
     titulo:
-      'Limpieza de comunidades de propietarios en Vigo: claves para portales, escaleras y zonas comunes impecables',
+      'Limpieza de comunidades de propietarios en Vigo: portales y escaleras',
     seoTitle:
       'Limpieza de Comunidades de Vecinos en Vigo | Tintorería Mimos',
     metaDescription:
-      'Consejos y frecuencias recomendadas para la limpieza de portales, escaleras, cristales y garajes en comunidades de propietarios en Vigo. Servicio profesional y de confianza.',
+      'Frecuencias recomendadas, cuidado de granito y checklist LPH (CAE, RC, PRL y sustituciones) para juntas y administradores de fincas en Vigo.',
     categoria: 'Comunidades y Mantenimiento',
-    fechaPublicacion: '7 de noviembre de 2026',
+    fechaPublicacion: '7 de noviembre de 2026 (Actualizado nov. 2026)',
     fechaISO: '2026-11-07',
-    tiempoLectura: '5 min de lectura',
+    tiempoLectura: '6 min de lectura',
     extracto:
-      'El portal y las escaleras son la carta de presentación de cualquier edificio residencial. Descubre qué plan de frecuencias es el más adecuado según el número de vecinos, qué productos utilizar para no deteriorar el granito o mármol y las ventajas de contratar una empresa local con personal asegurado y supervisado en Vigo.',
+      'El portal y las escaleras son la carta de presentación de cualquier edificio residencial. Descubre frecuencias recomendadas, productos de pH neutro para granito gallego y el checklist imprescindible (LPH, CAE, RC y PRL) para juntas y Administradores de Fincas en Vigo.',
     imagen: IMAGES.blogLimpiezaComunidades,
     imagenAlt:
       'Portal de comunidad de propietarios moderno y luminoso con suelo de granito pulido impecable en Vigo',
     introduccion: [
       'El portal, las escaleras, los ascensores y los rellanos son las zonas de mayor tránsito diario de una comunidad de vecinos. Mantenerlos limpios y cuidados no solo mejora la convivencia y el confort de quienes habitan el edificio, sino que protege y revaloriza directamente el valor de tasación y alquiler de cada una de las viviendas.',
-      'Sin embargo, la limpieza de una comunidad suele ser uno de los focos habituales de discrepancias en las reuniones de vecinos cuando el servicio es irregular, faltan operarios o los productos utilizados estropean los suelos nobles.',
+      'Sin embargo, la limpieza de una comunidad suele ser uno de los focos habituales de discrepancias en las reuniones de vecinos cuando el servicio es irregular, faltan sustituciones en vacaciones o los productos utilizados estropean los suelos nobles.',
     ],
     secciones: [
       {
@@ -958,9 +1032,9 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
               'Se recomienda un servicio de dos o tres días por semana, con repaso frecuente de cristales de acceso, felpudos, botoneras de ascensor y zonas de buzones.',
           },
           {
-            h3: 'Intervenciones periódicas complementarias',
+            h3: 'Intervenciones periódicas accesibles',
             texto:
-              'Planificación mensual o trimestral para la limpieza de cristales en altura, patios interiores comunitarios, salas de contadores y barrido/fregado de viales de garaje y trasteros.',
+              'Planificación mensual o trimestral para cristales de acceso y carpinterías a cota normal, patios interiores accesibles, cuartos de contadores y barrido o fregado de zonas de garaje y trasteros (mantenimiento periódico continuo; no realizamos trabajos verticales de cristales en altura ni limpiezas fin de obra).',
           },
         ],
       },
@@ -975,31 +1049,45 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
         h2: '3. Legalidad, seguros y tranquilidad para la presidencia de la comunidad',
         parrafos: [
           'Delegar la limpieza en personas particulares sin contrato o empresas que no acreditan sus coberturas expone al presidente de la comunidad a graves responsabilidades solidarias ante posibles accidentes laborales o caídas por resbalones.',
-          'Contratar una empresa formalizada como Tintorería Mimos garantiza que todo el personal cuenta con alta en el Régimen General de la Seguridad Social, formación en prevención de riesgos laborales y póliza de seguro de responsabilidad civil que ampara cualquier eventualidad en el inmueble.',
+          'Contratar una empresa formalizada como Tintorería Mimos Navia, S.L. (CIF B27755925) garantiza que todo el personal cuenta con alta en el Régimen General de la Seguridad Social, formación en Prevención de Riesgos Laborales y póliza de Seguro de Responsabilidad Civil que ampara cualquier eventualidad en el inmueble.',
+        ],
+      },
+      {
+        h2: '4. Checklist para juntas de vecinos y Administradores de Fincas en Vigo (LPH)',
+        parrafos: [
+          'Antes de aprobar un cambio de empresa en junta o solicitar presupuestos comparables conforme a la Ley de Propiedad Horizontal (LPH), conviene verificar estos seis puntos documentales y operativos:',
+        ],
+        puntosClave: [
+          'Documentación CAE y PRL al día: certificados de estar al corriente en Seguridad Social y Hacienda, más Coordinación de Actividades Empresariales (CAE) para la comunidad.',
+          'Póliza de Seguro de Responsabilidad Civil (RC) vigente que cubra daños en zonas comunes, portales, ascensores o puertas de acceso.',
+          'Sustituciones planificadas en vacaciones y bajas médicas con personal propio para no dejar semanas sin servicio.',
+          'Productos de pH neutro adaptados a granito de Porriño, mármol pulido y acero inoxidable sin corrosivos.',
+          'Alcance claro sin sorpresas: en Mimos trabajamos mantenimiento periódico continuo (no realizamos limpiezas fin de obra, trabajos en altura ni pulidos industriales de suelos).',
+          'Visita técnica gratuita previa en Vigo para medir alturas, revisar el estado de escaleras y presentar una propuesta transparente para la junta.',
         ],
       },
     ],
     advertenciaProfesional:
-      '¿Buscáis renovar el servicio de limpieza de vuestra comunidad en Vigo o el área metropolitana? En Tintorería Mimos visitamos vuestro edificio sin compromiso para evaluar los metros, materiales y frecuencias, y os presentamos una propuesta económica clara y transparente para la próxima junta de vecinos.',
+      '¿Buscáis renovar el servicio de limpieza de vuestra comunidad en Vigo o el área metropolitana? En Tintorería Mimos visitamos vuestro edificio gratuitamente para evaluar los metros, materiales y frecuencias, y os presentamos una propuesta clara para la próxima junta de vecinos o Administrador de Fincas.',
     enlacesInternos: [
       {
         texto: 'Limpieza de Comunidades y Oficinas en Vigo',
         href: '/limpieza-profesional-vigo',
-        descripcion: 'Planes de mantenimiento continuo para zonas comunes y portales.',
+        descripcion: 'Mantenimiento periódico con RC, CAE, PRL y sustituciones cubiertas en Vigo.',
       },
       {
         texto: 'Servicios de Empresa y Negocios en Vigo',
         href: '/servicios-empresas',
-        descripcion: 'Soluciones integrales de mantenimiento e higienización para instalaciones.',
+        descripcion: 'Lavandería profesional con lotes separados y factura mensual con CIF.',
       },
       {
         texto: 'Puntos Mimos y Atención Centralizada',
         href: '/puntos-mimos',
-        descripcion: 'Sede central en C/ As Teixugueiras, Navia, y cobertura en todo Vigo.',
+        descripcion: 'Sede central en C/ Teixugueiras 11 bajo 9, Navia, y red de tiendas en Vigo.',
       },
     ],
     whatsappCtaUrl: buildMimoWhatsAppUrl(
-      'Hola, Mimo. Soy presidente/administrador de una comunidad de vecinos en Vigo y me gustaría solicitar presupuesto para la limpieza de nuestro portal y escaleras.'
+      'Hola, Mimo. Soy presidente/administrador de una comunidad de vecinos en Vigo y me gustaría solicitar presupuesto y visita técnica gratuita para la limpieza de nuestro portal y escaleras.'
     ),
   },
   {
@@ -1008,7 +1096,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     canonical:
       'https://www.tintoreriamimos.es/blog/limpieza-oficinas-despachos-clinicas-vigo',
     titulo:
-      'Limpieza e higienización de oficinas, despachos y clínicas en Vigo: salud laboral y primera impresión',
+      'Limpieza de oficinas, despachos y clínicas en Vigo: salud laboral e imagen',
     seoTitle:
       'Limpieza de Oficinas, Despachos y Clínicas en Vigo | Mimos',
     metaDescription:
@@ -1096,6 +1184,349 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     ],
     whatsappCtaUrl: buildMimoWhatsAppUrl(
       'Hola, Mimo. Quiero solicitar presupuesto para la limpieza periódica de nuestra oficina / despacho / clínica en Vigo.'
+    ),
+  },
+  {
+    slug: 'guia-arreglos-ropa-bajo-vaquero-vigo',
+    url: '/blog/guia-arreglos-ropa-bajo-vaquero-vigo',
+    canonical:
+      'https://www.tintoreriamimos.es/blog/guia-arreglos-ropa-bajo-vaquero-vigo',
+    titulo:
+      'Arreglos de ropa en Vigo: bajo original vaquero, ceremonia y modista in situ',
+    seoTitle:
+      'Arreglos de Ropa en Vigo: Bajo Original Vaquero y Modista | Mimos',
+    metaDescription:
+      'Guía técnica de arreglos de ropa en Vigo sin cita previa: bajo original vaquero, encogimiento, prueba de ceremonia, piel y talleres in situ de Mimos.',
+    categoria: 'Costura y Arreglos de Ropa',
+    fechaPublicacion: '19 de noviembre de 2026',
+    fechaISO: '2026-11-19',
+    tiempoLectura: '9 min de lectura',
+    extracto:
+      'Diferencia técnica entre bajo original (Euro Hem), bajo a máquina e invisible a mano; encogimiento de lino y denim antes de acortar; límites reales en seda, satén, pedrería o hombros de americana; costura en cuero, cremalleras y circuito integrado de tintorería + modista in situ en Vigo.',
+    imagen: IMAGES.arreglosRopa,
+    imagenAlt:
+      'Trabajo profesional de costura y marcado de bajo de pantalón con jaboncillo de sastre en Tintorería Mimos Vigo',
+    introduccion: [
+      'Arreglar un vaquero nuevo, ajustar un vestido de fiesta o sustituir la cremallera de una cazadora de piel exige saber mucho más que pasar una costura recta: el corte de la pernera, el encogimiento residual de la fibra o los márgenes interiores del forro condicionan el resultado final.',
+      'Frente a los talleres convencionales que únicamente cosen o a los mostradores sin asesoramiento técnico, en Tintorería Mimos integramos en un mismo circuito la limpieza técnica profesional (Wet Cleaning a baja temperatura o limpieza en seco) y nuestros talleres propios de costura con modista y probador in situ en Vigo, valorando cada prenda presencialmente sin tarifas estándar cerradas ni plazos rígidos a ciegas.',
+    ],
+    secciones: [
+      {
+        h2: '1. Técnica en bajos de pantalón y control del encogimiento en vaqueros, lino y algodón',
+        parrafos: [
+          'Acortar un pantalón es la compostura más frecuente en taller, pero elegir mal la técnica cambia la estética exterior, el grosor del remate interior y la estabilidad del largo tras los primeros lavados.',
+          'El bajo original —conocido en sastrería como Euro Hem u Original Hem Graft— conserva el borde inferior de fábrica con su desgaste lavado y pespunte en contraste mediante dos vías: plegar el sobrante hacia arriba alineando la bastilla original con la nueva marca y pespuntear pegado al remate de fábrica, o bien recortar el exceso dejando un margen de unos 1,3 cm sobrehilado con remalladora (overlock) antes de plancharlo con vapor cuando el denim es grueso o se acorta mucha longitud. Por su parte, el bajo estándar a máquina corta el remate original y realiza un doblez doble con aguja reforzada para denim (tallas 16 o 18) e hilo grueso de pespunte, mientras que el bajo invisible a mano emplea una puntada diagonal oculta para pantalones de vestir sin hilo visto por el derecho.',
+        ],
+        subsecciones: [
+          {
+            h3: 'Viabilidad según el corte del vaquero (recto, pitillo o campana)',
+            texto:
+              'En vaqueros rectos y anchos de boca uniforme el bajo original asienta sin bolsas. En pitillo o cónicos (skinny/tapered), la boca es más estrecha que el tramo superior y exige descoser y entallar parcialmente la costura interior para evitar frunces. En campana o bootcut ocurre lo contrario y suele desaconsejarse salvo abrir costuras laterales (donde la tela oculta del margen puede verse algo más oscura).',
+          },
+          {
+            h3: 'Por qué lavar o limpiar antes de acortar lino, algodón y denim crudo',
+            texto:
+              'Las fibras vegetales sin prelavar encogen al primer contacto con el agua: alrededor de un 4 % de media en lino puro (hasta un 10–15 % con agua caliente o secadora), un 4–10 % en algodón puro y un 3–8 % en denim crudo sin sanforizar. Si quieres estrenar sin lavar en casa antes, puedes pasar primero la prenda por nuestro circuito de limpieza controlada o dejar un margen de seguridad antes de marcar.',
+          },
+        ],
+        tabla: {
+          encabezados: [
+            'Tipo de bajo',
+            'Técnica de ejecución',
+            'Resultado exterior',
+            'Acabado interior y corte recomendado',
+          ],
+          filas: [
+            [
+              'Bajo original (Euro Hem)',
+              'Re-anclaje de la bastilla de fábrica mediante pliegue oculto o recorte interior sobrehilado (~1,3 cm)',
+              'Conserva intacto el desgaste lavado y el pespunte original de fábrica',
+              'Ligero escalón interior (menor grosor si se recorta exceso). Ideal en corte recto; pitillo y campana exigen rectificar costuras.',
+            ],
+            [
+              'Bajo estándar a máquina',
+              'Corte de sobrante (~2,5 cm de margen), doblez doble o sobrehilado y pespunte recto con aguja denim 16/18',
+              'Pespunte limpio y uniforme sin el desgaste lavado de fábrica',
+              'Acabado plano y ligero; recomendado en denim crudo nuevo, uso diario y algodón informal.',
+            ],
+            [
+              'Bajo invisible a mano',
+              'Puntada diagonal manual que sujeta el dobladillo por el revés sin atravesar la cara exterior',
+              'Cero hilo ni línea de costura visible por el derecho',
+              'Dobladillo interior limpio y discreto; elección habitual en pantalones de vestir, sastrería fina y ceremonia.',
+            ],
+          ],
+          pie: 'Nota técnica: marca siempre el largo con el calzado definitivo en probador; medir «a ojo» en casa altera la postura y provoca bajos irregulares.',
+        },
+      },
+      {
+        h2: '2. Vestidos de ceremonia, novia, fiesta y sastrería de traje o chaqué',
+        parrafos: [
+          'En prendas de ceremonia, pequeñas diferencias de tacón o ropa interior modifican toda la caída. Además, la viabilidad de ensanchar frente a estrechar depende del margen de costura interno (entre 1,3 y 2,5 cm permiten recorrido real; en torno a 0,6 cm apenas permiten ampliar sin añadir piezas), del forro interior —que limita hasta dónde puede ceder la tela exterior— y de la memoria del tejido.',
+          'Cada fibra responde de forma distinta al descosido: mientras algunos satenes lisos y mikados agradecen ciertos ajustes, la seda, el satén, el raso duquesa y el crepé pueden conservar marcas permanentes de aguja o líneas de planchado (seam ghosts). La gasa y el tul multicapa exigen estabilización y reposar colgados antes de cortar el bajo, y cuando el ajuste cruza encaje o pedrería los motivos y abalorios deben desmontarse y re-aplicarse a mano. En americanas y chaqués, los hombros sostienen hombreras, entretelas y copa de manga: estrechar suele ser factible, pero ensanchar hombros o pecho choca con la estructura interna.',
+        ],
+        puntosClave: [
+          'Calzado definitivo o de altura exacta: el largo de vestidos de fiesta, novia, comunión y pantalones de chaqué se marca siempre sobre el tacón o suela del evento.',
+          'Ropa interior definitiva (sujetador, body o faja): determina la altura real del pecho, la posición del escote y el entalle de cintura y cadera.',
+          'Complementos con volumen o interferencia: lleva velo, cinturón, fajín, tocado o guantes si condicionan el talle o los puños.',
+          'Prueba en postura natural y en movimiento: además de mirar frente y espalda, camina, siéntate, respira hondo y levanta los brazos para comprobar que no tira.',
+          'Previsión de tiempo y acompañamiento práctico: reserva margen sin prisas y acude con una o dos personas prácticas (en vestidos con cola conviene aprender cómo recoger la presilla).',
+        ],
+        tabla: {
+          encabezados: [
+            'Prenda o componente',
+            'Arreglos habitualmente viables',
+            'Límites técnicos irreversibles y riesgos',
+          ],
+          filas: [
+            [
+              'Cuerpo de vestido (seda, satén, crepé, mikado)',
+              'Estrechar por costuras laterales o espalda; sacar dentro del margen de tela y forro disponible',
+              'Imposible ensanchar sin insertos si el margen ronda 0,6 cm o el forro es justo; riesgo de marcas permanentes de aguja en seda, satén y crepé.',
+            ],
+            [
+              'Aplicaciones de encaje y pedrería',
+              'Desmontar cuentas o borde de encaje, ajustar la base y re-aplicar a mano conservando el dibujo',
+              'Trabajo manual minucioso; sin pedrería compatible o con desgaste previo, la modificación puede dejar huella.',
+            ],
+            [
+              'Faldas multicapa (tul, gasa, tejidos vaporosos)',
+              'Igualar y acortar capa por capa tras dejar reposar la caída colgada',
+              'El tul fino puede estirarse y delatar costuras; la gasa resbala durante el manejo si no se estabiliza.',
+            ],
+            [
+              'Americana, traje o chaqué',
+              'Entallar cintura y costados, acortar mangas y bajos, ajustar levemente hombros o estrecharlos',
+              'Ensanchar hombros o pecho más allá de la costura interna requiere incrustar piezas y re-cortar la copa de la manga.',
+            ],
+          ],
+        },
+        destacado: {
+          titulo: 'Limpieza técnica antes frente a después del arreglo',
+          texto:
+            'Si la prenda es de segunda mano, vintage, de alquiler o tiene manchas de sudor, champán, vino o maquillaje, debe limpiarse ANTES del arreglo para evitar que el calor de la plancha del taller oxide y fije la mancha. Si la prenda es nueva e impecable, se ajusta primero y se termina con Wet Cleaning controlado (25–28 °C, baño 1:2 para lana fría, seda, lino y bordados) o limpieza en seco (para grasas y prendas estructuradas) y vaporizado profesional Veit.',
+        },
+      },
+      {
+        h2: '3. Arreglos complejos: prendas de piel y cuero, cremalleras y zurcidos',
+        parrafos: [
+          'Las cazadoras y abrigos de piel, las cremalleras metálicas y los enganchones en tejidos nobles requieren maquinaria y criterio muy distintos a la costura ordinaria. En nuestro taller propio de Alcalde Gregorio Espino 42 aportamos experiencia histórica en piel y prendas delicadas (además de bordados personalizados y confección de hogar).',
+          'En costura normal la aguja separa hilos; en cuero, ante y napa se utilizan agujas con punta cortante o redondeada específica (habitualmente 90/14 o 100/16 con hilo poliéster nº 40, o 110/18+ en cueros gruesos), lo que exige evaluar la prenda en persona antes de intervenir.',
+        ],
+        subsecciones: [
+          {
+            h3: 'Tres reglas estrictas al coser cuero, ante y napa',
+            texto:
+              'Cada pinchazo perfora de forma irreversible (nunca se usan alfileres, sino clips, y ensanchar descosiendo deja los orificios visibles). Además se cose con puntada larga (3–3,5 mm) y prensatelas de teflón o doble arrastre para no rasgar el cuero, sujetando vistas con cintas o pegamentos de guarnicionería.',
+          },
+          {
+            h3: 'Cremalleras en cazadoras: cursor frente a cambio completo',
+            texto:
+              'Si los dientes y la cinta están sanos y la cremallera se abre sola o falta el tirador, suele bastar con cambiar el cursor/carro, el tope o la cajita inferior sin descoser la prenda. Si faltan dientes, falla la espiral o se rasgó la cinta, es obligatorio sustituirla completa alineando ambos delanteros.',
+          },
+          {
+            h3: 'Zurcido invisible frente a costura de escalera y servicio exprés',
+            texto:
+              'El zurcido invisible extrae hilos originales de un dobladillo oculto para reconstruir el tejido; para desgarros limpios junto a una costura, la puntada de escalera cierra sin verse por fuera. En tejidos rozados o brillantes confirmamos viabilidad en tienda. Los arreglos exprés se valoran individualmente según carga real del taller, sin promesas cerradas genéricas.',
+          },
+        ],
+      },
+      {
+        h2: '4. Dónde acudir en Vigo y comarca (con o sin probador)',
+        parrafos: [
+          'Las entregas cotidianas y recogidas estándar se atienden sin cita previa en horario comercial; cuando vayas a realizar una prueba compleja de novia, ceremonia o quieras valorar un arreglo exprés, recomendamos consultar o planificar previamente para dedicarle el tiempo tranquilo que necesita en el probador.',
+          'Diferenciar qué centros disponen de modista y probador in situ frente a los de recepción gratuita evita desplazamientos innecesarios cuando hace falta marcar un bajo sobre el cuerpo:',
+        ],
+        tabla: {
+          encabezados: [
+            'Punto de la red Mimos',
+            'Ubicación y horario operativo',
+            'Dotación técnica de costura',
+            'Servicio disponible para el cliente',
+          ],
+          filas: [
+            [
+              'Mimos Gregorio Espino',
+              'Alcalde Gregorio Espino, 42 (O Calvario, Vigo). L–V y sábados mañana',
+              'Taller propio in situ con modista y probador',
+              'Prueba presencial, marcado y todas las especialidades; referente histórico en piel, delicadas, bordados, confección hogar y valoración exprés.',
+            ],
+            [
+              'Mimos Venezuela',
+              'Rúa de Venezuela, 29, Entreplanta (Centro / Santiago de Vigo). L–V (sábados cerrado)',
+              'Taller propio in situ con máquina industrial y espejo probador',
+              'Prueba presencial, marcado, ajustes de sastrería, ceremonia, bajos originales y composturas generales.',
+            ],
+            [
+              'Sede Central Navia',
+              'C/ Teixugueiras, 11, bajo 9 (Navia, Vigo). L–V y sábados mañana',
+              'Sin modista ni taller in situ (recepción y entrega)',
+              'Toma de especificaciones cuando no requiere prueba sobre cuerpo y traslado sin coste extra a nuestros talleres propios.',
+            ],
+            [
+              'Colaboradores con costura',
+              'Gondomar (Puntadas No Aire), Ponteareas (Arregla2) y O Porriño (Telas y Más)',
+              'Talleres independientes con costura propia',
+              'Atención directa de composturas habituales en sus respectivas localidades.',
+            ],
+            [
+              'Puntos solo tintorería y lavandería',
+              "D'Passo (Camiño Espedrigada, As Travesas, Vigo) y Redondela",
+              'Sin taller de costura propio',
+              'Recepción exclusiva de tintorería, lavandería, colada familiar, edredones y alfombras.',
+            ],
+          ],
+          pie: 'Política transparente de Tintorería Mimos: presupuesto y plazo realista confirmados al inspeccionar la prenda en taller o de forma orientativa previa por WhatsApp con Mimo.',
+        },
+        destacado: {
+          titulo: 'El valor añadido del circuito integrado Mimos en Vigo',
+          texto:
+            'A diferencia de talleres dedicados únicamente a coser o de reclamos rígidos sin valorar el tejido, en Mimos dispones de dos talleres propios con modista y probador (O Calvario y Centro) más recepción sin coste adicional en Navia, integrados con planta propia de Wet Cleaning y limpieza en seco y vaporizado final profesional.',
+        },
+      },
+    ],
+    advertenciaProfesional:
+      '¿Tienes unos vaqueros pendientes de bajo original, un vestido de evento para ajustar o una cazadora de piel con la cremallera dañada? Acude sin cita previa en horario comercial (o consulta antes con Mimo por WhatsApp si necesitas prueba de ceremonia o valoración exprés) para revisar la prenda y darte presupuesto cerrado.',
+    enlacesInternos: [
+      {
+        texto: 'Costura y Arreglos de Ropa en Vigo (18 especialidades)',
+        href: '/arreglos-de-ropa-vigo',
+        descripcion: 'Catálogo completo de arreglos, configurador WhatsApp y localizador de talleres.',
+      },
+      {
+        texto: 'Mimos Gregorio Espino (Taller completo in situ y piel)',
+        href: '/tienda-mimos-gregorio-espino-vigo',
+        descripcion: 'Modista y probador in situ en O Calvario; especialidad en piel, bordados y hogar.',
+      },
+      {
+        texto: 'Mimos Rúa Venezuela (Taller in situ en Vigo centro)',
+        href: '/tienda-mimos-venezuela-vigo',
+        descripcion: 'Entreplanta con probador y máquina industrial frente al Parking Venezuela.',
+      },
+      {
+        texto: 'Vestidos de Novia, Fiesta y Ceremonia en Vigo',
+        href: '/limpieza-vestidos-novia-ceremonia-vigo',
+        descripcion: 'Circuito integrado de limpieza artesanal, costura y vaporizado en funda.',
+      },
+    ],
+    whatsappCtaUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. He leído la guía de arreglos de ropa y quiero consultar un bajo original vaquero o compostura en Vigo.'
+    ),
+  },
+  {
+    slug: 'humedad-acaros-colchones-sofas-vigo',
+    url: '/blog/humedad-acaros-colchones-sofas-vigo',
+    canonical:
+      'https://www.tintoreriamimos.es/blog/humedad-acaros-colchones-sofas-vigo',
+    titulo:
+      'Humedad y ácaros en Vigo: cómo cuidar colchones, sofás y tapicerías',
+    seoTitle:
+      'Humedad y Ácaros en Colchones y Sofás en Vigo | Guía Mimos',
+    metaDescription:
+      'Por qué la humedad de Vigo favorece ácaros y cercos en colchones y sofás. Qué errores caseros evitar, códigos W/S/WS/X y limpieza controlada a domicilio.',
+    categoria: 'Hogar, Colchones y Tapicerías',
+    fechaPublicacion: '19 de noviembre de 2026',
+    fechaISO: '2026-11-19',
+    tiempoLectura: '6 min de lectura',
+    extracto:
+      'Con más del 77 % de humedad media anual en Vigo, colchones, cabeceros y sofás retienen polvo y ácaros si se aplican trucos domésticos con exceso de agua o vapor. Repasamos los 4 errores que fijan cercos y cómo higienizamos por inyección-extracción controlada.',
+    imagen: IMAGES.blogColchonesTapicerias,
+    imagenAlt:
+      'Interior luminoso con sofá y dormitorio higienizados sin cercos ni exceso de humedad en Vigo',
+    introduccion: [
+      'Dormimos una media de ocho horas al día sobre un colchón que rara vez recibe más limpieza que un cambio semanal de sábanas, y descansamos en un sofá textil que absorbe polvo en suspensión, pelo de mascotas, sudoración y roces de ropa vaquera.',
+      'En una ciudad atlántica como Vigo, donde la humedad relativa supera con facilidad el 77 % durante meses, mantener la higiene de colchones, cabeceros y sofás fijos exige controlar muy bien la cantidad de humedad aplicada: empapar el acolchado o recurrir a remedios caseros suele empeorar tanto el olor como las manchas.',
+    ],
+    secciones: [
+      {
+        h2: '1. Humedad atlántica en Vigo, polvo fino y ácaros en colchones y sofás',
+        parrafos: [
+          'El polvo doméstico, las escamas cutáneas y la transpiración nocturna se acumulan en los primeros milímetros de acolchado de colchones y asientos tapizados. Cuando la humedad ambiental de Vigo es elevada y falta ventilación cruzada diaria, el interior de la espuma tarda en evaporar y favorece la proliferación de ácaros y alérgenos respiratorios.',
+          'Ventilar el dormitorio con la cama destapada durante 20–30 minutos cada mañana, aspirar suavemente sin cepillos abrasivos y utilizar fundas protectoras transpirables lavables frena gran parte de la suciedad diaria, pero no sustituye a una extracción profunda periódica.',
+        ],
+      },
+      {
+        h2: '2. Los 4 errores domésticos que estropean colchones y tapicerías',
+        parrafos: [
+          'Antes de aplicar cualquier truco encontrado en redes sobre un cerco de café, sudor, orina o roce de mascotas, ten en cuenta por qué estas prácticas habituales generan daños difíciles de revertir:',
+        ],
+        puntosClave: [
+          'Usar vaporetas o exceso de agua sin succión industrial: el vapor a alta presión y el agua abundante atraviesan la tela y empapan la espuma o el núcleo del colchón, provocando olores a humedad, moho interior y encogimiento en linos o algodones.',
+          'Aplicar lejía, amoníaco, vinagre o pasta de bicarbonato: alteran el pH de la fibra, fijan cercos amarillentos permanentes y destruyen el escudo hidrofóbico de las telas antimanchas (como Aquaclean).',
+          'Frotar con fuerza o aplicar secadores de aire caliente: el frotado abre el pelo del terciopelo, chenilla o bouclé dejando calvas visibles, y el calor directo fija proteínas (sangre, leche, sudor) dentro del tejido.',
+          'Ignorar la etiqueta del fabricante (código S o X): humedecer una tapicería que solo admite limpieza en seco deja cercos inmediatos imposibles de disimular sin retapizar.',
+        ],
+      },
+      {
+        h2: '3. Cómo interpretar los códigos de tapicería (W, S, WS, X) antes de limpiar',
+        parrafos: [
+          'Revisa siempre la etiqueta cosida bajo los cojines del sofá o en el ribete del colchón. Si nos envías una foto por WhatsApp junto con el estado de la pieza, adaptamos el método desde el primer mensaje:',
+        ],
+        tabla: {
+          encabezados: [
+            'Código de etiqueta',
+            'Significado técnico',
+            'Actuación recomendada en casa y a domicilio',
+          ],
+          filas: [
+            [
+              'W (Water)',
+              'Limpieza con solución acuosa controlada',
+              'Admite inyección-extracción controlada de baja humedad en sofá o colchón, extrayendo suciedad al instante sin saturar la espuma.',
+            ],
+            [
+              'S (Solvent)',
+              'Solo limpieza en seco',
+              'Prohibido usar agua o espuma comercial. Requiere tratamiento específico en seco / mínima humedad para evitar encogimiento o cercos.',
+            ],
+            [
+              'WS',
+              'Compatible con agua o disolvente',
+              'Permite seleccionar entre limpieza acuosa controlada o en seco tras realizar una prueba discreta de estabilidad del tinte.',
+            ],
+            [
+              'X',
+              'Solo aspirado en seco',
+              'No admite ningún producto líquido ni disolvente; únicamente aspiración suave en seco con boquilla tapicera.',
+            ],
+          ],
+          pie: 'Nota importante: en piel natural o polipiel no se realiza inyección-extracción acuosa; requerimos foto previa para valorar el tratamiento específico.',
+        },
+      },
+      {
+        h2: '4. Higienización a domicilio en Vigo con secado natural al aire',
+        parrafos: [
+          'En Tintorería Mimos acudimos a tu domicilio en Vigo y área de influencia con equipo portátil profesional para tratar sofás, chaiselongue, sillones, sillas tapizadas, cabeceros y colchones sin desmontar estructuras (no realizamos tapicerías de coches).',
+          'Nuestro protocolo combina aspirado profundo en seco, pretratamiento localizado de pH equilibrado, inyección-extracción controlada sin empapar el núcleo —o método código S cuando la etiqueta lo exige— y secado natural al aire ventilando la habitación (no empleamos vapor seco, enzimáticos, ozono ni ventiladores industriales). Al aclarar y extraer mecánicamente el producto, el descanso resulta limpio y seguro para bebés, personas alérgicas y mascotas.',
+        ],
+      },
+    ],
+    advertenciaProfesional:
+      'Nunca prometemos eliminar el 100 % de cercos antiguos fijados con lejía o líquidos que ya calaron en el núcleo interior: envíanos 3 fotos por WhatsApp a Mimo (vista general, mancha de cerca y tejido/etiqueta) junto con la medida del colchón o plazas del sofá para darte valoración honesta sin compromiso.',
+    enlacesInternos: [
+      {
+        texto: 'Limpieza de Sofás, Tapicerías y Colchones a Domicilio en Vigo',
+        href: '/limpieza-sofas-vigo',
+        descripcion: 'Checklist de fotos, configurador WhatsApp y detalles de visita en tu hogar.',
+      },
+      {
+        texto: 'Edredones, Fundas Desenfundables, Mantas y Cortinas',
+        href: '/textiles-hogar-vigo',
+        descripcion: 'Lavado en gran formato y secado completo anti-humedad en planta de Navia.',
+      },
+      {
+        texto: 'Limpieza de Alfombras a Domicilio en Vigo',
+        href: '/limpieza-alfombras-vigo',
+        descripcion: 'Lavado plano en taller para lana, seda, yute o fibras sintéticas.',
+      },
+      {
+        texto: 'Recogida y Entrega a Domicilio',
+        href: '/recogida-a-domicilio',
+        descripcion: 'Cobertura en Vigo, comarca y polígonos industriales.',
+      },
+    ],
+    whatsappCtaUrl: buildMimoWhatsAppUrl(
+      'Hola, Mimo. He leído la guía sobre humedad y ácaros y quiero pedir valoración con foto para limpiar mi colchón o sofá en Vigo.'
     ),
   },
 ];

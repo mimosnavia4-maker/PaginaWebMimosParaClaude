@@ -90,7 +90,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               Recogida y entrega de prendas y textiles a domicilio en Vigo y comarca
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Para que cuidar tu ropa y los textiles de tu hogar resulte todavía más cómodo, disponemos de recogida y entrega a domicilio —servicio sujeto a un <strong>importe mínimo de pedido (a consultar con Mimo según zona)</strong> y cobertura en Vigo y alrededores—, además de nuestra aplicación móvil <strong>{CONTACT_INFO.appName}</strong>.
+              Para que cuidar tu ropa y los textiles de tu hogar resulte todavía más cómodo, disponemos de recogida y entrega a domicilio —servicio sujeto a <strong>ruta e importe mínimo de pedido a consultar con Mimo</strong>— con cobertura en <strong>Vigo, comarca</strong> (Redondela, Nigrán, Baiona, Mos, O Porriño, Gondomar, Ponteareas, Cangas, Moaña) y <strong>polígonos industriales</strong> (PTL Valladares, Zona Franca, Porriño y Mos).
             </p>
             <p className="text-xs sm:text-sm font-bold text-[#002147] dark:text-[#60B5F6] mb-6">
               A domicilio con importe mínimo a consultar · Sin pedido mínimo en nuestras 3 tiendas propias de Vigo y 5 puntos colaboradores
@@ -106,7 +106,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                   Escríbenos por WhatsApp (Mimo) o envíanos el formulario
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Indícanos tus prendas, edredones, alfombras, arreglos o sofás y tu dirección o código postal. Mimo te confirmará el importe mínimo aplicable, la orientación de tarifa y el día de paso en tu zona.
+                  Envía listado o foto de tus prendas, edredones o alfombras, indica si hay tejido delicado y tu dirección o código postal (barrio, municipio o polígono). Mimo te confirmará el importe mínimo aplicable, la orientación de tarifa y el día de paso en tu ruta.
                 </p>
               </li>
 

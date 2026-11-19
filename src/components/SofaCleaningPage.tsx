@@ -330,7 +330,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               </p>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12] text-balance">
-                Limpieza de sofás y tapicerías a domicilio en Vigo
+                Limpieza de sofás, tapicerías y colchones a domicilio en Vigo
               </h1>
 
               <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
@@ -467,6 +467,42 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 </p>
               </article>
             ))}
+          </div>
+
+          {/* Bloque específico: Higienización de colchones a domicilio en Vigo */}
+          <div className="rounded-2xl border border-[#002147]/20 dark:border-[#0F76BB]/40 bg-white dark:bg-[#071324] p-6 sm:p-8 mb-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div className="lg:col-span-8 space-y-2.5">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                Higienización de colchones a domicilio en Vigo
+              </p>
+              <h3 className="text-xl font-extrabold text-[#002147] dark:text-white">
+                Limpieza de colchones frente a humedad, ácaros y cercos sin empapar el núcleo
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Con la humedad ambiental de Vigo (&gt;77 %), los colchones acumulan polvo fino, sudoración nocturna y ácaros en las capas superficiales del acolchado. Realizamos aspirado profundo en seco, pretratamiento puntual y extracción controlada de baja humedad en caras accesibles sin saturar la espuma interior, dejando secar al aire de forma natural (sin vapor seco ni ventiladores industriales).
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <strong className="text-[#002147] dark:text-white">Para valorar tu colchón por WhatsApp:</strong> indica la medida (90, 135, 150 o 180 cm), si quieres tratar una cara o ambas caras accesibles y adjunta foto general y de cerca de cualquier cerco o mancha.
+              </p>
+            </div>
+
+            <div className="lg:col-span-4 flex flex-col gap-3">
+              <a
+                href="#presupuestar-sofa"
+                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition-colors text-center"
+              >
+                <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Pedir valoración de colchón</span>
+              </a>
+              <a
+                href="/blog/humedad-acaros-colchones-sofas-vigo"
+                onClick={(e) => onNavigate('/blog/humedad-acaros-colchones-sofas-vigo', e)}
+                className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-700 hover:border-[#002147] text-[#002147] dark:text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors text-center"
+              >
+                <span>Guía de humedad y ácaros en Vigo</span>
+                <ArrowRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+              </a>
+            </div>
           </div>
 
           {/* Franja B2B para alojamientos, oficinas, clínicas y hostelería */}
@@ -893,7 +929,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               Dudas habituales antes de solicitar visita
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
-              Preguntas frecuentes sobre limpieza de sofás y tapicerías en Vigo
+              Preguntas frecuentes sobre limpieza de sofás, tapicerías y colchones en Vigo
             </h2>
           </div>
 

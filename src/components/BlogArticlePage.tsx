@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, MessageCircle, Phone, ArrowUpRight } from 'lucide-react';
 import { ARTICULOS_BLOG } from '../data/blogArticlesFull';
 import {
+  BLOG_FAQS_MAP,
   CONTACT_INFO,
   TIENDAS_PROPIAS,
 } from '../data/mimosData';
@@ -267,6 +268,38 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
               ))}
             </div>
           </section>
+
+          {BLOG_FAQS_MAP[articulo.slug] && BLOG_FAQS_MAP[articulo.slug].length > 0 && (
+            <section aria-labelledby="blog-faqs-heading" className="pt-4">
+              <h2
+                id="blog-faqs-heading"
+                className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white mb-4"
+              >
+                Preguntas frecuentes sobre esta guía
+              </h2>
+              <div className="space-y-3">
+                {BLOG_FAQS_MAP[articulo.slug].map((faq) => (
+                  <details
+                    key={faq.pregunta}
+                    className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-5"
+                  >
+                    <summary className="font-extrabold text-[#002147] dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
+                      <span>{faq.pregunta}</span>
+                      <span
+                        aria-hidden="true"
+                        className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-3 border-t border-slate-200/80 dark:border-slate-800">
+                      {faq.respuesta}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Final Required WhatsApp CTA Banner */}
           <section

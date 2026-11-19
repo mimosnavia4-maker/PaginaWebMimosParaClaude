@@ -382,7 +382,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                 ¿Quieres consultar la tarifa para una prenda, sofá, alfombra o arreglo?
               </h3>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
-                Cada encargo se valora según tejido, dimensiones y tratamiento necesario. Selecciona una consulta rápida o escribe directamente tu prenda para hablar con Mimo por WhatsApp:
+                Cada encargo se valora según tejido, etiqueta, dimensiones y tratamiento necesario. Selecciona una consulta rápida o escribe directamente tu prenda (puedes adjuntar foto por WhatsApp y tu zona) para que Mimo te oriente al instante:
               </p>
 
               <div className="flex flex-wrap gap-2 pt-2">

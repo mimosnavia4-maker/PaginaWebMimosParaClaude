@@ -369,11 +369,10 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-7 space-y-5">
               <div className="flex flex-wrap items-center gap-2 text-xs text-[#60B5F6] font-mono uppercase tracking-wider font-bold">
-                <span>Servicio Destacado</span>
+                <span>Sin cita previa</span>
                 <span aria-hidden="true">·</span>
                 <span>
-                  {TIENDAS_PROPIAS.length} Tiendas Propias en Vigo y{' '}
-                  {puntosColaboradoresConCostura.length} Puntos con Costura
+                  Taller in situ en Gregorio Espino y Venezuela · Recepción en Navia
                 </span>
               </div>
 
@@ -600,6 +599,20 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 </li>
               ))}
             </ul>
+
+            <div className="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                ¿Dudas sobre cómo conservamos el desgastado en el <strong className="text-[#002147] dark:text-white">bajo original de vaquero</strong> o dónde acudir sin cita previa según el tipo de prenda?
+              </p>
+              <a
+                href="/blog/guia-arreglos-ropa-bajo-vaquero-vigo"
+                onClick={(e) => onNavigate('/blog/guia-arreglos-ropa-bajo-vaquero-vigo', e)}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+              >
+                <span>Leer guía de arreglos, bajo original y modista in situ</span>
+                <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -887,6 +900,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Bajos o bastillas">Bajos o bastillas</option>
+                  <option value="Bajo original de vaquero">Bajo original de vaquero</option>
                   <option value="Cambio o reparación de cremallera">
                     Cambio o reparación de cremallera
                   </option>

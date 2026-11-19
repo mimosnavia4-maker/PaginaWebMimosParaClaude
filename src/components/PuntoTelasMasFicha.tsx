@@ -305,7 +305,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                 </h2>
               ) : (
                 <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                  Telas y Más (O Porriño)
+                  Tintorería, lavandería y costura Mimos en O Porriño (Telas y Más)
                 </h1>
               )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">

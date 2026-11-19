@@ -58,7 +58,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     canonical: 'https://www.tintoreriamimos.es/reparacion-alfombras-vigo',
     robots: 'index, follow',
     ogType: 'website',
-    ogImage: 'https://www.tintoreriamimos.es/alfombras-mimos.jpg',
+    ogImage: 'https://www.tintoreriamimos.es/images/og/og-reparacion-alfombras.jpg',
     breadcrumbName: 'Reparación de alfombras en Vigo',
     breadcrumbParent: {
       name: 'Limpieza de alfombras',
@@ -76,18 +76,18 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Limpieza de Pieles, Cuero y Ante en Vigo | Mimos',
     h1: 'Limpieza especializada de pieles, cuero, ante y nobuk en Vigo',
     description:
-      'Limpieza especializada de cuero, ante, nobuk, doble faz y peletería en Vigo. Nutrición, acabado y valoración previa por foto con Mimo o en tienda.',
+      'Limpieza especializada de cuero, ante, nobuk, doble faz y peletería en Vigo. Recepción en 3 tiendas propias, 5 puntos colaboradores o a domicilio.',
     canonical: 'https://www.tintoreriamimos.es/limpieza-pieles-cuero-vigo',
     robots: 'index, follow',
     ogType: 'website',
-    ogImage: 'https://www.tintoreriamimos.es/servicio-tintoreria.jpg',
+    ogImage: 'https://www.tintoreriamimos.es/images/og/og-pieles-cuero.jpg',
     breadcrumbName: 'Limpieza de pieles y cuero',
   },
   '/arreglos-de-ropa-vigo': {
-    title: 'Arreglos de Ropa y Costura en Vigo | Tintorería Mimos',
+    title: 'Arreglos de Ropa y Costura en Vigo Sin Cita Previa | Mimos',
     h1: 'Arreglos de ropa en Vigo: costura y composturas profesionales',
     description:
-      'Taller propio de costura en Vigo en Gregorio Espino y Venezuela (modistería in situ), recepción en Navia y puntos colaboradores con costura.',
+      'Arreglos de ropa en Vigo sin cita previa: bajos, bajo original vaquero, piel y bordados. Taller in situ en Gregorio Espino y Venezuela; recepción en Navia.',
     canonical: 'https://www.tintoreriamimos.es/arreglos-de-ropa-vigo',
     robots: 'index, follow',
     ogType: 'website',
@@ -126,7 +126,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     canonical: 'https://www.tintoreriamimos.es/limpieza-vestidos-novia-ceremonia-vigo',
     robots: 'index, follow',
     ogType: 'website',
-    ogImage: 'https://www.tintoreriamimos.es/servicio-tintoreria.jpg',
+    ogImage: 'https://www.tintoreriamimos.es/images/og/og-novia-ceremonia.jpg',
     breadcrumbName: 'Vestidos de novia y ceremonia',
     breadcrumbParent: {
       name: 'Tintorería profesional',
@@ -206,15 +206,15 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     breadcrumbName: 'Textiles del hogar en Vigo',
   },
   '/limpieza-sofas-vigo': {
-    title: 'Limpieza de Sofás a Domicilio en Vigo | Mimos',
-    h1: 'Limpieza de sofás y tapicerías a domicilio en Vigo',
+    title: 'Limpieza de Sofás, Tapicerías y Colchones en Vigo | Mimos',
+    h1: 'Limpieza de sofás, tapicerías y colchones a domicilio en Vigo',
     description:
-      'Limpieza de sofás, chaiselongue, sillones, sillas y cabeceros tapizados a domicilio en Vigo por inyección-extracción. Pide presupuesto con foto.',
+      'Limpieza de sofás, chaiselongue, sillones, sillas, cabeceros y colchones a domicilio en Vigo por inyección-extracción. Pide presupuesto con foto.',
     canonical: 'https://www.tintoreriamimos.es/limpieza-sofas-vigo',
     robots: 'index, follow',
     ogType: 'website',
-    ogImage: 'https://www.tintoreriamimos.es/images/articulos/personal-limpieza.jpg',
-    breadcrumbName: 'Limpieza de sofás en Vigo',
+    ogImage: 'https://www.tintoreriamimos.es/images/og/og-sofas-domicilio.jpg',
+    breadcrumbName: 'Limpieza de sofás y colchones en Vigo',
     breadcrumbParent: {
       name: 'Limpieza profesional',
       url: 'https://www.tintoreriamimos.es/limpieza-profesional-vigo',
@@ -224,7 +224,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Tintorería a Domicilio en Vigo y Comarca | Mimos',
     h1: 'Recogida y entrega de prendas a domicilio y en puntos colaboradores',
     description:
-      'Servicio de recogida y entrega de tintorería y lavandería a domicilio en Vigo y red de puntos colaboradores en Redondela, Gondomar, Ponteareas y O Porriño.',
+      'Servicio de recogida y entrega en Vigo, comarca y polígonos industriales (sujeto a ruta e importe mínimo) y sin mínimo en 8 puntos físicos.',
     canonical: 'https://www.tintoreriamimos.es/recogida-a-domicilio',
     robots: 'index, follow',
     ogType: 'website',
@@ -233,9 +233,9 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/limpieza-profesional-vigo': {
     title: 'Limpieza de Oficinas, Comunidades y Locales en Vigo | Mimos',
-    h1: 'Limpieza profesional de oficinas, comunidades, locales y sofás a domicilio en Vigo',
+    h1: 'Limpieza profesional de oficinas, comunidades y locales en Vigo',
     description:
-      'Limpieza profesional de oficinas, despachos, comunidades de vecinos, locales comerciales y sofás a domicilio en Vigo. Pide presupuesto hoy.',
+      'Mantenimiento periódico de oficinas, comunidades (LPH), clínicas y locales en Vigo con seguro RC, PRL/CAE y visita técnica gratuita. Sin fin de obra.',
     canonical: 'https://www.tintoreriamimos.es/limpieza-profesional-vigo',
     robots: 'index, follow',
     ogType: 'website',
@@ -246,7 +246,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Limpieza y Lavandería Apartamentos Turísticos Vigo | Mimos',
     h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',
     description:
-      'Servicio de lavandería y limpieza profesional para apartamentos turísticos y viviendas vacacionales en Vigo. Pide presupuesto personalizado con Mimo.',
+      'Limpieza y lavandería VUT en Vigo en franja 11:00–15:00 (sábados, festivos y agosto): amenities, llaves, reporte fotográfico y Decreto 12/2017.',
     canonical:
       'https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo',
     robots: 'index, follow',
@@ -419,7 +419,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/zonas/gondomar': {
     title: 'Tintorería Mimos en Gondomar | Puntadas No Aire',
-    h1: 'Puntadas No Aire (Gondomar)',
+    h1: 'Tintorería, lavandería y costura Mimos en Gondomar (Puntadas No Aire)',
     description:
       'Tintorería y lavandería Mimos en Gondomar con punto de recogida en Puntadas No Aire y servicios propios de costura y arreglos. Consúltanos.',
     canonical: 'https://www.tintoreriamimos.es/zonas/gondomar',
@@ -451,7 +451,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/zonas/o-porrino': {
     title: 'Tintorería Mimos en O Porriño | Punto Telas y Más',
-    h1: 'Telas y Más (O Porriño)',
+    h1: 'Tintorería, lavandería y costura Mimos en O Porriño (Telas y Más)',
     description:
       'Tintorería y lavandería Mimos en O Porriño con punto de recogida en Telas y Más, venta de tejidos y costura del colaborador. Consúltanos.',
     canonical: 'https://www.tintoreriamimos.es/zonas/o-porrino',
@@ -562,10 +562,10 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
   },
   '/blog/como-preparar-apartamento-turistico-entre-huespedes': {
-    title: 'Preparar Apartamento Turístico entre Huéspedes | Mimos',
+    title: 'Apartamento Turístico en Vigo: Decreto 12/2017 y Lencería | Mimos',
     h1: 'Cómo organizar la limpieza y los textiles de un apartamento turístico entre huéspedes',
     description:
-      'Claves para gestionar apartamentos turísticos en Vigo: rotación de sábanas y toallas, revisión en el check-out y cuidado de edredones.',
+      'Guía para anfitriones VUT en Vigo: requisitos del Decreto 12/2017 de la Xunta, lencería propia separada frente a renting estándar y ventana 11:00–15:00.',
     canonical:
       'https://www.tintoreriamimos.es/blog/como-preparar-apartamento-turistico-entre-huespedes',
     robots: 'index, follow',
@@ -578,10 +578,10 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     },
   },
   '/blog/la-colada-en-casa': {
-    title: 'La Colada en Casa: ¿Ahorro o Pérdida de Tiempo? | Mimos',
+    title: 'La Colada en Casa vs Autoservicio y Lavandería en Vigo | Mimos',
     h1: 'La colada en casa: ¿Ahorro o pérdida de tiempo y calidad?',
     description:
-      '¿Compensa hacer la colada en casa o autoservicio? Analizamos tiempo, consumo eléctrico, desgaste textil y ventajas de la lavandería en Vigo.',
+      'Comparativa práctica en Vigo: lavadora en casa vs autoservicio de monedas vs lavandería atendida. Plumas, humedad atlántica y ahorro real de tiempo.',
     canonical: 'https://www.tintoreriamimos.es/blog/la-colada-en-casa',
     robots: 'index, follow',
     ogType: 'article',
@@ -609,7 +609,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/blog/ropa-afectada-humo-incendio-siniestro-hogar': {
     title: 'Recuperar Ropa tras Humo e Incendio en Vigo | Mimos',
-    h1: 'Guía Técnica de Restauración Textil Post-Incendio: Descontaminación de Humo, Hollín y Cobertura del Seguro del Hogar en España',
+    h1: 'Restauración textil tras incendios, humo y hollín: guía técnica y seguro',
     description:
       'Guía técnica para recuperar ropa y textiles dañados por humo y hollín tras un incendio en Vigo y tramitar la cobertura con tu seguro.',
     canonical: 'https://www.tintoreriamimos.es/blog/ropa-afectada-humo-incendio-siniestro-hogar',
@@ -624,7 +624,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/blog/protocolo-rotacion-apartamentos-turisticos-vigo': {
     title: 'Rotación de Apartamentos Turísticos en Vigo | Mimos',
-    h1: 'Protocolo de rotación en apartamentos turísticos en Vigo: checklist profesional de limpieza y gestión textil',
+    h1: 'Protocolo de rotación en apartamentos turísticos en Vigo: checklist textil',
     description:
       'Checklist operativo para anfitriones en Vigo: gestión de lencería y toallas, desinfección entre huéspedes y externalización de lavandería.',
     canonical:
@@ -640,9 +640,9 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/blog/limpieza-comunidades-propietarios-vigo': {
     title: 'Limpieza de Comunidades de Vecinos en Vigo | Mimos',
-    h1: 'Limpieza de comunidades de propietarios en Vigo: claves para portales, escaleras y zonas comunes impecables',
+    h1: 'Limpieza de comunidades de propietarios en Vigo: portales y escaleras',
     description:
-      'Consejos y frecuencias recomendadas para la limpieza de portales, escaleras, cristales y garajes en comunidades de vecinos en Vigo.',
+      'Frecuencias recomendadas, cuidado de granito gallego y checklist LPH (CAE, RC, PRL y sustituciones) para juntas y administradores de fincas en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/blog/limpieza-comunidades-propietarios-vigo',
     robots: 'index, follow',
     ogType: 'article',
@@ -655,7 +655,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   },
   '/blog/limpieza-oficinas-despachos-clinicas-vigo': {
     title: 'Limpieza de Oficinas, Despachos y Clínicas en Vigo | Mimos',
-    h1: 'Limpieza e higienización de oficinas, despachos y clínicas en Vigo: salud laboral y primera impresión',
+    h1: 'Limpieza de oficinas, despachos y clínicas en Vigo: salud laboral e imagen',
     description:
       'Protocolos de limpieza periódica e higienización para oficinas, consultas médicas y locales en Vigo. Pide presupuesto personalizado con Mimo.',
     canonical: 'https://www.tintoreriamimos.es/blog/limpieza-oficinas-despachos-clinicas-vigo',
@@ -667,6 +667,36 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
       url: 'https://www.tintoreriamimos.es/blog',
     },
     ogImage: 'https://www.tintoreriamimos.es/images/articulos/blog-limpieza-oficinas.jpg',
+  },
+  '/blog/guia-arreglos-ropa-bajo-vaquero-vigo': {
+    title: 'Arreglos de Ropa en Vigo: Bajo Original Vaquero y Modista | Mimos',
+    h1: 'Arreglos de ropa en Vigo: bajo original vaquero, ceremonia y modista in situ',
+    description:
+      'Guía técnica de arreglos de ropa en Vigo sin cita previa: bajo original vaquero, encogimiento, prueba de ceremonia, piel y talleres in situ de Mimos.',
+    canonical: 'https://www.tintoreriamimos.es/blog/guia-arreglos-ropa-bajo-vaquero-vigo',
+    robots: 'index, follow',
+    ogType: 'article',
+    breadcrumbName: 'Arreglos de ropa y bajo original vaquero',
+    breadcrumbParent: {
+      name: 'Blog y Guías',
+      url: 'https://www.tintoreriamimos.es/blog',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/arreglos-ropa-mimos.jpg',
+  },
+  '/blog/humedad-acaros-colchones-sofas-vigo': {
+    title: 'Humedad y Ácaros en Colchones y Sofás en Vigo | Mimos',
+    h1: 'Humedad y ácaros en Vigo: cómo cuidar colchones, sofás y tapicerías',
+    description:
+      'Por qué la humedad de Vigo favorece ácaros y cercos en colchones y sofás. Qué errores caseros evitar, códigos W/S/WS/X y limpieza a domicilio.',
+    canonical: 'https://www.tintoreriamimos.es/blog/humedad-acaros-colchones-sofas-vigo',
+    robots: 'index, follow',
+    ogType: 'article',
+    breadcrumbName: 'Humedad y ácaros en colchones y sofás',
+    breadcrumbParent: {
+      name: 'Blog y Guías',
+      url: 'https://www.tintoreriamimos.es/blog',
+    },
+    ogImage: 'https://www.tintoreriamimos.es/images/og/og-sofas-domicilio.jpg',
   },
   '/aviso-legal': {
     title: 'Aviso Legal | Tintorería Mimos Navia, S.L. (Vigo)',

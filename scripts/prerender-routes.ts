@@ -10,11 +10,15 @@ import { ROUTE_SEO_MAP, RouteMeta } from '../src/data/routesSeoData.ts';
 import { getPageSEO } from '../src/utils/seo.ts';
 import { ARTICULOS_BLOG } from '../src/data/blogArticlesFull.ts';
 import {
+  APARTAMENTOS_TURISTICOS_DATA,
+  BLOG_FAQS_MAP,
   CONTACT_INFO,
   ETIQUETAS_SERVICIOS_CONFIRMADOS,
   FAQ_PORTADA_SIN_PRECIOS,
+  GESTION_INTEGRAL_AREAS,
+  LIMPIEZA_PROFESIONAL_DATA,
+  PACKS_APARTAMENTOS_BORRADOR,
   REGISTROS_PUNTOS,
-  SERVICIOS_LIMPIEZA_PROFESIONAL,
   SERVICIOS_MIMOS,
   SERVICIO_DETALLE_ENRIQUECIDO,
   SERVICIO_ALFOMBRAS_DATA,
@@ -46,14 +50,62 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
     const articulo = ARTICULOS_BLOG.find((a) => a.url === routePath);
     if (articulo) {
       const seccionesHtml = articulo.secciones
-        .map(
-          (s) =>
-            `<li><h3 class="font-bold text-slate-900 mt-3">${escapeHtml(s.h2)}</h3>` +
-            (s.subsecciones && s.subsecciones.length > 0
-              ? `<ul class="list-disc pl-5 space-y-1">${s.subsecciones.map((sub) => `<li>${escapeHtml(sub.h3)}</li>`).join('')}</ul>`
-              : '') +
-            `</li>`
-        )
+        .map((s) => {
+          const parrafosHtml = (s.parrafos || [])
+            .map((p) => `<p>${escapeHtml(p)}</p>`)
+            .join('');
+          const subseccionesHtml =
+            s.subsecciones && s.subsecciones.length > 0
+              ? `<div class="space-y-2">${s.subsecciones
+                  .map(
+                    (sub) =>
+                      `<div><h3 class="font-bold text-slate-900 mt-2">${escapeHtml(
+                        sub.h3
+                      )}</h3><p>${escapeHtml(sub.texto)}</p></div>`
+                  )
+                  .join('')}</div>`
+              : '';
+          const puntosHtml =
+            s.puntosClave && s.puntosClave.length > 0
+              ? `<ul class="list-disc pl-5 space-y-1">${s.puntosClave
+                  .map((pt) => `<li>${escapeHtml(pt)}</li>`)
+                  .join('')}</ul>`
+              : '';
+          const tablaHtml = s.tabla
+            ? `<table><thead><tr>${s.tabla.encabezados
+                .map((h) => `<th>${escapeHtml(h)}</th>`)
+                .join('')}</tr></thead><tbody>${s.tabla.filas
+                .map(
+                  (fila) =>
+                    `<tr>${fila.map((celda) => `<td>${escapeHtml(celda)}</td>`).join('')}</tr>`
+                )
+                .join('')}</tbody>${
+                s.tabla.pie
+                  ? `<tfoot><tr><td colspan="${s.tabla.encabezados.length}">${escapeHtml(
+                      s.tabla.pie
+                    )}</td></tr></tfoot>`
+                  : ''
+              }</table>`
+            : '';
+          const destacadoHtml = s.destacado
+            ? `<div><h4>${escapeHtml(s.destacado.titulo)}</h4><p>${escapeHtml(
+                s.destacado.texto
+              )}</p></div>`
+            : '';
+
+          return (
+            `<article class="space-y-2">` +
+            `<h2 class="text-xl font-bold text-[#002147] dark:text-white mt-4">${escapeHtml(
+              s.h2
+            )}</h2>` +
+            parrafosHtml +
+            subseccionesHtml +
+            puntosHtml +
+            tablaHtml +
+            destacadoHtml +
+            `</article>`
+          );
+        })
         .join('');
 
       const introHtml = Array.isArray(articulo.introduccion)
@@ -62,11 +114,31 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
         ? `<p>${escapeHtml(articulo.introduccion)}</p>`
         : '';
 
+      const advertenciaHtml = articulo.advertenciaProfesional
+        ? `<aside><h3>Recomendación profesional sobre el cuidado de tejidos</h3><p>${escapeHtml(
+            articulo.advertenciaProfesional
+          )}</p></aside>`
+        : '';
+
+      const blogFaqs = BLOG_FAQS_MAP[articulo.slug] || [];
+      const blogFaqsHtml =
+        blogFaqs.length > 0
+          ? `<h2 class="text-xl font-bold text-[#002147] dark:text-white mt-4">Preguntas frecuentes sobre esta guía</h2><dl>` +
+            blogFaqs
+              .map(
+                (f) =>
+                  `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+              )
+              .join('') +
+            `</dl>`
+          : '';
+
       specificHtml =
         `<section class="space-y-4">` +
         introHtml +
-        `<h2 class="text-xl font-bold text-[#002147] dark:text-white">Estructura y claves del artículo</h2>` +
-        `<ul class="space-y-2">${seccionesHtml}</ul>` +
+        seccionesHtml +
+        advertenciaHtml +
+        blogFaqsHtml +
         `</section>`;
     }
   } else if (routePath.startsWith('/zonas/')) {
@@ -350,17 +422,19 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
   } else if (routePath === '/limpieza-sofas-vigo') {
     specificHtml =
       `<section>` +
-      `<p>Servicio 100 % a domicilio en Vigo y área de influencia para limpieza de sofás de 2, 3 o más plazas, chaiselongue, sillones, sillas tapizadas, cabeceros y colchones (no realizamos tapicerías de coches). Método mediante aspirado en seco, pretratamiento e inyección-extracción controlada o baja humedad/seco en código S, con secado natural al aire sin vapor seco, enzimáticos ni ventiladores.</p>` +
-      `<h2>Cómo solicitar presupuesto por foto con Mimo</h2>` +
+      `<p>Servicio 100 % a domicilio en Vigo y área de influencia para limpieza de sofás de 2, 3 o más plazas, chaiselongue, sillones, sillas tapizadas, cabeceros y colchones (higienización en el propio domicilio; no realizamos tapicerías de coches). Método mediante aspirado en seco, pretratamiento e inyección-extracción controlada o baja humedad/seco en código S, con secado natural al aire sin vapor seco, enzimáticos ni ventiladores.</p>` +
+      `<h2>Higienización de colchones a domicilio en Vigo (humedad y ácaros)</h2>` +
+      `<p>Aspirado profundo en seco, pretratamiento localizado y extracción controlada de baja humedad en caras accesibles sin saturar el núcleo de espuma, con secado natural al aire frente a la humedad atlántica (&gt;77 %).</p>` +
+      `<h2>Cómo solicitar presupuesto por foto de tu sofá o colchón con Mimo</h2>` +
       `<ul>` +
-      `<li>Foto frontal completa del sofá o piezas, fotos de cerca de manchas y foto del tejido junto con la etiqueta W, S, WS o X si la conserva.</li>` +
-      `<li>Número de plazas o piezas, origen aproximado de manchas (y si se aplicó remedio casero previo) y localidad o código postal.</li>` +
+      `<li>Foto frontal completa del sofá, colchón o piezas, fotos de cerca de manchas y foto del tejido junto con la etiqueta W, S, WS o X si la conserva.</li>` +
+      `<li>Número de plazas, medida del colchón (90, 135, 150, 180 cm) o piezas, origen aproximado de manchas (y si se aplicó remedio casero previo) y localidad o código postal.</li>` +
       `</ul>` +
-      `<h2>Preguntas frecuentes sobre limpieza de sofás</h2>` +
+      `<h2>Preguntas frecuentes sobre limpieza de sofás, tapicerías y colchones</h2>` +
       `<dl>` +
-      `<dt><strong>¿La limpieza del sofá se hace en casa o os lo lleváis?</strong></dt><dd>100 % en tu vivienda o local sin desmontar muebles; fundas desenfundables también en nuestras tiendas de Vigo.</dd>` +
-      `<dt><strong>¿Cómo seca el sofá y qué métodos usáis?</strong></dt><dd>Inyección-extracción controlada o método en seco código S, con secado natural al aire ventilando la estancia (sin vapor seco, enzimáticos, ozono ni ventiladores).</dd>` +
-      `<dt><strong>¿Limpiáis tapicerías de coches?</strong></dt><dd>No; el servicio se centra exclusivamente en mobiliario tapizado de hogares, alojamientos y empresas.</dd>` +
+      `<dt><strong>¿La limpieza del sofá o colchón se hace en casa o os lo lleváis?</strong></dt><dd>100 % en tu vivienda o local sin desmontar muebles; fundas desenfundables también en nuestras tiendas de Vigo.</dd>` +
+      `<dt><strong>¿Cómo seca el sofá o colchón y qué métodos usáis?</strong></dt><dd>Inyección-extracción controlada o método en seco código S, con secado natural al aire ventilando la estancia (sin vapor seco, enzimáticos, ozono ni ventiladores).</dd>` +
+      `<dt><strong>¿Limpiáis tapicerías de coches?</strong></dt><dd>No; el servicio se centra exclusivamente en sofás, colchones y mobiliario tapizado de hogares, alojamientos y empresas.</dd>` +
       `</dl>` +
       `</section>`;
   } else if (routePath === '/arreglos-de-ropa-vigo') {
@@ -382,32 +456,79 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
       `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/limpieza-profesional-vigo') {
-    const subdivisionesHtml = SERVICIOS_LIMPIEZA_PROFESIONAL.filter(
-      (s) => s.id !== 'empresas-y-comercios' && s.id !== 'apartamentos-turisticos'
-    )
+    const garantiasHtml = LIMPIEZA_PROFESIONAL_DATA.garantiasOperativas
+      .map((g) => `<li><strong>${escapeHtml(g.titulo)}:</strong> ${escapeHtml(g.detalle)}</li>`)
+      .join('');
+    const areasHtml = LIMPIEZA_PROFESIONAL_DATA.areasLimpieza
       .map(
-        (s) =>
+        (area) =>
           `<article>` +
-          `<h3>${escapeHtml(s.titulo)}</h3>` +
-          `<p>${escapeHtml(s.descripcion)}</p>` +
-          `<ul>` +
-          s.incluye.map((i) => `<li>${escapeHtml(i)}</li>`).join('') +
-          `</ul>` +
+          `<h3>${escapeHtml(area.titulo)}</h3>` +
+          `<p>${escapeHtml(area.descripcion)}</p>` +
+          `<ul>${area.incluye.map((i) => `<li>${escapeHtml(i)}</li>`).join('')}</ul>` +
           `</article>`
+      )
+      .join('');
+    const faqsHtml = LIMPIEZA_PROFESIONAL_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
       )
       .join('');
     specificHtml =
       `<section>` +
-      `<p>Limpieza profesional para oficinas y despachos, comunidades de propietarios, locales comerciales, clínicas y sofás a domicilio en Vigo y área de influencia.</p>` +
-      `<h2>Servicios de la división de limpieza profesional</h2>` +
-      subdivisionesHtml +
+      `<p>${escapeHtml(LIMPIEZA_PROFESIONAL_DATA.subtitulo)}</p>` +
+      `<p><strong>Alcance del servicio:</strong> ${escapeHtml(LIMPIEZA_PROFESIONAL_DATA.alcanceClaro)}</p>` +
+      `<h2>Garantías legales y operativas para comunidades (LPH) y empresas</h2>` +
+      `<ul>${garantiasHtml}</ul>` +
+      `<h2>Áreas de limpieza profesional periódica en Vigo</h2>` +
+      areasHtml +
+      `<h2>Preguntas frecuentes sobre limpieza profesional en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
       `<h3>Divisiones especializadas con página propia</h3>` +
       `<ul>` +
-      `<li><a href="/servicios-empresas">Lavandería y tintorería para empresas, peluquerías y clínicas en Vigo</a></li>` +
-      `<li><a href="/limpieza-apartamentos-turisticos-vigo">Limpieza y lavandería para apartamentos turísticos en Vigo</a></li>` +
-      `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás y tapicerías a domicilio en Vigo</a></li>` +
+      `<li><a href="/servicios-empresas">Pack combinado limpieza + lavandería para empresas, peluquerías y clínicas en Vigo</a></li>` +
+      `<li><a href="/limpieza-apartamentos-turisticos-vigo">Limpieza y lavandería para apartamentos turísticos (VUT) en Vigo</a></li>` +
+      `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás, tapicerías y colchones a domicilio en Vigo</a></li>` +
       `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios, humo e inundaciones</a></li>` +
       `</ul>` +
+      `</section>`;
+  } else if (routePath === '/limpieza-apartamentos-turisticos-vigo') {
+    const clavesHtml = APARTAMENTOS_TURISTICOS_DATA.clavesDiferenciales
+      .map((c) => `<li><strong>${escapeHtml(c.titulo)}:</strong> ${escapeHtml(c.detalle)}</li>`)
+      .join('');
+    const packsHtml = PACKS_APARTAMENTOS_BORRADOR.map(
+      (p) =>
+        `<article>` +
+        `<h3>${escapeHtml(p.nombre)}</h3>` +
+        `<p>${escapeHtml(p.descripcion)}</p>` +
+        `<ul>${p.incluye.map((i) => `<li>${escapeHtml(i)}</li>`).join('')}</ul>` +
+        `</article>`
+    ).join('');
+    const integralHtml = GESTION_INTEGRAL_AREAS.map(
+      (a) =>
+        `<article>` +
+        `<h4>${escapeHtml(a.numero)}. ${escapeHtml(a.titulo)}</h4>` +
+        `<ul>${a.puntos.map((pt) => `<li>${escapeHtml(pt)}</li>`).join('')}</ul>` +
+        `</article>`
+    ).join('');
+    const faqsHtml = APARTAMENTOS_TURISTICOS_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(APARTAMENTOS_TURISTICOS_DATA.subtitulo)}</p>` +
+      `<h2>Claves operativas para alojamientos turísticos (VUT) en Vigo</h2>` +
+      `<ul>${clavesHtml}</ul>` +
+      `<h2>Modalidades de colaboración para anfitriones y gestoras</h2>` +
+      packsHtml +
+      `<h3>Coordinación integral en 4 áreas</h3>` +
+      integralHtml +
+      `<h2>Preguntas frecuentes sobre apartamentos turísticos en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
       `</section>`;
   } else if (routePath === '/se-punto-colaborador') {
     specificHtml =
@@ -844,6 +965,10 @@ const distDir = path.resolve(process.cwd(), 'dist');
 const baseIndexPath = path.join(distDir, 'index.html');
 
 if (fs.existsSync(baseIndexPath)) {
+  const distAiStudioDir = path.join(distDir, 'assets', 'aistudio');
+  if (fs.existsSync(distAiStudioDir)) {
+    fs.rmSync(distAiStudioDir, { recursive: true, force: true });
+  }
   const baseHtml = fs.readFileSync(baseIndexPath, 'utf-8');
 
   for (const [routePath, meta] of Object.entries(ROUTE_SEO_MAP)) {

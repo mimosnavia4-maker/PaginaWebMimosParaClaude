@@ -75,6 +75,22 @@ ErrorDocument 404 /404.html
   RewriteRule ^tienda-navia/?$ /tienda-mimos-navia-vigo [L,R=301]
   RewriteRule ^central-navia/?$ /tienda-mimos-navia-vigo [L,R=301]
 
+  # Redirección 301 de URLs antiguas Joomla de servicios, tarifas históricas y Wash In Town
+  RewriteRule ^servicios/tintoreria(\.html)?/?$ /tintoreria-vigo [L,R=301]
+  RewriteRule ^servicios/lavanderia(\.html)?/?$ /lavanderia-vigo [L,R=301]
+  RewriteRule ^servicios/planchado(\.html)?/?$ /planchado-vigo [L,R=301]
+  RewriteRule ^servicios/colada-familiar(\.html)?/?$ /colada-familiar-vigo [L,R=301]
+  RewriteRule ^servicios/textiles-del-hogar(\.html)?/?$ /textiles-hogar-vigo [L,R=301]
+  RewriteRule ^servicios/costura(\.html)?/?$ /arreglos-de-ropa-vigo [L,R=301]
+  RewriteRule ^servicios/alfombras(\.html)?/?$ /limpieza-alfombras-vigo [L,R=301]
+  RewriteRule ^servicios/pieles(\.html)?/?$ /limpieza-pieles-cuero-vigo [L,R=301]
+  RewriteRule ^servicios/limpieza-a-domicilio(\.html)?/?$ /recogida-a-domicilio [L,R=301]
+  RewriteRule ^servicios/tenido-de-prendas(\.html)?/?$ /tintoreria-vigo [L,R=301]
+  RewriteRule ^tarifa-duende(-coladas)?(\.html)?/?$ /colada-familiar-vigo [L,R=301]
+  RewriteRule ^blog\.html$ /blog [L,R=301]
+  RewriteRule ^galeria(\.html)?/?$ /puntos-mimos [L,R=301]
+  RewriteRule ^franquicia-wash-in-town(\.html)?/?$ /se-punto-colaborador [L,R=301]
+
   # Quitar barra final en rutas (excepto la raíz /) para mantener una única URL canónica limpia
   RewriteCond %{REQUEST_URI} !^/$
   RewriteRule ^(.*)/$ /$1 [L,R=301]

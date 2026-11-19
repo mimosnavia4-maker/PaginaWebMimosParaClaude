@@ -166,7 +166,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
         </div>
       </section>
 
-      {/* SOLICITUD LIMPIA DE RECOGIDA A DOMICILIO Y WASH IN TOWN */}
+      {/* SOLICITUD LIMPIA DE RECOGIDA A DOMICILIO */}
       <section
         id="recogida"
         aria-labelledby="preview-recogida-heading"
@@ -183,7 +183,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
             >
               <p className="inline-flex items-center gap-2 text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
                 <Truck className="w-4 h-4" aria-hidden="true" />
-                <span>Servicio a domicilio y app {CONTACT_INFO.appName}</span>
+                <span>Servicio a domicilio y recogida en tu puerta</span>
               </p>
               <h2
                 id="preview-recogida-heading"

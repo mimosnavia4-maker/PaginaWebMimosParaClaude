@@ -342,7 +342,7 @@ export const PuntoGondomarFicha: React.FC<PuntoGondomarFichaProps> = ({
                 </h2>
               ) : (
                 <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
-                  Puntadas No Aire (Gondomar)
+                  Tintorería, lavandería y costura Mimos en Gondomar (Puntadas No Aire)
                 </h1>
               )}
               <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">

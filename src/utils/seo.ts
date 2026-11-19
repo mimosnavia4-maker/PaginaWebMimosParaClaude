@@ -1,7 +1,10 @@
 import {
+  APARTAMENTOS_TURISTICOS_DATA,
   ARTICULOS_BLOG_RESUMEN,
+  BLOG_FAQS_MAP,
   CONTACT_INFO,
   CANALES_CONTACTO_CENTRAL,
+  LIMPIEZA_PROFESIONAL_DATA,
   REGISTROS_PUNTOS,
   SERVICIOS_MIMOS,
   SERVICIO_DETALLE_ENRIQUECIDO,
@@ -78,6 +81,23 @@ const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/siniestros-vigo': '/limpieza-incendios-siniestros-vigo',
   '/limpieza-incendios-vigo': '/limpieza-incendios-siniestros-vigo',
   '/recuperacion-textil-siniestros': '/limpieza-incendios-siniestros-vigo',
+  '/franquicia-wash-in-town.html': '/se-punto-colaborador',
+  '/franquicia-wash-in-town': '/se-punto-colaborador',
+  '/servicios/tintoreria.html': '/tintoreria-vigo',
+  '/servicios/tintoreria': '/tintoreria-vigo',
+  '/servicios/lavanderia.html': '/lavanderia-vigo',
+  '/servicios/lavanderia': '/lavanderia-vigo',
+  '/servicios/costura.html': '/arreglos-de-ropa-vigo',
+  '/servicios/costura': '/arreglos-de-ropa-vigo',
+  '/servicios/alfombras.html': '/limpieza-alfombras-vigo',
+  '/servicios/alfombras': '/limpieza-alfombras-vigo',
+  '/servicios/limpieza-de-sofas.html': '/limpieza-sofas-vigo',
+  '/servicios/limpieza-de-sofas': '/limpieza-sofas-vigo',
+  '/servicios/edredones-y-cortinas.html': '/textiles-hogar-vigo',
+  '/servicios/edredones-y-cortinas': '/textiles-hogar-vigo',
+  '/recogida-a-domicilio.html': '/recogida-a-domicilio',
+  '/contacto.html': '/contacto',
+  '/blog.html': '/blog',
 };
 
 export function resolveCanonicalRoute(rawPath: string): string {
@@ -1008,12 +1028,108 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
             },
           ],
         });
+      } else if (BLOG_FAQS_MAP[articulo.slug] && BLOG_FAQS_MAP[articulo.slug].length > 0) {
+        graph.push({
+          '@type': 'FAQPage',
+          mainEntity: BLOG_FAQS_MAP[articulo.slug].map((f) => ({
+            '@type': 'Question',
+            name: f.pregunta,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: f.respuesta,
+            },
+          })),
+        });
       }
     }
+  } else if (cleanPath === '/limpieza-profesional-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: LIMPIEZA_PROFESIONAL_DATA.h1,
+        serviceType: 'Limpieza periódica profesional de oficinas, comunidades de propietarios (LPH), clínicas y locales',
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Ponteareas' },
+          { '@type': 'City', name: 'O Porriño' },
+        ],
+        url: meta.canonical,
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Áreas de limpieza profesional periódica en Vigo',
+          itemListElement: LIMPIEZA_PROFESIONAL_DATA.areasLimpieza.map((area) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: `${area.etiqueta}: ${area.titulo}`,
+              description: area.descripcion,
+            },
+          })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: LIMPIEZA_PROFESIONAL_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/limpieza-apartamentos-turisticos-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: APARTAMENTOS_TURISTICOS_DATA.h1,
+        serviceType: 'Limpieza entre huéspedes y lavandería de lencería para apartamentos turísticos (VUT) en Vigo',
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Nigrán' },
+          { '@type': 'City', name: 'Redondela' },
+        ],
+        url: meta.canonical,
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Modalidades operativas para Viviendas de Uso Turístico en Vigo',
+          itemListElement: APARTAMENTOS_TURISTICOS_DATA.clavesDiferenciales.map((clave) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: clave.titulo,
+              description: clave.detalle,
+            },
+          })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: APARTAMENTOS_TURISTICOS_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
   } else {
     const servicio = SERVICIOS_MIMOS.find((s) => s.url === cleanPath);
-    if (servicio || cleanPath === '/limpieza-profesional-vigo') {
-      const detalle = servicio ? SERVICIO_DETALLE_ENRIQUECIDO[servicio.id] : undefined;
+    if (servicio) {
+      const detalle = SERVICIO_DETALLE_ENRIQUECIDO[servicio.id];
       const serviceNode: Record<string, unknown> = {
         '@type': 'Service',
         '@id': `${meta.canonical}#servicio`,
@@ -1024,7 +1140,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
         url: meta.canonical,
       };
       if (detalle) {
-        serviceNode.serviceType = servicio?.titulo ?? meta.h1;
+        serviceNode.serviceType = servicio.titulo ?? meta.h1;
         serviceNode.hasOfferCatalog = {
           '@type': 'OfferCatalog',
           name: detalle.modalidadesTitulo,

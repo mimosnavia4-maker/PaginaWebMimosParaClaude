@@ -151,7 +151,7 @@ export const CANALES_CONTACTO_CENTRAL: CanalesContactoCentral = {
   emailAtencion: 'info@tintoreriamimos.es',
   emailAtencionHref: 'mailto:info@tintoreriamimos.es',
   webOficial: 'https://www.tintoreriamimos.es',
-  appClientes: 'Wash In Town',
+  appClientes: '',
 };
 
 /* =======================================================================

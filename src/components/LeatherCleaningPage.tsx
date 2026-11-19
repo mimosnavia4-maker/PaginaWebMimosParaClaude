@@ -406,11 +406,11 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                 <div className="flex items-center gap-2 text-[#002147] dark:text-white">
                   <Store className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
                   <h3 className="text-base sm:text-lg font-extrabold">
-                    Recepción en nuestras {TIENDAS_PROPIAS.length} tiendas en Vigo, puntos colaboradores o a domicilio
+                    Recepción en nuestras {TIENDAS_PROPIAS.length} tiendas propias de Vigo, nuestros 5 puntos colaboradores o a domicilio
                   </h3>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Puedes entregar tu prenda personalmente en nuestras tiendas o puntos para revisarla juntos, o consultar con Mimo la recogida y entrega a domicilio (servicio sujeto a importe mínimo a consultar según zona).
+                  Recibimos tus prendas de piel, ante y cuero tanto en nuestras {TIENDAS_PROPIAS.length} tiendas propias de Vigo (Navia, Gregorio Espino y Rúa Venezuela) como en cualquiera de nuestros 5 puntos colaboradores (D'Passo, Redondela, Gondomar, Ponteareas y O Porriño), o puedes consultar recogida a domicilio con Mimo según zona e importe mínimo.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   {TIENDAS_PROPIAS.map((t) => (
