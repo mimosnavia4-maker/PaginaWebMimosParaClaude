@@ -16,7 +16,7 @@ import {
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
   PUNTOS_CON_COSTURA,
-  ZONAS_SEO_LOCAL,
+  ZONAS_RESUMEN,
 } from '../data/mimosData';
 import { getNaviaStoreStatus, StoreStatusInfo } from '../utils/storeStatus';
 import { trackWhatsAppClick, trackPhoneClick } from '../utils/analytics';
@@ -154,10 +154,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               <div className="aspect-4/3 w-full overflow-hidden bg-[#002147] relative">
                 <img
                   src={IMAGES.ositoMimos}
+                  srcSet="/osito-mimos-640w.webp 640w, /osito-mimos.webp 1024w"
+                  sizes="(max-width: 1023px) 100vw, 42vw"
                   alt="Tintorería Mimos Navia en C/ As Teixugueiras 11, Vigo – Cuidado profesional de prendas y textiles"
                   width={800}
                   height={600}
                   fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -194,7 +197,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                     <span>Tiendas en Vigo y puntos colaboradores por localidad:</span>
                   </p>
                   <div className="flex flex-wrap gap-1.5">
-                    {ZONAS_SEO_LOCAL.map((zona) => (
+                    {ZONAS_RESUMEN.map((zona) => (
                       <a
                         key={zona.slug}
                         href={zona.url}

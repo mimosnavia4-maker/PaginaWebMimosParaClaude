@@ -11,10 +11,10 @@ import {
   Phone,
   Sparkles,
 } from 'lucide-react';
+import { SERVICIO_DETALLE_ENRIQUECIDO } from '../data/servicePagesData';
 import {
   ServicioMimos,
   SERVICIOS_MIMOS,
-  SERVICIO_DETALLE_ENRIQUECIDO,
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
   PUNTOS_CON_COSTURA,

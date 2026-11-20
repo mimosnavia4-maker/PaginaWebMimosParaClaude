@@ -16,7 +16,7 @@ import {
   REGISTROS_PUNTOS,
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
-  ZONAS_SEO_LOCAL,
+  ZONAS_RESUMEN,
   PuntoRegistro,
   buildGoogleMapsUrl,
   buildMimoWhatsAppUrl,
@@ -172,7 +172,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm">
             <span className="font-bold text-slate-500 dark:text-slate-400">Guías por zona:</span>
-            {ZONAS_SEO_LOCAL.map((zona) => (
+            {ZONAS_RESUMEN.map((zona) => (
               <a
                 key={zona.slug}
                 href={zona.url}

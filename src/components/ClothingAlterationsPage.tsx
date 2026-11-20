@@ -15,13 +15,12 @@ import {
   Copy,
   Check,
 } from 'lucide-react';
+import { SERVICIO_ARREGLOS_DATA } from '../data/servicePagesData';
 import {
-  SERVICIO_ALFOMBRAS_DATA,
-  SERVICIO_ARREGLOS_DATA,
   REGISTROS_PUNTOS,
   TIENDAS_PROPIAS,
   PUNTOS_CON_COSTURA,
-  ZONAS_SEO_LOCAL,
+  ZONAS_RESUMEN,
   CONTACT_INFO,
   IMAGES,
   PuntoRegistro,
@@ -141,7 +140,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
 
   const renderEstablecimientoCosturaCard = (punto: PuntoRegistro) => {
     const tieneCostura = punto.servicios_confirmados.includes('costura_arreglos');
-    const zonaPage = ZONAS_SEO_LOCAL.find((z) => z.localidad === punto.localidad);
+    const zonaPage = ZONAS_RESUMEN.find((z) => z.localidad === punto.localidad);
     const mapsHref = buildGoogleMapsUrl(punto);
 
     const whatsappPuntoCosturaHref = buildMimoWhatsAppUrl(

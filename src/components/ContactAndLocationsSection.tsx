@@ -26,7 +26,7 @@ import {
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
   ZONAS_SERVICIO,
-  ZONAS_SEO_LOCAL,
+  ZONAS_RESUMEN,
   FAQ_PORTADA_SIN_PRECIOS,
   PuntoRegistro,
   buildMimoWhatsAppUrl,
@@ -43,11 +43,21 @@ import {
 const MimosGoogleMap = React.lazy(() =>
   import('./MimosGoogleMap').then((m) => ({ default: m.MimosGoogleMap }))
 );
-import { PuntoTelasMasFicha } from './PuntoTelasMasFicha';
-import { PuntoGondomarFicha } from './PuntoGondomarFicha';
-import { PuntoRedondelaFicha } from './PuntoRedondelaFicha';
-import { PuntoArregla2Ficha } from './PuntoArregla2Ficha';
-import { TiendaNaviaFicha } from './TiendaNaviaFicha';
+const PuntoTelasMasFicha = React.lazy(() =>
+  import('./PuntoTelasMasFicha').then((m) => ({ default: m.PuntoTelasMasFicha }))
+);
+const PuntoGondomarFicha = React.lazy(() =>
+  import('./PuntoGondomarFicha').then((m) => ({ default: m.PuntoGondomarFicha }))
+);
+const PuntoRedondelaFicha = React.lazy(() =>
+  import('./PuntoRedondelaFicha').then((m) => ({ default: m.PuntoRedondelaFicha }))
+);
+const PuntoArregla2Ficha = React.lazy(() =>
+  import('./PuntoArregla2Ficha').then((m) => ({ default: m.PuntoArregla2Ficha }))
+);
+const TiendaNaviaFicha = React.lazy(() =>
+  import('./TiendaNaviaFicha').then((m) => ({ default: m.TiendaNaviaFicha }))
+);
 import { Dialog } from './Dialog';
 
 interface ContactAndLocationsSectionProps {
@@ -181,7 +191,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
   )}&body=${encodeURIComponent(composedContactText)}`;
 
   const renderPuntoCard = (punto: PuntoRegistro) => {
-    const zonaPage = ZONAS_SEO_LOCAL.find((z) => z.localidad === punto.localidad);
+    const zonaPage = ZONAS_RESUMEN.find((z) => z.localidad === punto.localidad);
     const mapsHref = buildGoogleMapsUrl(punto);
     const tieneCostura = punto.servicios_confirmados.includes('costura_arreglos');
 
@@ -599,11 +609,11 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               Selecciona tu municipio para ver su página local e instrucciones paso a paso:
             </h3>
             <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-              {ZONAS_SEO_LOCAL.map((z) => z.localidad).join(' · ')}
+              {ZONAS_RESUMEN.map((z) => z.localidad).join(' · ')}
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {ZONAS_SEO_LOCAL.map((zona) => (
+            {ZONAS_RESUMEN.map((zona) => (
               <a
                 key={zona.slug}
                 href={zona.url}
@@ -1242,43 +1252,83 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         {puntoModalFicha && (
           puntoModalFicha.id === 'as-teixugueiras' ? (
             <div className="overflow-y-auto max-h-[92vh]">
-              <TiendaNaviaFicha
-                isModal={true}
-                onClose={() => setPuntoModalFicha(null)}
-                onNavigate={onNavigate}
-              />
+              <React.Suspense
+                fallback={
+                  <div className="p-8 text-center text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    Cargando ficha de tienda...
+                  </div>
+                }
+              >
+                <TiendaNaviaFicha
+                  isModal={true}
+                  onClose={() => setPuntoModalFicha(null)}
+                  onNavigate={onNavigate}
+                />
+              </React.Suspense>
             </div>
           ) : puntoModalFicha.id === 'punto-o-porrino' ? (
             <div className="overflow-y-auto max-h-[92vh]">
-              <PuntoTelasMasFicha
-                isModal={true}
-                onClose={() => setPuntoModalFicha(null)}
-                onNavigate={onNavigate}
-              />
+              <React.Suspense
+                fallback={
+                  <div className="p-8 text-center text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    Cargando ficha de punto colaborador...
+                  </div>
+                }
+              >
+                <PuntoTelasMasFicha
+                  isModal={true}
+                  onClose={() => setPuntoModalFicha(null)}
+                  onNavigate={onNavigate}
+                />
+              </React.Suspense>
             </div>
           ) : puntoModalFicha.id === 'punto-gondomar' ? (
             <div className="overflow-y-auto max-h-[92vh]">
-              <PuntoGondomarFicha
-                isModal={true}
-                onClose={() => setPuntoModalFicha(null)}
-                onNavigate={onNavigate}
-              />
+              <React.Suspense
+                fallback={
+                  <div className="p-8 text-center text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    Cargando ficha de punto colaborador...
+                  </div>
+                }
+              >
+                <PuntoGondomarFicha
+                  isModal={true}
+                  onClose={() => setPuntoModalFicha(null)}
+                  onNavigate={onNavigate}
+                />
+              </React.Suspense>
             </div>
           ) : puntoModalFicha.id === 'punto-redondela' ? (
             <div className="overflow-y-auto max-h-[92vh]">
-              <PuntoRedondelaFicha
-                isModal={true}
-                onClose={() => setPuntoModalFicha(null)}
-                onNavigate={onNavigate}
-              />
+              <React.Suspense
+                fallback={
+                  <div className="p-8 text-center text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    Cargando ficha de punto colaborador...
+                  </div>
+                }
+              >
+                <PuntoRedondelaFicha
+                  isModal={true}
+                  onClose={() => setPuntoModalFicha(null)}
+                  onNavigate={onNavigate}
+                />
+              </React.Suspense>
             </div>
           ) : puntoModalFicha.id === 'punto-ponteareas' ? (
             <div className="overflow-y-auto max-h-[92vh]">
-              <PuntoArregla2Ficha
-                isModal={true}
-                onClose={() => setPuntoModalFicha(null)}
-                onNavigate={onNavigate}
-              />
+              <React.Suspense
+                fallback={
+                  <div className="p-8 text-center text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    Cargando ficha de punto colaborador...
+                  </div>
+                }
+              >
+                <PuntoArregla2Ficha
+                  isModal={true}
+                  onClose={() => setPuntoModalFicha(null)}
+                  onNavigate={onNavigate}
+                />
+              </React.Suspense>
             </div>
           ) : (
             <>
@@ -1328,7 +1378,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     <div className="grid grid-cols-3 gap-2">
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/mimos-redondela/fachada-mimos-redondela.jpg"
+                          src="/images/mimos-redondela/fachada-mimos-redondela.webp"
                           alt="Fachada de Mimos Redondela"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1336,7 +1386,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/mimos-redondela/interior-mostrador-mimos-redondela.jpg"
+                          src="/images/mimos-redondela/interior-mostrador-mimos-redondela.webp"
                           alt="Interior y mostrador de Mimos Redondela"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1344,7 +1394,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/mimos-redondela/escaparate-acceso-mimos-redondela.jpg"
+                          src="/images/mimos-redondela/escaparate-acceso-mimos-redondela.webp"
                           alt="Acceso comercial de Mimos Redondela"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1360,7 +1410,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     <div className="grid grid-cols-3 gap-2">
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/arregla2-ponteareas/fachada-arregla2-ponteareas.jpg"
+                          src="/images/arregla2-ponteareas/fachada-arregla2-ponteareas.webp"
                           alt="Fachada de Arregla2 Ponteareas"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1368,7 +1418,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/arregla2-ponteareas/interior-taller-arregla2-ponteareas.jpg"
+                          src="/images/arregla2-ponteareas/interior-taller-arregla2-ponteareas.webp"
                           alt="Interior y taller de costura de Arregla2 Ponteareas"
                           className="w-full h-full object-cover"
                           loading="lazy"
@@ -1376,7 +1426,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       </div>
                       <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
                         <img
-                          src="/images/arregla2-ponteareas/escaparate-arregla2-ponteareas.jpg"
+                          src="/images/arregla2-ponteareas/escaparate-arregla2-ponteareas.webp"
                           alt="Acceso comercial y escaparate de Arregla2 Ponteareas"
                           className="w-full h-full object-cover"
                           loading="lazy"

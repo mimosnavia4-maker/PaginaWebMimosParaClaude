@@ -10,7 +10,6 @@ import {
 } from 'lucide-react';
 import {
   IMAGES,
-  SERVICIO_ALFOMBRAS_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SERVICIO,
   buildMimoWhatsAppUrl,
@@ -269,8 +268,8 @@ export const CarpetCleaningSection: React.FC<CarpetCleaningSectionProps> = ({
               </a>
 
               <a
-                href={SERVICIO_ALFOMBRAS_DATA.url}
-                onClick={(e) => onNavigate(SERVICIO_ALFOMBRAS_DATA.url, e)}
+                href="/limpieza-alfombras-vigo"
+                onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
                 className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
               >
                 <span>Ver limpieza y arreglos</span>

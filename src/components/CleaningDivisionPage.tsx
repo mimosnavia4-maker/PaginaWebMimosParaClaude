@@ -13,10 +13,12 @@ import {
 } from 'lucide-react';
 import {
   APARTAMENTOS_TURISTICOS_DATA,
+  LIMPIEZA_PROFESIONAL_DATA,
+} from '../data/servicePagesData';
+import {
   CONTACT_INFO,
   GESTION_INTEGRAL_AREAS,
   IMAGES,
-  LIMPIEZA_PROFESIONAL_DATA,
   PACKS_APARTAMENTOS_BORRADOR,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';

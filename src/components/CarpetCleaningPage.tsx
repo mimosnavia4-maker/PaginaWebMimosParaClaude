@@ -13,8 +13,8 @@ import {
   Copy,
   Check,
 } from 'lucide-react';
+import { SERVICIO_ALFOMBRAS_DATA } from '../data/servicePagesData';
 import {
-  SERVICIO_ALFOMBRAS_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SERVICIO,
   CONTACT_INFO,

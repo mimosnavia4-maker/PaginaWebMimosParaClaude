@@ -14,9 +14,9 @@ import {
   Tag,
 } from 'lucide-react';
 import heroSofasImg from '../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
+import { SERVICIO_SOFAS_FAQS } from '../data/servicePagesData';
 import {
   CONTACT_INFO,
-  SERVICIO_SOFAS_FAQS,
   ZONAS_SERVICIO,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';

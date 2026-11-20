@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft, MessageCircle, Phone, ArrowUpRight } from 'lucide-react';
 import { ARTICULOS_BLOG } from '../data/blogArticlesFull';
+import { BLOG_FAQS_MAP } from '../data/servicePagesData';
 import {
-  BLOG_FAQS_MAP,
   CONTACT_INFO,
   TIENDAS_PROPIAS,
 } from '../data/mimosData';

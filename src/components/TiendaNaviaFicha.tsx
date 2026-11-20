@@ -61,21 +61,21 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
 
   const photos = {
     fachada: {
-      url: '/images/navia/fachada-mimos-navia-vigo.jpg',
+      url: '/images/navia/fachada-mimos-navia-vigo.webp',
       titulo: 'Fachada Principal y Acceso en Teixugueiras',
       subtitulo: 'Rótulo azul distintivo Tintorería Lavandería Mimos Navia sobre fachada cerámica roja en Rúa das Teixugueiras 11, bajo 9.',
       tag: '1 Exterior · Fachada & Rótulo',
       detalle: 'Entrada a cota cero en bulevar peatonal accesible, sin barreras arquitectónicas y con amplia visibilidad comercial.',
     },
     mostrador: {
-      url: '/images/navia/mostrador-recepcion-mimos-navia-vigo.jpg',
+      url: '/images/navia/mostrador-recepcion-mimos-navia-vigo.webp',
       titulo: 'Interior: Mostrador de Atención y Recepción Personalizada',
       subtitulo: 'Zona de atención donde revisamos cada prenda, tomamos notas de desmanchado y gestionamos la entrega en percha protegida.',
       tag: '2 Interior · Mostrador de Atención',
       detalle: 'Mostrador técnico con personal uniformado de Tintorería Mimos, clasificación cuidada por tipo de tejido y control riguroso de cada encargo.',
     },
     planta: {
-      url: '/images/navia/planta-planchado-mimos-navia-vigo.jpg',
+      url: '/images/navia/planta-planchado-mimos-navia-vigo.webp',
       titulo: 'Interior: Centro Operativo de Planchado y Tratamiento',
       subtitulo: 'Puestos profesionales de planchado por vapor, aspiración técnica y acabado artesanal para trajes, camisas y vestidos.',
       tag: '3 Interior · Centro de Planchado',

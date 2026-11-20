@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 import heroPielesImg from '../assets/images/limpieza_pieles_taller_1794589256487.webp';
 import texturasPielImg from '../assets/images/tipos_piel_texturas_1794589256117.webp';
+import { SERVICIO_PIELES_DATA } from '../data/servicePagesData';
 import {
-  SERVICIO_PIELES_DATA,
   TIENDAS_PROPIAS,
   ZONAS_SERVICIO,
   CONTACT_INFO,

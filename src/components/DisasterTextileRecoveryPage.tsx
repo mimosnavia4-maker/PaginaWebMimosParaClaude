@@ -29,13 +29,13 @@ import {
   Truck,
   XCircle,
 } from 'lucide-react';
+import { SERVICIO_SINIESTROS_FAQS } from '../data/servicePagesData';
 import {
   CONTACT_INFO,
   IMAGES,
   PUNTOS_COLABORADORES,
-  SERVICIO_SINIESTROS_FAQS,
   TIENDAS_PROPIAS,
-  ZONAS_SEO_LOCAL,
+  ZONAS_RESUMEN,
   ZONAS_SERVICIO,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
@@ -2363,7 +2363,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 {PUNTOS_COLABORADORES.map((p) => `${p.localidad}`).join(', ')} y área de Vigo):
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
-                {ZONAS_SEO_LOCAL.map((zona) => (
+                {ZONAS_RESUMEN.map((zona) => (
                   <a
                     key={zona.slug}
                     href={zona.url}

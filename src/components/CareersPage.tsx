@@ -74,7 +74,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
           <article className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden flex flex-col">
             <div className="aspect-[16/10] w-full bg-slate-100 dark:bg-slate-800 overflow-hidden border-b border-slate-200 dark:border-slate-800">
               <img
-                src="/images/articulos/personal-tintoreria.jpg"
+                src="/images/articulos/personal-tintoreria.webp"
                 alt="Personal de tintorería en Tintorería Mimos Vigo: atención al público, desmanchado, lavado y planchado"
                 className="w-full h-full object-cover"
               />
@@ -126,7 +126,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
           <article className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden flex flex-col">
             <div className="aspect-[16/10] w-full bg-slate-100 dark:bg-slate-800 overflow-hidden border-b border-slate-200 dark:border-slate-800">
               <img
-                src="/images/articulos/personal-limpieza.jpg"
+                src="/images/articulos/personal-limpieza.webp"
                 alt="Personal de lavandería e higienización textil para alojamientos y empresas en Tintorería Mimos Vigo"
                 className="w-full h-full object-cover"
               />

@@ -220,7 +220,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
     tiempoLectura: '8 min de lectura',
     extracto:
       'Descubre qué significa cada uno de los cinco pictogramas obligatorios de la norma ISO 3758:2023. Aprende por qué encogen los tejidos, cómo evitar brillos al planchar y cuándo es imprescindible confiar en la tintorería profesional.',
-    imagen: '/images/articulos/simbolos-etiquetas-ropa.jpg',
+    imagen: '/images/articulos/simbolos-etiquetas-ropa.webp',
     imagenAlt:
       'Primer plano de manos examinando la etiqueta textil de composición y símbolos de lavado según norma internacional ISO 3758 en una prenda de lana y seda',
     introduccion: [

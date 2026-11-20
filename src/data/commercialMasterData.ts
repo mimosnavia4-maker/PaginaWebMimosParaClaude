@@ -265,7 +265,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
       'Entrega y recogida directa en nuestra tienda principal de Navia sin cita previa, tanto para tintorería, lavandería y textiles del hogar como para costura y arreglos de ropa.',
-    foto: '/images/navia/fachada-mimos-navia-vigo.jpg',
+    foto: '/images/navia/fachada-mimos-navia-vigo.webp',
     referenciaLocal: 'En el barrio de Navia (Vigo), C/ As Teixugueiras, 11, bajo 9.',
     aparcamiento: 'Fácil aparcamiento en las inmediaciones y plazas públicas de Teixugueiras.',
     cierreTemporal: false,
@@ -321,7 +321,7 @@ export const MASTER_TIENDAS_PROPIAS: TiendaPropia[] = [
     horaLimite: 'Durante todo el horario de apertura',
     instrucciones:
       'Entrega y recogida directa en nuestra tienda propia de Alcalde Gregorio Espino, 42 para tintorería, lavandería, textiles del hogar y arreglos de ropa.',
-    foto: '/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.jpg',
+    foto: '/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.webp',
     referenciaLocal:
       'Esquina con Rúa do Escultor Nogueira, frente a la zona ajardinada de Alcalde Gregorio Espino.',
     aparcamiento:
@@ -433,7 +433,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Deposita y recoge tus prendas y textiles del hogar para los servicios de Tintorería Mimos en C/ José Regojo, 29 bajo en Redondela.',
-    foto: '/images/mimos-redondela/fachada-mimos-redondela.jpg',
+    foto: '/images/mimos-redondela/fachada-mimos-redondela.webp',
     referenciaLocal: 'C/ José Regojo, 29 bajo, en el casco urbano de Redondela.',
     aparcamiento:
       'Aparcamiento y zona de parada rápida en las inmediaciones de la calle José Regojo.',
@@ -544,7 +544,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Deja tus prendas y textiles del hogar en Arregla2 (C/ Argentina, 4, Ponteareas), establecimiento colaborador de recogida y entrega para los servicios de Tintorería Mimos con servicio confirmado de costura y arreglos de ropa.',
-    foto: '/images/arregla2-ponteareas/fachada-arregla2-ponteareas.jpg',
+    foto: '/images/arregla2-ponteareas/fachada-arregla2-ponteareas.webp',
     referenciaLocal: 'En el casco urbano de Ponteareas, C/ Argentina, 4.',
     aparcamiento: 'Estacionamiento y parada en las calles aledañas a C/ Argentina.',
     cierreTemporal: false,
@@ -598,7 +598,7 @@ export const MASTER_ESTABLECIMIENTOS_COLABORADORES: EstablecimientoColaborador[]
     horaLimite: 'Dentro del horario de atención del establecimiento',
     instrucciones:
       'Entrega tus prendas y textiles del hogar en Telas y Más (C/ Manuel Rodríguez, 30, O Porriño), establecimiento colaborador de recogida y entrega para los servicios de Tintorería Mimos que ofrece además costura y arreglos de ropa.',
-    foto: '/images/telas-mas/fachada-telas-mas-o-porrino.jpg',
+    foto: '/images/telas-mas/fachada-telas-mas-o-porrino.webp',
     referenciaLocal:
       'En pleno centro comercial de O Porriño, Rúa Manuel Rodríguez, 30 (zona peatonal y de fácil acceso).',
     aparcamiento:
@@ -774,3 +774,45 @@ export const MASTER_PUNTOS_REGISTRO_RAW: LegacyPuntoRegistroRaw[] = [
   ...MASTER_TIENDAS_PROPIAS.map(toLegacyPuntoRegistroRaw),
   ...MASTER_ESTABLECIMIENTOS_COLABORADORES.map(toLegacyPuntoRegistroRaw),
 ];
+
+/* =======================================================================
+   7. VALORACIONES VERIFICADAS EN GOOGLE BUSINESS PROFILE (AGGREGATE RATING)
+   PENDIENTE DE CONFIRMACIÓN POR EL CLIENTE:
+   No se publican cifras ni Schema AggregateRating hasta introducir los datos
+   reales verificados de cada ficha de Google Business Profile y activar verificado: true.
+   ======================================================================= */
+export interface StoreGoogleRatingRecord {
+  storeId: 'as-teixugueiras' | 'gregorio-espino' | 'rua-venezuela';
+  ratingValue: number | null;
+  reviewCount: number | null;
+  verificado: boolean;
+  fuente: string;
+}
+
+export const STORE_GOOGLE_RATINGS: Record<
+  'as-teixugueiras' | 'gregorio-espino' | 'rua-venezuela',
+  StoreGoogleRatingRecord
+> = {
+  'as-teixugueiras': {
+    storeId: 'as-teixugueiras',
+    ratingValue: null, // PENDIENTE: nota media real en Google Maps (ej. 4.8)
+    reviewCount: null, // PENDIENTE: nº total de reseñas reales en Google Maps
+    verificado: false,
+    fuente: 'Google Business Profile · Mimos Navia',
+  },
+  'gregorio-espino': {
+    storeId: 'gregorio-espino',
+    ratingValue: null, // PENDIENTE: nota media real en Google Maps
+    reviewCount: null, // PENDIENTE: nº total de reseñas reales en Google Maps
+    verificado: false,
+    fuente: 'Google Business Profile · Mimos Gregorio Espino',
+  },
+  'rua-venezuela': {
+    storeId: 'rua-venezuela',
+    ratingValue: null, // PENDIENTE: nota media real en Google Maps
+    reviewCount: null, // PENDIENTE: nº total de reseñas reales en Google Maps
+    verificado: false,
+    fuente: 'Google Business Profile · Mimos Venezuela',
+  },
+};
+

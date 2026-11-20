@@ -20,8 +20,8 @@ import {
   Truck,
 } from 'lucide-react';
 import reparacionAlfombrasImg from '../assets/images/reparacion_alfombras_flecos_1794732541809.webp';
+import { SERVICIO_REPARACION_ALFOMBRAS_DATA } from '../data/servicePagesData';
 import {
-  SERVICIO_REPARACION_ALFOMBRAS_DATA,
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
   RESENAS_REALES,

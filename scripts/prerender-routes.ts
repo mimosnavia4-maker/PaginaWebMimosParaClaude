@@ -7,19 +7,12 @@
 import fs from 'fs';
 import path from 'path';
 import { ROUTE_SEO_MAP, RouteMeta } from '../src/data/routesSeoData.ts';
-import { getPageSEO } from '../src/utils/seo.ts';
+import { getPageSEO } from '../src/utils/seoSchemas.ts';
 import { ARTICULOS_BLOG } from '../src/data/blogArticlesFull.ts';
 import {
   APARTAMENTOS_TURISTICOS_DATA,
   BLOG_FAQS_MAP,
-  CONTACT_INFO,
-  ETIQUETAS_SERVICIOS_CONFIRMADOS,
-  FAQ_PORTADA_SIN_PRECIOS,
-  GESTION_INTEGRAL_AREAS,
   LIMPIEZA_PROFESIONAL_DATA,
-  PACKS_APARTAMENTOS_BORRADOR,
-  REGISTROS_PUNTOS,
-  SERVICIOS_MIMOS,
   SERVICIO_DETALLE_ENRIQUECIDO,
   SERVICIO_ALFOMBRAS_DATA,
   SERVICIO_REPARACION_ALFOMBRAS_DATA,
@@ -30,9 +23,18 @@ import {
   SERVICIO_SOFAS_FAQS,
   SERVICIO_TEXTILES_HOGAR_DATA,
   SERVICIO_EMPRESAS_B2B_DATA,
+} from '../src/data/servicePagesData.ts';
+import { ZONAS_SEO_LOCAL } from '../src/data/zonasSeoData.ts';
+import {
+  CONTACT_INFO,
+  ETIQUETAS_SERVICIOS_CONFIRMADOS,
+  FAQ_PORTADA_SIN_PRECIOS,
+  GESTION_INTEGRAL_AREAS,
+  PACKS_APARTAMENTOS_BORRADOR,
+  REGISTROS_PUNTOS,
+  SERVICIOS_MIMOS,
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
-  ZONAS_SEO_LOCAL,
 } from '../src/data/mimosData.ts';
 
 function escapeHtml(str: unknown): string {
@@ -919,7 +921,14 @@ function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta
       /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/>/,
       `<meta name="twitter:image" content="${meta.ogImage || 'https://www.tintoreriamimos.es/osito-mimos.jpg'}" />`
     )
-    .replace('</head>', `    ${routeSchemaTag}\n  </head>`)
+    .replace(
+      '</head>',
+      `${
+        routePath === '/'
+          ? '    <link rel="preload" as="image" href="/osito-mimos.webp" imagesrcset="/osito-mimos-640w.webp 640w, /osito-mimos.webp 1024w" imagesizes="(max-width: 1023px) 100vw, 42vw" fetchpriority="high" />\n'
+          : ''
+      }    ${routeSchemaTag}\n  </head>`
+    )
     .replace('<div id="root"></div>', `<div id="root">${aeoRootContent}</div>`);
 }
 

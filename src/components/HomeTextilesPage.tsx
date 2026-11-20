@@ -24,8 +24,8 @@ import {
 } from 'lucide-react';
 import edredonPlumasImg from '../assets/images/edredon_plumas_taller_1794731040431.webp';
 import cortinasEstoresImg from '../assets/images/cortinas_estores_taller_1794731040136.webp';
+import { SERVICIO_TEXTILES_HOGAR_DATA } from '../data/servicePagesData';
 import {
-  SERVICIO_TEXTILES_HOGAR_DATA,
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
   RESENAS_REALES,

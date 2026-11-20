@@ -5,7 +5,7 @@ import {
   IMAGES,
   SERVICIOS_MIMOS,
   TIENDAS_PROPIAS,
-  ZONAS_SEO_LOCAL,
+  ZONAS_RESUMEN,
   ARTICULOS_BLOG_RESUMEN,
 } from '../data/mimosData';
 import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
@@ -206,7 +206,7 @@ export const Footer: React.FC<FooterProps> = ({
                       Buscador de Tiendas y Puntos Mimos
                     </a>
                   </li>
-                  {ZONAS_SEO_LOCAL.map((zona) => (
+                  {ZONAS_RESUMEN.map((zona) => (
                     <li key={zona.slug}>
                       <a
                         href={zona.url}

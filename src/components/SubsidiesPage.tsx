@@ -139,7 +139,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                 {!failedImgs.bono ? (
                   <div className="bg-white rounded-xl border border-slate-200 p-3 sm:p-5 flex justify-center shadow-xs">
                     <img
-                      src="/images/subvenciones/programa-bono-energia-peme-2025.jpg"
+                      src="/images/subvenciones/programa-bono-energia-peme-2025.webp"
                       alt="Cartel informativo oficial de la Convocatoria de Subvencións do Instituto Enerxético de Galicia para proxectos de Mellora Enerxética dirixido ao sector servizos — Programa Bono enerxía Peme 2025 (IN417Z)"
                       referrerPolicy="no-referrer"
                       onError={() => setFailedImgs((prev) => ({ ...prev, bono: true }))}
@@ -184,7 +184,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                 {!failedImgs.secadora ? (
                   <div className="bg-white dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 flex justify-center">
                     <img
-                      src="/images/subvenciones/secadora-domus-dtt2-18e.jpg"
+                      src="/images/subvenciones/secadora-domus-dtt2-18e.webp"
                       alt="Sustitución de secadora Girbau STI-23 por nueva secadora eficiente de doble tambor Domus DTT2-18 E en Tintorería Mimos Navia"
                       className="w-full max-w-md h-auto rounded-lg object-contain shadow-sm"
                       loading="lazy"

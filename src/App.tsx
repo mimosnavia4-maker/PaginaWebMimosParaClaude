@@ -88,7 +88,7 @@ const PreviewPortadaPage = import.meta.env.DEV
 import {
   ARTICULOS_BLOG_RESUMEN,
   SERVICIOS_MIMOS,
-  ZONAS_SEO_LOCAL,
+  ZONAS_RESUMEN,
 } from './data/mimosData';
 import {
   applyPageSEO,
@@ -435,7 +435,7 @@ export function App() {
 
   // Match route
   const articuloActivo = ARTICULOS_BLOG_RESUMEN.find((a) => a.url === effectivePath);
-  const zonaActiva = ZONAS_SEO_LOCAL.find((z) => z.url === effectivePath);
+  const zonaActiva = ZONAS_RESUMEN.find((z) => z.url === effectivePath);
   const servicioIndividualActivo = SERVICIOS_MIMOS.find(
     (s) =>
       s.url === effectivePath &&
@@ -533,7 +533,7 @@ export function App() {
             />
           </main>
         ) : zonaActiva ? (
-          <LocalZonePage zona={zonaActiva} onNavigate={handleNavigate} />
+          <LocalZonePage zonaSlug={zonaActiva.slug} onNavigate={handleNavigate} />
         ) : isLegalRoute ? (
           <LegalPage
             section={effectivePath.replace('/', '') as 'aviso-legal' | 'privacidad' | 'cookies'}

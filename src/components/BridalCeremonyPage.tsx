@@ -26,8 +26,8 @@ import heroNoviaImg from '../assets/images/limpieza_vestido_novia_taller_1794727
 import tejidosCeremoniaImg from '../assets/images/tejidos_ceremonia_pedreria_1794727830540.webp';
 import comunionBautizoImg from '../assets/images/comunion_bautizo_lino_1794729699892.webp';
 import fiestaChaqueImg from '../assets/images/fiesta_chaque_ceremonia_1794729700180.webp';
+import { SERVICIO_NOVIA_CEREMONIA_DATA } from '../data/servicePagesData';
 import {
-  SERVICIO_NOVIA_CEREMONIA_DATA,
   TIENDAS_PROPIAS,
   PUNTOS_COLABORADORES,
   RESENAS_REALES,

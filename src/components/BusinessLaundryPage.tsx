@@ -15,9 +15,9 @@ import {
   ShieldCheck,
   Truck,
 } from 'lucide-react';
+import { SERVICIO_EMPRESAS_B2B_DATA } from '../data/servicePagesData';
 import {
   CONTACT_INFO,
-  SERVICIO_EMPRESAS_B2B_DATA,
   TIENDAS_PROPIAS,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';

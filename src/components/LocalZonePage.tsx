@@ -17,8 +17,9 @@ import {
   Info,
 } from 'lucide-react';
 import {
-  ZonaSEOLocal,
   ZONAS_SEO_LOCAL,
+} from '../data/zonasSeoData';
+import {
   REGISTROS_PUNTOS,
   CONTACT_INFO,
   PuntoRegistro,
@@ -32,11 +33,13 @@ import { PuntoRedondelaPage } from './PuntoRedondelaPage';
 import { PuntoArregla2Page } from './PuntoArregla2Page';
 
 interface LocalZonePageProps {
-  zona: ZonaSEOLocal;
+  zonaSlug: string;
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zona, onNavigate }) => {
+export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNavigate }) => {
+  const zona = ZONAS_SEO_LOCAL.find((z) => z.slug === zonaSlug) ?? ZONAS_SEO_LOCAL[0];
+
   if (zona.slug === 'o-porrino') {
     return <PuntoTelasMasPage onNavigate={onNavigate} />;
   }
