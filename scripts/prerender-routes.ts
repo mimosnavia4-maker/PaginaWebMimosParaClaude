@@ -134,12 +134,25 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
             `</dl>`
           : '';
 
+      const enlacesInternosHtml =
+        articulo.enlacesInternos && articulo.enlacesInternos.length > 0
+          ? `<h2 class="text-xl font-bold text-[#002147] dark:text-white mt-4">Servicios y guías relacionadas</h2><ul>` +
+            articulo.enlacesInternos
+              .map(
+                (l) =>
+                  `<li><a href="${escapeHtml(l.href)}"><strong>${escapeHtml(l.texto)}</strong></a>: ${escapeHtml(l.descripcion)}</li>`
+              )
+              .join('') +
+            `</ul>`
+          : '';
+
       specificHtml =
         `<section class="space-y-4">` +
         introHtml +
         seccionesHtml +
         advertenciaHtml +
         blogFaqsHtml +
+        enlacesInternosHtml +
         `</section>`;
     }
   } else if (routePath.startsWith('/zonas/')) {
@@ -190,6 +203,11 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
             `</dl>`
           : '';
 
+      const vigoLimitropheHtml =
+        zona.slug === 'vigo'
+          ? `<p><strong>Municipios limítrofes sin tienda física:</strong> atendemos mediante recogida y entrega a domicilio en <a href="/zonas/mos">Mos</a> y <a href="/zonas/nigran">Nigrán</a>.</p>`
+          : '';
+
       specificHtml =
         `<section class="space-y-4">` +
         (zona.subtitulo ? `<p>${escapeHtml(zona.subtitulo)}</p>` : '') +
@@ -199,6 +217,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
             : `Cobertura a domicilio y puntos cercanos en ${escapeHtml(zona.localidad)}`
         }</h2>` +
         puntosHtml +
+        vigoLimitropheHtml +
         faqsHtml +
         `</section>`;
     }
