@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick('/', 'hero')}
-                className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors shadow-sm text-center sm:whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors shadow-sm text-center sm:whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Hablar con Mimo por WhatsApp</span>
@@ -289,7 +289,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 href={CONTACT_INFO.whatsappApartamentosHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-lg transition-colors"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Pedir presupuesto a Mimo</span>

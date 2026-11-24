@@ -111,7 +111,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
   const preguntasFrecuentes = [
     {
       q: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Arregla2?',
-      a: 'Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a Arregla2 en C/ Argentina, 4, Ponteareas. El establecimiento anota tus datos y te entrega un resguardo oficial. La furgoneta de transporte de Mimos traslada las prendas a nuestra central de Vigo para su tratamiento especializado y las devuelve al punto listas y precintadas para que las recojas cómodamente.',
+      a: 'Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a Arregla2 en C/ Argentina, 4, Ponteareas. El establecimiento anota tus datos y te entrega un resguardo oficial. La furgoneta de transporte de Mimos traslada tus prendas y textiles del hogar a nuestra central de Vigo (y coordina las alfombras con taller especialista) y las devuelve al punto listas y precintadas para que las recojas cómodamente.',
     },
     {
       q: '¿Qué tipo de arreglos de costura se realizan directamente en Arregla2?',
@@ -119,7 +119,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
     },
     {
       q: '¿Se pueden entregar edredones de plumas y alfombras grandes en Ponteareas?',
-      a: 'Sí. Arregla2 recibe edredones de plumón, plumas naturales, mantas y alfombras de cualquier dimensión. Tintorería Mimos se encarga de su lavado higiénico, desinfección térmica y secado especializado en nuestra planta de Vigo.',
+      a: 'Sí. Arregla2 recibe edredones de plumón, plumas naturales, mantas y alfombras (consultando dimensiones). Mimos realiza el lavado higiénico y secado de edredones en su planta de Vigo y gestiona las alfombras con taller especialista colaborador.',
     },
     {
       q: '¿Cuáles son los horarios de apertura de Arregla2 en Ponteareas?',
@@ -140,19 +140,19 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
   ];
 
   return (
-    <div className="space-y-10 animate-fadeIn text-slate-800 dark:text-slate-100">
+    <div className="space-y-10 animate-fadeIn text-[#002147]">
       {/* Botón de cierre superior si es modal */}
       {isModal && onClose && (
-        <div className="flex items-center justify-between px-6 pt-5 pb-2 border-b border-slate-100 dark:border-slate-800">
+        <div className="flex items-center justify-between px-6 pt-5 pb-3 border-b border-slate-200 bg-[#F4F9FE]">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-xs font-bold text-[#002147] uppercase tracking-wider">
               Ficha del Establecimiento Colaborador
             </span>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
+            className="w-11 h-11 inline-flex items-center justify-center rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-[#002147] transition-colors cursor-pointer"
             aria-label="Cerrar ficha"
           >
             <X className="w-5 h-5" />
@@ -166,17 +166,17 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         onClose={() => setLightboxOpen(false)}
         ariaLabel="Visor de fotografía a pantalla completa"
         maxWidthClass="max-w-4xl"
-        className="bg-slate-900 border-slate-700"
+        className="bg-white border-slate-200"
       >
         <button
           type="button"
           onClick={() => setLightboxOpen(false)}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-20 w-11 h-11 inline-flex items-center justify-center rounded-full bg-white/95 hover:bg-white text-[#002147] border border-slate-200 shadow-md transition-colors cursor-pointer"
           aria-label="Cerrar visor"
         >
           <X className="w-5 h-5" />
         </button>
-        <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black flex items-center justify-center">
+        <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#F4F9FE] flex items-center justify-center">
           {!failedPhotos[activeTabPhoto] ? (
             <img
               src={photos[activeTabPhoto].url}
@@ -186,37 +186,37 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               className="max-h-[75vh] w-full object-contain"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-slate-900 text-slate-200">
-              <Handshake className="w-10 h-10 text-[#60B5F6] mb-3" />
+            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
+              <Handshake className="w-10 h-10 text-[#0F76BB] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
-              <p className="text-xs text-slate-400 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
+              <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
           )}
         </div>
-        <div className="p-4 sm:p-6 bg-slate-950 text-white">
+        <div className="p-4 sm:p-6 bg-white border-t border-slate-200 text-[#002147]">
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#0F76BB] text-white">
+            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0F76BB]">
               {photos[activeTabPhoto].tag}
             </span>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-500">
               Punto Colaborador Oficial Mimos · Ponteareas (O Condado)
             </span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold">{photos[activeTabPhoto].titulo}</h4>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">{photos[activeTabPhoto].subtitulo}</p>
-          <p className="text-xs text-slate-400 mt-2 border-t border-slate-800 pt-2">
+          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-xs sm:text-sm text-slate-700 mt-1">{photos[activeTabPhoto].subtitulo}</p>
+          <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
           </p>
         </div>
       </Dialog>
 
       {/* 1. CABECERA HERO CON FOTOGRAFÍA REAL Y ACCIONES RÁPIDAS */}
-      <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl">
+      <section className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
           {/* Columna Izquierda: Galería Interactiva con Fotos Reales */}
-          <div className="lg:col-span-7 flex flex-col justify-between bg-slate-950">
+          <div className="lg:col-span-7 flex flex-col justify-between bg-[#F4F9FE]">
             {/* Foto Activa Grande con Zoom */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden group bg-slate-900">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden group bg-[#EDF5FD]">
               {!failedPhotos[activeTabPhoto] ? (
                 <img
                   src={photos[activeTabPhoto].url}
@@ -226,32 +226,32 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#002147] to-slate-900 text-slate-200">
-                  <Handshake className="w-10 h-10 text-[#60B5F6] mb-2" />
+                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
+                  <Handshake className="w-10 h-10 text-[#0F76BB] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
-                  <p className="text-xs text-slate-400 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
+                  <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/30 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/75 via-transparent to-black/15 pointer-events-none" />
 
               {/* Botón flotante para ampliar foto */}
               <button
                 type="button"
                 onClick={() => setLightboxOpen(true)}
-                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/60 hover:bg-black/80 text-white text-xs font-bold backdrop-blur-xs transition-colors cursor-pointer border border-white/20"
+                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-md transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
-              <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-[#002147]/95 text-white border border-white/20 shadow-lg backdrop-blur-xs">
-                  <Handshake className="w-3.5 h-3.5 text-[#60B5F6]" />
+              <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-extrabold bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
+                  <Handshake className="w-3.5 h-3.5 text-[#0F76BB]" />
                   Punto Colaborador Mimos · Taller In Situ
                 </span>
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-400 text-slate-950 shadow-md">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
                   {photos[activeTabPhoto].tag}
                 </span>
               </div>
@@ -261,22 +261,22 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                 <p className="text-sm sm:text-base font-extrabold drop-shadow-md">
                   {photos[activeTabPhoto].titulo}
                 </p>
-                <p className="text-xs text-slate-200/90 drop-shadow-sm mt-0.5 line-clamp-2">
+                <p className="text-xs text-slate-100 drop-shadow-sm mt-0.5 line-clamp-2">
                   {photos[activeTabPhoto].subtitulo}
                 </p>
               </div>
             </div>
 
             {/* Selector de Fotografías en Miniatura */}
-            <div className="p-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2 overflow-x-auto">
-              <span className="text-xs font-bold text-slate-400 pl-1 shrink-0">Fotos reales:</span>
+            <div className="p-3 bg-[#F4F9FE] border-t border-slate-200 flex items-center gap-2 overflow-x-auto">
+              <span className="text-xs font-bold text-[#002147] pl-1 shrink-0">Fotos reales:</span>
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada1')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada1'
-                    ? 'bg-[#0F76BB] text-white border-[#60B5F6] shadow-sm'
-                    : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                    ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
+                    : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
                 }`}
               >
                 <span>1. Fachada & Rótulo</span>
@@ -284,10 +284,10 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('interior')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'interior'
-                    ? 'bg-[#0F76BB] text-white border-[#60B5F6] shadow-sm'
-                    : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                    ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
+                    : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
                 }`}
               >
                 <span>2. Mostrador & Taller</span>
@@ -295,10 +295,10 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada2')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada2'
-                    ? 'bg-[#0F76BB] text-white border-[#60B5F6] shadow-sm'
-                    : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                    ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
+                    : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
                 }`}
               >
                 <span>3. Escaparate & Acceso</span>
@@ -307,17 +307,17 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           </div>
 
           {/* Columna Derecha: Datos Operativos y Acciones Rápidas */}
-          <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
                   Punto Colaborador Oficial · Ponteareas
                 </span>
                 <span
-                  className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-extrabold ${
+                  className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-extrabold ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300'
-                      : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                      ? 'bg-emerald-50 text-[#178A47] border border-emerald-200'
+                      : 'bg-slate-100 text-slate-700 border border-slate-200'
                   }`}
                 >
                   {storeStatus.isOpen ? 'Abierto ahora' : 'Cerrado en este momento'}
@@ -327,36 +327,36 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               {isModal ? (
                 <h2
                   id="modal-ficha-titulo"
-                  className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight"
+                  className="text-2xl sm:text-3xl font-black text-[#002147] tracking-tight"
                 >
                   Arregla2 (Ponteareas)
                 </h2>
               ) : (
-                <h1 className="text-2xl sm:text-3xl font-black text-[#002147] dark:text-white tracking-tight">
+                <h1 className="text-2xl sm:text-3xl font-black text-[#002147] tracking-tight">
                   Tintorería, lavandería y costura Mimos en Ponteareas (Arregla2)
                 </h1>
               )}
-              <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+              <p className="text-sm font-semibold text-slate-600 mt-1">
                 Punto Oficial Tintorería Mimos y Taller de Costura en O Condado
               </p>
 
               <div className="mt-4 space-y-2 text-xs">
-                <p className="text-slate-700 dark:text-slate-300 flex items-start gap-2">
+                <p className="text-[#002147] flex items-start gap-2">
                   <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
                   <span>
                     <strong>C/ Argentina, 4</strong>, 36860 Ponteareas (Pontevedra).
                   </span>
                 </p>
 
-                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 space-y-2">
-                  <div className="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                    <Car className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                <div className="p-3 rounded-2xl bg-[#F4F9FE] border border-slate-200 space-y-2">
+                  <div className="flex items-start gap-2 text-slate-700">
+                    <Car className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
                     <span>
                       <strong>Aparcamiento & Acceso:</strong> En el casco urbano de Ponteareas, con zonas de parada y estacionamiento en calles aledañas para entrega y recogida ágil.
                     </span>
                   </div>
-                  <div className="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                    <Clock className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2 text-slate-700">
+                    <Clock className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
                     <span>
                       <strong>Horario Comercial:</strong> L-V 09:30-13:30 y 16:00-19:30 · Sábados 09:30-13:30.
                     </span>
@@ -372,16 +372,16 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>WhatsApp de Mimos</span>
                 </a>
                 <a
                   href={`tel:+34${punto.telefono}`}
-                  className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#001733] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-md transition-all active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-extrabold text-sm py-3 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
                 >
-                  <Phone className="w-4 h-4 text-[#60B5F6] shrink-0" />
+                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors shrink-0" />
                   <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
@@ -391,16 +391,16 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   href={mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#F4F9FE] hover:bg-[#EDF5FD] text-[#002147] border border-slate-300 font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
                 >
                   <Navigation className="w-3.5 h-3.5 text-[#0F76BB]" />
                   <span>Cómo llegar (Ruta en Google Maps)</span>
-                  <ExternalLink className="w-3 h-3 opacity-60" />
+                  <ExternalLink className="w-3 h-3 opacity-70" />
                 </a>
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
                   title="Copiar enlace de Ponteareas"
                 >
                   <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
@@ -416,49 +416,49 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       <section aria-labelledby="seccion-ventajas" className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <h2 id="seccion-ventajas" className="sr-only">Ventajas y características de Arregla2 Ponteareas</h2>
 
-        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/70 text-[#0F76BB] flex items-center justify-center mb-3">
+        <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
             <Scissors className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-xs sm:text-sm font-black text-[#002147] dark:text-white">Taller Propio In Situ</h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+            <h3 className="text-xs sm:text-sm font-black text-[#002147]">Taller Propio In Situ</h3>
+            <p className="text-xs text-slate-600 mt-1">
               Modistería y costura en la propia tienda con maquinaria para bajos exprés (preguntando antes en taller) y arreglos a medida.
             </p>
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 flex items-center justify-center mb-3">
+        <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#1FA855] flex items-center justify-center mb-3">
             <Clock className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-xs sm:text-sm font-black text-[#002147] dark:text-white">Horario Comercial</h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+            <h3 className="text-xs sm:text-sm font-black text-[#002147]">Horario Comercial</h3>
+            <p className="text-xs text-slate-600 mt-1">
               Mañana y tarde de lunes a viernes, y sábados por la mañana para tu comodidad en O Condado.
             </p>
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 flex items-center justify-center mb-3">
+        <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-xs sm:text-sm font-black text-[#002147] dark:text-white">Punto Oficial Mimos</h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-              Recepción de tintorería, trajes, vestidos, edredones y alfombras con traslado seguro a Vigo.
+            <h3 className="text-xs sm:text-sm font-black text-[#002147]">Punto Oficial Mimos</h3>
+            <p className="text-xs text-slate-600 mt-1">
+              Recepción de tintorería, trajes, vestidos y edredones (a nuestra central de Vigo) y alfombras (con taller especialista).
             </p>
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 flex items-center justify-center mb-3">
+        <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-xs sm:text-sm font-black text-[#002147] dark:text-white">Garantía y Mismo Precio</h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+            <h3 className="text-xs sm:text-sm font-black text-[#002147]">Garantía y Mismo Precio</h3>
+            <p className="text-xs text-slate-600 mt-1">
               Mismas tarifas oficiales que en Vigo, resguardo numerado y custodia garantizada.
             </p>
           </div>
@@ -468,90 +468,89 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       {/* 3. HORARIO DETALLADO Y TALLER IN SITU DE COSTURA */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Bloque 1: Horario Detallado Semanal */}
-        <div className="lg:col-span-5 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/70 text-[#0F76BB] flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white">
+                  <h3 className="text-base font-extrabold text-[#002147]">
                     Horario de Atención al Público
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Atención directa en mostrador</p>
+                  <p className="text-xs text-slate-600">Atención directa en mostrador</p>
                 </div>
               </div>
             </div>
 
             <div className="space-y-2 text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex justify-between items-center">
+              <div className="p-3 rounded-xl bg-[#F7F6F2] border border-slate-200 flex justify-between items-center">
                 <div>
-                  <span className="font-extrabold text-slate-800 dark:text-slate-200">Lunes a Viernes</span>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400">Jornada habitual</p>
+                  <span className="font-extrabold text-[#002147]">Lunes a Viernes</span>
+                  <p className="text-[11px] text-slate-600">Jornada habitual</p>
                 </div>
-                <div className="text-right font-mono font-bold text-slate-900 dark:text-white">
+                <div className="text-right font-mono font-bold text-[#002147] tabular-nums">
                   <div>09:30 – 13:30</div>
                   <div>16:00 – 19:30</div>
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex justify-between items-center">
+              <div className="p-3 rounded-xl bg-[#F7F6F2] border border-slate-200 flex justify-between items-center">
                 <div>
-                  <span className="font-extrabold text-slate-800 dark:text-slate-200">Sábados</span>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400">Mañanas</p>
+                  <span className="font-extrabold text-[#002147]">Sábados</span>
+                  <p className="text-[11px] text-slate-600">Mañanas</p>
                 </div>
-                <span className="font-mono font-bold text-slate-900 dark:text-white">
+                <span className="font-mono font-bold text-[#002147] tabular-nums">
                   09:30 – 13:30
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex justify-between items-center text-slate-400">
+              <div className="p-3 rounded-xl bg-[#F7F6F2] border border-slate-200 flex justify-between items-center text-slate-500">
                 <div>
                   <span className="font-medium">Domingos</span>
-                  <p className="text-[11px] text-slate-400">Descanso semanal</p>
+                  <p className="text-[11px] text-slate-500">Descanso semanal</p>
                 </div>
-                <span className="font-bold text-slate-400">Cerrado</span>
+                <span className="font-bold text-slate-500">Cerrado</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
-            <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+          <div className="mt-6 pt-4 border-t border-slate-200 space-y-2">
+            <div className="flex items-center gap-2 text-xs text-slate-700">
               <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
               <span><strong>Formas de pago:</strong> Efectivo y Tarjeta (sin Bizum).</span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+            <div className="flex items-center gap-2 text-xs text-slate-700">
+              <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0" />
               <span><strong>Resguardo oficial:</strong> Entrega con justificante numerado garantizado.</span>
             </div>
           </div>
         </div>
 
         {/* Bloque 2: Taller Propio de Costura y Modistería In Situ */}
-        <div className="lg:col-span-7 bg-gradient-to-br from-blue-50/70 to-indigo-50/40 dark:from-slate-900 dark:to-blue-950/30 rounded-3xl p-6 sm:p-7 border border-blue-200/80 dark:border-blue-900/40 shadow-sm flex flex-col justify-between">
+        <div className="lg:col-span-7 bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#002147] text-[#60B5F6] flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-[#0F76BB] text-white flex items-center justify-center">
                   <Scissors className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-black text-[#002147] dark:text-white">
+                  <h3 className="text-base sm:text-lg font-black text-[#002147]">
                     Taller Propio de Modistería & Costura In Situ
                   </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400">
+                  <p className="text-xs text-slate-600">
                     Maquinaria y confección experta en el propio taller de Arregla2 en Ponteareas
                   </p>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black bg-[#0F76BB] text-white">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-extrabold bg-[#0F76BB] text-white">
                 Servicio Confirmado
               </span>
             </div>
 
-            <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            <p className="text-xs text-slate-700 leading-relaxed mb-4">
               En <strong>Arregla2 (Ponteareas)</strong> cuentas con servicio in situ de composturas de ropa y arreglos textiles con toma de medidas directa, combinado con la recepción para el cuidado integral de tintorería, edredones y colada de Mimos en toda la comarca de O Condado.
             </p>
 
@@ -566,14 +565,14 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               ].map((elem, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-2xl bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 shadow-xs flex items-start gap-2.5"
+                  className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start gap-2.5"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-xs font-extrabold text-slate-900 dark:text-white leading-tight">
+                    <p className="text-xs font-extrabold text-[#002147] leading-tight">
                       {elem.tit}
                     </p>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">
+                    <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
                       {elem.desc}
                     </p>
                   </div>
@@ -583,14 +582,14 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           </div>
 
           {onNavigate && (
-            <div className="mt-5 pt-3 border-t border-blue-200/60 dark:border-blue-900/40 flex flex-wrap items-center justify-between gap-2">
-              <span className="text-xs text-slate-600 dark:text-slate-400 font-medium">
+            <div className="mt-5 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2">
+              <span className="text-xs text-slate-700 font-medium">
                 ¿Buscas más información sobre tipos de arreglos?
               </span>
               <a
                 href="/arreglos-de-ropa-vigo"
                 onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                className="inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                className="min-h-[44px] inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] hover:underline"
               >
                 <span>Ver sección completa de Arreglos de Ropa</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -601,180 +600,180 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       </div>
 
       {/* 4. GUÍA COMPLETA DE SERVICIOS DISPONIBLES EN ESTE PUNTO */}
-      <section aria-labelledby="seccion-servicios" className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+      <section aria-labelledby="seccion-servicios" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-full text-xs font-black bg-blue-100 dark:bg-blue-950 text-[#0F76BB] dark:text-[#60B5F6]">
+            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0F76BB]">
               Catálogo de Mostrador
             </span>
-            <span className="text-xs font-bold text-slate-500">100% Confirmado en Ponteareas</span>
+            <span className="text-xs font-bold text-slate-600">100% Confirmado en Ponteareas</span>
           </div>
-          <h2 id="seccion-servicios" className="text-xl sm:text-2xl font-black text-[#002147] dark:text-white tracking-tight">
+          <h2 id="seccion-servicios" className="text-xl sm:text-2xl font-black text-[#002147] tracking-tight">
             Servicios de Tintorería y Costura en Arregla2
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-3xl mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-3xl mt-1">
             Recepción directa en mostrador para particulares y familias de Ponteareas, Mondariz, Salvaterra de Miño, As Neves y O Condado. Sin desplazamientos a Vigo y con la máxima garantía de Tintorería Mimos.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Tarjeta 1: Tintorería y Trajes */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#002147] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#0F76BB] text-white flex items-center justify-center">
                   <Shirt className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">
+                <h3 className="text-sm font-extrabold text-[#002147]">
                   Tintorería y Limpieza en Seco
                 </h3>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-700 leading-relaxed">
                 Trajes de chaqueta, americanas, abrigos de lana, gabardinas, cazadoras y vestidos delicados tratados en la central de Mimos en Vigo.
               </p>
             </div>
-            <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Desmanchado manual especializado</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Planchado profesional con entrega en percha y funda</span>
               </li>
             </ul>
           </div>
 
           {/* Tarjeta 2: Edredones y Ropa de Cama */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
                 <div className="w-8 h-8 rounded-lg bg-[#0F76BB] text-white flex items-center justify-center">
                   <Layers className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">
+                <h3 className="text-sm font-extrabold text-[#002147]">
                   Edredones Nórdicos y Mantas
                 </h3>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-700 leading-relaxed">
                 Lavado e higienización térmica de edredones de pluma, plumón y fibras sintéticas, con secado controlado para esponjar el relleno natural.
               </p>
             </div>
-            <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Tratamiento bactericida y antiácaros</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Embolsado higiénico listo para guardar</span>
               </li>
             </ul>
           </div>
 
           {/* Tarjeta 3: Alfombras */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
                   <Car className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">
+                <h3 className="text-sm font-extrabold text-[#002147]">
                   Punto Receptor de Alfombras
                 </h3>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Deja tus alfombras de lana, sintéticas o pelo largo en Arregla2 Ponteareas. Las medimos y las transportamos a nuestra planta de lavado en plano.
+              <p className="text-xs text-slate-700 leading-relaxed">
+                Deja tus alfombras de lana, sintéticas o pelo largo en Arregla2 Ponteareas. Las medimos y coordinamos su limpieza con taller especialista colaborador.
               </p>
             </div>
-            <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Desempolvado y limpieza profunda</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Ahorra el viaje con la alfombra en coche hasta Vigo</span>
               </li>
             </ul>
           </div>
 
           {/* Tarjeta 4: Colada Familiar y Planchado */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-indigo-700 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#0F76BB] text-white flex items-center justify-center">
                   <Clock className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">
+                <h3 className="text-sm font-extrabold text-[#002147]">
                   Colada Familiar & Planchado
                 </h3>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-700 leading-relaxed">
                 Servicio por coladas y planchado profesional de camisas y prendas de uso diario. Ropa limpia, doblada y lista para colocar en el armario.
               </p>
             </div>
-            <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Camisas planchadas en percha impecables</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Detergentes hipoalergénicos de alta calidad</span>
               </li>
             </ul>
           </div>
 
           {/* Tarjeta 5: Taller de Costura In Situ */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-700 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center">
                   <Scissors className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">
+                <h3 className="text-sm font-extrabold text-[#002147]">
                   Taller de Costura In Situ
                 </h3>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-700 leading-relaxed">
                 Toma de medidas, prueba de prendas, corte de bajos, ajuste de cinturas y sustitución de cremalleras realizado directamente en el establecimiento de Ponteareas.
               </p>
             </div>
-            <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Atención artesanal personalizada</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Rapidez y acabados precisos</span>
               </li>
             </ul>
           </div>
 
           {/* Tarjeta 6: Coordinación y Envío a Domicilio */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
                   <Truck className="w-4 h-4" />
                 </div>
-                <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">
+                <h3 className="text-sm font-extrabold text-[#002147]">
                   Coordinación de Entrega a Domicilio
                 </h3>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-700 leading-relaxed">
                 ¿Prefieres dejar tus prendas en Arregla2 pero recibirlas en tu casa de Ponteareas, Mondariz, Salvaterra o Vigo cuando estén listas? Podemos coordinar la entrega directa por WhatsApp.
               </p>
             </div>
-            <ul className="text-xs text-slate-500 dark:text-slate-400 space-y-1 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Horarios concertados con antelación</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
                 <span>Furgoneta propia acondicionada para prendas colgadas</span>
               </li>
             </ul>
@@ -783,20 +782,20 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       </section>
 
       {/* 5. TABLA DE TIEMPOS Y PLAZOS ORIENTATIVOS DE ENTREGA */}
-      <section aria-labelledby="seccion-plazos" className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+      <section aria-labelledby="seccion-plazos" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Calendar className="w-4 h-4 text-[#0F76BB]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
                 Planificación Transparente
               </span>
             </div>
-            <h2 id="seccion-plazos" className="text-lg sm:text-xl font-black text-[#002147] dark:text-white">
+            <h2 id="seccion-plazos" className="text-lg sm:text-xl font-black text-[#002147]">
               Plazos Orientativos de Entrega en Arregla2 (Ponteareas)
             </h2>
           </div>
-          <span className="text-xs text-slate-500 dark:text-slate-400">
+          <span className="text-xs text-slate-600">
             Aviso instantáneo por WhatsApp al estar listo tu pedido
           </span>
         </div>
@@ -804,69 +803,69 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-slate-200 dark:border-slate-800 text-[11px] font-extrabold uppercase text-slate-500 dark:text-slate-400">
+              <tr className="border-b border-slate-200 text-[11px] font-extrabold uppercase text-[#002147]">
                 <th className="py-3 px-3">Servicio / Tipo de Prenda</th>
                 <th className="py-3 px-3">Plazo Estándar</th>
                 <th className="py-3 px-3">Servicio Express Disponible</th>
                 <th className="py-3 px-3">Detalle Operativo</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+            <tbody className="divide-y divide-slate-200">
               <tr>
-                <td className="py-3 px-3 font-bold text-slate-800 dark:text-slate-100">
+                <td className="py-3 px-3 font-bold text-[#002147]">
                   Bajos de pantalón y ajustes sencillos
                 </td>
-                <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">24 a 48 horas</td>
+                <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">24 a 48 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
                     Consultar en taller
                   </span>
                 </td>
-                <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">
+                <td className="py-3 px-3 text-[11px] text-slate-600">
                   Taller de costura in situ en Ponteareas.
                 </td>
               </tr>
               <tr>
-                <td className="py-3 px-3 font-bold text-slate-800 dark:text-slate-100">
+                <td className="py-3 px-3 font-bold text-[#002147]">
                   Trajes de chaqueta, americanas y vestidos
                 </td>
-                <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">48 a 72 horas</td>
+                <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">48 a 72 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0F76BB] border border-[#0F76BB]/20">
                     Bajo consulta
                   </span>
                 </td>
-                <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">
+                <td className="py-3 px-3 text-[11px] text-slate-600">
                   Desmanchado manual y planchado artesanal en central.
                 </td>
               </tr>
               <tr>
-                <td className="py-3 px-3 font-bold text-slate-800 dark:text-slate-100">
+                <td className="py-3 px-3 font-bold text-[#002147]">
                   Edredones nórdicos y mantas de invierno
                 </td>
-                <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">3 a 5 días laborables</td>
-                <td className="py-3 px-3 text-[11px] text-slate-400">Según carga de secado</td>
-                <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">
+                <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">3 a 5 días laborables</td>
+                <td className="py-3 px-3 text-[11px] text-slate-600">Según carga de secado</td>
+                <td className="py-3 px-3 text-[11px] text-slate-600">
                   Secado lento para devolver volumen al relleno.
                 </td>
               </tr>
               <tr>
-                <td className="py-3 px-3 font-bold text-slate-800 dark:text-slate-100">
+                <td className="py-3 px-3 font-bold text-[#002147]">
                   Limpieza e higienizado de alfombras
                 </td>
-                <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">7 a 10 días laborables</td>
-                <td className="py-3 px-3 text-[11px] text-slate-400">No aplicable</td>
-                <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">
+                <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">7 a 10 días laborables</td>
+                <td className="py-3 px-3 text-[11px] text-slate-600">No aplicable</td>
+                <td className="py-3 px-3 text-[11px] text-slate-600">
                   Desempolvado mecánico y secado en túnel termocontrolado.
                 </td>
               </tr>
               <tr>
-                <td className="py-3 px-3 font-bold text-slate-800 dark:text-slate-100">
+                <td className="py-3 px-3 font-bold text-[#002147]">
                   Cremalleras y composturas complejas
                 </td>
-                <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-semibold">3 a 5 días laborables</td>
-                <td className="py-3 px-3 text-[11px] text-slate-400">Consultar en mostrador</td>
-                <td className="py-3 px-3 text-[11px] text-slate-500 dark:text-slate-400">
+                <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">3 a 5 días laborables</td>
+                <td className="py-3 px-3 text-[11px] text-slate-600">Consultar en mostrador</td>
+                <td className="py-3 px-3 text-[11px] text-slate-600">
                   Prueba de ajuste in situ si es necesario.
                 </td>
               </tr>
@@ -876,77 +875,77 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       </section>
 
       {/* 6. CÓMO LLEGAR, TRANSPORTE Y APARCAMIENTO DETALLADO */}
-      <section aria-labelledby="seccion-llegar" className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+      <section aria-labelledby="seccion-llegar" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Navigation className="w-4 h-4 text-[#0F76BB]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
               Accesibilidad y Transporte
             </span>
           </div>
-          <h2 id="seccion-llegar" className="text-xl sm:text-2xl font-black text-[#002147] dark:text-white">
+          <h2 id="seccion-llegar" className="text-xl sm:text-2xl font-black text-[#002147]">
             Cómo Llegar a Arregla2 en Ponteareas
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 mt-1">
             Situado en C/ Argentina, 4, en el corazón comercial de Ponteareas, con rápida conexión con Mondariz, Salvaterra, As Neves, O Porriño y la A-52.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Tarjeta Coche y Aparcamiento */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
                 <Car className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">En Coche Particular</h3>
+              <h3 className="text-sm font-extrabold text-[#002147]">En Coche Particular</h3>
             </div>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-700 leading-relaxed">
               Zonas de estacionamiento y parada en las calles aledañas a C/ Argentina y plazas del centro urbano.
             </p>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+            <p className="text-[11px] text-slate-600">
               Facilidad para una parada breve al dejar o retirar bultos voluminosos (alfombras, edredones).
             </p>
           </div>
 
           {/* Tarjeta Autobús Interurbano */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-[#0F76BB] text-white flex items-center justify-center">
                 <Bus className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">En Autobús (O Condado)</h3>
+              <h3 className="text-sm font-extrabold text-[#002147]">En Autobús (O Condado)</h3>
             </div>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-700 leading-relaxed">
               Conexión directa con la estación de autobuses de Ponteareas y líneas comarcales de Vigo, Mondariz y Salvaterra.
             </p>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+            <p className="text-[11px] text-slate-600">
               A escasos minutos a pie desde las principales paradas urbanas.
             </p>
           </div>
 
           {/* Tarjeta A Pie */}
-          <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#002147] text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#0F76BB] text-white flex items-center justify-center">
                 <MapPin className="w-4 h-4" />
               </div>
-              <h3 className="text-sm font-extrabold text-[#002147] dark:text-white">A Pie por Ponteareas</h3>
+              <h3 className="text-sm font-extrabold text-[#002147]">A Pie por Ponteareas</h3>
             </div>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-700 leading-relaxed">
               En pleno casco urbano y área comercial, accesible a pie desde las principales calles peatonales y centros educativos.
             </p>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+            <p className="text-[11px] text-slate-600">
               Acceso a cota cero a pie de calle, muy cómodo y sin barreras.
             </p>
           </div>
         </div>
 
         {/* Banner CTA Google Maps */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-[#002147] text-white flex flex-wrap items-center justify-between gap-4">
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#EDF5FD] border border-[#0F76BB]/25 text-[#002147] flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-1">
-            <h4 className="text-sm sm:text-base font-bold">¿Quieres que tu navegador te guíe hasta la puerta?</h4>
-            <p className="text-xs text-blue-200">
+            <h4 className="text-sm sm:text-base font-bold text-[#002147]">¿Quieres que tu navegador te guíe hasta la puerta?</h4>
+            <p className="text-xs text-slate-700 tabular-nums">
               Coordenadas GPS: 42.17522, -8.507028 · C/ Argentina, 4, Ponteareas
             </p>
           </div>
@@ -954,7 +953,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#0F76BB] hover:bg-[#60B5F6] hover:text-[#002147] text-white text-xs font-black py-2.5 px-4 rounded-xl transition-all shadow-md"
+            className="min-h-[44px] inline-flex items-center gap-2 bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-black py-2.5 px-4 rounded-xl transition-colors shadow-xs"
           >
             <Navigation className="w-4 h-4" />
             <span>Abrir en Google Maps</span>
@@ -964,21 +963,21 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       </section>
 
       {/* 7. PREGUNTAS FRECUENTES (FAQ) DE PONTEAREAS */}
-      <section aria-labelledby="seccion-faq" className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+      <section aria-labelledby="seccion-faq" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
         <div className="flex items-center gap-2 mb-2">
           <HelpCircle className="w-4 h-4 text-[#0F76BB]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
             Respuestas Claras
           </span>
         </div>
-        <h2 id="seccion-faq" className="text-xl sm:text-2xl font-black text-[#002147] dark:text-white">
+        <h2 id="seccion-faq" className="text-xl sm:text-2xl font-black text-[#002147]">
           Preguntas Frecuentes sobre el Punto Arregla2 en Ponteareas
         </h2>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+        <p className="text-xs sm:text-sm text-slate-600">
           Todo lo que necesitas saber para entregar tus prendas o encargar arreglos de costura en O Condado.
         </p>
 
-        <div className="divide-y divide-slate-100 dark:divide-slate-800 mt-4">
+        <div className="divide-y divide-slate-200 mt-4">
           {preguntasFrecuentes.map((item, index) => {
             const abierta = faqAbierta === index;
             return (
@@ -986,21 +985,21 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                 <button
                   type="button"
                   onClick={() => toggleFaq(index)}
-                  className="w-full flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100 hover:text-[#0F76BB] dark:hover:text-[#60B5F6] transition-colors cursor-pointer"
+                  className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer"
                   aria-expanded={abierta}
                 >
                   <span className="flex items-start gap-2">
-                    <span className="text-[#0F76BB] font-black">{index + 1}.</span>
+                    <span className="text-[#0F76BB] font-black tabular-nums">{index + 1}.</span>
                     <span>{item.q}</span>
                   </span>
                   {abierta ? (
                     <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
                   ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
+                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
                   )}
                 </button>
                 {abierta && (
-                  <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed animate-fadeIn">
+                  <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-700 leading-relaxed animate-fadeIn">
                     <p>{item.a}</p>
                   </div>
                 )}
@@ -1011,17 +1010,17 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       </section>
 
       {/* 8. CERCANÍA, CONFIANZA Y CONTACTO DIRECTO */}
-      <section aria-labelledby="seccion-confianza" className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-900 to-[#002147] text-white shadow-xl relative overflow-hidden">
+      <section aria-labelledby="seccion-confianza" className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] border border-slate-200 text-[#002147] shadow-sm relative overflow-hidden">
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-[#60B5F6] border border-white/15">
-              <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0F76BB] border border-[#0F76BB]/25">
+              <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               La tecnología de Mimos con la atención cercana de Arregla2
             </span>
-            <h2 id="seccion-confianza" className="text-xl sm:text-2xl font-black text-white">
+            <h2 id="seccion-confianza" className="text-xl sm:text-2xl font-black text-[#002147]">
               Cuidado textil profesional y taller de costura en Ponteareas (O Condado)
             </h2>
-            <p className="text-xs sm:text-sm text-blue-100 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
               En Arregla2 (C/ Argentina, 4) dispones del servicio conjunto de costura in situ y los procesos de tintorería e higienización de Tintorería Mimos con la comodidad de estar en tu propia localidad.
             </p>
           </div>
@@ -1031,16 +1030,16 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-lg transition-transform active:scale-95"
+              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Consultar ahora con Mimo</span>
             </a>
             <a
               href={`tel:+34${punto.telefono}`}
-              className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-white/20 transition-colors"
+              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
             >
-              <Phone className="w-4 h-4 text-[#60B5F6]" />
+              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
               <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>

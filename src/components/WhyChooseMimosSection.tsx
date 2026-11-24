@@ -99,7 +99,7 @@ export const WhyChooseMimosSection: React.FC = () => {
                 href={CONTACT_INFO.whatsappGeneralHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-lg transition-colors"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Hablar con Mimo</span>

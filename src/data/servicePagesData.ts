@@ -17,9 +17,9 @@ export const SERVICIO_ALFOMBRAS_DATA = {
     'Servicio profesional de limpieza e higienización de alfombras en Vigo con recogida y entrega a domicilio o en nuestras 3 tiendas propias. Pide presupuesto con Mimo.',
   h1: 'Limpieza de alfombras en Vigo con recogida y entrega a domicilio',
   subtituloCabecera:
-    'Recogemos tu alfombra en tu domicilio o en nuestras tiendas propias de Vigo para limpiarla e higienizarla en nuestras instalaciones, devolviéndotela seca, cuidada y lista para colocar.',
+    'Recogemos tu alfombra en tu domicilio o en nuestras tiendas propias de Vigo para gestionarla con nuestro taller especialista colaborador, devolviéndotela limpia, seca y lista para colocar.',
   aclaracionDomicilio:
-    'Importante: nuestro servicio «a domicilio» consiste en recoger tu alfombra en tu vivienda u oficina, trasladarla a nuestras instalaciones para su limpieza y secado controlado, y entregártela de vuelta una vez lista (no realizamos limpiezas en húmedo dentro del domicilio del cliente).',
+    'Importante: nuestro servicio «a domicilio» consiste en recoger tu alfombra en tu vivienda u oficina, coordinar su limpieza y secado controlado mediante taller especialista colaborador, y entregártela de vuelta una vez lista (no realizamos limpiezas en húmedo dentro del domicilio del cliente).',
   pasosComoFunciona: [
     {
       num: '01',
@@ -35,9 +35,9 @@ export const SERVICIO_ALFOMBRAS_DATA = {
     },
     {
       num: '03',
-      titulo: 'La limpiamos en nuestras instalaciones',
+      titulo: 'Limpieza especializada con taller colaborador',
       descripcion:
-        'Trasladamos la pieza a nuestras instalaciones para aplicar el tratamiento profesional adecuado a su fibra, confección, tintes y reverso, con un secado completo fuera de tu hogar.',
+        'Derivamos la pieza a nuestro taller especialista colaborador para aplicar el tratamiento profesional adecuado a su fibra, confección, tintes y reverso, con un secado completo fuera de tu hogar.',
     },
     {
       num: '04',
@@ -89,7 +89,7 @@ export const SERVICIO_ALFOMBRAS_DATA = {
     titulo: '¿Tu alfombra tiene flecos sueltos, bordes deshilachados o el festón abierto?',
     subtitulo: 'Página especializada · Solo reparación o limpieza + arreglo',
     descripcion:
-      'Además de la limpieza en nuestras instalaciones, disponemos de un servicio específico de reparación y restauración de alfombras en Vigo mediante restaurador especialista colaborador. Puedes contratarlo de forma independiente (solo reparación) o combinado con la limpieza.',
+      'Además de la limpieza mediante taller especialista, disponemos de un servicio específico de reparación y restauración de alfombras en Vigo con restaurador colaborador. Puedes contratarlo de forma independiente (solo reparación) o combinado con la limpieza.',
     href: '/reparacion-alfombras-vigo',
     trabajos: [
       'Reposición, ajuste e igualado de flecos desgastados o sueltos',
@@ -136,7 +136,7 @@ export const SERVICIO_ALFOMBRAS_DATA = {
   ],
   dondeRecogemosORecibimos: {
     domicilio:
-      'Recogida y entrega en el domicilio del cliente (sujeta a las condiciones del servicio y a la zona de cobertura). Recogemos la alfombra en tu casa, la limpiamos en nuestras instalaciones y te la devolvemos.',
+      'Recogida y entrega en el domicilio del cliente (sujeta a las condiciones del servicio y a la zona de cobertura). Recogemos la alfombra en tu casa, gestionamos su limpieza con taller especialista colaborador y te la devolvemos.',
     tiendasPropias: `Recepción directa en nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo: ${TIENDAS_PROPIAS.map(
       (t) => `${t.nombre_mostrado} (${t.direccion})`
     ).join(', ')}.`,
@@ -179,7 +179,7 @@ export const SERVICIO_ALFOMBRAS_DATA = {
     {
       pregunta: '5. ¿En qué consiste la recogida y entrega de alfombras a domicilio?',
       respuesta:
-        'Pasamos por tu domicilio a recoger la alfombra enrollada, la trasladamos a nuestras instalaciones para limpiarla y secarla adecuadamente, y te la entregamos de vuelta en casa. No realizamos el lavado dentro de la vivienda del cliente.',
+        'Pasamos por tu domicilio a recoger la alfombra enrollada, coordinamos su limpieza y secado controlado con taller especialista colaborador, y te la entregamos de vuelta en casa. No realizamos el lavado dentro de la vivienda del cliente.',
     },
     {
       pregunta: '6. ¿Qué localidades se atienden y dónde puedo llevar mi alfombra?',
@@ -1325,7 +1325,7 @@ export const SERVICIO_TEXTILES_HOGAR_DATA: ServicioTextilesHogarData = {
       titulo: 'Limpieza de alfombras en Vigo',
       href: '/limpieza-alfombras-vigo',
       descripcion:
-        'Lavado plano en instalaciones, recogida a domicilio en Vigo y enlace con restauración de flecos y bordes.',
+        'Lavado especializado mediante taller colaborador, recogida a domicilio en Vigo y enlace con restauración de flecos y bordes.',
     },
     {
       titulo: 'Limpieza de sofás a domicilio',
@@ -1428,7 +1428,7 @@ export const SERVICIO_REPARACION_ALFOMBRAS_DATA: ServicioReparacionAlfombrasData
       etiqueta: 'Opción 2 · Todo en un viaje',
       titulo: 'Limpieza en taller + reparación de flecos o bordes',
       resumen:
-        'Si la alfombra lleva meses puesta o acumula suciedad, combinamos la higienización en nuestras instalaciones con la restauración posterior del colaborador en un solo encargo.',
+        'Si la alfombra lleva meses puesta o acumula suciedad, combinamos la higienización mediante taller especialista con la restauración posterior del colaborador en un solo encargo.',
       puntos: [
         'Una sola entrega en tienda o una sola logística de recogida y devolución en tu domicilio',
         'Higienización previa para trabajar con el hilo limpio, asentado y el tono real a la vista',
@@ -1521,7 +1521,7 @@ export const SERVICIO_REPARACION_ALFOMBRAS_DATA: ServicioReparacionAlfombrasData
       num: '04',
       titulo: 'Restauración, revisión y entrega',
       descripcion:
-        'El colaborador realiza el trabajo artesanal (y si solicitaste limpieza previa, la higienizamos antes en nuestras instalaciones). Cuando todo está revisado, te avisamos para la entrega.',
+        'El colaborador especialista realiza la restauración artesanal (y si solicitaste limpieza previa, se coordina igualmente mediante especialista antes de rematar). Cuando todo está revisado, te avisamos para la entrega.',
     },
   ],
   criteriosValoracion: [
@@ -1611,7 +1611,7 @@ export const SERVICIO_REPARACION_ALFOMBRAS_DATA: ServicioReparacionAlfombrasData
       titulo: 'Limpieza de alfombras en Vigo',
       href: '/limpieza-alfombras-vigo',
       descripcion:
-        'Lavado e higienización en nuestras instalaciones con secado completo y recogida a domicilio.',
+        'Lavado e higienización mediante taller especialista colaborador con secado completo y recogida a domicilio.',
     },
     {
       titulo: 'Recogida y entrega a domicilio',
@@ -1847,7 +1847,7 @@ export const SERVICIO_DETALLE_ENRIQUECIDO: Record<string, ServicioDetalleEnrique
         cta: 'Ver cuidado de pieles y cuero',
       },
       {
-        titulo: 'Taller propio de costura y arreglos (18 especialidades)',
+        titulo: 'Taller propio de costura y arreglos de ropa',
         descripcion:
           'Bajos, entallar americanas, cambiar forros o cremalleras junto con tu servicio de tintorería.',
         href: '/arreglos-de-ropa-vigo',

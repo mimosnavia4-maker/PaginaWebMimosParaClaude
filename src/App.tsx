@@ -1,87 +1,94 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Header } from './components/Header';
-import { HeroSection } from './components/HeroSection';
-import { ServicesAndPricingSection } from './components/ServicesAndPricingSection';
-import { CarpetCleaningSection } from './components/CarpetCleaningSection';
-import { B2BApartmentsSection } from './components/B2BApartmentsSection';
-import { HomePickupSection } from './components/HomePickupSection';
-import { WhyChooseMimosSection } from './components/WhyChooseMimosSection';
-import { BlogSection } from './components/BlogSection';
-import { ContactAndLocationsSection } from './components/ContactAndLocationsSection';
+import { PreviewHeroSection } from './components/preview/PreviewHeroSection';
+import { PreviewCatalogSection } from './components/preview/PreviewCatalogSection';
+import { PreviewB2BAndPickupSection } from './components/preview/PreviewB2BAndPickupSection';
+import { PreviewLocationsBand } from './components/preview/PreviewLocationsBand';
+import { PreviewWhyAndGuidesSection } from './components/preview/PreviewWhyAndGuidesSection';
 import { Footer } from './components/Footer';
 import { MimoAssistant } from './components/MimoAssistant';
 
+import { lazyWithRetry } from './utils/lazyWithRetry';
+
 // Rutas secundarias con carga diferida (Code-Splitting Fase 5)
-const CarpetCleaningPage = React.lazy(() =>
+const BlogSection = lazyWithRetry(() =>
+  import('./components/BlogSection').then((m) => ({ default: m.BlogSection }))
+);
+const ContactAndLocationsSection = lazyWithRetry(() =>
+  import('./components/ContactAndLocationsSection').then((m) => ({
+    default: m.ContactAndLocationsSection,
+  }))
+);
+const CarpetCleaningPage = lazyWithRetry(() =>
   import('./components/CarpetCleaningPage').then((m) => ({ default: m.CarpetCleaningPage }))
 );
-const CarpetRepairPage = React.lazy(() =>
+const CarpetRepairPage = lazyWithRetry(() =>
   import('./components/CarpetRepairPage').then((m) => ({ default: m.CarpetRepairPage }))
 );
-const LeatherCleaningPage = React.lazy(() =>
+const LeatherCleaningPage = lazyWithRetry(() =>
   import('./components/LeatherCleaningPage').then((m) => ({ default: m.LeatherCleaningPage }))
 );
-const SofaCleaningPage = React.lazy(() =>
+const SofaCleaningPage = lazyWithRetry(() =>
   import('./components/SofaCleaningPage').then((m) => ({ default: m.SofaCleaningPage }))
 );
-const ClothingAlterationsPage = React.lazy(() =>
+const ClothingAlterationsPage = lazyWithRetry(() =>
   import('./components/ClothingAlterationsPage').then((m) => ({ default: m.ClothingAlterationsPage }))
 );
-const BridalCeremonyPage = React.lazy(() =>
+const BridalCeremonyPage = lazyWithRetry(() =>
   import('./components/BridalCeremonyPage').then((m) => ({ default: m.BridalCeremonyPage }))
 );
-const HomeTextilesPage = React.lazy(() =>
+const HomeTextilesPage = lazyWithRetry(() =>
   import('./components/HomeTextilesPage').then((m) => ({ default: m.HomeTextilesPage }))
 );
-const CleaningDivisionPage = React.lazy(() =>
+const CleaningDivisionPage = lazyWithRetry(() =>
   import('./components/CleaningDivisionPage').then((m) => ({ default: m.CleaningDivisionPage }))
 );
-const BusinessLaundryPage = React.lazy(() =>
+const BusinessLaundryPage = lazyWithRetry(() =>
   import('./components/BusinessLaundryPage').then((m) => ({ default: m.BusinessLaundryPage }))
 );
-const DisasterTextileRecoveryPage = React.lazy(() =>
+const DisasterTextileRecoveryPage = lazyWithRetry(() =>
   import('./components/DisasterTextileRecoveryPage').then((m) => ({
     default: m.DisasterTextileRecoveryPage,
   }))
 );
-const ServiceDetailPage = React.lazy(() =>
+const ServiceDetailPage = lazyWithRetry(() =>
   import('./components/ServiceDetailPage').then((m) => ({ default: m.ServiceDetailPage }))
 );
-const LocalZonePage = React.lazy(() =>
+const LocalZonePage = lazyWithRetry(() =>
   import('./components/LocalZonePage').then((m) => ({ default: m.LocalZonePage }))
 );
-const BlogArticlePage = React.lazy(() =>
+const BlogArticlePage = lazyWithRetry(() =>
   import('./components/BlogArticlePage').then((m) => ({ default: m.BlogArticlePage }))
 );
-const LegalPage = React.lazy(() =>
+const LegalPage = lazyWithRetry(() =>
   import('./components/LegalPage').then((m) => ({ default: m.LegalPage }))
 );
-const SubsidiesPage = React.lazy(() =>
+const SubsidiesPage = lazyWithRetry(() =>
   import('./components/SubsidiesPage').then((m) => ({ default: m.SubsidiesPage }))
 );
-const CareersPage = React.lazy(() =>
+const CareersPage = lazyWithRetry(() =>
   import('./components/CareersPage').then((m) => ({ default: m.CareersPage }))
 );
-const PuntoColaboradorPage = React.lazy(() =>
+const PuntoColaboradorPage = lazyWithRetry(() =>
   import('./components/PuntoColaboradorPage').then((m) => ({ default: m.PuntoColaboradorPage }))
 );
-const TiendaNaviaPage = React.lazy(() =>
+const TiendaNaviaPage = lazyWithRetry(() =>
   import('./components/TiendaNaviaPage').then((m) => ({ default: m.TiendaNaviaPage }))
 );
-const TiendaGregorioEspinoPage = React.lazy(() =>
+const TiendaGregorioEspinoPage = lazyWithRetry(() =>
   import('./components/TiendaGregorioEspinoPage').then((m) => ({ default: m.TiendaGregorioEspinoPage }))
 );
-const TiendaVenezuelaPage = React.lazy(() =>
+const TiendaVenezuelaPage = lazyWithRetry(() =>
   import('./components/TiendaVenezuelaPage').then((m) => ({ default: m.TiendaVenezuelaPage }))
 );
-const PuntoDPassoPage = React.lazy(() =>
+const PuntoDPassoPage = lazyWithRetry(() =>
   import('./components/PuntoDPassoPage').then((m) => ({ default: m.PuntoDPassoPage }))
 );
-const NotFoundPage = React.lazy(() =>
+const NotFoundPage = lazyWithRetry(() =>
   import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 );
 const PreviewPortadaPage = import.meta.env.DEV
-  ? React.lazy(() =>
+  ? lazyWithRetry(() =>
       import('./components/PreviewPortadaPage').then((m) => ({ default: m.PreviewPortadaPage }))
     )
   : null;
@@ -105,7 +112,7 @@ import {
   trackContactClick,
   trackPageView,
 } from './utils/analytics';
-import { getStoredTheme, setStoredTheme } from './utils/safeStorage';
+import { setStoredTheme } from './utils/safeStorage';
 
 export function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -123,10 +130,6 @@ export function App() {
     return '/';
   });
 
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    return getStoredTheme();
-  });
-
   const [cookieBannerOpen, setCookieBannerOpen] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       return getCookieConsentChoice() === null;
@@ -134,16 +137,11 @@ export function App() {
     return false;
   });
 
-  // Sync dark mode class on <html>
+  // Mantener toda la web siempre en modo claro
   useEffect(() => {
-    const root = document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    setStoredTheme(darkMode);
-  }, [darkMode]);
+    document.documentElement.classList.remove('dark');
+    setStoredTheme(false);
+  }, []);
 
   const isInitialMount = useRef(true);
 
@@ -456,26 +454,39 @@ export function App() {
     effectivePath === '/privacidad' ||
     effectivePath === '/cookies';
 
+  const isLightChrome = true;
+
+  const handleScrollToSection = useCallback((sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white dark:bg-[#071324] text-slate-900 dark:text-slate-100 pb-16 md:pb-0">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-slate-900 pb-16 md:pb-0">
       {/* Aviso amable de disponibilidad de mapa para visitantes */}
       {quotaExceeded && (
-        <div className="bg-amber-50 dark:bg-amber-950/70 border-b border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 px-4 py-2.5 text-xs sm:text-sm text-center sticky top-0 z-50 shadow-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+        <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs sm:text-sm text-center sticky top-0 z-50 shadow-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
           <span>
             El mapa interactivo se encuentra temporalmente en mantenimiento. Nuestras 3 tiendas propias y 5 puntos colaboradores atienden con total normalidad.
           </span>
           <a
             href="/#puntos"
             onClick={(e) => handleNavigate('/#puntos', e)}
-            className="underline font-bold text-amber-950 dark:text-amber-100 hover:text-amber-700 dark:hover:text-amber-300"
+            className="underline font-bold text-amber-950 hover:text-amber-700"
           >
             Ver direcciones, horarios y teléfonos
           </a>
         </div>
       )}
 
-      {/* 1. Cabecera Fija (Sección 7.1) */}
-      <Header currentPath={currentPath} onNavigate={handleNavigate} />
+      {/* 1. Cabecera Fija */}
+      <Header
+        currentPath={currentPath}
+        onNavigate={handleNavigate}
+        variant={isLightChrome ? 'light' : 'navy'}
+      />
 
       {/* Contenido según ruta (Sección 6, 7 y 16 del Plan Maestro con Suspense) */}
       <React.Suspense
@@ -483,7 +494,7 @@ export function App() {
           <div className="min-h-[50vh] flex items-center justify-center py-20 px-4">
             <div className="flex flex-col items-center gap-3 animate-pulse">
               <div className="w-9 h-9 rounded-full border-3 border-[#0F76BB] border-t-transparent animate-spin" />
-              <p className="text-sm font-bold text-[#002147] dark:text-slate-300">
+              <p className="text-sm font-bold text-[#002147]">
                 Cargando página...
               </p>
             </div>
@@ -559,37 +570,28 @@ export function App() {
         ) : isPreviewPortada && PreviewPortadaPage ? (
           <PreviewPortadaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (
-          /* Portada con los bloques de Sección 7 + el Bloque Propio Prioritario de Limpieza de Alfombras (Sección 16) */
+          /* Portada principal luminosa: Hero de 7 transiciones + 4 bandas editoriales */
           <main id="main-content" tabIndex={-1} className="focus:outline-hidden">
-            {/* 2. Portada principal */}
-            <HeroSection onNavigate={handleNavigate} />
-            {/* 3. Servicios de tintorería y lavandería */}
-            <ServicesAndPricingSection onNavigate={handleNavigate} />
-            {/* Servicio prioritario (Sección 16): Limpieza de alfombras con recogida y entrega */}
-            <CarpetCleaningSection onNavigate={handleNavigate} />
-            {/* 4. Recogida a domicilio */}
-            <HomePickupSection onNavigate={handleNavigate} />
-            {/* 5. Red de tiendas y puntos Mimos */}
-            <ContactAndLocationsSection onNavigate={handleNavigate} />
-            {/* 6. Limpieza profesional, apartamentos turísticos y empresas */}
-            <B2BApartmentsSection onNavigate={handleNavigate} />
-            {/* 7. Por qué elegir Mimos y reseñas reales */}
-            <WhyChooseMimosSection />
-            {/* 8. Guías de cuidado textil */}
-            <BlogSection onNavigate={handleNavigate} />
+            <PreviewHeroSection
+              onNavigate={handleNavigate}
+              onScrollToSection={handleScrollToSection}
+            />
+            <PreviewCatalogSection onNavigate={handleNavigate} />
+            <PreviewB2BAndPickupSection onNavigate={handleNavigate} />
+            <PreviewLocationsBand onNavigate={handleNavigate} />
+            <PreviewWhyAndGuidesSection onNavigate={handleNavigate} />
           </main>
         ) : (
           <NotFoundPage onNavigate={handleNavigate} />
         )}
       </React.Suspense>
 
-      {/* 9. Contacto y pie de página + Barra inferior móvil */}
+      {/* Pie de página + Barra inferior móvil */}
       <Footer
         currentPath={currentPath}
         onNavigate={handleNavigate}
         onOpenCookieSettings={() => setCookieBannerOpen(true)}
-        darkMode={darkMode}
-        onToggleDarkMode={() => setDarkMode((prev) => !prev)}
+        variant={isLightChrome ? 'light' : 'navy'}
       />
 
       {/* Asistente Mimo y Preferencias de Cookies */}
@@ -598,6 +600,7 @@ export function App() {
         onAcceptCookies={handleAcceptCookies}
         onRejectCookies={handleRejectCookies}
         onNavigate={handleNavigate}
+        variant={isLightChrome ? 'light' : 'navy'}
       />
     </div>
   );

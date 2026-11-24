@@ -13,6 +13,7 @@ interface MimoAssistantProps {
   onAcceptCookies: () => void;
   onRejectCookies: () => void;
   onNavigate?: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
+  variant?: 'navy' | 'light';
 }
 
 interface ChatMessage {
@@ -62,7 +63,7 @@ function getLocalFaqReply(query: string): {
   if (/costura|arregl|compostur|bajo|bastill|cremallera|bot[oó]n|zurcid|estrech|ensanch|bordad|confecci[oó]n|fleco|ribete/.test(q)) {
     if (/alfombra|fleco|ribete/.test(q)) {
       return {
-        text: `En Tintorería Mimos limpiamos alfombras en nuestras instalaciones y realizamos reparación y restauración de flecos, ribetes y bordes. Envía a Mimo las medidas aproximadas (largo × ancho) y fotos del estado por WhatsApp.`,
+        text: `En Tintorería Mimos gestionamos la limpieza profunda de alfombras y la reparación y restauración de flecos, ribetes y bordes mediante especialista. Envía a Mimo las medidas aproximadas (largo × ancho) y fotos del estado por WhatsApp.`,
         whatsappUrl: buildMimoWhatsAppUrl(
           `Hola, Mimo. Quiero consultar sobre alfombra (limpieza o arreglo de flecos/bordes): ${query.trim()}`
         ),
@@ -130,7 +131,9 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
   onAcceptCookies,
   onRejectCookies,
   onNavigate,
+  variant = 'navy',
 }) => {
+  const isLight = variant === 'light';
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -314,7 +317,11 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           }}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="fixed right-4 bottom-20 md:bottom-5 z-40 inline-flex items-center gap-2.5 bg-[#002147] hover:bg-[#0a3161] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg border border-white/20 transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
+          className={`fixed right-4 bottom-20 md:bottom-5 z-40 inline-flex items-center gap-2.5 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg border transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 ${
+            isLight
+              ? 'bg-white hover:bg-[#EDF5FD] text-[#002147] border-slate-200 focus-visible:ring-[#0F76BB]'
+              : 'bg-[#002147] hover:bg-[#0a3161] text-white border-white/20 focus-visible:ring-white'
+          }`}
         >
           <img
             src={IMAGES.logoMimos}
@@ -322,7 +329,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
             aria-hidden="true"
             width={26}
             height={26}
-            className="w-6.5 h-6.5 rounded-full bg-white/10"
+            className={`w-6.5 h-6.5 rounded-full ${isLight ? 'bg-[#EDF5FD] p-0.5' : 'bg-white/10'}`}
           />
           <span>Asistente Mimo · Precios y dudas</span>
         </button>
@@ -335,9 +342,15 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           role="dialog"
           aria-modal="true"
           aria-label="Mimo, asistente de Tintorería Mimos"
-          className="fixed right-4 bottom-20 md:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(510px,calc(100vh-7rem))] rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] shadow-2xl flex flex-col overflow-hidden focus:outline-hidden"
+          className="fixed right-4 bottom-20 md:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(510px,calc(100vh-7rem))] rounded-2xl border border-slate-200 bg-white shadow-2xl flex flex-col overflow-hidden focus:outline-hidden"
         >
-          <div className="bg-[#002147] text-white px-4 py-3 flex items-center justify-between">
+          <div
+            className={`px-4 py-3 flex items-center justify-between ${
+              isLight
+                ? 'bg-[#F4F9FE] text-[#002147] border-b border-slate-200'
+                : 'bg-[#002147] text-white'
+            }`}
+          >
             <div className="flex items-center gap-2.5">
               <img
                 src={IMAGES.logoMimos}
@@ -345,13 +358,13 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                 aria-hidden="true"
                 width={28}
                 height={28}
-                className="w-7 h-7 rounded-full bg-white/10"
+                className={`w-7 h-7 rounded-full ${isLight ? 'bg-white border border-slate-200 p-0.5' : 'bg-white/10'}`}
               />
               <div>
                 <p className="text-sm font-extrabold leading-tight">
                   Mimo · Asistente de Tintorería Mimos
                 </p>
-                <p className="text-[11px] text-slate-300">
+                <p className={`text-[11px] ${isLight ? 'text-[#0F76BB] font-semibold' : 'text-slate-300'}`}>
                   WhatsApp oficial: {CONTACT_INFO.whatsappNumber}
                 </p>
               </div>
@@ -360,7 +373,11 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Cerrar asistente"
-              className="p-1 rounded-lg hover:bg-white/10 text-white cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
+              className={`p-1 rounded-lg cursor-pointer focus:outline-hidden focus-visible:ring-2 ${
+                isLight
+                  ? 'hover:bg-[#EDF5FD] text-[#002147] focus-visible:ring-[#0F76BB]'
+                  : 'hover:bg-white/10 text-white focus-visible:ring-white'
+              }`}
             >
               <X className="w-5 h-5" aria-hidden="true" />
             </button>
@@ -406,7 +423,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                         'mimo_assistant'
                       )
                     }
-                    className="mt-2.5 inline-flex items-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
+                    className="mt-2.5 inline-flex items-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
                   >
                     <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>{m.whatsappCtaLabel || 'Abrir WhatsApp de Mimo'}</span>

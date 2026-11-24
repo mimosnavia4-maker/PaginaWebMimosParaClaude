@@ -64,7 +64,7 @@ export const B2BApartmentsSection: React.FC<B2BApartmentsSectionProps> = ({ onNa
                 href={CONTACT_INFO.whatsappApartamentosHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Solicitar presupuesto con Mimo</span>
@@ -184,7 +184,7 @@ export const B2BApartmentsSection: React.FC<B2BApartmentsSectionProps> = ({ onNa
                   href={pack.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-lg transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-lg transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>{pack.ctaTexto}</span>

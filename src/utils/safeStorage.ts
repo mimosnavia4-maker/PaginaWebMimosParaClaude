@@ -35,21 +35,9 @@ export function safeRemoveItem(key: string): boolean {
 const THEME_STORAGE_KEY = 'mimos_theme';
 
 export function getStoredTheme(): boolean {
-  if (typeof window === 'undefined') return false;
-  try {
-    const saved = safeGetItem(THEME_STORAGE_KEY);
-    if (saved === 'dark') return true;
-    if (saved === 'light') return false;
-    // Si no hay preferencia guardada, respetar preferencia del sistema si está disponible
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return true;
-    }
-    return false;
-  } catch {
-    return false;
-  }
+  return false;
 }
 
-export function setStoredTheme(darkMode: boolean): void {
-  safeSetItem(THEME_STORAGE_KEY, darkMode ? 'dark' : 'light');
+export function setStoredTheme(_darkMode: boolean): void {
+  safeSetItem(THEME_STORAGE_KEY, 'light');
 }

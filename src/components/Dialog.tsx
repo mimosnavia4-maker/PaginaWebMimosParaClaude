@@ -162,7 +162,7 @@ export const Dialog: React.FC<DialogProps> = ({
       <div
         ref={dialogRef}
         tabIndex={-1}
-        className={`relative w-full ${maxWidthClass} max-h-[92vh] flex flex-col rounded-3xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden focus:outline-none ${className}`}
+        className={`relative w-full ${maxWidthClass} max-h-[92vh] flex flex-col rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden focus:outline-none ${className}`}
       >
         {children}
       </div>

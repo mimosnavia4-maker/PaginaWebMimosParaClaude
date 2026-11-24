@@ -1,15 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { motion } from 'motion/react';
 import {
   MapPin,
   Phone,
   MessageCircle,
   ArrowUpRight,
-  Store,
-  Handshake,
-  Clock,
   Map as MapIcon,
   ExternalLink,
+  Search,
 } from 'lucide-react';
 import {
   CONTACT_INFO,
@@ -22,8 +19,10 @@ import {
   buildMimoWhatsAppUrl,
 } from '../../data/mimosData';
 import { trackPhoneClick, trackWhatsAppClick } from '../../utils/analytics';
+import { lazyWithRetry } from '../../utils/lazyWithRetry';
+import { ErrorBoundary } from '../ErrorBoundary';
 
-const MimosGoogleMap = React.lazy(() =>
+const MimosGoogleMap = lazyWithRetry(() =>
   import('../MimosGoogleMap').then((m) => ({ default: m.MimosGoogleMap }))
 );
 
@@ -46,10 +45,92 @@ function getPointDetailHref(punto: PuntoRegistro): string | null {
   return null;
 }
 
+interface InlineZoneGuidance {
+  title: string;
+  text: string;
+  href: string;
+  linkLabel: string;
+}
+
+function resolveInlineZoneGuidance(rawQuery: string): InlineZoneGuidance | null {
+  const q = rawQuery
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+
+  if (!q) return null;
+
+  if (q.includes('mos') || q.includes('3641') || q.includes('puxeiros') || q.includes('tameiga')) {
+    return {
+      title: 'Cobertura en Mos (sin tienda física aún)',
+      text: 'Atendemos Mos mediante ruta a domicilio (sujeta a mínimo) y entrega sin mínimo en Telas y Más (O Porriño) o Gregorio Espino (Vigo).',
+      href: '/zonas/mos',
+      linkLabel: 'Ver guía de Mos',
+    };
+  }
+  if (
+    q.includes('nigran') ||
+    q.includes('panxon') ||
+    q.includes('ramallosa') ||
+    q.includes('3634') ||
+    q.includes('3635') ||
+    q.includes('3636') ||
+    q.includes('3637')
+  ) {
+    return {
+      title: 'Cobertura en Nigrán (sin tienda física aún)',
+      text: 'Cubrimos Nigrán con ruta a domicilio (sujeta a mínimo) y entrega sin mínimo en Puntadas No Aire (Gondomar) o Navia por VG-20.',
+      href: '/zonas/nigran',
+      linkLabel: 'Ver guía de Nigrán',
+    };
+  }
+  if (q.includes('redondela') || q.includes('36800') || q.includes('chapela')) {
+    return {
+      title: 'Redondela · Comercio colaborador oficial',
+      text: 'Mismas tarifas que Vigo en Rúa Alfonso XII, 66 (sin pedido mínimo) conectado con planta Navia.',
+      href: '/zonas/redondela',
+      linkLabel: 'Ver ficha Redondela',
+    };
+  }
+  if (q.includes('gondomar') || q.includes('36380')) {
+    return {
+      title: 'Gondomar · Puntadas No Aire (Avda. Elduayen, 9)',
+      text: 'Recepción Mimos sin mínimo y taller propio de costura desde las 08:00 (M-V).',
+      href: '/zonas/gondomar',
+      linkLabel: 'Ver ficha Gondomar',
+    };
+  }
+  if (q.includes('ponteareas') || q.includes('36860')) {
+    return {
+      title: 'Ponteareas · Arregla2 (C/ Esperanza, 6)',
+      text: 'Tintorería, lavandería, alfombras y arreglos de costura con enlace directo a Vigo.',
+      href: '/zonas/ponteareas',
+      linkLabel: 'Ver ficha Ponteareas',
+    };
+  }
+  if (q.includes('porrino') || q.includes('36400')) {
+    return {
+      title: 'O Porriño · Telas y Más (C/ Manuel Rodríguez, 30)',
+      text: 'Punto colaborador sin mínimo ni recargos y taller propio de costura.',
+      href: '/zonas/o-porrino',
+      linkLabel: 'Ver ficha O Porriño',
+    };
+  }
+
+  return {
+    title: 'Red propia en Vigo + rutas en área metropolitana',
+    text: 'Atendemos directamente en Navia, Gregorio Espino, Venezuela y punto D’Passo, además de rutas programadas.',
+    href: '/zonas/vigo',
+    linkLabel: 'Ver zonas de Vigo',
+  };
+}
+
 export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
   onNavigate,
 }) => {
   const [filterKind, setFilterKind] = useState<FilterKind>('todos');
+  const [zoneQuery, setZoneQuery] = useState('');
   const [selectedPuntoId, setSelectedPuntoId] = useState<string | null>('as-teixugueiras');
   const [mapShouldLoad, setMapShouldLoad] = useState(false);
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -79,9 +160,28 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
   }, [mapShouldLoad]);
 
   const visiblePuntos = useMemo(() => {
-    if (filterKind === 'todos') return REGISTROS_PUNTOS;
-    return REGISTROS_PUNTOS.filter((p) => p.tipo === filterKind);
-  }, [filterKind]);
+    const base =
+      filterKind === 'todos'
+        ? REGISTROS_PUNTOS
+        : REGISTROS_PUNTOS.filter((p) => p.tipo === filterKind);
+    const q = zoneQuery
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+
+    if (!q) return base;
+    const matches = base.filter((p) =>
+      `${p.nombre_mostrado} ${p.localidad} ${p.direccion} ${p.codigo_postal}`
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .includes(q)
+    );
+    return matches.length > 0 ? matches : base;
+  }, [filterKind, zoneQuery]);
+
+  const zoneGuidance = resolveInlineZoneGuidance(zoneQuery);
 
   const filterTabs: { id: FilterKind; label: string }[] = [
     { id: 'todos', label: `Toda la red (${REGISTROS_PUNTOS.length})` },
@@ -92,56 +192,49 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
   return (
     <section
       id="puntos"
-      aria-labelledby="preview-puntos-heading"
-      className="py-18 lg:py-26 bg-[#FAFBFD] dark:bg-[#09182e] border-b border-slate-200/70 dark:border-slate-800"
+      aria-labelledby="puntos-heading"
+      className="py-16 lg:py-24 bg-[#F7F6F2] border-b border-slate-200"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Cabecera limpia y enlace a red y colaboradores */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6"
-        >
-          <div className="max-w-2xl space-y-2.5">
-            <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
-              Cobertura local transparente · Vigo y comarca
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div className="max-w-2xl space-y-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              Red sin pedido mínimo · Vigo y área metropolitana
             </p>
             <h2
-              id="preview-puntos-heading"
-              className="text-3xl sm:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance"
+              id="puntos-heading"
+              className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
             >
-              {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} puntos colaboradores
+              {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} comercios colaboradores
             </h2>
-            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-              Pulsa cualquier establecimiento para centrarlo en el mapa interactivo o entra en su ficha local con aparcamiento y ruta directa.
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Los 5 puntos colaboradores son establecimientos independientes con nuestras tarifas oficiales. Toca cualquiera para centrarlo en el mapa o abrir su ficha.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center gap-4 shrink-0">
             <a
               href="/puntos-mimos"
               onClick={(e) => onNavigate('/puntos-mimos', e)}
-              className="inline-flex items-center gap-1.5 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors whitespace-nowrap"
             >
-              <span>Ver fichas de los {REGISTROS_PUNTOS.length} puntos</span>
+              <span>Fichas completas ({REGISTROS_PUNTOS.length})</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
             </a>
             <a
               href="/se-punto-colaborador"
               onClick={(e) => onNavigate('/se-punto-colaborador', e)}
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#002147] hover:text-[#0F76BB] hover:underline whitespace-nowrap"
             >
               <span>¿Tienes comercio? Colabora</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Barra de filtros segmentada + acceso rápido a páginas por municipio */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-2">
-          <div className="inline-flex flex-wrap items-center gap-1 p-1.5 rounded-2xl bg-slate-200/75 dark:bg-[#0b1d36] w-fit">
+        {/* Barra de filtro integrada sin cajas: tabs subrayados + buscador rápido de municipio/CP */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-300 pb-3">
+          <div className="flex flex-wrap items-center gap-5">
             {filterTabs.map((tab) => {
               const active = filterKind === tab.id;
               return (
@@ -150,65 +243,66 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   type="button"
                   onClick={() => setFilterKind(tab.id)}
                   aria-pressed={active}
-                  className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                  className={`min-h-[44px] pb-2 border-b-2 text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap ${
                     active
-                      ? 'text-white'
-                      : 'text-slate-700 dark:text-slate-300 hover:text-[#002147] dark:hover:text-white'
+                      ? 'border-[#002147] text-[#002147]'
+                      : 'border-transparent text-slate-500 hover:text-[#002147]'
                   }`}
                 >
-                  {active && (
-                    <motion.span
-                      layoutId="locations-filter-bg"
-                      transition={{ type: 'spring', stiffness: 420, damping: 34 }}
-                      className="absolute inset-0 rounded-xl bg-[#002147] dark:bg-[#0F76BB]"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <span className="relative z-10">{tab.label}</span>
+                  {tab.label}
                 </button>
               );
             })}
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm">
-            <span className="font-bold text-slate-500 dark:text-slate-400">Guías por zona:</span>
-            {ZONAS_RESUMEN.map((zona) => (
-              <a
-                key={zona.slug}
-                href={zona.url}
-                onClick={(e) => onNavigate(zona.url, e)}
-                className="font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
-              >
-                {zona.localidad}
-              </a>
-            ))}
+          <div className="relative w-full lg:w-80">
+            <Search
+              className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+              aria-hidden="true"
+            />
+            <input
+              type="text"
+              value={zoneQuery}
+              onChange={(e) => setZoneQuery(e.target.value)}
+              aria-label="Filtrar por barrio, municipio o código postal"
+              placeholder="Buscar zona o CP (Mos, Nigrán, 36212...)"
+              className="w-full min-h-[44px] pl-9 pr-3 py-2 rounded-sm bg-white border border-slate-300 text-base text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+            />
           </div>
         </div>
 
-        {/* División limpia de 12 columnas: listado en cascada + mapa real */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Izquierda (5 cols): listado editorial en cascada sin cajas pesadas */}
-          <div className="lg:col-span-5 divide-y divide-slate-200/80 dark:divide-slate-800 bg-white dark:bg-[#071324] rounded-3xl border border-slate-200/70 dark:border-slate-800 overflow-hidden">
-            {visiblePuntos.map((punto, idx) => {
+        {zoneGuidance && (
+          <div className="border-l-2 border-[#0F76BB] pl-4 py-1 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm">
+            <div>
+              <strong className="text-[#002147]">{zoneGuidance.title}: </strong>
+              <span className="text-slate-600">{zoneGuidance.text}</span>
+            </div>
+            <a
+              href={zoneGuidance.href}
+              onClick={(e) => onNavigate(zoneGuidance.href, e)}
+              className="inline-flex items-center gap-1 min-h-[44px] font-bold text-[#0F76BB] hover:underline shrink-0"
+            >
+              <span>{zoneGuidance.linkLabel}</span>
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Izquierda (5 cols): Directorio con líneas finas */}
+          <div className="lg:col-span-5 divide-y divide-slate-300/80 border-t border-b border-slate-300/80">
+            {visiblePuntos.map((punto) => {
               const isSelected = selectedPuntoId === punto.id;
               const detailHref = getPointDetailHref(punto);
               const mapsHref = buildGoogleMapsUrl(punto);
 
               return (
-                <motion.div
+                <div
                   key={punto.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{
-                    duration: 0.3,
-                    delay: idx * 0.04,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className={`p-5 transition-colors ${
+                  className={`py-4 px-2 sm:px-3 transition-colors ${
                     isSelected
-                      ? 'bg-[#F4F7FB] dark:bg-[#0b1d36]'
-                      : 'hover:bg-slate-50/70 dark:hover:bg-[#0b1d36]/50'
+                      ? 'bg-white border-l-2 border-[#0F76BB]'
+                      : 'hover:bg-white/70'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -218,31 +312,24 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                         setSelectedPuntoId(punto.id);
                         setMapShouldLoad(true);
                       }}
-                      className="text-left flex-1 cursor-pointer group"
+                      className="text-left flex-1 cursor-pointer group min-h-[44px]"
                     >
-                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                        {punto.tipo === 'tienda' ? (
-                          <Store className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" aria-hidden="true" />
-                        ) : (
-                          <Handshake className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
-                        )}
-                        <span className="font-bold text-[#0F76BB] dark:text-[#60B5F6]">
-                          {punto.tipo === 'tienda' ? 'Tienda Propia' : 'Punto Colaborador'}
+                      <p className="text-xs font-bold text-[#0F76BB]">
+                        {punto.tipo === 'tienda' ? 'Tienda propia' : 'Comercio colaborador'} ·{' '}
+                        <span className="text-slate-500 font-medium">
+                          {punto.localidad}
                         </span>
-                        <span aria-hidden="true">·</span>
-                        <span>{punto.localidad}</span>
-                      </div>
+                      </p>
 
-                      <h3 className="text-base font-extrabold text-[#002147] dark:text-white mt-1 group-hover:text-[#0F76BB] transition-colors">
+                      <h3 className="text-base font-extrabold text-[#002147] mt-0.5 group-hover:text-[#0F76BB] transition-colors">
                         {punto.nombre_mostrado}
                       </h3>
 
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
+                      <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
                         {punto.direccion} · {punto.codigo_postal}
                       </p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 shrink-0 text-slate-400" aria-hidden="true" />
-                        <span>{punto.horario.resumen}</span>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        {punto.horario.resumen}
                       </p>
                     </button>
 
@@ -253,25 +340,25 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                         setMapShouldLoad(true);
                       }}
                       aria-label={`Centrar ${punto.nombre_mostrado} en el mapa`}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-colors cursor-pointer whitespace-nowrap ${
+                      className={`min-h-[44px] px-3 py-1.5 rounded-sm text-xs font-bold shrink-0 border transition-colors cursor-pointer whitespace-nowrap ${
                         isSelected
-                          ? 'bg-[#002147] text-white dark:bg-[#0F76BB]'
-                          : 'bg-slate-100 dark:bg-[#0b1d36] text-[#002147] dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-[#112645]'
+                          ? 'bg-[#0F76BB] border-[#0F76BB] text-white'
+                          : 'border-slate-300 bg-white text-[#002147] hover:border-[#002147]'
                       }`}
                     >
                       {isSelected ? 'En mapa' : 'Ver mapa'}
                     </button>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3 pt-2.5 border-t border-slate-200/60 dark:border-slate-800/70 text-xs font-bold">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs sm:text-sm font-bold">
                     <a
                       href={`tel:+34${punto.telefono}`}
                       onClick={() =>
-                        trackPhoneClick('/preview-portada', 'preview_location_row', {
+                        trackPhoneClick('/', 'location_row', {
                           store_id: punto.id,
                         })
                       }
-                      className="inline-flex items-center gap-1 text-[#002147] dark:text-slate-200 hover:text-[#0F76BB] tabular-nums"
+                      className="inline-flex items-center gap-1 min-h-[44px] text-[#002147] hover:text-[#0F76BB] tabular-nums"
                     >
                       <Phone className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
                       <span>{punto.telefonos_mostrados}</span>
@@ -281,89 +368,105 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                       href={mapsHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                      className="inline-flex items-center gap-1 min-h-[44px] text-[#0F76BB] hover:underline"
                     >
                       <span>Cómo llegar</span>
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                     </a>
 
                     {detailHref && (
                       <a
                         href={detailHref}
                         onClick={(e) => onNavigate(detailHref, e)}
-                        className="inline-flex items-center gap-1 text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                        className="inline-flex items-center gap-1 min-h-[44px] text-[#0F76BB] hover:underline"
                       >
                         <span>Ver ficha</span>
                         <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                       </a>
                     )}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
 
-          {/* Derecha (7 cols): Mapa interactivo Google Maps + franja limpia de contacto central */}
-          <div className="lg:col-span-7 space-y-5">
+          {/* Derecha (7 cols): Mapa real + atención central sin relleno */}
+          <div className="lg:col-span-7 space-y-6">
             <div ref={mapContainerRef}>
               {!mapShouldLoad ? (
-                <div className="w-full h-[460px] lg:h-[520px] rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] flex flex-col items-center justify-center p-6 text-center">
-                  <div className="w-12 h-12 rounded-2xl bg-[#0F76BB]/10 flex items-center justify-center mb-3">
-                    <MapPin className="w-6 h-6 text-[#0F76BB]" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mb-1.5">
+                <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
+                  <MapPin className="w-6 h-6 text-[#0F76BB] mb-2.5" aria-hidden="true" />
+                  <h3 className="text-lg font-extrabold text-[#002147] mb-1.5">
                     Mapa interactivo de tiendas y puntos Mimos
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mb-5">
-                    Explora nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} puntos colaboradores con rutas en Google Maps.
+                  <p className="text-sm text-slate-600 max-w-md mb-5">
+                    Consulta ubicaciones exactas y aparcamiento en nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} puntos colaboradores.
                   </p>
                   <button
                     type="button"
                     onClick={() => setMapShouldLoad(true)}
-                    className="inline-flex items-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors cursor-pointer"
                   >
                     <MapIcon className="w-4 h-4" aria-hidden="true" />
                     <span>Cargar mapa interactivo</span>
                   </button>
                 </div>
               ) : (
-                <React.Suspense
+                <ErrorBoundary
                   fallback={
-                    <div className="w-full h-[460px] lg:h-[520px] rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] flex flex-col items-center justify-center p-6 text-center">
-                      <MapPin className="w-7 h-7 text-[#0F76BB] mb-2" aria-hidden="true" />
-                      <p className="font-bold text-[#002147] dark:text-white text-sm">
-                        Cargando mapa interactivo de Mimos...
+                    <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
+                      <MapPin className="w-6 h-6 text-[#0F76BB] mb-2.5" aria-hidden="true" />
+                      <h3 className="text-lg font-extrabold text-[#002147] mb-1.5">
+                        Mapa interactivo no disponible temporalmente
+                      </h3>
+                      <p className="text-sm text-slate-600 max-w-md mb-5">
+                        Puedes abrir «Cómo llegar» en Google Maps directamente desde cualquiera de nuestras 3 tiendas y 5 puntos colaboradores de la lista.
                       </p>
+                      <button
+                        type="button"
+                        onClick={() => window.location.reload()}
+                        className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors cursor-pointer"
+                      >
+                        <MapIcon className="w-4 h-4" aria-hidden="true" />
+                        <span>Recargar mapa</span>
+                      </button>
                     </div>
                   }
                 >
-                  <MimosGoogleMap
-                    selectedPuntoId={selectedPuntoId}
-                    onSelectPunto={(p) => setSelectedPuntoId(p ? p.id : null)}
-                    onNavigate={onNavigate}
-                  />
-                </React.Suspense>
+                  <React.Suspense
+                    fallback={
+                      <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
+                        <MapPin className="w-7 h-7 text-[#0F76BB] mb-2" aria-hidden="true" />
+                        <p className="font-bold text-[#002147] text-sm">
+                          Cargando mapa interactivo de Mimos...
+                        </p>
+                      </div>
+                    }
+                  >
+                    <MimosGoogleMap
+                      selectedPuntoId={selectedPuntoId}
+                      onSelectPunto={(p) => setSelectedPuntoId(p ? p.id : null)}
+                      onNavigate={onNavigate}
+                    />
+                  </React.Suspense>
+                </ErrorBoundary>
               )}
             </div>
 
-            {/* Franja de atención central directa (sin relleno de tarjetas) */}
             <div
               id="contacto"
-              className="rounded-3xl bg-white dark:bg-[#071324] border border-slate-200/70 dark:border-slate-800 p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-5"
+              className="border-t border-slate-300 pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
               <div className="space-y-1">
-                <p className="text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6]">
-                  Atención central · {CONTACT_INFO.legalName}
+                <p className="text-xs font-bold text-[#0F76BB]">
+                  Sede central · {CONTACT_INFO.legalName}
                 </p>
-                <p className="text-base font-extrabold text-[#002147] dark:text-white">
+                <p className="text-base font-extrabold text-[#002147]">
                   {CONTACT_INFO.streetAddress} · {CONTACT_INFO.postalCode} {CONTACT_INFO.locality}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                <p className="text-xs sm:text-sm text-slate-600">
                   {CONTACT_INFO.scheduleFullNavia} ·{' '}
-                  <a
-                    href={CONTACT_INFO.emailHref}
-                    className="underline hover:text-[#0F76BB]"
-                  >
+                  <a href={CONTACT_INFO.emailHref} className="underline hover:text-[#0F76BB]">
                     {CONTACT_INFO.email}
                   </a>
                 </p>
@@ -372,8 +475,8 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
               <div className="flex flex-wrap items-center gap-3 shrink-0">
                 <a
                   href={CONTACT_INFO.phoneHref}
-                  onClick={() => trackPhoneClick('/preview-portada', 'central_strip')}
-                  className="inline-flex items-center gap-2 bg-[#F4F7FB] dark:bg-[#0b1d36] hover:bg-slate-200 dark:hover:bg-[#112645] text-[#002147] dark:text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors tabular-nums whitespace-nowrap"
+                  onClick={() => trackPhoneClick('/', 'central_strip')}
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-white border border-slate-300 hover:border-[#002147] text-[#002147] font-bold text-xs sm:text-sm px-4 py-2 rounded-sm transition-colors tabular-nums whitespace-nowrap"
                 >
                   <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
                   <span>{CONTACT_INFO.phoneDisplay}</span>
@@ -384,8 +487,8 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppClick('/preview-portada', 'central_strip')}
-                  className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors whitespace-nowrap"
+                  onClick={() => trackWhatsAppClick('/', 'central_strip')}
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-sm transition-colors whitespace-nowrap shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>WhatsApp Mimo</span>
@@ -394,6 +497,26 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Enlaces directos a los 7 municipios para SEO local (usando ZONAS_RESUMEN ligero) */}
+        <nav
+          aria-label="Cobertura por municipios"
+          className="pt-5 border-t border-slate-300/80 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm"
+        >
+          <span className="font-bold text-slate-500">
+            Guías por zona:
+          </span>
+          {ZONAS_RESUMEN.map((zona) => (
+            <a
+              key={zona.slug}
+              href={zona.url}
+              onClick={(e) => onNavigate(zona.url, e)}
+              className="inline-flex items-center min-h-[44px] font-bold text-[#0F76BB] hover:underline whitespace-nowrap"
+            >
+              {zona.localidad}
+            </a>
+          ))}
+        </nav>
       </div>
     </section>
   );

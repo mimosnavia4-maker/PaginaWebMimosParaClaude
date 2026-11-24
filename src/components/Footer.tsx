@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, MessageCircle, Mail, MapPin, Sun, Moon } from 'lucide-react';
+import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react';
 import {
   CONTACT_INFO,
   IMAGES,
@@ -14,17 +14,16 @@ interface FooterProps {
   currentPath?: string;
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
   onOpenCookieSettings: () => void;
-  darkMode: boolean;
-  onToggleDarkMode: () => void;
+  variant?: 'navy' | 'light';
 }
 
 export const Footer: React.FC<FooterProps> = ({
   currentPath,
   onNavigate,
   onOpenCookieSettings,
-  darkMode,
-  onToggleDarkMode,
+  variant = 'navy',
 }) => {
+  const isLight = variant === 'light';
   const activePath = currentPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
 
   const getStoreHref = (id: string) => {
@@ -36,11 +35,27 @@ export const Footer: React.FC<FooterProps> = ({
 
   const formatPhoneHref = (phone: string) => `tel:+34${phone.replace(/\s+/g, '')}`;
 
+  const headingAccent = isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]';
+  const headingNeutral = isLight ? 'text-[#002147]' : 'text-white';
+  const linkPrimary = isLight
+    ? 'text-[#002147] font-bold hover:text-[#0F76BB] hover:underline transition-colors'
+    : 'text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors';
+  const linkSecondary = isLight
+    ? 'text-slate-600 hover:text-[#002147] transition-colors'
+    : 'hover:text-white transition-colors';
+  const dividerBorder = isLight ? 'border-slate-200' : 'border-white/10';
+
   return (
     <>
-      <footer className="bg-[#002147] text-slate-300 pt-14 pb-36 md:pb-20 border-t border-white/10">
+      <footer
+        className={`pt-14 pb-36 md:pb-20 border-t transition-colors ${
+          isLight
+            ? 'bg-[#F8FBFF] text-slate-700 border-slate-200'
+            : 'bg-[#002147] text-slate-300 border-white/10'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 xl:gap-10 pb-10 border-b border-white/10">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 xl:gap-10 pb-10 border-b ${dividerBorder}`}>
             {/* Columna 1: Marca y 3 tiendas propias clicables (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
               <div className="flex items-center gap-3">
@@ -49,22 +64,26 @@ export const Footer: React.FC<FooterProps> = ({
                   alt="Logotipo de Tintorería Mimos Navia"
                   width={42}
                   height={42}
-                  className="w-10.5 h-10.5 rounded-full object-contain bg-white/10 p-0.5 shrink-0"
+                  className={`w-10.5 h-10.5 rounded-full object-contain p-0.5 shrink-0 ${
+                    isLight ? 'bg-[#EDF5FD] border border-[#002147]/10' : 'bg-white/10'
+                  }`}
                 />
                 <div>
-                  <p className="text-base font-extrabold text-white leading-none tracking-tight">
-                    TINTORERÍA <span className="text-[#60B5F6]">MIMOS</span>
+                  <p className={`text-base font-extrabold leading-none tracking-tight ${headingNeutral}`}>
+                    TINTORERÍA <span className={headingAccent}>MIMOS</span>
                   </p>
-                  <p className="text-xs text-slate-300 mt-1">{CONTACT_INFO.legalName}</p>
+                  <p className={`text-xs mt-1 ${isLight ? 'text-slate-500' : 'text-slate-300'}`}>
+                    {CONTACT_INFO.legalName}
+                  </p>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className={`text-xs sm:text-sm leading-relaxed ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
                 Tintorería, lavandería, arreglos de ropa, tapicerías a domicilio y limpieza profesional en Vigo y comarca.
               </p>
 
               <div className="space-y-3 pt-1">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-[#60B5F6]">
+                <p className={`text-[11px] font-bold uppercase tracking-wider ${headingAccent}`}>
                   Nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo
                 </p>
                 <ul className="space-y-2.5 text-xs">
@@ -75,17 +94,21 @@ export const Footer: React.FC<FooterProps> = ({
                         <a
                           href={href}
                           onClick={(e) => onNavigate(href, e)}
-                          className="font-bold text-white hover:text-[#60B5F6] hover:underline transition-colors block"
+                          className={`${linkPrimary} block`}
                         >
                           {t.direccion} ({t.codigo_postal})
                         </a>
-                        <span className="text-slate-300 block">
+                        <span className={`block ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
                           {t.horario.resumen}{' '}
                           <span aria-hidden="true">·</span>{' '}
                           <a
                             href={formatPhoneHref(t.telefono)}
                             onClick={() => trackPhoneClick(activePath, 'footer')}
-                            className="text-[#60B5F6] hover:text-white font-semibold tabular-nums whitespace-nowrap"
+                            className={`font-semibold tabular-nums whitespace-nowrap ${
+                              isLight
+                                ? 'text-[#0F76BB] hover:text-[#002147]'
+                                : 'text-[#60B5F6] hover:text-white'
+                            }`}
                           >
                             {t.telefonos_mostrados}
                           </a>
@@ -100,7 +123,7 @@ export const Footer: React.FC<FooterProps> = ({
             {/* Columna 2: Servicios destacados + Áreas principales (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
               <div>
-                <h2 className="text-xs font-bold text-[#60B5F6] uppercase tracking-wider mb-2.5">
+                <h2 className={`text-xs font-bold uppercase tracking-wider mb-2.5 ${headingAccent}`}>
                   Destacados a domicilio y taller
                 </h2>
                 <ul className="space-y-1.5 text-xs sm:text-sm">
@@ -108,7 +131,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/limpieza-sofas-vigo"
                       onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
-                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                      className={linkPrimary}
                     >
                       Limpieza de sofás a domicilio
                     </a>
@@ -117,7 +140,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/limpieza-alfombras-vigo"
                       onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                      className={linkPrimary}
                     >
                       Limpieza de alfombras a domicilio
                     </a>
@@ -126,7 +149,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/reparacion-alfombras-vigo"
                       onClick={(e) => onNavigate('/reparacion-alfombras-vigo', e)}
-                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                      className={linkPrimary}
                     >
                       Reparación de alfombras (flecos y bordes)
                     </a>
@@ -135,7 +158,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/limpieza-vestidos-novia-ceremonia-vigo"
                       onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
-                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                      className={linkPrimary}
                     >
                       Vestidos de novia, fiesta y ceremonia
                     </a>
@@ -144,16 +167,16 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/arreglos-de-ropa-vigo"
                       onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                      className={linkPrimary}
                     >
-                      Costura y arreglos (18 servicios)
+                      Costura y arreglos de ropa
                     </a>
                   </li>
                   <li>
                     <a
                       href="/limpieza-incendios-siniestros-vigo"
                       onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
-                      className="text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors"
+                      className={linkPrimary}
                     >
                       Incendios, humo y siniestros (Seguros)
                     </a>
@@ -161,8 +184,8 @@ export const Footer: React.FC<FooterProps> = ({
                 </ul>
               </div>
 
-              <div className="pt-3 border-t border-white/10">
-                <h2 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5">
+              <div className={`pt-3 border-t ${dividerBorder}`}>
+                <h2 className={`text-xs font-bold uppercase tracking-wider mb-2.5 ${headingNeutral}`}>
                   Servicios en Vigo
                 </h2>
                 <ul className="space-y-1.5 text-xs sm:text-sm">
@@ -171,7 +194,7 @@ export const Footer: React.FC<FooterProps> = ({
                       <a
                         href={s.url}
                         onClick={(e) => onNavigate(s.url, e)}
-                        className="hover:text-white transition-colors"
+                        className={linkSecondary}
                       >
                         {s.titulo}
                       </a>
@@ -181,7 +204,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/limpieza-profesional-vigo"
                       onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
-                      className="text-[#60B5F6] font-bold hover:underline"
+                      className={`font-bold hover:underline ${headingAccent}`}
                     >
                       Limpieza profesional en Vigo →
                     </a>
@@ -193,7 +216,7 @@ export const Footer: React.FC<FooterProps> = ({
             {/* Columna 3: Red local y 4 Guías destacadas (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
               <div>
-                <h2 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5">
+                <h2 className={`text-xs font-bold uppercase tracking-wider mb-2.5 ${headingNeutral}`}>
                   Tiendas y puntos por localidad
                 </h2>
                 <ul className="space-y-1.5 text-xs sm:text-sm">
@@ -201,7 +224,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/puntos-mimos"
                       onClick={(e) => onNavigate('/puntos-mimos', e)}
-                      className="text-[#60B5F6] font-bold hover:underline"
+                      className={`font-bold hover:underline ${headingAccent}`}
                     >
                       Buscador de Tiendas y Puntos Mimos
                     </a>
@@ -211,7 +234,7 @@ export const Footer: React.FC<FooterProps> = ({
                       <a
                         href={zona.url}
                         onClick={(e) => onNavigate(zona.url, e)}
-                        className="hover:text-white transition-colors"
+                        className={linkSecondary}
                       >
                         {zona.localidad} ({zona.comarca})
                       </a>
@@ -220,15 +243,15 @@ export const Footer: React.FC<FooterProps> = ({
                 </ul>
               </div>
 
-              <div className="pt-3 border-t border-white/10">
+              <div className={`pt-3 border-t ${dividerBorder}`}>
                 <div className="flex items-center justify-between gap-2 mb-2.5">
-                  <p className="text-xs font-bold text-white uppercase tracking-wider">
+                  <p className={`text-xs font-bold uppercase tracking-wider ${headingNeutral}`}>
                     Guías de cuidado textil
                   </p>
                   <a
                     href="/blog"
                     onClick={(e) => onNavigate('/blog', e)}
-                    className="text-[11px] font-bold text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+                    className={`text-[11px] font-bold hover:underline whitespace-nowrap shrink-0 ${headingAccent}`}
                   >
                     Ver todas ({ARTICULOS_BLOG_RESUMEN.length}) →
                   </a>
@@ -239,7 +262,9 @@ export const Footer: React.FC<FooterProps> = ({
                       <a
                         href={art.url}
                         onClick={(e) => onNavigate(art.url, e)}
-                        className="hover:text-[#60B5F6] transition-colors block"
+                        className={`transition-colors block ${
+                          isLight ? 'text-slate-700 hover:text-[#0F76BB]' : 'hover:text-[#60B5F6]'
+                        }`}
                       >
                         {art.titulo}
                       </a>
@@ -252,7 +277,7 @@ export const Footer: React.FC<FooterProps> = ({
             {/* Columna 4: Contacto sin cortes de correo, Redes y Colaboraciones (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
               <div>
-                <h2 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5">
+                <h2 className={`text-xs font-bold uppercase tracking-wider mb-2.5 ${headingNeutral}`}>
                   Contacto y Mimo
                 </h2>
                 <ul className="space-y-2 text-xs sm:text-sm">
@@ -260,9 +285,11 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href={CONTACT_INFO.phoneHref}
                       onClick={() => trackPhoneClick(activePath, 'footer')}
-                      className="inline-flex items-center gap-2 hover:text-white tabular-nums font-bold"
+                      className={`inline-flex items-center gap-2 tabular-nums font-bold ${
+                        isLight ? 'text-[#002147] hover:text-[#0F76BB]' : 'hover:text-white'
+                      }`}
                     >
-                      <Phone className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
+                      <Phone className={`w-4 h-4 shrink-0 ${headingAccent}`} aria-hidden="true" />
                       <span>{CONTACT_INFO.phoneDisplay}</span>
                     </a>
                   </li>
@@ -272,18 +299,25 @@ export const Footer: React.FC<FooterProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackWhatsAppClick(activePath, 'footer')}
-                      className="inline-flex items-center gap-2 hover:text-white font-bold tabular-nums"
+                      className={`inline-flex items-center gap-2 font-bold tabular-nums ${
+                        isLight ? 'text-[#002147] hover:text-[#178A47]' : 'hover:text-white'
+                      }`}
                     >
-                      <MessageCircle className="w-4 h-4 text-[#4ade80] shrink-0" aria-hidden="true" />
+                      <MessageCircle
+                        className={`w-4 h-4 shrink-0 ${isLight ? 'text-[#1FA855]' : 'text-[#4ade80]'}`}
+                        aria-hidden="true"
+                      />
                       <span>Mimo: {CONTACT_INFO.whatsappNumber}</span>
                     </a>
                   </li>
                   <li>
                     <a
                       href={CONTACT_INFO.emailHref}
-                      className="inline-flex items-center gap-2 hover:text-white whitespace-nowrap text-xs sm:text-sm"
+                      className={`inline-flex items-center gap-2 whitespace-nowrap text-xs sm:text-sm ${
+                        isLight ? 'text-slate-700 hover:text-[#0F76BB]' : 'hover:text-white'
+                      }`}
                     >
-                      <Mail className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
+                      <Mail className={`w-4 h-4 shrink-0 ${headingAccent}`} aria-hidden="true" />
                       <span>{CONTACT_INFO.email}</span>
                     </a>
                   </li>
@@ -291,7 +325,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/contacto"
                       onClick={(e) => onNavigate('/contacto', e)}
-                      className="text-xs font-bold text-[#60B5F6] hover:underline"
+                      className={`text-xs font-bold hover:underline ${headingAccent}`}
                     >
                       Contacto, horarios y formulario →
                     </a>
@@ -300,8 +334,12 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
 
               {/* Redes Sociales Oficiales */}
-              <div className="pt-3 border-t border-white/10 space-y-2">
-                <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+              <div className={`pt-3 border-t space-y-2 ${dividerBorder}`}>
+                <p
+                  className={`text-[11px] font-bold uppercase tracking-wider ${
+                    isLight ? 'text-slate-500' : 'text-slate-300'
+                  }`}
+                >
                   Síguenos en redes
                 </p>
                 <div className="flex items-center gap-2.5">
@@ -352,8 +390,8 @@ export const Footer: React.FC<FooterProps> = ({
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-white/10 space-y-2">
-                <p className="text-xs font-bold text-white uppercase tracking-wider">
+              <div className={`pt-3 border-t space-y-2 ${dividerBorder}`}>
+                <p className={`text-xs font-bold uppercase tracking-wider ${headingNeutral}`}>
                   Colaboraciones y empleo
                 </p>
                 <ul className="space-y-1.5 text-xs">
@@ -361,7 +399,9 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/se-punto-colaborador"
                       onClick={(e) => onNavigate('/se-punto-colaborador', e)}
-                      className="text-[#60B5F6] hover:text-white transition-colors font-bold"
+                      className={`transition-colors font-bold ${
+                        isLight ? 'text-[#0F76BB] hover:text-[#002147]' : 'text-[#60B5F6] hover:text-white'
+                      }`}
                     >
                       Sé Punto Colaborador →
                     </a>
@@ -370,7 +410,9 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/empleo-unete-a-nosotros"
                       onClick={(e) => onNavigate('/empleo-unete-a-nosotros', e)}
-                      className="text-slate-300 hover:text-white transition-colors font-medium"
+                      className={`transition-colors font-medium ${
+                        isLight ? 'text-slate-600 hover:text-[#002147]' : 'text-slate-300 hover:text-white'
+                      }`}
                     >
                       Empleo (Únete a nosotros)
                     </a>
@@ -379,7 +421,9 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/feder"
                       onClick={(e) => onNavigate('/feder', e)}
-                      className="text-slate-300 hover:text-[#60B5F6] transition-colors font-medium"
+                      className={`transition-colors font-medium ${
+                        isLight ? 'text-slate-600 hover:text-[#0F76BB]' : 'text-slate-300 hover:text-[#60B5F6]'
+                      }`}
                     >
                       FEDER (Re-Acciona TIC)
                     </a>
@@ -388,38 +432,24 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/programa-bono-energia-peme-2025-in417z"
                       onClick={(e) => onNavigate('/programa-bono-energia-peme-2025-in417z', e)}
-                      className="text-slate-300 hover:text-[#60B5F6] transition-colors font-medium"
+                      className={`transition-colors font-medium ${
+                        isLight ? 'text-slate-600 hover:text-[#0F76BB]' : 'text-slate-300 hover:text-[#60B5F6]'
+                      }`}
                     >
                       Bono Energía Peme 2025: IN417Z
                     </a>
                   </li>
                 </ul>
               </div>
-
-              <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={onToggleDarkMode}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 hover:border-white/40 text-xs font-bold text-white transition-colors cursor-pointer"
-                >
-                  {darkMode ? (
-                    <>
-                      <Sun className="w-4 h-4 text-amber-400" aria-hidden="true" />
-                      <span>Modo claro</span>
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="w-4 h-4 text-[#60B5F6]" aria-hidden="true" />
-                      <span>Modo oscuro</span>
-                    </>
-                  )}
-                </button>
-              </div>
             </div>
           </div>
 
           {/* Barra Legal limpia en una línea, con margen derecho para no coincidir con el botón flotante de Mimo */}
-          <div className="pt-6 md:pr-64 lg:pr-72 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-400">
+          <div
+            className={`pt-6 md:pr-64 lg:pr-72 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs ${
+              isLight ? 'text-slate-500' : 'text-slate-400'
+            }`}
+          >
             <p>
               © {new Date().getFullYear()} {CONTACT_INFO.legalName} Todos los derechos reservados.
             </p>
@@ -428,7 +458,9 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/aviso-legal"
                 onClick={(e) => onNavigate('/aviso-legal', e)}
-                className="hover:text-white underline-offset-4 hover:underline whitespace-nowrap"
+                className={`underline-offset-4 hover:underline whitespace-nowrap ${
+                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
+                }`}
               >
                 Aviso legal
               </a>
@@ -436,7 +468,9 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/privacidad"
                 onClick={(e) => onNavigate('/privacidad', e)}
-                className="hover:text-white underline-offset-4 hover:underline whitespace-nowrap"
+                className={`underline-offset-4 hover:underline whitespace-nowrap ${
+                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
+                }`}
               >
                 Política de privacidad
               </a>
@@ -444,7 +478,9 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/cookies"
                 onClick={(e) => onNavigate('/cookies', e)}
-                className="hover:text-white underline-offset-4 hover:underline whitespace-nowrap"
+                className={`underline-offset-4 hover:underline whitespace-nowrap ${
+                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
+                }`}
               >
                 Política de cookies
               </a>
@@ -452,7 +488,9 @@ export const Footer: React.FC<FooterProps> = ({
               <button
                 type="button"
                 onClick={onOpenCookieSettings}
-                className="hover:text-white underline-offset-4 hover:underline cursor-pointer whitespace-nowrap"
+                className={`underline-offset-4 hover:underline cursor-pointer whitespace-nowrap ${
+                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
+                }`}
               >
                 Gestionar cookies
               </button>
@@ -461,17 +499,25 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
       </footer>
 
-      {/* Barra Inferior Fija en Móvil: 3 Accesos Rápidos (Llamar, WhatsApp Mimo, Puntos Mimos — Sección 8 del Plan Maestro) */}
+      {/* Barra Inferior Fija en Móvil: 3 Accesos Rápidos (Llamar, WhatsApp Mimo, Puntos Mimos) */}
       <nav
         aria-label="Accesos rápidos en móvil"
-        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-[#002147] border-t border-white/15 px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] grid grid-cols-3 gap-1.5 shadow-2xl"
+        className={`md:hidden fixed bottom-0 inset-x-0 z-40 border-t px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] grid grid-cols-3 gap-1.5 ${
+          isLight
+            ? 'bg-white/95 backdrop-blur-xs border-slate-200 shadow-[0_-8px_24px_-8px_rgba(0,33,71,0.12)]'
+            : 'bg-[#002147] border-white/15 shadow-2xl'
+        }`}
       >
         <a
           href={CONTACT_INFO.phoneHref}
           onClick={() => trackPhoneClick(activePath, 'mobile_bar')}
-          className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg bg-white/10 text-white text-xs font-bold tabular-nums"
+          className={`flex items-center justify-center gap-1.5 min-h-[44px] py-2.5 px-2 rounded-lg text-xs font-bold tabular-nums ${
+            isLight
+              ? 'bg-[#EDF5FD] text-[#002147] border border-[#002147]/15'
+              : 'bg-white/10 text-white'
+          }`}
         >
-          <Phone className="w-3.5 h-3.5 text-[#60B5F6] shrink-0" aria-hidden="true" />
+          <Phone className={`w-3.5 h-3.5 shrink-0 ${headingAccent}`} aria-hidden="true" />
           <span>Llamar</span>
         </a>
 
@@ -480,7 +526,7 @@ export const Footer: React.FC<FooterProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick(activePath, 'mobile_bar')}
-          className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg bg-[#178A47] text-white text-xs font-bold"
+          className="flex items-center justify-center gap-1.5 min-h-[44px] py-2.5 px-2 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white text-xs font-bold transition-colors"
         >
           <MessageCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>WhatsApp</span>
@@ -489,7 +535,7 @@ export const Footer: React.FC<FooterProps> = ({
         <a
           href="/puntos-mimos"
           onClick={(e) => onNavigate('/puntos-mimos', e)}
-          className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg bg-[#0F76BB] text-white text-xs font-bold"
+          className="flex items-center justify-center gap-1.5 min-h-[44px] py-2.5 px-2 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold transition-colors"
         >
           <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>Puntos Mimos</span>

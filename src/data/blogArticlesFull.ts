@@ -1404,7 +1404,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
       '¿Tienes unos vaqueros pendientes de bajo original, un vestido de evento para ajustar o una cazadora de piel con la cremallera dañada? Acude sin cita previa en horario comercial (o consulta antes con Mimo por WhatsApp si necesitas prueba de ceremonia o valoración exprés) para revisar la prenda y darte presupuesto cerrado.',
     enlacesInternos: [
       {
-        texto: 'Costura y Arreglos de Ropa en Vigo (18 especialidades)',
+        texto: 'Arreglos de ropa y costura profesional de todo tipo de prendas',
         href: '/arreglos-de-ropa-vigo',
         descripcion: 'Catálogo completo de arreglos, configurador WhatsApp y localizador de talleres.',
       },

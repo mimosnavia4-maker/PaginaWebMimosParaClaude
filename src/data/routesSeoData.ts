@@ -30,9 +30,9 @@ export interface RouteMeta {
 export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
   '/': {
     title: 'Tintorería Mimos Navia | Tintorería y Lavandería Vigo',
-    h1: 'Cuidamos tu ropa, tus textiles del hogar y tus espacios con mimo profesional.',
+    h1: 'Tintorería, lavandería y limpieza profesional en Vigo',
     description:
-      'Tintorería, lavandería, costura con 18 arreglos, limpieza de sofás a domicilio, limpieza y arreglo de alfombras y limpieza profesional en Vigo.',
+      'Tintorería, lavandería, costura y arreglos de ropa, limpieza de sofás a domicilio, limpieza y arreglo de alfombras y limpieza profesional en Vigo.',
     canonical: 'https://www.tintoreriamimos.es/',
     robots: 'index, follow',
     ogType: 'website',

@@ -17,13 +17,13 @@
   --font-sans: "Nunito Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Paleta estricta Sección 8 del Plan Maestro: Azul marino (#002147), Azul vivo rótulo (#0F76BB), Blanco, Verde WhatsApp (#178A47). Sin turquesa. */
+  /* Paleta estricta: Azul marino (#002147), Azul vivo rótulo (#0F76BB), Blanco, Verde WhatsApp (#1FA855). Sin turquesa. */
   --color-mimos-navy: #002147;
   --color-mimos-navy-light: #0a3161;
   --color-mimos-blue: #0F76BB;
   --color-mimos-blue-dark: #0B5C94;
-  --color-mimos-whatsapp: #178A47;
-  --color-mimos-whatsapp-hover: #126E38;
+  --color-mimos-whatsapp: #1FA855;
+  --color-mimos-whatsapp-hover: #178A47;
 }
 
 @layer base {

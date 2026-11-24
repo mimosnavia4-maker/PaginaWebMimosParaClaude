@@ -143,7 +143,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                         service_id: bloque.id,
                       })
                     }
-                    className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors"
+                    className="inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors"
                   >
                     <MessageCircle className="w-4 h-4" aria-hidden="true" />
                     <span>Consultar con Mimo</span>
@@ -170,13 +170,13 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
           </div>
         </div>
 
-        {/* FAMILIA 02: COSTURA Y ARREGLOS DE ROPA (18 servicios) */}
+        {/* FAMILIA 02: COSTURA Y ARREGLOS DE ROPA */}
         <div className="mb-14 rounded-2xl border-2 border-[#002147]/25 dark:border-[#0F76BB]/50 bg-white dark:bg-[#071324] p-6 sm:p-8 lg:p-10 shadow-2xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
               <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] uppercase tracking-wider">
                 <Scissors className="w-4 h-4" aria-hidden="true" />
-                <span>Familia 02 · Costura y arreglos de ropa · 18 especialidades</span>
+                <span>Familia 02 · Arreglos de ropa y costura profesional</span>
                 <span aria-hidden="true">·</span>
                 <span>
                   {TIENDAS_PROPIAS.length} Tiendas en Vigo y {puntosColaboradoresCostura.length} Puntos con Costura
@@ -198,7 +198,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
               </h3>
 
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                Cubrimos los <strong>18 servicios de nuestro catálogo de costura</strong>: desde <strong>bajos y bastillas, pantalones, faldas, vestidos, abrigos, cambio y reparación de cremalleras, botones, estrechar/ensanchar, ajustes de cintura, zurcidos y descosidos</strong> hasta especialidades en taller propio como <strong>prendas delicadas, prendas de piel, bordados personalizados, servicio express y confección de cortinas, estores y cojines</strong>.
+                Realizamos <strong>arreglos de ropa y costura profesional de todo tipo de prendas</strong>: desde <strong>bajos y bastillas, pantalones, faldas, vestidos, abrigos, cambio y reparación de cremalleras, botones, estrechar/ensanchar, ajustes de cintura, zurcidos y descosidos</strong> hasta especialidades en taller propio como <strong>prendas delicadas, prendas de piel, bordados personalizados, servicio express y confección de cortinas, estores y cojines</strong>.
               </p>
 
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
@@ -220,7 +220,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                   className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
                 >
                   <MapPin className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver los 18 arreglos y talleres</span>
+                  <span>Ver arreglos de costura y talleres</span>
                   <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                 </a>
               )}
@@ -234,7 +234,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                     service_id: 'costura_arreglos',
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Consultar mi arreglo con Mimo</span>
@@ -282,7 +282,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                     service_id: 'limpieza_profesional',
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Pedir presupuesto</span>
@@ -343,7 +343,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                     service_id: 'alojamientos_turisticos',
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Consultar para alojamientos</span>
@@ -429,7 +429,7 @@ export const ServicesAndPricingSection: React.FC<ServicesAndPricingSectionProps>
                   onClick={() =>
                     trackWhatsAppClick('/#servicios', 'pricing_custom_query')
                   }
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-lg transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3.5 rounded-lg transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>Consultar tarifa con Mimo</span>

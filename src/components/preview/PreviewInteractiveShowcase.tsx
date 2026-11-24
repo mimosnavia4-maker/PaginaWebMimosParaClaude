@@ -76,17 +76,17 @@ const CARE_CATEGORIES: CareCategory[] = [
   {
     id: 'alfombras',
     shortTitle: 'Alfombras y flecos',
-    tagline: 'Recogida en casa + lavado plano y taller',
-    fullTitle: 'Limpieza profunda y restauración de alfombras en Navia',
+    tagline: 'Recogida en casa + taller especialista',
+    fullTitle: 'Limpieza profunda y restauración de alfombras en Vigo',
     description:
-      'Recogemos tu alfombra en casa o la recibimos en tienda. Aplicamos aspirado previo, lavado plano por tipo de fibra, secado en ambiente controlado y costura.',
+      'Recogemos tu alfombra en casa o la recibimos en tienda y coordinamos su limpieza por tipo de fibra, secado controlado y restauración de flecos y bordes mediante especialista colaborador.',
     highlights: [
       'Lana, seda, yute, viscosa, fibras sintéticas y kilims',
-      'Taller propio para reponer flecos, ribetes y reforzar bordes',
+      'Especialista colaborador para reponer flecos, ribetes y reforzar bordes',
       'Devolución enrollada y protegida lista para volver a colocar',
     ],
     imageUrl: IMAGES.alfombrasMimos,
-    imageAlt: 'Limpieza e higienización de alfombras en instalaciones de Tintorería Mimos',
+    imageAlt: 'Revisión y medición profesional de una alfombra de lana',
     pageHref: '/limpieza-alfombras-vigo',
     pageLabel: 'Ver servicio de alfombras',
     defaultQuery: 'limpiar o reparar flecos de una alfombra',
@@ -94,7 +94,7 @@ const CARE_CATEGORIES: CareCategory[] = [
   },
   {
     id: 'costura',
-    shortTitle: 'Costura y 18 arreglos',
+    shortTitle: 'Costura y arreglos',
     tagline: 'Talleres propios in situ + puntos con costura',
     fullTitle: 'Modistería profesional: bajos, cremalleras, tallas y cortinas',
     description:
@@ -107,7 +107,7 @@ const CARE_CATEGORIES: CareCategory[] = [
     imageUrl: IMAGES.arreglosRopa,
     imageAlt: 'Taller de costura y arreglos de ropa de Tintorería Mimos en Vigo',
     pageHref: '/arreglos-de-ropa-vigo',
-    pageLabel: 'Explorar los 18 arreglos',
+    pageLabel: 'Explorar arreglos de ropa',
     defaultQuery: 'un arreglo de costura o compostura de ropa',
     icon: Scissors,
   },
@@ -349,7 +349,7 @@ export const PreviewInteractiveShowcase: React.FC<PreviewInteractiveShowcaseProp
                             service_id: activeCategory.id,
                           })
                         }
-                        className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3 rounded-xl transition-all active:scale-[0.98]"
+                        className="inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-xl transition-all active:scale-[0.98]"
                       >
                         <Send className="w-4 h-4" aria-hidden="true" />
                         <span>Consultar con Mimo por WhatsApp</span>

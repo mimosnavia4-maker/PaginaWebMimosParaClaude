@@ -26,11 +26,11 @@ import {
   PUNTOS_COLABORADORES,
   RESENAS_REALES,
   CONTACT_INFO,
-  IMAGES,
   ZONAS_SERVICIO,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
 import { trackWhatsAppClick, trackPhoneClick } from '../utils/analytics';
+import { PageHeroLight } from './PageHeroLight';
 
 interface CarpetRepairPageProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -86,8 +86,6 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
   const [formaEntrega, setFormaEntrega] = useState(DELIVERY_MODES[0]);
   const [notas, setNotas] = useState('');
   const [copied, setCopied] = useState(false);
-
-  const [heroImgError, setHeroImgError] = useState(false);
 
   const activeSpec =
     SERVICIO_REPARACION_ALFOMBRAS_DATA.especialidades.find(
@@ -159,106 +157,53 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
       <main
         id="main-content"
         tabIndex={-1}
-        className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+        className="focus:outline-hidden bg-white text-slate-900 border-b border-slate-200"
       >
-        {/* 1. HERO EDITORIAL DUAL (#002147) */}
-        <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav aria-label="Migas de pan" className="mb-6">
-              <ol className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-300">
-                <li>
-                  <a
-                    href="/"
-                    onClick={(e) => onNavigate('/', e)}
-                    className="hover:text-white underline-offset-4 hover:underline"
-                  >
-                    Inicio
-                  </a>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>
-                  <a
-                    href="/limpieza-alfombras-vigo"
-                    onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                    className="hover:text-white underline-offset-4 hover:underline"
-                  >
-                    Limpieza de alfombras
-                  </a>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li className="text-[#60B5F6] font-bold">Reparación de alfombras en Vigo</li>
-              </ol>
-            </nav>
+        {/* 1. CABECERA LUMINOSA */}
+        <PageHeroLight
+          breadcrumbs={[
+            { label: 'Inicio', href: '/' },
+            { label: 'Limpieza de alfombras', href: '/limpieza-alfombras-vigo' },
+            { label: 'Reparación de alfombras en Vigo' },
+          ]}
+          onNavigate={onNavigate}
+          kicker="Solo reparación o limpieza + arreglo · Restaurador especialista colaborador"
+          title={SERVICIO_REPARACION_ALFOMBRAS_DATA.h1}
+          description={SERVICIO_REPARACION_ALFOMBRAS_DATA.subtituloCabecera}
+          note={SERVICIO_REPARACION_ALFOMBRAS_DATA.aclaracionOperativa}
+          whatsappHref={whatsappUrl}
+          whatsappLabel="Consultar reparación por WhatsApp"
+          onWhatsAppClick={() =>
+            trackWhatsAppClick(SERVICIO_REPARACION_ALFOMBRAS_DATA.url, 'service_detail', {
+              service_id: 'reparacion-alfombras',
+            })
+          }
+          secondaryAction={{
+            label: 'Ver tiendas y recogida',
+            href: '#puntos-entrega-reparacion',
+            icon: <Store className="w-4 h-4 shrink-0" aria-hidden="true" />,
+            isInternalRoute: false,
+          }}
+          image={{
+            src: reparacionAlfombrasImg,
+            alt: 'Trabajo artesanal de remate de flecos y festón lateral sobre una alfombra tejida en mesa de restauración',
+            caption:
+              'Remate de flecos, festón perimetral y refuerzo de esquinas valorados por restaurador especialista mediante colaborador de Tintorería Mimos.',
+            fallbackTitle: 'Reparación y restauración de alfombras en Vigo',
+            fallbackSubtitle: 'Recepción en tiendas y recogida concertada a domicilio',
+          }}
+        />
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-              <div className="lg:col-span-7 space-y-5">
-                <p className="text-xs sm:text-sm font-mono uppercase tracking-wider font-bold text-[#60B5F6]">
-                  Solo reparación o limpieza + arreglo · Restaurador especialista colaborador
-                </p>
-
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12] text-balance">
-                  {SERVICIO_REPARACION_ALFOMBRAS_DATA.h1}
-                </h1>
-
-                <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
-                  {SERVICIO_REPARACION_ALFOMBRAS_DATA.subtituloCabecera}
-                </p>
-
-                <div className="p-4 sm:p-5 rounded-xl bg-white/10 border border-white/15 text-xs sm:text-sm text-slate-100 leading-relaxed">
-                  {SERVICIO_REPARACION_ALFOMBRAS_DATA.aclaracionOperativa}
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
-                  <button
-                    type="button"
-                    onClick={() => scrollToFormWithPreset(activeSpecId, activeModeId)}
-                    className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors cursor-pointer sm:whitespace-nowrap shrink-0"
-                  >
-                    <Camera className="w-5 h-5 shrink-0" aria-hidden="true" />
-                    <span>Consultar reparación con fotos</span>
-                  </button>
-
-                  <a
-                    href="#puntos-entrega-reparacion"
-                    className="inline-flex items-center justify-center gap-2 bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors sm:whitespace-nowrap shrink-0"
-                  >
-                    <Store className="w-5 h-5 shrink-0" aria-hidden="true" />
-                    <span>Ver tiendas y recogida</span>
-                  </a>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5">
-                <figure className="rounded-2xl overflow-hidden border border-white/15 bg-[#071936] shadow-lg">
-                  <img
-                    src={heroImgError ? IMAGES.alfombrasMimos : reparacionAlfombrasImg}
-                    alt="Trabajo artesanal de remate de flecos y festón lateral sobre una alfombra tejida en mesa de restauración"
-                    width={800}
-                    height={600}
-                    fetchPriority="high"
-                    referrerPolicy="no-referrer"
-                    onError={() => setHeroImgError(true)}
-                    className="w-full aspect-4/3 object-cover"
-                  />
-                  <figcaption className="p-4 text-xs text-slate-300 border-t border-white/10 leading-relaxed">
-                    Remate de flecos, festón perimetral y refuerzo de esquinas valorados por restaurador especialista mediante colaborador de Tintorería Mimos.
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 2. ESPECIALIDADES DE REPARACIÓN + MODALIDAD FLEXIBLE (#FFFFFF) */}
-        <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+        {/* 2. ESPECIALIDADES DE REPARACIÓN + MODALIDAD FLEXIBLE (Blanco) */}
+        <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-            {/* 2A. Selector de modalidad: Solo reparación vs Limpieza + Reparación */}
+            {/* Selector de modalidad: Solo reparación vs Limpieza + Reparación */}
             <div>
               <div className="max-w-3xl mb-6 space-y-1.5">
-                <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
                   Contratación flexible según lo que necesite tu pieza
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                   Elige solo reparación o combina limpieza + arreglo en un viaje
                 </h2>
               </div>
@@ -272,16 +217,16 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                         key={mode.id}
                         type="button"
                         onClick={() => setActiveModeId(mode.id)}
-                        className={`text-left p-5 rounded-2xl border-2 transition-colors cursor-pointer ${
+                        className={`text-left min-h-[72px] p-5 rounded-sm border transition-colors cursor-pointer ${
                           isSelected
-                            ? 'border-[#002147] dark:border-[#60B5F6] bg-[#F4F7FB] dark:bg-[#0b1d36]'
-                            : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] hover:border-[#0F76BB]'
+                            ? 'border-[#0F76BB] border-l-4 border-l-[#0F76BB] bg-[#EDF5FD]'
+                            : 'border-slate-200 bg-white hover:border-[#0F76BB]'
                         }`}
                       >
-                        <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+                        <p className="text-xs font-mono font-bold text-[#0F76BB] mb-1">
                           {mode.etiqueta}
                         </p>
-                        <p className="text-base sm:text-lg font-extrabold text-[#002147] dark:text-white">
+                        <p className="text-base sm:text-lg font-extrabold text-[#002147]">
                           {mode.titulo}
                         </p>
                       </button>
@@ -297,26 +242,26 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.2 }}
-                      className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-[#002147] text-white p-6 sm:p-8 flex flex-col justify-between space-y-5"
+                      className="h-full rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 flex flex-col justify-between space-y-5"
                     >
                       <div className="space-y-3">
-                        <p className="text-xs font-mono font-bold text-[#60B5F6]">
+                        <p className="text-xs font-mono font-bold text-[#0F76BB]">
                           {activeMode.etiqueta}
                         </p>
-                        <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                        <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                           {activeMode.titulo}
                         </h3>
-                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+                        <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                           {activeMode.resumen}
                         </p>
-                        <ul className="space-y-2.5 pt-2 border-t border-white/15">
+                        <ul className="space-y-2.5 pt-3 border-t border-[#0F76BB]/20">
                           {activeMode.puntos.map((pt) => (
                             <li
                               key={pt}
-                              className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-100"
+                              className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
                             >
                               <CheckCircle2
-                                className="w-4 h-4 text-[#60B5F6] shrink-0 mt-0.5"
+                                className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
                                 aria-hidden="true"
                               />
                               <span>{pt}</span>
@@ -329,7 +274,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                         <button
                           type="button"
                           onClick={() => scrollToFormWithPreset(activeSpecId, activeMode.id)}
-                          className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors cursor-pointer whitespace-nowrap"
+                          className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shadow-xs"
                         >
                           <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                           <span>Preparar consulta con esta opción</span>
@@ -338,7 +283,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                           <a
                             href="/limpieza-alfombras-vigo"
                             onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#60B5F6] hover:underline whitespace-nowrap"
+                            className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap"
                           >
                             <span>Ver cómo limpiamos alfombras</span>
                             <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -351,13 +296,13 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
               </div>
             </div>
 
-            {/* 2B. Catálogo interactivo de 4 daños y restauraciones frecuentes */}
-            <div className="pt-10 border-t border-slate-200 dark:border-slate-800">
+            {/* Catálogo interactivo de 4 daños y restauraciones frecuentes */}
+            <div className="pt-10 border-t border-slate-200">
               <div className="max-w-3xl mb-6 space-y-1.5">
-                <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
                   Actuación temprana para frenar el deterioro del nudo
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                   Qué daños de alfombra valoramos con nuestro restaurador colaborador
                 </h2>
               </div>
@@ -376,10 +321,10 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       role="tab"
                       aria-selected={isActive}
                       onClick={() => setActiveSpecId(spec.id)}
-                      className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer border whitespace-nowrap ${
+                      className={`min-h-[44px] px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition-colors cursor-pointer border whitespace-nowrap ${
                         isActive
-                          ? 'bg-[#002147] text-white border-[#002147] dark:bg-[#0F76BB] dark:border-[#0F76BB]'
-                          : 'bg-[#F4F7FB] dark:bg-[#0b1d36] text-[#002147] dark:text-slate-200 border-slate-200 dark:border-slate-800 hover:border-[#0F76BB]'
+                          ? 'bg-[#002147] text-white border-[#002147]'
+                          : 'bg-white text-[#002147] border-slate-200 hover:border-[#0F76BB]'
                       }`}
                     >
                       {spec.tituloCorto}
@@ -395,32 +340,32 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.2 }}
-                  className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-[#F4F7FB] dark:bg-[#0b1d36] p-6 sm:p-8 lg:p-10"
+                  className="rounded-sm border border-slate-200 bg-[#F7F6F2] p-6 sm:p-8 lg:p-10"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     <div className="lg:col-span-7 space-y-4">
-                      <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                      <p className="text-xs font-mono font-bold text-[#0F76BB]">
                         {activeSpec.soporte}
                       </p>
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
                         {activeSpec.titulo}
                       </h3>
-                      <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                      <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                         {activeSpec.descripcion}
                       </p>
 
                       <div className="pt-2 space-y-2.5">
-                        <p className="text-xs font-extrabold uppercase tracking-wider text-[#002147] dark:text-slate-200">
+                        <p className="text-xs font-extrabold uppercase tracking-wider text-[#002147]">
                           Situaciones habituales que revisamos
                         </p>
                         <ul className="space-y-2">
                           {activeSpec.causasHabituales.map((causa) => (
                             <li
                               key={causa}
-                              className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200"
+                              className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
                             >
                               <Scissors
-                                className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5"
+                                className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
                                 aria-hidden="true"
                               />
                               <span>{causa}</span>
@@ -431,12 +376,12 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                     </div>
 
                     <div className="lg:col-span-5 space-y-4">
-                      <div className="rounded-2xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 p-5 sm:p-6 space-y-3">
-                        <div className="flex items-center gap-2 text-[#002147] dark:text-[#60B5F6] font-extrabold text-sm">
-                          <ShieldAlert className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      <div className="rounded-sm bg-white border border-slate-200 p-5 sm:p-6 space-y-3">
+                        <div className="flex items-center gap-2 text-[#002147] font-extrabold text-sm">
+                          <ShieldAlert className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                           <span>Criterio real del restaurador colaborador</span>
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                           {activeSpec.criterioRestaurador}
                         </p>
                       </div>
@@ -444,7 +389,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       <button
                         type="button"
                         onClick={() => scrollToFormWithPreset(activeSpec.id, activeModeId)}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors cursor-pointer"
+                        className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer shadow-xs"
                       >
                         <Camera className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>Valorar este caso con fotos</span>
@@ -457,17 +402,17 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
           </div>
         </section>
 
-        {/* 3. CÓMO TRABAJA EL RESTAURADOR COLABORADOR Y LÍMITES REALES (#F4F7FB) */}
-        <section className="py-14 lg:py-20 bg-[#F4F7FB] dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
+        {/* 3. CÓMO TRABAJA EL RESTAURADOR COLABORADOR Y LÍMITES REALES (#F7F6F2) */}
+        <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="max-w-3xl space-y-2">
-              <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
                 Operativa transparente de principio a fin
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                 Cómo gestionamos la reparación con nuestro restaurador colaborador
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 En Tintorería Mimos recepcionamos tu pieza con total comodidad en Vigo mientras la intervención técnica corre a cargo de un especialista en restauración textil.
               </p>
             </div>
@@ -476,15 +421,15 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
               {SERVICIO_REPARACION_ALFOMBRAS_DATA.pasosColaborador.map((paso) => (
                 <article
                   key={paso.num}
-                  className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 space-y-3"
+                  className="rounded-sm border border-slate-200 bg-white p-6 space-y-3"
                 >
-                  <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                  <p className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
                     PASO {paso.num}
                   </p>
-                  <h3 className="text-base sm:text-lg font-extrabold text-[#002147] dark:text-white">
+                  <h3 className="text-base sm:text-lg font-extrabold text-[#002147]">
                     {paso.titulo}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {paso.descripcion}
                   </p>
                 </article>
@@ -492,32 +437,32 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
             </div>
 
             {/* Bloque honesto de viabilidad técnica y reverso */}
-            <div className="rounded-3xl bg-[#002147] text-white p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 space-y-3">
-                <p className="text-xs font-mono font-bold text-[#60B5F6] uppercase tracking-wider">
+            <div className="rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-3">
+                <p className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
                   Honestidad técnica antes de que te desplaces
                 </p>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   ¿Por qué la viabilidad y el presupuesto los confirma siempre el restaurador?
                 </h3>
-                <p className="text-sm text-slate-200 leading-relaxed">
+                <p className="text-sm text-slate-700 leading-relaxed">
                   No todas las alfombras responden igual a la aguja: una alfombra anudada de lana suele consolidar muy bien flecos y festones, mientras que piezas con soporte trasero de látex reseco o cuarteado por los años, humedad podrida o pérdida masiva de trama pueden no admitir costura fiable. Revisamos contigo el frente y el reverso para decírtelo con claridad antes de empezar.
                 </p>
               </div>
-              <div className="lg:col-span-4 rounded-2xl bg-white/10 border border-white/15 p-5 space-y-2.5 text-xs sm:text-sm text-slate-100">
-                <p className="font-extrabold text-[#60B5F6]">
+              <div className="lg:col-span-5 rounded-sm bg-white border border-slate-200 p-5 sm:p-6 space-y-2.5 text-xs sm:text-sm text-slate-700">
+                <p className="font-extrabold text-[#002147]">
                   Lo que comprobamos antes de aceptar la pieza:
                 </p>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#60B5F6] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Resistencia de la urdimbre y primer nudo junto al borde</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#60B5F6] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Estado del reverso (yute, algodón o goma/látex)</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#60B5F6] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Si precisa limpieza previa o puede ir directa a reparación</span>
                 </div>
               </div>
@@ -525,32 +470,32 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
           </div>
         </section>
 
-        {/* 4. CONSULTOR GUIADO DE WHATSAPP + GUÍA DE FOTOS PARA EL RESTAURADOR (#FFFFFF) */}
+        {/* 4. CONSULTOR GUIADO DE WHATSAPP + GUÍA DE FOTOS PARA EL RESTAURADOR (#EDF5FD) */}
         <section
           id="consulta-reparacion-alfombra"
-          className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+          className="py-14 lg:py-20 bg-[#EDF5FD] border-b border-slate-200"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10 space-y-2">
-              <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
                 Valoración previa por foto · WhatsApp {CONTACT_INFO.whatsappNumber}
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                 Prepara los datos de tu alfombra para que el restaurador la valore
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+              <p className="text-sm sm:text-base text-slate-700">
                 Como un enlace de WhatsApp solo abre con texto, prepara aquí tu ficha y justo al entrar en el chat envíanos las fotografías del borde o fleco y del reverso.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Configurador */}
-              <div className="lg:col-span-7 rounded-3xl border border-slate-200 dark:border-slate-800 bg-[#F4F7FB] dark:bg-[#0b1d36] p-6 sm:p-8 space-y-5">
+              <div className="lg:col-span-7 rounded-sm border border-slate-200 bg-white p-6 sm:p-8 shadow-xs space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       htmlFor="rep-modalidad"
-                      className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                     >
                       1. Modalidad de encargo
                     </label>
@@ -558,7 +503,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-modalidad"
                       value={modalidad}
                       onChange={(e) => setModalidad(e.target.value)}
-                      className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {REPAIR_MODALITIES.map((m) => (
                         <option key={m} value={m}>
@@ -571,7 +516,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   <div>
                     <label
                       htmlFor="rep-trabajo"
-                      className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                     >
                       2. Reparación que necesitas
                     </label>
@@ -579,7 +524,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-trabajo"
                       value={trabajoNecesario}
                       onChange={(e) => setTrabajoNecesario(e.target.value)}
-                      className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {REPAIR_WORK_TYPES.map((w) => (
                         <option key={w} value={w}>
@@ -592,7 +537,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   <div>
                     <label
                       htmlFor="rep-tramo"
-                      className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                     >
                       3. Tramo o lados afectados (cm o m)
                     </label>
@@ -602,14 +547,14 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       value={tramoAfectado}
                       onChange={(e) => setTramoAfectado(e.target.value)}
                       placeholder="Ej.: 1,70 m de flecos en un lado / 35 cm de festón"
-                      className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] px-3.5 py-2.5 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="rep-tipo"
-                      className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                     >
                       4. Tipo de alfombra (si lo conoces)
                     </label>
@@ -617,7 +562,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-tipo"
                       value={tipoAlfombra}
                       onChange={(e) => setTipoAlfombra(e.target.value)}
-                      className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {RUG_TYPES.map((r) => (
                         <option key={r} value={r}>
@@ -630,7 +575,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   <div>
                     <label
                       htmlFor="rep-localidad"
-                      className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                     >
                       5. Localidad
                     </label>
@@ -638,7 +583,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-localidad"
                       value={localidad}
                       onChange={(e) => setLocalidad(e.target.value)}
-                      className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {ZONAS_SERVICIO.map((loc) => (
                         <option key={loc} value={loc}>
@@ -654,7 +599,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   <div>
                     <label
                       htmlFor="rep-entrega"
-                      className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                     >
                       6. Tienda de entrega o recogida
                     </label>
@@ -662,7 +607,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-entrega"
                       value={formaEntrega}
                       onChange={(e) => setFormaEntrega(e.target.value)}
-                      className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {DELIVERY_MODES.map((d) => (
                         <option key={d} value={d}>
@@ -676,7 +621,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 <div>
                   <label
                     htmlFor="rep-notas"
-                    className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Notas adicionales (medida total de la alfombra, si está enrollada, manchas si añades limpieza...)
                   </label>
@@ -686,7 +631,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                     value={notas}
                     onChange={(e) => setNotas(e.target.value)}
                     placeholder="Ej.: Alfombra de lana de 2,40 × 1,70 m. El aspirador arrancó parte de los flecos de un extremo."
-                    className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] px-3.5 py-2.5 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                   />
                 </div>
 
@@ -702,7 +647,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                         { service_id: 'reparacion-alfombras-builder' }
                       )
                     }
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base py-3.5 px-5 rounded-xl transition-colors sm:whitespace-nowrap"
+                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors sm:whitespace-nowrap shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Abrir WhatsApp para enviar fotos</span>
@@ -711,16 +656,16 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   <button
                     type="button"
                     onClick={handleCopy}
-                    className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 px-4 py-3.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 cursor-pointer hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+                    className="min-h-[48px] inline-flex items-center justify-center gap-1.5 border border-[#002147] bg-white hover:bg-[#002147] hover:text-white px-4 py-3 rounded-lg text-xs font-bold text-[#002147] cursor-pointer transition-colors whitespace-nowrap shrink-0"
                   >
                     {copied ? (
                       <>
-                        <Check className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
+                        <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
                         <span>Copiado</span>
                       </>
                     ) : (
                       <>
-                        <Copy className="w-4 h-4" aria-hidden="true" />
+                        <Copy className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>Copiar texto</span>
                       </>
                     )}
@@ -730,40 +675,38 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
 
               {/* Barra lateral: Qué 3 fotos enviar + Cómo calcula el restaurador */}
               <aside className="lg:col-span-5 space-y-6">
-                <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-[#002147] text-white p-6 sm:p-7 space-y-4">
-                  <div className="flex items-center gap-2 text-[#60B5F6]">
+                <div className="rounded-sm border border-[#0F76BB]/25 bg-white/90 p-6 sm:p-7 space-y-4">
+                  <div className="flex items-center gap-2 text-[#0F76BB]">
                     <Camera className="w-5 h-5 shrink-0" aria-hidden="true" />
-                    <h3 className="text-lg font-extrabold text-white">
+                    <h3 className="text-lg font-extrabold text-[#002147]">
                       Qué fotos enviar en el chat
                     </h3>
                   </div>
                   <ul className="space-y-3">
                     {SERVICIO_REPARACION_ALFOMBRAS_DATA.fotosNecesarias.map((foto) => (
                       <li key={foto.titulo} className="text-xs sm:text-sm space-y-0.5">
-                        <p className="font-extrabold text-white">{foto.titulo}</p>
-                        <p className="text-slate-300 leading-relaxed">{foto.detalle}</p>
+                        <p className="font-extrabold text-[#002147]">{foto.titulo}</p>
+                        <p className="text-slate-600 leading-relaxed">{foto.detalle}</p>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-[#F4F7FB] dark:bg-[#0b1d36] p-6 sm:p-7 space-y-4">
-                  <div className="flex items-center gap-2 text-[#0F76BB] dark:text-[#60B5F6]">
+                <div className="rounded-sm border border-slate-200 bg-white p-6 sm:p-7 space-y-4">
+                  <div className="flex items-center gap-2 text-[#0F76BB]">
                     <Ruler className="w-5 h-5 shrink-0" aria-hidden="true" />
-                    <h3 className="text-lg font-extrabold text-[#002147] dark:text-white">
+                    <h3 className="text-lg font-extrabold text-[#002147]">
                       De qué depende el presupuesto
                     </h3>
                   </div>
-                  <dl className="divide-y divide-slate-200/80 dark:divide-slate-800">
+                  <dl className="divide-y divide-slate-200">
                     {SERVICIO_REPARACION_ALFOMBRAS_DATA.criteriosValoracion.map((criterio, idx) => (
                       <div key={criterio.titulo} className="py-3 first:pt-0 last:pb-0">
-                        <dt className="text-xs sm:text-sm font-extrabold text-[#002147] dark:text-white flex items-center gap-2">
-                          <span className="font-mono text-[#0F76BB] dark:text-[#60B5F6]">
-                            0{idx + 1}
-                          </span>
+                        <dt className="text-xs sm:text-sm font-extrabold text-[#002147] flex items-center gap-2">
+                          <span className="font-mono text-[#0F76BB]">0{idx + 1}</span>
                           <span>{criterio.titulo}</span>
                         </dt>
-                        <dd className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+                        <dd className="text-xs text-slate-600 mt-1 leading-relaxed">
                           {criterio.detalle}
                         </dd>
                       </div>
@@ -775,20 +718,20 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
           </div>
         </section>
 
-        {/* 5. RESEÑAS REALES + 3 TIENDAS PROPIAS Y RECOGIDA (#F4F7FB) */}
+        {/* 5. RESEÑAS REALES + 3 TIENDAS PROPIAS Y RECOGIDA (Blanco) */}
         <section
           id="puntos-entrega-reparacion"
-          className="py-14 lg:py-20 bg-[#F4F7FB] dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800"
+          className="py-14 lg:py-20 bg-white border-b border-slate-200"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
             {/* Opiniones reales de Google */}
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                  <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+                  <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
                     Reseñas verificadas en Google
                   </p>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
                     Confianza de nuestros clientes en Vigo
                   </h2>
                 </div>
@@ -796,7 +739,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   href={CONTACT_INFO.googleReviewsHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#002147] hover:text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
                 >
                   <span>Ver todas las reseñas en Google</span>
                   <ExternalLink className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -807,10 +750,10 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 {RESENAS_REALES.map((resena) => (
                   <blockquote
                     key={resena.autor}
-                    className="rounded-2xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between space-y-4"
+                    className="rounded-sm bg-[#F7F6F2]/70 border border-slate-200 p-6 flex flex-col justify-between space-y-4"
                   >
                     <div className="space-y-2.5">
-                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                      <div className="flex items-center gap-2 text-xs text-slate-500">
                         <span
                           className="text-amber-500 font-bold tracking-tight"
                           aria-label="Valoración de 5 estrellas"
@@ -820,11 +763,11 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                         <span aria-hidden="true">·</span>
                         <span>{resena.origen}</span>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                         «{resena.texto}»
                       </p>
                     </div>
-                    <footer className="text-xs sm:text-sm font-extrabold text-[#002147] dark:text-white pt-3 border-t border-slate-100 dark:border-slate-800">
+                    <footer className="text-xs sm:text-sm font-extrabold text-[#002147] pt-3 border-t border-slate-200">
                       {resena.autor}
                     </footer>
                   </blockquote>
@@ -833,20 +776,20 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
             </div>
 
             {/* Tiendas propias + Recogida */}
-            <div className="pt-10 border-t border-slate-200/80 dark:border-slate-800">
+            <div className="pt-10 border-t border-slate-200">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
                 <div>
-                  <h2 className="text-2xl font-extrabold text-[#002147] dark:text-white">
+                  <h2 className="text-2xl font-extrabold text-[#002147]">
                     Dónde entregar tu alfombra para reparar en Vigo (3 tiendas propias y recogida)
                   </h2>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                  <p className="text-sm text-slate-600 mt-1">
                     Sin importe mínimo en tiendas propias; recogida a domicilio sujeta a zona y condiciones del servicio (en puntos colaboradores, solo si admiten piezas de este tamaño).
                   </p>
                 </div>
                 <a
                   href="/puntos-mimos"
                   onClick={(e) => onNavigate('/puntos-mimos', e)}
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
                 >
                   <Store className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Ver mapa y horarios completos</span>
@@ -857,38 +800,38 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 {TIENDAS_PROPIAS.map((t) => (
                   <div
                     key={t.id}
-                    className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5 space-y-2"
+                    className="rounded-sm border border-slate-200 bg-[#F7F6F2]/70 p-5 space-y-2"
                   >
-                    <p className="text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                    <p className="text-xs font-bold text-[#0F76BB]">
                       Tienda propia Mimos · {t.localidad}
                     </p>
-                    <h3 className="text-base font-extrabold text-[#002147] dark:text-white">
+                    <h3 className="text-base font-extrabold text-[#002147]">
                       {t.nombre_mostrado}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                    <p className="text-xs sm:text-sm text-slate-600">
                       {t.direccion} · {t.codigo_postal} {t.localidad}
                     </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-xs text-slate-500">
                       {t.horario.resumen} · Tel. {t.telefonos_mostrados}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="rounded-sm border border-slate-200 bg-[#F7F6F2] p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
-                  <Truck
-                    className="w-5 h-5 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5"
-                    aria-hidden="true"
-                  />
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    <strong>Recogida a domicilio y puntos colaboradores:</strong> consulta recogida en casa con Mimo según cobertura y condiciones. Para entregar en los {PUNTOS_COLABORADORES.length} puntos colaboradores de comarca, confirma primero con Mimo que ese comercio admita el volumen de tu alfombra.
+                  <Truck className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    <strong className="text-[#002147]">
+                      Recogida a domicilio y puntos colaboradores:
+                    </strong>{' '}
+                    consulta recogida en casa con Mimo según cobertura y condiciones. Para entregar en los {PUNTOS_COLABORADORES.length} puntos colaboradores de comarca, confirma primero con Mimo que ese comercio admita el volumen de tu alfombra.
                   </p>
                 </div>
                 <a
                   href="/recogida-a-domicilio"
                   onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
-                  className="text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
                 >
                   Ver recogida a domicilio →
                 </a>
@@ -897,142 +840,144 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
           </div>
         </section>
 
-        {/* 6. PREGUNTAS FRECUENTES + ENLACES RELACIONADOS (#FFFFFF) */}
-        <section className="py-14 lg:py-20 bg-white dark:bg-[#071324]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-            <div>
-              <div className="max-w-3xl mb-8 space-y-1.5">
-                <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
-                  Dudas habituales antes de reparar tu alfombra
-                </p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
-                  Preguntas frecuentes sobre reparación y restauración de alfombras en Vigo
-                </h2>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {visibleFaqs.map((faq) => (
-                  <details
-                    key={faq.pregunta}
-                    className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-5"
-                  >
-                    <summary className="font-extrabold text-[#002147] dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
-                      <span>{faq.pregunta}</span>
-                      <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
-                        +
-                      </span>
-                    </summary>
-                    <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-3 border-t border-slate-200/70 dark:border-slate-700/60">
-                      {faq.respuesta}
-                    </p>
-                  </details>
-                ))}
-              </div>
-
-              {SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.length > 6 && (
-                <div className="mt-6 flex justify-center">
-                  <button
-                    type="button"
-                    onClick={() => setShowAllFaqs((prev) => !prev)}
-                    aria-expanded={showAllFaqs}
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0b1d36] px-5 py-3 text-xs sm:text-sm font-bold text-[#002147] dark:text-white hover:border-[#0F76BB] transition-colors cursor-pointer whitespace-nowrap"
-                  >
-                    <span>
-                      {showAllFaqs
-                        ? 'Ocultar dudas adicionales'
-                        : `Ver ${SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.length - 6} dudas más`}
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${showAllFaqs ? 'rotate-180' : ''}`}
-                      aria-hidden="true"
-                    />
-                  </button>
-                </div>
-              )}
+        {/* 6. PREGUNTAS FRECUENTES (#F7F6F2) + ENLACES RELACIONADOS (Blanco) */}
+        <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mb-8 space-y-1.5">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                Dudas habituales antes de reparar tu alfombra
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
+                Preguntas frecuentes sobre reparación y restauración de alfombras en Vigo
+              </h2>
             </div>
 
-            {/* Enlaces relacionados */}
-            <div className="pt-10 border-t border-slate-200 dark:border-slate-800">
-              <div className="max-w-3xl mb-6 space-y-1">
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
-                  ¿Necesitas también limpieza de la alfombra o cuidado del hogar?
-                </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-300">
-                  Accede directamente al servicio específico que buscas en Tintorería Mimos:
-                </p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {visibleFaqs.map((faq) => (
+                <details
+                  key={faq.pregunta}
+                  className="group rounded-sm border border-slate-200 bg-white p-5"
+                >
+                  <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
+                    <span>{faq.pregunta}</span>
+                    <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-100">
+                    {faq.respuesta}
+                  </p>
+                </details>
+              ))}
+            </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-                {SERVICIO_REPARACION_ALFOMBRAS_DATA.enlacesRelacionados.map((rel) => (
-                  <a
-                    key={rel.href}
-                    href={rel.href}
-                    onClick={(e) => onNavigate(rel.href, e)}
-                    className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-[#F8FAFC] dark:bg-[#0b1d36] flex flex-col justify-between group transition-colors"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <h3 className="text-base font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6]">
-                          {rel.titulo}
-                        </h3>
-                        <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
-                      </div>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                        {rel.descripcion}
-                      </p>
+            {SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.length > 6 && (
+              <div className="mt-6 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setShowAllFaqs((prev) => !prev)}
+                  aria-expanded={showAllFaqs}
+                  className="min-h-[44px] inline-flex items-center gap-2 rounded-lg border border-[#002147] bg-white hover:bg-[#002147] hover:text-white px-5 py-2.5 text-xs sm:text-sm font-bold text-[#002147] transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  <span>
+                    {showAllFaqs
+                      ? 'Ocultar dudas adicionales'
+                      : `Ver ${SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.length - 6} dudas más`}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${showAllFaqs ? 'rotate-180' : ''}`}
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="py-14 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mb-6 space-y-1">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
+                ¿Necesitas también limpieza de la alfombra o cuidado del hogar?
+              </h2>
+              <p className="text-sm text-slate-600">
+                Accede directamente al servicio específico que buscas en Tintorería Mimos:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+              {SERVICIO_REPARACION_ALFOMBRAS_DATA.enlacesRelacionados.map((rel) => (
+                <a
+                  key={rel.href}
+                  href={rel.href}
+                  onClick={(e) => onNavigate(rel.href, e)}
+                  className="p-6 rounded-sm border border-slate-200 hover:border-[#0F76BB] bg-[#F7F6F2]/60 flex flex-col justify-between group transition-colors"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
+                        {rel.titulo}
+                      </h3>
+                      <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                     </div>
-                  </a>
-                ))}
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {rel.descripcion}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href="/limpieza-alfombras-vigo"
+                  onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
+                  className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline"
+                >
+                  <Layers className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <span>Ir a limpieza de alfombras</span>
+                </a>
+                <a
+                  href="/"
+                  onClick={(e) => onNavigate('/', e)}
+                  className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#002147] hover:text-[#0F76BB]"
+                >
+                  <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <span>Volver a portada</span>
+                </a>
               </div>
 
-              <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  <a
-                    href="/limpieza-alfombras-vigo"
-                    onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
-                  >
-                    <Layers className="w-4 h-4 shrink-0" aria-hidden="true" />
-                    <span>Ir a limpieza de alfombras</span>
-                  </a>
-                  <a
-                    href="/"
-                    onClick={(e) => onNavigate('/', e)}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-[#002147] dark:text-slate-200 hover:text-[#0F76BB]"
-                  >
-                    <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden="true" />
-                    <span>Volver a portada</span>
-                  </a>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-3">
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() =>
-                      trackWhatsAppClick(
-                        SERVICIO_REPARACION_ALFOMBRAS_DATA.url,
-                        'service_detail_footer',
-                        { service_id: 'reparacion-alfombras' }
-                      )
-                    }
-                    className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap"
-                  >
-                    <Sparkles className="w-4 h-4 shrink-0" aria-hidden="true" />
-                    <span>Enviar fotos por WhatsApp</span>
-                  </a>
-                  <a
-                    href={CONTACT_INFO.phoneHref}
-                    onClick={() =>
-                      trackPhoneClick(SERVICIO_REPARACION_ALFOMBRAS_DATA.url, 'service_detail')
-                    }
-                    className="inline-flex items-center gap-2 border border-slate-300 dark:border-slate-700 text-[#002147] dark:text-white font-bold text-sm px-4 py-3 rounded-xl hover:border-[#0F76BB] transition-colors whitespace-nowrap"
-                  >
-                    <Phone className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
-                    <span>{CONTACT_INFO.phoneDisplay}</span>
-                  </a>
-                </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick(
+                      SERVICIO_REPARACION_ALFOMBRAS_DATA.url,
+                      'service_detail_footer',
+                      { service_id: 'reparacion-alfombras' }
+                    )
+                  }
+                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shadow-xs"
+                >
+                  <Sparkles className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <span>Enviar fotos por WhatsApp</span>
+                </a>
+                <a
+                  href={CONTACT_INFO.phoneHref}
+                  onClick={() =>
+                    trackPhoneClick(SERVICIO_REPARACION_ALFOMBRAS_DATA.url, 'service_detail')
+                  }
+                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors whitespace-nowrap group"
+                >
+                  <Phone
+                    className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span>{CONTACT_INFO.phoneDisplay}</span>
+                </a>
               </div>
             </div>
           </div>

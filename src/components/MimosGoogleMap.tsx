@@ -187,15 +187,15 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
 
   if (mapError) {
     return (
-      <div className={`w-full p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] shadow-xs space-y-6 ${className}`}>
+      <div className={`w-full p-6 sm:p-8 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-6 ${className}`}>
         <div className="text-center max-w-xl mx-auto">
-          <div className="w-12 h-12 rounded-xl bg-[#0F76BB]/10 text-[#0F76BB] flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mx-auto mb-3">
             <MapPin className="w-6 h-6" aria-hidden="true" />
           </div>
-          <h4 className="text-lg sm:text-xl font-black text-[#002147] dark:text-white">
+          <h4 className="text-lg sm:text-xl font-black text-[#002147]">
             Tiendas Propias en Vigo y Puntos Colaboradores
           </h4>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 mt-1">
             Consulta la dirección, horarios, ficha completa o abre la ruta directa en Google Maps para cualquiera de nuestras 8 ubicaciones:
           </p>
         </div>
@@ -206,27 +206,27 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
             return (
               <div
                 key={tienda.id}
-                className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0b1d36] flex flex-col justify-between"
+                className="p-4 rounded-xl border border-slate-200 bg-[#F7F6F2] flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
                     Tienda Propia · {tienda.localidad}
                   </span>
-                  <h5 className="font-extrabold text-sm text-slate-900 dark:text-white mt-1">
+                  <h5 className="font-extrabold text-sm text-[#002147] mt-1">
                     {tienda.nombre_mostrado}
                   </h5>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
+                  <p className="text-xs text-slate-700 mt-1">
                     {tienda.direccion}
                   </p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                  <p className="text-[11px] text-slate-600 mt-1">
                     {tienda.horario.resumen}
                   </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700/60 space-y-2">
+                <div className="mt-4 pt-3 border-t border-slate-200 space-y-2">
                   <div className="flex items-center gap-2">
                     <a
                       href={`tel:${tienda.telefono}`}
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-[#0F76BB] transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 min-h-[44px] py-2 px-3 rounded-lg bg-white border border-slate-200 text-xs font-bold text-[#002147] hover:border-[#0F76BB] hover:text-[#0F76BB] transition-colors"
                     >
                       <Phone className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
                       <span>{tienda.telefonos_mostrados}</span>
@@ -235,17 +235,18 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                       href={buildGoogleMapsUrl(tienda)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center p-2 rounded-lg bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold transition-colors shadow-xs"
+                      className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2.5 rounded-lg bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] text-xs font-bold transition-colors"
                       title={`Abrir ubicación de ${tienda.nombre_mostrado} en Google Maps`}
+                      aria-label={`Abrir ubicación de ${tienda.nombre_mostrado} en Google Maps`}
                     >
-                      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                      <ExternalLink className="w-4 h-4" aria-hidden="true" />
                     </a>
                   </div>
                   {ficha && (
                     <a
                       href={ficha.href}
                       onClick={(e) => onNavigate?.(ficha.href, e)}
-                      className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded-lg bg-[#0F76BB] hover:bg-[#0b5f97] text-white text-xs font-bold transition-colors"
+                      className="w-full inline-flex items-center justify-center gap-1.5 min-h-[44px] py-2 px-3 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold transition-colors"
                     >
                       <Store className="w-3.5 h-3.5" aria-hidden="true" />
                       <span>{ficha.label}</span>
@@ -263,25 +264,25 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
             return (
               <div
                 key={punto.id}
-                className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]/80 flex flex-col justify-between"
+                className="p-3.5 rounded-xl border border-slate-200 bg-[#F4F9FE] flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
                     Colaborador · {punto.localidad}
                   </span>
-                  <h5 className="font-extrabold text-xs text-slate-900 dark:text-white mt-0.5">
+                  <h5 className="font-extrabold text-xs text-[#002147] mt-0.5">
                     {punto.nombre_mostrado}
                   </h5>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-1">
+                  <p className="text-[11px] text-slate-600 mt-1">
                     {punto.direccion}
                   </p>
                 </div>
-                <div className="mt-3 pt-2 border-t border-slate-200 dark:border-slate-700/60 flex items-center gap-1.5">
+                <div className="mt-3 pt-2 border-t border-slate-200 flex items-center gap-1.5">
                   {ficha && (
                     <a
                       href={ficha.href}
                       onClick={(e) => onNavigate?.(ficha.href, e)}
-                      className="flex-1 inline-flex items-center justify-center py-1.5 px-2 rounded-lg bg-[#002147] hover:bg-[#0a3161] text-white text-[11px] font-bold transition-colors"
+                      className="flex-1 inline-flex items-center justify-center min-h-[40px] py-1.5 px-2.5 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold transition-colors"
                     >
                       Ver ficha
                     </a>
@@ -290,8 +291,9 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                     href={buildGoogleMapsUrl(punto)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:text-[#0F76BB] transition-colors"
+                    className="inline-flex items-center justify-center min-h-[40px] min-w-[40px] p-2 rounded-lg bg-white/95 border border-[#002147] text-[#002147] hover:bg-[#002147] hover:text-white transition-colors"
                     title={`Abrir ubicación de ${punto.nombre_mostrado} en Google Maps`}
+                    aria-label={`Abrir ubicación de ${punto.nombre_mostrado} en Google Maps`}
                   >
                     <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                   </a>
@@ -305,11 +307,11 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
   }
 
   return (
-    <div className={`w-full flex flex-col rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-[#071324] ${className}`}>
+    <div className={`w-full flex flex-col rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white ${className}`}>
       {/* Barra de filtros interactivos del mapa (solo 2 colores: Azul claro y Azul oscuro) */}
-      <div className="p-3.5 sm:p-4 bg-slate-50/90 dark:bg-[#0b1d36] border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-1.5 text-xs font-bold">
-          <span className="text-slate-500 dark:text-slate-400 mr-1 hidden sm:inline">
+      <div className="p-3.5 sm:p-4 bg-[#F4F9FE] border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
+          <span className="text-slate-600 mr-1 hidden sm:inline">
             Mostrar:
           </span>
           <button
@@ -318,10 +320,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               setFilterType('todos');
               setActivePunto(null);
             }}
-            className={`px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer ${
+            className={`min-h-[44px] px-3.5 py-2 rounded-lg transition-colors cursor-pointer ${
               filterType === 'todos'
                 ? 'bg-[#002147] text-white shadow-xs'
-                : 'bg-white dark:bg-[#071324] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#0F76BB]'
+                : 'bg-white text-[#002147] border border-slate-200 hover:border-[#0F76BB]'
             }`}
           >
             Todos ({REGISTROS_PUNTOS.length})
@@ -332,10 +334,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               setFilterType('tiendas');
               setActivePunto(null);
             }}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-lg transition-colors cursor-pointer ${
               filterType === 'tiendas'
                 ? 'bg-[#0F76BB] text-white shadow-xs'
-                : 'bg-white dark:bg-[#071324] text-[#0F76BB] dark:text-[#60B5F6] border border-slate-200 dark:border-slate-700 hover:border-[#0F76BB]'
+                : 'bg-white text-[#0F76BB] border border-slate-200 hover:border-[#0F76BB]'
             }`}
           >
             <img
@@ -355,10 +357,10 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               setFilterType('colaboradores');
               setActivePunto(null);
             }}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-lg transition-colors cursor-pointer ${
               filterType === 'colaboradores'
                 ? 'bg-[#002147] text-white shadow-xs'
-                : 'bg-white dark:bg-[#071324] text-[#002147] dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-[#002147]'
+                : 'bg-white text-[#002147] border border-slate-200 hover:border-[#002147]'
             }`}
           >
             <img
@@ -375,7 +377,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
         </div>
 
         {/* Leyenda visual estricta de 2 colores */}
-        <div className="flex items-center gap-4 text-xs font-bold text-slate-600 dark:text-slate-300">
+        <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-600">
           <span className="flex items-center gap-1.5">
             <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#0F76BB] border border-white shadow-xs">
               <img
@@ -388,7 +390,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                 className="w-3.5 h-3.5 object-contain rounded-full"
               />
             </span>
-            <span className="text-[#0F76BB] dark:text-[#60B5F6]">Tienda propia (Azul claro)</span>
+            <span className="text-[#0F76BB]">Tienda propia</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#002147] border border-white shadow-xs">
@@ -402,33 +404,33 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                 className="w-3.5 h-3.5 object-contain rounded-full bg-white/10"
               />
             </span>
-            <span className="text-[#002147] dark:text-white">Punto colaborador (Azul oscuro)</span>
+            <span className="text-[#002147]">Punto colaborador</span>
           </span>
         </div>
       </div>
 
       {/* Contenedor del mapa Google Maps (bloqueado por RGPD hasta consentimiento o clic explícito) */}
       {!canLoadInteractiveMap ? (
-        <div className="p-5 sm:p-7 bg-slate-50/70 dark:bg-[#071324] space-y-5">
-          <div className="rounded-2xl border border-[#0F76BB]/25 bg-white dark:bg-[#0b1d36] p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-xs">
+        <div className="p-5 sm:p-7 bg-[#F7F6F2] space-y-5">
+          <div className="rounded-2xl border border-[#0F76BB]/25 bg-white p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-xs">
             <div className="flex items-start gap-3.5 max-w-2xl">
-              <div className="w-11 h-11 rounded-xl bg-[#0F76BB]/10 text-[#0F76BB] dark:text-[#60B5F6] flex items-center justify-center shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-6 h-6" aria-hidden="true" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-base sm:text-lg font-extrabold text-[#002147] dark:text-white">
+                <h4 className="text-base sm:text-lg font-extrabold text-[#002147]">
                   Mapa interactivo bloqueado por privacidad hasta tu confirmación
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Al pulsar <strong>«Cargar mapa interactivo»</strong> se conectará con Google Maps (Google Ireland Ltd.) para mostrar las 8 ubicaciones sobre el plano. Mientras tanto, puedes consultar aquí abajo todas las direcciones, horarios o abrir la ruta externa directamente en Google Maps.
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
               <button
                 type="button"
                 onClick={() => setManualMapEnabled(true)}
-                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors cursor-pointer shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors cursor-pointer shadow-xs"
               >
                 <MapIcon className="w-4 h-4" aria-hidden="true" />
                 <span>Cargar mapa interactivo</span>
@@ -436,7 +438,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               <a
                 href="/privacidad"
                 onClick={(e) => onNavigate?.('/privacidad', e)}
-                className="text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline px-2 py-1"
+                className="inline-flex items-center min-h-[44px] text-xs font-bold text-[#0F76BB] hover:underline px-2 py-1"
               >
                 Más info en Privacidad
               </a>
@@ -450,7 +452,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               return (
                 <div
                   key={punto.id}
-                  className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1d36] flex flex-col justify-between gap-3"
+                  className="p-4 rounded-xl border border-slate-200 bg-white flex flex-col justify-between gap-3"
                 >
                   <div className="space-y-1.5">
                     <span
@@ -460,26 +462,26 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                     >
                       {isTienda ? `Tienda Propia · ${punto.localidad}` : `Colaborador · ${punto.localidad}`}
                     </span>
-                    <h5 className="font-extrabold text-sm text-[#002147] dark:text-white leading-snug">
+                    <h5 className="font-extrabold text-sm text-[#002147] leading-snug">
                       {punto.nombre_mostrado}
                     </h5>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 flex items-start gap-1.5">
+                    <p className="text-xs text-slate-600 flex items-start gap-1.5">
                       <MapPin className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{punto.direccion} (CP {punto.codigo_postal})</span>
                     </p>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 flex items-start gap-1.5">
+                    <p className="text-[11px] text-slate-500 flex items-start gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{punto.horario.resumen}</span>
                     </p>
                   </div>
 
-                  <div className="pt-2.5 border-t border-slate-100 dark:border-slate-800 space-y-2">
+                  <div className="pt-2.5 border-t border-slate-100 space-y-2">
                     <div className="flex items-center gap-2">
                       <a
                         href={`tel:+34${punto.telefono}`}
                         data-cta-zone="point_card"
                         data-store-id={punto.id}
-                        className="flex-1 inline-flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-[#002147] dark:text-white hover:border-[#0F76BB] transition-colors"
+                        className="flex-1 inline-flex items-center justify-center gap-1 min-h-[44px] py-2 px-2.5 rounded-lg bg-[#F4F9FE] border border-slate-200 text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
                       >
                         <Phone className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
                         <span>{punto.telefonos_mostrados}</span>
@@ -488,18 +490,18 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                         href={buildGoogleMapsUrl(punto)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-1 py-1.5 px-2.5 rounded-lg bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold transition-colors"
+                        className="inline-flex items-center justify-center gap-1 min-h-[44px] py-2 px-2.5 rounded-lg bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] text-xs font-bold transition-colors"
                         title={`Abrir ${punto.nombre_mostrado} en Google Maps`}
                       >
                         <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                        <span>Abrir en Google Maps</span>
+                        <span>Maps</span>
                       </a>
                     </div>
                     {ficha && (
                       <a
                         href={ficha.href}
                         onClick={(e) => onNavigate?.(ficha.href, e)}
-                        className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded-lg bg-[#0F76BB] hover:bg-[#0b5f97] text-white text-xs font-bold transition-colors"
+                        className="w-full inline-flex items-center justify-center gap-1.5 min-h-[44px] py-2 px-3 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold transition-colors"
                       >
                         <Store className="w-3.5 h-3.5" aria-hidden="true" />
                         <span>{ficha.label}</span>
@@ -723,7 +725,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                         rel="noopener noreferrer"
                         data-cta-zone="map_infowindow"
                         data-store-id={activePunto.id}
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors shadow-xs"
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors shadow-xs"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
                         <span>WhatsApp</span>
@@ -748,7 +750,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
       )}
 
       {/* Lista rápida de acceso a cada punto debajo del mapa (2 colores) */}
-      <div className="p-3 sm:p-4 bg-slate-50/70 dark:bg-[#071324] border-t border-slate-200 dark:border-slate-800">
+      <div className="p-3 sm:p-4 bg-[#F4F9FE] border-t border-slate-200">
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-2">
           {REGISTROS_PUNTOS.map((p) => {
             const isSelected = activePunto?.id === p.id;
@@ -758,12 +760,12 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                 key={p.id}
                 type="button"
                 onClick={() => handleMarkerClick(p)}
-                className={`p-2 rounded-xl text-left transition-all border cursor-pointer ${
+                className={`min-h-[48px] p-2.5 rounded-xl text-left transition-all border cursor-pointer ${
                   isSelected
                     ? isTienda
-                      ? 'border-[#0F76BB] bg-blue-50 dark:bg-blue-950/40 ring-2 ring-[#0F76BB]/30'
-                      : 'border-[#002147] bg-slate-100 dark:bg-slate-800 ring-2 ring-[#002147]/30'
-                    : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1d36] hover:border-slate-300'
+                      ? 'border-[#0F76BB] bg-[#EDF5FD] ring-2 ring-[#0F76BB]/30'
+                      : 'border-[#002147] bg-white ring-2 ring-[#002147]/25'
+                    : 'border-slate-200 bg-white hover:border-[#0F76BB]/50'
                 }`}
               >
                 <div className="flex items-center gap-1.5 mb-0.5">
@@ -772,18 +774,18 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
                       isTienda ? 'bg-[#0F76BB]' : 'bg-[#002147]'
                     }`}
                   />
-                  <span className="text-[11px] font-extrabold text-[#002147] dark:text-white truncate">
+                  <span className="text-xs font-extrabold text-[#002147] truncate">
                     {p.localidad}
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                <p className="text-[11px] text-slate-600 truncate">
                   {isTienda ? p.direccion.split(',')[0] : p.nombre_comercio}
                 </p>
               </button>
             );
           })}
         </div>
-        <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-300">
+        <div className="mt-3 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
           <span>
             <strong>¿Sin tienda física en tu municipio?</strong> Cobertura a domicilio (bajo ruta e importe mínimo):
           </span>
@@ -793,7 +795,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               onClick={(e) => {
                 if (onNavigate) onNavigate('/zonas/mos', e);
               }}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] hover:border-[#0F76BB] font-bold text-[#002147] dark:text-white transition-colors"
+              className="inline-flex items-center gap-1 min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:border-[#0F76BB] font-bold text-[#002147] transition-colors"
             >
               <span>Mos</span>
               <ExternalLink className="w-3 h-3 text-[#0F76BB]" aria-hidden="true" />
@@ -803,7 +805,7 @@ export const MimosGoogleMap: React.FC<MimosGoogleMapProps> = ({
               onClick={(e) => {
                 if (onNavigate) onNavigate('/zonas/nigran', e);
               }}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] hover:border-[#0F76BB] font-bold text-[#002147] dark:text-white transition-colors"
+              className="inline-flex items-center gap-1 min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:border-[#0F76BB] font-bold text-[#002147] transition-colors"
             >
               <span>Nigrán</span>
               <ExternalLink className="w-3 h-3 text-[#0F76BB]" aria-hidden="true" />

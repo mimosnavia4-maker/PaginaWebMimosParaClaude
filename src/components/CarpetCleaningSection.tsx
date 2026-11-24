@@ -46,7 +46,7 @@ export const CarpetCleaningSection: React.FC<CarpetCleaningSectionProps> = ({
         {/* Encabezado conjunto de Ganchos 5 y 6 */}
         <div className="max-w-3xl mb-10">
           <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-2">
-            Servicios destacados del hogar · Sofás in situ (5) · Alfombras y arreglos en taller (6)
+            Servicios destacados del hogar · Sofás in situ · Alfombras con especialista colaborador
           </p>
           <h2
             id="hogar-destacados-heading"
@@ -55,7 +55,7 @@ export const CarpetCleaningSection: React.FC<CarpetCleaningSectionProps> = ({
             Limpieza de sofás a domicilio y limpieza o arreglo de alfombras en Vigo
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-            Dos soluciones específicas para piezas grandes del hogar: vamos a tu casa para higienizar tus sofás sin mover muebles y recogemos tus alfombras para lavarlas y reparar sus flecos o bordes en nuestras instalaciones.
+            Dos soluciones específicas para piezas grandes del hogar: vamos a tu casa para higienizar tus sofás sin mover muebles y recogemos tus alfombras para gestionar su lavado y reparación de flecos o bordes con taller especialista colaborador.
           </p>
         </div>
 
@@ -147,7 +147,7 @@ export const CarpetCleaningSection: React.FC<CarpetCleaningSectionProps> = ({
                     service_id: 'limpieza-sofas',
                   })
                 }
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Presupuestar sofá con Mimo</span>
@@ -194,7 +194,7 @@ export const CarpetCleaningSection: React.FC<CarpetCleaningSectionProps> = ({
               <div className="p-6 sm:p-8 space-y-4">
                 <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
                   <Scissors className="w-4 h-4 shrink-0" aria-hidden="true" />
-                  <span>Servicio destacado 06 · Limpieza y arreglo en taller</span>
+                  <span>Servicio destacado · Limpieza y arreglo mediante especialista</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
@@ -202,7 +202,7 @@ export const CarpetCleaningSection: React.FC<CarpetCleaningSectionProps> = ({
                 </h3>
 
                 <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Tratamos alfombras de lana, sintéticas, pelo largo o nudo en nuestras instalaciones propias para no mojar tu suelo, e integramos <strong>reparación y restauración de alfombras</strong> cuando los extremos o ribetes se han desgastado.
+                  Coordinamos el cuidado de alfombras de lana, sintéticas, pelo largo o nudo mediante taller especialista colaborador para no mojar tu suelo, e integramos <strong>reparación y restauración de alfombras</strong> cuando los extremos o ribetes se han desgastado.
                 </p>
 
                 <ul className="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-200 pt-1">
@@ -261,7 +261,7 @@ export const CarpetCleaningSection: React.FC<CarpetCleaningSectionProps> = ({
                     service_id: 'limpieza-alfombras',
                   })
                 }
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Valorar alfombra en {localidadRapida}</span>

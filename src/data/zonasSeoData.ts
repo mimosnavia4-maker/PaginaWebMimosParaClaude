@@ -50,7 +50,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
       'Entrega y recoge tus prendas y textiles para los servicios de Tintorería Mimos en el establecimiento colaborador Mimos Redondela situado en C/ José Regojo, 29 bajo, en el casco urbano de Redondela.',
     explicacionEspecificaZona: [
       'Para los vecinos del centro de Redondela, Vilavella y el entorno de la alameda y el viaducto, desplazarse en coche hasta Vigo solo para llevar un abrigo, un traje de ceremonia o un edredón supone perder tiempo y buscar aparcamiento.',
-      'Por eso ofrecemos el servicio de recepción y entrega de Tintorería Mimos a través del establecimiento colaborador Mimos Redondela situado en la C/ José Regojo, 29 bajo (36800 Redondela). En este punto colaborador puedes entregar tus prendas de vestir, alfombras y textiles del hogar para que sean gestionados y tratados en nuestras instalaciones propias de Tintorería Mimos Navia en Vigo.',
+      'Por eso ofrecemos el servicio de recepción y entrega de Tintorería Mimos a través del establecimiento colaborador Mimos Redondela situado en la C/ José Regojo, 29 bajo (36800 Redondela). En este punto colaborador puedes entregar tus prendas de vestir y textiles del hogar para su tratamiento en nuestras instalaciones propias de Navia, así como alfombras para su gestión con especialista.',
     ],
     pasosEntregaRecogida: [
       {
@@ -76,7 +76,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
       {
         pregunta: '¿Cómo funciona el punto Mimos Redondela en C/ José Regojo 29?',
         respuesta:
-          'Es un establecimiento colaborador de recogida y entrega en Redondela (C/ José Regojo, 29 bajo, teléfono 613 62 47 24) donde puedes dejar tus prendas, colada familiar, alfombras y textiles del hogar para que Tintorería Mimos Navia, S.L. gestione su tratamiento profesional en sus instalaciones de Vigo.',
+          'Es un establecimiento colaborador de recogida y entrega en Redondela (C/ José Regojo, 29 bajo, teléfono 613 62 47 24) donde puedes dejar tus prendas, colada familiar y textiles del hogar para su tratamiento en nuestras instalaciones de Vigo, además de recibir alfombras para su gestión con taller especialista.',
       },
       {
         pregunta: '¿Cómo puedo saber cuánto cuesta limpiar una prenda desde el punto de Redondela?',
@@ -334,7 +334,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
         direccion: 'C/ Teixugueiras, 11, bajo 9 · 36212 Vigo',
         href: '/tienda-mimos-navia-vigo',
         detalle:
-          'Planta central de tintorería, gran formato y limpieza de alfombras con sábados abiertos.',
+          'Planta central de tintorería, gran formato y punto de recepción de alfombras con sábados abiertos.',
       },
     ],
     tienePendientes: false,
@@ -365,7 +365,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
         paso: '03',
         titulo: 'Tratamiento en nuestra planta de Navia y devolución',
         detalle:
-          'Procesamos tus prendas, alfombras o textiles del hogar en nuestras instalaciones propias de Vigo con secado completo anti-humedad y te los entregamos listos.',
+          'Procesamos tus prendas o textiles del hogar en nuestras instalaciones propias de Vigo con secado completo anti-humedad (y gestionamos tus alfombras con taller especialista colaborador) antes de devolvértelos listos.',
       },
     ],
     preguntasFrecuentes: [

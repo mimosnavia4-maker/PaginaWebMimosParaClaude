@@ -1277,7 +1277,7 @@ export const MIMO_FAQ_TOPICS: MimoFaqTopic[] = [
   {
     id: 'costura',
     label: 'Costura y arreglos',
-    respuesta: `Cubrimos 18 especialidades de costura y arreglos (bajos, cremalleras, botones, cintura, zurcidos, rotos y confección de cortinas, estores y cojines; además de piel, delicadas, bordados y servicio express en taller propio) en Gregorio Espino y Venezuela, recepción en Navia, y en los puntos con costura: ${PUNTOS_CON_COSTURA.filter(
+    respuesta: `Cubrimos todo tipo de costura y arreglos de ropa (bajos, cremalleras, botones, cintura, zurcidos, rotos y confección de cortinas, estores y cojines; además de piel, delicadas, bordados y servicio express en taller propio) en Gregorio Espino y Venezuela, recepción en Navia, y en los puntos con costura: ${PUNTOS_CON_COSTURA.filter(
       (p) => p.tipo === 'punto'
     )
       .map((p) => `${p.localidad} (${p.nombre_comercio}, ${p.direccion})`)
@@ -1364,8 +1364,8 @@ export const SUBBLOQUES_TINTORERIA_PORTADA: SubbloqueTintoreriaPortada[] = [
     servicios: [
       'Limpieza e higienización de edredones (plumas y sintéticos) y mantas',
       'Limpieza de cortinas y estores',
-      'Limpieza e higienización profunda de alfombras en nuestras instalaciones',
-      'Reparación y restauración de alfombras: flecos, ribetes y bordes',
+      'Limpieza e higienización profunda de alfombras con secado completo',
+      'Reparación y restauración de alfombras: flecos, ribetes y bordes mediante especialista',
     ],
     enlaces: [
       { label: 'Textiles del hogar', href: '/textiles-hogar-vigo' },

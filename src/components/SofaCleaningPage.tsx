@@ -6,11 +6,11 @@ import {
   Camera,
   Check,
   CheckCircle2,
+  ChevronDown,
   Copy,
   Home,
   MessageCircle,
   ShieldCheck,
-  Sparkles,
   Tag,
 } from 'lucide-react';
 import heroSofasImg from '../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
@@ -21,6 +21,7 @@ import {
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
 import { trackWhatsAppClick } from '../utils/analytics';
+import { PageHeroLight } from './PageHeroLight';
 
 interface SofaCleaningPageProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -220,7 +221,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
   const [motivo, setMotivo] = useState('Limpieza general e higienización');
   const [observaciones, setObservaciones] = useState('');
   const [copied, setCopied] = useState(false);
-  const [heroImgError, setHeroImgError] = useState(false);
+  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
 
   const buildSofaWhatsAppMessage = () => {
     const lines = [
@@ -255,140 +256,69 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
     <main
       id="main-content"
       tabIndex={-1}
-      className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+      className="focus:outline-hidden bg-white text-slate-900 border-b border-slate-200"
     >
-      {/* 1. CABECERA DE SERVICIO IN SITU */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav aria-label="Migas de pan" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-300">
-              <li>
-                <a
-                  href="/"
-                  onClick={(e) => onNavigate('/', e)}
-                  className="hover:text-white underline-offset-4 hover:underline"
-                >
-                  Inicio
-                </a>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <a
-                  href="/limpieza-profesional-vigo"
-                  onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
-                  className="hover:text-white underline-offset-4 hover:underline"
-                >
-                  Limpieza profesional
-                </a>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-[#60B5F6] font-bold">Limpieza de sofás en Vigo</li>
-            </ol>
-          </nav>
+      {/* 1. CABECERA LUMINOSA DE SERVICIO IN SITU */}
+      <PageHeroLight
+        breadcrumbs={[
+          { label: 'Inicio', href: '/' },
+          { label: 'Limpieza profesional', href: '/limpieza-profesional-vigo' },
+          { label: 'Limpieza de sofás en Vigo' },
+        ]}
+        onNavigate={onNavigate}
+        kicker="100 % a domicilio en Vigo · Sin mover muebles · Presupuesto por foto"
+        title="Limpieza de sofás, tapicerías y colchones a domicilio en Vigo"
+        description="Higienizamos tu sofá, chaiselongue, sillones, sillas, cabecero o colchón directamente en tu vivienda o negocio mediante inyección-extracción controlada, sin traslados ni desmontajes y con secado natural al aire."
+        note="Cada presupuesto se adapta al tamaño del sofá, el tipo de tejido (código de etiqueta), las manchas previas y tu zona, sujeto a un importe mínimo de visita a consultar con Mimo por WhatsApp."
+        whatsappHref={whatsappUrl}
+        whatsappLabel="Pedir presupuesto por WhatsApp"
+        onWhatsAppClick={() =>
+          trackWhatsAppClick('/limpieza-sofas-vigo', 'service_detail', {
+            service_id: 'limpieza-sofas',
+          })
+        }
+        secondaryAction={{
+          label: 'Qué fotos enviarnos',
+          href: '#presupuestar-sofa',
+          icon: <Camera className="w-4 h-4 shrink-0" aria-hidden="true" />,
+          isInternalRoute: false,
+        }}
+        image={{
+          src: heroSofasImg,
+          alt: 'Limpieza profesional de sofá tapizado a domicilio mediante inyección-extracción en Vigo',
+          caption:
+            'Extracción controlada en el propio domicilio para retirar suciedad, polvo y manchas sin empapar el relleno interior.',
+          fallbackTitle: 'Limpieza de sofás y tapicerías a domicilio en Vigo',
+          fallbackSubtitle: 'Sistema profesional de inyección-extracción in situ',
+        }}
+      />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
-            <div className="lg:col-span-7 flex flex-col justify-center space-y-5">
-              <p className="text-xs font-mono uppercase tracking-wider text-[#60B5F6] font-bold">
-                100 % a domicilio en Vigo · Sin mover muebles · Presupuesto por foto
-              </p>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12] text-balance">
-                Limpieza de sofás, tapicerías y colchones a domicilio en Vigo
-              </h1>
-
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
-                Higienizamos tu sofá, chaiselongue, sillones, sillas, cabecero o colchón directamente en tu vivienda o negocio mediante inyección-extracción controlada, sin traslados ni desmontajes y con secado natural al aire.
-              </p>
-
-              <div className="p-4 rounded-xl bg-white/10 border border-white/15 text-xs sm:text-sm text-slate-100 leading-relaxed">
-                Cada presupuesto se adapta al tamaño del sofá, el tipo de tejido (código de etiqueta), las manchas previas y tu zona, sujeto a un importe mínimo de visita a consultar con Mimo por WhatsApp.
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    trackWhatsAppClick('/limpieza-sofas-vigo', 'service_detail', {
-                      service_id: 'limpieza-sofas',
-                    })
-                  }
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-                >
-                  <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  <span>Pedir presupuesto por WhatsApp</span>
-                </a>
-
-                <a
-                  href="#presupuestar-sofa"
-                  className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white text-white font-bold text-sm sm:text-base px-5 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-                >
-                  <Camera className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
-                  <span>Qué fotos enviarnos</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 flex flex-col">
-              <figure className="h-full rounded-2xl overflow-hidden border border-white/15 bg-[#071936] flex flex-col">
-                {heroImgError ? (
-                  <div className="aspect-4/3 lg:flex-1 bg-gradient-to-br from-[#071936] to-[#0b274f] flex flex-col items-center justify-center p-6 text-center text-slate-300">
-                    <Sparkles className="w-10 h-10 text-[#60B5F6] mb-3" aria-hidden="true" />
-                    <p className="font-bold text-white text-sm">
-                      Limpieza de sofás y tapicerías a domicilio en Vigo
-                    </p>
-                    <p className="text-xs text-slate-300 mt-1">
-                      Sistema profesional de inyección-extracción in situ
-                    </p>
-                  </div>
-                ) : (
-                  <img
-                    src={heroSofasImg}
-                    alt="Limpieza profesional de sofá tapizado a domicilio mediante inyección-extracción en Vigo"
-                    width={800}
-                    height={600}
-                    fetchPriority="high"
-                    referrerPolicy="no-referrer"
-                    onError={() => setHeroImgError(true)}
-                    className="w-full aspect-4/3 lg:flex-1 object-cover"
-                  />
-                )}
-                <figcaption className="p-4 text-xs text-slate-300 border-t border-white/10">
-                  Extracción controlada en el propio domicilio para retirar suciedad, polvo y manchas sin empapar el relleno interior.
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. POR QUÉ LIMPIAR FRENTE A RETAPIZAR O REMEDIOS CASEROS */}
-      <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+      {/* 2. POR QUÉ LIMPIAR FRENTE A RETAPIZAR O REMEDIOS CASEROS (Blanco · Editorial abierto) */}
+      <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
               Valor frente a retapizar o usar trucos domésticos
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
               Recupera la higiene y el aspecto de tu sofá sin gastar en un tapizado completo
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 border-t border-slate-200 pt-8">
             {POR_QUE_LIMPIAR_SOFA.map((item) => (
               <article
                 key={item.id}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6"
+                className="border-l-2 border-[#0F76BB]/40 pl-5 space-y-2"
               >
-                <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mb-2.5 flex items-start gap-2.5">
+                <h3 className="text-lg font-extrabold text-[#002147] flex items-start gap-2.5">
                   <ShieldCheck
-                    className="w-5 h-5 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5"
+                    className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                   <span>{item.titulo}</span>
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-7">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {item.descripcion}
                 </p>
               </article>
@@ -397,35 +327,35 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 3. QUÉ TAPICERÍAS LIMPIAMOS A DOMICILIO (HOGAR + B2B) */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+      {/* 3. QUÉ TAPICERÍAS LIMPIAMOS A DOMICILIO (Lino cálido #F7F6F2) */}
+      <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="max-w-3xl space-y-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
               Alcance residencial y profesional
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
               Qué piezas tapizadas tratamos in situ (y qué partes limpiamos)
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Trabajamos exclusivamente mobiliario tapizado de viviendas, apartamentos turísticos y espacios profesionales (no realizamos tapicería de vehículos).
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TAPICERIAS_ATENDIDAS.map((item) => (
               <article
                 key={item.id}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6"
+                className="rounded-sm border border-slate-200 bg-white p-6"
               >
-                <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mb-2 flex items-start gap-2.5">
+                <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-2 flex items-start gap-2.5">
                   <CheckCircle2
-                    className="w-5 h-5 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5"
+                    className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                   <span>{item.titulo}</span>
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-7">
+                <p className="text-sm text-slate-600 leading-relaxed pl-7">
                   {item.descripcion}
                 </p>
               </article>
@@ -433,26 +363,26 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
           </div>
 
           {/* Bloque específico: Higienización de colchones a domicilio en Vigo */}
-          <div className="rounded-2xl border border-[#002147]/20 dark:border-[#0F76BB]/40 bg-white dark:bg-[#071324] p-6 sm:p-8 mb-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="rounded-sm border border-slate-200 border-l-4 border-l-[#0F76BB] bg-white p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             <div className="lg:col-span-8 space-y-2.5">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
                 Higienización de colchones a domicilio en Vigo
               </p>
-              <h3 className="text-xl font-extrabold text-[#002147] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#002147]">
                 Limpieza de colchones frente a humedad, ácaros y cercos sin empapar el núcleo
               </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 Con la humedad atlántica de Vigo (77 % anual y 80–85 % entre octubre y enero), los colchones y canapés retienen sudoración nocturna, polvo fino y ácaros (Dermatophagoides) en las capas del acolchado. Aplicamos aspirado profundo en seco, pretratamiento puntual y extracción controlada de baja humedad en caras accesibles sin saturar la espuma ni usar vaporeta (que reblandece la viscoelástica, coagula sangre/orina y dispara el riesgo de moho si supera las 48 h húmedo).
               </p>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <strong className="text-[#002147] dark:text-white">Para valorar tu colchón por WhatsApp:</strong> indica la medida (90, 135, 150 o 180 cm), si quieres tratar una o ambas caras accesibles, si aplicaste lejía/bicarbonato previo y adjunta foto general y de cerca de cualquier cerco o mancha.
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <strong className="text-[#002147]">Para valorar tu colchón por WhatsApp:</strong> indica la medida (90, 135, 150 o 180 cm), si quieres tratar una o ambas caras accesibles, si aplicaste lejía/bicarbonato previo y adjunta foto general y de cerca de cualquier cerco o mancha.
               </p>
             </div>
 
             <div className="lg:col-span-4 flex flex-col gap-3">
               <a
                 href="#presupuestar-sofa"
-                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition-colors text-center"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-lg transition-colors text-center shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Pedir valoración de colchón</span>
@@ -460,25 +390,25 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               <a
                 href="/blog/humedad-acaros-colchones-sofas-vigo"
                 onClick={(e) => onNavigate('/blog/humedad-acaros-colchones-sofas-vigo', e)}
-                className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-700 hover:border-[#002147] text-[#002147] dark:text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors text-center"
+                className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors text-center"
               >
                 <span>Guía de humedad y ácaros en Vigo</span>
-                <ArrowRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
               </a>
             </div>
           </div>
 
           {/* Franja B2B para alojamientos, oficinas, clínicas y hostelería */}
-          <div className="rounded-2xl border border-[#002147]/20 dark:border-[#0F76BB]/40 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
                 <Building2 className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Empresas, clínicas, oficinas y alojamientos turísticos</span>
               </div>
-              <h3 className="text-xl font-extrabold text-[#002147] dark:text-white">
+              <h3 className="text-xl font-extrabold text-[#002147]">
                 Limpieza de sofás y lotes de sillería para negocios en Vigo
               </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-700 leading-relaxed">
                 Coordinamos visitas para poner a punto sofás de viviendas vacacionales entre reservas, sillones de salas de espera en clínicas y lotes de sillas tapizadas en oficinas o restaurantes.
               </p>
             </div>
@@ -487,7 +417,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               <a
                 href="/limpieza-apartamentos-turisticos-vigo"
                 onClick={(e) => onNavigate('/limpieza-apartamentos-turisticos-vigo', e)}
-                className="inline-flex items-center justify-center gap-1.5 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap"
               >
                 <span>Alojamientos turísticos</span>
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -495,41 +425,41 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               <a
                 href="/limpieza-profesional-vigo"
                 onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
-                className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-700 hover:border-[#002147] text-[#002147] dark:text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-xs sm:text-sm px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap"
               >
                 <span>Oficinas y locales</span>
-                <ArrowRight className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. PROCESO TÉCNICO EN 6 PASOS REALES */}
-      <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+      {/* 4. PROCESO TÉCNICO EN 6 PASOS REALES (Blanco) */}
+      <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
               Protocolo técnico controlado · Sin vapor ni secado forzado
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
               Cómo limpiamos tu sofá en 6 pasos
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
             {FASES_LIMPIEZA_SOFA.map((fase) => (
               <article
                 key={fase.num}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6"
+                className="border-t-2 border-slate-200 pt-5"
               >
-                <span className="text-xs font-mono tabular-nums font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <span className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
                   Paso {fase.num}
                 </span>
-                <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mt-1.5 mb-2">
+                <h3 className="text-lg font-extrabold text-[#002147] mt-1.5 mb-2">
                   {fase.titulo}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {fase.descripcion}
                 </p>
               </article>
@@ -538,18 +468,18 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 5. GUÍA PRÁCTICA DE ETIQUETAS (W / S / WS / X) Y TEJIDOS */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
+      {/* 5. GUÍA PRÁCTICA DE ETIQUETAS (W / S / WS / X) Y TEJIDOS (#F7F6F2) */}
+      <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#0F76BB]">
               <Tag className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Cómo interpretar la etiqueta bajo los cojines</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
               Guía de códigos de tapicería (W, S, WS, X) y materiales habituales
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Antes de aplicar cualquier producto en casa, busca la etiqueta cosida bajo el asiento o en el interior de las fundas. Si puedes fotografiarla y enviarla a Mimo, nos ayudará a ajustar el método desde el primer mensaje.
             </p>
           </div>
@@ -560,15 +490,15 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               {CODIGOS_ETIQUETA.map((c) => (
                 <article
                   key={c.codigo}
-                  className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5"
+                  className="rounded-sm border border-slate-200 bg-white p-5"
                 >
-                  <p className="font-mono text-xs font-extrabold text-[#0F76BB] dark:text-[#60B5F6] uppercase tracking-wider mb-1">
+                  <p className="font-mono text-xs font-extrabold text-[#0F76BB] uppercase tracking-wider mb-1">
                     Código {c.codigo}
                   </p>
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white mb-2">
+                  <h3 className="text-base font-extrabold text-[#002147] mb-2">
                     {c.nombre}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {c.regla}
                   </p>
                 </article>
@@ -576,17 +506,17 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
             </div>
 
             {/* Comportamiento según tejido */}
-            <div className="lg:col-span-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-7 space-y-4">
-              <h3 className="text-lg font-extrabold text-[#002147] dark:text-white">
+            <div className="lg:col-span-6 rounded-sm border border-slate-200 bg-white p-6 sm:p-7 space-y-4">
+              <h3 className="text-lg font-extrabold text-[#002147]">
                 Comportamiento según el tipo de tejido
               </h3>
-              <ul className="divide-y divide-slate-100 dark:divide-slate-800">
+              <ul className="divide-y divide-slate-200">
                 {MATERIALES_TAPICERIA.map((m) => (
-                  <li key={m.material} className="py-3 first:pt-0 last:pb-0">
-                    <p className="text-sm font-extrabold text-[#002147] dark:text-white">
+                  <li key={m.material} className="py-3.5 first:pt-0 last:pb-0">
+                    <p className="text-sm font-extrabold text-[#002147]">
                       {m.material}
                     </p>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1">
                       {m.cuidado}
                     </p>
                   </li>
@@ -597,18 +527,18 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 6. CONDICIONES DE VISITA Y TRANSPARENCIA SOBRE MANCHAS */}
-      <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+      {/* 6. CONDICIONES DE VISITA Y TRANSPARENCIA SOBRE MANCHAS (Blanco) */}
+      <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6 sm:p-8 space-y-4">
-              <div className="flex items-center gap-2 text-[#0F76BB] dark:text-[#60B5F6]">
-                <Home className="w-5 h-5" aria-hidden="true" />
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div className="lg:col-span-6 border-t-2 border-[#0F76BB] pt-6 space-y-4">
+              <div className="flex items-center gap-2 text-[#0F76BB]">
+                <Home className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   Qué tener en cuenta el día de la visita
                 </h2>
               </div>
-              <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+              <ul className="space-y-3 text-sm text-slate-700 leading-relaxed">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
                   <span>
@@ -624,31 +554,31 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
                   <span>
-                    <strong>Secado natural al aire:</strong> no usamos secadores de aire caliente ni ventiladores industriales; el tejido seca al aire (referencia de 8–12 horas con ventilación cruzada continua, variando según grosor de espuma, tejido y humedad ambiental de Vigo) antes de volver a sentarse o vestir la cama.
+                    <strong className="text-[#002147]">Secado natural al aire:</strong> no usamos secadores de aire caliente ni ventiladores industriales; el tejido seca al aire (referencia de 8–12 horas con ventilación cruzada continua, variando según grosor de espuma, tejido y humedad ambiental de Vigo) antes de volver a sentarse o vestir la cama.
                   </span>
                 </li>
               </ul>
             </div>
 
-            <div className="lg:col-span-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6 sm:p-8 space-y-4">
-              <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
+            <div className="lg:col-span-6 border-t-2 border-amber-500 pt-6 space-y-4">
+              <div className="flex items-center gap-2 text-amber-600">
                 <AlertTriangle className="w-5 h-5 shrink-0" aria-hidden="true" />
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   Franqueza técnica sobre manchas difíciles
                 </h2>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 Nunca prometemos eliminar el 100 % de cualquier mancha. Valoramos tus fotografías antes de desplazarnos para indicarte con honestidad qué mejora cabe esperar en cada caso:
               </p>
-              <ul className="space-y-2.5 text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+              <ul className="space-y-2.5 text-sm text-slate-700 leading-relaxed">
                 <li className="flex items-start gap-2.5">
-                  <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-1" aria-hidden="true" />
+                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-1" aria-hidden="true" />
                   <span>
                     Manchas muy antiguas, tintas penetradas, transferencia vaquera o cercos alterados previamente con lejía, amoníaco, bicarbonato con vinagre o vaporeta (que fijan proteínas y provocan pardeamiento celulósico) pueden dejar marca permanente.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-1" aria-hidden="true" />
+                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-1" aria-hidden="true" />
                   <span>
                     En derrames orgánicos que ya han calado en la espuma interior, la limpieza de la tela atenúa la mancha superficial, aunque el resultado depende de hasta dónde haya penetrado el líquido.
                   </span>
@@ -659,37 +589,37 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 7. PREPARADOR DE PRESUPUESTO POR FOTO + CHECKLIST + RGPD */}
+      {/* 7. PREPARADOR DE PRESUPUESTO POR FOTO + CHECKLIST + RGPD (Azul hielo luminoso #EDF5FD) */}
       <section
         id="presupuestar-sofa"
-        className="py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10"
+        className="py-16 lg:py-22 bg-[#EDF5FD] text-[#002147] border-b border-slate-200"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-xs font-mono uppercase tracking-wider text-[#60B5F6] font-bold mb-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
               Valoración directa por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-3 text-balance">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
               Presupuestar la limpieza de mi sofá con Mimo
             </h2>
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
               Prepara aquí los datos básicos y te mostramos qué fotografías conviene adjuntar en el chat para darte un presupuesto ajustado y disponibilidad en tu zona.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Checklist de 6 fotos/datos útiles */}
-            <div className="lg:col-span-5 rounded-2xl bg-white/10 border border-white/15 p-6 space-y-4">
-              <div className="flex items-center gap-2 text-[#60B5F6]">
+            <div className="lg:col-span-5 rounded-sm bg-white/85 border border-[#0F76BB]/25 p-6 space-y-4">
+              <div className="flex items-center gap-2 text-[#0F76BB]">
                 <Camera className="w-5 h-5 shrink-0" aria-hidden="true" />
-                <h3 className="text-lg font-extrabold text-white">
+                <h3 className="text-lg font-extrabold text-[#002147]">
                   Qué incluir al escribir a Mimo
                 </h3>
               </div>
-              <ol className="space-y-3 text-xs sm:text-sm text-slate-100 leading-relaxed">
+              <ol className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
                 {CHECKLIST_FOTOS_SOFA.map((paso, idx) => (
                   <li key={paso} className="flex items-start gap-2.5">
-                    <span className="font-mono font-extrabold text-[#60B5F6] shrink-0">
+                    <span className="font-mono font-extrabold text-[#0F76BB] shrink-0">
                       0{idx + 1}.
                     </span>
                     <span>{paso}</span>
@@ -699,12 +629,12 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
             </div>
 
             {/* Configurador WhatsApp */}
-            <div className="lg:col-span-7 rounded-2xl bg-white text-slate-900 dark:bg-[#0b1d36] dark:text-white p-6 sm:p-8 shadow-xl space-y-5">
+            <div className="lg:col-span-7 rounded-sm bg-white border border-slate-200 text-slate-900 p-6 sm:p-8 shadow-xs space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label
                     htmlFor="sofa-mueble"
-                    className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Tipo de mueble o piezas
                   </label>
@@ -712,7 +642,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-mueble"
                     value={tipoMueble}
                     onChange={(e) => setTipoMueble(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Sofá de 2 o 3 plazas">Sofá de 2 o 3 plazas</option>
                     <option value="Sofá con chaiselongue o rinconera">
@@ -731,7 +661,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 <div>
                   <label
                     htmlFor="sofa-tapiceria"
-                    className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Tapicería o código de etiqueta
                   </label>
@@ -739,7 +669,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-tapiceria"
                     value={tapiceria}
                     onChange={(e) => setTapiceria(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Tela / Microfibra / Antimanchas">
                       Tela / Microfibra / Antimanchas
@@ -767,7 +697,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 <div>
                   <label
                     htmlFor="sofa-localidad"
-                    className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Localidad
                   </label>
@@ -775,7 +705,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-localidad"
                     value={localidad}
                     onChange={(e) => setLocalidad(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     {ZONAS_SERVICIO.map((loc) => (
                       <option key={loc} value={loc}>
@@ -791,7 +721,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 <div>
                   <label
                     htmlFor="sofa-motivo"
-                    className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Motivo principal
                   </label>
@@ -799,7 +729,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-motivo"
                     value={motivo}
                     onChange={(e) => setMotivo(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Limpieza general e higienización">
                       Limpieza general e higienización
@@ -818,7 +748,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               <div>
                 <label
                   htmlFor="sofa-obs"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Observaciones (zona de Vigo, si usaste algún producto previo... opcional)
                 </label>
@@ -828,7 +758,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                   value={observaciones}
                   onChange={(e) => setObservaciones(e.target.value)}
                   placeholder="Ej.: Chaiselongue de 4 plazas en Coia, mancha de café sin tratar."
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
 
@@ -842,16 +772,16 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                       service_id: 'limpieza-sofas',
                     })
                   }
-                  className="flex-1 inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base py-4 px-6 rounded-xl transition-colors"
+                  className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
                 >
-                  <MessageCircle className="w-5 h-5" aria-hidden="true" />
+                  <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <span>Enviar consulta y fotos por WhatsApp</span>
                 </a>
 
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 px-4 py-3.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 cursor-pointer hover:border-[#0F76BB] transition-colors"
+                  className="min-h-[48px] inline-flex items-center justify-center gap-1.5 border border-slate-300 hover:border-[#002147] px-4 py-3 rounded-lg text-xs font-bold text-[#002147] cursor-pointer transition-colors"
                 >
                   {copied ? (
                     <>
@@ -868,12 +798,12 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               </div>
 
               {/* Primera capa informativa RGPD / Privacidad */}
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed pt-2 border-t border-slate-100 dark:border-slate-800">
+              <p className="text-[11px] text-slate-500 leading-relaxed pt-2 border-t border-slate-200">
                 <strong>Información básica de privacidad:</strong> Responsable: {CONTACT_INFO.legalName} (NIF {CONTACT_INFO.cif}). Finalidad: valorar tu tapicería mediante fotografías y gestionar tu solicitud de presupuesto por WhatsApp. Más información sobre tus derechos de acceso, rectificación o supresión en{' '}
                 <a
                   href="/privacidad"
                   onClick={(e) => onNavigate('/privacidad', e)}
-                  className="underline font-semibold text-[#002147] dark:text-[#60B5F6]"
+                  className="underline font-semibold text-[#002147]"
                 >
                   Política de privacidad
                 </a>
@@ -884,62 +814,96 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 8. PREGUNTAS FRECUENTES */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
+      {/* 8. PREGUNTAS FRECUENTES (Lino cálido #F7F6F2 en formato acordeón editorial) */}
+      <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10 space-y-1">
-            <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
-              Dudas habituales antes de solicitar visita
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
-              Preguntas frecuentes sobre limpieza de sofás, tapicerías y colchones en Vigo
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {SERVICIO_SOFAS_FAQS.map((faq) => (
-              <details
-                key={faq.pregunta}
-                className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5"
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+            <div className="lg:col-span-5 space-y-4">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                Dudas habituales antes de solicitar visita
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
+                Preguntas frecuentes sobre limpieza de sofás, tapicerías y colchones en Vigo
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Si tienes dudas sobre el código de tu tapicería o el secado según el tejido, envíanos una foto por WhatsApp antes de reservar.
+              </p>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick('/limpieza-sofas-vigo', 'service_detail_faq', {
+                    service_id: 'limpieza-sofas',
+                  })
+                }
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-colors shadow-xs"
               >
-                <summary className="font-extrabold text-[#002147] dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
-                  <span>{faq.pregunta}</span>
-                  <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-3 border-t border-slate-100 dark:border-slate-800">
-                  {faq.respuesta}
-                </p>
-              </details>
-            ))}
+                <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Consultar duda con Mimo</span>
+              </a>
+            </div>
+
+            <div className="lg:col-span-7 divide-y divide-slate-300/80 border-t border-b border-slate-300/80">
+              {SERVICIO_SOFAS_FAQS.map((faq, idx) => {
+                const isOpen = openFaqIdx === idx;
+                return (
+                  <div key={faq.pregunta} className="py-3.5">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
+                      aria-expanded={isOpen}
+                      className="w-full min-h-[48px] text-left flex items-center justify-between gap-4 font-extrabold text-sm sm:text-base text-[#002147] cursor-pointer py-1"
+                    >
+                      <span>{faq.pregunta}</span>
+                      <ChevronDown
+                        className={`w-5 h-5 text-[#0F76BB] shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+
+                    <div
+                      className={
+                        isOpen
+                          ? 'pt-2 pb-2 text-sm text-slate-600 leading-relaxed'
+                          : 'hidden'
+                      }
+                    >
+                      {faq.respuesta}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 9. ENLACES RELACIONADOS */}
-      <section className="py-14 bg-white dark:bg-[#071324]">
+      {/* 9. ENLACES RELACIONADOS (Blanco · Editorial limpio) */}
+      <section className="py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white mb-6">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] mb-8">
             Servicios relacionados de cuidado textil y hogar en Vigo
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {ENLACES_RELACIONADOS.map((rel) => (
               <a
                 key={rel.href}
                 href={rel.href}
                 onClick={(e) => onNavigate(rel.href, e)}
-                className="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6 hover:border-[#0F76BB] transition-colors flex flex-col justify-between"
+                className="group border-t-2 border-slate-200 hover:border-[#0F76BB] pt-5 transition-colors flex flex-col justify-between min-h-[44px]"
               >
                 <div>
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] mb-2">
+                  <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors mb-2">
                     {rel.titulo}
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {rel.descripcion}
                   </p>
                 </div>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] mt-4">
+                <span className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] mt-2">
                   <span>Ver servicio</span>
                   <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </span>

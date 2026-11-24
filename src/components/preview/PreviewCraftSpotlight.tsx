@@ -131,7 +131,7 @@ export const PreviewCraftSpotlight: React.FC<PreviewCraftSpotlightProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick('/preview-portada', 'craft_sofa')}
-                className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white text-sm font-bold px-5 py-3.5 rounded-xl transition-colors"
+                className="inline-flex items-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white text-sm font-bold px-5 py-3.5 rounded-xl transition-colors"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Pedir presupuesto con foto</span>
@@ -207,7 +207,7 @@ export const PreviewCraftSpotlight: React.FC<PreviewCraftSpotlightProps> = ({
             </div>
           </motion.article>
 
-          {/* Derecha: Costura y 18 arreglos */}
+          {/* Derecha: Costura y arreglos */}
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -219,14 +219,14 @@ export const PreviewCraftSpotlight: React.FC<PreviewCraftSpotlightProps> = ({
               {!failedImages['costura'] ? (
                 <img
                   src={IMAGES.arreglosRopa}
-                  alt="Taller de costura y 18 arreglos de ropa en Vigo de Tintorería Mimos"
+                  alt="Taller de costura y arreglos de ropa en Vigo de Tintorería Mimos"
                   referrerPolicy="no-referrer"
                   onError={() => setFailedImages((prev) => ({ ...prev, costura: true }))}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-white font-bold p-6">
-                  Talleres de costura · 18 arreglos
+                  Talleres de costura y arreglos
                 </div>
               )}
             </div>
@@ -240,7 +240,7 @@ export const PreviewCraftSpotlight: React.FC<PreviewCraftSpotlightProps> = ({
                 Costura, composturas y confección de hogar
               </h3>
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                18 especialidades en taller propio y puntos de Gondomar, Ponteareas y O Porriño: bajos, cremalleras, arreglos en piel y cortinas a medida.
+                Arreglos de ropa y costura profesional de todo tipo de prendas en taller propio y puntos de Gondomar, Ponteareas y O Porriño: bajos, cremalleras, arreglos en piel y cortinas a medida.
               </p>
               <div className="flex flex-wrap items-center gap-5 pt-2">
                 <a
@@ -248,7 +248,7 @@ export const PreviewCraftSpotlight: React.FC<PreviewCraftSpotlightProps> = ({
                   onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
                   className="inline-flex items-center gap-1.5 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline"
                 >
-                  <span>Explorar los 18 arreglos y talleres</span>
+                  <span>Explorar arreglos y talleres</span>
                   <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                 </a>
                 <a

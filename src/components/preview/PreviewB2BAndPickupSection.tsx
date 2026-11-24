@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import {
-  Building2,
-  ArrowUpRight,
-  MessageCircle,
-  Check,
-  Send,
-  Truck,
-} from 'lucide-react';
+import { ArrowUpRight, Check, MessageCircle, Send } from 'lucide-react';
 import { CONTACT_INFO, buildMimoWhatsAppUrl } from '../../data/mimosData';
-import { trackWhatsAppClick, trackFormPrepared } from '../../utils/analytics';
+import { trackFormPrepared, trackWhatsAppClick } from '../../utils/analytics';
 
 interface PreviewB2BAndPickupSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -26,34 +18,30 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
   const [errorMsg, setErrorMsg] = useState('');
   const [readyUrl, setReadyUrl] = useState<string | null>(null);
 
-  const b2bBlocks = [
+  const b2bLines = [
     {
-      num: '01',
       title: 'Apartamentos turísticos y VUT',
-      text: 'Limpieza tras check-out, lavandería y planchado de ropa de cama y toallas con control de rotación en Vigo.',
+      text: 'Operativa concentrada en la franja crítica de 11:00 a 15:00 incluidos sábados, festivos y agosto. Lavamos tu propia lencería separada por vivienda, reponemos amenities, coordinamos llaves y enviamos foto-reporte alineado con el Decreto 12/2017 y el REAT.',
       href: '/limpieza-apartamentos-turisticos-vigo',
-      cta: 'Ver gestión de alojamientos',
+      cta: 'Ver operativa para VUT',
     },
     {
-      num: '02',
-      title: 'Oficinas, locales y comunidades',
-      text: 'Mantenimiento periódico o puntual con equipo propio adaptado a horarios de actividad comercial.',
+      title: 'Comunidades (LPH), oficinas y locales',
+      text: 'Exclusivamente mantenimiento periódico continuo (sin fin de obra ni cristales en altura). Personal en Régimen General con Seguro RC, PRL y documentación CAE al día, sustituciones cubiertas y visita técnica gratuita en Vigo.',
       href: '/limpieza-profesional-vigo',
-      cta: 'Ver limpieza profesional',
+      cta: 'Ver mantenimiento periódico',
     },
     {
-      num: '03',
-      title: 'Uniformidad y vestuario laboral',
-      text: 'Lavado industrial, desmanchado técnico y reposición organizada para empresas, hostelería y clínicas.',
+      title: 'Empresas, clínicas y hostelería',
+      text: 'Lavado y planchado de toallas de consulta o peluquería, sábanas de camilla y vestuario laboral (suciedad habitual). Posibilidad de pack combinado de limpieza + lavandería con factura mensual con CIF.',
       href: '/servicios-empresas',
-      cta: 'Ver servicios a empresas',
+      cta: 'Ver lavandería de empresas',
     },
     {
-      num: '04',
       title: 'Recuperación textil tras siniestros',
-      text: 'Tratamiento especializado de ropa, cortinas y alfombras afectados por humo, hollín o inundaciones con factura para seguros.',
+      text: 'Protocolo específico para ropa, cortinas y alfombras afectados por humo, hollín o inundaciones con desodorización controlada y factura oficial válida para aseguradoras.',
       href: '/limpieza-incendios-siniestros-vigo',
-      cta: 'Ver protocolo y seguros',
+      cta: 'Ver recuperación de siniestros',
     },
   ];
 
@@ -64,170 +52,149 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
       return;
     }
     if (!aceptoPrivacidad) {
-      setErrorMsg('Acepta la política de privacidad para preparar el mensaje de recogida.');
+      setErrorMsg('Acepta la política de privacidad para preparar la consulta de recogida.');
       return;
     }
     setErrorMsg('');
     const msg = [
-      'Hola, Mimo. Quiero solicitar recogida o información a domicilio.',
+      'Hola, Mimo. Quiero consultar disponibilidad y condiciones de recogida a domicilio.',
       `Nombre: ${nombre.trim()}`,
       `Teléfono: ${telefono.trim()}`,
       `Zona / Dirección: ${zona.trim()}`,
       `Servicio: ${servicio}`,
     ].join('\n');
     setReadyUrl(buildMimoWhatsAppUrl(msg));
-    trackFormPrepared('/preview-portada', 'pickup_request');
+    trackFormPrepared('/', 'pickup_request');
   };
 
   return (
     <>
-      {/* BANDA DE AUTORIDAD AZUL MARINO: ALOJAMIENTOS Y EMPRESAS (Estilo GuestReady / Avantio) */}
+      {/* DIVISIÓN PROFESIONAL Y VUT EN COMPOSICIÓN ASIMÉTRICA LUMINOSA */}
       <section
         id="empresas"
-        aria-labelledby="preview-b2b-heading"
-        className="py-18 lg:py-26 bg-[#002147] text-white"
+        aria-labelledby="b2b-heading"
+        className="py-16 lg:py-24 bg-[#EDF5FD] text-[#002147] border-b border-slate-200"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/15 pb-10"
-          >
-            <div className="max-w-2xl space-y-3">
-              <p className="inline-flex items-center gap-2 text-sm font-bold text-[#93c5fd]">
-                <Building2 className="w-4 h-4" aria-hidden="true" />
-                <span>División profesional y alojamientos turísticos en Vigo</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="lg:col-span-5 space-y-5">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                División profesional, comunidades y VUT en Vigo
               </p>
               <h2
-                id="preview-b2b-heading"
-                className="text-3xl sm:text-4xl font-extrabold tracking-tight text-balance"
+                id="b2b-heading"
+                className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-balance text-[#002147]"
               >
-                Tu socio operativo de lavandería y limpieza para apartamentos y empresas
+                Lavandería y limpieza periódica para apartamentos y empresas
               </h2>
-            </div>
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                Un mismo equipo con planta propia en Navia, facturación mensual con CIF y documentación laboral al día para anfitriones, administradores de fincas y comercios de Vigo.
+              </p>
 
-            <div className="flex flex-wrap gap-3 shrink-0">
-              <a
-                href={CONTACT_INFO.whatsappApartamentosHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackWhatsAppClick('/preview-portada', 'b2b_band')}
-                className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors"
-              >
-                <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                <span>Pedir propuesta a medida</span>
-              </a>
-              <a
-                href="/limpieza-apartamentos-turisticos-vigo"
-                onClick={(e) => onNavigate('/limpieza-apartamentos-turisticos-vigo', e)}
-                className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors"
-              >
-                <span>Apartamentos turísticos</span>
-                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-              </a>
-            </div>
-          </motion.div>
-
-          {/* 4 bloques en cascada progresiva (sin saturación visual) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {b2bBlocks.map((item, idx) => (
-              <motion.div
-                key={item.num}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.4,
-                  delay: idx * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="pt-5 border-t border-white/20 flex flex-col justify-between space-y-5"
-              >
-                <div className="space-y-2.5">
-                  <p className="text-2xl font-extrabold text-[#60B5F6] tabular-nums">
-                    {item.num}
-                  </p>
-                  <h3 className="text-lg font-extrabold text-white">{item.title}</h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">{item.text}</p>
-                </div>
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
-                  href={item.href}
-                  onClick={(e) => onNavigate(item.href, e)}
-                  className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#93c5fd] hover:text-white transition-colors"
+                  href={CONTACT_INFO.whatsappApartamentosHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick('/', 'b2b_band')}
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
                 >
-                  <span>{item.cta}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                  <span>Solicitar visita por WhatsApp</span>
                 </a>
-              </motion.div>
-            ))}
+                <a
+                  href="/limpieza-apartamentos-turisticos-vigo"
+                  onClick={(e) => onNavigate('/limpieza-apartamentos-turisticos-vigo', e)}
+                  className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-white border border-[#002147]/25 hover:border-[#002147] text-[#002147] font-bold text-sm px-5 py-2.5 rounded-sm transition-colors"
+                >
+                  <span>Apartamentos turísticos</span>
+                  <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 divide-y divide-slate-300/80 border-t border-b border-slate-300/80">
+              {b2bLines.map((item) => (
+                <div key={item.title} className="py-6 space-y-2">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-700 leading-relaxed">{item.text}</p>
+                  <a
+                    href={item.href}
+                    onClick={(e) => onNavigate(item.href, e)}
+                    className="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:text-[#002147] hover:underline transition-colors"
+                  >
+                    <span>{item.cta}</span>
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SOLICITUD LIMPIA DE RECOGIDA A DOMICILIO */}
+      {/* RECOGIDA EN RUTA VS ENTREGA SIN MÍNIMO (Líneas limpias, sin cajas abultadas) */}
       <section
         id="recogida"
-        aria-labelledby="preview-recogida-heading"
-        className="py-18 lg:py-24 bg-white dark:bg-[#071324] border-b border-slate-200/70 dark:border-slate-800"
+        aria-labelledby="recogida-heading"
+        className="py-16 lg:py-22 bg-white border-b border-slate-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-6 space-y-5"
-            >
-              <p className="inline-flex items-center gap-2 text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
-                <Truck className="w-4 h-4" aria-hidden="true" />
-                <span>Servicio a domicilio y recogida en tu puerta</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="lg:col-span-6 space-y-4">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                Recogida y entrega a domicilio
               </p>
               <h2
-                id="preview-recogida-heading"
-                className="text-3xl sm:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance"
+                id="recogida-heading"
+                className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
               >
-                Solicita recogida y entrega en tu casa u oficina
+                Consulta ruta en tu dirección o entrega en tienda sin mínimo
               </h2>
-              <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                Pasamos por tu domicilio en Vigo y alrededores (servicio sujeto a importe mínimo según zona a confirmar por Mimo). Si prefieres entregar en mano, recuerda que en nuestras <strong>3 tiendas propias y 5 puntos colaboradores no existe pedido mínimo</strong>.
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Pasamos con furgoneta propia por Vigo y alrededores, servicio siempre{' '}
+                <strong>sujeto a ruta disponible e importe mínimo a confirmar con Mimo</strong>. Si traes pocas prendas sueltas, recuerda que en nuestras{' '}
+                <strong>3 tiendas propias y 5 puntos colaboradores no existe pedido mínimo</strong>.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-1 text-sm font-bold">
                 <a
                   href={CONTACT_INFO.whatsappPickupHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[#178A47] dark:text-[#4ade80] hover:underline"
+                  onClick={() => trackWhatsAppClick('/', 'pickup_direct')}
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white px-4 py-2 rounded-sm transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span>Ir directo a WhatsApp ({CONTACT_INFO.whatsappNumber})</span>
+                  <span>WhatsApp directo ({CONTACT_INFO.whatsappNumber})</span>
+                </a>
+                <a
+                  href="/recogida-a-domicilio"
+                  onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
+                  className="inline-flex items-center gap-1.5 min-h-[44px] text-[#002147] hover:text-[#0F76BB] hover:underline"
+                >
+                  <span>Condiciones de recogida</span>
+                  <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                 </a>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-6"
-            >
+            <div className="lg:col-span-6">
               <form
                 onSubmit={handlePrepare}
-                className="rounded-3xl bg-[#F4F7FB] dark:bg-[#0b1d36] p-6 sm:p-8 space-y-4"
+                className="border-t border-slate-300 pt-6 space-y-4"
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
-                      htmlFor="prev-pickup-name"
-                      className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1"
+                      htmlFor="home-pickup-name"
+                      className="block text-xs font-bold text-slate-700 mb-1.5"
                     >
                       Nombre
                     </label>
                     <input
-                      id="prev-pickup-name"
+                      id="home-pickup-name"
                       type="text"
                       value={nombre}
                       onChange={(e) => {
@@ -235,18 +202,18 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         setReadyUrl(null);
                       }}
                       placeholder="Tu nombre"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="prev-pickup-phone"
-                      className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1"
+                      htmlFor="home-pickup-phone"
+                      className="block text-xs font-bold text-slate-700 mb-1.5"
                     >
                       Teléfono
                     </label>
                     <input
-                      id="prev-pickup-phone"
+                      id="home-pickup-phone"
                       type="tel"
                       value={telefono}
                       onChange={(e) => {
@@ -254,21 +221,21 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         setReadyUrl(null);
                       }}
                       placeholder="Ej.: 600 000 000"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
-                      htmlFor="prev-pickup-zone"
-                      className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1"
+                      htmlFor="home-pickup-zone"
+                      className="block text-xs font-bold text-slate-700 mb-1.5"
                     >
                       Dirección o código postal
                     </label>
                     <input
-                      id="prev-pickup-zone"
+                      id="home-pickup-zone"
                       type="text"
                       value={zona}
                       onChange={(e) => {
@@ -276,28 +243,32 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         setReadyUrl(null);
                       }}
                       placeholder="Calle y zona / CP"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="prev-pickup-service"
-                      className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1"
+                      htmlFor="home-pickup-service"
+                      className="block text-xs font-bold text-slate-700 mb-1.5"
                     >
                       Qué necesitas
                     </label>
                     <select
-                      id="prev-pickup-service"
+                      id="home-pickup-service"
                       value={servicio}
                       onChange={(e) => {
                         setServicio(e.target.value);
                         setReadyUrl(null);
                       }}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     >
                       <option value="Tintorería profesional">Tintorería profesional</option>
-                      <option value="Limpieza de sofás a domicilio">Sofá o tapicería a domicilio</option>
-                      <option value="Limpieza o reparación de alfombras">Alfombra (limpieza / arreglo)</option>
+                      <option value="Limpieza de sofás o colchones a domicilio">
+                        Sofá, colchón o tapicería a domicilio
+                      </option>
+                      <option value="Limpieza o reparación de alfombras">
+                        Alfombra (limpieza / arreglo)
+                      </option>
                       <option value="Edredones, mantas o cortinas">Edredones, mantas o cortinas</option>
                       <option value="Colada familiar y planchado">Colada familiar y planchado</option>
                       <option value="Costura y arreglos de ropa">Costura y arreglos de ropa</option>
@@ -308,28 +279,28 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                   </div>
                 </div>
 
-                <label className="flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-300 cursor-pointer">
+                <label className="flex items-center gap-3 min-h-[44px] text-xs sm:text-sm text-slate-600 cursor-pointer py-1">
                   <input
                     type="checkbox"
                     checked={aceptoPrivacidad}
                     onChange={(e) => setAceptoPrivacidad(e.target.checked)}
-                    className="mt-0.5 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                    className="w-5 h-5 rounded-xs border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB] shrink-0"
                   />
                   <span>
-                    He leído y acepto la{' '}
+                    Acepto la{' '}
                     <a
                       href="/privacidad"
                       onClick={(e) => onNavigate('/privacidad', e)}
-                      className="underline font-bold text-[#002147] dark:text-[#60B5F6]"
+                      className="underline font-bold text-[#002147]"
                     >
                       política de privacidad
                     </a>{' '}
-                    para enviar esta solicitud a Mimo.
+                    para enviar esta consulta a Mimo.
                   </span>
                 </label>
 
                 {errorMsg && (
-                  <p className="text-xs font-bold text-red-600 dark:text-red-400" role="alert">
+                  <p className="text-xs font-bold text-red-600" role="alert">
                     {errorMsg}
                   </p>
                 )}
@@ -337,30 +308,33 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                 {!readyUrl ? (
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors cursor-pointer"
+                    className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-sm transition-colors cursor-pointer shadow-xs"
                   >
                     <Send className="w-4 h-4" aria-hidden="true" />
-                    <span>Preparar solicitud de recogida</span>
+                    <span>Preparar consulta para WhatsApp</span>
                   </button>
                 ) : (
-                  <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 p-4 space-y-3">
-                    <p className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                  <div className="border-l-2 border-[#1FA855] pl-4 py-1 space-y-2.5">
+                    <p className="inline-flex items-center gap-1.5 text-xs font-bold text-[#178A47]">
                       <Check className="w-4 h-4 shrink-0" aria-hidden="true" />
-                      <span>Solicitud preparada con tus datos</span>
+                      <span>Consulta preparada con tus datos</span>
                     </p>
-                    <a
-                      href={readyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors"
-                    >
-                      <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                      <span>Enviar ahora por WhatsApp a Mimo</span>
-                    </a>
+                    <div>
+                      <a
+                        href={readyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackWhatsAppClick('/', 'pickup_form_send')}
+                        className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-sm transition-colors shadow-xs"
+                      >
+                        <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                        <span>Enviar ahora por WhatsApp a Mimo</span>
+                      </a>
+                    </div>
                   </div>
                 )}
               </form>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

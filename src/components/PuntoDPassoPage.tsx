@@ -11,42 +11,42 @@ export const PuntoDPassoPage: React.FC<PuntoDPassoPageProps> = ({ onNavigate }) 
     <main
       id="main-content"
       tabIndex={-1}
-      className="focus:outline-hidden py-8 sm:py-12 bg-slate-50 dark:bg-[#071324] flex-1 min-h-screen"
+      className="focus:outline-hidden py-8 sm:py-12 bg-gradient-to-b from-[#F4F9FE] via-white to-[#F7F6F2] flex-1 min-h-screen"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Migas de pan y navegación */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <nav
             aria-label="Migas de pan"
-            className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 flex items-center gap-2"
+            className="text-xs sm:text-sm text-slate-600 flex flex-wrap items-center gap-2"
           >
             <a
               href="/"
               onClick={(e) => onNavigate('/', e)}
-              className="hover:text-[#0F76BB] dark:hover:text-[#60B5F6] font-semibold transition-colors"
+              className="inline-flex items-center min-h-[44px] hover:text-[#0F76BB] font-semibold transition-colors"
             >
               Inicio
             </a>
             <span aria-hidden="true">/</span>
             <a
-              href="/#puntos"
-              onClick={(e) => onNavigate('/#puntos', e)}
-              className="hover:text-[#0F76BB] dark:hover:text-[#60B5F6] font-semibold transition-colors"
+              href="/puntos-mimos"
+              onClick={(e) => onNavigate('/puntos-mimos', e)}
+              className="inline-flex items-center min-h-[44px] hover:text-[#0F76BB] font-semibold transition-colors"
             >
               Tiendas y Puntos Mimos
             </a>
             <span aria-hidden="true">/</span>
-            <span className="text-slate-900 dark:text-white font-bold">
+            <span className="text-[#002147] font-bold">
               D&apos;Passo (Vigo)
             </span>
           </nav>
 
           <a
-            href="/#puntos"
-            onClick={(e) => onNavigate('/#puntos', e)}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+            href="/puntos-mimos"
+            onClick={(e) => onNavigate('/puntos-mimos', e)}
+            className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-xl bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white text-xs sm:text-sm font-bold transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+            <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span>Volver a la lista de puntos</span>
           </a>
         </div>

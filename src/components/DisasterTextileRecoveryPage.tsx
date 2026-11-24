@@ -41,6 +41,7 @@ import {
 } from '../data/mimosData';
 import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
 import { exportInventarioExcel, exportInventarioPdf } from '../utils/inventoryExport';
+import { PageHeroLight } from './PageHeroLight';
 
 interface DisasterTextileRecoveryPageProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -180,7 +181,7 @@ const MATRIZ_TRIAJE: TriageRow[] = [
     viabilidad: 'Recuperable con maquinaria de gran formato',
     estado: 'Recuperable',
     protocolo:
-      'Desempolvado mecánico en seco en central de Navia, desengrase controlado y verificación sensorial antes de entregar.',
+      'Desempolvado mecánico en seco en nuestras instalaciones para cortinajes o mediante taller especialista colaborador en alfombras, desengrase controlado y verificación sensorial antes de entregar.',
   },
   {
     categoria: 'Textiles empapados (Agua Cat. 1 o Cat. 2)',
@@ -235,7 +236,7 @@ const QUE_SI_HACEMOS_TEXTIL = [
     num: '03',
     titulo: 'Alfombras (limpieza y reparación) y pieles / cuero',
     detalle:
-      'Limpieza profunda de alfombras en central de Navia, coordinación de reparación de flecos y ribetes mediante restaurador colaborador, y valoración individual o prueba piloto para piel, cuero y ante.',
+      'Limpieza profunda de alfombras y reparación de flecos y ribetes mediante taller especialista colaborador, y valoración individual o prueba piloto para piel, cuero y ante.',
   },
 ];
 
@@ -436,7 +437,6 @@ export const DisasterTextileRecoveryPage: React.FC<DisasterTextileRecoveryPagePr
   );
   const [observaciones, setObservaciones] = useState('');
   const [copied, setCopied] = useState(false);
-  const [heroImgError, setHeroImgError] = useState(false);
 
   const toggleTextil = (item: string) => {
     setTextilesSeleccionados((prev) =>
@@ -673,177 +673,106 @@ Teléfono de contacto: [Tu teléfono]`;
     <main
       id="main-content"
       tabIndex={-1}
-      className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+      className="focus:outline-hidden bg-white text-slate-900 border-b border-slate-200"
     >
-      {/* 1. CABECERA ESPECIALIZADA DE URGENCIA TEXTIL */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav aria-label="Migas de pan" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-300">
-              <li>
-                <a
-                  href="/"
-                  onClick={(e) => onNavigate('/', e)}
-                  className="hover:text-white underline-offset-4 hover:underline"
-                >
-                  Inicio
-                </a>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <a
-                  href="/#servicios"
-                  onClick={(e) => onNavigate('/#servicios', e)}
-                  className="hover:text-white underline-offset-4 hover:underline"
-                >
-                  Servicios
-                </a>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-[#60B5F6] font-bold">
-                Recuperación textil tras incendios, humo e inundaciones
-              </li>
-            </ol>
-          </nav>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
-            <div className="lg:col-span-7 flex flex-col justify-center space-y-5">
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono uppercase tracking-wider text-[#60B5F6] font-bold">
-                <span>Servicio técnico en Vigo</span>
-                <span aria-hidden="true">·</span>
-                <span>Exclusivamente ropa y textiles</span>
-                <span aria-hidden="true">·</span>
-                <span>CIF {CONTACT_INFO.cif}</span>
+      {/* 1. CABECERA LUMINOSA DE URGENCIA TEXTIL */}
+      <PageHeroLight
+        breadcrumbs={[
+          { label: 'Inicio', href: '/' },
+          { label: 'Servicios', href: '/#servicios' },
+          { label: 'Recuperación textil tras incendios, humo e inundaciones' },
+        ]}
+        onNavigate={onNavigate}
+        kicker={`Servicio técnico en Vigo · Exclusivamente ropa y textiles · CIF ${CONTACT_INFO.cif}`}
+        title="Recuperación textil tras incendios, humo e inundaciones en Vigo"
+        description="Rescatamos armarios completos, abrigos, trajes, cortinas, edredones y alfombras afectados por humo, hollín o agua en hogares, comercios y comunidades de Vigo y comarca. Triaje honesto con prueba de viabilidad previa, lote prioritario y factura oficial con CIF para el seguro."
+        note={
+          <>
+            <strong>Alcance 100 % textil (sin limpieza estructural de vivienda):</strong> actuamos únicamente sobre tu vestuario y textiles recuperables. No realizamos limpieza de obra en paredes, techos, suelos ni retirada de escombros.
+          </>
+        }
+        whatsappHref={whatsappUrl}
+        whatsappLabel="Consulta urgente con Mimo"
+        onWhatsAppClick={() =>
+          trackWhatsAppClick('/limpieza-incendios-siniestros-vigo', 'service_detail', {
+            service_id: 'recuperacion-siniestros',
+          })
+        }
+        secondaryAction={{
+          label: 'Plantilla inventario y carta seguro',
+          href: '#herramientas-seguro',
+          icon: <ClipboardList className="w-4 h-4 text-[#0F76BB] group-hover:text-white" aria-hidden="true" />,
+          isInternalRoute: false,
+        }}
+        image={{
+          src: IMAGES.blogSiniestrosIncendio,
+          alt: 'Especialista de Tintorería Mimos revisando abrigos y prendas tras un siniestro de humo en taller de Vigo',
+          caption:
+            'Inspección pieza a pieza en nuestra central de Navia para dictaminar qué prendas admiten recuperación tras prueba previa y cuáles requieren certificado de pérdida total.',
+          fallbackTitle: 'Recuperación textil especializada tras humo, hollín e inundación',
+          fallbackSubtitle: 'Triaje técnico, neutralización y documentación oficial en Tintorería Mimos Vigo',
+        }}
+        extraContent={
+          <div className="space-y-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+              <div className="rounded-lg bg-white border border-slate-200 px-3 py-2.5">
+                <p className="font-mono font-bold text-[#0F76BB] uppercase">Ciclo habitual</p>
+                <p className="font-bold text-[#002147] mt-0.5">1 a 3 semanas</p>
               </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12] text-balance">
-                Recuperación textil tras incendios, humo e inundaciones en Vigo
-              </h1>
-
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
-                Rescatamos armarios completos, abrigos, trajes, cortinas, edredones y alfombras afectados por humo, hollín o agua en hogares, comercios y comunidades de Vigo y comarca. Triaje honesto con prueba de viabilidad previa, lote prioritario y factura oficial con CIF para el seguro.
-              </p>
-
-              <div className="p-4 rounded-xl bg-white/10 border border-white/15 text-xs sm:text-sm text-slate-100 leading-relaxed">
-                <strong>Alcance 100 % textil (sin limpieza estructural de vivienda):</strong> actuamos únicamente sobre tu vestuario y textiles recuperables. No realizamos limpieza de obra en paredes, techos, suelos ni retirada de escombros.
+              <div className="rounded-lg bg-white border border-slate-200 px-3 py-2.5">
+                <p className="font-mono font-bold text-[#0F76BB] uppercase">Urgencia diaria</p>
+                <p className="font-bold text-[#002147] mt-0.5">Lote prioritario trabajo/colegio</p>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
-                <div className="rounded-lg bg-white/5 border border-white/10 px-3.5 py-2.5">
-                  <p className="font-mono font-bold text-[#60B5F6] uppercase">Ciclo habitual</p>
-                  <p className="font-bold text-white mt-0.5">1 a 3 semanas</p>
-                </div>
-                <div className="rounded-lg bg-white/5 border border-white/10 px-3.5 py-2.5">
-                  <p className="font-mono font-bold text-[#60B5F6] uppercase">Urgencia diaria</p>
-                  <p className="font-bold text-white mt-0.5">Lote prioritario trabajo/colegio</p>
-                </div>
-                <div className="rounded-lg bg-white/5 border border-white/10 px-3.5 py-2.5">
-                  <p className="font-mono font-bold text-[#60B5F6] uppercase">Piezas críticas</p>
-                  <p className="font-bold text-white mt-0.5">Prueba de viabilidad previa</p>
-                </div>
+              <div className="rounded-lg bg-white border border-slate-200 px-3 py-2.5">
+                <p className="font-mono font-bold text-[#0F76BB] uppercase">Piezas críticas</p>
+                <p className="font-bold text-[#002147] mt-0.5">Prueba de viabilidad previa</p>
               </div>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    trackWhatsAppClick('/limpieza-incendios-siniestros-vigo', 'service_detail', {
-                      service_id: 'recuperacion-siniestros',
-                    })
-                  }
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-                >
-                  <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  <span>Consulta urgente con Mimo</span>
-                </a>
-
-                <a
-                  href="#herramientas-seguro"
-                  className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white text-white font-bold text-sm sm:text-base px-5 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-                >
-                  <ClipboardList className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
-                  <span>Plantilla inventario y carta seguro</span>
-                </a>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-300">
-                Urgencias telefónicas en horario comercial:{' '}
-                <a
-                  href={CONTACT_INFO.phoneHref}
-                  onClick={() =>
-                    trackPhoneClick('/limpieza-incendios-siniestros-vigo', 'hero')
-                  }
-                  className="text-white font-bold underline underline-offset-4 hover:text-[#60B5F6] tabular-nums"
-                >
-                  {CONTACT_INFO.phoneDisplay}
-                </a>{' '}
-                · Atención directa en Navia, Gregorio Espino y Venezuela.
-              </p>
             </div>
-
-            <div className="lg:col-span-5 flex flex-col">
-              <figure className="h-full rounded-2xl overflow-hidden border border-white/15 bg-[#071936] flex flex-col">
-                {heroImgError ? (
-                  <div className="aspect-4/3 lg:flex-1 bg-gradient-to-br from-[#071936] to-[#0b274f] flex flex-col items-center justify-center p-6 text-center text-slate-300">
-                    <Flame className="w-10 h-10 text-[#60B5F6] mb-3" aria-hidden="true" />
-                    <p className="font-bold text-white text-sm">
-                      Recuperación textil especializada tras humo, hollín e inundación
-                    </p>
-                    <p className="text-xs text-slate-300 mt-1">
-                      Triaje técnico, neutralización y documentación oficial en Tintorería Mimos Vigo
-                    </p>
-                  </div>
-                ) : (
-                  <img
-                    src={IMAGES.blogSiniestrosIncendio}
-                    alt="Especialista de Tintorería Mimos revisando abrigos y prendas tras un siniestro de humo en taller de Vigo"
-                    width={800}
-                    height={600}
-                    fetchPriority="high"
-                    referrerPolicy="no-referrer"
-                    onError={() => setHeroImgError(true)}
-                    className="w-full aspect-4/3 lg:flex-1 object-cover"
-                  />
-                )}
-                <figcaption className="p-4 text-xs text-slate-300 border-t border-white/10">
-                  Inspección pieza a pieza en nuestra central de Navia para dictaminar qué prendas admiten recuperación tras prueba previa y cuáles requieren certificado de pérdida total.
-                </figcaption>
-              </figure>
-            </div>
+            <p className="text-xs sm:text-sm text-slate-600">
+              Urgencias telefónicas en horario comercial:{' '}
+              <a
+                href={CONTACT_INFO.phoneHref}
+                onClick={() =>
+                  trackPhoneClick('/limpieza-incendios-siniestros-vigo', 'hero')
+                }
+                className="text-[#002147] font-bold underline underline-offset-4 hover:text-[#0F76BB] tabular-nums"
+              >
+                {CONTACT_INFO.phoneDisplay}
+              </a>{' '}
+              · Atención directa en Navia, Gregorio Espino y Venezuela.
+            </p>
           </div>
-        </div>
-      </section>
+        }
+      />
 
-      {/* BARRA RÁPIDA PARA USUARIOS EN URGENCIA + 4 CASOS REALES EN VIGO */}
-      <div className="bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <nav aria-label="Atajos según tu situación actual" className="flex flex-wrap items-center gap-2.5 text-xs">
-            <span className="font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mr-1">
+      {/* BARRA RÁPIDA PARA USUARIOS EN URGENCIA */}
+      <div className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+          <nav aria-label="Atajos según tu situación actual" className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="font-mono font-bold uppercase tracking-wider text-slate-500 mr-1">
               Ir directo a:
             </span>
             <a
               href="#primeras-horas"
-              className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-[#0b1d36] hover:bg-[#002147] hover:text-white text-[#002147] dark:text-slate-200 font-bold transition-colors"
+              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
             >
               1. Qué NO hacer ahora (24–48 h)
             </a>
             <a
               href="#casos-cotidianos"
-              className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-[#0b1d36] hover:bg-[#002147] hover:text-white text-[#002147] dark:text-slate-200 font-bold transition-colors"
+              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
             >
               2. Casos frecuentes y cómo valoramos
             </a>
             <a
               href="#herramientas-seguro"
-              className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-[#0b1d36] hover:bg-[#002147] hover:text-white text-[#002147] dark:text-slate-200 font-bold transition-colors"
+              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
             >
               3. Plantilla 5 días y carta al seguro
             </a>
             <a
               href="#entrega-hoy"
-              className="px-3 py-1.5 rounded-lg bg-[#178A47]/10 dark:bg-emerald-950/40 hover:bg-[#178A47] hover:text-white text-[#178A47] dark:text-emerald-300 font-bold transition-colors"
+              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-[#0F76BB]/30 bg-[#EDF5FD] hover:bg-[#0F76BB] hover:text-white text-[#002147] font-bold transition-colors"
             >
               4. Dónde entregar HOY en Vigo (horarios)
             </a>
@@ -851,63 +780,64 @@ Teléfono de contacto: [Tu teléfono]`;
         </div>
       </div>
 
+      {/* 1B. CASOS COTIDIANOS */}
       <section
         id="casos-cotidianos"
-        className="py-12 lg:py-16 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+        className="py-12 lg:py-16 bg-white border-b border-slate-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-5">
             <div className="space-y-1.5">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                 Casos cotidianos en pisos y locales de Vigo
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
                 4 incidentes habituales que rescatamos — y cómo presupuestamos sin sorpresas
               </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-4 space-y-1">
-                <p className="font-extrabold text-[#002147] dark:text-white">
+              <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-4 space-y-1">
+                <p className="font-extrabold text-[#002147]">
                   1. Humareda en cocina o piso de un vecino
                 </p>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   El olor entra en armarios cerrados sin quemar la tela. Desengrase lipofílico + oxígeno activo sin lavar poliéster en caliente (&gt;40 °C).
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-4 space-y-1">
-                <p className="font-extrabold text-[#002147] dark:text-white">
+              <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-4 space-y-1">
+                <p className="font-extrabold text-[#002147]">
                   2. Cuadro eléctrico, caldera o plásticos
                 </p>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   Humo corrosivo (HCl) y hollín untuoso: aspiración en seco obligatoria y neutralización rápida antes de 48 h.
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-4 space-y-1">
-                <p className="font-extrabold text-[#002147] dark:text-white">
+              <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-4 space-y-1">
+                <p className="font-extrabold text-[#002147]">
                   3. Rotura de latiguillo o fuga del piso de arriba
                 </p>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   Con la humedad de Vigo el moho brota en 24–48 h: separación de tintes, higienización y secado técnico fuera de tu vivienda.
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-4 space-y-1">
-                <p className="font-extrabold text-[#002147] dark:text-white">
+              <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-4 space-y-1">
+                <p className="font-extrabold text-[#002147]">
                   4. Agua de extinción, garaje o local comercial
                 </p>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   Rescate textil de cortinajes, alfombras o género afectado solo por humo/agua recuperable, y certificado de descarte si hubo aguas fecales.
                 </p>
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#0F76BB]/30 bg-[#0F76BB]/5 dark:bg-[#0b1d36] p-4 text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
-              <strong>Cómo valoramos antes de gastar:</strong> envíanos primero fotos a Mimo por WhatsApp o acércate a tienda para orientarte. Tras revisar el lote, emitimos <strong>presupuesto previo cerrado</strong> antes de lavar el grueso y, en piezas críticas (cuero, sedas, pluma), te consultamos antes de realizar una prueba técnica de viabilidad puntual.
+            <div className="rounded-xl border border-[#0F76BB]/30 border-l-4 border-l-[#0F76BB] bg-[#EDF5FD] p-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong className="text-[#002147]">Cómo valoramos antes de gastar:</strong> envíanos primero fotos a Mimo por WhatsApp o acércate a tienda para orientarte. Tras revisar el lote, emitimos <strong className="text-[#002147]">presupuesto previo cerrado</strong> antes de lavar el grueso y, en piezas críticas (cuero, sedas, pluma), te consultamos antes de realizar una prueba técnica de viabilidad puntual.
             </div>
           </div>
 
           <div className="lg:col-span-5">
-            <figure className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0b1d36]">
+            <figure className="rounded-xl overflow-hidden border border-slate-200 bg-[#F7F6F2] shadow-xs">
               <img
                 src={IMAGES.servicioTintoreria}
                 alt="Trajes, abrigos y prendas delicadas en taller profesional de Tintorería Mimos Vigo tras triaje y cuidado textil"
@@ -916,7 +846,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 loading="lazy"
                 className="w-full aspect-4/3 object-cover"
               />
-              <figcaption className="p-4 text-xs text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-slate-800">
+              <figcaption className="p-4 text-xs text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
                 Tratamiento individualizado por fibra en nuestro taller de Vigo: separamos vestuario diario prioritario, sastrería y cortinajes para emitir factura oficial desglosada.
               </figcaption>
             </figure>
@@ -927,28 +857,28 @@ Teléfono de contacto: [Tu teléfono]`;
       {/* 2. QUÉ HACER Y QUÉ NO HACER + QUÍMICA POR TIPO DE RESIDUO */}
       <section
         id="primeras-horas"
-        className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800"
+        className="py-12 lg:py-18 bg-[#F7F6F2] border-b border-slate-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div>
             <div className="max-w-3xl mb-8 space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                 Protocolo crítico de las primeras 24–48 horas
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                 Qué SÍ hacer y qué NO hacer para no inutilizar el tejido ni perder cobertura
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 El éxito del rescate textil cae bruscamente pasada la ventana crítica de 24 a 72 horas por corrosión ácida, termofijación de gases o germinación de moho en el clima húmedo de Vigo.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-              <article className="rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col justify-between">
+              <article className="rounded-xl border border-emerald-200 border-t-4 border-t-[#1FA855] bg-white p-6 sm:p-8 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2.5 text-emerald-700 dark:text-emerald-400 mb-5">
+                  <div className="flex items-center gap-2.5 text-[#178A47] mb-5">
                     <CheckCircle2 className="w-5 h-5 shrink-0" aria-hidden="true" />
-                    <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+                    <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                       Qué SÍ hacer de inmediato
                     </h3>
                   </div>
@@ -956,16 +886,16 @@ Teléfono de contacto: [Tu teléfono]`;
                     {PROTOCOLO_QUE_SI.map((paso, idx) => (
                       <li
                         key={paso.titulo}
-                        className="flex items-start gap-3.5 pb-4 last:pb-0 border-b last:border-b-0 border-slate-100 dark:border-slate-800"
+                        className="flex items-start gap-3.5 pb-4 last:pb-0 border-b last:border-b-0 border-slate-200"
                       >
-                        <span className="text-xs font-mono font-bold text-[#178A47] dark:text-emerald-400 tabular-nums pt-0.5 shrink-0">
+                        <span className="text-xs font-mono font-bold text-[#178A47] tabular-nums pt-0.5 shrink-0">
                           0{idx + 1}.
                         </span>
                         <div>
-                          <p className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white mb-1">
+                          <p className="text-sm sm:text-base font-extrabold text-[#002147] mb-1">
                             {paso.titulo}
                           </p>
-                          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                             {paso.texto}
                           </p>
                         </div>
@@ -975,11 +905,11 @@ Teléfono de contacto: [Tu teléfono]`;
                 </div>
               </article>
 
-              <article className="rounded-2xl border border-red-200 dark:border-red-900/60 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col justify-between">
+              <article className="rounded-xl border border-red-200 border-t-4 border-t-red-600 bg-white p-6 sm:p-8 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2.5 text-red-700 dark:text-red-400 mb-5">
+                  <div className="flex items-center gap-2.5 text-red-700 mb-5">
                     <XCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
-                    <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+                    <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                       Qué NO hacer bajo ningún concepto
                     </h3>
                   </div>
@@ -987,16 +917,16 @@ Teléfono de contacto: [Tu teléfono]`;
                     {PROTOCOLO_QUE_NO.map((error, idx) => (
                       <li
                         key={error.titulo}
-                        className="flex items-start gap-3.5 pb-4 last:pb-0 border-b last:border-b-0 border-slate-100 dark:border-slate-800"
+                        className="flex items-start gap-3.5 pb-4 last:pb-0 border-b last:border-b-0 border-slate-200"
                       >
-                        <span className="text-xs font-mono font-bold text-red-600 dark:text-red-400 tabular-nums pt-0.5 shrink-0">
+                        <span className="text-xs font-mono font-bold text-red-700 tabular-nums pt-0.5 shrink-0">
                           0{idx + 1}.
                         </span>
                         <div>
-                          <p className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white mb-1">
+                          <p className="text-sm sm:text-base font-extrabold text-[#002147] mb-1">
                             {error.titulo}
                           </p>
-                          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                             {error.texto}
                           </p>
                         </div>
@@ -1009,16 +939,16 @@ Teléfono de contacto: [Tu teléfono]`;
           </div>
 
           {/* Selector interactivo por tipo de residuo / origen del humo */}
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-8">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
+          <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200">
               <div className="space-y-1 max-w-2xl">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                   Diagnóstico químico según qué ardió
                 </p>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
                   No todos los humos se limpian igual: selecciona el origen del incidente
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                <p className="text-xs sm:text-sm text-slate-600">
                   El humo viaja por termoforesis hasta armarios cerrados sin llama directa. Aplicar agua o disolvente sin identificar el residuo empeora la mancha.
                 </p>
               </div>
@@ -1037,10 +967,10 @@ Teléfono de contacto: [Tu teléfono]`;
                       role="tab"
                       aria-selected={activo}
                       onClick={() => setResiduoActivo(res.id)}
-                      className={`px-3.5 py-2.5 rounded-xl text-xs font-bold border transition-colors cursor-pointer whitespace-nowrap ${
+                      className={`min-h-[44px] px-3.5 py-2 rounded-lg text-xs font-bold border transition-colors cursor-pointer whitespace-nowrap ${
                         activo
-                          ? 'bg-[#002147] border-[#002147] text-white dark:bg-[#0F76BB] dark:border-[#0F76BB]'
-                          : 'bg-slate-50 dark:bg-[#0a1b33] border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-[#0F76BB]'
+                          ? 'bg-[#EDF5FD] border-[#0F76BB] text-[#002147]'
+                          : 'bg-[#F7F6F2] border-slate-200 text-slate-700 hover:border-[#0F76BB]'
                       }`}
                     >
                       {res.titulo}
@@ -1052,39 +982,39 @@ Teléfono de contacto: [Tu teléfono]`;
 
             <div className="pt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               <div className="lg:col-span-5 space-y-3">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                   {residuoSeleccionado.subtitulo}
                 </p>
-                <h4 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+                <h4 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                   {residuoSeleccionado.titulo}
                 </h4>
-                <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-700 dark:text-amber-400">
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-800">
                   <Clock className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Ventana crítica: {residuoSeleccionado.ventanaCritica}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {residuoSeleccionado.quimica}
                 </p>
-                <div className="p-3.5 rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50/70 dark:bg-red-950/25 text-xs text-red-900 dark:text-red-200 leading-relaxed">
+                <div className="p-3.5 rounded-lg border border-red-200 bg-red-50 text-xs text-red-900 leading-relaxed">
                   <strong>Atención:</strong> {residuoSeleccionado.prohibicionClave}
                 </div>
               </div>
 
               <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] p-5 space-y-2">
-                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#002147] dark:text-white">
+                <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 space-y-2">
+                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#002147]">
                     Impacto por fibra y pieles
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {residuoSeleccionado.impactoFibras}
                   </p>
                 </div>
 
-                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] p-5 space-y-2">
-                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#178A47] dark:text-emerald-400">
+                <div className="rounded-xl border border-[#0F76BB]/25 bg-[#EDF5FD] p-5 space-y-2">
+                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
                     Secuencia técnica en Mimos Navia
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                     {residuoSeleccionado.secuenciaMimos}
                   </p>
                 </div>
@@ -1095,17 +1025,17 @@ Teléfono de contacto: [Tu teléfono]`;
       </section>
 
       {/* 3. ALCANCE TEXTIL + MÓDULO INUNDACIONES EN CLIMA DE VIGO (AEMET) Y 3 CATEGORÍAS DE AGUA */}
-      <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+      <section className="py-12 lg:py-18 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div>
             <div className="max-w-3xl mb-8 space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                 Especialización estrictamente textil · Particulares, comercios y comunidades
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                 Qué recuperamos en nuestro taller de Vigo y qué queda fuera de alcance
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 A diferencia de las contratas de limpieza general de obra, concentramos toda nuestra técnica y maquinaria textil exclusivamente en ropa y tejidos recuperables del hogar o empresa.
               </p>
             </div>
@@ -1114,41 +1044,41 @@ Teléfono de contacto: [Tu teléfono]`;
               {QUE_SI_HACEMOS_TEXTIL.map((bloque) => (
                 <article
                   key={bloque.num}
-                  className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6"
+                  className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-6"
                 >
-                  <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] tabular-nums mb-2">
-                    {bloque.num}. ÁREA TEXTIL
+                  <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums mb-2">
+                    {bloque.num} · ÁREA TEXTIL
                   </p>
-                  <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mb-2">
+                  <h3 className="text-lg font-extrabold text-[#002147] mb-2">
                     {bloque.titulo}
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {bloque.detalle}
                   </p>
                 </article>
               ))}
             </div>
 
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] p-6 sm:p-8">
+            <div className="rounded-xl border border-slate-200 border-l-4 border-l-amber-500 bg-[#F7F6F2] p-6 sm:p-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 <div className="lg:col-span-5 space-y-2">
-                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-amber-800">
                     <AlertTriangle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Claridad de servicio</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                     Límites honestos de esta intervención
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Si necesitas saneamiento de obra o carpintería del inmueble, conviene coordinar con tu aseguradora un equipo estructural mientras nosotros salvamos todo el vestuario y los textiles.
                   </p>
                 </div>
                 <div className="lg:col-span-7">
-                  <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                  <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700">
                     {NO_HACEMOS_ALCANCE.map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <XCircle
-                          className="w-4 h-4 text-slate-500 dark:text-slate-400 shrink-0 mt-0.5"
+                          className="w-4 h-4 text-slate-500 shrink-0 mt-0.5"
                           aria-hidden="true"
                         />
                         <span>{item}</span>
@@ -1161,43 +1091,43 @@ Teléfono de contacto: [Tu teléfono]`;
           </div>
 
           {/* Módulo climático AEMET Vigo + 3 Categorías de Agua */}
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0a1b33] p-6 sm:p-8 space-y-6">
+          <div className="rounded-xl border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               <div className="lg:col-span-7 space-y-2">
-                <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
                   <CloudRain className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Inundaciones y agua de extinción en el clima de Vigo</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
                   Por qué tender ropa mojada en casa en Vigo dispara el moho en 24–48 horas
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                   Sin secado técnico ni deshumidificación, un armario empapado por una rotura de tubería o por agua de bomberos no logra evaporar a tiempo dentro del clima atlántico de la ría de Vigo. Pasadas las 48 horas, la germinación fúngica y la migración de tintes degradan las fibras orgánicas.
                 </p>
               </div>
 
               <div className="lg:col-span-5 grid grid-cols-3 gap-3 text-center">
-                <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#071324] p-3.5">
-                  <p className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white tabular-nums">
+                <div className="rounded-xl border border-slate-200 bg-white p-3.5">
+                  <p className="text-lg sm:text-xl font-extrabold text-[#002147] tabular-nums">
                     77 %
                   </p>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5 leading-snug">
+                  <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
                     Humedad media anual Vigo (AEMET)
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#071324] p-3.5">
-                  <p className="text-lg sm:text-xl font-extrabold text-[#0F76BB] dark:text-[#60B5F6] tabular-nums">
+                <div className="rounded-xl border border-slate-200 bg-white p-3.5">
+                  <p className="text-lg sm:text-xl font-extrabold text-[#0F76BB] tabular-nums">
                     81–84 %
                   </p>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5 leading-snug">
+                  <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
                     Humedad media oct–ene (picos 95 %)
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#071324] p-3.5">
-                  <p className="text-lg sm:text-xl font-extrabold text-amber-700 dark:text-amber-400 tabular-nums">
+                <div className="rounded-xl border border-slate-200 bg-white p-3.5">
+                  <p className="text-lg sm:text-xl font-extrabold text-amber-700 tabular-nums">
                     24–48 h
                   </p>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5 leading-snug">
+                  <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
                     Margen antes del brote de moho
                   </p>
                 </div>
@@ -1208,31 +1138,31 @@ Teléfono de contacto: [Tu teléfono]`;
               {CATEGORIAS_AGUA_VIGO.map((cat) => (
                 <article
                   key={cat.categoria}
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5 flex flex-col justify-between space-y-3"
+                  className="rounded-xl border border-slate-200 bg-white p-5 flex flex-col justify-between space-y-3"
                 >
                   <div className="space-y-2">
                     <span
                       className={`inline-block text-xs font-mono font-bold ${
                         cat.estado === 'Recuperable'
-                          ? 'text-[#178A47] dark:text-emerald-400'
+                          ? 'text-[#178A47]'
                           : cat.estado === 'Bajo condición técnica'
-                          ? 'text-amber-700 dark:text-amber-400'
-                          : 'text-red-700 dark:text-red-400'
+                          ? 'text-amber-800'
+                          : 'text-red-700'
                       }`}
                     >
                       {cat.estado.toUpperCase()}
                     </span>
-                    <h4 className="text-base font-extrabold text-[#002147] dark:text-white">
+                    <h4 className="text-base font-extrabold text-[#002147]">
                       {cat.categoria}
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-600 leading-relaxed">
                       <strong>Origen:</strong> {cat.origenVigo}
                     </p>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-600 leading-relaxed">
                       <strong>Evolución:</strong> {cat.riesgoBiologico}
                     </p>
                   </div>
-                  <p className="text-xs font-medium text-[#002147] dark:text-slate-200 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
+                  <p className="text-xs font-medium text-[#002147] pt-3 border-t border-slate-200 leading-relaxed">
                     <strong>Criterio técnico:</strong> {cat.dictamen}
                   </p>
                 </article>
@@ -1242,18 +1172,18 @@ Teléfono de contacto: [Tu teléfono]`;
         </div>
       </section>
 
-      {/* 4. MATRIZ DE TRIAJE TÉCNICO + PROCESO EN 5 FASES + COMPROMISOS DE PLAZO Y LOTE PRIORITARIO */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
+      {/* 4. MATRIZ DE TRIAJE TÉCNICO + PROCESO EN 5 FASES + COMPROMISOS */}
+      <section className="py-12 lg:py-18 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
             <div className="max-w-3xl space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                 Triaje técnico profesional
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                 Prendas recuperables frente a informe de pérdida total
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 Nunca te cobraremos lavados inútiles en prendas sin viabilidad: diagnosticamos por material, tipo de hollín o agua qué admite descontaminación y qué debe certificarse como irrecuperable.
               </p>
             </div>
@@ -1261,15 +1191,15 @@ Teléfono de contacto: [Tu teléfono]`;
             <div
               role="group"
               aria-label="Filtrar matriz por tipo de siniestro"
-              className="inline-flex items-center gap-1 p-1 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-700 shrink-0 self-start"
+              className="inline-flex flex-wrap items-center gap-1 p-1 rounded-xl bg-white border border-slate-200 shrink-0 self-start"
             >
               <button
                 type="button"
                 onClick={() => setFiltroMatriz('todos')}
-                className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`min-h-[40px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   filtroMatriz === 'todos'
-                    ? 'bg-[#002147] text-white dark:bg-[#0F76BB]'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-[#002147] dark:hover:text-white'
+                    ? 'bg-[#002147] text-white'
+                    : 'text-slate-700 hover:text-[#002147]'
                 }`}
               >
                 Todos los casos
@@ -1277,10 +1207,10 @@ Teléfono de contacto: [Tu teléfono]`;
               <button
                 type="button"
                 onClick={() => setFiltroMatriz('humo')}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   filtroMatriz === 'humo'
-                    ? 'bg-[#002147] text-white dark:bg-[#0F76BB]'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-[#002147] dark:hover:text-white'
+                    ? 'bg-[#002147] text-white'
+                    : 'text-slate-700 hover:text-[#002147]'
                 }`}
               >
                 <Flame className="w-3.5 h-3.5" aria-hidden="true" />
@@ -1289,10 +1219,10 @@ Teléfono de contacto: [Tu teléfono]`;
               <button
                 type="button"
                 onClick={() => setFiltroMatriz('agua')}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   filtroMatriz === 'agua'
-                    ? 'bg-[#002147] text-white dark:bg-[#0F76BB]'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-[#002147] dark:hover:text-white'
+                    ? 'bg-[#002147] text-white'
+                    : 'text-slate-700 hover:text-[#002147]'
                 }`}
               >
                 <Droplets className="w-3.5 h-3.5" aria-hidden="true" />
@@ -1301,28 +1231,28 @@ Teléfono de contacto: [Tu teléfono]`;
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] mb-12">
-            <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-left text-xs sm:text-sm">
-              <thead className="bg-[#002147] text-white">
+          <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white mb-12 shadow-2xs">
+            <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+              <thead className="bg-[#EDF5FD] text-[#002147]">
                 <tr>
-                  <th scope="col" className="px-4 py-3.5 font-bold">
+                  <th scope="col" className="px-4 py-3.5 font-extrabold border-b border-slate-200">
                     Tipo de textil / escenario
                   </th>
-                  <th scope="col" className="px-4 py-3.5 font-bold">
+                  <th scope="col" className="px-4 py-3.5 font-extrabold border-b border-slate-200">
                     Afección observada
                   </th>
-                  <th scope="col" className="px-4 py-3.5 font-bold">
+                  <th scope="col" className="px-4 py-3.5 font-extrabold border-b border-slate-200">
                     Dictamen técnico
                   </th>
-                  <th scope="col" className="px-4 py-3.5 font-bold">
+                  <th scope="col" className="px-4 py-3.5 font-extrabold border-b border-slate-200">
                     Actuación en Tintorería Mimos
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+              <tbody className="divide-y divide-slate-200 text-slate-700">
                 {filasFiltradas.map((fila) => (
-                  <tr key={fila.categoria} className="hover:bg-slate-50/70 dark:hover:bg-white/[0.02]">
-                    <td className="px-4 py-4 font-extrabold text-[#002147] dark:text-white align-top">
+                  <tr key={fila.categoria} className="hover:bg-[#F7F6F2]/70">
+                    <td className="px-4 py-4 font-extrabold text-[#002147] align-top">
                       {fila.categoria}
                     </td>
                     <td className="px-4 py-4 align-top leading-relaxed">{fila.afeccion}</td>
@@ -1330,10 +1260,10 @@ Teléfono de contacto: [Tu teléfono]`;
                       <span
                         className={`inline-flex items-center gap-1.5 font-bold text-xs ${
                           fila.estado === 'Recuperable'
-                            ? 'text-[#178A47] dark:text-emerald-400'
+                            ? 'text-[#178A47]'
                             : fila.estado === 'Valoración previa'
-                            ? 'text-amber-700 dark:text-amber-400'
-                            : 'text-red-700 dark:text-red-400'
+                            ? 'text-amber-800'
+                            : 'text-red-700'
                         }`}
                       >
                         {fila.estado === 'Recuperable' && (
@@ -1347,7 +1277,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         )}
                         <span>{fila.estado}</span>
                       </span>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                      <p className="text-[11px] text-slate-500 mt-0.5">
                         {fila.viabilidad}
                       </p>
                     </td>
@@ -1359,22 +1289,22 @@ Teléfono de contacto: [Tu teléfono]`;
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+            <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
               Nuestro protocolo técnico en 5 fases en Navia (Vigo)
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {FASES_TALLER_MIMOS.map((fase) => (
                 <article
                   key={fase.num}
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5"
+                  className="rounded-xl border border-slate-200 bg-white p-5"
                 >
-                  <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] tabular-nums mb-1.5">
+                  <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums mb-1.5">
                     FASE {fase.num}
                   </p>
-                  <h4 className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white mb-2">
+                  <h4 className="text-sm sm:text-base font-extrabold text-[#002147] mb-2">
                     {fase.titulo}
                   </h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     {fase.descripcion}
                   </p>
                 </article>
@@ -1383,36 +1313,36 @@ Teléfono de contacto: [Tu teléfono]`;
 
             {/* 3 compromisos operativos confirmados */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-              <div className="rounded-xl border border-[#0F76BB]/30 bg-white dark:bg-[#071324] p-5">
-                <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+              <div className="rounded-xl border border-[#0F76BB]/30 bg-white p-5">
+                <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] mb-1">
                   Plazo orientativo completo
                 </p>
-                <h4 className="text-base font-extrabold text-[#002147] dark:text-white mb-1">
+                <h4 className="text-base font-extrabold text-[#002147] mb-1">
                   Entre 1 y 3 semanas
                 </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Dependiendo del volumen del armario y las pasadas necesarias de desengrase, neutralización molecular y verificación en seco.
                 </p>
               </div>
-              <div className="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-white dark:bg-[#071324] p-5">
-                <p className="text-xs font-mono font-bold uppercase text-[#178A47] dark:text-emerald-400 mb-1">
+              <div className="rounded-xl border border-emerald-200 bg-white p-5">
+                <p className="text-xs font-mono font-bold uppercase text-[#178A47] mb-1">
                   Para que sigas con tu día a día
                 </p>
-                <h4 className="text-base font-extrabold text-[#002147] dark:text-white mb-1">
+                <h4 className="text-base font-extrabold text-[#002147] mb-1">
                   Lote prioritario diario y escolar
                 </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Separamos y adelantamos vestuario de trabajo, uniformes escolares y básicos urgentes mientras procesamos el resto de lotes.
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5">
-                <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+              <div className="rounded-xl border border-slate-200 bg-white p-5">
+                <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] mb-1">
                   Transparencia antes de facturar el grueso
                 </p>
-                <h4 className="text-base font-extrabold text-[#002147] dark:text-white mb-1">
+                <h4 className="text-base font-extrabold text-[#002147] mb-1">
                   Prueba de viabilidad previa
                 </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Test técnico puntual sobre prendas críticas (pieles, seda, edredones de pluma) para confirmar rescate o emitir baja de pérdida total.
                 </p>
               </div>
@@ -1424,37 +1354,37 @@ Teléfono de contacto: [Tu teléfono]`;
       {/* 5. LEY 50/1980, DOCUMENTACIÓN PERICIAL Y HERRAMIENTAS INTERACTIVAS */}
       <section
         id="herramientas-seguro"
-        className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+        className="py-12 lg:py-18 bg-white border-b border-slate-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-6 space-y-3">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                 Tramitación con aseguradoras y peritos · Ley 50/1980
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                 Factura oficial desglosada con CIF y expediente pericial completo
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 En <strong>{CONTACT_INFO.legalName}</strong> (<strong>CIF {CONTACT_INFO.cif}</strong>) estructuramos todo el expediente textil para que tanto el perito como tu compañía (Mapfre, AXA, Allianz, Generali, SegurCaixa, Mutua, Línea Directa, etc.) lo aprueben sin devoluciones por falta de desglose.
               </p>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 <strong>Clave económica frente a la reposición:</strong> muchas pólizas liquidan la ropa usada a <em>valor real</em> (aplicando depreciación por antigüedad, Art. 26 LCS). En cambio, la limpieza técnica actúa como <strong>Gasto de Salvamento (Art. 17)</strong> y evita ese recorte siempre que resulte proporcionada, sin perjuicio de reglas de infraseguro (Art. 30) o franquicia pactada.
               </p>
             </div>
 
-            <div className="lg:col-span-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0b1d36] p-6 space-y-3 text-xs sm:text-sm">
-              <div className="flex items-center gap-2 font-extrabold text-[#002147] dark:text-white">
+            <div className="lg:col-span-6 rounded-xl border border-[#0F76BB]/25 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 space-y-3 text-xs sm:text-sm">
+              <div className="flex items-center gap-2 font-extrabold text-[#002147]">
                 <ShieldCheck className="w-4 h-4 text-[#178A47] shrink-0" aria-hidden="true" />
                 <span>Tus derechos clave bajo la Ley 50/1980 de Contrato de Seguro</span>
               </div>
-              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-slate-700 leading-relaxed">
                 <strong>Aviso e inventario en plazo (Arts. 16 y 38):</strong> comunica el siniestro cuanto antes (plazo legal 7 días; aconsejable &lt;72 h) y entrega relación escrita de bienes afectados dentro de los <strong>5 días siguientes</strong>.
               </p>
-              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-slate-700 leading-relaxed">
                 <strong>Salvamento urgente (Art. 17):</strong> retirar y contener en seco antes de que la acidez (HCl) o el moho en Vigo destruyan el tejido cumple el deber de aminorar daños —incluso si una prueba técnica fracasa—.
               </p>
-              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-slate-700 leading-relaxed">
                 <strong>Frente a contratas de obra (Art. 18) y peritación (Art. 38):</strong> la aseguradora no puede imponer reparación con sus propios medios <em>“si el asegurado no lo consiente”</em>, y ante desacuerdo puedes designar perito de parte.
               </p>
             </div>
@@ -1465,18 +1395,18 @@ Teléfono de contacto: [Tu teléfono]`;
             {DOCUMENTACION_SEGURO.map((doc) => (
               <article
                 key={doc.num}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-5"
+                className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5"
               >
                 <div className="flex items-center justify-between gap-2 mb-2.5">
-                  <span className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] tabular-nums">
+                  <span className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
                     DOC. {doc.num}
                   </span>
-                  <FileCheck2 className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6]" aria-hidden="true" />
+                  <FileCheck2 className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
                 </div>
-                <h3 className="text-base font-extrabold text-[#002147] dark:text-white mb-1.5">
+                <h3 className="text-base font-extrabold text-[#002147] mb-1.5">
                   {doc.titulo}
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {doc.descripcion}
                 </p>
               </article>
@@ -1484,13 +1414,13 @@ Teléfono de contacto: [Tu teléfono]`;
           </div>
 
           {/* HERRAMIENTAS INTERACTIVAS CONTRA LA PARÁLISIS DEL AFECTADO */}
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] p-6 sm:p-8 space-y-6">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+          <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-6 sm:p-8 space-y-6">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 pb-5">
               <div className="space-y-1 max-w-2xl">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                   Utilidades gratuitas para desbloquear tu expediente hoy mismo
                 </p>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   Prepara tu pre-inventario de 5 días (Art. 38) o tu carta para el seguro
                 </h3>
               </div>
@@ -1498,17 +1428,17 @@ Teléfono de contacto: [Tu teléfono]`;
               <div
                 role="tablist"
                 aria-label="Herramientas documentales para el asegurado"
-                className="inline-flex items-center gap-1 p-1 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-700 self-start"
+                className="inline-flex flex-wrap items-center gap-1 p-1 rounded-xl bg-white border border-slate-200 self-start"
               >
                 <button
                   type="button"
                   role="tab"
                   aria-selected={herramientaActiva === 'inventario'}
                   onClick={() => setHerramientaActiva('inventario')}
-                  className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`min-h-[40px] px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
                     herramientaActiva === 'inventario'
-                      ? 'bg-[#002147] text-white dark:bg-[#0F76BB]'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-[#002147] dark:hover:text-white'
+                      ? 'bg-[#002147] text-white'
+                      : 'text-slate-700 hover:text-[#002147]'
                   }`}
                 >
                   1. Plantilla Pre-Inventario (Art. 38)
@@ -1518,10 +1448,10 @@ Teléfono de contacto: [Tu teléfono]`;
                   role="tab"
                   aria-selected={herramientaActiva === 'carta'}
                   onClick={() => setHerramientaActiva('carta')}
-                  className={`px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`min-h-[40px] px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
                     herramientaActiva === 'carta'
-                      ? 'bg-[#002147] text-white dark:bg-[#0F76BB]'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-[#002147] dark:hover:text-white'
+                      ? 'bg-[#002147] text-white'
+                      : 'text-slate-700 hover:text-[#002147]'
                   }`}
                 >
                   2. Carta Modelo Aseguradora (Arts. 17 y 18)
@@ -1532,40 +1462,40 @@ Teléfono de contacto: [Tu teléfono]`;
             {herramientaActiva === 'inventario' ? (
               <div className="space-y-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                  <p className="text-xs sm:text-sm text-slate-600">
                     Agrupa tus prendas por habitación para cumplir el plazo de <strong>5 días</strong> del Art. 38 LCS y descarga el documento con cabecera oficial de Tintorería Mimos en <strong>PDF</strong> o <strong>Excel (.xlsx)</strong> para tu aseguradora o para enviárnoslo directamente.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={() => cargarLoteTipo('dormitorio')}
-                      className="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-[#002147] dark:text-slate-200 hover:border-[#0F76BB] cursor-pointer"
+                      className="min-h-[40px] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer"
                     >
                       + Añadir dormitorio tipo
                     </button>
                     <button
                       type="button"
                       onClick={() => cargarLoteTipo('hogar')}
-                      className="text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-[#002147] dark:text-slate-200 hover:border-[#0F76BB] cursor-pointer"
+                      className="min-h-[40px] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer"
                     >
                       + Añadir alfombra / pieles
                     </button>
                   </div>
                 </div>
 
-                {/* Datos opcionales del cliente y del expediente (aparecen en PDF, Excel, Email y WhatsApp) */}
-                <div className="bg-white dark:bg-[#071324] p-4 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
+                {/* Datos opcionales del cliente y del expediente */}
+                <div className="bg-white p-4 rounded-xl border border-slate-200 space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <p className="text-xs font-bold text-[#002147] dark:text-white uppercase tracking-wider">
+                    <p className="text-xs font-bold text-[#002147] uppercase tracking-wider">
                       Datos del asegurado / expediente (opcional — se incluirán en el PDF y el Excel)
                     </p>
-                    <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                    <span className="text-[11px] font-medium text-slate-500">
                       Solo se generan en tu navegador; no almacenamos datos en servidor
                     </span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                     <div>
-                      <label htmlFor="inv-nombre" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                      <label htmlFor="inv-nombre" className="block text-[11px] font-bold text-slate-700 mb-1">
                         Tu nombre y apellidos
                       </label>
                       <input
@@ -1574,11 +1504,11 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invNombre}
                         onChange={(e) => setInvNombre(e.target.value)}
                         placeholder="Ej.: María García..."
-                        className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
-                      <label htmlFor="inv-telefono" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                      <label htmlFor="inv-telefono" className="block text-[11px] font-bold text-slate-700 mb-1">
                         Teléfono de contacto
                       </label>
                       <input
@@ -1587,11 +1517,11 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invTelefono}
                         onChange={(e) => setInvTelefono(e.target.value)}
                         placeholder="Ej.: 600 123 456"
-                        className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
-                      <label htmlFor="inv-localidad" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                      <label htmlFor="inv-localidad" className="block text-[11px] font-bold text-slate-700 mb-1">
                         Localidad o tienda
                       </label>
                       <input
@@ -1600,11 +1530,11 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invLocalidad}
                         onChange={(e) => setInvLocalidad(e.target.value)}
                         placeholder="Vigo / Navia / Comarca..."
-                        className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
-                      <label htmlFor="inv-aseguradora" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                      <label htmlFor="inv-aseguradora" className="block text-[11px] font-bold text-slate-700 mb-1">
                         Aseguradora (si aplica)
                       </label>
                       <input
@@ -1613,11 +1543,11 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invAseguradora}
                         onChange={(e) => setInvAseguradora(e.target.value)}
                         placeholder="Ej.: Mapfre, Allianz..."
-                        className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
-                      <label htmlFor="inv-siniestro" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                      <label htmlFor="inv-siniestro" className="block text-[11px] font-bold text-slate-700 mb-1">
                         Nº Siniestro o póliza
                       </label>
                       <input
@@ -1626,7 +1556,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invSiniestro}
                         onChange={(e) => setInvSiniestro(e.target.value)}
                         placeholder="Ej.: SIN-2026-..."
-                        className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                   </div>
@@ -1634,10 +1564,10 @@ Teléfono de contacto: [Tu teléfono]`;
 
                 <form
                   onSubmit={agregarFilaInventario}
-                  className="grid grid-cols-1 sm:grid-cols-12 gap-3 bg-white dark:bg-[#071324] p-4 rounded-xl border border-slate-200 dark:border-slate-800"
+                  className="grid grid-cols-1 sm:grid-cols-12 gap-3 bg-white p-4 rounded-xl border border-slate-200"
                 >
                   <div className="sm:col-span-3">
-                    <label htmlFor="inv-estancia" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                    <label htmlFor="inv-estancia" className="block text-[11px] font-bold text-slate-700 mb-1">
                       Estancia / armario
                     </label>
                     <input
@@ -1645,11 +1575,11 @@ Teléfono de contacto: [Tu teléfono]`;
                       type="text"
                       value={nuevaEstancia}
                       onChange={(e) => setNuevaEstancia(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="sm:col-span-4">
-                    <label htmlFor="inv-prenda" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                    <label htmlFor="inv-prenda" className="block text-[11px] font-bold text-slate-700 mb-1">
                       Prenda o textil afectado
                     </label>
                     <input
@@ -1658,11 +1588,11 @@ Teléfono de contacto: [Tu teléfono]`;
                       value={nuevaPrenda}
                       onChange={(e) => setNuevaPrenda(e.target.value)}
                       placeholder="Ej.: 2 trajes lana, 1 edredón pluma..."
-                      className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="sm:col-span-1">
-                    <label htmlFor="inv-uds" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                    <label htmlFor="inv-uds" className="block text-[11px] font-bold text-slate-700 mb-1">
                       Uds.
                     </label>
                     <input
@@ -1671,18 +1601,18 @@ Teléfono de contacto: [Tu teléfono]`;
                       min={1}
                       value={nuevasUnidades}
                       onChange={(e) => setNuevasUnidades(Math.max(1, Number(e.target.value) || 1))}
-                      className="w-full px-2.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium tabular-nums focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-2.5 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 tabular-nums focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="sm:col-span-3">
-                    <label htmlFor="inv-estado" className="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">
+                    <label htmlFor="inv-estado" className="block text-[11px] font-bold text-slate-700 mb-1">
                       Daño observado
                     </label>
                     <select
                       id="inv-estado"
                       value={nuevoEstado}
                       onChange={(e) => setNuevoEstado(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       <option value="Olor a humo sin hollín visible">Olor a humo sin hollín visible</option>
                       <option value="Hollín superficial (sin quemadura)">Hollín superficial (sin quemadura)</option>
@@ -1694,7 +1624,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     <button
                       type="submit"
                       aria-label="Añadir línea al inventario"
-                      className="w-full inline-flex items-center justify-center gap-1 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-xs px-3 py-2 rounded-lg transition-colors cursor-pointer"
+                      className="w-full min-h-[44px] inline-flex items-center justify-center gap-1 bg-[#002147] hover:bg-[#0a3161] text-white font-bold text-xs px-3 py-2 rounded-lg transition-colors cursor-pointer"
                     >
                       <Plus className="w-4 h-4" aria-hidden="true" />
                       <span className="sm:hidden">Añadir</span>
@@ -1702,21 +1632,21 @@ Teléfono de contacto: [Tu teléfono]`;
                   </div>
                 </form>
 
-                <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324]">
-                  <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-xs">
-                    <thead className="bg-slate-100 dark:bg-[#0b1d36] text-[#002147] dark:text-white">
+                <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+                  <table className="min-w-full divide-y divide-slate-200 text-xs">
+                    <thead className="bg-[#EDF5FD] text-[#002147]">
                       <tr>
-                        <th className="px-3.5 py-2.5 text-left font-bold">Estancia</th>
-                        <th className="px-3.5 py-2.5 text-left font-bold">Prenda / textil</th>
-                        <th className="px-3.5 py-2.5 text-left font-bold">Uds.</th>
-                        <th className="px-3.5 py-2.5 text-left font-bold">Estado</th>
-                        <th className="px-3.5 py-2.5 text-right font-bold">Quitar</th>
+                        <th className="px-3.5 py-2.5 text-left font-extrabold">Estancia</th>
+                        <th className="px-3.5 py-2.5 text-left font-extrabold">Prenda / textil</th>
+                        <th className="px-3.5 py-2.5 text-left font-extrabold">Uds.</th>
+                        <th className="px-3.5 py-2.5 text-left font-extrabold">Estado</th>
+                        <th className="px-3.5 py-2.5 text-right font-extrabold">Quitar</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+                    <tbody className="divide-y divide-slate-200 text-slate-700">
                       {itemsInventario.map((item) => (
                         <tr key={item.id}>
-                          <td className="px-3.5 py-2.5 font-semibold">{item.estancia}</td>
+                          <td className="px-3.5 py-2.5 font-semibold text-[#002147]">{item.estancia}</td>
                           <td className="px-3.5 py-2.5">{item.prenda}</td>
                           <td className="px-3.5 py-2.5 font-bold tabular-nums">{item.unidades}</td>
                           <td className="px-3.5 py-2.5">{item.estado}</td>
@@ -1725,7 +1655,7 @@ Teléfono de contacto: [Tu teléfono]`;
                               type="button"
                               onClick={() => eliminarFilaInventario(item.id)}
                               aria-label={`Eliminar ${item.prenda}`}
-                              className="text-slate-400 hover:text-red-600 cursor-pointer p-1"
+                              className="inline-flex items-center justify-center min-h-[36px] min-w-[36px] text-slate-400 hover:text-red-700 cursor-pointer p-1"
                             >
                               <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
                             </button>
@@ -1737,13 +1667,13 @@ Teléfono de contacto: [Tu teléfono]`;
                 </div>
 
                 {/* Canal directo visible de recepción e información de tiendas Mimos */}
-                <div className="rounded-xl border border-[#0F76BB]/25 bg-white dark:bg-[#071324] p-4 sm:p-5 space-y-3">
+                <div className="rounded-xl border border-[#0F76BB]/25 bg-white p-4 sm:p-5 space-y-3">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
                         Recepción directa en {CONTACT_INFO.legalName} · CIF {CONTACT_INFO.cif}
                       </p>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
+                      <p className="text-xs text-slate-600 mt-0.5">
                         Envíanos tu inventario por WhatsApp o adjunta el PDF/Excel por email para preparar valoración previa, prueba de viabilidad y recogida en Vigo.
                       </p>
                     </div>
@@ -1753,24 +1683,24 @@ Teléfono de contacto: [Tu teléfono]`;
                         onClick={() =>
                           trackPhoneClick('/limpieza-incendios-siniestros-vigo', 'inventory_contact_bar')
                         }
-                        className="inline-flex items-center gap-1.5 text-[#002147] dark:text-white hover:text-[#0F76BB]"
+                        className="inline-flex items-center gap-1.5 text-[#002147] hover:text-[#0F76BB] tabular-nums"
                       >
                         <Phone className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
                         <span>{CONTACT_INFO.phoneDisplay}</span>
                       </a>
                       <a
                         href={`mailto:${CONTACT_INFO.email}`}
-                        className="inline-flex items-center gap-1.5 text-[#002147] dark:text-white hover:text-[#0F76BB]"
+                        className="inline-flex items-center gap-1.5 text-[#002147] hover:text-[#0F76BB]"
                       >
                         <Mail className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
                         <span>{CONTACT_INFO.email}</span>
                       </a>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-2 border-t border-slate-200">
                     {TIENDAS_PROPIAS.map((tienda) => (
-                      <div key={tienda.id} className="text-[11px] text-slate-600 dark:text-slate-300 leading-snug">
-                        <span className="font-bold text-[#002147] dark:text-white block">
+                      <div key={tienda.id} className="text-[11px] text-slate-600 leading-snug">
+                        <span className="font-bold text-[#002147] block">
                           {tienda.nombre_mostrado} ({tienda.telefonos_mostrados})
                         </span>
                         <span>
@@ -1784,14 +1714,14 @@ Teléfono de contacto: [Tu teléfono]`;
                 {exportError && (
                   <div
                     role="alert"
-                    className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs font-semibold text-red-800 dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-200"
+                    className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs font-semibold text-red-800"
                   >
                     {exportError}
                   </div>
                 )}
 
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-                  <p className="text-xs font-bold text-[#002147] dark:text-white tabular-nums">
+                  <p className="text-xs font-bold text-[#002147] tabular-nums">
                     Total provisional en borrador: {totalPrendasInventario} unidad(es) en {itemsInventario.length} lote(s)
                   </p>
                   <div className="flex flex-wrap gap-2.5">
@@ -1799,7 +1729,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       type="button"
                       onClick={descargarPdfInventario}
                       disabled={exportandoPdf || itemsInventario.length === 0}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-xs font-bold text-white cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg bg-[#002147] hover:bg-[#0a3161] text-xs font-bold text-white cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
                     >
                       {exportandoPdf ? (
                         <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
@@ -1812,7 +1742,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       type="button"
                       onClick={descargarExcelInventario}
                       disabled={exportandoExcel || itemsInventario.length === 0}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#002147] dark:border-[#60B5F6] bg-white dark:bg-[#071324] text-xs font-bold text-[#002147] dark:text-[#60B5F6] hover:bg-slate-100 dark:hover:bg-[#0b1d36] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-xs font-bold text-[#002147] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
                     >
                       {exportandoExcel ? (
                         <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
@@ -1836,14 +1766,14 @@ Teléfono de contacto: [Tu teléfono]`;
                           }
                         )
                       }
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#178A47] hover:bg-[#126E38] text-xs font-bold text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-xs font-bold text-white transition-colors"
                     >
                       <MessageCircle className="w-4 h-4" aria-hidden="true" />
                       <span>Enviar por WhatsApp</span>
                     </a>
                     <a
                       href={mailtoInventarioHref}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs font-bold text-[#002147] dark:text-white hover:border-[#0F76BB]"
+                      className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
                     >
                       <Mail className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
                       <span>Enviar por Email</span>
@@ -1851,11 +1781,11 @@ Teléfono de contacto: [Tu teléfono]`;
                     <button
                       type="button"
                       onClick={copiarInventario}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs font-bold text-[#002147] dark:text-white hover:border-[#0F76BB] cursor-pointer"
+                      className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] cursor-pointer transition-colors"
                     >
                       {inventarioCopiado ? (
                         <>
-                          <Check className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
+                          <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
                           <span>Inventario copiado</span>
                         </>
                       ) : (
@@ -1870,9 +1800,9 @@ Teléfono de contacto: [Tu teléfono]`;
               </div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                <div className="lg:col-span-5 space-y-3 bg-white dark:bg-[#071324] p-5 rounded-xl border border-slate-200 dark:border-slate-800">
+                <div className="lg:col-span-5 space-y-3 bg-white p-5 rounded-xl border border-slate-200">
                   <div>
-                    <label htmlFor="carta-aseguradora" className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1">
+                    <label htmlFor="carta-aseguradora" className="block text-xs font-bold text-[#002147] mb-1">
                       Compañía aseguradora
                     </label>
                     <input
@@ -1881,12 +1811,12 @@ Teléfono de contacto: [Tu teléfono]`;
                       value={cartaAseguradora}
                       onChange={(e) => setCartaAseguradora(e.target.value)}
                       placeholder="Ej.: Mapfre, AXA, Allianz, Generali..."
-                      className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="carta-siniestro" className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1">
+                      <label htmlFor="carta-siniestro" className="block text-xs font-bold text-[#002147] mb-1">
                         Nº de siniestro
                       </label>
                       <input
@@ -1895,11 +1825,11 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={cartaSiniestro}
                         onChange={(e) => setCartaSiniestro(e.target.value)}
                         placeholder="Ej.: 2026-00412"
-                        className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
-                      <label htmlFor="carta-poliza" className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1">
+                      <label htmlFor="carta-poliza" className="block text-xs font-bold text-[#002147] mb-1">
                         Nº de póliza
                       </label>
                       <input
@@ -1908,12 +1838,12 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={cartaPoliza}
                         onChange={(e) => setCartaPoliza(e.target.value)}
                         placeholder="Opcional"
-                        className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="carta-asegurado" className="block text-xs font-bold text-[#002147] dark:text-slate-200 mb-1">
+                    <label htmlFor="carta-asegurado" className="block text-xs font-bold text-[#002147] mb-1">
                       Nombre completo y NIF del asegurado
                     </label>
                     <input
@@ -1922,15 +1852,15 @@ Teléfono de contacto: [Tu teléfono]`;
                       value={cartaAsegurado}
                       onChange={(e) => setCartaAsegurado(e.target.value)}
                       placeholder="Nombre y DNI/NIF"
-                      className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#0a1b33] text-xs focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
-                  <label className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 pt-1 cursor-pointer">
+                  <label className="flex items-start gap-2.5 text-xs text-slate-700 pt-1 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={cartaOposicionContrata}
                       onChange={(e) => setCartaOposicionContrata(e.target.checked)}
-                      className="mt-0.5 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
                     />
                     <span>
                       Incluir cláusula Art. 18 (preferencia de tintorería especialista frente a contrata generalista de obra)
@@ -1944,13 +1874,13 @@ Teléfono de contacto: [Tu teléfono]`;
                     aria-label="Vista previa de carta modelo para aseguradora"
                     rows={12}
                     value={generarCartaSeguro()}
-                    className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] text-xs text-slate-700 dark:text-slate-200 font-mono leading-relaxed focus:outline-hidden"
+                    className="w-full p-4 rounded-xl border border-slate-200 bg-white text-xs text-slate-700 font-mono leading-relaxed focus:outline-hidden"
                   />
                   <div className="flex justify-end">
                     <button
                       type="button"
                       onClick={copiarCarta}
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white text-xs font-bold cursor-pointer transition-colors"
+                      className="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 rounded-lg bg-[#002147] hover:bg-[#0a3161] text-white text-xs font-bold cursor-pointer transition-colors"
                     >
                       {cartaCopiada ? (
                         <>
@@ -1969,7 +1899,7 @@ Teléfono de contacto: [Tu teléfono]`;
               </div>
             )}
 
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-4">
+            <p className="text-[11px] text-slate-500 border-t border-slate-200 pt-4">
               Orientación práctica informativa sobre documentación habitual en siniestros bajo la Ley 50/1980; no sustituye el asesoramiento jurídico particular ni las condiciones específicas de tu póliza.
             </p>
           </div>
@@ -1979,27 +1909,27 @@ Teléfono de contacto: [Tu teléfono]`;
       {/* 6. ASISTENTE INTERACTIVO DE VALORACIÓN URGENTE POR WHATSAPP */}
       <section
         id="valoracion-siniestro"
-        className="py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10"
+        className="py-12 lg:py-18 bg-[#EDF5FD] border-b border-slate-200"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <p className="text-xs font-mono uppercase tracking-wider text-[#60B5F6] font-bold mb-2">
+            <p className="text-xs font-mono uppercase tracking-wider text-[#0F76BB] font-bold mb-2">
               Atención prioritaria por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-3 text-balance">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
               Prepara tu valoración urgente y solicitud de presupuesto
             </h2>
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
               Marca el origen del siniestro, si necesitas lote prioritario de ropa diaria y tu situación con el seguro. Al abrir WhatsApp con <strong>Mimo</strong>, podrás enviarnos fotos rápidas para orientarte al momento.
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white text-slate-900 dark:bg-[#0b1d36] dark:text-white p-6 sm:p-8 shadow-xl space-y-6">
+          <div className="rounded-xl border border-[#0F76BB]/25 bg-white text-slate-900 p-6 sm:p-8 shadow-xs space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label
                   htmlFor="siniestro-tipo"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   ¿Qué tipo de incidente ha ocurrido?
                 </label>
@@ -2007,7 +1937,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-tipo"
                   value={tipoSiniestro}
                   onChange={(e) => setTipoSiniestro(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Humo y olor en armario / vivienda (sin fuego directo en la ropa)">
                     Humo y olor en armario / vivienda
@@ -2027,7 +1957,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <div>
                 <label
                   htmlFor="siniestro-origen"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Origen aproximado (clave de triaje)
                 </label>
@@ -2035,7 +1965,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-origen"
                   value={origenIncidente}
                   onChange={(e) => setOrigenIncidente(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Por confirmar (humo doméstico / madera / eléctrico / agua)">
                     No lo sé aún / varios focos
@@ -2057,7 +1987,7 @@ Teléfono de contacto: [Tu teléfono]`;
             </div>
 
             <div>
-              <p className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-2">
+              <p className="block text-xs sm:text-sm font-bold text-[#002147] mb-2">
                 Textiles afectados (marca los que necesites valorar)
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
@@ -2069,15 +1999,15 @@ Teléfono de contacto: [Tu teléfono]`;
                       type="button"
                       onClick={() => toggleTextil(item)}
                       aria-pressed={selected}
-                      className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border text-xs font-bold text-left transition-colors cursor-pointer ${
+                      className={`min-h-[44px] flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-bold text-left transition-colors cursor-pointer ${
                         selected
-                          ? 'border-[#0F76BB] bg-[#0F76BB]/10 text-[#002147] dark:bg-[#60B5F6]/15 dark:text-white'
-                          : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-slate-600 dark:text-slate-300 hover:border-slate-300'
+                          ? 'border-[#0F76BB] bg-[#EDF5FD] text-[#002147]'
+                          : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300'
                       }`}
                     >
                       <Check
                         className={`w-3.5 h-3.5 shrink-0 ${
-                          selected ? 'text-[#178A47] dark:text-emerald-400 opacity-100' : 'opacity-25'
+                          selected ? 'text-[#1FA855] opacity-100' : 'opacity-25'
                         }`}
                         aria-hidden="true"
                       />
@@ -2092,7 +2022,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <div>
                 <label
                   htmlFor="siniestro-seguro"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Situación con el seguro
                 </label>
@@ -2100,7 +2030,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-seguro"
                   value={situacionSeguro}
                   onChange={(e) => setSituacionSeguro(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Ya tengo parte o número de expediente con mi seguro">
                     Ya tengo parte / expediente abierto
@@ -2118,12 +2048,12 @@ Teléfono de contacto: [Tu teléfono]`;
               </div>
 
               <div className="flex items-end">
-                <label className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 cursor-pointer">
+                <label className="w-full min-h-[44px] flex items-center gap-3 px-4 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-xs sm:text-sm font-bold text-[#002147] cursor-pointer">
                   <input
                     type="checkbox"
                     checked={necesitaLotePrioritario}
                     onChange={(e) => setNecesitaLotePrioritario(e.target.checked)}
-                    className="rounded border-slate-300 text-[#178A47] focus:ring-[#178A47]"
+                    className="h-4 w-4 rounded border-slate-300 text-[#1FA855] focus:ring-[#1FA855]"
                   />
                   <span>Necesito lote prioritario (ropa de trabajo / colegio)</span>
                 </label>
@@ -2134,7 +2064,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <div>
                 <label
                   htmlFor="siniestro-localidad"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Localidad
                 </label>
@@ -2142,7 +2072,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-localidad"
                   value={localidad}
                   onChange={(e) => setLocalidad(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {ZONAS_SERVICIO.map((loc) => (
                     <option key={loc} value={loc}>
@@ -2158,7 +2088,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <div>
                 <label
                   htmlFor="siniestro-modalidad"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Cómo prefieres gestionarlo
                 </label>
@@ -2166,7 +2096,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-modalidad"
                   value={modalidad}
                   onChange={(e) => setModalidad(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Coordinar recogida urgente a domicilio en Vigo / comarca">
                     Recogida urgente a domicilio
@@ -2183,7 +2113,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <div>
                 <label
                   htmlFor="siniestro-obs"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Volumen / notas (opcional)
                 </label>
@@ -2193,7 +2123,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   value={observaciones}
                   onChange={(e) => setObservaciones(e.target.value)}
                   placeholder="Ej.: 2 armarios, 4 cortinas y 2 edredones"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -2212,7 +2142,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     }
                   )
                 }
-                className="flex-1 inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base py-4 px-6 rounded-xl transition-colors"
+                className="flex-1 inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
                 <span>Enviar parte urgente a Mimo por WhatsApp</span>
@@ -2221,11 +2151,11 @@ Teléfono de contacto: [Tu teléfono]`;
               <button
                 type="button"
                 onClick={handleCopy}
-                className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 px-4 py-3.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 cursor-pointer hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-1.5 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] px-4 py-3 rounded-lg text-xs font-bold cursor-pointer transition-colors whitespace-nowrap shrink-0"
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
+                    <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
                     <span>Texto copiado</span>
                   </>
                 ) : (
@@ -2237,18 +2167,18 @@ Teléfono de contacto: [Tu teléfono]`;
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-slate-200 text-xs text-slate-600">
               <div className="flex items-start gap-2.5">
                 <Store className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
                 <p>
-                  <strong>Sin pedido mínimo en tiendas propias:</strong>{' '}
+                  <strong className="text-[#002147]">Sin pedido mínimo en tiendas propias:</strong>{' '}
                   {TIENDAS_PROPIAS.map((t) => t.direccion).join(' · ')}.
                 </p>
               </div>
               <div className="flex items-start gap-2.5">
                 <Truck className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
                 <p>
-                  <strong>Recogida a domicilio:</strong> sujeta a ruta e importe mínimo según volumen y localidad de Vigo / comarca.
+                  <strong className="text-[#002147]">Recogida a domicilio:</strong> sujeta a ruta e importe mínimo según volumen y localidad de Vigo / comarca.
                 </p>
               </div>
             </div>
@@ -2259,25 +2189,25 @@ Teléfono de contacto: [Tu teléfono]`;
       {/* 6B. DÓNDE ENTREGAR HOY EN VIGO (SIN PEDIDO MÍNIMO), QUÉ FOTOS TRAER Y RED COMARCA */}
       <section
         id="entrega-hoy"
-        className="py-14 lg:py-16 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800"
+        className="py-12 lg:py-16 bg-white border-b border-slate-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div className="max-w-3xl space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                 Entrega inmediata hoy o recogida en Vigo y comarca
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
                 Nuestras 3 tiendas propias en Vigo y puntos de la comarca
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 Puedes acercar tus prendas en bolsas o cajas transpirables sin pedido mínimo a cualquiera de nuestras tiendas propias en Vigo. Si el volumen es grande, solicita recogida a domicilio con Mimo.
               </p>
             </div>
             <a
               href="/puntos-mimos"
               onClick={(e) => onNavigate('/puntos-mimos', e)}
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline shrink-0"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:text-[#002147] hover:underline shrink-0"
             >
               <MapPin className="w-4 h-4" aria-hidden="true" />
               <span>Ver mapa completo de tiendas y puntos</span>
@@ -2297,26 +2227,26 @@ Teléfono de contacto: [Tu teléfono]`;
               return (
                 <article
                   key={tienda.id}
-                  className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-6 flex flex-col justify-between space-y-4"
+                  className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-6 flex flex-col justify-between space-y-4"
                 >
                   <div className="space-y-2">
-                    <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] dark:text-[#60B5F6]">
+                    <p className="text-xs font-mono font-bold uppercase text-[#0F76BB]">
                       Tienda propia · {tienda.localidad}
                     </p>
-                    <h3 className="text-lg font-extrabold text-[#002147] dark:text-white">
+                    <h3 className="text-lg font-extrabold text-[#002147]">
                       {tienda.nombre_mostrado}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-semibold">
+                    <p className="text-xs sm:text-sm text-slate-700 font-semibold">
                       {tienda.direccion} ({tienda.codigo_postal})
                     </p>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-600 leading-relaxed">
                       <strong>Horario:</strong> {tienda.horario.resumen}
                     </p>
-                    <p className="text-xs text-slate-600 dark:text-slate-300">
+                    <p className="text-xs text-slate-600">
                       <strong>Tel.:</strong>{' '}
                       <a
                         href={`tel:+34${tienda.telefono}`}
-                        className="font-bold text-[#002147] dark:text-white hover:underline tabular-nums"
+                        className="font-bold text-[#002147] hover:underline tabular-nums"
                       >
                         {tienda.telefonos_mostrados}
                       </a>
@@ -2325,7 +2255,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   <a
                     href={tiendaHref}
                     onClick={(e) => onNavigate(tiendaHref, e)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F76BB] dark:text-[#60B5F6] hover:underline pt-2 border-t border-slate-200 dark:border-slate-800"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F76BB] hover:underline pt-2 border-t border-slate-200"
                   >
                     <span>Ver ficha de tienda y cómo llegar</span>
                     <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -2336,29 +2266,29 @@ Teléfono de contacto: [Tu teléfono]`;
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            <div className="lg:col-span-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] p-6 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+            <div className="lg:col-span-7 rounded-xl border border-[#0F76BB]/20 bg-[#EDF5FD] p-6 space-y-3">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
                 <Camera className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>3 fotos rápidas que aceleran tu valoración y el parte</span>
               </div>
-              <ul className="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
                 <li>
-                  <strong>1. Foto general de las estancias o bultos:</strong> armario abierto, cortinas colgadas o ropa separada (sirve de prueba previa para el perito).
+                  <strong className="text-[#002147]">1. Foto general de las estancias o bultos:</strong> armario abierto, cortinas colgadas o ropa separada (sirve de prueba previa para el perito).
                 </li>
                 <li>
-                  <strong>2. Foto de cerca de hollín, moho o etiquetas delicadas:</strong> para orientarte desde WhatsApp sobre si conviene lavado o prueba de viabilidad previa.
+                  <strong className="text-[#002147]">2. Foto de cerca de hollín, moho o etiquetas delicadas:</strong> para orientarte desde WhatsApp sobre si conviene lavado o prueba de viabilidad previa.
                 </li>
                 <li>
-                  <strong>3. Listado o foto de las piezas más dañadas:</strong> nunca las deseches antes de documentarlas si vas a incluirlas en el certificado de pérdida total.
+                  <strong className="text-[#002147]">3. Listado o foto de las piezas más dañadas:</strong> nunca las deseches antes de documentarlas si vas a incluirlas en el certificado de pérdida total.
                 </li>
               </ul>
             </div>
 
-            <div className="lg:col-span-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a1b33] p-6 space-y-3">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#002147] dark:text-white">
+            <div className="lg:col-span-5 rounded-xl border border-slate-200 bg-[#F7F6F2] p-6 space-y-3">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#002147]">
                 Cobertura en Vigo y área de influencia
               </p>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 También atendemos consultas y puntos de entrega en comarca (
                 {PUNTOS_COLABORADORES.map((p) => `${p.localidad}`).join(', ')} y área de Vigo):
               </p>
@@ -2368,7 +2298,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     key={zona.slug}
                     href={zona.url}
                     onClick={(e) => onNavigate(zona.url, e)}
-                    className="px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-xs font-bold text-[#002147] dark:text-slate-200 hover:border-[#0F76BB] transition-colors"
+                    className="inline-flex items-center min-h-[36px] px-2.5 py-1 rounded-lg border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
                   >
                     {zona.localidad}
                   </a>
@@ -2379,26 +2309,26 @@ Teléfono de contacto: [Tu teléfono]`;
         </div>
       </section>
 
-      {/* 7. CONEXIÓN CON GUÍA TÉCNICA DEL BLOG + 10 PREGUNTAS FRECUENTES */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
+      {/* 7. CONEXIÓN CON GUÍA TÉCNICA DEL BLOG + PREGUNTAS FRECUENTES */}
+      <section className="py-12 lg:py-18 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
                 <BookOpen className="w-4 h-4" aria-hidden="true" />
                 <span>Documentación técnica extendida</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
                 ¿Quieres profundizar en la química del humo, los COVs y la matriz completa por tejido?
               </h2>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 Publicamos un artículo técnico detallado sobre la fisiología del daño por hollín, comparativa con métodos domésticos y los artículos aplicables de la Ley 50/1980.
               </p>
             </div>
             <a
               href="/blog/ropa-afectada-humo-incendio-siniestro-hogar"
               onClick={(e) => onNavigate('/blog/ropa-afectada-humo-incendio-siniestro-hogar', e)}
-              className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0"
             >
               <FileText className="w-4 h-4" aria-hidden="true" />
               <span>Leer guía técnica del blog</span>
@@ -2408,10 +2338,10 @@ Teléfono de contacto: [Tu teléfono]`;
 
           <div>
             <div className="max-w-3xl mb-8 space-y-1">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
                 Dudas habituales sobre siniestros textiles y seguros
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                 Preguntas frecuentes sobre recuperación textil tras incendios o inundaciones en Vigo
               </h2>
             </div>
@@ -2420,15 +2350,15 @@ Teléfono de contacto: [Tu teléfono]`;
               {SERVICIO_SINIESTROS_FAQS.map((faq) => (
                 <details
                   key={faq.pregunta}
-                  className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5"
+                  className="group rounded-xl border border-slate-200 bg-white p-5"
                 >
-                  <summary className="font-extrabold text-[#002147] dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
+                  <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                     <span>{faq.pregunta}</span>
                     <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-3 border-t border-slate-100 dark:border-slate-800">
+                  <p className="mt-3 text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-200">
                     {faq.respuesta}
                   </p>
                 </details>
@@ -2439,9 +2369,9 @@ Teléfono de contacto: [Tu teléfono]`;
       </section>
 
       {/* 8. ENLACES RELACIONADOS Y CIERRE */}
-      <section className="py-14 bg-white dark:bg-[#071324]">
+      <section className="py-12 lg:py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white mb-6">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] mb-6">
             Servicios complementarios en Tintorería Mimos Vigo
           </h2>
 
@@ -2449,16 +2379,16 @@ Teléfono de contacto: [Tu teléfono]`;
             <a
               href="/textiles-hogar-vigo"
               onClick={(e) => onNavigate('/textiles-hogar-vigo', e)}
-              className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-slate-50/70 dark:bg-[#0b1d36] flex flex-col justify-between group transition-colors"
+              className="p-6 rounded-xl border border-slate-200 hover:border-[#0F76BB] bg-[#F7F6F2] flex flex-col justify-between group transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6]">
+                  <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Edredones, cortinas y estores
                   </h3>
                   <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Higienización de gran formato para edredones de plumas, mantas, estores de tela y cortinas (con desmontaje y colocación).
                 </p>
               </div>
@@ -2467,17 +2397,17 @@ Teléfono de contacto: [Tu teléfono]`;
             <a
               href="/limpieza-alfombras-vigo"
               onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-              className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-slate-50/70 dark:bg-[#0b1d36] flex flex-col justify-between group transition-colors"
+              className="p-6 rounded-xl border border-slate-200 hover:border-[#0F76BB] bg-[#F7F6F2] flex flex-col justify-between group transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6]">
+                  <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Limpieza de alfombras en Vigo
                   </h3>
                   <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Retirada de hollín, ceniza y humedad en alfombras en nuestras instalaciones de Navia con recogida a domicilio.
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Retirada de hollín, ceniza y humedad en alfombras mediante taller especialista colaborador con recogida a domicilio o entrega en tienda.
                 </p>
               </div>
             </a>
@@ -2485,16 +2415,16 @@ Teléfono de contacto: [Tu teléfono]`;
             <a
               href="/reparacion-alfombras-vigo"
               onClick={(e) => onNavigate('/reparacion-alfombras-vigo', e)}
-              className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-slate-50/70 dark:bg-[#0b1d36] flex flex-col justify-between group transition-colors"
+              className="p-6 rounded-xl border border-slate-200 hover:border-[#0F76BB] bg-[#F7F6F2] flex flex-col justify-between group transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6]">
+                  <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Reparación de alfombras
                   </h3>
                   <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Arreglo y restauración de flecos, festón lateral y ribetes mediante restaurador colaborador (independiente o con limpieza).
                 </p>
               </div>
@@ -2503,27 +2433,27 @@ Teléfono de contacto: [Tu teléfono]`;
             <a
               href="/limpieza-pieles-cuero-vigo"
               onClick={(e) => onNavigate('/limpieza-pieles-cuero-vigo', e)}
-              className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-slate-50/70 dark:bg-[#0b1d36] flex flex-col justify-between group transition-colors"
+              className="p-6 rounded-xl border border-slate-200 hover:border-[#0F76BB] bg-[#F7F6F2] flex flex-col justify-between group transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6]">
+                  <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Limpieza de pieles, cuero y ante
                   </h3>
                   <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Valoración individualizada y prueba técnica para cazadoras de cuero, ante o peletería expuestas a humedad o humo.
                 </p>
               </div>
             </a>
           </div>
 
-          <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <a
               href="/"
               onClick={(e) => onNavigate('/', e)}
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#002147] dark:text-slate-200 hover:text-[#0F76BB]"
+              className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#002147] hover:text-[#0F76BB]"
             >
               <ArrowLeft className="w-4 h-4" aria-hidden="true" />
               <span>Volver a la portada de Tintorería Mimos Navia</span>
@@ -2543,7 +2473,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     }
                   )
                 }
-                className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Consultar siniestro con Mimo</span>
@@ -2553,9 +2483,9 @@ Teléfono de contacto: [Tu teléfono]`;
                 onClick={() =>
                   trackPhoneClick('/limpieza-incendios-siniestros-vigo', 'service_detail')
                 }
-                className="inline-flex items-center gap-2 border border-slate-300 dark:border-slate-700 text-[#002147] dark:text-white font-bold text-sm px-4 py-3 rounded-xl hover:border-[#0F76BB] transition-colors"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors group tabular-nums"
               >
-                <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white" aria-hidden="true" />
                 <span>{CONTACT_INFO.phoneDisplay}</span>
               </a>
             </div>

@@ -74,27 +74,27 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
     <section
       id="recogida"
       aria-labelledby="recogida-heading"
-      className="py-16 lg:py-24 bg-white dark:bg-[#071324] border-b border-slate-200/80 dark:border-slate-800"
+      className="py-14 lg:py-20 bg-white border-b border-slate-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: How It Works & Channels (Gancho 7: Recogida y entrega a domicilio) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Columna izquierda: cómo funciona y canales */}
           <div className="lg:col-span-6">
-            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6] mb-2">
-              Servicio destacado 07 · Recogida y entrega · Sin desplazamientos
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] mb-2">
+              Recogida y entrega · Sin desplazamientos
             </p>
             <h2
               id="recogida-heading"
-              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance mb-4"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight text-balance mb-4"
             >
               Recogida y entrega de prendas y textiles a domicilio en Vigo y comarca
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
               Para que cuidar tu ropa y los textiles de tu hogar resulte todavía más cómodo, disponemos de recogida y entrega a domicilio —servicio sujeto a <strong>ruta e importe mínimo de pedido a consultar con Mimo</strong>— con cobertura en{' '}
               <a
                 href="/zonas/vigo"
                 onClick={(e) => onNavigate('/zonas/vigo', e)}
-                className="font-bold text-[#002147] dark:text-[#60B5F6] underline underline-offset-2 hover:text-[#0F76BB]"
+                className="font-bold text-[#002147] underline underline-offset-2 hover:text-[#0F76BB]"
               >
                 Vigo
               </a>
@@ -102,7 +102,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               <a
                 href="/zonas/redondela"
                 onClick={(e) => onNavigate('/zonas/redondela', e)}
-                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                className="font-semibold text-[#0F76BB] hover:underline"
               >
                 Redondela
               </a>
@@ -110,7 +110,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               <a
                 href="/zonas/nigran"
                 onClick={(e) => onNavigate('/zonas/nigran', e)}
-                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                className="font-semibold text-[#0F76BB] hover:underline"
               >
                 Nigrán
               </a>
@@ -118,7 +118,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               <a
                 href="/zonas/mos"
                 onClick={(e) => onNavigate('/zonas/mos', e)}
-                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                className="font-semibold text-[#0F76BB] hover:underline"
               >
                 Mos
               </a>
@@ -126,7 +126,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               <a
                 href="/zonas/o-porrino"
                 onClick={(e) => onNavigate('/zonas/o-porrino', e)}
-                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                className="font-semibold text-[#0F76BB] hover:underline"
               >
                 O Porriño
               </a>
@@ -134,7 +134,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               <a
                 href="/zonas/gondomar"
                 onClick={(e) => onNavigate('/zonas/gondomar', e)}
-                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                className="font-semibold text-[#0F76BB] hover:underline"
               >
                 Gondomar
               </a>
@@ -142,56 +142,56 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               <a
                 href="/zonas/ponteareas"
                 onClick={(e) => onNavigate('/zonas/ponteareas', e)}
-                className="font-semibold text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                className="font-semibold text-[#0F76BB] hover:underline"
               >
                 Ponteareas
               </a>
               , Cangas, Moaña) y <strong>polígonos industriales</strong> (PTL Valladares, Zona Franca, Porriño y Mos).
             </p>
-            <p className="text-xs sm:text-sm font-bold text-[#002147] dark:text-[#60B5F6] mb-6">
+            <p className="text-xs sm:text-sm font-bold text-[#002147] border-l-2 border-[#0F76BB] pl-3.5 py-1 bg-[#EDF5FD]/60 rounded-r-sm mb-6">
               A domicilio con importe mínimo a consultar · Sin pedido mínimo en nuestras 3 tiendas propias de Vigo y 5 puntos colaboradores
             </p>
 
-            {/* 3 Numbered Steps */}
-            <ol className="space-y-4 mb-8">
-              <li className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]">
-                <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+            {/* 3 pasos */}
+            <ol className="space-y-3.5 mb-8">
+              <li className="p-5 rounded-xl border border-slate-200 bg-[#F7F6F2]">
+                <p className="text-xs font-mono font-bold text-[#0F76BB] mb-1 tabular-nums">
                   PASO 01
                 </p>
-                <h3 className="text-lg font-bold text-[#002147] dark:text-white mb-1.5">
+                <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-1">
                   Escríbenos por WhatsApp (Mimo) o envíanos el formulario
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   Envía listado o foto de tus prendas, edredones o alfombras, indica si hay tejido delicado y tu dirección o código postal (barrio, municipio o polígono). Mimo te confirmará el importe mínimo aplicable, la orientación de tarifa y el día de paso en tu ruta.
                 </p>
               </li>
 
-              <li className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]">
-                <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+              <li className="p-5 rounded-xl border border-slate-200 bg-[#F7F6F2]">
+                <p className="text-xs font-mono font-bold text-[#0F76BB] mb-1 tabular-nums">
                   PASO 02
                 </p>
-                <h3 className="text-lg font-bold text-[#002147] dark:text-white mb-1.5">
+                <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-1">
                   Recogemos en casa o te atendemos en tiendas y puntos Mimos
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   Si prefieres entregar un encargo pequeño sin pedido mínimo o aprovechar horarios amplios, puedes acudir a nuestras 3 tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela) o a nuestros 5 puntos colaboradores en Redondela, Gondomar, Ponteareas, O Porriño y Vigo (Camiño Espedrigada).
                 </p>
               </li>
 
-              <li className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]">
-                <p className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+              <li className="p-5 rounded-xl border border-slate-200 bg-[#F7F6F2]">
+                <p className="text-xs font-mono font-bold text-[#0F76BB] mb-1 tabular-nums">
                   PASO 03
                 </p>
-                <h3 className="text-lg font-bold text-[#002147] dark:text-white mb-1.5">
+                <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-1">
                   Tratamiento en nuestras instalaciones y entrega coordinada
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   Procesamos tus prendas en nuestra central de Vigo con acabado profesional y te avisamos en cuanto estén listas para entregártelas en tu domicilio o en tu punto elegido.
                 </p>
               </li>
             </ol>
 
-            {/* Direct Action Buttons */}
+            {/* Botones de acción */}
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
               <a
                 href={CONTACT_INFO.whatsappPickupHref}
@@ -203,16 +203,16 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                     'pickup_section'
                   )
                 }
-                className="inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs"
               >
-                <MessageCircle className="w-5 h-5" aria-hidden="true" />
+                <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Consultar recogida con Mimo</span>
               </a>
 
               <a
                 href="/puntos-mimos"
                 onClick={(e) => onNavigate('/puntos-mimos', e)}
-                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0"
               >
                 <span>Ver 3 tiendas y 5 puntos</span>
               </a>
@@ -220,7 +220,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
               <a
                 href="/limpieza-sofas-vigo"
                 onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
-                className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#002147] dark:hover:border-white text-[#002147] dark:text-white font-bold text-sm px-4 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-2.5 rounded-lg transition-colors whitespace-nowrap shrink-0"
               >
                 <span>Sofás a domicilio</span>
               </a>
@@ -233,21 +233,21 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                     'pickup_section'
                   )
                 }
-                className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 hover:border-[#002147] dark:hover:border-white text-[#002147] dark:text-white font-bold text-sm px-4 py-3.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-2.5 rounded-lg transition-colors whitespace-nowrap shrink-0 group tabular-nums"
               >
-                <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
                 <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
               </a>
             </div>
           </div>
 
-          {/* Right Column: Interactive WhatsApp Pickup Message Assistant (Sección 9 del Plan Maestro) */}
+          {/* Columna derecha: Formulario rápido de recogida */}
           <div className="lg:col-span-6">
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-[#0b1d36] p-6 sm:p-8">
-              <h3 className="text-xl font-extrabold text-[#002147] dark:text-white mb-2">
+            <div className="rounded-xl border border-[#0F76BB]/25 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-8 shadow-xs">
+              <h3 className="text-xl font-extrabold text-[#002147] mb-2">
                 Formulario rápido de recogida a domicilio
               </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300 mb-6">
+              <p className="text-sm text-slate-700 mb-6 leading-relaxed">
                 Rellena tus datos y se abrirá directamente el WhatsApp de Mimo ({CONTACT_INFO.whatsappNumber}) con tu solicitud lista para enviar.
               </p>
 
@@ -255,7 +255,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                 <div>
                   <label
                     htmlFor="pickup-nombre"
-                    className="block text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Nombre y apellidos *
                   </label>
@@ -274,7 +274,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: María Castro"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
@@ -282,7 +282,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                   <div>
                     <label
                       htmlFor="pickup-telefono"
-                      className="block text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-sm font-bold text-[#002147] mb-1.5"
                     >
                       Teléfono de contacto *
                     </label>
@@ -301,14 +301,14 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                         setPreparedReady(false);
                       }}
                       placeholder="Ej.: 600 123 456"
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="pickup-servicio"
-                      className="block text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                      className="block text-sm font-bold text-[#002147] mb-1.5"
                     >
                       Servicio principal
                     </label>
@@ -320,7 +320,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                         setServicio(e.target.value);
                         setPreparedReady(false);
                       }}
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     >
                       <option value="Tintorería profesional (trajes, vestidos, ceremonia, delicadas)">
                         Tintorería profesional (trajes, ceremonia, delicadas)
@@ -353,7 +353,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                 <div>
                   <label
                     htmlFor="pickup-direccion"
-                    className="block text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Dirección o código postal en Vigo / comarca *
                   </label>
@@ -372,14 +372,14 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: C/ As Teixugueiras, 36212 Vigo"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="pickup-comentarios"
-                    className="block text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                    className="block text-sm font-bold text-[#002147] mb-1.5"
                   >
                     Prendas o preferencia horaria (opcional)
                   </label>
@@ -393,11 +393,11 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: 1 edredón de plumas y 2 trajes. Preferiblemente por la tarde."
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
-                <label className="flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-300 cursor-pointer pt-1">
+                <label className="flex items-start gap-2.5 text-xs text-slate-700 cursor-pointer pt-1">
                   <input
                     type="checkbox"
                     checked={aceptoPrivacidad}
@@ -405,14 +405,14 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       setAceptoPrivacidad(e.target.checked);
                       setErrorMsg('');
                     }}
-                    className="mt-0.5 rounded border-slate-300 text-[#002147] focus:ring-[#0F76BB]"
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
                   />
                   <span>
                     Acepto el tratamiento de mis datos para gestionar mi solicitud por WhatsApp conforme a la{' '}
                     <a
                       href="/privacidad"
                       onClick={(e) => onNavigate('/privacidad', e)}
-                      className="underline font-bold text-[#002147] dark:text-[#60B5F6]"
+                      className="underline font-bold text-[#002147] hover:text-[#0F76BB]"
                     >
                       política de privacidad
                     </a>
@@ -421,7 +421,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                 </label>
 
                 {errorMsg && (
-                  <p id="pickup-error-msg" role="alert" className="text-xs font-bold text-red-600 dark:text-red-400">
+                  <p id="pickup-error-msg" role="alert" className="text-xs font-bold text-red-700">
                     {errorMsg}
                   </p>
                 )}
@@ -429,9 +429,9 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                 {!preparedReady ? (
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] dark:hover:bg-[#0B5C94] text-white font-bold text-sm py-3.5 px-6 rounded-xl transition-colors cursor-pointer shadow-xs"
+                    className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3.5 px-6 rounded-lg transition-colors cursor-pointer shadow-xs"
                   >
-                    <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                    <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Preparar solicitud para Mimo (WhatsApp)</span>
                   </button>
                 ) : (
@@ -439,16 +439,16 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                     ref={confirmationRef}
                     role="region"
                     aria-label="Confirmación de solicitud preparada"
-                    className="p-4 sm:p-5 rounded-2xl border-2 border-[#178A47]/40 bg-[#178A47]/10 dark:bg-[#178A47]/20 space-y-3.5"
+                    className="p-4 sm:p-5 rounded-xl border-2 border-[#1FA855]/45 bg-white space-y-3.5 shadow-xs"
                   >
                     <div className="space-y-1">
-                      <p className="text-sm font-extrabold text-[#002147] dark:text-white flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#178A47] text-white flex items-center justify-center shrink-0">
+                      <p className="text-sm font-extrabold text-[#002147] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#1FA855] text-white flex items-center justify-center shrink-0">
                           <Check className="w-3.5 h-3.5" aria-hidden="true" />
                         </span>
                         <span>Paso 2 de 2: Solicitud preparada en pantalla</span>
                       </p>
-                      <p className="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                      <p className="text-xs text-slate-700 leading-relaxed">
                         Hemos organizado tu solicitud con tus datos. <strong>Aviso importante:</strong> el mensaje no se envía solo; pulsa a continuación en <em>«Abrir WhatsApp y enviar a Mimo»</em> para transferirlo al chat oficial.
                       </p>
                     </div>
@@ -465,7 +465,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                             { service_id: 'recogida-a-domicilio' }
                           )
                         }
-                        className="flex-1 inline-flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm py-3.5 px-4 rounded-xl transition-colors shadow-xs"
+                        className="flex-1 inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
                       >
                         <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>Abrir WhatsApp y enviar a Mimo</span>
@@ -474,11 +474,11 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       <button
                         type="button"
                         onClick={handleCopyText}
-                        className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 bg-white dark:bg-[#071324] hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold py-2.5 px-3.5 rounded-xl cursor-pointer transition-colors"
+                        className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] text-xs font-bold py-2.5 px-3.5 rounded-lg cursor-pointer transition-colors"
                       >
                         {copied ? (
                           <>
-                            <Check className="w-3.5 h-3.5 text-[#178A47]" />
+                            <Check className="w-3.5 h-3.5 text-[#1FA855]" />
                             <span>Texto copiado</span>
                           </>
                         ) : (
@@ -494,7 +494,7 @@ export const HomePickupSection: React.FC<HomePickupSectionProps> = ({ onNavigate
                       <button
                         type="button"
                         onClick={() => setPreparedReady(false)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#002147] dark:hover:text-white underline cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#002147] underline cursor-pointer"
                       >
                         <Pencil className="w-3 h-3" aria-hidden="true" />
                         <span>¿Necesitas corregir algún dato? Modificar formulario</span>

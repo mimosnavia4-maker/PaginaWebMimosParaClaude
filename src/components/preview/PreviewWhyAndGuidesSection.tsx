@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight,
   ArrowUpRight,
+  BookOpen,
   ChevronDown,
   ExternalLink,
   MessageCircle,
-  BookOpen,
 } from 'lucide-react';
 import {
   ARTICULOS_BLOG_RESUMEN,
   CONTACT_INFO,
   FAQ_PORTADA_SIN_PRECIOS,
-  PUNTOS_COLABORADORES,
   RESENAS_REALES,
-  TIENDAS_PROPIAS,
 } from '../../data/mimosData';
 import { trackWhatsAppClick } from '../../utils/analytics';
 
@@ -28,169 +25,78 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
 
-  const pilares = [
-    {
-      num: '01',
-      titulo: 'Cuidado experto tejido a tejido',
-      descripcion:
-        'Tratamos cada prenda y textil del hogar según su fibra, estructura y etiqueta en nuestra planta de Navia, sin procesos genéricos en serie.',
-    },
-    {
-      num: '02',
-      titulo: 'Comodidad sin esperas ni pedido mínimo en tienda',
-      descripcion: `Entrega directa en nuestras ${TIENDAS_PROPIAS.length} tiendas propias en Vigo o ${PUNTOS_COLABORADORES.length} puntos colaboradores, o solicita recogida y entrega a domicilio.`,
-    },
-    {
-      num: '03',
-      titulo: 'Atención cercana por WhatsApp con Mimo',
-      descripcion:
-        'Resolvemos dudas de manchas, sofás, alfombras o arreglos con foto previa antes de que te desplaces, avisándote en cuanto tu pedido está listo.',
-    },
-  ];
-
-  // Destacamos 3 guías editoriales en portada (estilo revista Celsious), manteniendo acceso completo en /blog
   const featuredGuides = ARTICULOS_BLOG_RESUMEN.slice(0, 3);
+  const moreGuides = ARTICULOS_BLOG_RESUMEN.slice(3);
 
   return (
     <>
-      {/* 1. CONFIANZA EN CASCADA + RESEÑAS REALES DE GOOGLE */}
+      {/* 1. OPINIONES REALES EN FORMATO CITA EDITORIAL */}
       <section
         id="por-que-mimos"
-        aria-labelledby="preview-trust-heading"
-        className="py-18 lg:py-26 bg-white dark:bg-[#071324] border-b border-slate-200/70 dark:border-slate-800"
+        aria-labelledby="reviews-heading"
+        className="py-16 lg:py-22 bg-white border-b border-slate-200"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-18">
-          <div className="space-y-10">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-3xl space-y-2.5"
-            >
-              <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
-                Por qué elegir Tintorería Mimos Navia
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+                Opiniones reales de clientes en Google
               </p>
               <h2
-                id="preview-trust-heading"
-                className="text-3xl sm:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance"
+                id="reviews-heading"
+                className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
               >
-                Oficio textil artesanal con la agilidad que esperas hoy
+                Lo que cuentan quienes ya confían sus prendas a Mimos
               </h2>
-            </motion.div>
-
-            {/* Tres pilares sin encajonar en cajas repetitivas */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 pt-4 border-t border-slate-200/80 dark:border-slate-800">
-              {pilares.map((p, idx) => (
-                <motion.div
-                  key={p.num}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: idx * 0.09,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="space-y-2.5 pt-2"
-                >
-                  <p className="text-2xl font-extrabold text-[#0F76BB] dark:text-[#60B5F6] tabular-nums">
-                    {p.num}
-                  </p>
-                  <h3 className="text-xl font-extrabold text-[#002147] dark:text-white">
-                    {p.titulo}
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    {p.descripcion}
-                  </p>
-                </motion.div>
-              ))}
             </div>
+
+            <a
+              href={CONTACT_INFO.googleReviewsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#002147] hover:underline whitespace-nowrap shrink-0"
+            >
+              <span>Ver reseñas en Google</span>
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
+            </a>
           </div>
 
-          {/* Opiniones reales de clientes en Google */}
-          <div className="pt-12 border-t border-slate-200/80 dark:border-slate-800 space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-              <div>
-                <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
-                  Opiniones reales de clientes en Google
-                </p>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
-                  Lo que dicen quienes ya confían su ropa a Mimos
-                </h3>
-              </div>
-
-              <a
-                href={CONTACT_INFO.googleReviewsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 border-t border-slate-200 pt-8">
+            {RESENAS_REALES.map((resena) => (
+              <blockquote
+                key={resena.autor}
+                className="flex flex-col justify-between space-y-4 border-l-2 border-[#0F76BB]/50 pl-5"
               >
-                <span>Ver todas las reseñas en Google</span>
-                <ExternalLink className="w-4 h-4" aria-hidden="true" />
-              </a>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {RESENAS_REALES.map((resena, idx) => (
-                <motion.blockquote
-                  key={resena.autor}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: idx * 0.08,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="rounded-3xl bg-[#F4F7FB] dark:bg-[#0b1d36] p-6 sm:p-7 flex flex-col justify-between space-y-5"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                      <span
-                        className="text-amber-500 font-bold tracking-tight"
-                        aria-label="Valoración de 5 estrellas"
-                      >
-                        ★★★★★
-                      </span>
-                      <span aria-hidden="true">·</span>
-                      <span>{resena.origen}</span>
-                    </div>
-                    <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
-                      «{resena.texto}»
-                    </p>
-                  </div>
-                  <footer className="text-sm font-extrabold text-[#002147] dark:text-white pt-3 border-t border-slate-200/70 dark:border-slate-800">
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                  «{resena.texto}»
+                </p>
+                <footer className="text-xs sm:text-sm text-slate-500">
+                  <strong className="text-[#002147] font-extrabold">
                     {resena.autor}
-                  </footer>
-                </motion.blockquote>
-              ))}
-            </div>
+                  </strong>{' '}
+                  · {resena.origen}
+                </footer>
+              </blockquote>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 2. REVISTA Y GUÍAS PRÁCTICAS DE CUIDADO TEXTIL (Estilo Celsious) */}
+      {/* 2. GUÍAS PRÁCTICAS DE CUIDADO TEXTIL */}
       <section
         id="blog"
-        aria-labelledby="preview-guides-heading"
-        className="py-18 lg:py-26 bg-[#FAFBFD] dark:bg-[#09182e] border-b border-slate-200/70 dark:border-slate-800"
+        aria-labelledby="guides-heading"
+        className="py-16 lg:py-22 bg-[#F7F6F2] border-b border-slate-200"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
-          >
-            <div className="max-w-2xl space-y-2.5">
-              <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+            <div className="max-w-2xl space-y-2">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
                 Cuaderno textil · Guías de Tintorería Mimos
               </p>
               <h2
-                id="preview-guides-heading"
-                className="text-3xl sm:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance"
+                id="guides-heading"
+                className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
               >
                 Consejos prácticos antes de lavar o guardar en casa
               </h2>
@@ -199,33 +105,25 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
             <a
               href="/blog"
               onClick={(e) => onNavigate('/blog', e)}
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#002147] hover:underline whitespace-nowrap shrink-0"
             >
               <BookOpen className="w-4 h-4" aria-hidden="true" />
               <span>Ver las {ARTICULOS_BLOG_RESUMEN.length} guías del blog</span>
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </a>
-          </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-            {featuredGuides.map((articulo, idx) => (
-              <motion.article
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredGuides.map((articulo) => (
+              <article
                 key={articulo.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.4,
-                  delay: idx * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="group flex flex-col justify-between space-y-5"
+                className="group flex flex-col justify-between space-y-4"
               >
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <a
                     href={articulo.url}
                     onClick={(e) => onNavigate(articulo.url, e)}
-                    className="block aspect-4/3 rounded-3xl overflow-hidden bg-[#002147]"
+                    className="block aspect-4/3 rounded-sm overflow-hidden bg-[#EDF5FD]"
                   >
                     {!imgErrors[articulo.slug] ? (
                       <img
@@ -234,39 +132,40 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                         width={800}
                         height={600}
                         loading="lazy"
+                        decoding="async"
                         referrerPolicy="no-referrer"
                         onError={() =>
                           setImgErrors((prev) => ({ ...prev, [articulo.slug]: true }))
                         }
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+                        className="w-full h-full object-cover transition-transform duration-500 [@media(hover:hover)]:group-hover:scale-[1.02]"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center p-6 text-center text-white">
+                      <div className="w-full h-full flex items-center justify-center p-6 text-center text-[#002147]">
                         <span className="text-base font-bold">{articulo.titulo}</span>
                       </div>
                     )}
                   </a>
 
-                  <div className="space-y-2.5">
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                      <span className="font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                      <span className="font-bold text-[#0F76BB]">
                         {articulo.categoria}
                       </span>
                       <span aria-hidden="true">·</span>
                       <span>{articulo.tiempoLectura}</span>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white leading-snug">
+                    <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] leading-snug">
                       <a
                         href={articulo.url}
                         onClick={(e) => onNavigate(articulo.url, e)}
-                        className="hover:text-[#0F76BB] dark:hover:text-[#60B5F6] transition-colors"
+                        className="hover:text-[#0F76BB] transition-colors"
                       >
                         {articulo.titulo}
                       </a>
                     </h3>
 
-                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
+                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
                       {articulo.extracto}
                     </p>
                   </div>
@@ -276,67 +175,79 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                   <a
                     href={articulo.url}
                     onClick={(e) => onNavigate(articulo.url, e)}
-                    className="inline-flex items-center gap-1.5 text-sm font-bold text-[#002147] dark:text-[#60B5F6] hover:underline"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#002147] hover:underline"
                   >
                     <span>Leer guía completa</span>
                     <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                   </a>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
+
+          {moreGuides.length > 0 && (
+            <div className="pt-5 border-t border-slate-300/80 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm">
+              <span className="font-bold text-slate-500">
+                Más guías útiles:
+              </span>
+              {moreGuides.map((g) => (
+                <a
+                  key={g.slug}
+                  href={g.url}
+                  onClick={(e) => onNavigate(g.url, e)}
+                  className="inline-flex items-center min-h-[44px] font-bold text-[#002147] hover:text-[#0F76BB] hover:underline"
+                >
+                  {g.titulo}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* 3. PREGUNTAS FRECUENTES LIMPIAS (SEO/AEO sin saturación) + CIERRE DIRECTO */}
+      {/* 3. PREGUNTAS FRECUENTES */}
       <section
         id="preguntas-frecuentes"
-        aria-labelledby="preview-faq-heading"
-        className="py-18 lg:py-24 bg-white dark:bg-[#071324]"
+        aria-labelledby="faq-heading"
+        className="py-16 lg:py-22 bg-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 space-y-5"
-            >
-              <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+            <div className="lg:col-span-5 space-y-4">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
                 Dudas habituales
               </p>
               <h2
-                id="preview-faq-heading"
-                className="text-3xl sm:text-4xl font-extrabold text-[#002147] dark:text-white tracking-tight text-balance"
+                id="faq-heading"
+                className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
               >
-                Preguntas frecuentes sobre precios, tiendas y recogida
+                Preguntas frecuentes sobre tiendas, plazos y recogida
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                Si prefieres orientarte al instante para una prenda concreta, envíanos una fotografía por WhatsApp antes de venir.
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Si quieres orientarte al instante para una prenda concreta o un sofá, envíanos una fotografía por WhatsApp antes de venir.
               </p>
               <a
                 href={CONTACT_INFO.whatsappGeneralHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackWhatsAppClick('/preview-portada', 'faq_closing')}
-                className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors"
+                onClick={() => trackWhatsAppClick('/', 'faq_closing')}
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Preguntar ahora por WhatsApp</span>
               </a>
-            </motion.div>
+            </div>
 
-            <div className="lg:col-span-7 divide-y divide-slate-200 dark:divide-slate-800 border-t border-b border-slate-200 dark:border-slate-800">
+            <div className="lg:col-span-7 divide-y divide-slate-200 border-t border-b border-slate-200">
               {FAQ_PORTADA_SIN_PRECIOS.map((faq, idx) => {
                 const isOpen = openFaqIdx === idx;
                 return (
-                  <div key={faq.pregunta} className="py-5">
+                  <div key={faq.pregunta} className="py-3.5">
                     <button
                       type="button"
                       onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
                       aria-expanded={isOpen}
-                      className="w-full text-left flex items-center justify-between gap-4 font-extrabold text-sm sm:text-base text-[#002147] dark:text-white cursor-pointer"
+                      className="w-full min-h-[48px] text-left flex items-center justify-between gap-4 font-extrabold text-sm sm:text-base text-[#002147] cursor-pointer py-1"
                     >
                       <span>{faq.pregunta}</span>
                       <ChevronDown
@@ -347,19 +258,15 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                       />
                     </button>
 
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -4 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -4 }}
-                          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                          className="pt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
-                        >
-                          {faq.respuesta}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    <div
+                      className={
+                        isOpen
+                          ? 'pt-2 pb-2 text-sm text-slate-600 leading-relaxed'
+                          : 'hidden'
+                      }
+                    >
+                      {faq.respuesta}
+                    </div>
                   </div>
                 );
               })}

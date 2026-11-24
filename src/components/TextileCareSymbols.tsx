@@ -562,82 +562,82 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
   return (
     <div className="my-10 space-y-12">
       {/* Banner de Autoridad Técnica ISO 3758:2023 */}
-      <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#002147] to-[#0A3366] text-white shadow-md border border-slate-700">
+      <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#F4F9FE] via-white to-[#EDF5FD] text-[#002147] shadow-xs border border-slate-200">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-sky-200 tracking-wide uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
               Estándar Internacional ISO 3758:2023
-            </div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+            </p>
+            <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#002147]">
               Secuencia obligatoria de los 5 pictogramas textiles
             </h2>
-            <p className="text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
               Toda etiqueta textil internacional debe leerse siempre en este orden estricto de izquierda a derecha. Si falta algún símbolo, se presupone que el tejido admite el tratamiento general.
             </p>
           </div>
           <button
+            type="button"
             onClick={handlePrint}
-            className="inline-flex items-center gap-2 bg-white text-[#002147] hover:bg-slate-100 font-bold text-sm px-4 py-2.5 rounded-xl transition-all shadow-sm shrink-0"
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-colors shadow-xs shrink-0 cursor-pointer"
             title="Imprimir o guardar como PDF para tener junto a tu lavadora"
           >
-            <Printer className="w-4 h-4 text-[#0F76BB]" />
+            <Printer className="w-4 h-4" aria-hidden="true" />
             <span>Imprimir Guía A4</span>
           </button>
         </div>
 
         {/* Las 5 familias visuales en orden */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-6 pt-5 border-t border-white/15">
-          <div className="flex flex-col items-center text-center p-2.5 rounded-lg bg-white/5">
-            <span className="text-xs font-bold text-sky-300 mb-1">Paso 1</span>
-            <div className="w-9 h-9 text-white">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]">
-                <path d="M 12,32 L 17,80 L 83,80 L 88,32 Q 78,42 68,32 Q 58,22 48,32 Q 38,42 28,32 Q 20,24 12,32 Z"/>
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-6 pt-5 border-t border-slate-200">
+          <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
+            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 1</span>
+            <div className="w-9 h-9 text-[#002147]">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
+                <path d="M 12,32 L 17,80 L 83,80 L 88,32 Q 78,42 68,32 Q 58,22 48,32 Q 38,42 28,32 Q 20,24 12,32 Z" />
               </svg>
             </div>
-            <span className="text-xs font-medium text-slate-200 mt-1">Lavado (Cubeta)</span>
+            <span className="text-xs font-semibold text-slate-700 mt-1">Lavado (Cubeta)</span>
           </div>
 
-          <div className="flex flex-col items-center text-center p-2.5 rounded-lg bg-white/5">
-            <span className="text-xs font-bold text-sky-300 mb-1">Paso 2</span>
-            <div className="w-9 h-9 text-white">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]">
-                <polygon points="50,15 12,85 88,85"/>
+          <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
+            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 2</span>
+            <div className="w-9 h-9 text-[#002147]">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
+                <polygon points="50,15 12,85 88,85" />
               </svg>
             </div>
-            <span className="text-xs font-medium text-slate-200 mt-1">Blanqueo (Triángulo)</span>
+            <span className="text-xs font-semibold text-slate-700 mt-1">Blanqueo (Triángulo)</span>
           </div>
 
-          <div className="flex flex-col items-center text-center p-2.5 rounded-lg bg-white/5">
-            <span className="text-xs font-bold text-sky-300 mb-1">Paso 3</span>
-            <div className="w-9 h-9 text-white">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]">
-                <rect x="15" y="15" width="70" height="70" rx="6"/>
-                <circle cx="50" cy="50" r="26"/>
+          <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
+            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 3</span>
+            <div className="w-9 h-9 text-[#002147]">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
+                <rect x="15" y="15" width="70" height="70" rx="6" />
+                <circle cx="50" cy="50" r="26" />
               </svg>
             </div>
-            <span className="text-xs font-medium text-slate-200 mt-1">Secado (Cuadrado)</span>
+            <span className="text-xs font-semibold text-slate-700 mt-1">Secado (Cuadrado)</span>
           </div>
 
-          <div className="flex flex-col items-center text-center p-2.5 rounded-lg bg-white/5">
-            <span className="text-xs font-bold text-sky-300 mb-1">Paso 4</span>
-            <div className="w-9 h-9 text-white">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]">
-                <path d="M 18,65 L 82,65 C 82,65 80,42 60,42 L 28,42 L 18,65 Z M 28,42 L 28,26 L 68,26"/>
+          <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
+            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 4</span>
+            <div className="w-9 h-9 text-[#002147]">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
+                <path d="M 18,65 L 82,65 C 82,65 80,42 60,42 L 28,42 L 18,65 Z M 28,42 L 28,26 L 68,26" />
               </svg>
             </div>
-            <span className="text-xs font-medium text-slate-200 mt-1">Plancha</span>
+            <span className="text-xs font-semibold text-slate-700 mt-1">Plancha</span>
           </div>
 
-          <div className="flex flex-col items-center text-center p-2.5 rounded-lg bg-white/5 col-span-2 sm:col-span-1">
-            <span className="text-xs font-bold text-sky-300 mb-1">Paso 5</span>
-            <div className="w-9 h-9 text-white">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]">
-                <circle cx="50" cy="50" r="35"/>
-                <text x="50" y="62" font-family="sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="currentColor">P</text>
+          <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200 col-span-2 sm:col-span-1">
+            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 5</span>
+            <div className="w-9 h-9 text-[#002147]">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
+                <circle cx="50" cy="50" r="35" />
+                <text x="50" y="62" fontFamily="sans-serif" fontSize="34" fontWeight="900" textAnchor="middle" fill="currentColor">P</text>
               </svg>
             </div>
-            <span className="text-xs font-medium text-slate-200 mt-1">Tintorería (Círculo)</span>
+            <span className="text-xs font-semibold text-slate-700 mt-1">Tintorería (Círculo)</span>
           </div>
         </div>
       </div>
@@ -646,31 +646,32 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
           <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" aria-hidden="true" />
             <input
               type="text"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               placeholder="Buscar símbolo (ej: 30°, percloroetileno, lejía, plancha, lana...)"
-              className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#071324] text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F76BB]"
+              className="w-full min-h-[44px] pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F76BB]"
               aria-label="Buscar símbolo textil"
             />
           </div>
-          <span className="text-xs text-slate-500 dark:text-slate-400 self-center">
-            Mostrando <strong>{simbolosFiltrados.length}</strong> de {SIMBOLOS_TEXTILES.length} pictogramas oficiales
+          <span className="text-xs text-slate-600 self-center tabular-nums">
+            Mostrando <strong className="text-[#002147]">{simbolosFiltrados.length}</strong> de {SIMBOLOS_TEXTILES.length} pictogramas oficiales
           </span>
         </div>
 
         {/* Pestañas de categorías */}
-        <div className="flex flex-wrap gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+        <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-3">
           {categorias.map((cat) => (
             <button
               key={cat.id}
+              type="button"
               onClick={() => setCategoriaSeleccionada(cat.id)}
-              className={`text-xs sm:text-sm font-bold px-3.5 py-2 rounded-xl transition-all ${
+              className={`min-h-[44px] text-xs sm:text-sm font-bold px-3.5 py-2 rounded-xl transition-colors cursor-pointer tabular-nums ${
                 categoriaSeleccionada === cat.id
-                  ? 'bg-[#002147] text-white shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  ? 'bg-[#0F76BB] text-white shadow-xs'
+                  : 'bg-[#F4F9FE] text-[#002147] border border-slate-200 hover:bg-[#EDF5FD]'
               }`}
             >
               {cat.label} ({cat.count})
@@ -682,42 +683,43 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
       {/* Grid de Pictogramas Interactivos con SVG Nativo */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {simbolosFiltrados.map((simbolo) => (
-          <div
+          <button
             key={simbolo.id}
+            type="button"
             onClick={() => setSimboloActivo(simbolo)}
-            className="group cursor-pointer rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1d36] hover:border-[#0F76BB] dark:hover:border-[#0F76BB] p-5 transition-all hover:shadow-md flex flex-col justify-between"
+            className="text-left group cursor-pointer rounded-2xl border border-slate-200 bg-white hover:border-[#0F76BB] p-5 transition-all hover:shadow-sm flex flex-col justify-between"
           >
-            <div>
+            <div className="w-full">
               {/* Encabezado con Icono SVG nítido */}
               <div className="flex items-start gap-4 mb-4">
-                <div 
-                  className="w-16 h-16 shrink-0 rounded-xl bg-slate-50 dark:bg-[#071324] border border-slate-200/80 dark:border-slate-800 p-2 flex items-center justify-center text-[#002147] dark:text-sky-300 group-hover:scale-105 transition-transform"
-                  dangerouslySetInnerHTML={{ 
-                    __html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" aria-label="${simbolo.nombre}">${simbolo.svgCode}</svg>` 
+                <div
+                  className="w-16 h-16 shrink-0 rounded-xl bg-[#F4F9FE] border border-slate-200 p-2 flex items-center justify-center text-[#002147] group-hover:scale-105 transition-transform"
+                  dangerouslySetInnerHTML={{
+                    __html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" aria-label="${simbolo.nombre}">${simbolo.svgCode}</svg>`
                   }}
                 />
                 <div className="space-y-1 min-w-0">
-                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                  <span className="inline-block text-[11px] font-bold text-[#0F76BB]">
                     {simbolo.categoriaNombre}
                   </span>
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white leading-snug">
+                  <h3 className="text-base font-extrabold text-[#002147] leading-snug">
                     {simbolo.nombre}
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-slate-500">
                     {simbolo.simboloNombre}
                   </p>
                 </div>
               </div>
 
               {/* Significado directo */}
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
                 {simbolo.significado}
               </p>
 
               {/* Riesgo o precaución */}
-              <div className="p-3 rounded-lg bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200/70 dark:border-amber-900/40 text-xs text-amber-900 dark:text-amber-200 space-y-1">
+              <div className="p-3 rounded-lg bg-amber-50/80 border border-amber-200 text-xs text-amber-950 space-y-1">
                 <div className="flex items-center gap-1.5 font-bold">
-                  <AlertTriangle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0" aria-hidden="true" />
                   <span>Riesgo al tratarlo en casa:</span>
                 </div>
                 <p className="leading-normal">{simbolo.riesgo}</p>
@@ -725,15 +727,15 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
             </div>
 
             {/* Footer de tarjeta con recomendación y enlace */}
-            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs">
-              <span className="font-semibold text-slate-500 dark:text-slate-400">
+            <div className="w-full mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span className="font-semibold text-slate-500">
                 Consejo experto de Mimos
               </span>
-              <span className="font-bold text-[#0F76BB] dark:text-[#60B5F6] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+              <span className="font-bold text-[#0F76BB] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                 Ver detalle técnico →
               </span>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 
@@ -745,64 +747,65 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
         maxWidthClass="max-w-xl"
       >
         {simboloActivo && (
-          <div className="p-6 sm:p-7 space-y-5">
+          <div className="p-6 sm:p-7 space-y-5 bg-white text-slate-900">
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div 
-                  className="w-16 h-16 shrink-0 rounded-2xl bg-slate-50 dark:bg-[#0b1d36] border border-slate-200 dark:border-slate-800 p-2 text-[#002147] dark:text-sky-300 flex items-center justify-center"
-                  dangerouslySetInnerHTML={{ 
-                    __html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" aria-label="${simboloActivo.nombre}">${simboloActivo.svgCode}</svg>` 
+                <div
+                  className="w-16 h-16 shrink-0 rounded-2xl bg-[#F4F9FE] border border-slate-200 p-2 text-[#002147] flex items-center justify-center"
+                  dangerouslySetInnerHTML={{
+                    __html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" aria-label="${simboloActivo.nombre}">${simboloActivo.svgCode}</svg>`
                   }}
                 />
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
+                  <span className="text-xs font-bold text-[#0F76BB]">
                     {simboloActivo.categoriaNombre}
                   </span>
-                  <h3 id="simbolo-modal-titulo" className="text-xl font-extrabold text-[#002147] dark:text-white">
+                  <h3 id="simbolo-modal-titulo" className="text-xl font-extrabold text-[#002147]">
                     {simboloActivo.nombre}
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-slate-500">
                     Norma ISO 3758:2023 · {simboloActivo.simboloNombre}
                   </p>
                 </div>
               </div>
               <button
+                type="button"
                 onClick={() => setSimboloActivo(null)}
-                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center font-bold text-sm cursor-pointer"
+                className="w-10 h-10 rounded-full bg-[#F4F9FE] hover:bg-[#EDF5FD] border border-slate-200 text-[#002147] flex items-center justify-center font-bold text-sm cursor-pointer shrink-0"
                 aria-label="Cerrar modal"
               >
                 ✕
               </button>
             </div>
 
-            <div className="space-y-3.5 text-sm text-slate-600 dark:text-slate-300">
-              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0b1d36] border border-slate-200 dark:border-slate-800">
-                <h4 className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">
+            <div className="space-y-3.5 text-sm text-slate-700">
+              <div className="p-3.5 rounded-xl bg-[#F7F6F2] border border-slate-200">
+                <h4 className="text-xs font-bold text-[#002147] mb-1">
                   Fundamento fisicoquímico (Norma ISO)
                 </h4>
                 <p className="leading-relaxed">{simboloActivo.detalleTecnico}</p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/40 text-rose-900 dark:text-rose-200">
-                <h4 className="text-xs font-bold uppercase text-rose-800 dark:text-rose-300 mb-1 flex items-center gap-1.5">
-                  <AlertTriangle className="w-3.5 h-3.5" />
-                  Riesgo de error doméstico
+              <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-950">
+                <h4 className="text-xs font-bold text-rose-800 mb-1 flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                  <span>Riesgo de error doméstico</span>
                 </h4>
                 <p className="leading-relaxed">{simboloActivo.riesgo}</p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 text-emerald-950 dark:text-emerald-200">
-                <h4 className="text-xs font-bold uppercase text-emerald-800 dark:text-emerald-300 mb-1 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  Recomendación del maestro tintorero (Mimos Vigo)
+              <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
+                <h4 className="text-xs font-bold text-emerald-800 mb-1 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true" />
+                  <span>Recomendación del maestro tintorero (Mimos Vigo)</span>
                 </h4>
                 <p className="leading-relaxed">{simboloActivo.recomendacionMimos}</p>
               </div>
             </div>
 
             {simboloActivo.servicioRelacionado && (
-              <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-xs text-slate-500 dark:text-slate-400">
+              <div className="pt-2 border-t border-slate-200 flex items-center justify-between gap-3">
+                <span className="text-xs text-slate-600">
                   ¿Dudas con esta prenda?
                 </span>
                 <a
@@ -811,10 +814,10 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
                     setSimboloActivo(null);
                     onNavigate(simboloActivo.servicioRelacionado!.href, e);
                   }}
-                  className="inline-flex items-center gap-1.5 font-bold text-xs text-[#0F76BB] dark:text-[#60B5F6] hover:underline"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] font-bold text-xs text-[#0F76BB] hover:underline"
                 >
-                  {simboloActivo.servicioRelacionado.texto}
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>{simboloActivo.servicioRelacionado.texto}</span>
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
               </div>
             )}
@@ -824,100 +827,100 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
 
       {/* Tablas Nativas HTML para Motores de Búsqueda y Featured Snippets */}
       <div className="space-y-8 pt-6">
-        <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+        <div className="border-b border-slate-200 pb-3">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
             Tablas comparativas oficiales de temperaturas y fibras textiles
           </h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-sm text-slate-600 mt-1">
             Respuestas rápidas para consultar temperaturas máximas, compatibilidad con fibras (lana, seda, algodón, lino) y ciclos recomendados.
           </p>
         </div>
 
         {/* Tabla 1: Lavado y Temperaturas */}
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead className="bg-[#002147] text-white">
+            <thead className="bg-[#EDF5FD] text-[#002147] border-b border-slate-200">
               <tr>
-                <th className="p-3.5 font-bold">Pictograma</th>
-                <th className="p-3.5 font-bold">Temperatura / Ciclo</th>
-                <th className="p-3.5 font-bold">Fibras compatibles</th>
-                <th className="p-3.5 font-bold">Consecuencia de superarla</th>
+                <th className="p-3.5 font-extrabold">Pictograma</th>
+                <th className="p-3.5 font-extrabold">Temperatura / Ciclo</th>
+                <th className="p-3.5 font-extrabold">Fibras compatibles</th>
+                <th className="p-3.5 font-extrabold">Consecuencia de superarla</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-[#071324] text-slate-700 dark:text-slate-200">
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-bold text-[#002147] dark:text-sky-300">Cubeta 30°C (1 punto)</td>
-                <td className="p-3.5 font-semibold">Máx 30 °C · Muy suave</td>
+            <tbody className="divide-y divide-slate-200 bg-white text-slate-700">
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-bold text-[#002147]">Cubeta 30°C (1 punto)</td>
+                <td className="p-3.5 font-semibold tabular-nums">Máx 30 °C · Muy suave</td>
                 <td className="p-3.5">Seda, encajes, elastano, ropa técnica deportiva y prendas oscuras</td>
-                <td className="p-3.5 text-rose-600 dark:text-rose-400">Pérdida de elasticidad y desteñido acelerado</td>
+                <td className="p-3.5 text-rose-700">Pérdida de elasticidad y desteñido acelerado</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-bold text-[#002147] dark:text-sky-300">Cubeta 40°C (2 puntos)</td>
-                <td className="p-3.5 font-semibold">Máx 40 °C · Estándar</td>
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-bold text-[#002147]">Cubeta 40°C (2 puntos)</td>
+                <td className="p-3.5 font-semibold tabular-nums">Máx 40 °C · Estándar</td>
                 <td className="p-3.5">Algodón de color, poliéster, camisas de diario, vaqueros</td>
-                <td className="p-3.5 text-amber-600 dark:text-amber-400">Afieltrado en lanas y encogimiento en viscosa</td>
+                <td className="p-3.5 text-amber-700">Afieltrado en lanas y encogimiento en viscosa</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-bold text-[#002147] dark:text-sky-300">Cubeta 60°C (3 puntos)</td>
-                <td className="p-3.5 font-semibold">Máx 60 °C · Higienizante</td>
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-bold text-[#002147]">Cubeta 60°C (3 puntos)</td>
+                <td className="p-3.5 font-semibold tabular-nums">Máx 60 °C · Higienizante</td>
                 <td className="p-3.5">Toallas de rizo de algodón, sábanas blancas y mantelerías</td>
-                <td className="p-3.5 text-rose-600 dark:text-rose-400">Encogimiento drástico de prendas confeccionadas</td>
+                <td className="p-3.5 text-rose-700">Encogimiento drástico de prendas confeccionadas</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-bold text-[#002147] dark:text-sky-300">Mano sumergida</td>
-                <td className="p-3.5 font-semibold">Máx 40 °C · Sin frotar</td>
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-bold text-[#002147]">Mano sumergida</td>
+                <td className="p-3.5 font-semibold tabular-nums">Máx 40 °C · Sin frotar</td>
                 <td className="p-3.5">Cashmere, mohair, angora, seda salvaje, pedrería</td>
-                <td className="p-3.5 text-rose-600 dark:text-rose-400">Encogimiento irreversible de hasta 2 tallas en lavadora</td>
+                <td className="p-3.5 text-rose-700">Encogimiento irreversible de hasta 2 tallas en lavadora</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50 bg-rose-50/30 dark:bg-rose-950/10">
-                <td className="p-3.5 font-bold text-rose-700 dark:text-rose-400">Cubeta tachada</td>
-                <td className="p-3.5 font-bold text-rose-700 dark:text-rose-400">Prohibido agua</td>
+              <tr className="hover:bg-rose-50/70 bg-rose-50/40">
+                <td className="p-3.5 font-bold text-rose-800">Cubeta tachada</td>
+                <td className="p-3.5 font-bold text-rose-800">Prohibido agua</td>
                 <td className="p-3.5">Americanas sastre, abrigos de lana, vestidos de fiesta</td>
-                <td className="p-3.5 text-rose-600 dark:text-rose-400">Deformación estructural de entretelas y hombreras</td>
+                <td className="p-3.5 text-rose-700">Deformación estructural de entretelas y hombreras</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         {/* Tabla 2: Planchado Profesional vs Doméstico */}
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead className="bg-[#002147] text-white">
+            <thead className="bg-[#EDF5FD] text-[#002147] border-b border-slate-200">
               <tr>
-                <th className="p-3.5 font-bold">Icono Plancha</th>
-                <th className="p-3.5 font-bold">Temperatura límite</th>
-                <th className="p-3.5 font-bold">Fibras indicadas</th>
-                <th className="p-3.5 font-bold">Uso de vapor</th>
-                <th className="p-3.5 font-bold">Consejo de tintorería</th>
+                <th className="p-3.5 font-extrabold">Icono Plancha</th>
+                <th className="p-3.5 font-extrabold">Temperatura límite</th>
+                <th className="p-3.5 font-extrabold">Fibras indicadas</th>
+                <th className="p-3.5 font-extrabold">Uso de vapor</th>
+                <th className="p-3.5 font-extrabold">Consejo de tintorería</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-[#071324] text-slate-700 dark:text-slate-200">
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-bold text-[#002147] dark:text-sky-300">1 punto (•)</td>
-                <td className="p-3.5 font-semibold">110 °C</td>
+            <tbody className="divide-y divide-slate-200 bg-white text-slate-700">
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-bold text-[#002147]">1 punto (•)</td>
+                <td className="p-3.5 font-semibold tabular-nums">110 °C</td>
                 <td className="p-3.5">Acetato, nylon, acrílico, seda natural</td>
-                <td className="p-3.5 font-semibold text-rose-600 dark:text-rose-400">Sin vapor</td>
+                <td className="p-3.5 font-semibold text-rose-700">Sin vapor</td>
                 <td className="p-3.5">Usar paño húmedo intermedio</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-bold text-[#002147] dark:text-sky-300">2 puntos (••)</td>
-                <td className="p-3.5 font-semibold">150 °C</td>
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-bold text-[#002147]">2 puntos (••)</td>
+                <td className="p-3.5 font-semibold tabular-nums">150 °C</td>
                 <td className="p-3.5">Lana, mezclas poliéster-algodón, viscosa</td>
-                <td className="p-3.5 text-emerald-600 dark:text-emerald-400">Vapor moderado</td>
+                <td className="p-3.5 text-emerald-700 font-semibold">Vapor moderado</td>
                 <td className="p-3.5">Planchar por el revés para no crear brillos</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-bold text-[#002147] dark:text-sky-300">3 puntos (•••)</td>
-                <td className="p-3.5 font-semibold">200 °C</td>
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-bold text-[#002147]">3 puntos (•••)</td>
+                <td className="p-3.5 font-semibold tabular-nums">200 °C</td>
                 <td className="p-3.5">Lino puro, algodón pesado, mantelerías</td>
-                <td className="p-3.5 text-emerald-600 dark:text-emerald-400">Vapor intenso</td>
+                <td className="p-3.5 text-emerald-700 font-semibold">Vapor intenso</td>
                 <td className="p-3.5">Humedecer la prenda antes de comenzar</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50 bg-rose-50/30 dark:bg-rose-950/10">
-                <td className="p-3.5 font-bold text-rose-700 dark:text-rose-400">Plancha tachada</td>
-                <td className="p-3.5 font-bold text-rose-700 dark:text-rose-400">0 °C (No planchar)</td>
+              <tr className="hover:bg-rose-50/70 bg-rose-50/40">
+                <td className="p-3.5 font-bold text-rose-800">Plancha tachada</td>
+                <td className="p-3.5 font-bold text-rose-800 tabular-nums">0 °C (No planchar)</td>
                 <td className="p-3.5">Relleno térmico, cuero sintético, elásticos</td>
-                <td className="p-3.5 text-rose-600 dark:text-rose-400">Totalmente prohibido</td>
+                <td className="p-3.5 text-rose-700">Totalmente prohibido</td>
                 <td className="p-3.5">Tratar con túnel de vapor vertical</td>
               </tr>
             </tbody>
@@ -925,43 +928,43 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
         </div>
 
         {/* Tabla 3: Cuidado Profesional (Círculos P, F, W) */}
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead className="bg-[#002147] text-white">
+            <thead className="bg-[#EDF5FD] text-[#002147] border-b border-slate-200">
               <tr>
-                <th className="p-3.5 font-bold">Círculo profesional</th>
-                <th className="p-3.5 font-bold">Método químico</th>
-                <th className="p-3.5 font-bold">Prendas típicas</th>
-                <th className="p-3.5 font-bold">¿Se puede hacer en casa?</th>
-                <th className="p-3.5 font-bold">Solución en Tintorería Mimos</th>
+                <th className="p-3.5 font-extrabold">Círculo profesional</th>
+                <th className="p-3.5 font-extrabold">Método químico</th>
+                <th className="p-3.5 font-extrabold">Prendas típicas</th>
+                <th className="p-3.5 font-extrabold">¿Se puede hacer en casa?</th>
+                <th className="p-3.5 font-extrabold">Solución en Tintorería Mimos</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-[#071324] text-slate-700 dark:text-slate-200">
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-extrabold text-[#002147] dark:text-sky-300">Círculo con P</td>
+            <tbody className="divide-y divide-slate-200 bg-white text-slate-700">
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-extrabold text-[#002147]">Círculo con P</td>
                 <td className="p-3.5 font-semibold">Percloroetileno y solventes habituales</td>
                 <td className="p-3.5">Trajes sastre, abrigos de paño, faldas plisadas</td>
-                <td className="p-3.5 font-bold text-rose-600 dark:text-rose-400">No (Exclusivo tintorería)</td>
+                <td className="p-3.5 font-bold text-rose-700">No (Exclusivo tintorería)</td>
                 <td className="p-3.5">
-                  <a href="/tintoreria-vigo" onClick={(e) => onNavigate('/tintoreria-vigo', e)} className="text-[#0F76BB] dark:text-[#60B5F6] font-bold underline">
+                  <a href="/tintoreria-vigo" onClick={(e) => onNavigate('/tintoreria-vigo', e)} className="text-[#0F76BB] font-bold underline">
                     Limpieza en seco profesional
                   </a>
                 </td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                <td className="p-3.5 font-extrabold text-[#002147] dark:text-sky-300">Círculo con F</td>
+              <tr className="hover:bg-[#F4F9FE]">
+                <td className="p-3.5 font-extrabold text-[#002147]">Círculo con F</td>
                 <td className="p-3.5 font-semibold">Solventes de hidrocarburos suaves</td>
                 <td className="p-3.5">Vestidos de fiesta, sedas naturales, bordados</td>
-                <td className="p-3.5 font-bold text-rose-600 dark:text-rose-400">No (Riesgo de sangrado de tinte)</td>
+                <td className="p-3.5 font-bold text-rose-700">No (Riesgo de sangrado de tinte)</td>
                 <td className="p-3.5">Tratamiento delicado de alta tintorería</td>
               </tr>
-              <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/50 bg-emerald-50/40 dark:bg-emerald-950/15">
-                <td className="p-3.5 font-extrabold text-emerald-700 dark:text-emerald-400">Círculo con W</td>
+              <tr className="hover:bg-emerald-50/70 bg-emerald-50/40">
+                <td className="p-3.5 font-extrabold text-emerald-800">Círculo con W</td>
                 <td className="p-3.5 font-semibold">Wet Cleaning (Agua profesional ecológica)</td>
                 <td className="p-3.5">Edredones de plumón, lanas vírgenes, impermeables</td>
-                <td className="p-3.5 font-bold text-rose-600 dark:text-rose-400">No (Requiere dosificación controlada)</td>
+                <td className="p-3.5 font-bold text-rose-700">No (Requiere dosificación controlada)</td>
                 <td className="p-3.5">
-                  <span className="font-bold text-emerald-700 dark:text-emerald-300">Especialidad de Mimos Navia</span>
+                  <span className="font-bold text-emerald-800">Especialidad de Mimos Navia</span>
                 </td>
               </tr>
             </tbody>
@@ -970,21 +973,21 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
       </div>
 
       {/* Recuadro descargable / imprimible (Link Magnet) */}
-      <div className="p-6 sm:p-8 rounded-2xl border-2 border-dashed border-[#0F76BB]/40 bg-sky-50/50 dark:bg-sky-950/20 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="p-6 sm:p-8 rounded-2xl border border-dashed border-[#0F76BB]/40 bg-[#F4F9FE] flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0F76BB] dark:text-[#60B5F6]">
-            <Printer className="w-4 h-4" />
-            Recurso descargable para casa y lavandería
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0F76BB]">
+            <Printer className="w-4 h-4" aria-hidden="true" />
+            <span>Recurso descargable para casa y lavandería</span>
           </div>
-          <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+          <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
             Chuleta de símbolos de lavado para imprimir en A4
           </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
+          <p className="text-sm text-slate-700 max-w-xl leading-relaxed">
             Hemos maquetado esta guía en formato imprimible limpio para que puedas colgarla junto a tu lavadora o en el cuarto de plancha y resolver cualquier duda en 2 segundos. Si tu prenda pide P, F o W o tienes dudas con el tejido,{' '}
             <a
               href="/tintoreria-vigo"
               onClick={(e) => onNavigate('/tintoreria-vigo', e)}
-              className="font-bold text-[#0F76BB] dark:text-[#60B5F6] underline underline-offset-2"
+              className="font-bold text-[#0F76BB] underline underline-offset-2"
             >
               consulta nuestra tintorería
             </a>{' '}
@@ -992,7 +995,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
             <a
               href="/lavanderia-vigo"
               onClick={(e) => onNavigate('/lavanderia-vigo', e)}
-              className="font-bold text-[#0F76BB] dark:text-[#60B5F6] underline underline-offset-2"
+              className="font-bold text-[#0F76BB] underline underline-offset-2"
             >
               lavandería atendida en Vigo
             </a>
@@ -1000,10 +1003,11 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
           </p>
         </div>
         <button
+          type="button"
           onClick={handlePrint}
-          className="inline-flex items-center justify-center gap-2.5 bg-[#0F76BB] hover:bg-[#002147] text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-all shadow-md shrink-0 w-full sm:w-auto"
+          className="inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm sm:text-base px-6 py-3 rounded-xl transition-colors shadow-xs shrink-0 w-full sm:w-auto cursor-pointer"
         >
-          <Printer className="w-5 h-5" />
+          <Printer className="w-5 h-5" aria-hidden="true" />
           <span>Imprimir o Guardar PDF</span>
         </button>
       </div>

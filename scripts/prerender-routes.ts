@@ -811,7 +811,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
     `<li><a href="/limpieza-alfombras-vigo">Limpieza de alfombras a domicilio</a></li>` +
     `<li><a href="/reparacion-alfombras-vigo">Reparación y restauración de alfombras</a></li>` +
     `<li><a href="/limpieza-pieles-cuero-vigo">Pieles y cuero</a></li>` +
-    `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa (18 servicios)</a></li>` +
+    `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa</a></li>` +
     `<li><a href="/recogida-a-domicilio">Recogida a domicilio</a></li>` +
     `<li><a href="/limpieza-profesional-vigo">Limpieza profesional</a></li>` +
     `<li><a href="/limpieza-apartamentos-turisticos-vigo">Apartamentos turísticos</a></li>` +
@@ -856,9 +856,9 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
     `</footer>`;
 
   return (
-    `<main id="main-content" class="max-w-4xl mx-auto px-4 sm:px-6 py-10 bg-white dark:bg-[#071324] text-slate-800 dark:text-slate-100 space-y-6">` +
-    `<h1 class="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white">${escapeHtml(meta.h1)}</h1>` +
-    `<p class="text-slate-600 dark:text-slate-300 leading-relaxed">${escapeHtml(meta.description)}</p>` +
+    `<main id="main-content" class="max-w-4xl mx-auto px-4 sm:px-6 py-10 bg-white text-slate-800 space-y-6">` +
+    `<h1 class="text-2xl sm:text-3xl font-extrabold text-[#002147]">${escapeHtml(meta.h1)}</h1>` +
+    `<p class="text-slate-600 leading-relaxed">${escapeHtml(meta.description)}</p>` +
     specificHtml +
     navHtml +
     footerHtml +

@@ -21,11 +21,17 @@ import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
 interface HeaderProps {
   currentPath: string;
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
+  variant?: 'navy' | 'light';
 }
 
 type ActiveMegaMenu = 'tintoreria' | 'limpieza' | 'apartamentos' | 'puntos' | null;
 
-export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({
+  currentPath,
+  onNavigate,
+  variant = 'navy',
+}) => {
+  const isLight = variant === 'light';
   const [activeMenu, setActiveMenu] = useState<ActiveMegaMenu>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileExpandedSection, setMobileExpandedSection] = useState<string | null>(null);
@@ -126,9 +132,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
         Saltar al contenido principal
       </a>
 
-      {/* Cabecera Principal Sticky con Fondo Azul Marino Corporativo */}
+      {/* Cabecera Principal Sticky */}
       <header
-        className="sticky top-0 z-50 bg-[#002147] text-white border-b border-white/10 shadow-md select-none transition-colors"
+        className={`sticky top-0 z-50 select-none transition-colors ${
+          isLight
+            ? 'bg-white/95 backdrop-blur-xs text-[#002147] border-b border-slate-200 shadow-xs'
+            : 'bg-[#002147] text-white border-b border-white/10 shadow-md'
+        }`}
         onMouseLeave={handleMouseLeaveMenu}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,13 +158,28 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   alt="Tintorería Mimos Navia"
                   width={48}
                   height={48}
-                  className="w-12 h-12 object-contain rounded-full bg-white/10 p-1 border border-white/20 shrink-0 group-hover:scale-105 transition-transform"
+                  className={`w-12 h-12 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform ${
+                    isLight
+                      ? 'bg-[#EDF5FD] border border-[#002147]/10'
+                      : 'bg-white/10 border border-white/20'
+                  }`}
                 />
                 <div className="flex flex-col">
-                  <span className="font-extrabold text-base sm:text-lg tracking-tight text-white leading-tight font-serif sm:font-sans">
-                    TINTORERÍA <span className="text-[#60B5F6]">MIMOS</span>
+                  <span
+                    className={`font-extrabold text-base sm:text-lg tracking-tight leading-tight font-serif sm:font-sans ${
+                      isLight ? 'text-[#002147]' : 'text-white'
+                    }`}
+                  >
+                    TINTORERÍA{' '}
+                    <span className={isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}>
+                      MIMOS
+                    </span>
                   </span>
-                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-300 tracking-wider uppercase">
+                  <span
+                    className={`text-[10px] sm:text-[11px] font-medium tracking-wider uppercase ${
+                      isLight ? 'text-slate-500' : 'text-slate-300'
+                    }`}
+                  >
                     Navia · Vigo · Cuidado Textil
                   </span>
                 </div>
@@ -179,10 +204,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/arreglos-de-ropa-vigo'
-                        ? 'bg-white/20 text-white font-extrabold'
+                        ? isLight
+                          ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                          : 'bg-white/20 text-white font-extrabold'
+                        : isLight
+                        ? 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                         : 'text-slate-300 hover:text-white hover:bg-white/10'
                     }`}
-                    title="Taller propio de costura y 18 especialidades de arreglos de ropa en Vigo"
+                    title="Taller propio de costura y arreglos de ropa en Vigo"
                   >
                     Costura y arreglos
                   </a>
@@ -196,7 +225,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/limpieza-sofas-vigo'
-                        ? 'bg-white/20 text-white font-extrabold'
+                        ? isLight
+                          ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                          : 'bg-white/20 text-white font-extrabold'
+                        : isLight
+                        ? 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                         : 'text-slate-300 hover:text-white hover:bg-white/10'
                     }`}
                     title="Limpieza profesional de sofás, sillones y tapicerías a domicilio en Vigo"
@@ -213,7 +246,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/reparacion-alfombras-vigo'
-                        ? 'bg-white/20 text-white font-extrabold'
+                        ? isLight
+                          ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                          : 'bg-white/20 text-white font-extrabold'
+                        : isLight
+                        ? 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                         : 'text-slate-300 hover:text-white hover:bg-white/10'
                     }`}
                     title="Reparación y restauración de flecos, ribetes y bordes de alfombras en Vigo"
@@ -227,10 +264,17 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   <a
                     href={CONTACT_INFO.phoneHref}
                     onClick={() => trackPhoneClick(currentPath, 'header')}
-                    className="w-full inline-flex items-center justify-center gap-1.5 py-1 px-1.5 rounded-md text-slate-200 hover:text-white hover:bg-white/10 transition-colors text-xs font-bold truncate"
+                    className={`w-full inline-flex items-center justify-center gap-1.5 py-1 px-1.5 rounded-md transition-colors text-xs font-bold truncate ${
+                      isLight
+                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
+                        : 'text-slate-200 hover:text-white hover:bg-white/10'
+                    }`}
                     title="Llamar directamente a Tintorería Mimos Navia"
                   >
-                    <Phone className="w-3 h-3 text-[#60B5F6] shrink-0" aria-hidden="true" />
+                    <Phone
+                      className={`w-3 h-3 shrink-0 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
+                      aria-hidden="true"
+                    />
                     <span className="font-mono tracking-tight">{CONTACT_INFO.phoneDisplay}</span>
                   </a>
                 </div>
@@ -245,7 +289,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     aria-expanded={activeMenu === 'tintoreria'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'tintoreria'
-                        ? 'bg-white/20 text-white border-white/30 shadow-xs'
+                        ? isLight
+                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                          : 'bg-white/20 text-white border-white/30 shadow-xs'
+                        : isLight
+                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                         : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
                     }`}
                     title="Ver catálogo de tintorería y lavandería (pasa el ratón para desglose)"
@@ -253,7 +301,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     <span className="truncate">Tintorería y lavandería</span>
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
-                        activeMenu === 'tintoreria' ? 'rotate-180 text-[#60B5F6]' : 'text-slate-400'
+                        activeMenu === 'tintoreria'
+                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          : isLight
+                          ? 'text-slate-500'
+                          : 'text-slate-400'
                       }`}
                     />
                   </a>
@@ -268,7 +320,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     aria-expanded={activeMenu === 'limpieza'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'limpieza' || currentPath === '/limpieza-profesional-vigo'
-                        ? 'bg-white/20 text-white border-white/30 shadow-xs'
+                        ? isLight
+                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                          : 'bg-white/20 text-white border-white/30 shadow-xs'
+                        : isLight
+                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                         : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
                     }`}
                     title="Limpieza técnica de oficinas, comunidades y sofás a domicilio"
@@ -276,7 +332,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     <span className="truncate">Limpieza profesional</span>
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
-                        activeMenu === 'limpieza' ? 'rotate-180 text-[#60B5F6]' : 'text-slate-400'
+                        activeMenu === 'limpieza'
+                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          : isLight
+                          ? 'text-slate-500'
+                          : 'text-slate-400'
                       }`}
                     />
                   </a>
@@ -291,7 +351,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     aria-expanded={activeMenu === 'apartamentos'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'apartamentos' || currentPath === '/limpieza-apartamentos-turisticos-vigo'
-                        ? 'bg-white/20 text-white border-white/30 shadow-xs'
+                        ? isLight
+                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                          : 'bg-white/20 text-white border-white/30 shadow-xs'
+                        : isLight
+                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                         : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
                     }`}
                     title="Servicios para apartamentos turísticos y Airbnb en Vigo"
@@ -299,7 +363,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     <span className="truncate">Alojamientos turísticos</span>
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
-                        activeMenu === 'apartamentos' ? 'rotate-180 text-[#60B5F6]' : 'text-slate-400'
+                        activeMenu === 'apartamentos'
+                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          : isLight
+                          ? 'text-slate-500'
+                          : 'text-slate-400'
                       }`}
                     />
                   </a>
@@ -314,7 +382,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     aria-expanded={activeMenu === 'puntos'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'puntos' || currentPath === '/puntos-mimos'
-                        ? 'bg-white/20 text-white border-white/30 shadow-xs'
+                        ? isLight
+                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                          : 'bg-white/20 text-white border-white/30 shadow-xs'
+                        : isLight
+                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                         : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
                     }`}
                     title="Tiendas propias y puntos colaboradores con mapa interactivo"
@@ -322,7 +394,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     <span className="truncate">Puntos Mimos</span>
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
-                        activeMenu === 'puntos' ? 'rotate-180 text-[#60B5F6]' : 'text-slate-400'
+                        activeMenu === 'puntos'
+                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          : isLight
+                          ? 'text-slate-500'
+                          : 'text-slate-400'
                       }`}
                     />
                   </a>
@@ -340,7 +416,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'header_whatsapp_mimo')}
-                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 bg-[#178A47] hover:bg-[#126E38] text-white font-extrabold text-xs px-3 rounded-lg transition-all shadow-xs cursor-pointer active:scale-95"
+                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs px-3 rounded-lg transition-all shadow-xs cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 <span>Hablar con Mimo</span>
@@ -350,10 +426,17 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
               <button
                 type="button"
                 onClick={() => setIsTrackingModalOpen(true)}
-                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/40 text-slate-100 font-bold text-xs px-3 rounded-lg transition-colors cursor-pointer"
+                className={`w-full h-[32px] inline-flex items-center justify-center gap-1.5 border font-bold text-xs px-3 rounded-lg transition-colors cursor-pointer ${
+                  isLight
+                    ? 'bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]'
+                    : 'bg-white/10 hover:bg-white/15 border-white/20 hover:border-white/40 text-slate-100'
+                }`}
                 title="Consultar el estado de tu encargo o ticket oficial"
               >
-                <Package className="w-3.5 h-3.5 text-[#60B5F6] shrink-0" aria-hidden="true" />
+                <Package
+                  className={`w-3.5 h-3.5 shrink-0 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
+                  aria-hidden="true"
+                />
                 <span>Consultar pedido</span>
               </button>
             </div>
@@ -365,15 +448,19 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'header_mobile_icon')}
-                className="inline-flex items-center justify-center p-2 rounded-lg bg-[#178A47] text-white hover:bg-[#126E38] transition-colors"
+                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white transition-colors"
                 aria-label="WhatsApp con Mimo"
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-5 h-5" />
               </a>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl text-slate-200 hover:text-white hover:bg-white/10 transition-colors focus:outline-hidden"
+                className={`inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl transition-colors focus:outline-hidden ${
+                  isLight
+                    ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                    : 'text-slate-200 hover:text-white hover:bg-white/10'
+                }`}
                 aria-expanded={mobileMenuOpen}
                 aria-label="Abrir menú de navegación"
               >
@@ -1105,7 +1192,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   trackWhatsAppClick(currentPath, 'modal_order_status_submit');
                   setIsTrackingModalOpen(false);
                 }}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#178A47] hover:bg-[#126E38] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Consultar por WhatsApp con Mimo</span>
@@ -1138,27 +1225,43 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
           className="fixed inset-0 z-50 lg:hidden bg-black/60 backdrop-blur-xs flex justify-end animate-in fade-in duration-200"
         >
           <div
-            className="w-full max-w-sm bg-[#002147] text-white h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl"
+            className={`w-full max-w-sm h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl ${
+              isLight ? 'bg-white text-[#002147]' : 'bg-[#002147] text-white'
+            }`}
           >
             <div>
               {/* Cabecera del drawer */}
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+              <div
+                className={`flex items-center justify-between pb-4 border-b mb-6 ${
+                  isLight ? 'border-slate-200' : 'border-white/10'
+                }`}
+              >
                 <div className="flex items-center gap-2.5">
                   <img
                     src={IMAGES.logoMimos}
                     alt=""
                     width={36}
                     height={36}
-                    className="w-9 h-9 rounded-full bg-white/10 p-0.5"
+                    className={`w-9 h-9 rounded-full p-0.5 ${
+                      isLight ? 'bg-[#EDF5FD]' : 'bg-white/10'
+                    }`}
                   />
-                  <span className="font-extrabold text-sm tracking-tight text-white">
+                  <span
+                    className={`font-extrabold text-sm tracking-tight ${
+                      isLight ? 'text-[#002147]' : 'text-white'
+                    }`}
+                  >
                     TINTORERÍA MIMOS
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10"
+                  className={`p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg ${
+                    isLight
+                      ? 'text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD]'
+                      : 'text-slate-300 hover:text-white hover:bg-white/10'
+                  }`}
                   aria-label="Cerrar menú"
                 >
                   <X className="w-5 h-5" />
@@ -1177,98 +1280,112 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         mobileExpandedSection === 'tintoreria' ? null : 'tintoreria'
                       )
                     }
-                    className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white/10 text-left font-bold text-slate-100"
+                    className={`w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold ${
+                      isLight
+                        ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                        : 'text-slate-100 hover:bg-white/10'
+                    }`}
                   >
                     <span>Tintorería y lavandería</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
-                        mobileExpandedSection === 'tintoreria' ? 'rotate-180 text-[#60B5F6]' : ''
+                        mobileExpandedSection === 'tintoreria'
+                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          : ''
                       }`}
                     />
                   </button>
                   {mobileExpandedSection === 'tintoreria' && (
-                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs text-slate-300 border-l border-[#60B5F6]/30 ml-3">
+                    <div
+                      className={`pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 ${
+                        isLight
+                          ? 'text-slate-600 border-[#0F76BB]/30'
+                          : 'text-slate-300 border-[#60B5F6]/30'
+                      }`}
+                    >
                       <a
                         href="/tintoreria-vigo"
                         onClick={(e) => handleLinkClick('/tintoreria-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Tintorería profesional (Trajes, abrigos, delicadas)
                       </a>
                       <a
                         href="/limpieza-vestidos-novia-ceremonia-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-vestidos-novia-ceremonia-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6] font-bold text-[#60B5F6]"
+                        className={`block py-1.5 font-bold ${
+                          isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'
+                        }`}
                       >
                         • Vestidos de novia, fiesta y ceremonia
                       </a>
                       <a
                         href="/lavanderia-vigo"
                         onClick={(e) => handleLinkClick('/lavanderia-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Lavandería profesional (servicio atendido)
                       </a>
                       <a
                         href="/planchado-vigo"
                         onClick={(e) => handleLinkClick('/planchado-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Planchado profesional
                       </a>
                       <a
                         href="/textiles-hogar-vigo"
                         onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Textiles del hogar (Edredones, mantas, cortinas)
                       </a>
                       <a
                         href="/colada-familiar-vigo"
                         onClick={(e) => handleLinkClick('/colada-familiar-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Colada familiar (lavar y doblar / planchar)
                       </a>
                       <a
                         href="/limpieza-alfombras-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Limpieza de alfombras (recogida y taller)
                       </a>
                       <a
                         href="/reparacion-alfombras-vigo"
                         onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Reparación de alfombras (flecos y bordes)
                       </a>
                       <a
                         href="/limpieza-pieles-cuero-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-pieles-cuero-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Pieles, cuero y peletería
                       </a>
                       <a
                         href="/limpieza-incendios-siniestros-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-incendios-siniestros-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Recuperación tras incendios y siniestros
                       </a>
                       <a
                         href="/servicios-empresas"
                         onClick={(e) => handleLinkClick('/servicios-empresas', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Lavandería para empresas (peluquerías, clínicas y uniformes)
                       </a>
                       <a
                         href="/recogida-a-domicilio"
                         onClick={(e) => handleLinkClick('/recogida-a-domicilio', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Recogida y entrega a domicilio (Vigo, comarca y polígonos)
                       </a>
@@ -1285,28 +1402,40 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         mobileExpandedSection === 'limpieza' ? null : 'limpieza'
                       )
                     }
-                    className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white/10 text-left font-bold text-slate-100"
+                    className={`w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold ${
+                      isLight
+                        ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                        : 'text-slate-100 hover:bg-white/10'
+                    }`}
                   >
                     <span>Limpieza profesional</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
-                        mobileExpandedSection === 'limpieza' ? 'rotate-180 text-[#60B5F6]' : ''
+                        mobileExpandedSection === 'limpieza'
+                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          : ''
                       }`}
                     />
                   </button>
                   {mobileExpandedSection === 'limpieza' && (
-                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs text-slate-300 border-l border-[#60B5F6]/30 ml-3">
+                    <div
+                      className={`pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 ${
+                        isLight
+                          ? 'text-slate-600 border-[#0F76BB]/30'
+                          : 'text-slate-300 border-[#60B5F6]/30'
+                      }`}
+                    >
                       <a
                         href="/limpieza-profesional-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-profesional-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Oficinas, despachos, comunidades y locales
                       </a>
                       <a
                         href="/limpieza-sofas-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Limpieza de sofás y tapicerías a domicilio
                       </a>
@@ -1318,7 +1447,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 <a
                   href="/limpieza-apartamentos-turisticos-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-slate-100 font-bold"
+                  className={`block py-2.5 px-3 rounded-lg font-bold ${
+                    isLight
+                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                      : 'text-slate-100 hover:bg-white/10'
+                  }`}
                 >
                   Alojamientos turísticos
                 </a>
@@ -1332,49 +1465,63 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         mobileExpandedSection === 'puntos' ? null : 'puntos'
                       )
                     }
-                    className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white/10 text-left font-bold text-slate-100"
+                    className={`w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold ${
+                      isLight
+                        ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                        : 'text-slate-100 hover:bg-white/10'
+                    }`}
                   >
                     <span>Puntos Mimos y tiendas</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
-                        mobileExpandedSection === 'puntos' ? 'rotate-180 text-[#60B5F6]' : ''
+                        mobileExpandedSection === 'puntos'
+                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          : ''
                       }`}
                     />
                   </button>
                   {mobileExpandedSection === 'puntos' && (
-                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs text-slate-300 border-l border-[#60B5F6]/30 ml-3">
+                    <div
+                      className={`pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 ${
+                        isLight
+                          ? 'text-slate-600 border-[#0F76BB]/30'
+                          : 'text-slate-300 border-[#60B5F6]/30'
+                      }`}
+                    >
                       <a
                         href="/tienda-mimos-navia-vigo"
                         onClick={(e) => handleLinkClick('/tienda-mimos-navia-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Sede Central Navia (Teixugueiras 11)
                       </a>
                       <a
                         href="/tienda-mimos-gregorio-espino-vigo"
                         onClick={(e) => handleLinkClick('/tienda-mimos-gregorio-espino-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Mimos Gregorio Espino (Taller in situ)
                       </a>
                       <a
                         href="/tienda-mimos-venezuela-vigo"
                         onClick={(e) => handleLinkClick('/tienda-mimos-venezuela-vigo', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Mimos Venezuela 29 (Taller in situ)
                       </a>
                       <a
                         href="/puntos-mimos"
                         onClick={(e) => handleLinkClick('/puntos-mimos', e)}
-                        className="block py-1 hover:text-[#60B5F6]"
+                        className="block py-1.5 hover:text-[#0F76BB]"
                       >
                         • Todos los puntos y comarca
                       </a>
                       <a
                         href="/se-punto-colaborador"
                         onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
-                        className="block py-1 text-[#60B5F6] font-bold"
+                        className={`block py-1.5 font-bold ${
+                          isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'
+                        }`}
                       >
                         • Quiero ser punto colaborador →
                       </a>
@@ -1386,7 +1533,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 <a
                   href="/limpieza-sofas-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-[#60B5F6] font-extrabold"
+                  className={`block py-2.5 px-3 rounded-lg font-extrabold ${
+                    isLight
+                      ? 'text-[#0F76BB] hover:bg-[#EDF5FD]'
+                      : 'text-[#60B5F6] hover:bg-white/10'
+                  }`}
                 >
                   Limpieza de sofás a domicilio
                 </a>
@@ -1395,14 +1546,22 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 <a
                   href="/limpieza-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-[#60B5F6] font-extrabold"
+                  className={`block py-2.5 px-3 rounded-lg font-extrabold ${
+                    isLight
+                      ? 'text-[#0F76BB] hover:bg-[#EDF5FD]'
+                      : 'text-[#60B5F6] hover:bg-white/10'
+                  }`}
                 >
                   Limpieza de alfombras a domicilio
                 </a>
                 <a
                   href="/reparacion-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-[#60B5F6] font-extrabold"
+                  className={`block py-2.5 px-3 rounded-lg font-extrabold ${
+                    isLight
+                      ? 'text-[#0F76BB] hover:bg-[#EDF5FD]'
+                      : 'text-[#60B5F6] hover:bg-white/10'
+                  }`}
                 >
                   Reparación de alfombras (flecos y bordes)
                 </a>
@@ -1411,7 +1570,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 <a
                   href="/arreglos-de-ropa-vigo"
                   onClick={(e) => handleLinkClick('/arreglos-de-ropa-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-slate-100 font-bold"
+                  className={`block py-2.5 px-3 rounded-lg font-bold ${
+                    isLight
+                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                      : 'text-slate-100 hover:bg-white/10'
+                  }`}
                 >
                   Costura y arreglos de ropa
                 </a>
@@ -1420,7 +1583,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 <a
                   href="/blog"
                   onClick={(e) => handleLinkClick('/blog', e)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-slate-100 font-bold"
+                  className={`block py-2.5 px-3 rounded-lg font-bold ${
+                    isLight
+                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                      : 'text-slate-100 hover:bg-white/10'
+                  }`}
                 >
                   Blog y consejos
                 </a>
@@ -1429,23 +1596,37 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 <a
                   href="/contacto"
                   onClick={(e) => handleLinkClick('/contacto', e)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-white/10 text-slate-100 font-bold"
+                  className={`block py-2.5 px-3 rounded-lg font-bold ${
+                    isLight
+                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
+                      : 'text-slate-100 hover:bg-white/10'
+                  }`}
                 >
                   Contacto y horarios
                 </a>
               </nav>
 
               {/* Botonera de acciones rápida en móvil */}
-              <div className="mt-6 pt-6 border-t border-white/10 space-y-2.5">
+              <div
+                className={`mt-6 pt-6 border-t space-y-2.5 ${
+                  isLight ? 'border-slate-200' : 'border-white/10'
+                }`}
+              >
                 <button
                   type="button"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     setIsTrackingModalOpen(true);
                   }}
-                  className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-xs py-3 px-4 rounded-xl transition-colors cursor-pointer"
+                  className={`w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-3 px-4 rounded-xl transition-colors cursor-pointer ${
+                    isLight
+                      ? 'bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]'
+                      : 'bg-white/10 hover:bg-white/15 border-white/20 text-white'
+                  }`}
                 >
-                  <Package className="w-4 h-4 text-[#60B5F6]" />
+                  <Package
+                    className={`w-4 h-4 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
+                  />
                   <span>Consultar estado de mi pedido</span>
                 </button>
 
@@ -1454,7 +1635,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick(currentPath, 'drawer_whatsapp')}
-                  className="w-full flex items-center justify-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
+                  className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Hablar con Mimo en WhatsApp</span>
@@ -1463,16 +1644,26 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 <a
                   href={CONTACT_INFO.phoneHref}
                   onClick={() => trackPhoneClick(currentPath, 'drawer_phone')}
-                  className="w-full flex items-center justify-center gap-2 border border-slate-600 hover:border-white text-slate-200 hover:text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-colors"
+                  className={`w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-2.5 px-4 rounded-xl transition-colors ${
+                    isLight
+                      ? 'border-slate-300 hover:border-[#002147] text-[#002147]'
+                      : 'border-slate-600 hover:border-white text-slate-200 hover:text-white'
+                  }`}
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#60B5F6]" />
+                  <Phone
+                    className={`w-3.5 h-3.5 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
+                  />
                   <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
                 </a>
               </div>
             </div>
 
             {/* Pie del drawer */}
-            <div className="pt-4 text-center text-[10px] text-slate-400">
+            <div
+              className={`pt-4 text-center text-[10px] ${
+                isLight ? 'text-slate-500' : 'text-slate-400'
+              }`}
+            >
               Tintorería Mimos Navia, S.L. · Vigo (Pontevedra)
             </div>
           </div>

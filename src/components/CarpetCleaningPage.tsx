@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import {
   ArrowLeft,
-  MessageCircle,
-  Phone,
-  CheckCircle2,
-  Ruler,
-  Truck,
-  Store,
+  ArrowRight,
+  ArrowUpRight,
   AlertTriangle,
   Camera,
-  ArrowUpRight,
-  Copy,
   Check,
+  CheckCircle2,
+  Copy,
+  MessageCircle,
+  Phone,
+  Ruler,
+  Truck,
 } from 'lucide-react';
 import { SERVICIO_ALFOMBRAS_DATA } from '../data/servicePagesData';
 import {
@@ -21,6 +22,8 @@ import {
   IMAGES,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
+import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
+import { PageHeroLight } from './PageHeroLight';
 
 interface CarpetCleaningPageProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -59,7 +62,9 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
     if (observaciones.trim()) {
       lines.push(`Estado, manchas o reparación a tener en cuenta: ${observaciones.trim()}`);
     }
-    lines.push('A continuación te envío en este chat fotos de la alfombra para que puedas valorarla.');
+    lines.push(
+      'A continuación te envío en este chat fotos de la alfombra para que puedas valorarla.'
+    );
     return lines.join('\n');
   };
 
@@ -71,210 +76,162 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
       setCopied(true);
       setTimeout(() => setCopied(false), 3000);
     } catch {
-      // ignore
+      // ignore clipboard errors
     }
   };
 
   return (
-    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
-      {/* 1. CABECERA: H1, frase breve y botones "Consultar con Mimo por WhatsApp" y "Solicitar recogida a domicilio" (Sección 16.1) */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="focus:outline-hidden bg-white text-slate-900 border-b border-slate-200"
+    >
+      {/* 1. CABECERA LUMINOSA */}
+      <PageHeroLight
+        breadcrumbs={[
+          { label: 'Inicio', href: '/' },
+          { label: 'Servicios', href: '/#servicios' },
+          { label: 'Limpieza de alfombras en Vigo' },
+        ]}
+        onNavigate={onNavigate}
+        kicker="Servicio Especializado en Vigo · Mediante taller especialista colaborador"
+        title={SERVICIO_ALFOMBRAS_DATA.h1}
+        description={SERVICIO_ALFOMBRAS_DATA.subtituloCabecera}
+        note={SERVICIO_ALFOMBRAS_DATA.aclaracionDomicilio}
+        whatsappHref={whatsappUrl}
+        whatsappLabel="Consultar con Mimo por WhatsApp"
+        onWhatsAppClick={() =>
+          trackWhatsAppClick('/limpieza-alfombras-vigo', 'service_detail', {
+            service_id: 'limpieza-alfombras',
+          })
+        }
+        secondaryAction={{
+          label: 'Solicitar recogida a domicilio',
+          href: '#presupuestar-alfombra',
+          icon: <Truck className="w-4 h-4 shrink-0" aria-hidden="true" />,
+          isInternalRoute: false,
+        }}
+        image={{
+          src: IMAGES.alfombrasMimos,
+          alt: 'Revisión y medición profesional de una alfombra de lana en Tintorería Mimos Vigo',
+          caption:
+            'Valoración individualizada según medidas, tipo de fibra, reverso y estado de cada alfombra.',
+          fallbackTitle: 'Limpieza de alfombras en Vigo',
+          fallbackSubtitle: 'Recepción en tiendas y recogida concertada a domicilio',
+        }}
+      />
+
+      {/* 2. CÓMO FUNCIONA, EN 4 PASOS (Lino cálido #F7F6F2) */}
+      <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav aria-label="Migas de pan" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-300">
-              <li>
-                <a
-                  href="/"
-                  onClick={(e) => onNavigate('/', e)}
-                  className="hover:text-white underline-offset-4 hover:underline"
-                >
-                  Inicio
-                </a>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <a
-                  href="/#servicios"
-                  onClick={(e) => onNavigate('/#servicios', e)}
-                  className="hover:text-white underline-offset-4 hover:underline"
-                >
-                  Servicios
-                </a>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-[#60B5F6] font-bold">Limpieza de alfombras en Vigo</li>
-            </ol>
-          </nav>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 border border-white/15 text-[#60B5F6] text-xs font-mono uppercase tracking-wider font-bold">
-                <span>Servicio Especializado · Tintorería Mimos Navia</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12]">
-                {SERVICIO_ALFOMBRAS_DATA.h1}
-              </h1>
-
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
-                {SERVICIO_ALFOMBRAS_DATA.subtituloCabecera}
-              </p>
-
-              <div className="p-4 rounded-xl bg-white/10 border border-white/15 text-xs sm:text-sm text-slate-100 leading-relaxed">
-                {SERVICIO_ALFOMBRAS_DATA.aclaracionDomicilio}
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-                >
-                  <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  <span>Consultar con Mimo por WhatsApp</span>
-                </a>
-
-                <a
-                  href="#presupuestar-alfombra"
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-4 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
-                >
-                  <Truck className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  <span>Solicitar recogida a domicilio</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <figure className="rounded-2xl overflow-hidden border border-white/15 bg-[#071936] shadow-lg">
-                <img
-                  src={IMAGES.alfombrasMimos}
-                  alt="Revisión y medición profesional de una alfombra de lana en Tintorería Mimos Vigo"
-                  width={800}
-                  height={600}
-                  fetchPriority="high"
-                  className="w-full aspect-4/3 object-cover"
-                />
-                <figcaption className="p-4 text-xs text-slate-300 border-t border-white/10">
-                  Valoración individualizada según medidas, tipo de fibra, reverso y estado de cada alfombra.
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. CÓMO FUNCIONA, EN 4 PASOS (Sección 16.2) */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+          <div className="max-w-3xl mb-10 space-y-1.5">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
               Proceso claro de principio a fin
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
               Cómo funciona nuestro servicio de limpieza de alfombras en 4 pasos
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SERVICIO_ALFOMBRAS_DATA.pasosComoFunciona.map((paso) => (
-              <div
+              <article
                 key={paso.num}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 flex flex-col justify-between"
+                className="rounded-sm border border-slate-200 bg-white p-6 flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                  <span className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
                     PASO {paso.num}
                   </span>
-                  <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mt-1.5 mb-2.5">
+                  <h3 className="text-lg font-extrabold text-[#002147] mt-1.5 mb-2.5">
                     {paso.titulo}
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {paso.descripcion}
                   </p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. QUÉ ALFOMBRAS SE VALORAN y 4. CÓMO MEDIRLA (Sección 16.3 y 16.4) */}
-      <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+      {/* 3. QUÉ ALFOMBRAS SE VALORAN + 4. CÓMO MEDIRLA + REPARACIÓN (Blanco) */}
+      <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            {/* 3. Qué alfombras se valoran */}
+            {/* Qué alfombras se valoran */}
             <div className="lg:col-span-7 space-y-6">
               <div>
-                <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+                <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
                   Cuidado adaptado a cada tejido
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
                   Qué tipos de alfombras valoramos en Tintorería Mimos
                 </h2>
               </div>
 
               <div className="space-y-4">
                 {SERVICIO_ALFOMBRAS_DATA.tiposAlfombrasValoradas.map((tipo) => (
-                  <div
+                  <article
                     key={tipo.titulo}
-                    className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]"
+                    className="p-5 rounded-sm border border-slate-200 bg-[#F7F6F2]/70"
                   >
-                    <h3 className="text-base sm:text-lg font-extrabold text-[#002147] dark:text-white mb-1 flex items-center gap-2">
+                    <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-1.5 flex items-start gap-2.5">
                       <CheckCircle2
-                        className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0"
+                        className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
                         aria-hidden="true"
                       />
                       <span>{tipo.titulo}</span>
                     </h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+                    <p className="text-sm text-slate-600 leading-relaxed pl-6">
                       {tipo.descripcion}
                     </p>
-                  </div>
+                  </article>
                 ))}
               </div>
             </div>
 
-            {/* 4. Cómo medirla (Mini guía con ejemplo de largo por ancho) */}
-            <div className="lg:col-span-5">
-              <div className="rounded-2xl border-2 border-[#002147] dark:border-[#0F76BB]/60 bg-[#002147] text-white p-6 sm:p-8 space-y-5">
-                <div className="flex items-center gap-2.5 text-[#60B5F6]">
-                  <Ruler className="w-5 h-5" aria-hidden="true" />
-                  <span className="text-xs font-mono uppercase tracking-wider font-bold">
+            {/* Cómo medirla (Mini guía luminosa) */}
+            <aside className="lg:col-span-5">
+              <div className="rounded-sm border border-[#0F76BB]/30 bg-[#EDF5FD] p-6 sm:p-8 space-y-5">
+                <div className="flex items-center gap-2 text-[#0F76BB]">
+                  <Ruler className="w-5 h-5 shrink-0" aria-hidden="true" />
+                  <span className="text-xs font-bold uppercase tracking-wider">
                     Mini guía práctica de medición
                   </span>
                 </div>
 
-                <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   {SERVICIO_ALFOMBRAS_DATA.guiaComoMedir.titulo}
                 </h2>
 
-                <p className="text-sm text-slate-200 leading-relaxed">
+                <p className="text-sm text-slate-700 leading-relaxed">
                   {SERVICIO_ALFOMBRAS_DATA.guiaComoMedir.introduccion}
                 </p>
 
                 {/* Diagrama Visual Largo x Ancho */}
-                <div className="p-5 rounded-xl bg-white/10 border border-white/20 text-center space-y-2">
-                  <div className="mx-auto max-w-[220px] aspect-3/2 rounded-lg border-2 border-dashed border-[#60B5F6] bg-[#071936] flex flex-col items-center justify-center p-3 relative">
-                    <span className="text-[11px] font-mono text-[#60B5F6] uppercase">
+                <div className="p-5 rounded-sm bg-white border border-slate-200 text-center space-y-2">
+                  <div className="mx-auto max-w-[240px] aspect-[3/2] rounded-sm border-2 border-dashed border-[#0F76BB] bg-[#F4F9FE] flex flex-col items-center justify-center p-3">
+                    <span className="text-[11px] font-mono font-bold text-[#0F76BB] uppercase">
                       Largo (ej. 2,40 m) →
                     </span>
-                    <span className="text-xs font-bold text-white mt-1">
+                    <span className="text-xs font-extrabold text-[#002147] mt-1">
                       Cuerpo de la alfombra
                     </span>
-                    <span className="text-[11px] font-mono text-slate-300 mt-1">
+                    <span className="text-[11px] font-mono text-slate-600 mt-1">
                       ↑ Ancho (ej. 1,70 m)
                     </span>
                   </div>
-                  <p className="text-xs font-mono text-[#60B5F6] font-bold pt-1">
+                  <p className="text-xs font-mono text-[#002147] font-bold pt-1">
                     {SERVICIO_ALFOMBRAS_DATA.guiaComoMedir.ejemploPractico}
                   </p>
                 </div>
 
-                <ol className="space-y-2.5 text-xs sm:text-sm text-slate-200">
+                <ol className="space-y-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
                   {SERVICIO_ALFOMBRAS_DATA.guiaComoMedir.pasos.map((p, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="font-mono font-bold text-[#60B5F6] shrink-0">
+                      <span className="font-mono font-extrabold text-[#0F76BB] shrink-0">
                         0{idx + 1}.
                       </span>
                       <span>{p}</span>
@@ -282,27 +239,27 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   ))}
                 </ol>
               </div>
-            </div>
+            </aside>
           </div>
 
-          {/* 4.B. ENLACE DEDICADO A REPARACIÓN Y RESTAURACIÓN DE ALFOMBRAS */}
-          <div className="mt-12 rounded-2xl border-2 border-[#002147]/20 dark:border-[#0F76BB]/45 bg-slate-50 dark:bg-[#0b1d36] p-6 sm:p-8 lg:p-10">
+          {/* Enlace dedicado a reparación y restauración de alfombras */}
+          <div className="mt-12 rounded-sm border border-slate-200 border-l-4 border-l-[#0F76BB] bg-[#F7F6F2] p-6 sm:p-8 lg:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.subtitulo}
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.titulo}
                 </h2>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.descripcion}
                 </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs sm:text-sm text-slate-700">
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.trabajos.map((trabajo) => (
                     <li key={trabajo} className="flex items-start gap-2.5">
                       <CheckCircle2
-                        className="w-4 h-4 text-[#0F76BB] dark:text-[#60B5F6] shrink-0 mt-0.5"
+                        className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <span>{trabajo}</span>
@@ -311,23 +268,28 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 </ul>
               </div>
 
-              <div className="lg:col-span-4 rounded-xl bg-white dark:bg-[#071324] border border-slate-200 dark:border-slate-800 p-5 sm:p-6 space-y-4">
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <div className="lg:col-span-4 rounded-sm bg-white border border-slate-200 p-5 sm:p-6 space-y-3.5">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.comoSolicitarlo}
                 </p>
                 <a
                   href="/reparacion-alfombras-vigo"
                   onClick={(e) => onNavigate('/reparacion-alfombras-vigo', e)}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
+                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap"
                 >
                   <span>Ir a reparación de alfombras</span>
-                  <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                 </a>
                 <a
                   href={SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.whatsappReparacionUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 border border-[#178A47] text-[#178A47] dark:text-emerald-400 hover:bg-[#178A47] hover:text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors"
+                  onClick={() =>
+                    trackWhatsAppClick('/limpieza-alfombras-vigo', 'service_detail_repair', {
+                      service_id: 'reparacion-alfombras',
+                    })
+                  }
+                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-lg transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Enviar fotos de borde o fleco a Mimo</span>
@@ -338,106 +300,99 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 5. DE QUÉ DEPENDE EL PRESUPUESTO, 6. DÓNDE RECOGEMOS O RECIBIMOS y 7. PLAZOS (Sección 16.5, 16.6 y 16.7) */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
+      {/* 5. FACTORES DEL PRESUPUESTO, PUNTOS DE ENTREGA Y PLAZOS (#F7F6F2) */}
+      <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-          {/* 5. De qué depende el presupuesto */}
           <div>
             <div className="max-w-3xl mb-8">
-              <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+              <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
                 Valoración personalizada con Mimo · Sin tarifas estándar cerradas
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight mb-3">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
                 ¿De qué depende el presupuesto de limpieza de una alfombra?
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 Cada alfombra es diferente en tamaño, peso y composición. Para darte un presupuesto justo y adaptado a tu pieza, nuestro asistente <strong>Mimo</strong> valora estos seis aspectos:
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {SERVICIO_ALFOMBRAS_DATA.factoresPresupuesto.map((item) => (
-                <div
+                <article
                   key={item.factor}
-                  className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324]"
+                  className="p-6 rounded-sm border border-slate-200 bg-white"
                 >
-                  <h3 className="text-base font-extrabold text-[#002147] dark:text-white mb-1.5">
+                  <h3 className="text-base font-extrabold text-[#002147] mb-1.5">
                     {item.factor}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {item.detalle}
                   </p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
 
-          {/* 6. Dónde recogemos o recibimos y 7. Plazos */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6 border-t border-slate-200 dark:border-slate-800">
-            <div className="lg:col-span-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-8 space-y-4">
-              <div className="flex items-center gap-2 text-[#0F76BB] dark:text-[#60B5F6]">
-                <Truck className="w-5 h-5" aria-hidden="true" />
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6 border-t border-slate-300/70">
+            <div className="lg:col-span-7 rounded-sm border border-slate-200 bg-white p-6 sm:p-8 space-y-4">
+              <div className="flex items-center gap-2 text-[#0F76BB]">
+                <Truck className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   Dónde recogemos o recibimos tu alfombra
                 </h2>
               </div>
 
-              <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+              <div className="space-y-3 text-sm text-slate-700 leading-relaxed">
                 <p>
-                  <strong className="text-[#002147] dark:text-white">
-                    • En tu propio domicilio:
-                  </strong>{' '}
+                  <strong className="text-[#002147]">• En tu propio domicilio:</strong>{' '}
                   {SERVICIO_ALFOMBRAS_DATA.dondeRecogemosORecibimos.domicilio}
                 </p>
                 <p>
-                  <strong className="text-[#002147] dark:text-white">
+                  <strong className="text-[#002147]">
                     • En nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo:
                   </strong>{' '}
                   {SERVICIO_ALFOMBRAS_DATA.dondeRecogemosORecibimos.tiendasPropias}
                 </p>
                 <p>
-                  <strong className="text-[#002147] dark:text-white">
+                  <strong className="text-[#002147]">
                     • En puntos de recogida colaboradores:
                   </strong>{' '}
                   {SERVICIO_ALFOMBRAS_DATA.dondeRecogemosORecibimos.puntosColaboradores}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="pt-3 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 {TIENDAS_PROPIAS.map((t) => (
                   <div
                     key={t.id}
-                    className="p-3 rounded-lg bg-slate-50 dark:bg-[#0b1d36] border border-slate-200/70 dark:border-slate-800"
+                    className="p-3.5 rounded-sm bg-[#F7F6F2] border border-slate-200"
                   >
-                    <p className="font-bold text-[#002147] dark:text-white">
-                      {t.nombre_mostrado}
-                    </p>
-                    <p className="text-slate-600 dark:text-slate-300 mt-0.5">{t.direccion}</p>
+                    <p className="font-bold text-[#002147]">{t.nombre_mostrado}</p>
+                    <p className="text-slate-600 mt-0.5">{t.direccion}</p>
                     <p className="text-slate-500 mt-0.5">{t.horario.resumen}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* 7. Plazos y 8. Valoración con Fotos Reales */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-7">
-                <h2 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white mb-2">
+              <div className="rounded-sm border border-slate-200 bg-white p-6 sm:p-7">
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#002147] mb-2">
                   Plazos de limpieza y entrega
                 </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {SERVICIO_ALFOMBRAS_DATA.plazosExplicacion}
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-6 sm:p-7">
-                <div className="flex items-center gap-2 text-[#0F76BB] dark:text-[#60B5F6] mb-2">
-                  <Camera className="w-5 h-5" aria-hidden="true" />
-                  <h2 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white">
+              <div className="rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-7">
+                <div className="flex items-center gap-2 text-[#0F76BB] mb-2">
+                  <Camera className="w-5 h-5 shrink-0" aria-hidden="true" />
+                  <h2 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                     Revisión previa por foto en WhatsApp
                   </h2>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-700 leading-relaxed">
                   Cuando abras el chat con Mimo, envíanos una foto general de la alfombra, una foto del reverso (o etiqueta si la tiene) y de las manchas que te preocupen. Así nuestro equipo puede darte una valoración fiel antes de desplazarte o programar la recogida.
                 </p>
               </div>
@@ -446,24 +401,24 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 9. CUIDADO Y MANCHAS (Sección 16.9) */}
-      <section className="py-14 lg:py-20 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
+      {/* 6. CUIDADO Y MANCHAS (Blanco) */}
+      <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-8">
-            <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
               Recomendaciones profesionales de conservación
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
               Cuidado de tu alfombra en casa y cómo actuar ante manchas
             </h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-6 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]">
-              <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mb-4">
+            <div className="lg:col-span-6 p-6 sm:p-8 rounded-sm border border-slate-200 bg-[#F7F6F2]/70">
+              <h3 className="text-lg font-extrabold text-[#002147] mb-4">
                 Consejos básicos de mantenimiento doméstico
               </h3>
-              <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-200">
+              <ul className="space-y-3 text-sm text-slate-700">
                 {SERVICIO_ALFOMBRAS_DATA.cuidadoYManchas.consejosMantenimiento.map((c) => (
                   <li key={c} className="flex items-start gap-2.5">
                     <CheckCircle2
@@ -477,18 +432,21 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             </div>
 
             <div className="lg:col-span-6 space-y-5">
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]">
-                <h3 className="text-lg font-extrabold text-[#002147] dark:text-white mb-2">
+              <div className="p-6 rounded-sm border border-slate-200 bg-[#F7F6F2]/70">
+                <h3 className="text-lg font-extrabold text-[#002147] mb-2">
                   Por qué no conviene usar productos domésticos sin conocer el tejido
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {SERVICIO_ALFOMBRAS_DATA.cuidadoYManchas.porQueEvitarProductosDomesticos}
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] text-sm text-slate-700 dark:text-slate-200">
-                <div className="flex items-center gap-2 font-extrabold text-[#002147] dark:text-[#60B5F6] mb-1.5">
-                  <AlertTriangle className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <div className="p-6 rounded-sm border border-slate-200 border-l-4 border-l-amber-500 bg-white text-sm text-slate-700">
+                <div className="flex items-center gap-2 font-extrabold text-[#002147] mb-1.5">
+                  <AlertTriangle
+                    className="w-4 h-4 text-amber-600 shrink-0"
+                    aria-hidden="true"
+                  />
                   <span>Cuándo acudir a una limpieza profesional e información importante</span>
                 </div>
                 <p className="leading-relaxed">
@@ -500,30 +458,30 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* FLUJO DE SOLICITUD Y PRESUPUESTO CON MIMO (Sección 16 — Flujo de solicitud) */}
+      {/* 7. FLUJO DE SOLICITUD Y PRESUPUESTO CON MIMO (#EDF5FD) */}
       <section
         id="presupuestar-alfombra"
-        className="py-16 lg:py-20 bg-[#002147] text-white border-b border-white/10"
+        className="py-16 lg:py-20 bg-[#EDF5FD] text-[#002147] border-b border-slate-200"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <p className="text-xs font-mono uppercase tracking-wider text-[#60B5F6] font-bold mb-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
               Valoración directa por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-3">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
               Presupuestar mi alfombra con Mimo
             </h2>
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
-              Un enlace de WhatsApp solo lleva texto y no permite adjuntar imágenes automáticamente: prepara aquí tus datos para abrir el chat con <strong>Mimo</strong> y, una vez dentro de WhatsApp, envíanos fotos de la alfombra y de las manchas para que Mimo confirme tu presupuesto y disponibilidad de recogida.
+            <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+              Un enlace de WhatsApp solo lleva texto y no permite adjuntar imágenes automáticamente: prepara aquí tus datos para abrir el chat con <strong>Mimo</strong> y, una vez dentro de WhatsApp, envíanos fotos de la alfombra y de las manchas para confirmar tu presupuesto y disponibilidad de recogida.
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white text-slate-900 dark:bg-[#0b1d36] dark:text-white p-6 sm:p-8 shadow-xl space-y-5">
+          <div className="rounded-sm bg-white border border-slate-200 text-slate-900 p-6 sm:p-8 shadow-xs space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
                 <label
                   htmlFor="alf-servicio"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Qué necesitas
                 </label>
@@ -531,7 +489,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-servicio"
                   value={servicioSolicitado}
                   onChange={(e) => setServicioSolicitado(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Limpieza e higienización de alfombra">
                     Limpieza de alfombra
@@ -548,7 +506,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               <div>
                 <label
                   htmlFor="alf-localidad"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Localidad
                 </label>
@@ -556,7 +514,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-localidad"
                   value={localidad}
                   onChange={(e) => setLocalidad(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm font-medium focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {ZONAS_SERVICIO.map((loc) => (
                     <option key={loc} value={loc}>
@@ -572,7 +530,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               <div>
                 <label
                   htmlFor="alf-largo"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Largo aprox. (ej. 2,40 m)
                 </label>
@@ -582,14 +540,14 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   value={largo}
                   onChange={(e) => setLargo(e.target.value)}
                   placeholder="Ej.: 2,40 m"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="alf-ancho"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Ancho aprox. (ej. 1,70 m)
                 </label>
@@ -599,7 +557,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   value={ancho}
                   onChange={(e) => setAncho(e.target.value)}
                   placeholder="Ej.: 1,70 m"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -608,7 +566,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               <div>
                 <label
                   htmlFor="alf-fibra"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Material o tipo (si se conoce)
                 </label>
@@ -616,7 +574,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-fibra"
                   value={tipoFibra}
                   onChange={(e) => setTipoFibra(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="No estoy seguro / Sin etiqueta">
                     No estoy seguro / Sin etiqueta
@@ -633,7 +591,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               <div>
                 <label
                   htmlFor="alf-modalidad"
-                  className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                  className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
                 >
                   Recogida o entrega en tienda
                 </label>
@@ -641,7 +599,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-modalidad"
                   value={modalidadEntrega}
                   onChange={(e) => setModalidadEntrega(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Quiero consultar recogida y entrega a domicilio">
                     Quiero consultar recogida y entrega a domicilio
@@ -656,7 +614,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             <div>
               <label
                 htmlFor="alf-obs"
-                className="block text-xs sm:text-sm font-bold text-[#002147] dark:text-slate-200 mb-1.5"
+                className="block text-xs sm:text-sm font-bold text-[#002147] mb-1.5"
               >
                 Estado, manchas o disponibilidad para la recogida (opcional)
               </label>
@@ -666,7 +624,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 value={observaciones}
                 onChange={(e) => setObservaciones(e.target.value)}
                 placeholder="Ej.: Tiene una mancha de café y flecos en los bordes. Disponible por las tardes."
-                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#071324] text-sm focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               />
             </div>
 
@@ -675,46 +633,51 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base py-4 px-6 rounded-xl transition-colors"
+                onClick={() =>
+                  trackWhatsAppClick('/limpieza-alfombras-vigo', 'service_detail_builder', {
+                    service_id: 'limpieza-alfombras',
+                  })
+                }
+                className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
               >
-                <MessageCircle className="w-5 h-5" aria-hidden="true" />
+                <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Presupuestar mi alfombra en WhatsApp con Mimo</span>
               </a>
 
               <button
                 type="button"
                 onClick={handleCopy}
-                className="inline-flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-600 px-4 py-3.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 cursor-pointer"
+                className="min-h-[48px] inline-flex items-center justify-center gap-1.5 border border-[#002147] bg-white hover:bg-[#002147] hover:text-white px-4 py-3 rounded-lg text-xs font-bold text-[#002147] cursor-pointer transition-colors"
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-[#178A47]" />
+                    <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
                     <span>Mensaje copiado</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-4 h-4" />
+                    <Copy className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Copiar texto</span>
                   </>
                 )}
               </button>
             </div>
 
-            <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
+            <p className="text-xs text-slate-500 text-center leading-relaxed">
               El presupuesto queda confirmado una vez que Mimo revise las medidas, características y fotografías de tu alfombra en el chat de WhatsApp.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 10. PREGUNTAS FRECUENTES (10 FAQs sin precios — Sección 16.10) */}
-      <section className="py-14 lg:py-20 bg-slate-50 dark:bg-[#0a1b33] border-b border-slate-200 dark:border-slate-800">
+      {/* 8. PREGUNTAS FRECUENTES (#F7F6F2) */}
+      <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
-            <p className="text-sm font-bold text-[#0F76BB] dark:text-[#60B5F6] mb-1">
+            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
               Resolvemos tus dudas antes de recoger tu alfombra
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
               Preguntas frecuentes sobre la limpieza de alfombras en Vigo
             </h2>
           </div>
@@ -723,15 +686,15 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             {SERVICIO_ALFOMBRAS_DATA.preguntasFrecuentes.map((faq) => (
               <details
                 key={faq.pregunta}
-                className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#071324] p-5"
+                className="group rounded-sm border border-slate-200 bg-white p-5"
               >
-                <summary className="font-extrabold text-[#002147] dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
+                <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                   <span>{faq.pregunta}</span>
-                  <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform">
+                  <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                     +
                   </span>
                 </summary>
-                <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-3 border-t border-slate-100 dark:border-slate-800">
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed pt-3 border-t border-slate-100">
                   {faq.respuesta}
                 </p>
               </details>
@@ -740,10 +703,10 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
         </div>
       </section>
 
-      {/* 11. ENLACES RELACIONADOS Y LLAMADA FINAL (Sección 16.11) */}
-      <section className="py-14 bg-white dark:bg-[#071324]">
+      {/* 9. ENLACES RELACIONADOS Y LLAMADA FINAL (Blanco) */}
+      <section className="py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white mb-6">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] mb-6">
             Servicios relacionados con el cuidado del hogar y alojamientos en Vigo
           </h2>
 
@@ -753,16 +716,16 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 key={rel.href}
                 href={rel.href}
                 onClick={(e) => onNavigate(rel.href, e)}
-                className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-slate-50/70 dark:bg-[#0b1d36] flex flex-col justify-between group transition-colors"
+                className="p-6 rounded-sm border border-slate-200 hover:border-[#0F76BB] bg-[#F7F6F2]/60 flex flex-col justify-between group transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <h3 className="text-base font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6]">
+                    <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                       {rel.titulo}
                     </h3>
                     <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {rel.descripcion}
                   </p>
                 </div>
@@ -770,13 +733,13 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             ))}
           </div>
 
-          <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <a
               href="/"
               onClick={(e) => onNavigate('/', e)}
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#002147] dark:text-slate-200 hover:text-[#0F76BB]"
+              className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#002147] hover:text-[#0F76BB]"
             >
-              <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+              <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Volver a la portada de Tintorería Mimos Navia</span>
             </a>
 
@@ -785,16 +748,22 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors"
+                onClick={() =>
+                  trackWhatsAppClick('/limpieza-alfombras-vigo', 'service_detail_footer', {
+                    service_id: 'limpieza-alfombras',
+                  })
+                }
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
               >
-                <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Presupuestar mi alfombra</span>
               </a>
               <a
                 href={CONTACT_INFO.phoneHref}
-                className="inline-flex items-center gap-2 border border-slate-300 dark:border-slate-700 text-[#002147] dark:text-white font-bold text-sm px-4 py-3 rounded-xl"
+                onClick={() => trackPhoneClick('/limpieza-alfombras-vigo', 'service_detail')}
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors group"
               >
-                <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
                 <span>{CONTACT_INFO.phoneDisplay}</span>
               </a>
             </div>

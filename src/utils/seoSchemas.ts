@@ -401,7 +401,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         pregunta: '¿Puedo entregar alfombras grandes de lana o seda en la tienda de Navia?',
         respuesta:
-          'Por supuesto. La sede de Navia es punto central de recepción de alfombras. Medimos tu alfombra en el mostrador, revisamos el estado de las fibras y la procesamos con lavado plano, desinfección y secado en ambiente controlado.',
+          'Por supuesto. La sede de Navia es punto de recepción de alfombras. Medimos tu alfombra en el mostrador, revisamos el estado de las fibras y coordinamos su limpieza especializada y secado controlado mediante taller especialista colaborador.',
       },
       {
         pregunta: '¿Cómo me avisáis cuando la ropa está lista para recoger?',
@@ -540,7 +540,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         pregunta: "¿Cómo funciona la entrega de ropa para Tintorería Mimos en D'Passo?",
         respuesta:
-          "Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a D'Passo en Camiño Espedrigada, 9 bajo, Vigo. Allí registran tu encargo con tu resguardo oficial y nuestra furgoneta las traslada a la central de Mimos en Navia para devolverlas listas y protegidas al punto.",
+          "Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a D'Passo en Camiño Espedrigada, 9 bajo, Vigo. Allí registran tu encargo con tu resguardo oficial y nuestra furgoneta traslada tus prendas a nuestra central en Navia (y las alfombras al taller especialista colaborador) para devolverlas listas y protegidas al punto.",
       },
       {
         pregunta: "¿Cuál es el horario de apertura de D'Passo en Vigo?",
@@ -555,7 +555,7 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         pregunta: '¿Se pueden entregar edredones nórdicos y alfombras grandes en este punto?',
         respuesta:
-          'Sí. En D’Passo recibimos edredones sintéticos y de plumón natural, mantas, colchas, cortinas y alfombras de cualquier formato. En nuestra central de Navia realizamos el desempolvado, lavado especializado, higienización y secado controlado.',
+          'Sí. En D’Passo recibimos edredones sintéticos y de plumón natural, mantas, colchas, cortinas y alfombras. Tratamos los edredones, mantas y cortinas en nuestra central de Navia y gestionamos las alfombras mediante taller especialista colaborador con secado controlado.',
       },
       {
         pregunta: '¿Los precios son los mismos que en las tiendas propias de Tintorería Mimos?',

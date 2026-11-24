@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, MessageCircle, Phone, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Phone, ArrowUpRight, Sparkles } from 'lucide-react';
 import { ARTICULOS_BLOG } from '../data/blogArticlesFull';
 import { BLOG_FAQS_MAP } from '../data/servicePagesData';
 import {
@@ -28,83 +28,86 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
   const otroArticulo = ARTICULOS_BLOG[nextIndex];
 
   return (
-    <main id="main-content" tabIndex={-1} className="focus:outline-hidden py-10 sm:py-16 bg-white dark:bg-[#071324] border-b border-slate-200 dark:border-slate-800">
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Migas de pan" className="mb-6">
-          <ol className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-            <li>
-              <a
-                href="/"
-                onClick={(e) => onNavigate('/', e)}
-                className="hover:text-[#002147] dark:hover:text-white underline-offset-4 hover:underline"
-              >
-                Inicio
-              </a>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li>
-              <a
-                href="/blog"
-                onClick={(e) => onNavigate('/blog', e)}
-                className="hover:text-[#002147] dark:hover:text-white underline-offset-4 hover:underline"
-              >
-                Guías y Consejos de Mimos
-              </a>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li className="text-[#002147] dark:text-slate-200 font-bold truncate max-w-xs sm:max-w-md">
-              {articulo.titulo}
-            </li>
-          </ol>
-        </nav>
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white border-b border-slate-200">
+      {/* Cabecera luminosa del artículo */}
+      <header className="py-10 sm:py-14 bg-gradient-to-br from-white via-[#F4F9FE] to-[#EDF5FD] border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav aria-label="Migas de pan" className="mb-5">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-slate-600">
+              <li>
+                <a
+                  href="/"
+                  onClick={(e) => onNavigate('/', e)}
+                  className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
+                >
+                  Inicio
+                </a>
+              </li>
+              <li aria-hidden="true" className="text-slate-400">/</li>
+              <li>
+                <a
+                  href="/blog"
+                  onClick={(e) => onNavigate('/blog', e)}
+                  className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
+                >
+                  Guías y Consejos de Mimos
+                </a>
+              </li>
+              <li aria-hidden="true" className="text-slate-400">/</li>
+              <li className="text-[#0F76BB] font-bold truncate max-w-xs sm:max-w-md">
+                {articulo.titulo}
+              </li>
+            </ol>
+          </nav>
 
-        {/* Article Header */}
-        <header className="mb-8">
-          <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-3">
-            <span className="font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+          <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-600 mb-3">
+            <span className="font-bold text-[#0F76BB]">
               {articulo.categoria}
             </span>
             <span aria-hidden="true">·</span>
             <time dateTime={articulo.fechaISO}>{articulo.fechaPublicacion}</time>
             <span aria-hidden="true">·</span>
-            <span>{articulo.tiempoLectura}</span>
+            <span className="tabular-nums">{articulo.tiempoLectura}</span>
             <span aria-hidden="true">·</span>
             <span>Por Tintorería Mimos Navia (Vigo)</span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-[#002147] dark:text-white tracking-tight leading-[1.15] mb-6">
+          <h1 className="text-2xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-[#002147] tracking-tight leading-[1.12] text-balance mb-5">
             {articulo.titulo}
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-3xl">
             {articulo.extracto}
           </p>
-        </header>
+        </div>
+      </header>
 
+      <article className="py-10 sm:py-14 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Featured Editorial Image */}
-        <figure className="mb-10 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-[#002147]">
+        <figure className="mb-10 rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xs">
           {!imgError ? (
             <img
               src={articulo.imagen}
               alt={articulo.imagenAlt}
               width={960}
               height={720}
+              referrerPolicy="no-referrer"
               onError={() => setImgError(true)}
               className="w-full max-h-[480px] object-cover"
             />
           ) : (
-            <div className="p-12 text-center text-white">
+            <div className="p-12 bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] text-center text-[#002147] flex flex-col items-center justify-center">
+              <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
               <p className="font-bold">{articulo.imagenAlt}</p>
             </div>
           )}
-          <figcaption className="px-5 py-3 text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-[#0b1d36] border-t border-slate-200/80 dark:border-slate-800">
+          <figcaption className="px-5 py-3 text-xs text-slate-600 bg-[#F7F6F2] border-t border-slate-200">
             {articulo.imagenAlt} · Guía elaborada por el equipo de Tintorería Mimos Navia en Vigo.
           </figcaption>
         </figure>
 
         {/* Article Body Prose */}
-        <div className="space-y-8 text-base sm:text-[1.0625rem] text-slate-700 dark:text-slate-200 leading-relaxed">
+        <div className="space-y-8 text-base sm:text-[1.0625rem] text-slate-700 leading-relaxed">
           <div className="space-y-4">
             {articulo.introduccion.map((p, idx) => (
               <p key={idx} className="max-w-[70ch]">
@@ -118,19 +121,19 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
           )}
 
           {articulo.slug === 'ropa-afectada-humo-incendio-siniestro-hogar' && (
-            <div className="p-5 sm:p-6 rounded-2xl border border-[#0F76BB]/30 bg-[#0F76BB]/5 dark:bg-[#0b1d36] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="p-5 sm:p-6 rounded-2xl border border-[#0F76BB]/30 bg-[#EDF5FD] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] dark:text-[#60B5F6]">
+                <p className="text-xs font-bold text-[#0F76BB]">
                   Servicio técnico en Vigo · Documentación Art. 38 LCS
                 </p>
-                <p className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white">
+                <p className="text-sm sm:text-base font-extrabold text-[#002147]">
                   ¿Necesitas recuperar tu ropa ya o descargar la plantilla oficial de inventario (PDF/Excel) para tu aseguradora?
                 </p>
               </div>
               <a
                 href="/limpieza-incendios-siniestros-vigo"
                 onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
-                className="inline-flex items-center justify-center gap-2 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
               >
                 <span>Ir a Recuperación de Siniestros</span>
                 <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -140,7 +143,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
 
           {articulo.secciones.map((sec) => (
             <section key={sec.h2} className="pt-4 space-y-4">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] dark:text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
                 {sec.h2}
               </h2>
 
@@ -155,12 +158,12 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                   {sec.subsecciones.map((sub) => (
                     <div
                       key={sub.h3}
-                      className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36]"
+                      className="p-5 rounded-xl border border-slate-200 bg-[#F7F6F2]"
                     >
-                      <h3 className="text-base sm:text-lg font-extrabold text-[#002147] dark:text-white mb-2">
+                      <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-2">
                         {sub.h3}
                       </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      <p className="text-sm text-slate-700 leading-relaxed">
                         {sub.texto}
                       </p>
                     </div>
@@ -169,14 +172,14 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
               )}
 
               {sec.puntosClave && sec.puntosClave.length > 0 && (
-                <ul className="space-y-2.5 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] text-sm sm:text-base">
+                <ul className="space-y-2.5 p-5 sm:p-6 rounded-xl border border-slate-200 bg-[#F4F9FE] text-sm sm:text-base">
                   {sec.puntosClave.map((punto, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <span
                         aria-hidden="true"
-                        className="font-mono font-bold text-[#0F76BB] dark:text-[#60B5F6] shrink-0"
+                        className="font-bold text-[#0F76BB] tabular-nums shrink-0"
                       >
-                        0{idx + 1}.
+                        {String(idx + 1).padStart(2, '0')}.
                       </span>
                       <span>{punto}</span>
                     </li>
@@ -185,23 +188,23 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
               )}
 
               {sec.tabla && (
-                <div className="my-6 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
-                  <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-left text-xs sm:text-sm">
-                    <thead className="bg-[#002147] text-white">
+                <div className="my-6 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+                  <table className="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+                    <thead className="bg-[#EDF5FD] text-[#002147] border-b border-slate-200">
                       <tr>
                         {sec.tabla.encabezados.map((enc, idx) => (
-                          <th key={idx} scope="col" className="px-4 py-3 font-bold">
+                          <th key={idx} scope="col" className="px-4 py-3 font-extrabold">
                             {enc}
                           </th>
                         ))}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 bg-white dark:bg-[#071324] text-slate-700 dark:text-slate-300">
+                    <tbody className="divide-y divide-slate-100 bg-white text-slate-700">
                       {sec.tabla.filas.map((fila, rIdx) => (
-                        <tr key={rIdx} className={rIdx % 2 === 0 ? 'bg-slate-50/50 dark:bg-white/[0.02]' : ''}>
+                        <tr key={rIdx} className={rIdx % 2 === 1 ? 'bg-[#F7F6F2]/60' : ''}>
                           {fila.map((celda, cIdx) => (
                             <td key={cIdx} className="px-4 py-3 align-top leading-relaxed">
-                              {cIdx === 0 ? <strong className="text-[#002147] dark:text-white">{celda}</strong> : celda}
+                              {cIdx === 0 ? <strong className="text-[#002147]">{celda}</strong> : celda}
                             </td>
                           ))}
                         </tr>
@@ -209,7 +212,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                     </tbody>
                   </table>
                   {sec.tabla.pie && (
-                    <div className="bg-slate-50 dark:bg-[#0b1d36] px-4 py-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+                    <div className="bg-[#F7F6F2] px-4 py-2.5 text-xs text-slate-600 border-t border-slate-200">
                       {sec.tabla.pie}
                     </div>
                   )}
@@ -217,11 +220,11 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
               )}
 
               {sec.destacado && (
-                <div className="my-6 p-5 sm:p-6 rounded-2xl bg-[#002147]/5 dark:bg-[#60B5F6]/10 border border-[#0F76BB]/25 dark:border-[#60B5F6]/30">
-                  <h4 className="text-sm sm:text-base font-extrabold text-[#002147] dark:text-white mb-2">
+                <div className="my-6 p-5 sm:p-6 rounded-2xl bg-[#EDF5FD] border border-[#0F76BB]/25">
+                  <h4 className="text-sm sm:text-base font-extrabold text-[#002147] mb-2">
                     {sec.destacado.titulo}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                     {sec.destacado.texto}
                   </p>
                 </div>
@@ -230,8 +233,8 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
           ))}
 
           {/* Professional Precaution Box */}
-          <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] text-sm sm:text-base text-slate-700 dark:text-slate-200">
-            <h2 className="text-base font-extrabold text-[#002147] dark:text-[#60B5F6] mb-1.5">
+          <div className="p-6 rounded-2xl border border-slate-200 bg-[#F7F6F2] text-sm sm:text-base text-slate-700">
+            <h2 className="text-base font-extrabold text-[#002147] mb-1.5">
               Recomendación profesional sobre el cuidado de tejidos
             </h2>
             <p className="leading-relaxed">{articulo.advertenciaProfesional}</p>
@@ -242,7 +245,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
             aria-label="Servicios de Mimos relacionados con este artículo"
             className="pt-4"
           >
-            <h2 className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white mb-4">
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#002147] mb-4">
               Servicios relacionados en Tintorería Mimos Vigo
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -251,16 +254,16 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                   key={link.href}
                   href={link.href}
                   onClick={(e) => onNavigate(link.href, e)}
-                  className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-[#0F76BB] bg-slate-50/50 dark:bg-[#0b1d36] transition-colors flex flex-col justify-between group"
+                  className="p-5 rounded-xl border border-slate-200 hover:border-[#0F76BB] bg-[#F4F9FE] hover:bg-[#EDF5FD] transition-colors flex flex-col justify-between group min-h-[44px]"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="font-extrabold text-[#002147] dark:text-white group-hover:text-[#0F76BB] dark:group-hover:text-[#60B5F6] transition-colors">
+                      <span className="font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                         {link.texto}
                       </span>
                       <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                    <p className="text-xs sm:text-sm text-slate-600">
                       {link.descripcion}
                     </p>
                   </div>
@@ -273,7 +276,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
             <section aria-labelledby="blog-faqs-heading" className="pt-4">
               <h2
                 id="blog-faqs-heading"
-                className="text-lg sm:text-xl font-extrabold text-[#002147] dark:text-white mb-4"
+                className="text-lg sm:text-xl font-extrabold text-[#002147] mb-4"
               >
                 Preguntas frecuentes sobre esta guía
               </h2>
@@ -281,18 +284,18 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                 {BLOG_FAQS_MAP[articulo.slug].map((faq) => (
                   <details
                     key={faq.pregunta}
-                    className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-[#0b1d36] p-5"
+                    className="group rounded-xl border border-slate-200 bg-[#F7F6F2] p-5"
                   >
-                    <summary className="font-extrabold text-[#002147] dark:text-white cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
+                    <summary className="font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base min-h-[32px]">
                       <span>{faq.pregunta}</span>
                       <span
                         aria-hidden="true"
-                        className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0"
+                        className="text-[#0F76BB] font-bold text-lg group-open:rotate-45 transition-transform shrink-0"
                       >
                         +
                       </span>
                     </summary>
-                    <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-3 border-t border-slate-200/80 dark:border-slate-800">
+                    <p className="mt-3 text-sm text-slate-700 leading-relaxed pt-3 border-t border-slate-200">
                       {faq.respuesta}
                     </p>
                   </details>
@@ -304,12 +307,12 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
           {/* Final Required WhatsApp CTA Banner */}
           <section
             aria-label="Consulta por WhatsApp"
-            className="mt-10 p-6 sm:p-8 rounded-2xl bg-[#002147] text-white border border-slate-800"
+            className="mt-10 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#F4F9FE] via-white to-[#EDF5FD] border border-slate-200 shadow-xs"
           >
-            <h2 className="text-xl sm:text-2xl font-extrabold text-white mb-2">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147] mb-2">
               ¿Necesitas consultar el cuidado o el precio de una prenda con Mimo?
             </h2>
-            <p className="text-sm sm:text-base text-slate-200 mb-6 max-w-2xl">
+            <p className="text-sm sm:text-base text-slate-700 mb-6 max-w-2xl leading-relaxed">
               Escríbenos por WhatsApp indicando el tejido o la prenda y nuestro asistente Mimo te informará al instante. También puedes acercarte a nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo o a nuestros puntos colaboradores.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
@@ -317,7 +320,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                 href={articulo.whatsappCtaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-[#178A47] hover:bg-[#126E38] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-3.5 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-3 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Consultar con Mimo por WhatsApp</span>
@@ -325,9 +328,9 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
 
               <a
                 href={CONTACT_INFO.phoneHref}
-                className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white text-white font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-sm sm:text-base px-5 py-3 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0 group tabular-nums"
               >
-                <Phone className="w-4 h-4 text-[#60B5F6] shrink-0" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
                 <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
               </a>
             </div>
@@ -335,11 +338,11 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
         </div>
 
         {/* Footer Navigation */}
-        <footer className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <footer className="mt-12 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <a
             href="/blog"
             onClick={(e) => onNavigate('/blog', e)}
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#002147] dark:text-slate-200 hover:text-[#0F76BB]"
+            className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#002147] hover:text-[#0F76BB] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             <span>Volver a las guías del blog</span>
@@ -347,13 +350,13 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
 
           {otroArticulo && (
             <div className="text-left sm:text-right">
-              <p className="text-xs text-slate-500 dark:text-slate-400 mb-0.5">
+              <p className="text-xs text-slate-500 mb-0.5">
                 Siguiente guía recomendada:
               </p>
               <a
                 href={otroArticulo.url}
                 onClick={(e) => onNavigate(otroArticulo.url, e)}
-                className="text-sm font-extrabold text-[#002147] dark:text-[#60B5F6] hover:underline"
+                className="inline-flex items-center min-h-[44px] text-sm font-extrabold text-[#002147] hover:text-[#0F76BB] hover:underline"
               >
                 {otroArticulo.titulo} →
               </a>
