@@ -124,7 +124,7 @@ export const Footer: React.FC<FooterProps> = ({
                       onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
                       className={linkPrimary}
                     >
-                      Limpieza de alfombras a domicilio
+                      Limpieza de alfombras (recogida o tienda)
                     </a>
                   </li>
                   <li>
@@ -189,6 +189,15 @@ export const Footer: React.FC<FooterProps> = ({
                       className={`font-bold hover:underline ${headingAccent}`}
                     >
                       Limpieza profesional en Vigo →
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/limpieza-casas-vigo"
+                      onClick={(e) => onNavigate('/limpieza-casas-vigo', e)}
+                      className={`font-bold hover:underline ${headingAccent}`}
+                    >
+                      Limpieza de casas en Vigo →
                     </a>
                   </li>
                 </ul>

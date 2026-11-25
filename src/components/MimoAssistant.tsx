@@ -102,6 +102,17 @@ function getLocalFaqReply(query: string): {
       whatsappCtaLabel: topic.whatsappCtaLabel,
     };
   }
+  if (/limpi.*(casa|piso|vivienda|hogar)|asistenta|limpieza dom[eé]stica/.test(q)) {
+    return {
+      text: 'Realizamos limpieza de casas y pisos particulares en Vigo (mantenimiento periódico y puesta a punto) con personal propio en Régimen General, Seguro RC y PRL. Puedes combinarlo con sofás, cortinas o colada. Consulta disponibilidad con Mimo por WhatsApp o revisa los detalles de la sección.',
+      whatsappUrl: buildMimoWhatsAppUrl(
+        `Hola, Mimo. Quiero consultar disponibilidad para limpieza de vivienda particular en Vigo: ${query.trim()}`
+      ),
+      whatsappCtaLabel: 'Consultar limpieza de hogar por WhatsApp',
+      routeHref: '/limpieza-casas-vigo',
+      routeLabel: 'Ver limpieza de casas en Vigo',
+    };
+  }
   if (/recog|domicilio|casa|reparto|wash|m[ií]nim/.test(q)) {
     const topic = getTopicById('domicilio');
     return {

@@ -23,7 +23,7 @@ interface HeaderProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-type ActiveMegaMenu = 'tintoreria' | 'limpieza' | 'apartamentos' | 'puntos' | null;
+type ActiveMegaMenu = 'tintoreria' | 'limpieza' | 'apartamentos' | 'puntos' | 'alfombras' | null;
 
 export const Header: React.FC<HeaderProps> = ({
   currentPath,
@@ -211,20 +211,30 @@ export const Header: React.FC<HeaderProps> = ({
                   </a>
                 </div>
 
-                {/* Columna 3 Superior: Arreglo de alfombras */}
+                {/* Columna 3 Superior: Desplegable Alfombras (limpieza y arreglos) */}
                 <div className="flex items-center justify-center">
                   <a
-                    href="/reparacion-alfombras-vigo"
-                    onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                    onMouseEnter={() => setActiveMenu(null)}
-                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
+                    href="/limpieza-alfombras-vigo"
+                    onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                    onMouseEnter={() => handleMouseEnterMenu('alfombras')}
+                    aria-expanded={activeMenu === 'alfombras'}
+                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border whitespace-nowrap ${
+                      activeMenu === 'alfombras' ||
+                      currentPath === '/limpieza-alfombras-vigo' ||
                       currentPath === '/reparacion-alfombras-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
-                        : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
-                    title="Reparación y restauración de flecos, ribetes y bordes de alfombras en Vigo"
+                    title="Limpieza y reparación de alfombras en Vigo (pasa el ratón para ver opciones)"
                   >
-                    Arreglo de alfombras
+                    <span className="truncate">Alfombras</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
+                        activeMenu === 'alfombras'
+                          ? 'rotate-180 text-[#0F76BB]'
+                          : 'text-slate-500'
+                      }`}
+                    />
                   </a>
                 </div>
 
@@ -591,7 +601,7 @@ export const Header: React.FC<HeaderProps> = ({
                       </span>
                     </div>
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Limpieza en taller y reparación de flecos, ribetes y bordes por restaurador.
+                      Limpieza profunda por fibra y reparación de flecos, ribetes y bordes por especialista.
                     </p>
                     <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5">
                       <a
@@ -703,6 +713,11 @@ export const Header: React.FC<HeaderProps> = ({
                   </h3>
                   <ul className="space-y-1.5 pt-1">
                     {[
+                      {
+                        title: 'Limpieza de casas y pisos particulares',
+                        desc: 'Mantenimiento periódico o puesta a punto en Vigo con personal en Régimen General y RC.',
+                        url: '/limpieza-casas-vigo',
+                      },
                       {
                         title: 'Limpieza de oficinas y despachos',
                         desc: 'Mantenimiento periódico adaptado a tu horario comercial.',
@@ -1047,6 +1062,72 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
 
+        {/* =========================================================================
+            DESPLEGABLE 5: ALFOMBRAS (LIMPIEZA Y ARREGLOS EN 2 TARJETAS)
+            ========================================================================= */}
+        {activeMenu === 'alfombras' && (
+          <div
+            className="hidden lg:block absolute left-0 right-0 top-full bg-[#FAF8F5] text-slate-800 border-b border-[#EADBCA] shadow-[0_25px_50px_-12px_rgba(44,24,16,0.18)] animate-curtain-drop z-50"
+            onMouseEnter={() => handleMouseEnterMenu('alfombras')}
+            onMouseLeave={handleMouseLeaveMenu}
+          >
+            <div className="max-w-5xl mx-auto px-6 lg:px-8 py-8">
+              <div className="text-center max-w-xl mx-auto mb-6">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                  ALFOMBRAS EN VIGO · RECOGIDA O ENTREGA EN NUESTRAS 3 TIENDAS
+                </span>
+                <h3 className="text-lg font-extrabold text-[#002147] mt-1">
+                  Limpieza profunda y arreglos de alfombras
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                {/* Tarjeta 1: Limpieza de alfombras */}
+                <a
+                  href="/limpieza-alfombras-vigo"
+                  onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#0F76BB] hover:shadow-md transition-all"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#0F76BB]/10 text-[#0F76BB] flex items-center justify-center font-bold text-sm mb-3">
+                    01
+                  </div>
+                  <h4 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                    Limpieza de alfombras
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed mt-2">
+                    Lavado adaptado según fibra y reverso (lana, seda, yute, algodón o fibras modernas) con secado completo anti-humedad. Entrega en tienda o recogida a domicilio.
+                  </p>
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                    <span>Ver limpieza de alfombras</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
+
+                {/* Tarjeta 2: Arreglo y reparación de alfombras */}
+                <a
+                  href="/reparacion-alfombras-vigo"
+                  onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
+                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#C85A17] hover:shadow-md transition-all"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#C85A17]/10 text-[#C85A17] flex items-center justify-center font-bold text-sm mb-3">
+                    02
+                  </div>
+                  <h4 className="text-base font-extrabold text-[#002147] group-hover:text-[#C85A17] transition-colors">
+                    Arreglo y reparación de alfombras
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed mt-2">
+                    Restauración artesanal de flecos, festón, ribetes, descosidos y bordes mediante especialista. Puedes contratar solo el arreglo o junto con la limpieza.
+                  </p>
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] group-hover:text-[#C85A17]">
+                    <span>Ver arreglos de alfombras</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
       </header>
 
       {/* =========================================================================
@@ -1255,7 +1336,7 @@ export const Header: React.FC<HeaderProps> = ({
                         onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
                         className="block py-1.5 hover:text-[#0F76BB]"
                       >
-                        • Limpieza de alfombras (recogida y taller)
+                        • Limpieza de alfombras (recogida o tienda)
                       </a>
                       <a
                         href="/reparacion-alfombras-vigo"
@@ -1318,6 +1399,13 @@ export const Header: React.FC<HeaderProps> = ({
                   </button>
                   {mobileExpandedSection === 'limpieza' && (
                     <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
+                      <a
+                        href="/limpieza-casas-vigo"
+                        onClick={(e) => handleLinkClick('/limpieza-casas-vigo', e)}
+                        className="block py-1.5 font-bold text-[#002147] hover:text-[#0F76BB]"
+                      >
+                        • Limpieza de casas y pisos particulares
+                      </a>
                       <a
                         href="/limpieza-profesional-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-profesional-vigo', e)}
@@ -1415,21 +1503,45 @@ export const Header: React.FC<HeaderProps> = ({
                   Limpieza de sofás a domicilio
                 </a>
 
-                {/* 6. Limpieza y reparación de alfombras */}
-                <a
-                  href="/limpieza-alfombras-vigo"
-                  onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
-                >
-                  Limpieza de alfombras a domicilio
-                </a>
-                <a
-                  href="/reparacion-alfombras-vigo"
-                  onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
-                >
-                  Reparación de alfombras (flecos y bordes)
-                </a>
+                {/* 6. Alfombras (limpieza y arreglos) */}
+                <div>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setMobileExpandedSection(
+                        mobileExpandedSection === 'alfombras' ? null : 'alfombras'
+                      )
+                    }
+                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
+                  >
+                    <span>Alfombras (limpieza y arreglos)</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${
+                        mobileExpandedSection === 'alfombras'
+                          ? 'rotate-180 text-[#0F76BB]'
+                          : ''
+                      }`}
+                    />
+                  </button>
+                  {mobileExpandedSection === 'alfombras' && (
+                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
+                      <a
+                        href="/limpieza-alfombras-vigo"
+                        onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                        className="block py-1.5 font-bold text-[#002147] hover:text-[#0F76BB]"
+                      >
+                        • Limpieza de alfombras (recogida o tienda)
+                      </a>
+                      <a
+                        href="/reparacion-alfombras-vigo"
+                        onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
+                        className="block py-1.5 font-bold text-[#002147] hover:text-[#0F76BB]"
+                      >
+                        • Arreglos de alfombras (flecos y bordes)
+                      </a>
+                    </div>
+                  )}
+                </div>
 
                 {/* 7. Costura y arreglos */}
                 <a

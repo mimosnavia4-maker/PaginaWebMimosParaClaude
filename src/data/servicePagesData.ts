@@ -2997,9 +2997,9 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
     'Operativa diseñada para rotaciones reales entre huéspedes en Vigo: limpieza en la franja crítica de 11:00 a 15:00 incluidos sábados, festivos y agosto, lavandería de tu propia lencería separada por vivienda, reposición de amenities, entrega de llaves y reporte fotográfico alineado con los estándares de higiene textil del Decreto 12/2017 y el REAT.',
   clavesDiferenciales: [
     {
-      titulo: 'Franja crítica 11:00–15:00 todo el año',
+      titulo: 'Franja crítica 11:00–15:00 y urgencias en el día',
       detalle:
-        'Planificamos los cambios de check-out/check-in entre las 11:00 y las 15:00, cubriendo sábados, festivos y temporada alta en agosto.',
+        'Planificamos los cambios entre salidas y entradas de 11:00 a 15:00 y atendemos urgencias el mismo día, incluidos sábados, festivos y temporada alta en agosto.',
     },
     {
       titulo: 'Lencería propia separada (acuerdos negociables)',
@@ -3007,9 +3007,9 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
         'No imponemos renting estándar cerrado: lavamos e higienizamos tus sábanas y toallas separadas por piso, con condiciones negociables por volumen.',
     },
     {
-      titulo: 'Amenities, entrega de llaves y foto-reporte',
+      titulo: 'Amenities, llaves en cajetines y foto-reporte',
       detalle:
-        'Más que limpiar: reponemos amenities básicos, coordinamos entrega de llaves/check-in y enviamos reporte fotográfico de incidencias tras cada salida.',
+        'Más que limpiar: reponemos amenities básicos, gestionamos llaves en cajetines o punto acordado (sin check-in presencial con viajeros) y enviamos reporte fotográfico de incidencias.',
     },
     {
       titulo: 'Estándar Decreto 12/2017 y REAT (Xunta de Galicia)',
@@ -3026,7 +3026,7 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
     {
       pregunta: '¿Cubrís cambios entre huéspedes de 11:00 a 15:00 los sábados, festivos y en agosto?',
       respuesta:
-        'Sí. Sabemos que el grueso de las entradas y salidas en Vigo se concentra entre las 11:00 y las 15:00, especialmente en fines de semana, puentes festivos y verano. Coordinamos nuestros turnos para garantizar la puesta a punto puntual en esas ventanas.',
+        'Sí. Sabemos que el grueso de las entradas y salidas en Vigo se concentra entre las 11:00 y las 15:00, especialmente en fines de semana, puentes festivos y verano. Coordinamos turnos propios y cubrimos urgencias en el mismo día, sábados y festivos.',
     },
     {
       pregunta: '¿Tenéis servicio de renting de sábanas o laváis la lencería propia del apartamento?',
@@ -3036,7 +3036,7 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
     {
       pregunta: '¿Incluís reposición de amenities, entrega de llaves y aviso de desperfectos?',
       respuesta:
-        'Sí. Dentro de nuestra coordinación operativa podemos encargarnos de reponer los amenities del apartamento, apoyar en la entrega de llaves o coordinación del check-in y enviarte un reporte fotográfico inmediato por WhatsApp si detectamos manchas, roturas o faltas tras la salida del huésped.',
+        'Sí. Dentro de nuestra coordinación operativa reponemos amenities básicos, dejamos las llaves en cajetines o punto acordado (no realizamos check-in presencial con viajeros) y te enviamos un reporte fotográfico inmediato por WhatsApp si detectamos manchas, roturas o faltas tras la salida.',
     },
     {
       pregunta: '¿Atendéis tanto a propietarios con 1–2 apartamentos como a gestoras VUT?',
@@ -3395,3 +3395,218 @@ export const BLOG_FAQS_MAP: Record<string, ServicioFaqItem[]> = {
     },
   ],
 };
+
+export const LIMPIEZA_CASAS_DATA = {
+  badgeSuperior: 'VIVIENDAS PARTICULARES EN VIGO Y COMARCA · DESDE 2011 · MÍN. 2 HORAS',
+  h1: 'Limpieza de casas particulares en Vigo con personal propio asegurado y servicio textil integral',
+  subtitulo:
+    'Recupera tu tiempo sin asumir riesgos laborales en casa: equipo propio en Régimen General de la Seguridad Social, Seguro de Responsabilidad Civil vigente, PRL (RD 893/2024), mínimo 2 horas por servicio, custodia de llaves y respaldo físico en nuestras 3 tiendas en Vigo.',
+  alcanceTransparente:
+    'Realizamos limpieza doméstica periódica y puntual (mínimo 2 horas por visita), con productos y útiles a elección del cliente y custodia de llaves disponible. No realizamos limpiezas fin de obra ni limpieza de cristales exteriores en altura o trabajos verticales.',
+  estanciasQueLimpiamos: [
+    {
+      index: '01',
+      titulo: 'Baños y mamparas a fondo',
+      detalle:
+        'Limpieza y desinfección de sanitarios, lavabos, griferías, espejos, azulejos accesibles y mamparas de ducha o bañera.',
+    },
+    {
+      index: '02',
+      titulo: 'Cocina y frentes',
+      detalle:
+        'Encimeras, frentes de mobiliario, fregadero, placa de cocción y limpieza de campana extractora exterior o interior según acuerdo.',
+    },
+    {
+      index: '03',
+      titulo: 'Polvo, mobiliario y estancias',
+      detalle:
+        'Repaso de polvo en superficies, estanterías, puertas, rodapiés, salones, dormitorios y mantenimiento general de la vivienda.',
+    },
+    {
+      index: '04',
+      titulo: 'Suelos y cristales accesibles',
+      detalle:
+        'Aspirado y fregado adaptado a madera, tarima, gres o piedra, además de ventanas y persianas accesibles desde el interior.',
+    },
+  ],
+  modalidades: [
+    {
+      id: 'mantenimiento-periodico',
+      etiqueta: 'Modalidad 01 · Servicio recurrente (mín. 2 horas)',
+      titulo: 'Mantenimiento periódico del hogar',
+      descripcion:
+        'Limpieza semanal, quincenal o mensual adaptada al tamaño y ritmo real de tu piso o casa. Priorizamos la continuidad del personal siempre que es posible y cubrimos bajas médicas o vacaciones con plantilla propia.',
+      puntos: [
+        'Mínimo 2 horas por visita (sin atarte a jornadas mínimas más largas si no las necesitas)',
+        'Productos y aspirador como prefieras: propios del domicilio o dotación acordada previamente',
+        'Custodia de llaves disponible y documentada si prefieres que limpiemos cuando no estás',
+      ],
+    },
+    {
+      id: 'limpieza-puntual',
+      etiqueta: 'Modalidad 02 · Servicio puntual / puesta a punto (mín. 2 horas)',
+      titulo: 'Limpieza puntual o puesta a punto',
+      descripcion:
+        'Intervención puntual para repaso general de una vivienda, puesta al día tras una temporada cerrada o preparación de entrada/salida. Siempre valorada previamente según estado y con mínimo de 2 horas (no realizamos limpiezas fin de obra).',
+      puntos: [
+        'Baños, cocina, suelos, polvo en mobiliario y cristales interiores accesibles',
+        'Opción de añadir limpieza de sofás, colchones o cortinas en la misma coordinación',
+        'Excluido expresamente: limpiezas fin de obra y trabajos en altura exterior',
+      ],
+    },
+  ],
+  serviciosCombinablesMimos: [
+    {
+      titulo: 'Sofás, sillones y colchones a domicilio',
+      descripcion:
+        'Inyección-extracción controlada in situ sin empapar el relleno ni usar aire caliente forzado, con secado natural en la estancia.',
+      href: '/limpieza-sofas-vigo',
+      cta: 'Ver limpieza de sofás y colchones',
+    },
+    {
+      titulo: 'Cortinas, estores y edredones de gran formato',
+      descripcion:
+        'Lavado y secado completo en nuestra planta de Navia, con opción de desmontaje y colocación de cortinas a domicilio.',
+      href: '/textiles-hogar-vigo',
+      cta: 'Ver textiles del hogar',
+    },
+    {
+      titulo: 'Colada familiar y solo planchado',
+      descripcion:
+        'Lavado, secado y doblado de ropa cotidiana o servicio exclusivo de planchado profesional con entrega en tu domicilio o en tienda.',
+      href: '/colada-familiar-vigo',
+      cta: 'Ver colada y planchado',
+    },
+    {
+      titulo: 'Alfombras (gestión con taller especialista)',
+      descripcion:
+        'Recogemos y entregamos tus alfombras para su lavado plano y arreglo de flecos o bordes exclusivamente mediante especialista externo, nunca en nuestras instalaciones.',
+      href: '/limpieza-alfombras-vigo',
+      cta: 'Ver limpieza de alfombras',
+    },
+  ],
+  comparativaConfianza: [
+    {
+      criterio: 'Contrato, Seguridad Social y PRL (RD 893/2024)',
+      mimos:
+        'Personal propio dado de alta en Régimen General y con formación en PRL. El hogar evita contratos laborales, altas y la evaluación de riesgos obligatoria del RD 893/2024.',
+      informal:
+        'El propietario actúa como empleador y asume directamente sanciones por falta de contrato/alta o incumplimiento del RD 893/2024.',
+    },
+    {
+      criterio: 'Seguro de daños y respaldo físico',
+      mimos:
+        'Seguro de Responsabilidad Civil vigente y 3 tiendas físicas en Vigo (Navia, Gregorio Espino 42 y Rúa de Venezuela 29 Entreplanta) con actividad societaria desde 2011.',
+      informal:
+        'Sin seguro ante roturas en mobiliario o encimeras ni establecimiento físico donde reclamar.',
+    },
+    {
+      criterio: 'Estabilidad, bajas y llaves',
+      mimos:
+        'Prioridad a la continuidad de la persona asignada, sustituciones cubiertas con plantilla propia y custodia de llaves disponible bajo acuerdo previo.',
+      informal:
+        'Si la persona enferma o deja de acudir, la vivienda queda sin servicio y sin garantía sobre las llaves.',
+    },
+    {
+      criterio: 'Productos y mínimo de horas',
+      mimos:
+        'Desde 2 horas por servicio, eligiendo tú si utilizamos los productos de tu casa (ej. para niños, mascotas o alergias) o aportación acordada.',
+      informal:
+        'Condiciones variables sin respaldo técnico ni coordinación con tapicerías o lavandería.',
+    },
+  ],
+  checklistIncluye: [
+    'Limpieza de baños: sanitarios, mamparas, griferías, espejos y azulejos accesibles.',
+    'Limpieza de cocinas: encimera, placa, fregadero, frentes y campana exterior (o interior según acuerdo).',
+    'Aspirado y fregado de suelos según material, polvo en mobiliario, puertas y rodapiés.',
+    'Ventanas, cristales y persianas accesibles de forma segura desde el interior.',
+    'Mantenimiento periódico o puesta a punto puntual desde 2 horas (con custodia de llaves opcional).',
+    'Posibilidad de combinar con sofás/colchones, colada/plancha, cortinas y recogida de alfombras.',
+  ],
+  checklistNoIncluye: [
+    'Limpiezas fin de obra tras reformas o retirada de restos de construcción.',
+    'Limpieza de cristales exteriores en altura o trabajos verticales.',
+    'Limpieza de comunidades de vecinos, oficinas o locales (ver /limpieza-profesional-vigo).',
+    'Limpieza express de check-out o gestión de pisos turísticos VUT (ver /limpieza-apartamentos-turisticos-vigo).',
+    'Lavado de alfombras en nuestras tiendas propias (se realiza siempre vía especialista externo).',
+    'Cuidado asistencial de personas, jardinería pesada o reparaciones domésticas.',
+  ],
+  coberturaGeografica: {
+    vigoBarrios: [
+      'Navia',
+      'Coia',
+      'As Travesas',
+      'Centro / Ensanche',
+      'Venezuela / Gran Vía',
+      'O Calvario / Gregorio Espino',
+      'Bouzas',
+      'Teis',
+      'Lavadores',
+      'Castrelos',
+      'Freixeiro / Sárdoma',
+      'Alcabre / Samil / Coruxo / Oia',
+      'Beade / Cabral / Bembrive / Matamá / Valadares',
+    ],
+    comarcaMunicipios: [
+      'Redondela',
+      'Nigrán',
+      'Gondomar',
+      'Mos',
+      'O Porriño',
+      'Ponteareas',
+    ],
+  },
+  preguntasFrecuentes: [
+    {
+      pregunta: '¿El personal que acude a limpiar mi casa está contratado y asegurado?',
+      respuesta:
+        'Sí. Todo el equipo pertenece a la plantilla propia de Tintorería Mimos Navia, S.L., está dado de alta en el Régimen General de la Seguridad Social, cuenta con formación en Prevención de Riesgos Laborales (PRL) y trabaja cubierto por nuestro Seguro de Responsabilidad Civil vigente.',
+    },
+    {
+      pregunta: '¿Qué ventajas legales tiene contratar a Mimos frente a una persona particular por horas?',
+      respuesta:
+        'Cuando contratas directamente a una persona particular en casa pasas a ser empleador y debes formalizar contrato por escrito, tramitar el alta en Seguridad Social y cumplir la evaluación de riesgos laborales del hogar del Real Decreto 893/2024. Con Mimos te olvidas de trámites e inspecciones y tienes el respaldo de 3 tiendas propias en Vigo activas desde 2011.',
+    },
+    {
+      pregunta: '¿Existe un mínimo de horas por visita y por qué no publicáis precios cerrados?',
+      respuesta:
+        'El mínimo de servicio es de 2 horas por visita. No publicamos tarifas cerradas genéricas sin conocer la vivienda porque el tiempo y el presupuesto dependen de la superficie, número de baños, estado inicial, frecuencia y posibles extras textiles. Valoramos tu caso gratis por WhatsApp o en el 986 12 51 41.',
+    },
+    {
+      pregunta: '¿Hacéis limpiezas puntuales a fondo o limpiezas fin de obra?',
+      respuesta:
+        'Sí realizamos limpiezas puntuales o puestas a punto de viviendas (con mínimo de 2 horas y valoración previa del alcance). En cambio, no realizamos limpiezas fin de obra tras reformas.',
+    },
+    {
+      pregunta: '¿Quién aporta los productos de limpieza y el aspirador?',
+      respuesta:
+        'Como prefiera el cliente. Podemos trabajar con los productos y útiles que ya tienes en casa —muy habitual en hogares con bebés, mascotas, alergias o suelos delicados— o acordar en la valoración previa qué productos aportamos nosotros.',
+    },
+    {
+      pregunta: '¿Custodiáis llaves si no estoy en casa y cómo gestionáis las sustituciones?',
+      respuesta:
+        'Sí, disponemos de custodia de llaves bajo acuerdo previo para limpiar mientras trabajas o en segundas viviendas. Además, procuramos mantener la continuidad del equipo en los servicios periódicos y cubrimos vacaciones o bajas médicas con personal propio en plantilla.',
+    },
+    {
+      pregunta: '¿En qué zonas de Vigo y alrededores prestáis el servicio de limpieza de casas?',
+      respuesta:
+        'Limpiamos viviendas en todos los barrios y parroquias de Vigo (Navia, Coia, Centro, As Travesas, Bouzas, Teis, Castrelos, Lavadores, Alcabre, Coruxo, Samil...) y también en municipios del área de influencia como Redondela, Nigrán, Gondomar, Mos, O Porriño y Ponteareas, confirmando ruta con Mimo.',
+    },
+    {
+      pregunta: '¿Limpiáis cristales exteriores en pisos altos o fachadas?',
+      respuesta:
+        'Limpiamos las ventanas, cristales y persianas accesibles de forma segura desde el interior de la vivienda. Por normativa de seguridad laboral, no realizamos limpieza de cristales en altura exterior ni trabajos verticales.',
+    },
+    {
+      pregunta: '¿Cómo limpiáis los sofás y colchones a domicilio y quedan muy mojados?',
+      respuesta:
+        'Trabajamos en tu propio domicilio mediante inyección-extracción controlada diseñada para limpiar en profundidad sin empapar la espuma ni dejar humedad atrapada, con secado natural al aire sin aire caliente forzado.',
+    },
+    {
+      pregunta: '¿Puedo combinar la limpieza de la casa con colada, plancha, cortinas o alfombras?',
+      respuesta:
+        'Sí. Puedes unir la limpieza doméstica con nuestra colada familiar o solo planchado (/colada-familiar-vigo y /planchado-vigo), lavado de edredones y cortinas con descuelgue en planta de Navia (/textiles-hogar-vigo) y recogida de alfombras, cuya limpieza técnica se realiza siempre mediante especialista externo y nunca en nuestras instalaciones propias.',
+    },
+  ] as ServicioFaqItem[],
+};
+

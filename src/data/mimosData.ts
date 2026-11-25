@@ -620,14 +620,14 @@ export const PACKS_APARTAMENTOS_BORRADOR = [
   },
   {
     id: 'pack-gestion-integral',
-    nombre: 'Coordinación Integral de Limpieza, Lavandería y Check-in',
+    nombre: 'Coordinación Integral de Limpieza, Lavandería y Llaves',
     estado: 'Operativa completa para propietarios y gestoras',
     descripcion:
-      'Coordinamos la limpieza de rotación, la lencería planchada, reposición de amenities, entrega de llaves / check-in y reporte fotográfico continuo para tu VUT.',
+      'Coordinamos la limpieza de rotación, la lencería planchada, reposición de amenities, entrega de llaves o cajetines (sin check-in presencial con viajeros) y reporte fotográfico continuo para tu VUT.',
     incluye: [
-      'Cobertura garantizada en franja 11:00–15:00 incluidos fines de semana, festivos y temporada alta (agosto).',
+      'Cobertura garantizada en franja 11:00–15:00 incluidos fines de semana, festivos, temporada alta (agosto) y urgencias en el mismo día.',
       'Lavandería y planchado de juegos propios separados por vivienda, sin mezclas ni pérdidas.',
-      'Reposición de amenities, entrega de llaves o coordinación de check-in cuando lo necesites.',
+      'Reposición de amenities y gestión de llaves en cajetines o punto acordado (sin check-in presencial).',
       'Revisión completa con reporte fotográfico inmediato de incidencias y mantenimiento básico tras cada salida.',
     ],
     ctaTexto: 'Solicitar propuesta de coordinación integral',
@@ -670,8 +670,8 @@ export const GESTION_INTEGRAL_AREAS = [
     numero: '04',
     titulo: 'Entrega de llaves y coordinación logística',
     puntos: [
-      'Entrega de llaves y coordinación de check-in presencial o con cajetines cuando el propietario o gestor lo requiere.',
-      'Rutas ágiles en Vigo adaptadas a tu calendario real de Airbnb, Booking o canal directo.',
+      'Gestión y colocación de llaves en cajetines o punto acordado tras cada puesta a punto (sin check-in presencial con viajeros).',
+      'Atención de urgencias en el mismo día, sábados y festivos según calendario de Airbnb, Booking o canal directo en Vigo.',
       'Facturación mensual agrupada con CIF para propietarios particulares y gestoras de VUT.',
     ],
   },
@@ -776,6 +776,24 @@ export const RESENAS_REALES: ResenaCliente[] = [
     texto:
       'Son únicos e incomparables. Entregarle un traje a las 9 de la mañana y a la 1 del mediodía lo tienes en casa. No hay nada que no puedan hacer, todo es posible con ellos. Retirada de cortinajes antiguos, lavado y planchado en 1 día y colocados de nuevo. Un gran empresario Antonio, su seriedad lo demuestra innato.',
   },
+];
+
+export const GOOGLE_RATING_SUMMARY = {
+  ratingDisplay: '4,3',
+  ratingValue: 4.3,
+  reviewCount: 61,
+  label: '61 reseñas en Google',
+};
+
+export const RESENAS_PORTADA_GOOGLE: ResenaCliente[] = [
+  {
+    autor: 'Carla V.',
+    origen: 'Reseña real en Google',
+    estrellas: 5,
+    texto:
+      'Después de pasar por varias lavanderías para coladas me tope con ellos, y que gran acierto. Cada semana mi colada a domicilio perfecta por poco más que en otras que no me la hacían a domicilio. El trato exquisito, siempre atentos y preguntado que tal si está todo a mi gusto. Llevamos un mes y medio trabajando con ellos y espero que sea por mucho tiempo.',
+  },
+  ...RESENAS_REALES,
 ];
 
 // Preguntas frecuentes generales de portada SIN PRECIOS (Sección 4, 7.9 y 10)
@@ -1425,7 +1443,7 @@ export const RESUMEN_FAMILIAS_EXTENDIDAS_PORTADA = {
     puntos: [
       'Limpieza en ventana 11:00–15:00 (sábados, festivos y agosto) según Decreto 12/2017',
       'Lavado y planchado de tu ropa de cama y toallas separada por vivienda',
-      'Reposición de amenities y coordinación de entrega de llaves / check-in',
+      'Reposición de amenities y gestión de llaves con cajetines (sin check-in presencial)',
       'Reporte fotográfico inmediato de incidencias tras cada check-out',
     ],
     enlaces: [

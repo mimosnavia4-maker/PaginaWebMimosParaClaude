@@ -12,6 +12,7 @@ import { ARTICULOS_BLOG } from '../src/data/blogArticlesFull.ts';
 import {
   APARTAMENTOS_TURISTICOS_DATA,
   BLOG_FAQS_MAP,
+  LIMPIEZA_CASAS_DATA,
   LIMPIEZA_PROFESIONAL_DATA,
   SERVICIO_DETALLE_ENRIQUECIDO,
   SERVICIO_ALFOMBRAS_DATA,
@@ -512,8 +513,78 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
       `<li><a href="/servicios-empresas">Pack combinado limpieza + lavandería para empresas, peluquerías y clínicas en Vigo</a></li>` +
       `<li><a href="/limpieza-apartamentos-turisticos-vigo">Limpieza y lavandería para apartamentos turísticos (VUT) en Vigo</a></li>` +
       `<li><a href="/limpieza-sofas-vigo">Limpieza de sofás, tapicerías y colchones a domicilio en Vigo</a></li>` +
+      `<li><a href="/limpieza-casas-vigo">Limpieza de casas y pisos particulares en Vigo</a></li>` +
       `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios, humo e inundaciones</a></li>` +
       `</ul>` +
+      `</section>`;
+  } else if (routePath === '/limpieza-casas-vigo') {
+    const estanciasHtml = LIMPIEZA_CASAS_DATA.estanciasQueLimpiamos
+      .map((e) => `<li><strong>${escapeHtml(e.titulo)}:</strong> ${escapeHtml(e.detalle)}</li>`)
+      .join('');
+    const modalidadesHtml = LIMPIEZA_CASAS_DATA.modalidades
+      .map(
+        (m) =>
+          `<article>` +
+          `<h3>${escapeHtml(m.titulo)}</h3>` +
+          `<p>${escapeHtml(m.descripcion)}</p>` +
+          `<ul>${m.puntos.map((p) => `<li>${escapeHtml(p)}</li>`).join('')}</ul>` +
+          `</article>`
+      )
+      .join('');
+    const combinablesHtml = LIMPIEZA_CASAS_DATA.serviciosCombinablesMimos
+      .map(
+        (s) =>
+          `<li><a href="${escapeHtml(s.href)}"><strong>${escapeHtml(s.titulo)}</strong></a>: ${escapeHtml(
+            s.descripcion
+          )}</li>`
+      )
+      .join('');
+    const comparativaHtml = LIMPIEZA_CASAS_DATA.comparativaConfianza
+      .map(
+        (c) =>
+          `<tr><th>${escapeHtml(c.criterio)}</th><td>${escapeHtml(c.mimos)}</td><td>${escapeHtml(
+            c.informal
+          )}</td></tr>`
+      )
+      .join('');
+    const incluyeHtml = LIMPIEZA_CASAS_DATA.checklistIncluye
+      .map((item) => `<li>${escapeHtml(item)}</li>`)
+      .join('');
+    const noIncluyeHtml = LIMPIEZA_CASAS_DATA.checklistNoIncluye
+      .map((item) => `<li>${escapeHtml(item)}</li>`)
+      .join('');
+    const faqsHtml = LIMPIEZA_CASAS_DATA.preguntasFrecuentes
+      .map(
+        (f) =>
+          `<dt><strong>${escapeHtml(f.pregunta)}</strong></dt><dd>${escapeHtml(f.respuesta)}</dd>`
+      )
+      .join('');
+    specificHtml =
+      `<section>` +
+      `<p>${escapeHtml(LIMPIEZA_CASAS_DATA.subtitulo)}</p>` +
+      `<p><strong>Condiciones operativas:</strong> ${escapeHtml(
+        LIMPIEZA_CASAS_DATA.alcanceTransparente
+      )}</p>` +
+      `<h2>Qué limpiamos dentro de tu casa</h2>` +
+      `<ul>${estanciasHtml}</ul>` +
+      `<h2>Modalidades claras desde 2 horas por servicio</h2>` +
+      modalidadesHtml +
+      `<h3>Todo en un mismo equipo: limpieza de casa, sofás, colchones, colada y cortinas</h3>` +
+      `<ul>${combinablesHtml}</ul>` +
+      `<h2>Por qué elegir plantilla propia asegurada (RD 893/2024 y Seguro RC)</h2>` +
+      `<table><thead><tr><th>Criterio</th><th>Tintorería y Limpieza Mimos</th><th>Particular sin alta</th></tr></thead><tbody>${comparativaHtml}</tbody></table>` +
+      `<h2>Qué SÍ incluye y qué NO incluye el servicio residencial</h2>` +
+      `<h3>Qué SÍ incluye</h3><ul>${incluyeHtml}</ul>` +
+      `<h3>Qué NO incluye</h3><ul>${noIncluyeHtml}</ul>` +
+      `<h2>Barrios de Vigo y comarca donde trabajamos</h2>` +
+      `<p><strong>Vigo:</strong> ${escapeHtml(
+        LIMPIEZA_CASAS_DATA.coberturaGeografica.vigoBarrios.join(', ')
+      )}. <strong>Comarca:</strong> ${escapeHtml(
+        LIMPIEZA_CASAS_DATA.coberturaGeografica.comarcaMunicipios.join(', ')
+      )}.</p>` +
+      `<h2>Preguntas frecuentes sobre limpieza de casas y pisos en Vigo</h2>` +
+      `<dl>${faqsHtml}</dl>` +
+      `<p><a href="/limpieza-profesional-vigo">Limpieza profesional (comunidades y oficinas)</a> · <a href="/limpieza-apartamentos-turisticos-vigo">Apartamentos turísticos VUT</a></p>` +
       `</section>`;
   } else if (routePath === '/limpieza-apartamentos-turisticos-vigo') {
     const clavesHtml = APARTAMENTOS_TURISTICOS_DATA.clavesDiferenciales
@@ -814,6 +885,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
     `<li><a href="/arreglos-de-ropa-vigo">Costura y arreglos de ropa</a></li>` +
     `<li><a href="/recogida-a-domicilio">Recogida a domicilio</a></li>` +
     `<li><a href="/limpieza-profesional-vigo">Limpieza profesional</a></li>` +
+    `<li><a href="/limpieza-casas-vigo">Limpieza de casas particulares</a></li>` +
     `<li><a href="/limpieza-apartamentos-turisticos-vigo">Apartamentos turísticos</a></li>` +
     `<li><a href="/servicios-empresas">Lavandería para empresas</a></li>` +
     `<li><a href="/limpieza-incendios-siniestros-vigo">Recuperación textil tras incendios, humo e inundaciones</a></li>` +

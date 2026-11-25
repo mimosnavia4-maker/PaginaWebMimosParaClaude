@@ -11,6 +11,7 @@ import {
 import {
   APARTAMENTOS_TURISTICOS_DATA,
   BLOG_FAQS_MAP,
+  LIMPIEZA_CASAS_DATA,
   LIMPIEZA_PROFESIONAL_DATA,
   SERVICIO_ALFOMBRAS_DATA,
   SERVICIO_ARREGLOS_DATA,
@@ -1037,6 +1038,60 @@ export function getPageJsonLd(cleanPath: string, meta: RouteMeta): Record<string
       {
         '@type': 'FAQPage',
         mainEntity: LIMPIEZA_PROFESIONAL_DATA.preguntasFrecuentes.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: f.respuesta,
+          },
+        })),
+      }
+    );
+  } else if (cleanPath === '/limpieza-casas-vigo') {
+    graph.push(
+      ORGANIZATION_SCHEMA,
+      {
+        '@type': 'Service',
+        '@id': `${meta.canonical}#servicio`,
+        name: LIMPIEZA_CASAS_DATA.h1,
+        serviceType: 'Limpieza periódica y puntual de casas, pisos y viviendas particulares',
+        description: meta.description,
+        provider: { '@id': 'https://www.tintoreriamimos.es/#organization' },
+        areaServed: meta.areaServed || [
+          { '@type': 'City', name: 'Vigo' },
+          { '@type': 'City', name: 'Redondela' },
+          { '@type': 'City', name: 'Nigrán' },
+          { '@type': 'City', name: 'Gondomar' },
+          { '@type': 'City', name: 'Mos' },
+          { '@type': 'City', name: 'O Porriño' },
+          { '@type': 'City', name: 'Ponteareas' },
+        ],
+        url: meta.canonical,
+        offers: {
+          '@type': 'Offer',
+          url: meta.canonical,
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            description: 'Valoración a medida previa consulta (servicio mínimo de 2 horas)',
+          },
+        },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Modalidades de limpieza de casas particulares en Vigo',
+          itemListElement: LIMPIEZA_CASAS_DATA.modalidades.map((m) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: m.titulo,
+              description: m.descripcion,
+            },
+          })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${meta.canonical}#faq`,
+        mainEntity: LIMPIEZA_CASAS_DATA.preguntasFrecuentes.map((f) => ({
           '@type': 'Question',
           name: f.pregunta,
           acceptedAnswer: {

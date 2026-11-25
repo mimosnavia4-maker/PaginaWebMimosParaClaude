@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Header } from './components/Header';
 import { PreviewHeroSection } from './components/preview/PreviewHeroSection';
+import { PreviewHelpNavigatorSection } from './components/preview/PreviewHelpNavigatorSection';
 import { PreviewCatalogSection } from './components/preview/PreviewCatalogSection';
 import { PreviewB2BAndPickupSection } from './components/preview/PreviewB2BAndPickupSection';
 import { PreviewLocationsBand } from './components/preview/PreviewLocationsBand';
@@ -42,6 +43,9 @@ const HomeTextilesPage = lazyWithRetry(() =>
 );
 const CleaningDivisionPage = lazyWithRetry(() =>
   import('./components/CleaningDivisionPage').then((m) => ({ default: m.CleaningDivisionPage }))
+);
+const HomeCleaningPage = lazyWithRetry(() =>
+  import('./components/HomeCleaningPage').then((m) => ({ default: m.HomeCleaningPage }))
 );
 const BusinessLaundryPage = lazyWithRetry(() =>
   import('./components/BusinessLaundryPage').then((m) => ({ default: m.BusinessLaundryPage }))
@@ -122,13 +126,24 @@ export function App() {
       const normalized = cleanPath.length > 1 ? cleanPath.replace(/\/+$/, '') : '/';
       const canonicalPath = resolveCanonicalRoute(normalized);
       if (canonicalPath !== normalized && KNOWN_ROUTES.includes(canonicalPath)) {
-        window.history.replaceState({}, '', canonicalPath);
+        window.history.replaceState({}, '', `${canonicalPath}${window.location.hash || ''}`);
         return canonicalPath;
       }
-      return rawPath;
+      return cleanPath;
     }
     return '/';
   });
+
+  const pendingHashRef = useRef<string | null>(
+    typeof window !== 'undefined'
+      ? window.location.hash
+        ? window.location.hash.replace(/^#/, '')
+        : window.location.pathname === '/contacto'
+          ? 'contacto'
+          : null
+      : null
+  );
+  const [scrollNonce, setScrollNonce] = useState(0);
 
   const [cookieBannerOpen, setCookieBannerOpen] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
@@ -355,11 +370,75 @@ export function App() {
   // Listen to browser back/forward navigation
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      const nextPath = window.location.pathname || '/';
+      const nextHash = window.location.hash ? window.location.hash.replace(/^#/, '') : '';
+      pendingHashRef.current = nextHash || (nextPath === '/contacto' ? 'contacto' : null);
+      setCurrentPath(nextPath);
+      if (pendingHashRef.current) {
+        setScrollNonce((n) => n + 1);
+      }
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  // Scroll reliably to #anchor targets even after React.lazy + Suspense route mounts
+  useEffect(() => {
+    const targetId = pendingHashRef.current;
+    if (!targetId) {
+      return;
+    }
+
+    let cancelled = false;
+    let observer: MutationObserver | null = null;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    const cleanup = () => {
+      cancelled = true;
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+      }
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+    };
+
+    const tryScrollToAnchor = (): boolean => {
+      if (cancelled) return true;
+      const el = document.getElementById(targetId);
+      if (!el) return false;
+      pendingHashRef.current = null;
+      cleanup();
+      requestAnimationFrame(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      return true;
+    };
+
+    if (!tryScrollToAnchor()) {
+      const rootEl = document.getElementById('root') || document.body;
+      observer = new MutationObserver(() => {
+        tryScrollToAnchor();
+      });
+      observer.observe(rootEl, { childList: true, subtree: true });
+      intervalId = setInterval(() => {
+        tryScrollToAnchor();
+      }, 60);
+      timeoutId = setTimeout(() => {
+        pendingHashRef.current = null;
+        cleanup();
+      }, 3500);
+    }
+
+    return cleanup;
+  }, [currentPath, scrollNonce]);
 
   const handleNavigate = useCallback(
     (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => {
@@ -369,45 +448,40 @@ export function App() {
 
       if (href.startsWith('/#') || href.startsWith('#')) {
         const hash = href.replace(/^\//, '');
-        const targetId = hash.replace('#', '');
-        const currentBase = (currentPath || '/').split('?')[0].split('#')[0] || '/';
-
-        if (currentBase !== '/') {
-          window.history.pushState({}, '', `/${hash}`);
-          setCurrentPath('/');
-          setTimeout(() => {
-            const el = document.getElementById(targetId);
-            if (el) {
-              el.scrollIntoView({ behavior: 'smooth' });
-            }
-          }, 60);
-        } else {
-          window.history.pushState({}, '', `/${hash}`);
-          const el = document.getElementById(targetId);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
+        const targetId = hash.replace(/^#/, '');
+        const targetUrl = `/${hash}`;
+        pendingHashRef.current = targetId || null;
+        window.history.pushState({}, '', targetUrl);
+        setCurrentPath('/');
+        setScrollNonce((n) => n + 1);
         return;
       }
 
-      window.history.pushState({}, '', href);
-      setCurrentPath(href);
+      const hashIndex = href.indexOf('#');
+      if (hashIndex !== -1) {
+        const rawPathPart = href.slice(0, hashIndex) || '/';
+        const rawHashPart = href.slice(hashIndex + 1);
+        pendingHashRef.current = rawHashPart || null;
+        window.history.pushState({}, '', href);
+        setCurrentPath(rawPathPart);
+        setScrollNonce((n) => n + 1);
+        return;
+      }
 
       if (href === '/contacto') {
-        setTimeout(() => {
-          const el = document.getElementById('contacto');
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-          } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        }, 60);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        pendingHashRef.current = 'contacto';
+        window.history.pushState({}, '', href);
+        setCurrentPath(href);
+        setScrollNonce((n) => n + 1);
+        return;
       }
+
+      pendingHashRef.current = null;
+      window.history.pushState({}, '', href);
+      setCurrentPath(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    [currentPath]
+    []
   );
 
   const handleAcceptCookies = () => {
@@ -522,6 +596,8 @@ export function App() {
           <HomeTextilesPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-profesional-vigo' ? (
           <CleaningDivisionPage variant="limpieza" onNavigate={handleNavigate} />
+        ) : effectivePath === '/limpieza-casas-vigo' ? (
+          <HomeCleaningPage onNavigate={handleNavigate} />
         ) : effectivePath === '/limpieza-apartamentos-turisticos-vigo' ? (
           <CleaningDivisionPage variant="apartamentos" onNavigate={handleNavigate} />
         ) : effectivePath === '/servicios-empresas' ? (
@@ -567,12 +643,13 @@ export function App() {
         ) : isPreviewPortada && PreviewPortadaPage ? (
           <PreviewPortadaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (
-          /* Portada principal luminosa: Hero de 7 transiciones + 4 bandas editoriales */
+          /* Portada principal luminosa: Hero de 7 transiciones + navegador de perfiles + 4 bandas editoriales */
           <main id="main-content" tabIndex={-1} className="focus:outline-hidden">
             <PreviewHeroSection
               onNavigate={handleNavigate}
               onScrollToSection={handleScrollToSection}
             />
+            <PreviewHelpNavigatorSection onNavigate={handleNavigate} />
             <PreviewCatalogSection onNavigate={handleNavigate} />
             <PreviewB2BAndPickupSection onNavigate={handleNavigate} />
             <PreviewLocationsBand onNavigate={handleNavigate} />

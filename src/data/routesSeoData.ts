@@ -242,6 +242,26 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     ogImage: 'https://www.tintoreriamimos.es/images/articulos/personal-limpieza.jpg',
     breadcrumbName: 'Limpieza profesional en Vigo',
   },
+  '/limpieza-casas-vigo': {
+    title: 'Limpieza de Casas en Vigo | Personal Asegurado | Mimos Navia',
+    h1: 'Limpieza de casas particulares en Vigo con personal propio asegurado y servicio textil integral',
+    description:
+      'Limpieza de casas y pisos en Vigo (mín. 2 h) con personal en Régimen General, Seguro RC y PRL. Combínala con sofás, colchones, plancha y cortinas.',
+    canonical: 'https://www.tintoreriamimos.es/limpieza-casas-vigo',
+    robots: 'index, follow',
+    ogType: 'website',
+    ogImage: 'https://www.tintoreriamimos.es/images/articulos/personal-limpieza.jpg',
+    breadcrumbName: 'Limpieza de casas en Vigo',
+    areaServed: [
+      { '@type': 'City', name: 'Vigo' },
+      { '@type': 'City', name: 'Redondela' },
+      { '@type': 'City', name: 'Nigrán' },
+      { '@type': 'City', name: 'Gondomar' },
+      { '@type': 'City', name: 'Mos' },
+      { '@type': 'City', name: 'O Porriño' },
+      { '@type': 'City', name: 'Ponteareas' },
+    ],
+  },
   '/limpieza-apartamentos-turisticos-vigo': {
     title: 'Limpieza y Lavandería Apartamentos Turísticos Vigo | Mimos',
     h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',

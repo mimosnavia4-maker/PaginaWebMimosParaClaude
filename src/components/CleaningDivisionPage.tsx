@@ -197,6 +197,13 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
               Lavandería para empresas
             </a>
             <a
+              href="/limpieza-casas-vigo"
+              onClick={(e) => onNavigate('/limpieza-casas-vigo', e)}
+              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+            >
+              Casas y pisos particulares
+            </a>
+            <a
               href="/limpieza-sofas-vigo"
               onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
               className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-[#0F76BB] hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
@@ -443,10 +450,17 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
                 {PACKS_APARTAMENTOS_BORRADOR.map((pack) => {
                   const isIntegral = pack.id === 'pack-gestion-integral';
+                  const anchorId =
+                    pack.id === 'pack-lenceria'
+                      ? 'lenceria'
+                      : pack.id === 'pack-checkout'
+                      ? 'rotacion'
+                      : undefined;
                   return (
                     <div
                       key={pack.id}
-                      className={`rounded-xl border p-6 sm:p-7 flex flex-col justify-between transition-all ${
+                      id={anchorId}
+                      className={`scroll-mt-24 rounded-xl border p-6 sm:p-7 flex flex-col justify-between transition-all ${
                         isIntegral
                           ? 'bg-[#EDF5FD] border-[#0F76BB] border-t-4 border-t-[#0F76BB] ring-1 ring-[#0F76BB]/20 shadow-xs'
                           : 'border-slate-200 bg-[#F7F6F2]'
@@ -499,17 +513,20 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             </div>
 
             {/* Módulo Especial: Modalidad 3 - Coordinación Operativa Integral en 4 áreas */}
-            <div className="rounded-xl border border-[#0F76BB]/30 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-10">
+            <div
+              id="integral"
+              className="scroll-mt-24 rounded-xl border border-[#0F76BB]/30 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-10"
+            >
               <div className="max-w-3xl mb-8">
                 <p className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider mb-2">
                   <ShieldCheck className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
                   <span>Modalidad 3 · Servicio integral a medida para propietarios</span>
                 </p>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight leading-tight">
-                  Coordinación Integral de Limpieza, Lavandería y Check-in
+                  Coordinación Integral de Limpieza, Lavandería y Llaves
                 </h2>
                 <p className="text-sm sm:text-base text-slate-700 mt-3 leading-relaxed">
-                  Tú gestionas tus reservas y precios en Airbnb o Booking. Mimos se encarga de la parte operativa crítica: limpieza en la franja 11:00–15:00 incluidos sábados, festivos y agosto, lavandería de tu lencería propia separada por apartamento, reposición de amenities, entrega de llaves y foto-reporte inmediato de incidencias.
+                  Tú gestionas tus reservas y precios en Airbnb o Booking. Mimos se encarga de la parte operativa crítica: limpieza en la franja 11:00–15:00 incluidos sábados, festivos y agosto, lavandería de tu lencería propia separada por apartamento, reposición de amenities, llaves en cajetines o punto acordado (sin check-in presencial con viajeros) y foto-reporte inmediato de incidencias.
                 </p>
               </div>
 
@@ -542,7 +559,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
               <div className="p-6 sm:p-8 rounded-xl bg-white border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="space-y-2 text-center md:text-left max-w-2xl">
                   <p className="text-base sm:text-lg font-extrabold text-[#002147]">
-                    «Un único interlocutor local para coordinar limpieza, lencería propia, llaves y reporte visual en cada cambio de huésped.»
+                    «Un único interlocutor local para coordinar limpieza, lencería propia, llaves en cajetines y reporte visual en cada cambio de huésped.»
                   </p>
                   <p className="text-xs sm:text-sm text-slate-600">
                     Sin tarifas estándar cerradas públicas. Analizamos el tamaño, número de camas y calendario real de tu apartamento en Vigo para diseñar una propuesta a medida.
@@ -577,6 +594,50 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                   </a>
                 </div>
+              </div>
+            </div>
+
+            {/* Bloque específico #urgencias para propietarios VUT */}
+            <div
+              id="urgencias"
+              className="scroll-mt-24 rounded-xl border border-[#0F76BB]/30 border-l-4 border-l-[#1FA855] bg-white p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-2xs"
+            >
+              <div className="space-y-2 max-w-2xl">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#178A47]">
+                  Urgencias para propietarios VUT · Mismo día, sábados y festivos
+                </p>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
+                  ¿Tienes una entrada imprevista hoy, en fin de semana o festivo?
+                </h2>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Cubrimos rotaciones urgentes en el mismo día, sábados y festivos en Vigo (limpieza de salida, cambio de lencería o repaso rápido tras imprevistos con huéspedes). Escríbenos directo por WhatsApp con la dirección y hora límite de entrada.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <a
+                  href={buildMimoWhatsAppUrl(
+                    'Hola, Mimo. Tengo una URGENCIA en mi apartamento turístico en Vigo (mismo día / sábado / festivo). ¿Podéis cubrirla?'
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    trackWhatsAppClick(currentPath, 'vut_urgencias_block', {
+                      service_id: 'vut-urgencias',
+                    })
+                  }
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs"
+                >
+                  <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <span>Consultar urgencia por WhatsApp</span>
+                </a>
+                <a
+                  href={CONTACT_INFO.phoneHref}
+                  onClick={() => trackPhoneClick(currentPath, 'vut_urgencias_tel')}
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0"
+                >
+                  <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <span>Llamar {CONTACT_INFO.phoneDisplay}</span>
+                </a>
               </div>
             </div>
           </div>
