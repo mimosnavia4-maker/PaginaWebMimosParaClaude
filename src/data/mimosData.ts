@@ -15,7 +15,9 @@ import {
   type CanalesContactoCentral,
   type DiscrepanciaRegistrada,
   STORE_GOOGLE_RATINGS,
+  STORE_GOOGLE_REVIEWS,
   type StoreGoogleRatingRecord,
+  type StoreGoogleReviewItem,
   type LegacyPuntoRegistroRaw,
 } from './commercialMasterData';
 
@@ -35,7 +37,9 @@ export {
   type DatosLegalesEmpresa,
   type CanalesContactoCentral,
   STORE_GOOGLE_RATINGS,
+  STORE_GOOGLE_REVIEWS,
   type StoreGoogleRatingRecord,
+  type StoreGoogleReviewItem,
   type DiscrepanciaRegistrada,
 };
 

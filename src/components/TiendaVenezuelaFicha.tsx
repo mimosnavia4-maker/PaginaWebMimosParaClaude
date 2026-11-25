@@ -29,14 +29,18 @@ import {
   HelpCircle,
   ArrowRight,
   AlertCircle,
+  Star,
 } from 'lucide-react';
 import {
   REGISTROS_PUNTOS,
   PuntoRegistro,
   buildGoogleMapsUrl,
   buildMimoWhatsAppUrl,
+  STORE_GOOGLE_RATINGS,
+  STORE_GOOGLE_REVIEWS,
 } from '../data/mimosData';
 import { getStoreStatusById } from '../utils/storeStatus';
+import { GoogleReviewsCarouselSection } from './GoogleReviewsCarouselSection';
 
 interface TiendaVenezuelaFichaProps {
   onNavigate?: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -338,6 +342,21 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               <p className="text-sm font-semibold text-slate-600 mt-0.5">
                 Tintorería, Lavandería y Taller Propio de Costura
               </p>
+
+              <div className="mt-2.5">
+                <button
+                  type="button"
+                  onClick={() =>
+                    document
+                      .getElementById('resenas-venezuela')
+                      ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }
+                  className="inline-flex items-center gap-2 min-h-[44px] px-3.5 py-1.5 rounded-full bg-[#EAF4FE] border border-[#BFDBFE] hover:border-[#0F76BB] text-[#002147] text-xs font-bold transition-colors cursor-pointer"
+                >
+                  <Star className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B] shrink-0" aria-hidden="true" />
+                  <span>4,4 · 10 reseñas en Google · Leer opiniones ↓</span>
+                </button>
+              </div>
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-slate-700 flex items-start gap-2">
@@ -830,6 +849,26 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           </div>
         </div>
       </section>
+
+      {/* 4B. OPINIONES REALES EN GOOGLE DE MIMOS VENEZUELA */}
+      <GoogleReviewsCarouselSection
+        id="resenas-venezuela"
+        variant="card"
+        title="Opiniones reales en Mimos Venezuela"
+        subtitle="Lo que valoran nuestros clientes del trato cercano, probador y servicio de costura y tintorería en Rúa de Venezuela, 29."
+        reviews={STORE_GOOGLE_REVIEWS['rua-venezuela']}
+        ratingValue={STORE_GOOGLE_RATINGS['rua-venezuela'].ratingValue}
+        ratingDisplay="4,4"
+        reviewCountLabel="10 reseñas en Google"
+        googleReviewsHref={
+          STORE_GOOGLE_RATINGS['rua-venezuela'].googleMapsUrl ||
+          'https://maps.app.goo.gl/5J2kjhdMZqPEPPY38'
+        }
+        googleButtonLabel="Ver ficha en Google Maps"
+        writeReviewHref={STORE_GOOGLE_RATINGS['rua-venezuela'].writeReviewUrl}
+        writeReviewLabel="Dejar una reseña"
+        trackAriaLabel="Carrusel de reseñas reales de Mimos Venezuela en Google"
+      />
 
       {/* 5. INFORMACIÓN DE ENTREGA Y RECOGIDA */}
       <section aria-labelledby="seccion-plazos-venezuela" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">

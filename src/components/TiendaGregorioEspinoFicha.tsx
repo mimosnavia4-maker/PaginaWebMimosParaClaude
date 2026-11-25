@@ -28,14 +28,18 @@ import {
   Layers,
   HelpCircle,
   ArrowRight,
+  Star,
 } from 'lucide-react';
 import {
   REGISTROS_PUNTOS,
   PuntoRegistro,
   buildGoogleMapsUrl,
   buildMimoWhatsAppUrl,
+  STORE_GOOGLE_RATINGS,
+  STORE_GOOGLE_REVIEWS,
 } from '../data/mimosData';
 import { getStoreStatusById } from '../utils/storeStatus';
+import { GoogleReviewsCarouselSection } from './GoogleReviewsCarouselSection';
 
 interface TiendaGregorioEspinoFichaProps {
   onNavigate?: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -327,6 +331,21 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               <p className="text-sm font-semibold text-slate-600 mt-0.5">
                 Tintorería, Lavandería y Taller Propio de Costura
               </p>
+
+              <div className="mt-2.5">
+                <button
+                  type="button"
+                  onClick={() =>
+                    document
+                      .getElementById('resenas-gregorio-espino')
+                      ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }
+                  className="inline-flex items-center gap-2 min-h-[44px] px-3.5 py-1.5 rounded-full bg-[#EAF4FE] border border-[#BFDBFE] hover:border-[#0F76BB] text-[#002147] text-xs font-bold transition-colors cursor-pointer"
+                >
+                  <Star className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B] shrink-0" aria-hidden="true" />
+                  <span>Opiniones de clientes en Google · Leer reseñas ↓</span>
+                </button>
+              </div>
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-slate-700 flex items-start gap-2">
@@ -770,6 +789,23 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           </div>
         </div>
       </section>
+
+      {/* 4B. OPINIONES REALES EN GOOGLE DE MIMOS GREGORIO ESPINO */}
+      <GoogleReviewsCarouselSection
+        id="resenas-gregorio-espino"
+        variant="card"
+        title="Opiniones reales en Mimos Gregorio Espino"
+        subtitle="Opiniones reales de clientes sobre nuestros arreglos de costura y tintorería en Alcalde Gregorio Espino, 42."
+        reviews={STORE_GOOGLE_REVIEWS['gregorio-espino']}
+        googleReviewsHref={
+          STORE_GOOGLE_RATINGS['gregorio-espino'].googleMapsUrl ||
+          'https://maps.app.goo.gl/ehe9hJDr4bSQfcS59'
+        }
+        googleButtonLabel="Ver ficha en Google Maps"
+        writeReviewHref={STORE_GOOGLE_RATINGS['gregorio-espino'].writeReviewUrl}
+        writeReviewLabel="Dejar una reseña"
+        trackAriaLabel="Carrusel de reseñas reales de Mimos Gregorio Espino en Google"
+      />
 
       {/* 5. TABLA DE TIEMPOS Y PLAZOS ORIENTATIVOS DE ENTREGA */}
       <section aria-labelledby="seccion-plazos" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">

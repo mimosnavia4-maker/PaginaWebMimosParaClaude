@@ -787,6 +787,16 @@ export interface StoreGoogleRatingRecord {
   reviewCount: number | null;
   verificado: boolean;
   fuente: string;
+  googleMapsUrl?: string;
+  writeReviewUrl?: string;
+}
+
+export interface StoreGoogleReviewItem {
+  autor: string;
+  origen: string;
+  estrellas: number;
+  texto: string;
+  fechaTexto?: string;
 }
 
 export const STORE_GOOGLE_RATINGS: Record<
@@ -799,20 +809,123 @@ export const STORE_GOOGLE_RATINGS: Record<
     reviewCount: null, // PENDIENTE: nº total de reseñas reales en Google Maps
     verificado: false,
     fuente: 'Google Business Profile · Mimos Navia',
+    googleMapsUrl: 'https://maps.app.goo.gl/XYptS4oTv3vDgMg6A',
   },
   'gregorio-espino': {
     storeId: 'gregorio-espino',
-    ratingValue: null, // PENDIENTE: nota media real en Google Maps
-    reviewCount: null, // PENDIENTE: nº total de reseñas reales en Google Maps
+    ratingValue: null,
+    reviewCount: null,
     verificado: false,
     fuente: 'Google Business Profile · Mimos Gregorio Espino',
+    googleMapsUrl: 'https://maps.app.goo.gl/ehe9hJDr4bSQfcS59',
+    writeReviewUrl: 'https://g.page/r/CdVbe80wuA8zEAE/review',
   },
   'rua-venezuela': {
     storeId: 'rua-venezuela',
-    ratingValue: null, // PENDIENTE: nota media real en Google Maps
-    reviewCount: null, // PENDIENTE: nº total de reseñas reales en Google Maps
-    verificado: false,
-    fuente: 'Google Business Profile · Mimos Venezuela',
+    ratingValue: 4.4,
+    reviewCount: 10,
+    verificado: true,
+    fuente: 'Google Business Profile · Tintorería y Arreglos Mimos Venezuela',
+    googleMapsUrl: 'https://maps.app.goo.gl/5J2kjhdMZqPEPPY38',
+    writeReviewUrl: 'https://g.page/r/CfPqWkU3yHpzEAE/review',
   },
+};
+
+export const STORE_GOOGLE_REVIEWS: Record<
+  'as-teixugueiras' | 'gregorio-espino' | 'rua-venezuela',
+  StoreGoogleReviewItem[]
+> = {
+  'as-teixugueiras': [],
+  'gregorio-espino': [
+    {
+      autor: 'Alba F.',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      texto: 'El señor muy majo y arregla bastante bien de precio.',
+    },
+    {
+      autor: 'Cristina Silva Alvarez',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      texto:
+        'El actual dueño es encantador y estoy muy contenta porque me subió el largo de un traje de invitada para una boda y era de tipo gasa y me lo dejó perfecto. Seguiré llevando mi ropa ahí. Muy recomendable.',
+    },
+    {
+      autor: 'Nandy PG',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      texto: 'Buen trabajo y muy buen trato, volveré a dejar más prendas. El pantalón me quedo genial 🙌👌',
+    },
+    {
+      autor: 'Marcos Alvarez Fernandez',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'sept. 2023',
+      texto: 'Muy buen sitio, rapido y muy buen servicio.',
+    },
+    {
+      autor: 'Iago Sanmar',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'ene. 2021',
+      texto:
+        'Lleve unos pantalones a arreglar y la señora tomo muy bien las medidas y me lo entrego en el período indicado. Muy atentos y buen servicio',
+    },
+    {
+      autor: 'María Pájaro Diéguez',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'feb. 2020',
+      texto:
+        'Llevé un abrigo que no podía lavar en casa y cuando fui a buscarlo parecía recién comprado. Muy buen trato y rapidez en el servicio, sin duda cuando necesite de una tintorería, volveré.',
+    },
+  ],
+  'rua-venezuela': [
+    {
+      autor: 'Nuria zaera',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      texto:
+        'Es muy agradable y trabajadora, siempre le llevo mis arreglos y tb me han limpiado un vestido de novia y perfecto y bien de precio',
+    },
+    {
+      autor: 'blanca miguez',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'jun. 2025',
+      texto:
+        'La chica es encantadora,tiene un probador y ella misma te coge el arreglo que necesitas y tiene servicio de tintorería.Muy recomendable si tienes que hacer arreglos en tu ropa',
+    },
+    {
+      autor: 'ANA VILLANUEVA',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'jun. 2025',
+      texto: 'Siempre encuentra soluciones. Genial.',
+    },
+    {
+      autor: 'Alfonso Martínez',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'ago. 2023',
+      texto:
+        'Marta es muy servicial y amable. Y trata de buscar soluciones a las dificultades que puedan surgir. Da gusto contar con buenos profesionales. Muy recomendable',
+    },
+    {
+      autor: 'Maria Mercedes Sanchez Laredo',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'abr. 2023',
+      texto: 'Buena calidad, precio y atención. Recomendable',
+    },
+    {
+      autor: 'Gonzalo Leyenda',
+      origen: 'Reseña real en Google',
+      estrellas: 5,
+      fechaTexto: 'oct. 2022',
+      texto:
+        'Muy profesional, desde un botón hasta una confección a medida. Siempre dispuestos a superar esas urgencias que te surgen cuando necesitas un arreglo rápido. La amabilidad con la que te tratan y un asesoramiento personalizado sobre lo que necesitas marca la diferencia.',
+    },
+  ],
 };
 
