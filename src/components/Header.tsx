@@ -21,7 +21,6 @@ import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
 interface HeaderProps {
   currentPath: string;
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
-  variant?: 'navy' | 'light';
 }
 
 type ActiveMegaMenu = 'tintoreria' | 'limpieza' | 'apartamentos' | 'puntos' | null;
@@ -29,9 +28,7 @@ type ActiveMegaMenu = 'tintoreria' | 'limpieza' | 'apartamentos' | 'puntos' | nu
 export const Header: React.FC<HeaderProps> = ({
   currentPath,
   onNavigate,
-  variant = 'navy',
 }) => {
-  const isLight = variant === 'light';
   const [activeMenu, setActiveMenu] = useState<ActiveMegaMenu>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileExpandedSection, setMobileExpandedSection] = useState<string | null>(null);
@@ -134,11 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Cabecera Principal Sticky */}
       <header
-        className={`sticky top-0 z-50 select-none transition-colors ${
-          isLight
-            ? 'bg-white/95 backdrop-blur-xs text-[#002147] border-b border-slate-200 shadow-xs'
-            : 'bg-[#002147] text-white border-b border-white/10 shadow-md'
-        }`}
+        className="sticky top-0 z-50 select-none bg-white/95 backdrop-blur-xs text-[#002147] border-b border-slate-200 shadow-xs"
         onMouseLeave={handleMouseLeaveMenu}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -158,28 +151,16 @@ export const Header: React.FC<HeaderProps> = ({
                   alt="Tintorería Mimos Navia"
                   width={48}
                   height={48}
-                  className={`w-12 h-12 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform ${
-                    isLight
-                      ? 'bg-[#EDF5FD] border border-[#002147]/10'
-                      : 'bg-white/10 border border-white/20'
-                  }`}
+                  className="w-12 h-12 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform bg-[#EDF5FD] border border-[#002147]/10"
                 />
                 <div className="flex flex-col">
-                  <span
-                    className={`font-extrabold text-base sm:text-lg tracking-tight leading-tight font-serif sm:font-sans ${
-                      isLight ? 'text-[#002147]' : 'text-white'
-                    }`}
-                  >
+                  <span className="font-extrabold text-base sm:text-lg tracking-tight leading-tight font-serif sm:font-sans text-[#002147]">
                     TINTORERÍA{' '}
-                    <span className={isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}>
+                    <span className="text-[#0F76BB]">
                       MIMOS
                     </span>
                   </span>
-                  <span
-                    className={`text-[10px] sm:text-[11px] font-medium tracking-wider uppercase ${
-                      isLight ? 'text-slate-500' : 'text-slate-300'
-                    }`}
-                  >
+                  <span className="text-[10px] sm:text-[11px] font-medium tracking-wider uppercase text-slate-500">
                     Navia · Vigo · Cuidado Textil
                   </span>
                 </div>
@@ -204,12 +185,8 @@ export const Header: React.FC<HeaderProps> = ({
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/arreglos-de-ropa-vigo'
-                        ? isLight
-                          ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
-                          : 'bg-white/20 text-white font-extrabold'
-                        : isLight
-                        ? 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
-                        : 'text-slate-300 hover:text-white hover:bg-white/10'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                        : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                     }`}
                     title="Taller propio de costura y arreglos de ropa en Vigo"
                   >
@@ -225,12 +202,8 @@ export const Header: React.FC<HeaderProps> = ({
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/limpieza-sofas-vigo'
-                        ? isLight
-                          ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
-                          : 'bg-white/20 text-white font-extrabold'
-                        : isLight
-                        ? 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
-                        : 'text-slate-300 hover:text-white hover:bg-white/10'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                        : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                     }`}
                     title="Limpieza profesional de sofás, sillones y tapicerías a domicilio en Vigo"
                   >
@@ -246,12 +219,8 @@ export const Header: React.FC<HeaderProps> = ({
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/reparacion-alfombras-vigo'
-                        ? isLight
-                          ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
-                          : 'bg-white/20 text-white font-extrabold'
-                        : isLight
-                        ? 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
-                        : 'text-slate-300 hover:text-white hover:bg-white/10'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                        : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                     }`}
                     title="Reparación y restauración de flecos, ribetes y bordes de alfombras en Vigo"
                   >
@@ -264,15 +233,11 @@ export const Header: React.FC<HeaderProps> = ({
                   <a
                     href={CONTACT_INFO.phoneHref}
                     onClick={() => trackPhoneClick(currentPath, 'header')}
-                    className={`w-full inline-flex items-center justify-center gap-1.5 py-1 px-1.5 rounded-md transition-colors text-xs font-bold truncate ${
-                      isLight
-                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
-                        : 'text-slate-200 hover:text-white hover:bg-white/10'
-                    }`}
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-1 px-1.5 rounded-md transition-colors text-xs font-bold truncate text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD]"
                     title="Llamar directamente a Tintorería Mimos Navia"
                   >
                     <Phone
-                      className={`w-3 h-3 shrink-0 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
+                      className="w-3 h-3 shrink-0 text-[#0F76BB]"
                       aria-hidden="true"
                     />
                     <span className="font-mono tracking-tight">{CONTACT_INFO.phoneDisplay}</span>
@@ -289,12 +254,8 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'tintoreria'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'tintoreria'
-                        ? isLight
-                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
-                          : 'bg-white/20 text-white border-white/30 shadow-xs'
-                        : isLight
-                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
-                        : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Ver catálogo de tintorería y lavandería (pasa el ratón para desglose)"
                   >
@@ -302,10 +263,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'tintoreria'
-                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
-                          : isLight
-                          ? 'text-slate-500'
-                          : 'text-slate-400'
+                          ? 'rotate-180 text-[#0F76BB]'
+                          : 'text-slate-500'
                       }`}
                     />
                   </a>
@@ -320,12 +279,8 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'limpieza'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'limpieza' || currentPath === '/limpieza-profesional-vigo'
-                        ? isLight
-                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
-                          : 'bg-white/20 text-white border-white/30 shadow-xs'
-                        : isLight
-                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
-                        : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Limpieza técnica de oficinas, comunidades y sofás a domicilio"
                   >
@@ -333,10 +288,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'limpieza'
-                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
-                          : isLight
-                          ? 'text-slate-500'
-                          : 'text-slate-400'
+                          ? 'rotate-180 text-[#0F76BB]'
+                          : 'text-slate-500'
                       }`}
                     />
                   </a>
@@ -351,12 +304,8 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'apartamentos'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'apartamentos' || currentPath === '/limpieza-apartamentos-turisticos-vigo'
-                        ? isLight
-                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
-                          : 'bg-white/20 text-white border-white/30 shadow-xs'
-                        : isLight
-                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
-                        : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Servicios para apartamentos turísticos y Airbnb en Vigo"
                   >
@@ -364,10 +313,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'apartamentos'
-                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
-                          : isLight
-                          ? 'text-slate-500'
-                          : 'text-slate-400'
+                          ? 'rotate-180 text-[#0F76BB]'
+                          : 'text-slate-500'
                       }`}
                     />
                   </a>
@@ -382,12 +329,8 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'puntos'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'puntos' || currentPath === '/puntos-mimos'
-                        ? isLight
-                          ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
-                          : 'bg-white/20 text-white border-white/30 shadow-xs'
-                        : isLight
-                        ? 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
-                        : 'text-slate-100 hover:text-white hover:bg-white/10 border-transparent'
+                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Tiendas propias y puntos colaboradores con mapa interactivo"
                   >
@@ -395,10 +338,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'puntos'
-                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
-                          : isLight
-                          ? 'text-slate-500'
-                          : 'text-slate-400'
+                          ? 'rotate-180 text-[#0F76BB]'
+                          : 'text-slate-500'
                       }`}
                     />
                   </a>
@@ -426,15 +367,11 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setIsTrackingModalOpen(true)}
-                className={`w-full h-[32px] inline-flex items-center justify-center gap-1.5 border font-bold text-xs px-3 rounded-lg transition-colors cursor-pointer ${
-                  isLight
-                    ? 'bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]'
-                    : 'bg-white/10 hover:bg-white/15 border-white/20 hover:border-white/40 text-slate-100'
-                }`}
+                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 border font-bold text-xs px-3 rounded-lg transition-colors cursor-pointer bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]"
                 title="Consultar el estado de tu encargo o ticket oficial"
               >
                 <Package
-                  className={`w-3.5 h-3.5 shrink-0 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
+                  className="w-3.5 h-3.5 shrink-0 text-[#0F76BB]"
                   aria-hidden="true"
                 />
                 <span>Consultar pedido</span>
@@ -456,11 +393,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl transition-colors focus:outline-hidden ${
-                  isLight
-                    ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                    : 'text-slate-200 hover:text-white hover:bg-white/10'
-                }`}
+                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl transition-colors focus:outline-hidden text-[#002147] hover:bg-[#EDF5FD]"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Abrir menú de navegación"
               >
@@ -1128,33 +1061,33 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={() => setIsTrackingModalOpen(false)}
         >
           <div
-            className="bg-white dark:bg-[#071324] text-slate-900 dark:text-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 relative animate-in zoom-in-95 duration-200"
+            className="bg-white text-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setIsTrackingModalOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+              className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-500 hover:text-[#002147] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
               aria-label="Cerrar modal de consulta"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-[#002147] text-white flex items-center justify-center shrink-0 shadow-sm">
-                <Package className="w-5 h-5 text-[#60B5F6]" />
+              <div className="w-10 h-10 rounded-xl bg-[#EDF5FD] border border-slate-200 text-[#0F76BB] flex items-center justify-center shrink-0">
+                <Package className="w-5 h-5" />
               </div>
               <div>
-                <h3 id="modal-tracking-title" className="text-lg font-extrabold text-[#002147] dark:text-white">
+                <h3 id="modal-tracking-title" className="text-lg font-extrabold text-[#002147]">
                   Consultar estado de encargo
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
+                <p className="text-xs text-slate-500">
                   Seguimiento de ticket o resguardo en Tintorería Mimos
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
               Cada encargo depositado en nuestras 3 tiendas propias o en los 5 puntos colaboradores cuenta con un <strong>resguardo oficial numerado</strong>. Escribe tu número de resguardo para consultar en directo con Mimo por WhatsApp:
             </p>
 
@@ -1166,7 +1099,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="space-y-3.5"
             >
               <div>
-                <label htmlFor="order-ticket-input" className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">
+                <label htmlFor="order-ticket-input" className="block text-xs font-bold text-[#002147] mb-1">
                   N.º de ticket o resguardo:
                 </label>
                 <div className="relative">
@@ -1177,7 +1110,7 @@ export const Header: React.FC<HeaderProps> = ({
                     value={orderNumber}
                     onChange={(e) => setOrderNumber(e.target.value)}
                     placeholder="Ej. 14258 o tu nombre"
-                    className="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                    className="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     autoFocus
                   />
                 </div>
@@ -1192,15 +1125,15 @@ export const Header: React.FC<HeaderProps> = ({
                   trackWhatsAppClick(currentPath, 'modal_order_status_submit');
                   setIsTrackingModalOpen(false);
                 }}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
+                className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Consultar por WhatsApp con Mimo</span>
               </a>
             </form>
 
-            <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-              <span className="text-slate-500 dark:text-slate-400">¿Prefieres consultar por teléfono?</span>
+            <div className="mt-4 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+              <span className="text-slate-600">¿Prefieres consultar por teléfono?</span>
               <a
                 href={CONTACT_INFO.phoneHref}
                 onClick={() => trackPhoneClick(currentPath, 'modal_order_phone')}
@@ -1224,44 +1157,26 @@ export const Header: React.FC<HeaderProps> = ({
           aria-label="Menú de navegación móvil"
           className="fixed inset-0 z-50 lg:hidden bg-black/60 backdrop-blur-xs flex justify-end animate-in fade-in duration-200"
         >
-          <div
-            className={`w-full max-w-sm h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl ${
-              isLight ? 'bg-white text-[#002147]' : 'bg-[#002147] text-white'
-            }`}
-          >
+          <div className="w-full max-w-sm h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl bg-white text-[#002147]">
             <div>
               {/* Cabecera del drawer */}
-              <div
-                className={`flex items-center justify-between pb-4 border-b mb-6 ${
-                  isLight ? 'border-slate-200' : 'border-white/10'
-                }`}
-              >
+              <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
                 <div className="flex items-center gap-2.5">
                   <img
                     src={IMAGES.logoMimos}
                     alt=""
                     width={36}
                     height={36}
-                    className={`w-9 h-9 rounded-full p-0.5 ${
-                      isLight ? 'bg-[#EDF5FD]' : 'bg-white/10'
-                    }`}
+                    className="w-9 h-9 rounded-full p-0.5 bg-[#EDF5FD]"
                   />
-                  <span
-                    className={`font-extrabold text-sm tracking-tight ${
-                      isLight ? 'text-[#002147]' : 'text-white'
-                    }`}
-                  >
+                  <span className="font-extrabold text-sm tracking-tight text-[#002147]">
                     TINTORERÍA MIMOS
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg ${
-                    isLight
-                      ? 'text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD]'
-                      : 'text-slate-300 hover:text-white hover:bg-white/10'
-                  }`}
+                  className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD]"
                   aria-label="Cerrar menú"
                 >
                   <X className="w-5 h-5" />
@@ -1280,29 +1195,19 @@ export const Header: React.FC<HeaderProps> = ({
                         mobileExpandedSection === 'tintoreria' ? null : 'tintoreria'
                       )
                     }
-                    className={`w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold ${
-                      isLight
-                        ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                        : 'text-slate-100 hover:bg-white/10'
-                    }`}
+                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold text-[#002147] hover:bg-[#EDF5FD]"
                   >
                     <span>Tintorería y lavandería</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         mobileExpandedSection === 'tintoreria'
-                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          ? 'rotate-180 text-[#0F76BB]'
                           : ''
                       }`}
                     />
                   </button>
                   {mobileExpandedSection === 'tintoreria' && (
-                    <div
-                      className={`pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 ${
-                        isLight
-                          ? 'text-slate-600 border-[#0F76BB]/30'
-                          : 'text-slate-300 border-[#60B5F6]/30'
-                      }`}
-                    >
+                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
                       <a
                         href="/tintoreria-vigo"
                         onClick={(e) => handleLinkClick('/tintoreria-vigo', e)}
@@ -1313,9 +1218,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="/limpieza-vestidos-novia-ceremonia-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-vestidos-novia-ceremonia-vigo', e)}
-                        className={`block py-1.5 font-bold ${
-                          isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'
-                        }`}
+                        className="block py-1.5 font-bold text-[#0F76BB]"
                       >
                         • Vestidos de novia, fiesta y ceremonia
                       </a>
@@ -1402,29 +1305,19 @@ export const Header: React.FC<HeaderProps> = ({
                         mobileExpandedSection === 'limpieza' ? null : 'limpieza'
                       )
                     }
-                    className={`w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold ${
-                      isLight
-                        ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                        : 'text-slate-100 hover:bg-white/10'
-                    }`}
+                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold text-[#002147] hover:bg-[#EDF5FD]"
                   >
                     <span>Limpieza profesional</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         mobileExpandedSection === 'limpieza'
-                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          ? 'rotate-180 text-[#0F76BB]'
                           : ''
                       }`}
                     />
                   </button>
                   {mobileExpandedSection === 'limpieza' && (
-                    <div
-                      className={`pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 ${
-                        isLight
-                          ? 'text-slate-600 border-[#0F76BB]/30'
-                          : 'text-slate-300 border-[#60B5F6]/30'
-                      }`}
-                    >
+                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
                       <a
                         href="/limpieza-profesional-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-profesional-vigo', e)}
@@ -1447,11 +1340,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/limpieza-apartamentos-turisticos-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
-                  className={`block py-2.5 px-3 rounded-lg font-bold ${
-                    isLight
-                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                      : 'text-slate-100 hover:bg-white/10'
-                  }`}
+                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
                 >
                   Alojamientos turísticos
                 </a>
@@ -1465,29 +1354,19 @@ export const Header: React.FC<HeaderProps> = ({
                         mobileExpandedSection === 'puntos' ? null : 'puntos'
                       )
                     }
-                    className={`w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold ${
-                      isLight
-                        ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                        : 'text-slate-100 hover:bg-white/10'
-                    }`}
+                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold text-[#002147] hover:bg-[#EDF5FD]"
                   >
                     <span>Puntos Mimos y tiendas</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         mobileExpandedSection === 'puntos'
-                          ? `rotate-180 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`
+                          ? 'rotate-180 text-[#0F76BB]'
                           : ''
                       }`}
                     />
                   </button>
                   {mobileExpandedSection === 'puntos' && (
-                    <div
-                      className={`pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 ${
-                        isLight
-                          ? 'text-slate-600 border-[#0F76BB]/30'
-                          : 'text-slate-300 border-[#60B5F6]/30'
-                      }`}
-                    >
+                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
                       <a
                         href="/tienda-mimos-navia-vigo"
                         onClick={(e) => handleLinkClick('/tienda-mimos-navia-vigo', e)}
@@ -1519,9 +1398,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="/se-punto-colaborador"
                         onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
-                        className={`block py-1.5 font-bold ${
-                          isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'
-                        }`}
+                        className="block py-1.5 font-bold text-[#0F76BB]"
                       >
                         • Quiero ser punto colaborador →
                       </a>
@@ -1533,11 +1410,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/limpieza-sofas-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                  className={`block py-2.5 px-3 rounded-lg font-extrabold ${
-                    isLight
-                      ? 'text-[#0F76BB] hover:bg-[#EDF5FD]'
-                      : 'text-[#60B5F6] hover:bg-white/10'
-                  }`}
+                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
                 >
                   Limpieza de sofás a domicilio
                 </a>
@@ -1546,22 +1419,14 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/limpieza-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                  className={`block py-2.5 px-3 rounded-lg font-extrabold ${
-                    isLight
-                      ? 'text-[#0F76BB] hover:bg-[#EDF5FD]'
-                      : 'text-[#60B5F6] hover:bg-white/10'
-                  }`}
+                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
                 >
                   Limpieza de alfombras a domicilio
                 </a>
                 <a
                   href="/reparacion-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                  className={`block py-2.5 px-3 rounded-lg font-extrabold ${
-                    isLight
-                      ? 'text-[#0F76BB] hover:bg-[#EDF5FD]'
-                      : 'text-[#60B5F6] hover:bg-white/10'
-                  }`}
+                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
                 >
                   Reparación de alfombras (flecos y bordes)
                 </a>
@@ -1570,11 +1435,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/arreglos-de-ropa-vigo"
                   onClick={(e) => handleLinkClick('/arreglos-de-ropa-vigo', e)}
-                  className={`block py-2.5 px-3 rounded-lg font-bold ${
-                    isLight
-                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                      : 'text-slate-100 hover:bg-white/10'
-                  }`}
+                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
                 >
                   Costura y arreglos de ropa
                 </a>
@@ -1583,11 +1444,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/blog"
                   onClick={(e) => handleLinkClick('/blog', e)}
-                  className={`block py-2.5 px-3 rounded-lg font-bold ${
-                    isLight
-                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                      : 'text-slate-100 hover:bg-white/10'
-                  }`}
+                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
                 >
                   Blog y consejos
                 </a>
@@ -1596,37 +1453,23 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/contacto"
                   onClick={(e) => handleLinkClick('/contacto', e)}
-                  className={`block py-2.5 px-3 rounded-lg font-bold ${
-                    isLight
-                      ? 'text-[#002147] hover:bg-[#EDF5FD]'
-                      : 'text-slate-100 hover:bg-white/10'
-                  }`}
+                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
                 >
                   Contacto y horarios
                 </a>
               </nav>
 
               {/* Botonera de acciones rápida en móvil */}
-              <div
-                className={`mt-6 pt-6 border-t space-y-2.5 ${
-                  isLight ? 'border-slate-200' : 'border-white/10'
-                }`}
-              >
+              <div className="mt-6 pt-6 border-t border-slate-200 space-y-2.5">
                 <button
                   type="button"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     setIsTrackingModalOpen(true);
                   }}
-                  className={`w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-3 px-4 rounded-xl transition-colors cursor-pointer ${
-                    isLight
-                      ? 'bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]'
-                      : 'bg-white/10 hover:bg-white/15 border-white/20 text-white'
-                  }`}
+                  className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-3 px-4 rounded-xl transition-colors cursor-pointer bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]"
                 >
-                  <Package
-                    className={`w-4 h-4 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
-                  />
+                  <Package className="w-4 h-4 text-[#0F76BB]" />
                   <span>Consultar estado de mi pedido</span>
                 </button>
 
@@ -1644,26 +1487,16 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href={CONTACT_INFO.phoneHref}
                   onClick={() => trackPhoneClick(currentPath, 'drawer_phone')}
-                  className={`w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-2.5 px-4 rounded-xl transition-colors ${
-                    isLight
-                      ? 'border-slate-300 hover:border-[#002147] text-[#002147]'
-                      : 'border-slate-600 hover:border-white text-slate-200 hover:text-white'
-                  }`}
+                  className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-2.5 px-4 rounded-xl transition-colors border-slate-300 hover:border-[#002147] text-[#002147]"
                 >
-                  <Phone
-                    className={`w-3.5 h-3.5 ${isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]'}`}
-                  />
+                  <Phone className="w-3.5 h-3.5 text-[#0F76BB]" />
                   <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
                 </a>
               </div>
             </div>
 
             {/* Pie del drawer */}
-            <div
-              className={`pt-4 text-center text-[10px] ${
-                isLight ? 'text-slate-500' : 'text-slate-400'
-              }`}
-            >
+            <div className="pt-4 text-center text-[10px] text-slate-500">
               Tintorería Mimos Navia, S.L. · Vigo (Pontevedra)
             </div>
           </div>

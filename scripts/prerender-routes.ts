@@ -98,7 +98,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
 
           return (
             `<article class="space-y-2">` +
-            `<h2 class="text-xl font-bold text-[#002147] dark:text-white mt-4">${escapeHtml(
+            `<h2 class="text-xl font-bold text-[#002147] mt-4">${escapeHtml(
               s.h2
             )}</h2>` +
             parrafosHtml +
@@ -126,7 +126,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
       const blogFaqs = BLOG_FAQS_MAP[articulo.slug] || [];
       const blogFaqsHtml =
         blogFaqs.length > 0
-          ? `<h2 class="text-xl font-bold text-[#002147] dark:text-white mt-4">Preguntas frecuentes sobre esta guía</h2><dl>` +
+          ? `<h2 class="text-xl font-bold text-[#002147] mt-4">Preguntas frecuentes sobre esta guía</h2><dl>` +
             blogFaqs
               .map(
                 (f) =>
@@ -138,7 +138,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
 
       const enlacesInternosHtml =
         articulo.enlacesInternos && articulo.enlacesInternos.length > 0
-          ? `<h2 class="text-xl font-bold text-[#002147] dark:text-white mt-4">Servicios y guías relacionadas</h2><ul>` +
+          ? `<h2 class="text-xl font-bold text-[#002147] mt-4">Servicios y guías relacionadas</h2><ul>` +
             articulo.enlacesInternos
               .map(
                 (l) =>
@@ -472,7 +472,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
     specificHtml =
       `<section>` +
       `<p>${escapeHtml(SERVICIO_ARREGLOS_DATA.subtituloCabecera)}</p>` +
-      `<h2>Las 18 especialidades de costura y arreglos de ropa</h2>` +
+      `<h2>Arreglos de ropa y costura profesional de todo tipo de prendas</h2>` +
       `<ol>${catalogoHtml}</ol>` +
       `<h2>Preguntas frecuentes sobre costura y arreglos de ropa</h2>` +
       `<dl>${faqsHtml}</dl>` +

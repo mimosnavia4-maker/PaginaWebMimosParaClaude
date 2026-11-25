@@ -14,16 +14,13 @@ interface FooterProps {
   currentPath?: string;
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
   onOpenCookieSettings: () => void;
-  variant?: 'navy' | 'light';
 }
 
 export const Footer: React.FC<FooterProps> = ({
   currentPath,
   onNavigate,
   onOpenCookieSettings,
-  variant = 'navy',
 }) => {
-  const isLight = variant === 'light';
   const activePath = currentPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
 
   const getStoreHref = (id: string) => {
@@ -35,25 +32,16 @@ export const Footer: React.FC<FooterProps> = ({
 
   const formatPhoneHref = (phone: string) => `tel:+34${phone.replace(/\s+/g, '')}`;
 
-  const headingAccent = isLight ? 'text-[#0F76BB]' : 'text-[#60B5F6]';
-  const headingNeutral = isLight ? 'text-[#002147]' : 'text-white';
-  const linkPrimary = isLight
-    ? 'text-[#002147] font-bold hover:text-[#0F76BB] hover:underline transition-colors'
-    : 'text-white font-bold hover:text-[#60B5F6] hover:underline transition-colors';
-  const linkSecondary = isLight
-    ? 'text-slate-600 hover:text-[#002147] transition-colors'
-    : 'hover:text-white transition-colors';
-  const dividerBorder = isLight ? 'border-slate-200' : 'border-white/10';
+  const headingAccent = 'text-[#0F76BB]';
+  const headingNeutral = 'text-[#002147]';
+  const linkPrimary =
+    'text-[#002147] font-bold hover:text-[#0F76BB] hover:underline transition-colors';
+  const linkSecondary = 'text-slate-600 hover:text-[#002147] transition-colors';
+  const dividerBorder = 'border-slate-200';
 
   return (
     <>
-      <footer
-        className={`pt-14 pb-36 md:pb-20 border-t transition-colors ${
-          isLight
-            ? 'bg-[#F8FBFF] text-slate-700 border-slate-200'
-            : 'bg-[#002147] text-slate-300 border-white/10'
-        }`}
-      >
+      <footer className="pt-14 pb-36 md:pb-20 border-t bg-[#F8FBFF] text-slate-700 border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 xl:gap-10 pb-10 border-b ${dividerBorder}`}>
             {/* Columna 1: Marca y 3 tiendas propias clicables (3 cols) */}
@@ -64,21 +52,19 @@ export const Footer: React.FC<FooterProps> = ({
                   alt="Logotipo de Tintorería Mimos Navia"
                   width={42}
                   height={42}
-                  className={`w-10.5 h-10.5 rounded-full object-contain p-0.5 shrink-0 ${
-                    isLight ? 'bg-[#EDF5FD] border border-[#002147]/10' : 'bg-white/10'
-                  }`}
+                  className="w-10.5 h-10.5 rounded-full object-contain p-0.5 shrink-0 bg-[#EDF5FD] border border-[#002147]/10"
                 />
                 <div>
                   <p className={`text-base font-extrabold leading-none tracking-tight ${headingNeutral}`}>
                     TINTORERÍA <span className={headingAccent}>MIMOS</span>
                   </p>
-                  <p className={`text-xs mt-1 ${isLight ? 'text-slate-500' : 'text-slate-300'}`}>
+                  <p className="text-xs mt-1 text-slate-500">
                     {CONTACT_INFO.legalName}
                   </p>
                 </div>
               </div>
 
-              <p className={`text-xs sm:text-sm leading-relaxed ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
+              <p className="text-xs sm:text-sm leading-relaxed text-slate-600">
                 Tintorería, lavandería, arreglos de ropa, tapicerías a domicilio y limpieza profesional en Vigo y comarca.
               </p>
 
@@ -98,17 +84,13 @@ export const Footer: React.FC<FooterProps> = ({
                         >
                           {t.direccion} ({t.codigo_postal})
                         </a>
-                        <span className={`block ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
+                        <span className="block text-slate-600">
                           {t.horario.resumen}{' '}
                           <span aria-hidden="true">·</span>{' '}
                           <a
                             href={formatPhoneHref(t.telefono)}
                             onClick={() => trackPhoneClick(activePath, 'footer')}
-                            className={`font-semibold tabular-nums whitespace-nowrap ${
-                              isLight
-                                ? 'text-[#0F76BB] hover:text-[#002147]'
-                                : 'text-[#60B5F6] hover:text-white'
-                            }`}
+                            className="font-semibold tabular-nums whitespace-nowrap text-[#0F76BB] hover:text-[#002147]"
                           >
                             {t.telefonos_mostrados}
                           </a>
@@ -262,9 +244,7 @@ export const Footer: React.FC<FooterProps> = ({
                       <a
                         href={art.url}
                         onClick={(e) => onNavigate(art.url, e)}
-                        className={`transition-colors block ${
-                          isLight ? 'text-slate-700 hover:text-[#0F76BB]' : 'hover:text-[#60B5F6]'
-                        }`}
+                        className="transition-colors block text-slate-700 hover:text-[#0F76BB]"
                       >
                         {art.titulo}
                       </a>
@@ -285,9 +265,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href={CONTACT_INFO.phoneHref}
                       onClick={() => trackPhoneClick(activePath, 'footer')}
-                      className={`inline-flex items-center gap-2 tabular-nums font-bold ${
-                        isLight ? 'text-[#002147] hover:text-[#0F76BB]' : 'hover:text-white'
-                      }`}
+                      className="inline-flex items-center gap-2 tabular-nums font-bold text-[#002147] hover:text-[#0F76BB]"
                     >
                       <Phone className={`w-4 h-4 shrink-0 ${headingAccent}`} aria-hidden="true" />
                       <span>{CONTACT_INFO.phoneDisplay}</span>
@@ -299,12 +277,10 @@ export const Footer: React.FC<FooterProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackWhatsAppClick(activePath, 'footer')}
-                      className={`inline-flex items-center gap-2 font-bold tabular-nums ${
-                        isLight ? 'text-[#002147] hover:text-[#178A47]' : 'hover:text-white'
-                      }`}
+                      className="inline-flex items-center gap-2 font-bold tabular-nums text-[#002147] hover:text-[#178A47]"
                     >
                       <MessageCircle
-                        className={`w-4 h-4 shrink-0 ${isLight ? 'text-[#1FA855]' : 'text-[#4ade80]'}`}
+                        className="w-4 h-4 shrink-0 text-[#1FA855]"
                         aria-hidden="true"
                       />
                       <span>Mimo: {CONTACT_INFO.whatsappNumber}</span>
@@ -313,9 +289,7 @@ export const Footer: React.FC<FooterProps> = ({
                   <li>
                     <a
                       href={CONTACT_INFO.emailHref}
-                      className={`inline-flex items-center gap-2 whitespace-nowrap text-xs sm:text-sm ${
-                        isLight ? 'text-slate-700 hover:text-[#0F76BB]' : 'hover:text-white'
-                      }`}
+                      className="inline-flex items-center gap-2 whitespace-nowrap text-xs sm:text-sm text-slate-700 hover:text-[#0F76BB]"
                     >
                       <Mail className={`w-4 h-4 shrink-0 ${headingAccent}`} aria-hidden="true" />
                       <span>{CONTACT_INFO.email}</span>
@@ -335,11 +309,7 @@ export const Footer: React.FC<FooterProps> = ({
 
               {/* Redes Sociales Oficiales */}
               <div className={`pt-3 border-t space-y-2 ${dividerBorder}`}>
-                <p
-                  className={`text-[11px] font-bold uppercase tracking-wider ${
-                    isLight ? 'text-slate-500' : 'text-slate-300'
-                  }`}
-                >
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
                   Síguenos en redes
                 </p>
                 <div className="flex items-center gap-2.5">
@@ -399,9 +369,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/se-punto-colaborador"
                       onClick={(e) => onNavigate('/se-punto-colaborador', e)}
-                      className={`transition-colors font-bold ${
-                        isLight ? 'text-[#0F76BB] hover:text-[#002147]' : 'text-[#60B5F6] hover:text-white'
-                      }`}
+                      className="transition-colors font-bold text-[#0F76BB] hover:text-[#002147]"
                     >
                       Sé Punto Colaborador →
                     </a>
@@ -410,9 +378,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/empleo-unete-a-nosotros"
                       onClick={(e) => onNavigate('/empleo-unete-a-nosotros', e)}
-                      className={`transition-colors font-medium ${
-                        isLight ? 'text-slate-600 hover:text-[#002147]' : 'text-slate-300 hover:text-white'
-                      }`}
+                      className="transition-colors font-medium text-slate-600 hover:text-[#002147]"
                     >
                       Empleo (Únete a nosotros)
                     </a>
@@ -421,9 +387,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/feder"
                       onClick={(e) => onNavigate('/feder', e)}
-                      className={`transition-colors font-medium ${
-                        isLight ? 'text-slate-600 hover:text-[#0F76BB]' : 'text-slate-300 hover:text-[#60B5F6]'
-                      }`}
+                      className="transition-colors font-medium text-slate-600 hover:text-[#0F76BB]"
                     >
                       FEDER (Re-Acciona TIC)
                     </a>
@@ -432,9 +396,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <a
                       href="/programa-bono-energia-peme-2025-in417z"
                       onClick={(e) => onNavigate('/programa-bono-energia-peme-2025-in417z', e)}
-                      className={`transition-colors font-medium ${
-                        isLight ? 'text-slate-600 hover:text-[#0F76BB]' : 'text-slate-300 hover:text-[#60B5F6]'
-                      }`}
+                      className="transition-colors font-medium text-slate-600 hover:text-[#0F76BB]"
                     >
                       Bono Energía Peme 2025: IN417Z
                     </a>
@@ -445,11 +407,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Barra Legal limpia en una línea, con margen derecho para no coincidir con el botón flotante de Mimo */}
-          <div
-            className={`pt-6 md:pr-64 lg:pr-72 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs ${
-              isLight ? 'text-slate-500' : 'text-slate-400'
-            }`}
-          >
+          <div className="pt-6 md:pr-64 lg:pr-72 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-500">
             <p>
               © {new Date().getFullYear()} {CONTACT_INFO.legalName} Todos los derechos reservados.
             </p>
@@ -458,9 +416,7 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/aviso-legal"
                 onClick={(e) => onNavigate('/aviso-legal', e)}
-                className={`underline-offset-4 hover:underline whitespace-nowrap ${
-                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
-                }`}
+                className="underline-offset-4 hover:underline whitespace-nowrap hover:text-[#002147]"
               >
                 Aviso legal
               </a>
@@ -468,9 +424,7 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/privacidad"
                 onClick={(e) => onNavigate('/privacidad', e)}
-                className={`underline-offset-4 hover:underline whitespace-nowrap ${
-                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
-                }`}
+                className="underline-offset-4 hover:underline whitespace-nowrap hover:text-[#002147]"
               >
                 Política de privacidad
               </a>
@@ -478,9 +432,7 @@ export const Footer: React.FC<FooterProps> = ({
               <a
                 href="/cookies"
                 onClick={(e) => onNavigate('/cookies', e)}
-                className={`underline-offset-4 hover:underline whitespace-nowrap ${
-                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
-                }`}
+                className="underline-offset-4 hover:underline whitespace-nowrap hover:text-[#002147]"
               >
                 Política de cookies
               </a>
@@ -488,9 +440,7 @@ export const Footer: React.FC<FooterProps> = ({
               <button
                 type="button"
                 onClick={onOpenCookieSettings}
-                className={`underline-offset-4 hover:underline cursor-pointer whitespace-nowrap ${
-                  isLight ? 'hover:text-[#002147]' : 'hover:text-white'
-                }`}
+                className="underline-offset-4 hover:underline cursor-pointer whitespace-nowrap hover:text-[#002147]"
               >
                 Gestionar cookies
               </button>
@@ -502,20 +452,12 @@ export const Footer: React.FC<FooterProps> = ({
       {/* Barra Inferior Fija en Móvil: 3 Accesos Rápidos (Llamar, WhatsApp Mimo, Puntos Mimos) */}
       <nav
         aria-label="Accesos rápidos en móvil"
-        className={`md:hidden fixed bottom-0 inset-x-0 z-40 border-t px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] grid grid-cols-3 gap-1.5 ${
-          isLight
-            ? 'bg-white/95 backdrop-blur-xs border-slate-200 shadow-[0_-8px_24px_-8px_rgba(0,33,71,0.12)]'
-            : 'bg-[#002147] border-white/15 shadow-2xl'
-        }`}
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] grid grid-cols-3 gap-1.5 bg-white/95 backdrop-blur-xs border-slate-200 shadow-[0_-8px_24px_-8px_rgba(0,33,71,0.12)]"
       >
         <a
           href={CONTACT_INFO.phoneHref}
           onClick={() => trackPhoneClick(activePath, 'mobile_bar')}
-          className={`flex items-center justify-center gap-1.5 min-h-[44px] py-2.5 px-2 rounded-lg text-xs font-bold tabular-nums ${
-            isLight
-              ? 'bg-[#EDF5FD] text-[#002147] border border-[#002147]/15'
-              : 'bg-white/10 text-white'
-          }`}
+          className="flex items-center justify-center gap-1.5 min-h-[44px] py-2.5 px-2 rounded-lg text-xs font-bold tabular-nums bg-[#EDF5FD] text-[#002147] border border-[#002147]/15"
         >
           <Phone className={`w-3.5 h-3.5 shrink-0 ${headingAccent}`} aria-hidden="true" />
           <span>Llamar</span>

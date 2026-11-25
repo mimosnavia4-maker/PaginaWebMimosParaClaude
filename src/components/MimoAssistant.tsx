@@ -13,7 +13,6 @@ interface MimoAssistantProps {
   onAcceptCookies: () => void;
   onRejectCookies: () => void;
   onNavigate?: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
-  variant?: 'navy' | 'light';
 }
 
 interface ChatMessage {
@@ -131,9 +130,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
   onAcceptCookies,
   onRejectCookies,
   onNavigate,
-  variant = 'navy',
 }) => {
-  const isLight = variant === 'light';
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -267,13 +264,13 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
         <div
           role="dialog"
           aria-labelledby="cookie-preferences-title"
-          className="fixed left-4 right-4 md:left-auto md:right-4 bottom-20 md:bottom-5 z-50 max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1d36] p-5 shadow-2xl text-sm"
+          className="fixed left-4 right-4 md:left-auto md:right-4 bottom-20 md:bottom-5 z-50 max-w-md rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl text-sm"
         >
-          <p id="cookie-preferences-title" className="font-extrabold text-[#002147] dark:text-white mb-1">
+          <p id="cookie-preferences-title" className="font-extrabold text-[#002147] mb-1">
             Preferencias de cookies
           </p>
-          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-            Utilizamos almacenamiento técnico en tu navegador para recordar tu elección y el modo visual. Solo si pulsas «Aceptar» activaremos Google Analytics 4 para medir de forma agregada las visitas y el uso de los botones de contacto. Puedes consultar los detalles en nuestra{' '}
+          <p className="text-xs text-slate-600 leading-relaxed mb-4">
+            Utilizamos almacenamiento técnico en tu navegador para recordar tu elección. Solo si pulsas «Aceptar» activaremos Google Analytics 4 para medir de forma agregada las visitas y el uso de los botones de contacto. Puedes consultar los detalles en nuestra{' '}
             <a
               href="/cookies"
               onClick={(e) => {
@@ -281,7 +278,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                   onNavigate('/cookies', e);
                 }
               }}
-              className="underline font-bold text-[#002147] dark:text-[#60B5F6] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xs"
+              className="underline font-bold text-[#0F76BB] hover:text-[#002147] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xs"
             >
               Política de cookies
             </a>
@@ -291,14 +288,14 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
             <button
               type="button"
               onClick={onAcceptCookies}
-              className="w-full px-4 py-2.5 rounded-lg bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white text-xs font-bold cursor-pointer text-center transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+              className="w-full min-h-[44px] px-4 py-2.5 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold cursor-pointer text-center transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               Aceptar
             </button>
             <button
               type="button"
               onClick={onRejectCookies}
-              className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 hover:border-[#002147] dark:hover:border-white bg-white dark:bg-[#071324] text-slate-800 dark:text-slate-100 text-xs font-bold cursor-pointer text-center transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+              className="w-full min-h-[44px] px-4 py-2.5 rounded-lg border border-slate-300 hover:border-[#002147] bg-white text-[#002147] text-xs font-bold cursor-pointer text-center transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               Rechazar
             </button>
@@ -317,11 +314,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           }}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className={`fixed right-4 bottom-20 md:bottom-5 z-40 inline-flex items-center gap-2.5 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg border transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 ${
-            isLight
-              ? 'bg-white hover:bg-[#EDF5FD] text-[#002147] border-slate-200 focus-visible:ring-[#0F76BB]'
-              : 'bg-[#002147] hover:bg-[#0a3161] text-white border-white/20 focus-visible:ring-white'
-          }`}
+          className="fixed right-4 bottom-20 md:bottom-5 z-40 inline-flex items-center gap-2.5 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg border bg-white hover:bg-[#EDF5FD] text-[#002147] border-slate-200 transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
         >
           <img
             src={IMAGES.logoMimos}
@@ -329,7 +322,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
             aria-hidden="true"
             width={26}
             height={26}
-            className={`w-6.5 h-6.5 rounded-full ${isLight ? 'bg-[#EDF5FD] p-0.5' : 'bg-white/10'}`}
+            className="w-6.5 h-6.5 rounded-full bg-[#EDF5FD] p-0.5"
           />
           <span>Asistente Mimo · Precios y dudas</span>
         </button>
@@ -344,13 +337,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           aria-label="Mimo, asistente de Tintorería Mimos"
           className="fixed right-4 bottom-20 md:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(510px,calc(100vh-7rem))] rounded-2xl border border-slate-200 bg-white shadow-2xl flex flex-col overflow-hidden focus:outline-hidden"
         >
-          <div
-            className={`px-4 py-3 flex items-center justify-between ${
-              isLight
-                ? 'bg-[#F4F9FE] text-[#002147] border-b border-slate-200'
-                : 'bg-[#002147] text-white'
-            }`}
-          >
+          <div className="px-4 py-3 flex items-center justify-between bg-[#F4F9FE] text-[#002147] border-b border-slate-200">
             <div className="flex items-center gap-2.5">
               <img
                 src={IMAGES.logoMimos}
@@ -358,13 +345,13 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                 aria-hidden="true"
                 width={28}
                 height={28}
-                className={`w-7 h-7 rounded-full ${isLight ? 'bg-white border border-slate-200 p-0.5' : 'bg-white/10'}`}
+                className="w-7 h-7 rounded-full bg-white border border-slate-200 p-0.5"
               />
               <div>
                 <p className="text-sm font-extrabold leading-tight">
                   Mimo · Asistente de Tintorería Mimos
                 </p>
-                <p className={`text-[11px] ${isLight ? 'text-[#0F76BB] font-semibold' : 'text-slate-300'}`}>
+                <p className="text-[11px] text-[#0F76BB] font-semibold">
                   WhatsApp oficial: {CONTACT_INFO.whatsappNumber}
                 </p>
               </div>
@@ -373,11 +360,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Cerrar asistente"
-              className={`p-1 rounded-lg cursor-pointer focus:outline-hidden focus-visible:ring-2 ${
-                isLight
-                  ? 'hover:bg-[#EDF5FD] text-[#002147] focus-visible:ring-[#0F76BB]'
-                  : 'hover:bg-white/10 text-white focus-visible:ring-white'
-              }`}
+              className="p-1.5 min-h-[36px] min-w-[36px] inline-flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#EDF5FD] text-[#002147] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               <X className="w-5 h-5" aria-hidden="true" />
             </button>
@@ -393,8 +376,8 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                 key={m.id}
                 className={`max-w-[90%] rounded-xl px-3.5 py-2.5 whitespace-pre-wrap leading-relaxed ${
                   m.sender === 'bot'
-                    ? 'bg-slate-100 dark:bg-[#071324] text-slate-800 dark:text-slate-100 self-start'
-                    : 'bg-[#002147] text-white ml-auto'
+                    ? 'bg-[#F4F9FE] text-[#002147] border border-slate-200 self-start'
+                    : 'bg-[#0F76BB] text-white ml-auto'
                 }`}
               >
                 <p>{m.text}</p>
@@ -407,7 +390,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                         setOpen(false);
                       }
                     }}
-                    className="mt-2 inline-flex items-center gap-1.5 bg-[#002147] hover:bg-[#0a3161] dark:bg-[#0F76BB] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white mr-2"
+                    className="mt-2 inline-flex items-center gap-1.5 bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] mr-2"
                   >
                     <span>{m.routeLabel || 'Ver página del servicio →'}</span>
                   </a>
@@ -423,7 +406,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                         'mimo_assistant'
                       )
                     }
-                    className="mt-2.5 inline-flex items-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white"
+                    className="mt-2.5 inline-flex items-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1FA855]"
                   >
                     <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>{m.whatsappCtaLabel || 'Abrir WhatsApp de Mimo'}</span>
@@ -434,13 +417,13 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           </div>
 
           {/* Quick FAQ Buttons */}
-          <div className="px-3 pb-2 pt-1.5 flex flex-wrap gap-1.5 border-t border-slate-100 dark:border-slate-800">
+          <div className="px-3 pb-2 pt-1.5 flex flex-wrap gap-1.5 border-t border-slate-100">
             {MIMO_FAQ_TOPICS.map((t) => (
               <button
                 key={t.id}
                 type="button"
                 onClick={() => handleTopicClick(t)}
-                className="px-2.5 py-1 rounded-md border border-slate-300 dark:border-slate-700 hover:border-[#0F76BB] text-[11px] font-bold text-[#002147] dark:text-slate-200 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+                className="px-2.5 py-1 rounded-md border border-slate-300 hover:border-[#0F76BB] hover:bg-[#EDF5FD] text-[11px] font-bold text-[#002147] cursor-pointer transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
               >
                 {t.label}
               </button>
@@ -449,7 +432,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
 
           <form
             onSubmit={handleSend}
-            className="p-2.5 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2 bg-slate-50 dark:bg-[#071324]"
+            className="p-2.5 border-t border-slate-200 flex items-center gap-2 bg-[#F4F9FE]"
           >
             <input
               ref={inputRef}
@@ -458,12 +441,12 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
               onChange={(e) => setInput(e.target.value)}
               placeholder="Pregunta por tu prenda, horario o punto..."
               aria-label="Escribe tu consulta"
-              className="flex-1 px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0b1d36] text-xs text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+              className="flex-1 px-3 py-2 rounded-lg border border-slate-300 bg-white text-xs text-slate-900 placeholder:text-slate-500 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
             />
             <button
               type="submit"
               aria-label="Enviar pregunta"
-              className="p-2 rounded-lg bg-[#002147] dark:bg-[#0F76BB] text-white cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+              className="p-2 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white cursor-pointer transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               <Send className="w-4 h-4" aria-hidden="true" />
             </button>

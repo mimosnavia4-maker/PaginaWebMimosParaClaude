@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* Fuente corporativa Sony Sketch (usa la fuente instalada o Patrick Hand como alternativa manuscrita limpia) */
 @font-face {
   font-family: "Sony Sketch";

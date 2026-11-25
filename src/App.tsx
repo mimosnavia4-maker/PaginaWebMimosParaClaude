@@ -454,8 +454,6 @@ export function App() {
     effectivePath === '/privacidad' ||
     effectivePath === '/cookies';
 
-  const isLightChrome = true;
-
   const handleScrollToSection = useCallback((sectionId: string) => {
     const el = document.getElementById(sectionId);
     if (el) {
@@ -485,7 +483,6 @@ export function App() {
       <Header
         currentPath={currentPath}
         onNavigate={handleNavigate}
-        variant={isLightChrome ? 'light' : 'navy'}
       />
 
       {/* Contenido según ruta (Sección 6, 7 y 16 del Plan Maestro con Suspense) */}
@@ -591,7 +588,6 @@ export function App() {
         currentPath={currentPath}
         onNavigate={handleNavigate}
         onOpenCookieSettings={() => setCookieBannerOpen(true)}
-        variant={isLightChrome ? 'light' : 'navy'}
       />
 
       {/* Asistente Mimo y Preferencias de Cookies */}
@@ -600,7 +596,6 @@ export function App() {
         onAcceptCookies={handleAcceptCookies}
         onRejectCookies={handleRejectCookies}
         onNavigate={handleNavigate}
-        variant={isLightChrome ? 'light' : 'navy'}
       />
     </div>
   );
