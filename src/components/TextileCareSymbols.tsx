@@ -271,7 +271,7 @@ export const SIMBOLOS_TEXTILES: SimboloTextil[] = [
     <line x1="84" y1="16" x2="16" y2="84" stroke="#DC2626" stroke-width="5" stroke-linecap="round"/>`,
     servicioRelacionado: {
       texto: 'Limpieza y secado de edredones en Vigo',
-      href: '/edredones-mimos-vigo',
+      href: '/textiles-hogar-vigo',
     },
   },
   {

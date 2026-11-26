@@ -88,6 +88,7 @@ ErrorDocument 404 /404.html
   RewriteRule ^servicios/limpieza-a-domicilio(\.html)?/?$ /limpieza-casas-vigo [L,R=301]
   RewriteRule ^limpieza-casas-particulares-vigo/?$ /limpieza-casas-vigo [L,R=301]
   RewriteRule ^servicios/edredones-y-cortinas(\.html)?/?$ /textiles-hogar-vigo [L,R=301]
+  RewriteRule ^edredones-mimos-vigo/?$ /textiles-hogar-vigo [L,R=301]
   RewriteRule ^servicios/tenido-de-prendas(\.html)?/?$ /tintoreria-vigo [L,R=301]
   RewriteRule ^tarifa-duende(-coladas)?(\.html)?/?$ /colada-familiar-vigo [L,R=301]
   RewriteRule ^blog\.html$ /blog [L,R=301]

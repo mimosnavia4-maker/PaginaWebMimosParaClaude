@@ -57,6 +57,7 @@ export const LEGACY_REDIRECT_MAP: Record<string, string> = {
   '/servicios/textiles-del-hogar': '/textiles-hogar-vigo',
   '/servicios/edredones-y-cortinas.html': '/textiles-hogar-vigo',
   '/servicios/edredones-y-cortinas': '/textiles-hogar-vigo',
+  '/edredones-mimos-vigo': '/textiles-hogar-vigo',
   '/servicios/limpieza-de-sofas.html': '/limpieza-sofas-vigo',
   '/servicios/limpieza-de-sofas': '/limpieza-sofas-vigo',
   '/servicios/limpieza-a-domicilio.html': '/limpieza-casas-vigo',
