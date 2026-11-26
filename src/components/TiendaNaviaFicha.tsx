@@ -19,7 +19,6 @@ import {
   CreditCard,
   Bus,
   ChevronDown,
-  ChevronUp,
   Shirt,
   Maximize2,
   Check,
@@ -56,12 +55,13 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
   const [activeTabPhoto, setActiveTabPhoto] = useState<'fachada' | 'mostrador' | 'planta'>('fachada');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
-  const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada: {
       url: '/images/navia/fachada-mimos-navia-vigo.webp',
+      width: 930,
+      height: 580,
       titulo: 'Fachada Principal y Acceso en Teixugueiras',
       subtitulo: 'Rótulo azul distintivo Tintorería Lavandería Mimos Navia sobre fachada cerámica roja en Rúa das Teixugueiras 11, bajo 9.',
       tag: '1 Exterior · Fachada & Rótulo',
@@ -69,6 +69,8 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
     },
     mostrador: {
       url: '/images/navia/mostrador-recepcion-mimos-navia-vigo.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Interior: Mostrador de Atención y Recepción Personalizada',
       subtitulo: 'Zona de atención donde revisamos cada prenda, tomamos notas de desmanchado y gestionamos la entrega en percha protegida.',
       tag: '2 Interior · Mostrador de Atención',
@@ -76,6 +78,8 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
     },
     planta: {
       url: '/images/navia/planta-planchado-mimos-navia-vigo.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Interior: Centro Operativo de Planchado y Tratamiento',
       subtitulo: 'Puestos profesionales de planchado por vapor, aspiración técnica y acabado artesanal para trajes, camisas y vestidos.',
       tag: '3 Interior · Centro de Planchado',
@@ -95,10 +99,6 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
       setCopiedShare(true);
       setTimeout(() => setCopiedShare(false), 2500);
     }
-  };
-
-  const toggleFaq = (index: number) => {
-    setFaqAbierta(faqAbierta === index ? null : index);
   };
 
   const preguntasFrecuentes = [
@@ -172,13 +172,15 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             <img
               src={photos[activeTabPhoto].url}
               alt={photos[activeTabPhoto].titulo}
+              width={photos[activeTabPhoto].width}
+              height={photos[activeTabPhoto].height}
               referrerPolicy="no-referrer"
               onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
+              className="max-h-[75dvh] w-full object-contain"
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
-              <Building2 className="w-10 h-10 text-[#0F76BB] mb-3" />
+              <Building2 className="w-10 h-10 text-[#0C65A1] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
               <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
@@ -189,11 +191,11 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#0F76BB] text-white">
               {photos[activeTabPhoto].tag}
             </span>
-            <span className="text-xs text-slate-500">Sede Central Mimos · Navia, Vigo</span>
+            <span className="text-xs text-slate-600">Sede Central Mimos · Navia, Vigo</span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</p>
           <p className="text-xs sm:text-sm text-slate-600 mt-1">{photos[activeTabPhoto].subtitulo}</p>
-          <p className="text-xs text-slate-500 mt-2 border-t border-slate-200 pt-2">
+          <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
           </p>
         </div>
@@ -210,13 +212,15 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 <img
                   src={photos[activeTabPhoto].url}
                   alt={photos[activeTabPhoto].titulo}
+                  width={photos[activeTabPhoto].width}
+                  height={photos[activeTabPhoto].height}
                   referrerPolicy="no-referrer"
                   onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
-                  <Building2 className="w-10 h-10 text-[#0F76BB] mb-2" />
+                  <Building2 className="w-10 h-10 text-[#0C65A1] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
                   <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
@@ -227,17 +231,17 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setLightboxOpen(true)}
-                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[40px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-sm transition-colors cursor-pointer border border-slate-200"
+                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-sm transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-black bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
-                  <Building2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Building2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                   Sede Central Mimos · Navia
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
@@ -262,7 +266,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -273,7 +277,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('mostrador')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'mostrador'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -284,7 +288,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('planta')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'planta'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -299,13 +303,13 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0C65A1] uppercase tracking-wider">
                   Sede Central & Domicilio Social
                 </span>
                 <span
                   className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-extrabold ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-50 text-[#178A47] border border-emerald-200'
+                      ? 'bg-emerald-50 text-[#147A3E] border border-emerald-200'
                       : 'bg-[#F4F9FE] text-[#002147] border border-slate-200'
                   }`}
                 >
@@ -331,7 +335,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-slate-700 flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <span>
                     <strong>C/ Teixugueiras, 11, bajo 9</strong>, 36212 Vigo (Pontevedra).
                   </span>
@@ -339,13 +343,13 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
 
                 <div className="p-3 rounded-2xl bg-[#F4F9FE] border border-slate-200 space-y-2">
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Car className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+                    <Car className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
                     <span>
                       <strong>Aparcamiento cómodo:</strong> Amplias plazas de estacionamiento en batería a lo largo del bulevar de Teixugueiras frente a los soportales para carga rápida de prendas y alfombras.
                     </span>
                   </div>
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Store className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                    <Store className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                     <span>
                       <strong>Entorno:</strong> En el bulevar principal de Navia, con acceso a cota cero sin barreras arquitectónicas y rodeado de servicios de proximidad.
                     </span>
@@ -361,7 +365,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-xs transition-all"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-sm py-3 px-4 rounded-xl shadow-xs transition-all"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>WhatsApp de Navia</span>
@@ -371,7 +375,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                   href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-extrabold text-sm py-3 px-4 rounded-xl transition-all group"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" />
                   <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
@@ -383,7 +387,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#F4F9FE] hover:bg-[#EDF5FD] border border-slate-200 text-[#002147] font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
                 >
-                  <Navigation className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Navigation className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Cómo llegar (Ruta GPS en Google Maps)</span>
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
@@ -394,7 +398,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-[#002147] hover:bg-[#F4F9FE] transition-colors cursor-pointer"
                   title="Copiar enlace directo de la tienda de Navia"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Share2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span className="hidden sm:inline">{copiedShare ? '¡Copiado!' : 'Compartir'}</span>
                 </button>
               </div>
@@ -407,7 +411,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
       <section aria-labelledby="seccion-ventajas-navia" className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <h2 id="seccion-ventajas-navia" className="sr-only">Ventajas y características de Mimos Navia</h2>
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Building2 className="w-5 h-5" />
           </div>
           <div>
@@ -419,7 +423,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#1FA855] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#147A3E] flex items-center justify-center mb-3">
             <Car className="w-5 h-5" />
           </div>
           <div>
@@ -431,7 +435,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
@@ -462,7 +466,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           <div>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -496,23 +500,23 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center text-slate-500">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center text-slate-600">
                 <div>
                   <span className="font-medium">Domingos y Festivos</span>
-                  <p className="text-[11px] text-slate-400">Descanso del personal</p>
+                  <p className="text-[11px] text-slate-600">Descanso del personal</p>
                 </div>
-                <span className="font-bold text-slate-400">Cerrado</span>
+                <span className="font-bold text-slate-600">Cerrado</span>
               </div>
             </div>
           </div>
 
           <div className="mt-6 pt-4 border-t border-slate-200 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-600">
-              <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
+              <CreditCard className="w-4 h-4 text-[#0C65A1] shrink-0" />
               <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay / Google Pay) y Efectivo (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-600">
-              <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0" />
               <span><strong>Resguardo oficial:</strong> Entrega con ticket de depósito con desglose e IVA.</span>
             </div>
           </div>
@@ -535,8 +539,8 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                   </p>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-black bg-white border border-[#0F76BB]/25 text-[#0F76BB]">
-                <Sparkles className="w-3.5 h-3.5 text-[#0F76BB]" />
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-black bg-white border border-[#0F76BB]/25 text-[#0C65A1]">
+                <Sparkles className="w-3.5 h-3.5 text-[#0C65A1]" />
                 Confección Propia
               </span>
             </div>
@@ -558,7 +562,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                   key={idx}
                   className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start gap-2.5"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-extrabold text-[#002147] leading-tight">
                       {elem.tit}
@@ -580,7 +584,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               <a
                 href="/tienda-mimos-gregorio-espino-vigo"
                 onClick={(e) => onNavigate('/tienda-mimos-gregorio-espino-vigo', e)}
-                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0F76BB] hover:underline"
+                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline"
               >
                 <span>Visitar Mimos Gregorio Espino (Taller In Situ)</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -594,7 +598,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
       <section aria-labelledby="seccion-servicios-navia" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0C65A1]">
               Catálogo de Sede Central
             </span>
             <span className="text-xs font-bold text-slate-500">100% Confirmado en Navia</span>
@@ -625,11 +629,11 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desmanchado manual prenda a prenda</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Planchado por vapor y entrega en percha protegida</span>
               </li>
             </ul>
@@ -652,11 +656,11 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Tratamiento higiénico antiácaros y bactericida</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Opción de envasado al vacío para guardar en casa</span>
               </li>
             </ul>
@@ -666,7 +670,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Car className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -679,11 +683,11 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Aspirado mecánico profundo y desinfección</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Aparcamiento en Teixugueiras para descargar fácilmente</span>
               </li>
             </ul>
@@ -706,11 +710,11 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Camisas en percha con funda o dobladas para viaje</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Detergentes de alta tolerancia dermatológica</span>
               </li>
             </ul>
@@ -720,7 +724,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-amber-700 text-white flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -733,11 +737,11 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Tratamientos artesanos respetuosos con el cuero</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Tratamiento hidrófugo antimanchas disponible</span>
               </li>
             </ul>
@@ -747,7 +751,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Truck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -760,11 +764,11 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Franjas acordadas previamente por WhatsApp</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Ideal para alfombras grandes o lotes familiares</span>
               </li>
             </ul>
@@ -777,8 +781,8 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-[#0F76BB]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <Calendar className="w-4 h-4 text-[#0C65A1]" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 Planificación Transparente
               </span>
             </div>
@@ -808,7 +812,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 </td>
                 <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">24 a 48 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#178A47] border border-emerald-200">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#147A3E] border border-emerald-200">
                     Aviso automático
                   </span>
                 </td>
@@ -822,7 +826,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 </td>
                 <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">48 a 72 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0F76BB] border border-[#0F76BB]/20">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0C65A1] border border-[#0F76BB]/20">
                     Vía WhatsApp / SMS
                   </span>
                 </td>
@@ -847,7 +851,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">7 a 10 días laborables</td>
                 <td className="py-3 px-3 text-xs text-slate-600">Vía WhatsApp</td>
                 <td className="py-3 px-3 text-xs text-slate-600">
-                  Lavado en plano y desinfección profunda.
+                  Recepción en Navia; lavado en plano y secado mediante taller especialista colaborador.
                 </td>
               </tr>
               <tr>
@@ -857,7 +861,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">2 a 4 días laborables</td>
                 <td className="py-3 px-3 text-xs text-slate-600">Vía WhatsApp</td>
                 <td className="py-3 px-3 text-xs text-slate-600">
-                  Confección en taller propio y entrega en Navia.
+                  Recepción en Navia; confección en talleres propios de Gregorio Espino / Venezuela y entrega en Navia.
                 </td>
               </tr>
               <tr>
@@ -879,8 +883,8 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
       <section aria-labelledby="seccion-llegar-navia" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Navigation className="w-4 h-4 text-[#0F76BB]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+            <Navigation className="w-4 h-4 text-[#0C65A1]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
               Accesibilidad y Transporte
             </span>
           </div>
@@ -896,7 +900,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
           {/* Tarjeta Coche y Aparcamiento */}
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                 <Car className="w-4 h-4" />
               </div>
               <h3 className="text-sm font-extrabold text-[#002147]">En Coche Particular</h3>
@@ -933,7 +937,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
                 href="https://www.vitrasa.es"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-[#0F76BB] underline hover:text-[#002147]"
+                className="font-semibold text-[#0C65A1] underline hover:text-[#002147]"
               >
                 vitrasa.es
               </a>
@@ -982,8 +986,8 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
       {/* 7. PREGUNTAS FRECUENTES (FAQ) DE LA TIENDA DE NAVIA */}
       <section aria-labelledby="seccion-faq-navia" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
         <div className="flex items-center gap-2 mb-2">
-          <HelpCircle className="w-4 h-4 text-[#0F76BB]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+          <HelpCircle className="w-4 h-4 text-[#0C65A1]" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
             Respuestas Claras
           </span>
         </div>
@@ -995,34 +999,20 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
         </p>
 
         <div className="divide-y divide-slate-200 mt-4">
-          {preguntasFrecuentes.map((item, index) => {
-            const abierta = faqAbierta === index;
-            return (
-              <div key={index} className="py-3 sm:py-4">
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(index)}
-                  className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer"
-                  aria-expanded={abierta}
-                >
-                  <span className="flex items-start gap-2">
-                    <span className="text-[#0F76BB] font-black">{index + 1}.</span>
-                    <span>{item.q}</span>
-                  </span>
-                  {abierta ? (
-                    <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
-                  )}
-                </button>
-                {abierta && (
-                  <div className="mt-2 pl-6 text-xs sm:text-sm text-slate-600 leading-relaxed animate-fadeIn">
-                    <p>{item.a}</p>
-                  </div>
-                )}
+          {preguntasFrecuentes.map((item, index) => (
+            <details key={index} className="group py-3 sm:py-4">
+              <summary className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer list-none">
+                <span className="flex items-start gap-2">
+                  <span className="text-[#0C65A1] font-black">{index + 1}.</span>
+                  <span>{item.q}</span>
+                </span>
+                <ChevronDown className="w-4 h-4 text-slate-500 group-open:rotate-180 group-open:text-[#0C65A1] transition-transform shrink-0" />
+              </summary>
+              <div className="mt-2 pl-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p>{item.a}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </section>
 
@@ -1030,7 +1020,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
       <section aria-labelledby="seccion-confianza-navia" className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] border border-slate-200 text-[#002147] shadow-sm relative overflow-hidden">
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0F76BB] border border-[#0F76BB]/25">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0C65A1] border border-[#0F76BB]/25">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               Sede Central de Tintorería Mimos en Vigo
             </span>
@@ -1046,7 +1036,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Consultar ahora con Navia</span>
@@ -1055,7 +1045,7 @@ export const TiendaNaviaFicha: React.FC<TiendaNaviaFichaProps> = ({
               href={`tel:+34${punto.telefono}`}
               className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
             >
-              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
+              <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors" />
               <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>

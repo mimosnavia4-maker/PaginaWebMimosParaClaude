@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   XCircle,
 } from 'lucide-react';
-import heroCasasImg from '../assets/images/limpieza_casas_vigo_1795601216889.jpg';
+import heroCasasImg from '../assets/images/limpieza_casas_vigo_1795601216889.webp';
 import { LIMPIEZA_CASAS_DATA } from '../data/servicePagesData';
 import { CONTACT_INFO, TIENDAS_PROPIAS, buildMimoWhatsAppUrl } from '../data/mimosData';
 import { trackFormPrepared, trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
@@ -133,34 +133,34 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-[#0F76BB] bg-[#EDF5FD] text-[#002147] whitespace-nowrap shrink-0">
+            <span className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-[#0F76BB] bg-[#EDF5FD] text-[#002147] whitespace-nowrap shrink-0">
               Casas y pisos particulares
             </span>
             <a
               href="/limpieza-sofas-vigo"
               onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] hover:text-[#002147] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] hover:text-[#002147] transition-colors whitespace-nowrap shrink-0"
             >
               Sofás y colchones a domicilio
             </a>
             <a
               href="/textiles-hogar-vigo"
               onClick={(e) => onNavigate('/textiles-hogar-vigo', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] hover:text-[#002147] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] hover:text-[#002147] transition-colors whitespace-nowrap shrink-0"
             >
               Cortinas y edredones
             </a>
             <a
               href="/colada-familiar-vigo"
               onClick={(e) => onNavigate('/colada-familiar-vigo', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] hover:text-[#002147] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] hover:text-[#002147] transition-colors whitespace-nowrap shrink-0"
             >
               Colada y planchado
             </a>
             <a
               href="/limpieza-profesional-vigo"
               onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-[#0F76BB] hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-[#0C65A1] hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
             >
               Oficinas y comunidades →
             </a>
@@ -212,7 +212,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="flex items-center gap-2.5 text-sm font-extrabold text-[#002147]">
-              <ShieldCheck className="w-5 h-5 text-[#178A47] shrink-0" aria-hidden="true" />
+              <ShieldCheck className="w-5 h-5 text-[#147A3E] shrink-0" aria-hidden="true" />
               <span>Desde 2011 en Vigo · {TIENDAS_PROPIAS.length} tiendas físicas propias:</span>
             </div>
 
@@ -237,9 +237,9 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                       e
                     )
                   }
-                  className="inline-flex items-center gap-1.5 min-h-[36px] hover:text-[#0F76BB] underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] hover:text-[#0F76BB] underline-offset-4 hover:underline"
                 >
-                  <MapPin className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <MapPin className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
                   <span>
                     <strong className="text-[#002147]">{t.nombre_mostrado.replace('Tintorería ', '')}:</strong>{' '}
                     {t.direccion}
@@ -249,7 +249,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
               <a
                 href={CONTACT_INFO.phoneHref}
                 onClick={() => trackPhoneClick('/limpieza-casas-vigo', 'home_cleaning_trust_strip')}
-                className="inline-flex items-center gap-1.5 min-h-[36px] font-bold text-[#0F76BB] hover:underline"
+                className="inline-flex items-center gap-1.5 min-h-[44px] font-bold text-[#0C65A1] hover:underline"
               >
                 <Phone className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 <span>{CONTACT_INFO.phoneDisplay}</span>
@@ -263,7 +263,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
       <section className="py-12 sm:py-16 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
               Alcance interior por estancias
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -280,7 +280,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                 key={estancia.index}
                 className="rounded-xl border border-slate-200 bg-white p-6 space-y-2.5"
               >
-                <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
+                <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums">
                   {estancia.index} · ESTANCIA
                 </p>
                 <h3 className="text-base sm:text-lg font-extrabold text-[#002147] leading-snug">
@@ -292,7 +292,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
           </div>
 
           <div className="rounded-xl border border-slate-200 border-l-4 border-l-[#0F76BB] bg-white p-5 sm:p-6 flex items-start gap-3.5">
-            <AlertCircle className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+            <AlertCircle className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
             <div className="space-y-1">
               <h3 className="text-sm sm:text-base font-extrabold text-[#002147]">
                 Condiciones transparentes del servicio doméstico
@@ -310,7 +310,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div>
             <div className="max-w-3xl mb-8 space-y-2">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 Mantenimiento periódico o puesta a punto
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -328,7 +328,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                   className="rounded-xl border border-slate-200 bg-[#F7F6F2]/60 p-6 sm:p-8 flex flex-col justify-between space-y-5"
                 >
                   <div className="space-y-3">
-                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                       {mod.etiqueta}
                     </p>
                     <h3 className="text-xl font-extrabold text-[#002147]">{mod.titulo}</h3>
@@ -340,7 +340,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                           className="flex items-start gap-2.5 text-sm text-slate-700"
                         >
                           <CheckCircle2
-                            className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                            className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
                           <span>{pt}</span>
@@ -359,7 +359,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                       onClick={() =>
                         trackWhatsAppClick('/limpieza-casas-vigo', `modality_${mod.id}`)
                       }
-                      className="inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm transition-colors"
+                      className="inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm transition-colors"
                     >
                       <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Valorar esta modalidad</span>
@@ -373,7 +373,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
           {/* Diferencial único de Mimos en el hogar */}
           <div className="border-t border-slate-200 pt-10 space-y-6">
             <div className="max-w-3xl space-y-2">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 Todo en un mismo equipo
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -401,7 +401,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                   <a
                     href={srv.href}
                     onClick={(e) => onNavigate(srv.href, e)}
-                    className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:text-[#002147] hover:underline"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:text-[#002147] hover:underline"
                   >
                     <span>{srv.cta}</span>
                     <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -417,7 +417,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
       <section className="py-12 sm:py-16 bg-[#EDF5FD] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
               Seguridad jurídica frente a la economía informal
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -455,7 +455,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                     <td className="py-4 px-4 sm:px-6 text-slate-800 leading-relaxed">
                       <span className="inline-flex items-start gap-2">
                         <ShieldCheck
-                          className="w-4 h-4 text-[#178A47] shrink-0 mt-0.5"
+                          className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5"
                           aria-hidden="true"
                         />
                         <span>{fila.mimos}</span>
@@ -476,7 +476,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
               Transparencia operativa antes de pedir presupuesto
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -493,7 +493,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                 {LIMPIEZA_CASAS_DATA.checklistIncluye.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <CheckCircle2
-                      className="w-4 h-4 text-[#178A47] shrink-0 mt-0.5"
+                      className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5"
                       aria-hidden="true"
                     />
                     <span>{item}</span>
@@ -530,7 +530,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 lg:p-10 space-y-6 shadow-xs">
             <div className="space-y-2">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 Sin formularios largos · Cualificación en 4 toques
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -541,7 +541,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                 <a
                   href={CONTACT_INFO.phoneHref}
                   onClick={() => trackPhoneClick('/limpieza-casas-vigo', 'home_cleaning_form_tel')}
-                  className="font-bold text-[#0F76BB] hover:underline"
+                  className="font-bold text-[#0C65A1] hover:underline"
                 >
                   {CONTACT_INFO.phoneDisplay}
                 </a>
@@ -683,7 +683,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                     setPreparedReady(false);
                   }}
                   placeholder="Ej.: 2 baños, preferimos usar nuestros productos en casa y consultar custodia de llaves..."
-                  className="w-full px-3.5 py-2.5 rounded-sm border border-slate-300 bg-[#F7F6F2]/40 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
+                  className="w-full px-3.5 py-2.5 rounded-sm border border-slate-300 bg-[#F7F6F2]/40 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
                 />
               </div>
 
@@ -695,7 +695,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                     setAceptoPrivacidad(e.target.checked);
                     setErrorMsg('');
                   }}
-                  className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                  className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB]"
                 />
                 <span>
                   Acepto la{' '}
@@ -738,7 +738,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                           service_id: 'limpieza-casas-vigo',
                         })
                       }
-                      className="flex-1 inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors"
                     >
                       <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Solicitar valoración por WhatsApp</span>
@@ -750,7 +750,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                     >
                       {copied ? (
                         <>
-                          <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                          <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                           <span>Texto copiado</span>
                         </>
                       ) : (
@@ -772,7 +772,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
       <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
               Desplazamiento en Vigo y área de influencia
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -805,7 +805,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                 <a
                   href="/puntos-mimos"
                   onClick={(e) => onNavigate('/puntos-mimos', e)}
-                  className="font-bold text-[#0F76BB] hover:underline"
+                  className="font-bold text-[#0C65A1] hover:underline"
                 >
                   puntos colaboradores de recepción textil
                 </a>
@@ -821,7 +821,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="space-y-6">
             <div className="space-y-2">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 Dudas habituales antes de contratar
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -836,7 +836,7 @@ export const HomeCleaningPage: React.FC<HomeCleaningPageProps> = ({ onNavigate }
                     <span>{faq.pregunta}</span>
                     <span
                       aria-hidden="true"
-                      className="text-lg font-mono text-[#0F76BB] shrink-0 group-open:rotate-45 transition-transform"
+                      className="text-lg font-mono text-[#0C65A1] shrink-0 group-open:rotate-45 transition-transform"
                     >
                       +
                     </span>

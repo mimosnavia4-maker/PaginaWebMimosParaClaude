@@ -40,7 +40,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = f
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {!isPage ? (
             <div className="max-w-3xl mb-12">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
                 Guías de cuidado textil · Blog de Mimos
               </p>
               <h2
@@ -100,7 +100,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = f
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
-                        <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
+                        <Sparkles className="w-8 h-8 text-[#0C65A1] mb-2" aria-hidden="true" />
                         <span className="text-base font-bold leading-snug">{articulo.titulo}</span>
                       </div>
                     )}
@@ -108,7 +108,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = f
 
                   <div className="p-6 sm:p-7">
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 mb-3">
-                      <span className="font-bold text-[#0F76BB]">
+                      <span className="font-bold text-[#0C65A1]">
                         {articulo.categoria}
                       </span>
                       <span aria-hidden="true">·</span>
@@ -147,7 +147,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = f
                     href={articulo.whatsappCtaUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
+                    className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs px-3.5 py-2.5 rounded-xl transition-colors whitespace-nowrap shrink-0"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Consultar</span>
@@ -164,7 +164,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = f
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-gradient-to-br from-[#F4F9FE] via-white to-[#EDF5FD] flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xs">
             <div className="space-y-1.5 max-w-2xl">
-              <p className="text-xs font-bold text-[#0F76BB]">
+              <p className="text-xs font-bold text-[#0C65A1]">
                 Asesoramiento textil sin compromiso
               </p>
               <h2 className="text-lg sm:text-xl font-extrabold text-[#002147]">
@@ -178,7 +178,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onNavigate, isPage = f
               href={CONTACT_INFO.whatsappBlogHelpHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-xs"
+              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-xs"
             >
               <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Consultar prenda con Mimo</span>

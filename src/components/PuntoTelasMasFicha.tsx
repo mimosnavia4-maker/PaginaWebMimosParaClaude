@@ -19,7 +19,6 @@ import {
   CreditCard,
   Bus,
   ChevronDown,
-  ChevronUp,
   Shirt,
   Maximize2,
   Check,
@@ -36,6 +35,7 @@ import {
   buildGoogleMapsUrl,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
+import { ZONAS_SEO_LOCAL } from '../data/zonasSeoData';
 import { getStoreStatusById } from '../utils/storeStatus';
 
 interface PuntoTelasMasFichaProps {
@@ -56,12 +56,13 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
   const [activeTabPhoto, setActiveTabPhoto] = useState<'fachada' | 'interior' | 'exterior'>('fachada');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
-  const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada: {
       url: '/images/telas-mas/fachada-telas-mas-o-porrino.webp',
+      width: 1024,
+      height: 572,
       titulo: 'Fachada Principal y Rótulo Oficial',
       subtitulo: 'Rótulo comercial Telas y Más en Rúa Manuel Rodríguez, 30 (O Porriño).',
       tag: 'Fachada Principal',
@@ -69,6 +70,8 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
     },
     interior: {
       url: '/images/telas-mas/interior-taller-telas-mas-o-porrino.webp',
+      width: 1024,
+      height: 572,
       titulo: 'Interior: Mostrador de Atención y Telas',
       subtitulo: 'Mostrador de recepción de prendas, amplia variedad de telas y taller propio de costura.',
       tag: 'Taller In Situ & Mostrador',
@@ -76,6 +79,8 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
     },
     exterior: {
       url: '/images/telas-mas/escaparate-calle-telas-mas-o-porrino.webp',
+      width: 1024,
+      height: 572,
       titulo: 'Perspectiva Exterior y Entrada Peatonal',
       subtitulo: 'Escaparate y acceso en la zona comercial céntrica de O Porriño.',
       tag: 'Acceso y Calle Comercial',
@@ -97,40 +102,8 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
     }
   };
 
-  const toggleFaq = (index: number) => {
-    setFaqAbierta(faqAbierta === index ? null : index);
-  };
-
-  const preguntasFrecuentes = [
-    {
-      q: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Telas y Más?',
-      a: 'Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada) a Telas y Más en C/ Manuel Rodríguez, 30, O Porriño. Allí registran tu encargo con tus datos. El equipo logístico de Mimos recoge las prendas y textiles del hogar hacia nuestras instalaciones centrales en Vigo (y coordina las alfombras con taller especialista colaborador) y las devuelve listas y precintadas a Telas y Más para que las recojas cómodamente.',
-    },
-    {
-      q: '¿Qué tipo de arreglos de costura se pueden solicitar en Telas y Más?',
-      a: 'Telas y Más cuenta con taller propio de costura y arreglos in situ: subida y bajada de bajos en pantalones, faldas y abrigos, cambio y ajuste de cremalleras, ensanchar o estrechar prendas, ajustes de cintura, zurcidos y composturas en general. Además son especialistas en venta y corte de telas.',
-    },
-    {
-      q: '¿Se pueden entregar edredones de plumas y alfombras grandes en este punto?',
-      a: 'Sí. Telas y Más recibe textiles de gran volumen como edredones sintéticos y nórdicos de plumón natural, mantas, colchas y alfombras (consultando dimensiones). Mimos realiza el lavado y secado de edredones en su central de Vigo y gestiona las alfombras mediante taller especialista colaborador.',
-    },
-    {
-      q: '¿Cuáles son los días y plazos habituales de entrega y recogida?',
-      a: 'La recepción en Telas y Más está abierta de lunes a viernes (10:00-13:30 y 17:00-20:30) y sábados por la mañana (10:00-13:30). Los plazos varían según el tratamiento: las prendas habituales de tintorería suelen estar listas en pocos días, mientras que alfombras o prendas delicadas pueden requerir unos días adicionales. Puedes consultar el estado en cualquier momento por WhatsApp.',
-    },
-    {
-      q: '¿Los precios de tintorería son los mismos que en las tiendas de Vigo?',
-      a: 'Sí, las tarifas de los servicios de tintorería, lavandería y limpieza de textiles de Tintorería Mimos se mantienen en toda la red de puntos colaboradores, beneficiándote de los mismos precios de Vigo sin costes de desplazamiento.',
-    },
-    {
-      q: '¿Puedo consultar dudas o presupuestos antes de llevar las prendas?',
-      a: 'Por supuesto. Puedes escribirnos directamente por WhatsApp al 655 536 844 o llamar a la tienda Telas y Más al 605 02 76 52. Con una foto de la prenda o del arreglo te orientamos al instante.',
-    },
-    {
-      q: 'Si después no puedo desplazarme a recogerlas, ¿podéis llevármelas a casa?',
-      a: 'Sí. Si por cualquier motivo prefieres que te entreguemos tus prendas limpias en tu domicilio o lugar de trabajo en O Porriño o comarca, solo tienes que indicárnoslo por WhatsApp y coordinamos la entrega con nuestra furgoneta propia de reparto.',
-    },
-  ];
+  const preguntasFrecuentes =
+    ZONAS_SEO_LOCAL.find((z) => z.url === '/zonas/o-porrino')?.preguntasFrecuentes ?? [];
 
   return (
     <div className="space-y-10 animate-fadeIn text-[#002147]">
@@ -172,13 +145,15 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             <img
               src={photos[activeTabPhoto].url}
               alt={photos[activeTabPhoto].titulo}
+              width={photos[activeTabPhoto].width}
+              height={photos[activeTabPhoto].height}
               referrerPolicy="no-referrer"
               onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
+              className="max-h-[75dvh] w-full object-contain"
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
-              <Handshake className="w-10 h-10 text-[#0F76BB] mb-3" />
+              <Handshake className="w-10 h-10 text-[#0C65A1] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
               <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
@@ -186,12 +161,12 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
         </div>
         <div className="p-4 sm:p-6 bg-white border-t border-slate-200 text-[#002147]">
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0C65A1]">
               {photos[activeTabPhoto].tag}
             </span>
-            <span className="text-xs text-slate-500">Punto Colaborador Oficial Mimos · O Porriño</span>
+            <span className="text-xs text-slate-600">Punto Colaborador Oficial Mimos · O Porriño</span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</p>
           <p className="text-xs sm:text-sm text-slate-700 mt-1">{photos[activeTabPhoto].subtitulo}</p>
           <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
@@ -210,13 +185,15 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                 <img
                   src={photos[activeTabPhoto].url}
                   alt={photos[activeTabPhoto].titulo}
+                  width={photos[activeTabPhoto].width}
+                  height={photos[activeTabPhoto].height}
                   referrerPolicy="no-referrer"
                   onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
-                  <Handshake className="w-10 h-10 text-[#0F76BB] mb-2" />
+                  <Handshake className="w-10 h-10 text-[#0C65A1] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
                   <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
@@ -230,14 +207,14 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                 className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-md transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-extrabold bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
-                  <Handshake className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Handshake className="w-3.5 h-3.5 text-[#0C65A1]" />
                   Punto Colaborador Mimos · Taller Propio del Colaborador
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
@@ -262,7 +239,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -273,7 +250,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('interior')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'interior'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -284,7 +261,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('exterior')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'exterior'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -299,13 +276,13 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0C65A1] uppercase tracking-wider">
                   Punto Colaborador Oficial · O Porriño
                 </span>
                 <span
                   className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-extrabold ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-50 text-[#178A47] border border-emerald-200'
+                      ? 'bg-emerald-50 text-[#147A3E] border border-emerald-200'
                       : 'bg-slate-100 text-slate-700 border border-slate-200'
                   }`}
                 >
@@ -331,7 +308,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-[#002147] flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <span>
                     <strong>Rúa Manuel Rodríguez, 30, bajo</strong>, 36400 O Porriño (Pontevedra).
                   </span>
@@ -339,13 +316,13 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
 
                 <div className="p-3 rounded-2xl bg-[#F4F9FE] border border-slate-200 space-y-2">
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Car className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+                    <Car className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
                     <span>
                       <strong>Aparcamiento & Acceso:</strong> En pleno centro de O Porriño (zona peatonal y comercial). Aparcamientos públicos cercanos y parada breve en calles adyacentes para carga y descarga.
                     </span>
                   </div>
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Store className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                    <Store className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                     <span>
                       <strong>Entorno:</strong> Eje comercial céntrico de O Porriño, a pocos minutos a pie de la Casa Consistorial y de la Plaza de Antonio Palacios.
                     </span>
@@ -361,7 +338,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>WhatsApp de Tienda</span>
@@ -371,7 +348,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                   href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-extrabold text-sm py-3 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors shrink-0" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors shrink-0" />
                   <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
@@ -383,7 +360,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#F4F9FE] hover:bg-[#EDF5FD] text-[#002147] border border-slate-300 font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
                 >
-                  <Navigation className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Navigation className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Cómo llegar (Ruta GPS en Google Maps)</span>
                   <ExternalLink className="w-3 h-3 opacity-70" />
                 </a>
@@ -394,7 +371,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
                   title="Copiar enlace directo de la tienda"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Share2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span className="hidden sm:inline">{copiedShare ? '¡Copiado!' : 'Compartir'}</span>
                 </button>
               </div>
@@ -407,7 +384,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
       <section aria-labelledby="seccion-ventajas" className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <h2 id="seccion-ventajas" className="sr-only">Ventajas y características de Telas y Más O Porriño</h2>
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Scissors className="w-5 h-5" />
           </div>
           <div>
@@ -419,7 +396,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#1FA855] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#147A3E] flex items-center justify-center mb-3">
             <Handshake className="w-5 h-5" />
           </div>
           <div>
@@ -431,7 +408,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
@@ -443,7 +420,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
@@ -462,7 +439,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           <div>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -508,11 +485,11 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
 
           <div className="mt-6 pt-4 border-t border-slate-200 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-700">
-              <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
+              <CreditCard className="w-4 h-4 text-[#0C65A1] shrink-0" />
               <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay) y Efectivo (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-700">
-              <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0" />
               <span><strong>Resguardo oficial:</strong> Entrega con ticket de depósito garantizado.</span>
             </div>
           </div>
@@ -557,7 +534,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                   key={idx}
                   className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start gap-2.5"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-extrabold text-[#002147] leading-tight">
                       {elem.tit}
@@ -579,7 +556,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               <a
                 href="/arreglos-de-ropa-vigo"
                 onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                className="min-h-[44px] inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] hover:underline"
+                className="min-h-[44px] inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1] hover:underline"
               >
                 <span>Ver sección completa de Arreglos de Ropa</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -593,7 +570,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
       <section aria-labelledby="seccion-servicios" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0C65A1]">
               Catálogo de Mostrador
             </span>
             <span className="text-xs font-bold text-slate-600">100% Confirmado en O Porriño</span>
@@ -624,11 +601,11 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desmanchado artesanal previo a mano en central</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Planchado con prensa de vapor y entrega en percha</span>
               </li>
             </ul>
@@ -651,11 +628,11 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Tratamiento bactericida y antiácaros higiénico</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Opción de envasado al vacío para guardar en armario</span>
               </li>
             </ul>
@@ -665,7 +642,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Car className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -678,11 +655,11 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desempolvado mecánico profundo y lavado plano</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Dejas tu alfombra en O Porriño sin desplazarte a Vigo</span>
               </li>
             </ul>
@@ -705,11 +682,11 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Camisas en percha con funda o dobladas para viaje</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Coladas higienizadas con detergentes dermatológicos</span>
               </li>
             </ul>
@@ -719,7 +696,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-amber-700 text-white flex items-center justify-center">
                   <Scissors className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -732,11 +709,11 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Toma de medidas in situ y probador en tienda</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Arreglos rápidos y acabado profesional garantizado</span>
               </li>
             </ul>
@@ -746,7 +723,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Truck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -759,11 +736,11 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Franjas horarias concertadas por WhatsApp</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Ideal para alfombras o lotes de ropa de invierno</span>
               </li>
             </ul>
@@ -776,8 +753,8 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-[#0F76BB]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <Calendar className="w-4 h-4 text-[#0C65A1]" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 Planificación Transparente
               </span>
             </div>
@@ -821,7 +798,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
                 </td>
                 <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">48 a 72 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0F76BB] border border-[#0F76BB]/20 tabular-nums">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0C65A1] border border-[#0F76BB]/20 tabular-nums">
                     24h a 48h bajo consulta
                   </span>
                 </td>
@@ -878,8 +855,8 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
       <section aria-labelledby="seccion-llegar" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Navigation className="w-4 h-4 text-[#0F76BB]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+            <Navigation className="w-4 h-4 text-[#0C65A1]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
               Accesibilidad y Transporte
             </span>
           </div>
@@ -895,7 +872,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
           {/* Tarjeta Coche y Aparcamiento */}
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                 <Car className="w-4 h-4" />
               </div>
               <h3 className="text-sm font-extrabold text-[#002147]">En Coche Particular</h3>
@@ -965,8 +942,8 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
       {/* 7. PREGUNTAS FRECUENTES (FAQ) DE TELAS Y MÁS */}
       <section aria-labelledby="seccion-faq" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
         <div className="flex items-center gap-2 mb-2">
-          <HelpCircle className="w-4 h-4 text-[#0F76BB]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+          <HelpCircle className="w-4 h-4 text-[#0C65A1]" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
             Respuestas Claras
           </span>
         </div>
@@ -978,34 +955,20 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
         </p>
 
         <div className="divide-y divide-slate-200 mt-4">
-          {preguntasFrecuentes.map((item, index) => {
-            const abierta = faqAbierta === index;
-            return (
-              <div key={index} className="py-3 sm:py-4">
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(index)}
-                  className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer"
-                  aria-expanded={abierta}
-                >
-                  <span className="flex items-start gap-2">
-                    <span className="text-[#0F76BB] font-black tabular-nums">{index + 1}.</span>
-                    <span>{item.q}</span>
-                  </span>
-                  {abierta ? (
-                    <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
-                  )}
-                </button>
-                {abierta && (
-                  <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-700 leading-relaxed animate-fadeIn">
-                    <p>{item.a}</p>
-                  </div>
-                )}
+          {preguntasFrecuentes.map((item, index) => (
+            <details key={index} className="group py-3 sm:py-4">
+              <summary className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer list-none">
+                <span className="flex items-start gap-2">
+                  <span className="text-[#0C65A1] font-black tabular-nums">{index + 1}.</span>
+                  <span>{item.pregunta}</span>
+                </span>
+                <ChevronDown className="w-4 h-4 text-slate-500 group-open:rotate-180 group-open:text-[#0C65A1] transition-transform shrink-0" />
+              </summary>
+              <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <p>{item.respuesta}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
 
         <div className="mt-4 pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -1017,7 +980,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
             onClick={(e) => {
               if (onNavigate) onNavigate('/zonas/mos', e);
             }}
-            className="min-h-[44px] inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+            className="min-h-[44px] inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
           >
             <span>Ver servicio en Mos</span>
             <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -1029,7 +992,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
       <section aria-labelledby="seccion-confianza" className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] border border-slate-200 text-[#002147] shadow-sm relative overflow-hidden">
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0F76BB] border border-[#0F76BB]/25">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0C65A1] border border-[#0F76BB]/25">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               La tecnología de Mimos con la atención cercana de Telas y Más
             </span>
@@ -1045,7 +1008,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Consultar ahora con Mimo</span>
@@ -1054,7 +1017,7 @@ export const PuntoTelasMasFicha: React.FC<PuntoTelasMasFichaProps> = ({
               href={`tel:+34${punto.telefono}`}
               className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
             >
-              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
+              <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors" />
               <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>

@@ -17,7 +17,6 @@ import {
   Calendar,
   CreditCard,
   ChevronDown,
-  ChevronUp,
   Maximize2,
   Check,
   Truck,
@@ -34,6 +33,7 @@ import {
   buildMimoWhatsAppUrl,
   derivarEtiquetasServicios,
 } from '../data/mimosData';
+import { ZONAS_SEO_LOCAL } from '../data/zonasSeoData';
 import { getStoreStatusById } from '../utils/storeStatus';
 
 interface PuntoRedondelaFichaProps {
@@ -54,12 +54,13 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
   const [activeTabPhoto, setActiveTabPhoto] = useState<'fachada1' | 'interior' | 'fachada2'>('fachada1');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
-  const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada1: {
       url: '/images/mimos-redondela/fachada-mimos-redondela.webp',
+      width: 1024,
+      height: 572,
       titulo: 'Fachada Principal y Rótulo Oficial',
       subtitulo: 'Entrada comercial de Mimos Redondela en C/ José Regojo, 29 bajo.',
       tag: 'Fachada Principal',
@@ -68,6 +69,8 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
     },
     interior: {
       url: '/images/mimos-redondela/interior-mostrador-mimos-redondela.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Interior: Mostrador de Atención y Recepción',
       subtitulo: 'Mostrador de recepción y entrega de prendas atendido por profesionales.',
       tag: 'Interior & Mostrador',
@@ -76,6 +79,8 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
     },
     fachada2: {
       url: '/images/mimos-redondela/escaparate-acceso-mimos-redondela.webp',
+      width: 1024,
+      height: 572,
       titulo: 'Perspectiva Exterior y Acceso Peatonal',
       subtitulo: 'Escaparate y visibilidad comercial en C/ José Regojo (Redondela).',
       tag: 'Perspectiva y Calle',
@@ -102,32 +107,8 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
     }
   };
 
-  const toggleFaq = (index: number) => {
-    setFaqAbierta(faqAbierta === index ? null : index);
-  };
-
-  const preguntasFrecuentes = [
-    {
-      q: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Redondela?',
-      a: 'Depositas tus prendas (trajes, vestidos de fiesta o comunión, abrigos, edredones, mantas, alfombras o colada familiar) en nuestro punto colaborador de C/ José Regojo, 29 bajo en Redondela. Se te entrega tu resguardo oficial y nuestra furgoneta propia traslada tus prendas y textiles del hogar a la central de Mimos en Navia (y coordina las alfombras con taller especialista colaborador), devolviéndolas listas y precintadas.',
-    },
-    {
-      q: '¿Cuál es el horario de atención en Mimos Redondela?',
-      a: 'Mimos Redondela atiende de lunes a viernes de 10:00 a 13:30 y de 17:00 a 20:00, y los sábados de 10:00 a 13:00, lo que permite conciliar la entrega y recogida con tu rutina diaria.',
-    },
-    {
-      q: '¿Se pueden entregar edredones grandes y alfombras?',
-      a: 'Sí, recibimos edredones sintéticos y de plumón natural, cortinas, mantas y alfombras (consultando dimensiones). Tratamos los edredones, mantas y cortinas en nuestra planta de Navia y gestionamos las alfombras mediante taller especialista colaborador con secado controlado.',
-    },
-    {
-      q: '¿Los precios de tintorería son los mismos que en Vigo?',
-      a: 'Exactamente los mismos. La tarifa oficial de Tintorería Mimos es idéntica en toda nuestra red de tiendas y puntos colaboradores, sin recargos por gestión ni transporte.',
-    },
-    {
-      q: '¿Puedo solicitar entrega a domicilio si luego no puedo pasar a recoger?',
-      a: 'Sí. Puedes escribir a Mimo por WhatsApp al 655 536 844 y coordinar la entrega directa en tu domicilio o lugar de trabajo en Redondela o alrededores.',
-    },
-  ];
+  const preguntasFrecuentes =
+    ZONAS_SEO_LOCAL.find((z) => z.url === '/zonas/redondela')?.preguntasFrecuentes ?? [];
 
   return (
     <div className="space-y-8 animate-fadeIn text-[#002147]">
@@ -171,13 +152,15 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
             <img
               src={photos[activeTabPhoto].url}
               alt={photos[activeTabPhoto].titulo}
+              width={photos[activeTabPhoto].width}
+              height={photos[activeTabPhoto].height}
               referrerPolicy="no-referrer"
               onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
+              className="max-h-[75dvh] w-full object-contain"
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
-              <Handshake className="w-10 h-10 text-[#0F76BB] mb-3" />
+              <Handshake className="w-10 h-10 text-[#0C65A1] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
               <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
@@ -185,14 +168,14 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
         </div>
         <div className="p-4 sm:p-6 bg-white border-t border-slate-200 text-[#002147]">
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0C65A1]">
               {photos[activeTabPhoto].tag}
             </span>
             <span className="text-xs text-slate-500">
               Punto Colaborador Oficial Mimos · Redondela
             </span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</p>
           <p className="text-xs sm:text-sm text-slate-700 mt-1">{photos[activeTabPhoto].subtitulo}</p>
           <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
@@ -211,13 +194,15 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 <img
                   src={photos[activeTabPhoto].url}
                   alt={photos[activeTabPhoto].titulo}
+                  width={photos[activeTabPhoto].width}
+                  height={photos[activeTabPhoto].height}
                   referrerPolicy="no-referrer"
                   onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
-                  <Handshake className="w-10 h-10 text-[#0F76BB] mb-2" />
+                  <Handshake className="w-10 h-10 text-[#0C65A1] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
                   <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
@@ -231,14 +216,14 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-md transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-extrabold bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
-                  <Handshake className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Handshake className="w-3.5 h-3.5 text-[#0C65A1]" />
                   Punto Colaborador Oficial Mimos
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
@@ -263,7 +248,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada1')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada1'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -275,7 +260,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('interior')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'interior'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -287,7 +272,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada2')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada2'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -306,7 +291,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 <span
                   className={`inline-flex items-center px-3 py-1 rounded-md text-xs font-bold border ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-50 text-[#178A47] border-emerald-200'
+                      ? 'bg-emerald-50 text-[#147A3E] border-emerald-200'
                       : 'bg-slate-100 text-slate-700 border-slate-200'
                   }`}
                 >
@@ -321,12 +306,12 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 >
                   {copiedShare ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-[#1FA855]" />
-                      <span className="text-[#178A47] font-bold">¡Copiado!</span>
+                      <Check className="w-3.5 h-3.5 text-[#147A3E]" />
+                      <span className="text-[#147A3E] font-bold">¡Copiado!</span>
                     </>
                   ) : (
                     <>
-                      <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                      <Share2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                       <span>Compartir</span>
                     </>
                   )}
@@ -334,25 +319,25 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
               </div>
 
               {isModal ? (
-                <h3
+                <h2
                   id="modal-ficha-titulo"
                   className="text-2xl sm:text-3xl font-black text-[#002147] tracking-tight"
                 >
                   Mimos Redondela
-                </h3>
+                </h2>
               ) : (
                 <h1 className="text-2xl sm:text-3xl font-black text-[#002147] tracking-tight">
                   Servicio de tintorería y lavandería Mimos en Redondela
                 </h1>
               )}
 
-              <p className="text-sm font-semibold text-[#0F76BB] mt-1">
+              <p className="text-sm font-semibold text-[#0C65A1] mt-1">
                 Mimos Redondela · Punto Colaborador Oficial de Tintorería y Lavandería
               </p>
 
               <div className="mt-5 space-y-3 text-xs sm:text-sm text-slate-700">
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-[#002147]">
                       {punto.direccion}
@@ -364,7 +349,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <Clock className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <Clock className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-[#002147] tabular-nums">
                       L-V: 10:00-13:30 y 17:00-20:00 · Sáb: 10:00-13:00
@@ -376,7 +361,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <Phone className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <a
                       href={`tel:+34${punto.telefono}`}
@@ -389,8 +374,8 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
-                  <span className="text-xs text-[#178A47] font-medium">
+                  <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
+                  <span className="text-xs text-[#147A3E] font-medium">
                     Precios oficiales y garantía Mimos sin sobrecoste alguno
                   </span>
                 </div>
@@ -403,7 +388,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm px-4 py-3 rounded-xl shadow-sm transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-sm px-4 py-3 rounded-xl shadow-sm transition-colors"
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>Consultar por WhatsApp con Mimo</span>
@@ -414,7 +399,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                   href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white border border-[#002147] text-xs font-bold px-3 py-2.5 rounded-xl transition-colors group text-center"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors" />
                   <span>Llamar al punto</span>
                 </a>
 
@@ -424,7 +409,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#F4F9FE] border border-slate-300 hover:bg-[#EDF5FD] text-[#002147] text-xs font-bold px-3 py-2.5 rounded-xl transition-colors text-center"
                 >
-                  <ExternalLink className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <ExternalLink className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Google Maps</span>
                 </a>
               </div>
@@ -438,10 +423,10 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
         {/* Servicios Confirmados */}
         <div className="md:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
           <div className="flex items-center gap-2.5 mb-4">
-            <Sparkles className="w-5 h-5 text-[#0F76BB]" />
-            <h3 className="text-lg sm:text-xl font-black text-[#002147]">
+            <Sparkles className="w-5 h-5 text-[#0C65A1]" />
+            <h2 className="text-lg sm:text-xl font-black text-[#002147]">
               Servicios Oficiales Disponibles en Redondela
-            </h3>
+            </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 mb-5">
             Deja y recoge tus prendas en el punto de Redondela. Tus prendas y textiles del hogar son tratados en nuestras instalaciones de Vigo (y las alfombras con taller especialista colaborador) con las mismas tarifas y garantías:
@@ -453,7 +438,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
                 key={idx}
                 className="flex items-start gap-2.5 p-3 rounded-xl bg-[#F7F6F2] border border-slate-200"
               >
-                <CheckCircle2 className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
                 <span className="text-xs sm:text-sm font-bold text-[#002147]">
                   {serv}
                 </span>
@@ -462,7 +447,7 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
           </div>
 
           <div className="mt-6 p-4 rounded-2xl bg-[#EDF5FD] border border-[#0F76BB]/25 text-xs text-[#002147] flex items-start gap-3">
-            <Truck className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" />
+            <Truck className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" />
             <div>
               <p className="font-bold mb-0.5">Ruta de transporte y entrega directa</p>
               <p className="text-slate-700">
@@ -475,10 +460,10 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
         {/* Horarios Detallados */}
         <div className="md:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
           <div className="flex items-center gap-2.5 mb-4">
-            <Clock className="w-5 h-5 text-[#0F76BB]" />
-            <h3 className="text-lg sm:text-xl font-black text-[#002147]">
+            <Clock className="w-5 h-5 text-[#0C65A1]" />
+            <h2 className="text-lg sm:text-xl font-black text-[#002147]">
               Horario de Atención
-            </h3>
+            </h2>
           </div>
           <p className="text-xs text-slate-600 mb-4">
             Horario oficial de atención comercial en C/ José Regojo, 29 bajo:
@@ -517,37 +502,26 @@ export const PuntoRedondelaFicha: React.FC<PuntoRedondelaFichaProps> = ({
       {/* 3. PREGUNTAS FRECUENTES DE REDONDELA */}
       <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
         <div className="flex items-center gap-2.5 mb-6">
-          <HelpCircle className="w-5 h-5 text-[#0F76BB]" />
-          <h3 className="text-lg sm:text-xl font-black text-[#002147]">
+          <HelpCircle className="w-5 h-5 text-[#0C65A1]" />
+          <h2 className="text-lg sm:text-xl font-black text-[#002147]">
             Preguntas Frecuentes sobre el Punto de Redondela
-          </h3>
+          </h2>
         </div>
 
         <div className="space-y-3">
           {preguntasFrecuentes.map((item, idx) => (
-            <div
+            <details
               key={idx}
-              className="border border-slate-200 rounded-2xl overflow-hidden transition-colors"
+              className="group border border-slate-200 rounded-2xl overflow-hidden transition-colors"
             >
-              <button
-                type="button"
-                onClick={() => toggleFaq(idx)}
-                className="w-full min-h-[48px] flex items-center justify-between gap-4 p-4 text-left font-bold text-sm text-[#002147] hover:bg-[#F4F9FE] transition-colors cursor-pointer"
-                aria-expanded={faqAbierta === idx}
-              >
-                <span>{item.q}</span>
-                {faqAbierta === idx ? (
-                  <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
-                )}
-              </button>
-              {faqAbierta === idx && (
-                <div className="px-4 pb-4 pt-2 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200 bg-[#F4F9FE]">
-                  {item.a}
-                </div>
-              )}
-            </div>
+              <summary className="w-full min-h-[48px] flex items-center justify-between gap-4 p-4 text-left font-bold text-sm text-[#002147] hover:bg-[#F4F9FE] transition-colors cursor-pointer list-none">
+                <span>{item.pregunta}</span>
+                <ChevronDown className="w-4 h-4 text-slate-500 group-open:rotate-180 group-open:text-[#0C65A1] transition-transform shrink-0" />
+              </summary>
+              <div className="px-4 pb-4 pt-2 text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-slate-200 bg-[#F4F9FE]">
+                {item.respuesta}
+              </div>
+            </details>
           ))}
         </div>
       </section>

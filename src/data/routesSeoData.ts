@@ -266,7 +266,7 @@ export const ROUTE_SEO_MAP: Record<string, RouteMeta> = {
     title: 'Limpieza y Lavandería Apartamentos Turísticos Vigo | Mimos',
     h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',
     description:
-      'Limpieza y lavandería VUT en Vigo en franja 11:00–15:00 (sábados, festivos y agosto): amenities, llaves, foto-reporte y Decreto 12/2017 (REAT).',
+      'Limpieza y lavandería VUT en Vigo de 11:00 a 15:00 (sábados, domingos, festivos y agosto): lencería, llaves, amenities y Decreto 12/2017 (REAT).',
     canonical:
       'https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo',
     robots: 'index, follow',

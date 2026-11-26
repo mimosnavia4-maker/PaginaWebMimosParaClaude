@@ -6,7 +6,6 @@ import {
   Camera,
   Check,
   CheckCircle2,
-  ChevronDown,
   Copy,
   ExternalLink,
   Layers,
@@ -76,7 +75,6 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
   const [activeModeId, setActiveModeId] = useState<'solo-reparacion' | 'limpieza-mas-reparacion'>(
     'solo-reparacion'
   );
-  const [showAllFaqs, setShowAllFaqs] = useState(false);
 
   const [modalidad, setModalidad] = useState(REPAIR_MODALITIES[0]);
   const [trabajoNecesario, setTrabajoNecesario] = useState(REPAIR_WORK_TYPES[0]);
@@ -96,10 +94,6 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
     SERVICIO_REPARACION_ALFOMBRAS_DATA.modalidades.find(
       (item) => item.id === activeModeId
     ) ?? SERVICIO_REPARACION_ALFOMBRAS_DATA.modalidades[0];
-
-  const visibleFaqs = showAllFaqs
-    ? SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes
-    : SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.slice(0, 6);
 
   const buildRepairWhatsAppMessage = () => {
     const lines = [
@@ -200,7 +194,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
             {/* Selector de modalidad: Solo reparación vs Limpieza + Reparación */}
             <div>
               <div className="max-w-3xl mb-6 space-y-1.5">
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                   Contratación flexible según lo que necesite tu pieza
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -223,7 +217,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                             : 'border-slate-200 bg-white hover:border-[#0F76BB]'
                         }`}
                       >
-                        <p className="text-xs font-mono font-bold text-[#0F76BB] mb-1">
+                        <p className="text-xs font-mono font-bold text-[#0C65A1] mb-1">
                           {mode.etiqueta}
                         </p>
                         <p className="text-base sm:text-lg font-extrabold text-[#002147]">
@@ -245,7 +239,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       className="h-full rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 flex flex-col justify-between space-y-5"
                     >
                       <div className="space-y-3">
-                        <p className="text-xs font-mono font-bold text-[#0F76BB]">
+                        <p className="text-xs font-mono font-bold text-[#0C65A1]">
                           {activeMode.etiqueta}
                         </p>
                         <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -261,7 +255,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                               className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
                             >
                               <CheckCircle2
-                                className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                                className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                                 aria-hidden="true"
                               />
                               <span>{pt}</span>
@@ -274,7 +268,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                         <button
                           type="button"
                           onClick={() => scrollToFormWithPreset(activeSpecId, activeMode.id)}
-                          className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shadow-xs"
+                          className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shadow-xs"
                         >
                           <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                           <span>Preparar consulta con esta opción</span>
@@ -283,7 +277,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                           <a
                             href="/limpieza-alfombras-vigo"
                             onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                            className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap"
+                            className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap"
                           >
                             <span>Ver cómo limpiamos alfombras</span>
                             <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -299,7 +293,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
             {/* Catálogo interactivo de 4 daños y restauraciones frecuentes */}
             <div className="pt-10 border-t border-slate-200">
               <div className="max-w-3xl mb-6 space-y-1.5">
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                   Actuación temprana para frenar el deterioro del nudo
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -344,7 +338,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     <div className="lg:col-span-7 space-y-4">
-                      <p className="text-xs font-mono font-bold text-[#0F76BB]">
+                      <p className="text-xs font-mono font-bold text-[#0C65A1]">
                         {activeSpec.soporte}
                       </p>
                       <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
@@ -365,7 +359,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                               className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
                             >
                               <Scissors
-                                className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                                className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                                 aria-hidden="true"
                               />
                               <span>{causa}</span>
@@ -378,7 +372,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                     <div className="lg:col-span-5 space-y-4">
                       <div className="rounded-sm bg-white border border-slate-200 p-5 sm:p-6 space-y-3">
                         <div className="flex items-center gap-2 text-[#002147] font-extrabold text-sm">
-                          <ShieldAlert className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                          <ShieldAlert className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                           <span>Criterio real del restaurador colaborador</span>
                         </div>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -389,7 +383,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       <button
                         type="button"
                         onClick={() => scrollToFormWithPreset(activeSpec.id, activeModeId)}
-                        className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer shadow-xs"
+                        className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer shadow-xs"
                       >
                         <Camera className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>Valorar este caso con fotos</span>
@@ -406,7 +400,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
         <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="max-w-3xl space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Operativa transparente de principio a fin
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -423,7 +417,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   key={paso.num}
                   className="rounded-sm border border-slate-200 bg-white p-6 space-y-3"
                 >
-                  <p className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
+                  <p className="text-xs font-mono tabular-nums font-bold text-[#0C65A1]">
                     PASO {paso.num}
                   </p>
                   <h3 className="text-base sm:text-lg font-extrabold text-[#002147]">
@@ -439,7 +433,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
             {/* Bloque honesto de viabilidad técnica y reverso */}
             <div className="rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-3">
-                <p className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
+                <p className="text-xs font-bold text-[#0C65A1] uppercase tracking-wider">
                   Honestidad técnica antes de que te desplaces
                 </p>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -454,15 +448,15 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   Lo que comprobamos antes de aceptar la pieza:
                 </p>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Resistencia de la urdimbre y primer nudo junto al borde</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Estado del reverso (yute, algodón o goma/látex)</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <span>Si precisa limpieza previa o puede ir directa a reparación</span>
                 </div>
               </div>
@@ -477,7 +471,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10 space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Valoración previa por foto · WhatsApp {CONTACT_INFO.whatsappNumber}
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -503,7 +497,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-modalidad"
                       value={modalidad}
                       onChange={(e) => setModalidad(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {REPAIR_MODALITIES.map((m) => (
                         <option key={m} value={m}>
@@ -524,7 +518,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-trabajo"
                       value={trabajoNecesario}
                       onChange={(e) => setTrabajoNecesario(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {REPAIR_WORK_TYPES.map((w) => (
                         <option key={w} value={w}>
@@ -547,7 +541,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       value={tramoAfectado}
                       onChange={(e) => setTramoAfectado(e.target.value)}
                       placeholder="Ej.: 1,70 m de flecos en un lado / 35 cm de festón"
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
 
@@ -562,7 +556,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-tipo"
                       value={tipoAlfombra}
                       onChange={(e) => setTipoAlfombra(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {RUG_TYPES.map((r) => (
                         <option key={r} value={r}>
@@ -583,7 +577,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-localidad"
                       value={localidad}
                       onChange={(e) => setLocalidad(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {ZONAS_SERVICIO.map((loc) => (
                         <option key={loc} value={loc}>
@@ -607,7 +601,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       id="rep-entrega"
                       value={formaEntrega}
                       onChange={(e) => setFormaEntrega(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {DELIVERY_MODES.map((d) => (
                         <option key={d} value={d}>
@@ -631,7 +625,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                     value={notas}
                     onChange={(e) => setNotas(e.target.value)}
                     placeholder="Ej.: Alfombra de lana de 2,40 × 1,70 m. El aspirador arrancó parte de los flecos de un extremo."
-                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                   />
                 </div>
 
@@ -647,7 +641,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                         { service_id: 'reparacion-alfombras-builder' }
                       )
                     }
-                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors sm:whitespace-nowrap shadow-xs"
+                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors sm:whitespace-nowrap shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Abrir WhatsApp para enviar fotos</span>
@@ -660,7 +654,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   >
                     {copied ? (
                       <>
-                        <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                        <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                         <span>Copiado</span>
                       </>
                     ) : (
@@ -676,7 +670,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
               {/* Barra lateral: Qué 3 fotos enviar + Cómo calcula el restaurador */}
               <aside className="lg:col-span-5 space-y-6">
                 <div className="rounded-sm border border-[#0F76BB]/25 bg-white/90 p-6 sm:p-7 space-y-4">
-                  <div className="flex items-center gap-2 text-[#0F76BB]">
+                  <div className="flex items-center gap-2 text-[#0C65A1]">
                     <Camera className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <h3 className="text-lg font-extrabold text-[#002147]">
                       Qué fotos enviar en el chat
@@ -693,7 +687,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 </div>
 
                 <div className="rounded-sm border border-slate-200 bg-white p-6 sm:p-7 space-y-4">
-                  <div className="flex items-center gap-2 text-[#0F76BB]">
+                  <div className="flex items-center gap-2 text-[#0C65A1]">
                     <Ruler className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <h3 className="text-lg font-extrabold text-[#002147]">
                       De qué depende el presupuesto
@@ -703,7 +697,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                     {SERVICIO_REPARACION_ALFOMBRAS_DATA.criteriosValoracion.map((criterio, idx) => (
                       <div key={criterio.titulo} className="py-3 first:pt-0 last:pb-0">
                         <dt className="text-xs sm:text-sm font-extrabold text-[#002147] flex items-center gap-2">
-                          <span className="font-mono text-[#0F76BB]">0{idx + 1}</span>
+                          <span className="font-mono text-[#0C65A1]">0{idx + 1}</span>
                           <span>{criterio.titulo}</span>
                         </dt>
                         <dd className="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -728,7 +722,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+                  <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                     Reseñas verificadas en Google
                   </p>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -755,7 +749,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                     <div className="space-y-2.5">
                       <div className="flex items-center gap-2 text-xs text-slate-500">
                         <span
-                          className="text-amber-500 font-bold tracking-tight"
+                          className="text-amber-700 font-bold tracking-tight"
                           aria-label="Valoración de 5 estrellas"
                         >
                           ★★★★★
@@ -789,7 +783,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 <a
                   href="/puntos-mimos"
                   onClick={(e) => onNavigate('/puntos-mimos', e)}
-                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                 >
                   <Store className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Ver mapa y horarios completos</span>
@@ -802,7 +796,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                     key={t.id}
                     className="rounded-sm border border-slate-200 bg-[#F7F6F2]/70 p-5 space-y-2"
                   >
-                    <p className="text-xs font-bold text-[#0F76BB]">
+                    <p className="text-xs font-bold text-[#0C65A1]">
                       Tienda propia Mimos · {t.localidad}
                     </p>
                     <h3 className="text-base font-extrabold text-[#002147]">
@@ -820,7 +814,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
 
               <div className="rounded-sm border border-slate-200 bg-[#F7F6F2] p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
-                  <Truck className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <Truck className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                     <strong className="text-[#002147]">
                       Recogida a domicilio y puntos colaboradores:
@@ -831,7 +825,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 <a
                   href="/recogida-a-domicilio"
                   onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
-                  className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                 >
                   Ver recogida a domicilio →
                 </a>
@@ -844,7 +838,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
         <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-8 space-y-1.5">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Dudas habituales antes de reparar tu alfombra
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -853,14 +847,14 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {visibleFaqs.map((faq) => (
+              {SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.map((faq) => (
                 <details
                   key={faq.pregunta}
                   className="group rounded-sm border border-slate-200 bg-white p-5"
                 >
                   <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                     <span>{faq.pregunta}</span>
-                    <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                    <span className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                       +
                     </span>
                   </summary>
@@ -870,27 +864,6 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 </details>
               ))}
             </div>
-
-            {SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.length > 6 && (
-              <div className="mt-6 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => setShowAllFaqs((prev) => !prev)}
-                  aria-expanded={showAllFaqs}
-                  className="min-h-[44px] inline-flex items-center gap-2 rounded-lg border border-[#002147] bg-white hover:bg-[#002147] hover:text-white px-5 py-2.5 text-xs sm:text-sm font-bold text-[#002147] transition-colors cursor-pointer whitespace-nowrap"
-                >
-                  <span>
-                    {showAllFaqs
-                      ? 'Ocultar dudas adicionales'
-                      : `Ver ${SERVICIO_REPARACION_ALFOMBRAS_DATA.preguntasFrecuentes.length - 6} dudas más`}
-                  </span>
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform ${showAllFaqs ? 'rotate-180' : ''}`}
-                    aria-hidden="true"
-                  />
-                </button>
-              </div>
-            )}
           </div>
         </section>
 
@@ -918,7 +891,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                         {rel.titulo}
                       </h3>
-                      <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                      <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                       {rel.descripcion}
@@ -933,7 +906,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                 <a
                   href="/limpieza-alfombras-vigo"
                   onClick={(e) => onNavigate('/limpieza-alfombras-vigo', e)}
-                  className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline"
+                  className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline"
                 >
                   <Layers className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Ir a limpieza de alfombras</span>
@@ -960,7 +933,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                       { service_id: 'reparacion-alfombras' }
                     )
                   }
-                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shadow-xs"
+                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shadow-xs"
                 >
                   <Sparkles className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Enviar fotos por WhatsApp</span>
@@ -973,7 +946,7 @@ export const CarpetRepairPage: React.FC<CarpetRepairPageProps> = ({ onNavigate }
                   className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors whitespace-nowrap group"
                 >
                   <Phone
-                    className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0"
+                    className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0"
                     aria-hidden="true"
                   />
                   <span>{CONTACT_INFO.phoneDisplay}</span>

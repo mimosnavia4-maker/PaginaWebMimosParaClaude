@@ -17,6 +17,7 @@ import {
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
 import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
+import { Dialog } from './Dialog';
 
 interface HeaderProps {
   currentPath: string;
@@ -36,6 +37,11 @@ export const Header: React.FC<HeaderProps> = ({
   const [orderNumber, setOrderNumber] = useState('');
   const menuCloseTimeoutRef = useRef<number | null>(null);
   const trackingLinkRef = useRef<HTMLAnchorElement | null>(null);
+  const orderInputRef = useRef<HTMLInputElement | null>(null);
+  const mobileMenuBtnRef = useRef<HTMLButtonElement | null>(null);
+  const mobileDrawerRef = useRef<HTMLDivElement | null>(null);
+  const mobileCloseBtnRef = useRef<HTMLButtonElement | null>(null);
+  const skipMobileRestoreFocusRef = useRef(false);
 
   const trackingWhatsAppUrl = buildMimoWhatsAppUrl(
     orderNumber.trim()
@@ -55,23 +61,90 @@ export const Header: React.FC<HeaderProps> = ({
     }
   }, []);
 
-  // Cierre de menús y modales con tecla Escape
+  // Cierre de menús con tecla Escape (el modal Dialog gestiona su propia pila Escape)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setActiveMenu(null);
-        setMobileMenuOpen(false);
-        setIsTrackingModalOpen(false);
+        if (mobileMenuOpen && !isTrackingModalOpen) {
+          setMobileMenuOpen(false);
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [mobileMenuOpen, isTrackingModalOpen]);
+
+  // Gestión de foco accesible, bloqueo de scroll y trampa de tabulación para el drawer móvil
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    skipMobileRestoreFocusRef.current = false;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const focusTimer = window.setTimeout(() => {
+      mobileCloseBtnRef.current?.focus();
+    }, 40);
+
+    const handleDrawerTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !mobileDrawerRef.current) return;
+      const focusables = mobileDrawerRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+
+      const firstEl = focusables[0];
+      const lastEl = focusables[focusables.length - 1];
+      const activeEl = document.activeElement;
+
+      if (!mobileDrawerRef.current.contains(activeEl)) {
+        e.preventDefault();
+        (e.shiftKey ? lastEl : firstEl).focus();
+        return;
+      }
+
+      if (e.shiftKey && activeEl === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && activeEl === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleDrawerTab);
+    return () => {
+      window.clearTimeout(focusTimer);
+      window.removeEventListener('keydown', handleDrawerTab);
+      document.body.style.overflow = originalOverflow;
+
+      if (!skipMobileRestoreFocusRef.current) {
+        const opener = mobileMenuBtnRef.current;
+        if (opener && opener.isConnected) {
+          opener.focus();
+        }
+      }
+    };
+  }, [mobileMenuOpen]);
+
+  // Enfocar campo de resguardo al abrir el modal de seguimiento tras montar Dialog
+  useEffect(() => {
+    if (!isTrackingModalOpen) return;
+    const timer = window.setTimeout(() => {
+      orderInputRef.current?.focus();
+    }, 65);
+    return () => window.clearTimeout(timer);
+  }, [isTrackingModalOpen]);
 
   // Cerrar menús al cambiar de ruta
   useEffect(() => {
     setActiveMenu(null);
-    setMobileMenuOpen(false);
+    if (mobileMenuOpen) {
+      skipMobileRestoreFocusRef.current = true;
+      setMobileMenuOpen(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPath]);
 
   const handleMouseEnterMenu = (menu: ActiveMegaMenu) => {
@@ -93,7 +166,10 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleLinkClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     setActiveMenu(null);
-    setMobileMenuOpen(false);
+    if (mobileMenuOpen) {
+      skipMobileRestoreFocusRef.current = true;
+      setMobileMenuOpen(false);
+    }
     onNavigate(href, e);
   };
 
@@ -143,7 +219,7 @@ export const Header: React.FC<HeaderProps> = ({
               <a
                 href="/"
                 onClick={(e) => handleLinkClick('/', e)}
-                className="flex items-center gap-3 group focus:outline-hidden rounded-xl pr-1"
+                className="flex items-center gap-3 group focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xl pr-1"
                 aria-label="Tintorería Mimos - Volver a la portada principal"
               >
                 <img
@@ -154,13 +230,13 @@ export const Header: React.FC<HeaderProps> = ({
                   className="w-12 h-12 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform bg-[#EDF5FD] border border-[#002147]/10"
                 />
                 <div className="flex flex-col">
-                  <span className="font-extrabold text-base sm:text-lg tracking-tight leading-tight font-serif sm:font-sans text-[#002147]">
+                  <span className="font-extrabold text-base sm:text-lg tracking-tight leading-tight text-[#002147]">
                     TINTORERÍA{' '}
-                    <span className="text-[#0F76BB]">
+                    <span className="text-[#0C65A1]">
                       MIMOS
                     </span>
                   </span>
-                  <span className="text-[10px] sm:text-[11px] font-medium tracking-wider uppercase text-slate-500">
+                  <span className="text-[10px] sm:text-[11px] font-medium tracking-wider uppercase text-slate-600">
                     Navia · Vigo · Cuidado Textil
                   </span>
                 </div>
@@ -185,7 +261,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/arreglos-de-ropa-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] font-extrabold'
                         : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                     }`}
                     title="Taller propio de costura y arreglos de ropa en Vigo"
@@ -202,7 +278,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onMouseEnter={() => setActiveMenu(null)}
                     className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
                       currentPath === '/limpieza-sofas-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] font-extrabold'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] font-extrabold'
                         : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                     }`}
                     title="Limpieza profesional de sofás, sillones y tapicerías a domicilio en Vigo"
@@ -222,7 +298,7 @@ export const Header: React.FC<HeaderProps> = ({
                       activeMenu === 'alfombras' ||
                       currentPath === '/limpieza-alfombras-vigo' ||
                       currentPath === '/reparacion-alfombras-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Limpieza y reparación de alfombras en Vigo (pasa el ratón para ver opciones)"
@@ -231,8 +307,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'alfombras'
-                          ? 'rotate-180 text-[#0F76BB]'
-                          : 'text-slate-500'
+                          ? 'rotate-180 text-[#0C65A1]'
+                          : 'text-slate-600'
                       }`}
                     />
                   </a>
@@ -247,7 +323,7 @@ export const Header: React.FC<HeaderProps> = ({
                     title="Llamar directamente a Tintorería Mimos Navia"
                   >
                     <Phone
-                      className="w-3 h-3 shrink-0 text-[#0F76BB]"
+                      className="w-3 h-3 shrink-0 text-[#0C65A1]"
                       aria-hidden="true"
                     />
                     <span className="font-mono tracking-tight">{CONTACT_INFO.phoneDisplay}</span>
@@ -264,7 +340,7 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'tintoreria'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'tintoreria'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Ver catálogo de tintorería y lavandería (pasa el ratón para desglose)"
@@ -273,8 +349,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'tintoreria'
-                          ? 'rotate-180 text-[#0F76BB]'
-                          : 'text-slate-500'
+                          ? 'rotate-180 text-[#0C65A1]'
+                          : 'text-slate-600'
                       }`}
                     />
                   </a>
@@ -289,7 +365,7 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'limpieza'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'limpieza' || currentPath === '/limpieza-profesional-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Limpieza técnica de oficinas, comunidades y sofás a domicilio"
@@ -298,8 +374,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'limpieza'
-                          ? 'rotate-180 text-[#0F76BB]'
-                          : 'text-slate-500'
+                          ? 'rotate-180 text-[#0C65A1]'
+                          : 'text-slate-600'
                       }`}
                     />
                   </a>
@@ -314,7 +390,7 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'apartamentos'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'apartamentos' || currentPath === '/limpieza-apartamentos-turisticos-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Servicios para apartamentos turísticos y Airbnb en Vigo"
@@ -323,8 +399,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'apartamentos'
-                          ? 'rotate-180 text-[#0F76BB]'
-                          : 'text-slate-500'
+                          ? 'rotate-180 text-[#0C65A1]'
+                          : 'text-slate-600'
                       }`}
                     />
                   </a>
@@ -339,7 +415,7 @@ export const Header: React.FC<HeaderProps> = ({
                     aria-expanded={activeMenu === 'puntos'}
                     className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
                       activeMenu === 'puntos' || currentPath === '/puntos-mimos'
-                        ? 'bg-[#EDF5FD] text-[#0F76BB] border-[#0F76BB]/25 shadow-xs'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
                     title="Tiendas propias y puntos colaboradores con mapa interactivo"
@@ -348,8 +424,8 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
                         activeMenu === 'puntos'
-                          ? 'rotate-180 text-[#0F76BB]'
-                          : 'text-slate-500'
+                          ? 'rotate-180 text-[#0C65A1]'
+                          : 'text-slate-600'
                       }`}
                     />
                   </a>
@@ -367,7 +443,7 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'header_whatsapp_mimo')}
-                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs px-3 rounded-lg transition-all shadow-xs cursor-pointer active:scale-95"
+                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs px-3 rounded-lg transition-all shadow-xs cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 <span>Hablar con Mimo</span>
@@ -381,7 +457,7 @@ export const Header: React.FC<HeaderProps> = ({
                 title="Consultar el estado de tu encargo o ticket oficial"
               >
                 <Package
-                  className="w-3.5 h-3.5 shrink-0 text-[#0F76BB]"
+                  className="w-3.5 h-3.5 shrink-0 text-[#0C65A1]"
                   aria-hidden="true"
                 />
                 <span>Consultar pedido</span>
@@ -395,15 +471,16 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'header_mobile_icon')}
-                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white transition-colors"
+                className="hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] transition-colors"
                 aria-label="WhatsApp con Mimo"
               >
                 <MessageCircle className="w-5 h-5" />
               </a>
               <button
+                ref={mobileMenuBtnRef}
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl transition-colors focus:outline-hidden text-[#002147] hover:bg-[#EDF5FD]"
+                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] text-[#002147] hover:bg-[#EDF5FD]"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Abrir menú de navegación"
               >
@@ -425,13 +502,13 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="max-w-7xl mx-auto px-6 lg:px-8 py-7">
               {/* Barra superior del menú */}
               <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#EADBCA]/60">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
                   01 · Tintorería, Lavandería y Cuidado Textil en Vigo
                 </span>
                 <a
                   href="/#servicios"
                   onClick={(e) => handleLinkClick('/#servicios', e)}
-                  className="text-xs font-bold text-[#0284C7] hover:underline inline-flex items-center gap-1"
+                  className="text-xs font-bold text-[#0B5C94] hover:underline inline-flex items-center gap-1"
                 >
                   <span>Ver catálogo completo en portada</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -459,10 +536,10 @@ export const Header: React.FC<HeaderProps> = ({
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
                       Trajes, americanas, vestidos de fiesta, novias, comunión y abrigos.
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">
+                    <p className="text-[11px] text-slate-600 mt-0.5">
                       Desmanchado técnico manual, limpieza en seco profesional y Wet Cleaning ecológico.
                     </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
                       <span>Ver prendas y tratamientos</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
@@ -478,7 +555,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                         Vestidos de Novia y Ceremonia
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0B5C94] shrink-0 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                     <p className="text-[11px] text-slate-600 mt-1">
                       Novia, madrina, fiesta, comunión y chaqués · Pedrería, encajes y bajos.
@@ -495,17 +572,17 @@ export const Header: React.FC<HeaderProps> = ({
                       <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                         Planchado Artesanal
                       </span>
-                      <span className="text-[10px] font-mono uppercase bg-[#C85A17] text-white px-2 py-0.5 rounded-sm font-bold">
+                      <span className="text-[10px] font-mono uppercase bg-[#9E440E] text-white px-2 py-0.5 rounded-sm font-bold">
                         Sastrería
                       </span>
                     </div>
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
                       Camisas en percha o dobladas, pantalones y mantelerías.
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">
+                    <p className="text-[11px] text-slate-600 mt-0.5">
                       Acabados sin brillos en mesas de vaporización y aspiración alemanas.
                     </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
                       <span>Ver planchado profesional</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
@@ -531,10 +608,10 @@ export const Header: React.FC<HeaderProps> = ({
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
                       Edredones de plumas, mantas, colchas, cortinas, estores y fundas.
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">
+                    <p className="text-[11px] text-slate-600 mt-0.5">
                       Maquinaria de gran capacidad, higienización y secado controlado.
                     </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
                       <span>Ver textiles del hogar</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
@@ -550,7 +627,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                         Lavandería Profesional
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0B5C94] shrink-0 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                     <p className="text-[11px] text-slate-600 mt-1">
                       Servicio atendido (no autoservicio): separación real, anoraks y secado anti-humedad.
@@ -567,17 +644,17 @@ export const Header: React.FC<HeaderProps> = ({
                       <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                         Colada Familiar y Ropa Diaria
                       </span>
-                      <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold">
+                      <span className="text-[10px] font-mono uppercase bg-[#147A3E] text-white px-2 py-0.5 rounded-sm font-bold">
                         Lavar y doblar / planchar
                       </span>
                     </div>
                     <p className="text-xs font-medium text-slate-700 mt-1.5">
                       Ropa cotidiana, toallas y sábanas con opción de lavar y doblar o lavar y planchar.
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">
+                    <p className="text-[11px] text-slate-600 mt-0.5">
                       Combina ropa doblada con camisas o prendas concretas planchadas en el mismo encargo.
                     </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
                       <span>Ver servicio de colada</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
@@ -596,7 +673,7 @@ export const Header: React.FC<HeaderProps> = ({
                       >
                         Alfombras en Vigo
                       </a>
-                      <span className="text-[10px] font-mono uppercase bg-[#178A47] text-white px-2 py-0.5 rounded-sm font-bold shrink-0">
+                      <span className="text-[10px] font-mono uppercase bg-[#147A3E] text-white px-2 py-0.5 rounded-sm font-bold shrink-0">
                         Recogida / Tienda
                       </span>
                     </div>
@@ -607,7 +684,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="/limpieza-alfombras-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0284C7] hover:text-[#002147]"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] hover:text-[#002147]"
                       >
                         <span>Limpieza</span>
                         <ArrowRight className="w-3 h-3" />
@@ -641,7 +718,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5">
                         Ante, nobuk, cuero y prendas delicadas de peletería.
                       </p>
-                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0284C7] group-hover:text-[#002147]">
+                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0B5C94] group-hover:text-[#002147]">
                         <span>Ver pieles</span>
                         <ArrowRight className="w-2.5 h-2.5" />
                       </div>
@@ -656,14 +733,14 @@ export const Header: React.FC<HeaderProps> = ({
                         <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                           Siniestros
                         </span>
-                        <span className="text-[9px] font-mono uppercase bg-[#C85A17] text-white px-1.5 py-0.5 rounded-xs font-bold">
+                        <span className="text-[9px] font-mono uppercase bg-[#9E440E] text-white px-1.5 py-0.5 rounded-xs font-bold">
                           Seguros
                         </span>
                       </div>
                       <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5">
                         Recuperación tras humo, incendios e inundaciones (Art. 38 y CIF).
                       </p>
-                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0284C7] group-hover:text-[#002147]">
+                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0B5C94] group-hover:text-[#002147]">
                         <span>Ver protocolo</span>
                         <ArrowRight className="w-2.5 h-2.5" />
                       </div>
@@ -680,7 +757,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                         Recogida y Entrega a Domicilio
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0B5C94] shrink-0 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                     <p className="text-[11px] text-slate-600 mt-1">
                       Vigo, comarca y polígonos industriales (a consultar con Mimo según ruta y mínimo).
@@ -705,12 +782,12 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="grid grid-cols-2 gap-10">
                 {/* Columna 1: Instalaciones y Sedes */}
                 <div className="space-y-3 border-r border-[#EADBCA]/60 pr-8">
-                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
                     01 · Instalaciones y Sedes
                   </span>
-                  <h3 className="text-base font-extrabold text-[#002147]">
+                  <p className="text-base font-extrabold text-[#002147]">
                     Limpieza técnica de inmuebles en Vigo
-                  </h3>
+                  </p>
                   <ul className="space-y-1.5 pt-1">
                     {[
                       {
@@ -721,12 +798,12 @@ export const Header: React.FC<HeaderProps> = ({
                       {
                         title: 'Limpieza de oficinas y despachos',
                         desc: 'Mantenimiento periódico adaptado a tu horario comercial.',
-                        url: '/blog/limpieza-oficinas-despachos-clinicas-vigo',
+                        url: '/limpieza-profesional-vigo',
                       },
                       {
                         title: 'Limpieza de comunidades de propietarios',
                         desc: 'Portales, escaleras y zonas comunes con personal de confianza.',
-                        url: '/blog/limpieza-comunidades-propietarios-vigo',
+                        url: '/limpieza-profesional-vigo',
                       },
                       {
                         title: 'Limpieza de locales comerciales',
@@ -736,7 +813,7 @@ export const Header: React.FC<HeaderProps> = ({
                       {
                         title: 'Limpieza de clínicas y consultas',
                         desc: 'Protocolos de higiene y desinfección sanitaria estricta.',
-                        url: '/blog/limpieza-oficinas-despachos-clinicas-vigo',
+                        url: '/limpieza-profesional-vigo',
                       },
                       {
                         title: 'Espacios profesionales y empresariales',
@@ -751,12 +828,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group block p-2 rounded-lg hover:bg-[#FFF2E6] transition-colors"
                         >
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                            <span className="text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
                               {item.title}
                             </span>
-                            <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                            <ArrowRight className="w-3.5 h-3.5 text-[#9E440E] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                           </div>
-                          <p className="text-[11px] text-slate-500 mt-0.5">{item.desc}</p>
+                          <p className="text-[11px] text-slate-600 mt-0.5">{item.desc}</p>
                         </a>
                       </li>
                     ))}
@@ -765,24 +842,24 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* Columna 2: Cuidado Textil y Tapicerías */}
                 <div className="space-y-3">
-                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
                     02 · Cuidado Textil y Tapicerías
                   </span>
-                  <h3 className="text-base font-extrabold text-[#002147]">
+                  <p className="text-base font-extrabold text-[#002147]">
                     Tratamiento profesional in situ y en planta
-                  </h3>
+                  </p>
                   <div className="space-y-3 pt-1">
                     <a
                       href="/limpieza-sofas-vigo"
                       onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#C85A17]/60 hover:shadow-xs transition-all"
+                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#9E440E]/60 hover:shadow-xs transition-all"
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#002147]">
-                          <Sparkles className="w-3.5 h-3.5 text-[#C85A17]" />
+                          <Sparkles className="w-3.5 h-3.5 text-[#9E440E]" />
                           <span>Limpieza de sofás (Servicio destacado)</span>
                         </span>
-                        <span className="text-[10px] font-mono uppercase bg-[#178A47]/10 text-[#178A47] font-bold px-2 py-0.5 rounded-sm">
+                        <span className="text-[10px] font-mono uppercase bg-[#178A47]/10 text-[#147A3E] font-bold px-2 py-0.5 rounded-sm">
                           A domicilio
                         </span>
                       </div>
@@ -794,13 +871,13 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/limpieza-sofas-vigo"
                       onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#C85A17]/60 hover:shadow-xs transition-all"
+                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#9E440E]/60 hover:shadow-xs transition-all"
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-xs font-bold text-[#002147]">
                           Higienización in situ de tapicerías y colchones
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="w-3.5 h-3.5 text-[#9E440E] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                       </div>
                       <p className="text-xs text-slate-600">
                         Sillones, sillas tapizadas, cabeceros de cama, colchones y fundas desenfundables.
@@ -810,13 +887,13 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/servicios-empresas"
                       onClick={(e) => handleLinkClick('/servicios-empresas', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#C85A17]/60 hover:shadow-xs transition-all"
+                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#9E440E]/60 hover:shadow-xs transition-all"
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-xs font-bold text-[#002147]">
                           Lavandería para empresas y negocios
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#C85A17] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="w-3.5 h-3.5 text-[#9E440E] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                       </div>
                       <p className="text-xs text-slate-600">
                         Toallas de peluquerías y clínicas, vestuario laboral (suciedad normal) y factura mensual con CIF.
@@ -840,31 +917,31 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <div className="max-w-5xl mx-auto px-6 lg:px-8 py-8">
               <div className="text-center max-w-xl mx-auto mb-6">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
                   VIVIENDAS TURÍSTICAS Y AIRBNB EN VIGO
                 </span>
-                <h3 className="text-lg font-extrabold text-[#002147] mt-1">
+                <p className="text-lg font-extrabold text-[#002147] mt-1">
                   Soluciones de lavandería y limpieza a medida para anfitriones
-                </h3>
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 {/* Tarjeta 1: Servicio de Limpieza y lavandería */}
                 <a
-                  href="/limpieza-apartamentos-turisticos-vigo"
-                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
-                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#C85A17] hover:shadow-md transition-all relative overflow-hidden"
+                  href="/limpieza-apartamentos-turisticos-vigo#rotacion"
+                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo#rotacion', e)}
+                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#9E440E] hover:shadow-md transition-all relative overflow-hidden"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#0F76BB]/10 text-[#0F76BB] flex items-center justify-center font-bold text-sm mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#0F76BB]/10 text-[#0C65A1] flex items-center justify-center font-bold text-sm mb-3">
                     01
                   </div>
-                  <h4 className="text-base font-extrabold text-[#002147] group-hover:text-[#C85A17] transition-colors">
+                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#9E440E] transition-colors">
                     Servicio de Limpieza y Lavandería
-                  </h4>
+                  </p>
                   <p className="text-xs text-slate-600 leading-relaxed mt-2">
                     Servicio completo de limpieza del apartamento en cada rotación y suministro de ropa de cama y toallas higienizadas con planchado profesional entre huéspedes.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] group-hover:text-[#C85A17]">
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#9E440E]">
                     <span>Ver modalidad y presupuesto a medida</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -872,20 +949,20 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* Tarjeta 2: Coordinación integral de limpieza y lavandería */}
                 <a
-                  href="/limpieza-apartamentos-turisticos-vigo"
-                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
-                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#C85A17] hover:shadow-md transition-all relative overflow-hidden"
+                  href="/limpieza-apartamentos-turisticos-vigo#integral"
+                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo#integral', e)}
+                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#9E440E] hover:shadow-md transition-all relative overflow-hidden"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#C85A17]/10 text-[#C85A17] flex items-center justify-center font-bold text-sm mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#9E440E]/10 text-[#9E440E] flex items-center justify-center font-bold text-sm mb-3">
                     02
                   </div>
-                  <h4 className="text-base font-extrabold text-[#002147] group-hover:text-[#C85A17] transition-colors">
+                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#9E440E] transition-colors">
                     Coordinación Integral de Limpieza y Lavandería
-                  </h4>
+                  </p>
                   <p className="text-xs text-slate-600 leading-relaxed mt-2">
                     Tú gestionas tus reservas y calendario. Mimos asume la parte operativa crítica: limpieza exhaustiva en cada checkout, supervisión básica y entrega puntual de lencería hotelera impecable.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] group-hover:text-[#C85A17]">
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#9E440E]">
                     <span>Consultar propuesta a medida</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -909,13 +986,13 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Columna 1: Nuestras 3 tiendas propias en Vigo */}
                 <div className="space-y-4 border-r border-[#EADBCA]/60 pr-8">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
                       Tiendas Propias en Vigo
                     </span>
                     <a
                       href="/puntos-mimos"
                       onClick={(e) => handleLinkClick('/puntos-mimos', e)}
-                      className="text-xs font-bold text-[#0284C7] hover:underline inline-flex items-center gap-1"
+                      className="text-xs font-bold text-[#0B5C94] hover:underline inline-flex items-center gap-1"
                     >
                       <span>Ver mapa completo</span>
                       <ArrowRight className="w-3 h-3" />
@@ -939,7 +1016,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <p className="text-xs text-slate-600 mt-1">
                         C/ Teixugueiras, 11, bajo 9 · Tel. 986 12 51 41
                       </p>
-                      <p className="text-[11px] text-slate-500 mt-0.5">
+                      <p className="text-[11px] text-slate-600 mt-0.5">
                         Planta de tintorería, planchado y recepción para taller de costura.
                       </p>
                     </a>
@@ -954,14 +1031,14 @@ export const Header: React.FC<HeaderProps> = ({
                         <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                           Mimos Gregorio Espino
                         </span>
-                        <span className="text-[10px] font-mono uppercase bg-[#C85A17] text-white px-2 py-0.5 rounded-sm font-bold">
+                        <span className="text-[10px] font-mono uppercase bg-[#9E440E] text-white px-2 py-0.5 rounded-sm font-bold">
                           Taller in situ
                         </span>
                       </div>
                       <p className="text-xs text-slate-600 mt-1">
                         Alcalde Gregorio Espino, 42 · Tel. 986 19 27 87
                       </p>
-                      <p className="text-[11px] text-slate-500 mt-0.5">
+                      <p className="text-[11px] text-slate-600 mt-0.5">
                         Taller propio de costura, arreglos de ropa y tintorería directa.
                       </p>
                     </a>
@@ -976,14 +1053,14 @@ export const Header: React.FC<HeaderProps> = ({
                         <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                           Mimos Venezuela
                         </span>
-                        <span className="text-[10px] font-mono uppercase bg-[#C85A17] text-white px-2 py-0.5 rounded-sm font-bold">
+                        <span className="text-[10px] font-mono uppercase bg-[#9E440E] text-white px-2 py-0.5 rounded-sm font-bold">
                           Taller in situ
                         </span>
                       </div>
                       <p className="text-xs text-slate-600 mt-1">
                         Rúa de Venezuela, 29, Entreplanta · Tel. 646 94 67 64
                       </p>
-                      <p className="text-[11px] text-slate-500 mt-0.5">
+                      <p className="text-[11px] text-slate-600 mt-0.5">
                         Taller propio de costura y punto directo de atención en el centro de Vigo.
                       </p>
                     </a>
@@ -992,7 +1069,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* Columna 2: Red de Puntos Colaboradores */}
                 <div className="space-y-4">
-                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
                     Puntos Colaboradores (Comarca)
                   </span>
                   <p className="text-xs text-slate-600 leading-relaxed">
@@ -1012,10 +1089,10 @@ export const Header: React.FC<HeaderProps> = ({
                         key={idx}
                         href={loc.url}
                         onClick={(e) => handleLinkClick(loc.url, e)}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#0284C7] text-xs font-bold text-[#0284C7] hover:text-[#002147] hover:bg-[#FFF2E6] transition-colors"
+                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#0B5C94] text-xs font-bold text-[#0B5C94] hover:text-[#002147] hover:bg-[#FFF2E6] transition-colors"
                       >
                         <span>{loc.nombre}</span>
-                        <ArrowRight className="w-3 h-3 text-[#C85A17]" />
+                        <ArrowRight className="w-3 h-3 text-[#9E440E]" />
                       </a>
                     ))}
                   </div>
@@ -1044,7 +1121,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#002147] text-xs font-bold text-[#002147] transition-colors"
                       >
                         <span>Contacto y horarios</span>
-                        <ArrowRight className="w-3 h-3 text-[#C85A17]" />
+                        <ArrowRight className="w-3 h-3 text-[#9E440E]" />
                       </a>
                       <a
                         href="/blog"
@@ -1052,7 +1129,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#002147] text-xs font-bold text-[#002147] transition-colors"
                       >
                         <span>Blog y guías textiles</span>
-                        <ArrowRight className="w-3 h-3 text-[#C85A17]" />
+                        <ArrowRight className="w-3 h-3 text-[#9E440E]" />
                       </a>
                     </div>
                   </div>
@@ -1073,12 +1150,12 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <div className="max-w-5xl mx-auto px-6 lg:px-8 py-8">
               <div className="text-center max-w-xl mx-auto mb-6">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C85A17]">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
                   ALFOMBRAS EN VIGO · RECOGIDA O ENTREGA EN NUESTRAS 3 TIENDAS
                 </span>
-                <h3 className="text-lg font-extrabold text-[#002147] mt-1">
+                <p className="text-lg font-extrabold text-[#002147] mt-1">
                   Limpieza profunda y arreglos de alfombras
-                </h3>
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
@@ -1088,16 +1165,16 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
                   className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#0F76BB] hover:shadow-md transition-all"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#0F76BB]/10 text-[#0F76BB] flex items-center justify-center font-bold text-sm mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#0F76BB]/10 text-[#0C65A1] flex items-center justify-center font-bold text-sm mb-3">
                     01
                   </div>
-                  <h4 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                     Limpieza de alfombras
-                  </h4>
+                  </p>
                   <p className="text-xs text-slate-600 leading-relaxed mt-2">
                     Lavado adaptado según fibra y reverso (lana, seda, yute, algodón o fibras modernas) con secado completo anti-humedad. Entrega en tienda o recogida a domicilio.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] group-hover:text-[#002147]">
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
                     <span>Ver limpieza de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -1107,18 +1184,18 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/reparacion-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#C85A17] hover:shadow-md transition-all"
+                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#9E440E] hover:shadow-md transition-all"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#C85A17]/10 text-[#C85A17] flex items-center justify-center font-bold text-sm mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#9E440E]/10 text-[#9E440E] flex items-center justify-center font-bold text-sm mb-3">
                     02
                   </div>
-                  <h4 className="text-base font-extrabold text-[#002147] group-hover:text-[#C85A17] transition-colors">
+                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#9E440E] transition-colors">
                     Arreglo y reparación de alfombras
-                  </h4>
+                  </p>
                   <p className="text-xs text-slate-600 leading-relaxed mt-2">
                     Restauración artesanal de flecos, festón, ribetes, descosidos y bordes mediante especialista. Puedes contratar solo el arreglo o junto con la limpieza.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0284C7] group-hover:text-[#C85A17]">
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#9E440E]">
                     <span>Ver arreglos de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -1131,114 +1208,115 @@ export const Header: React.FC<HeaderProps> = ({
       </header>
 
       {/* =========================================================================
-          MODAL DE SEGUIMIENTO: CONSULTAR ESTADO DE PEDIDO
+          MODAL DE SEGUIMIENTO: CONSULTAR ESTADO DE PEDIDO (Dialog accesible)
           ========================================================================= */}
-      {isTrackingModalOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-tracking-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+      <Dialog
+        isOpen={isTrackingModalOpen}
+        onClose={() => setIsTrackingModalOpen(false)}
+        titleId="modal-tracking-title"
+        maxWidthClass="max-w-md"
+        className="rounded-2xl p-6 text-slate-900"
+      >
+        <button
+          type="button"
           onClick={() => setIsTrackingModalOpen(false)}
+          className="absolute top-4 right-4 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
+          aria-label="Cerrar modal de consulta"
         >
-          <div
-            className="bg-white text-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setIsTrackingModalOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-500 hover:text-[#002147] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
-              aria-label="Cerrar modal de consulta"
-            >
-              <X className="w-5 h-5" />
-            </button>
+          <X className="w-5 h-5" />
+        </button>
 
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-[#EDF5FD] border border-slate-200 text-[#0F76BB] flex items-center justify-center shrink-0">
-                <Package className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 id="modal-tracking-title" className="text-lg font-extrabold text-[#002147]">
-                  Consultar estado de encargo
-                </h3>
-                <p className="text-xs text-slate-500">
-                  Seguimiento de ticket o resguardo en Tintorería Mimos
-                </p>
-              </div>
-            </div>
-
-            <p className="text-xs text-slate-600 leading-relaxed mb-4">
-              Cada encargo depositado en nuestras 3 tiendas propias o en los 5 puntos colaboradores cuenta con un <strong>resguardo oficial numerado</strong>. Escribe tu número de resguardo para consultar en directo con Mimo por WhatsApp:
+        <div className="flex items-center gap-3 mb-4 pr-10">
+          <div className="w-10 h-10 rounded-xl bg-[#EDF5FD] border border-slate-200 text-[#0C65A1] flex items-center justify-center shrink-0">
+            <Package className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 id="modal-tracking-title" className="text-lg font-extrabold text-[#002147]">
+              Consultar estado de encargo
+            </h2>
+            <p className="text-xs text-slate-600">
+              Seguimiento de ticket o resguardo en Tintorería Mimos
             </p>
-
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                trackingLinkRef.current?.click();
-              }}
-              className="space-y-3.5"
-            >
-              <div>
-                <label htmlFor="order-ticket-input" className="block text-xs font-bold text-[#002147] mb-1">
-                  N.º de ticket o resguardo:
-                </label>
-                <div className="relative">
-                  <Receipt className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    id="order-ticket-input"
-                    type="text"
-                    value={orderNumber}
-                    onChange={(e) => setOrderNumber(e.target.value)}
-                    placeholder="Ej. 14258 o tu nombre"
-                    className="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
-                    autoFocus
-                  />
-                </div>
-              </div>
-
-              <a
-                ref={trackingLinkRef}
-                href={trackingWhatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  trackWhatsAppClick(currentPath, 'modal_order_status_submit');
-                  setIsTrackingModalOpen(false);
-                }}
-                className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Consultar por WhatsApp con Mimo</span>
-              </a>
-            </form>
-
-            <div className="mt-4 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
-              <span className="text-slate-600">¿Prefieres consultar por teléfono?</span>
-              <a
-                href={CONTACT_INFO.phoneHref}
-                onClick={() => trackPhoneClick(currentPath, 'modal_order_phone')}
-                className="font-bold text-[#0F76BB] hover:underline inline-flex items-center gap-1"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span>{CONTACT_INFO.phoneDisplay}</span>
-              </a>
-            </div>
           </div>
         </div>
-      )}
+
+        <p className="text-xs text-slate-600 leading-relaxed mb-4">
+          Cada encargo depositado en nuestras 3 tiendas propias o en los 5 puntos colaboradores cuenta con un <strong>resguardo oficial numerado</strong>. Escribe tu número de resguardo para consultar en directo con Mimo por WhatsApp:
+        </p>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            trackingLinkRef.current?.click();
+          }}
+          className="space-y-3.5"
+        >
+          <div>
+            <label htmlFor="order-ticket-input" className="block text-xs font-bold text-[#002147] mb-1">
+              N.º de ticket o resguardo:
+            </label>
+            <div className="relative">
+              <Receipt className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                ref={orderInputRef}
+                id="order-ticket-input"
+                type="text"
+                value={orderNumber}
+                onChange={(e) => setOrderNumber(e.target.value)}
+                placeholder="Ej. 14258 o tu nombre"
+                className="w-full min-h-[44px] pl-9 pr-3 py-2.5 text-base lg:text-sm rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+              />
+            </div>
+          </div>
+
+          <a
+            ref={trackingLinkRef}
+            href={trackingWhatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              trackWhatsAppClick(currentPath, 'modal_order_status_submit');
+              setIsTrackingModalOpen(false);
+            }}
+            className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span>Consultar por WhatsApp con Mimo</span>
+          </a>
+        </form>
+
+        <div className="mt-4 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+          <span className="text-slate-600">¿Prefieres consultar por teléfono?</span>
+          <a
+            href={CONTACT_INFO.phoneHref}
+            onClick={() => trackPhoneClick(currentPath, 'modal_order_phone')}
+            className="font-bold text-[#0C65A1] hover:underline inline-flex items-center gap-1"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span>{CONTACT_INFO.phoneDisplay}</span>
+          </a>
+        </div>
+      </Dialog>
 
       {/* =========================================================================
-          MENÚ MÓVIL LATERAL (Drawer para pantallas pequeñas < lg)
+          MENÚ MÓVIL LATERAL (Drawer accesible para pantallas pequeñas < lg)
           ========================================================================= */}
       {mobileMenuOpen && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label="Menú de navegación móvil"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setMobileMenuOpen(false);
+            }
+          }}
           className="fixed inset-0 z-50 lg:hidden bg-black/60 backdrop-blur-xs flex justify-end animate-in fade-in duration-200"
         >
-          <div className="w-full max-w-sm h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl bg-white text-[#002147]">
+          <div
+            ref={mobileDrawerRef}
+            className="w-full max-w-sm h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl bg-white text-[#002147]"
+          >
             <div>
               {/* Cabecera del drawer */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
@@ -1255,9 +1333,10 @@ export const Header: React.FC<HeaderProps> = ({
                   </span>
                 </div>
                 <button
+                  ref={mobileCloseBtnRef}
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD]"
+                  className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
                   aria-label="Cerrar menú"
                 >
                   <X className="w-5 h-5" />
@@ -1282,7 +1361,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         mobileExpandedSection === 'tintoreria'
-                          ? 'rotate-180 text-[#0F76BB]'
+                          ? 'rotate-180 text-[#0C65A1]'
                           : ''
                       }`}
                     />
@@ -1299,7 +1378,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="/limpieza-vestidos-novia-ceremonia-vigo"
                         onClick={(e) => handleLinkClick('/limpieza-vestidos-novia-ceremonia-vigo', e)}
-                        className="block py-1.5 font-bold text-[#0F76BB]"
+                        className="block py-1.5 font-bold text-[#0C65A1]"
                       >
                         • Vestidos de novia, fiesta y ceremonia
                       </a>
@@ -1392,7 +1471,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         mobileExpandedSection === 'limpieza'
-                          ? 'rotate-180 text-[#0F76BB]'
+                          ? 'rotate-180 text-[#0C65A1]'
                           : ''
                       }`}
                     />
@@ -1448,7 +1527,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         mobileExpandedSection === 'puntos'
-                          ? 'rotate-180 text-[#0F76BB]'
+                          ? 'rotate-180 text-[#0C65A1]'
                           : ''
                       }`}
                     />
@@ -1486,7 +1565,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="/se-punto-colaborador"
                         onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
-                        className="block py-1.5 font-bold text-[#0F76BB]"
+                        className="block py-1.5 font-bold text-[#0C65A1]"
                       >
                         • Quiero ser punto colaborador →
                       </a>
@@ -1498,7 +1577,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/limpieza-sofas-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
+                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0C65A1] hover:bg-[#EDF5FD]"
                 >
                   Limpieza de sofás a domicilio
                 </a>
@@ -1512,13 +1591,13 @@ export const Header: React.FC<HeaderProps> = ({
                         mobileExpandedSection === 'alfombras' ? null : 'alfombras'
                       )
                     }
-                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-extrabold text-[#0F76BB] hover:bg-[#EDF5FD]"
+                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-extrabold text-[#0C65A1] hover:bg-[#EDF5FD]"
                   >
                     <span>Alfombras (limpieza y arreglos)</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         mobileExpandedSection === 'alfombras'
-                          ? 'rotate-180 text-[#0F76BB]'
+                          ? 'rotate-180 text-[#0C65A1]'
                           : ''
                       }`}
                     />
@@ -1576,12 +1655,13 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => {
+                    skipMobileRestoreFocusRef.current = true;
                     setMobileMenuOpen(false);
                     setIsTrackingModalOpen(true);
                   }}
                   className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-3 px-4 rounded-xl transition-colors cursor-pointer bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]"
                 >
-                  <Package className="w-4 h-4 text-[#0F76BB]" />
+                  <Package className="w-4 h-4 text-[#0C65A1]" />
                   <span>Consultar estado de mi pedido</span>
                 </button>
 
@@ -1590,7 +1670,7 @@ export const Header: React.FC<HeaderProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick(currentPath, 'drawer_whatsapp')}
-                  className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
+                  className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Hablar con Mimo en WhatsApp</span>
@@ -1601,14 +1681,14 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => trackPhoneClick(currentPath, 'drawer_phone')}
                   className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-2.5 px-4 rounded-xl transition-colors border-slate-300 hover:border-[#002147] text-[#002147]"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Phone className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
                 </a>
               </div>
             </div>
 
             {/* Pie del drawer */}
-            <div className="pt-4 text-center text-[10px] text-slate-500">
+            <div className="pt-4 text-center text-[10px] text-slate-600">
               Tintorería Mimos Navia, S.L. · Vigo (Pontevedra)
             </div>
           </div>

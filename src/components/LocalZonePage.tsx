@@ -85,6 +85,8 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
               <img
                 src={punto.foto}
                 alt={`Fachada de ${punto.nombre_mostrado}`}
+                width={1200}
+                height={670}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
                 referrerPolicy="no-referrer"
@@ -94,12 +96,12 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
                   {punto.tipo === 'tienda' ? (
                     <>
-                      <Store className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                      <Store className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                       <span>Tienda Propia Mimos · {punto.localidad}</span>
                     </>
                   ) : (
                     <>
-                      <Handshake className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                      <Handshake className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                       <span>Punto Colaborador · {punto.localidad}</span>
                     </>
                   )}
@@ -109,9 +111,9 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                 <p className="text-xs font-bold text-[#DCEBFA] uppercase tracking-wide">
                   {punto.id === 'gregorio-espino' ? 'O Calvario · Vigo' : punto.localidad}
                 </p>
-                <h3 className="text-xl sm:text-2xl font-black leading-tight drop-shadow-sm">
+                <h4 className="text-xl sm:text-2xl font-black leading-tight drop-shadow-sm">
                   {punto.nombre_mostrado}
-                </h3>
+                </h4>
               </div>
             </div>
           ) : null}
@@ -134,7 +136,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                       </>
                     ) : (
                       <>
-                        <Handshake className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                        <Handshake className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                         <span>Establecimiento colaborador independiente</span>
                       </>
                     )}
@@ -144,12 +146,12 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                   </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] mb-2">
+                <h4 className="text-xl sm:text-2xl font-extrabold text-[#002147] mb-2">
                   {punto.nombre_mostrado}
-                </h3>
+                </h4>
 
                 {punto.tipo === 'punto' && (
-                  <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-4">
+                  <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-4">
                     Comercio colaborador: {punto.nombre_comercio}
                   </p>
                 )}
@@ -159,7 +161,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
             <dl className="space-y-2.5 text-sm text-slate-700 mb-5">
               <div className="flex items-start gap-2.5">
                 <MapPin
-                  className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                  className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                   aria-hidden="true"
                 />
                 <div>
@@ -172,7 +174,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
 
               <div className="flex items-start gap-2.5">
                 <Clock
-                  className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                  className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                   aria-hidden="true"
                 />
                 <div>
@@ -183,7 +185,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
 
               <div className="flex items-start gap-2.5">
                 <Phone
-                  className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                  className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                   aria-hidden="true"
                 />
                 <div>
@@ -191,7 +193,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                   <dd>
                     <a
                       href={`tel:+34${punto.telefono}`}
-                      className="font-bold text-[#0F76BB] hover:underline tabular-nums"
+                      className="font-bold text-[#0C65A1] hover:underline tabular-nums"
                     >
                       {punto.telefonos_mostrados}
                     </a>
@@ -202,7 +204,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
               {punto.referencia_local && (
                 <div className="flex items-start gap-2.5">
                   <Navigation
-                    className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                    className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                     aria-hidden="true"
                   />
                   <div>
@@ -217,7 +219,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
               {punto.aparcamiento && (
                 <div className="flex items-start gap-2.5">
                   <Car
-                    className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                    className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                     aria-hidden="true"
                   />
                   <div>
@@ -238,7 +240,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                 {derivarEtiquetasServicios(punto.servicios_confirmados).map((srv) => (
                   <li key={srv} className="flex items-start gap-2">
                     <CheckCircle2
-                      className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                      className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                       aria-hidden="true"
                     />
                     <span>{srv}</span>
@@ -248,14 +250,14 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
 
               {tieneCostura && punto.arreglos_confirmados.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-slate-200">
-                  <p className="text-xs font-bold text-[#178A47] flex items-center gap-1.5 mb-1.5">
+                  <p className="text-xs font-bold text-[#147A3E] flex items-center gap-1.5 mb-1.5">
                     <Scissors className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>Arreglos de ropa confirmados en este punto:</span>
                   </p>
                   <ul className="space-y-1 text-xs text-slate-600 mb-2">
                     {punto.arreglos_confirmados.map((arr) => (
                       <li key={arr} className="flex items-start gap-1.5">
-                        <span className="text-[#0F76BB] font-bold">·</span>
+                        <span className="text-[#0C65A1] font-bold">·</span>
                         <span>{arr}</span>
                       </li>
                     ))}
@@ -263,7 +265,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                   <a
                     href="/arreglos-de-ropa-vigo"
                     onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] hover:underline"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1] hover:underline"
                   >
                     <span>Ver página de costura y arreglos de ropa</span>
                     <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -350,7 +352,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-colors"
           >
             <MessageCircle className="w-4 h-4" aria-hidden="true" />
             <span>Consultar con Mimo</span>
@@ -378,7 +380,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
         secondaryAction={{
           label: `Central Mimos: ${CONTACT_INFO.phoneDisplay}`,
           href: CONTACT_INFO.phoneHref,
-          icon: <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />,
+          icon: <Phone className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />,
           isInternalRoute: false,
         }}
       />
@@ -403,7 +405,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
           {tiendasPropiasZona.length > 0 && (
             <div className="mb-12">
               <div className="flex items-center gap-2.5 mb-4">
-                <Store className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
+                <Store className="w-5 h-5 text-[#0C65A1]" aria-hidden="true" />
                 <h3 className="text-xl font-extrabold text-[#002147]">
                   Tiendas propias de Tintorería Mimos en {zona.localidad} ({tiendasPropiasZona.length})
                 </h3>
@@ -418,7 +420,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
             <div>
               {tiendasPropiasZona.length > 0 && (
                 <div className="flex items-center gap-2.5 mb-3">
-                  <Handshake className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
+                  <Handshake className="w-5 h-5 text-[#0C65A1]" aria-hidden="true" />
                   <h3 className="text-xl font-extrabold text-[#002147]">
                     Establecimiento colaborador en {zona.localidad} ({puntosColaboradoresZona.length})
                   </h3>
@@ -430,7 +432,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
               {zona.slug === 'vigo' && (
                 <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="space-y-1 max-w-2xl">
-                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                       Municipios limítrofes sin tienda física
                     </p>
                     <p className="text-sm text-slate-700 leading-relaxed">
@@ -482,7 +484,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                       href={zona.whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
+                      className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3.5 rounded-xl transition-colors whitespace-nowrap"
                     >
                       <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Consultar ruta con Mimo</span>
@@ -492,7 +494,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                       onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
                       className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap group"
                     >
-                      <Truck className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
+                      <Truck className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" aria-hidden="true" />
                       <span>Condiciones recogida a domicilio</span>
                     </a>
                   </div>
@@ -514,11 +516,11 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                       >
                         <div className="space-y-2">
                           <div className="flex items-start justify-between gap-2">
-                            <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                               <Store className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                               <span>Punto físico cercano</span>
                             </span>
-                            <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                            <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                           </div>
                           <h4 className="text-base sm:text-lg font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                             {op.nombre}
@@ -530,7 +532,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                             {op.detalle}
                           </p>
                         </div>
-                        <span className="text-xs font-bold text-[#0F76BB] group-hover:underline">
+                        <span className="text-xs font-bold text-[#0C65A1] group-hover:underline">
                           Ver ficha de ubicación y horarios →
                         </span>
                       </a>
@@ -556,7 +558,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                 key={p.paso}
                 className="rounded-2xl border border-slate-200 bg-[#F4F9FE] p-6"
               >
-                <span className="text-xs font-mono font-bold text-[#0F76BB]">
+                <span className="text-xs font-mono font-bold text-[#0C65A1]">
                   PASO {p.paso}
                 </span>
                 <h3 className="text-lg font-extrabold text-[#002147] mt-1 mb-2">
@@ -590,7 +592,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
 
           <div className="mb-10 rounded-2xl border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1 max-w-2xl">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Urgencias textiles en {zona.localidad} y comarca
               </p>
               <p className="text-sm sm:text-base font-extrabold text-[#002147]">
@@ -628,7 +630,7 @@ export const LocalZonePage: React.FC<LocalZonePageProps> = ({ zonaSlug, onNaviga
                   key={z.slug}
                   href={z.url}
                   onClick={(e) => onNavigate(z.url, e)}
-                  className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
+                  className="inline-flex items-center min-h-[44px] px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
                 >
                   {z.localidad}
                 </a>

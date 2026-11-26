@@ -7,7 +7,6 @@ import {
   Camera,
   Check,
   CheckCircle2,
-  ChevronDown,
   Copy,
   Crown,
   Droplets,
@@ -141,7 +140,6 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
   const [activeCategoryId, setActiveCategoryId] = useState<string>(
     SERVICIO_NOVIA_CEREMONIA_DATA.prendasTratadas[0].id
   );
-  const [showAllFaqs, setShowAllFaqs] = useState<boolean>(false);
 
   const [tipoPrenda, setTipoPrenda] = useState(GARMENT_TYPES[0]);
   const [momentoNecesidad, setMomentoNecesidad] = useState(MOMENT_OPTIONS[0]);
@@ -165,10 +163,6 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
   const activeMoment =
     SERVICIO_NOVIA_CEREMONIA_DATA.momentosUso[activeMomentIdx] ??
     SERVICIO_NOVIA_CEREMONIA_DATA.momentosUso[0];
-
-  const visibleFaqs = showAllFaqs
-    ? SERVICIO_NOVIA_CEREMONIA_DATA.preguntasFrecuentes
-    : SERVICIO_NOVIA_CEREMONIA_DATA.preguntasFrecuentes.slice(0, 6);
 
   const buildBridalWhatsAppMessage = () => {
     const lines = [
@@ -276,7 +270,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
             <div className="rounded-sm bg-[#F7F6F2] p-6 sm:p-8 lg:p-10 border border-slate-200">
               <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
                 <div className="max-w-2xl space-y-2">
-                  <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                  <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                     Según el momento en el que estés
                   </p>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -298,7 +292,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                         aria-selected={selected}
                         type="button"
                         onClick={() => setActiveMomentIdx(idx)}
-                        className={`min-h-[40px] px-4 py-2 rounded-md text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap ${
+                        className={`min-h-[44px] px-4 py-2 rounded-md text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap ${
                           selected
                             ? 'bg-[#002147] text-white'
                             : 'text-slate-600 hover:text-[#002147]'
@@ -325,7 +319,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                         {activeMoment.titulo}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#0F76BB] font-semibold mt-0.5">
+                      <p className="text-xs sm:text-sm text-[#0C65A1] font-semibold mt-0.5">
                         {activeMoment.subtitulo}
                       </p>
                     </div>
@@ -337,7 +331,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                           className="flex items-start gap-2.5 rounded-sm bg-white border border-slate-200 p-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed"
                         >
                           <CheckCircle2
-                            className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                            className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
                           <span>{caso}</span>
@@ -348,7 +342,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
 
                   <div className="lg:col-span-4 rounded-sm border border-[#0F76BB]/25 border-l-4 border-l-[#0F76BB] bg-[#EDF5FD] p-6 space-y-4 flex flex-col justify-between">
                     <div className="space-y-2">
-                      <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                         Cómo actuamos en este caso
                       </p>
                       <p className="text-sm text-slate-700 leading-relaxed">
@@ -358,7 +352,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     <button
                       type="button"
                       onClick={() => selectMomentAndScroll(activeMomentIdx)}
-                      className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
+                      className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs sm:text-sm px-4 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
                     >
                       <span>
                         {activeMomentIdx === 0
@@ -375,7 +369,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
             {/* Sub-bloque B: Vitrina interactiva con fotografía real por categoría */}
             <div>
               <div className="max-w-3xl mb-8 space-y-2">
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                   Cada tejido exige un criterio propio
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -409,7 +403,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                           className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                             isSelected
                               ? 'bg-[#002147] text-white'
-                              : 'bg-[#F7F6F2] text-[#0F76BB]'
+                              : 'bg-[#F7F6F2] text-[#0C65A1]'
                           }`}
                         >
                           <Icon className="w-5 h-5" aria-hidden="true" />
@@ -464,7 +458,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
 
                       <div className="p-6 sm:p-8 space-y-5">
                         <div className="space-y-2">
-                          <p className="text-xs font-mono font-bold text-[#0F76BB]">
+                          <p className="text-xs font-mono font-bold text-[#0C65A1]">
                             {activeCategory.tejidos}
                           </p>
                           <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
@@ -477,7 +471,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
 
                         <div className="rounded-sm bg-white border border-slate-200 p-4 flex items-start gap-3">
                           <CheckCircle2
-                            className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                            className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
                           <p className="text-xs sm:text-sm text-slate-700 font-semibold leading-relaxed">
@@ -489,7 +483,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                           <button
                             type="button"
                             onClick={() => selectCategoryAndConsult(activeCategory.id)}
-                            className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
+                            className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
                           >
                             <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                             <span>Consultar esta prenda</span>
@@ -498,7 +492,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                           <a
                             href="/arreglos-de-ropa-vigo"
                             onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                            className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                            className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                           >
                             <span>¿Necesita también arreglo de costura?</span>
                             <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -520,7 +514,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
               {/* Columna izquierda */}
               <div className="lg:col-span-5 space-y-6">
                 <div className="space-y-2">
-                  <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                  <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                     Cómo trabajamos una pieza irrepetible
                   </p>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -559,7 +553,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
 
                 {/* Bloque compacto de Costura Propia */}
                 <div className="rounded-sm border border-[#0F76BB]/25 border-l-4 border-l-[#0F76BB] bg-[#EDF5FD] p-6 space-y-4">
-                  <div className="flex items-center gap-2 text-[#0F76BB]">
+                  <div className="flex items-center gap-2 text-[#0C65A1]">
                     <Scissors className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <p className="text-xs sm:text-sm font-bold">
                       Modistería propia en Gregorio Espino 42 y Rúa de Venezuela 29 (Entreplanta)
@@ -583,7 +577,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                   <a
                     href="/arreglos-de-ropa-vigo"
                     onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                    className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline pt-1"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:underline pt-1"
                   >
                     <span>Ver catálogo de costura y arreglos</span>
                     <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -599,7 +593,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       key={fase.num}
                       className="py-5 first:pt-0 last:pb-0 flex items-start gap-4 sm:gap-5"
                     >
-                      <span className="font-mono tabular-nums text-lg sm:text-xl font-extrabold text-[#0F76BB] shrink-0 leading-none pt-1">
+                      <span className="font-mono tabular-nums text-lg sm:text-xl font-extrabold text-[#0C65A1] shrink-0 leading-none pt-1">
                         {fase.num}
                       </span>
                       <div className="space-y-1.5">
@@ -625,7 +619,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10 space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Orientación previa sin desplazarte cargando con el vestido
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -651,7 +645,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       id="bridal-garment-type"
                       value={tipoPrenda}
                       onChange={(e) => setTipoPrenda(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {GARMENT_TYPES.map((g) => (
                         <option key={g} value={g}>
@@ -672,7 +666,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       id="bridal-moment"
                       value={momentoNecesidad}
                       onChange={(e) => setMomentoNecesidad(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {MOMENT_OPTIONS.map((m) => (
                         <option key={m} value={m}>
@@ -693,7 +687,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       id="bridal-fabric"
                       value={tejidoDetalle}
                       onChange={(e) => setTejidoDetalle(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {FABRIC_DETAILS.map((f) => (
                         <option key={f} value={f}>
@@ -714,7 +708,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       id="bridal-solution"
                       value={solucionPrincipal}
                       onChange={(e) => setSolucionPrincipal(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {SOLUTION_OPTIONS.map((s) => (
                         <option key={s} value={s}>
@@ -736,7 +730,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     id="bridal-delivery"
                     value={puntoEntrega}
                     onChange={(e) => setPuntoEntrega(e.target.value)}
-                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                   >
                     {DELIVERY_POINTS.map((p) => (
                       <option key={p} value={p}>
@@ -759,12 +753,12 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     value={observaciones}
                     onChange={(e) => setObservaciones(e.target.value)}
                     placeholder="Ej.: Comunión dentro de 3 semanas y faldón de lino heredado con ligero tono amarillo en el pecho..."
-                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                   />
                 </div>
 
                 <div className="rounded-sm bg-[#F7F6F2] border border-slate-200 p-4 flex items-start gap-3">
-                  <Camera className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <Camera className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                     <strong className="text-[#002147]">3 fotos útiles al abrir el chat:</strong> (1) vista completa de frente, (2) etiqueta interior o zona con pedrería y (3) detalle con buena luz del bajo o mancha principal.
                   </p>
@@ -782,7 +776,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                         { service_id: 'novia-ceremonia-builder' }
                       )
                     }
-                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors sm:whitespace-nowrap shadow-xs"
+                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors sm:whitespace-nowrap shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Abrir WhatsApp con esta consulta</span>
@@ -795,7 +789,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                   >
                     {copied ? (
                       <>
-                        <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                        <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                         <span>Copiado</span>
                       </>
                     ) : (
@@ -811,7 +805,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
               {/* Barra lateral: Transparencia de presupuesto */}
               <aside className="lg:col-span-5 rounded-sm border border-slate-200 bg-white p-6 sm:p-8 space-y-5">
                 <div className="space-y-1.5">
-                  <p className="text-xs font-bold text-[#0F76BB]">
+                  <p className="text-xs font-bold text-[#0C65A1]">
                     Sin tarifas estándar ni precios sorpresa
                   </p>
                   <h3 className="text-xl font-extrabold text-[#002147] tracking-tight">
@@ -826,7 +820,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                   {SERVICIO_NOVIA_CEREMONIA_DATA.criteriosPresupuesto.map((criterio, idx) => (
                     <div key={criterio.titulo} className="py-3.5 first:pt-0 last:pb-0">
                       <dt className="text-sm font-extrabold text-[#002147] flex items-center gap-2">
-                        <span className="font-mono text-xs text-[#0F76BB]">0{idx + 1}</span>
+                        <span className="font-mono text-xs text-[#0C65A1]">0{idx + 1}</span>
                         <span>{criterio.titulo}</span>
                       </dt>
                       <dd className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
@@ -849,7 +843,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
               <div className="lg:col-span-7 space-y-2.5">
-                <div className="flex items-center gap-2 text-[#0F76BB]">
+                <div className="flex items-center gap-2 text-[#0C65A1]">
                   <Droplets className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <p className="text-xs sm:text-sm font-bold">
                     Humedad atlántica de Vigo (77 % media anual)
@@ -876,7 +870,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     </h3>
                     <p className="text-sm text-slate-600 leading-relaxed">{item.impacto}</p>
                   </div>
-                  <p className="pt-3 border-t border-slate-200 text-xs sm:text-sm font-semibold text-[#0F76BB] leading-relaxed">
+                  <p className="pt-3 border-t border-slate-200 text-xs sm:text-sm font-semibold text-[#0C65A1] leading-relaxed">
                     {item.recomendacion}
                   </p>
                 </article>
@@ -888,7 +882,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
               <div className="lg:col-span-7 rounded-sm border border-slate-200 border-t-4 border-t-amber-500 bg-[#F7F6F2] p-6 sm:p-8 space-y-5">
                 <div className="flex items-start gap-3">
                   <ShieldAlert
-                    className="w-5 h-5 text-amber-600 shrink-0 mt-1"
+                    className="w-5 h-5 text-amber-700 shrink-0 mt-1"
                     aria-hidden="true"
                   />
                   <div>
@@ -909,7 +903,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     >
                       <div className="flex items-start gap-2">
                         <XCircle
-                          className="w-4 h-4 text-amber-600 shrink-0 mt-0.5"
+                          className="w-4 h-4 text-amber-700 shrink-0 mt-0.5"
                           aria-hidden="true"
                         />
                         <p className="text-xs sm:text-sm font-extrabold text-[#002147] leading-snug">
@@ -926,7 +920,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
 
               <div className="lg:col-span-5 rounded-sm bg-[#EDF5FD] border border-[#0F76BB]/25 border-t-4 border-t-[#0F76BB] p-6 sm:p-8 flex flex-col justify-between space-y-5">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-[#0F76BB]">
+                  <div className="flex items-center gap-2 text-[#0C65A1]">
                     <Sparkles className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                       Entrega en percha ancha con funda transpirable
@@ -942,7 +936,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                         className="flex items-start gap-2 text-xs text-slate-700 leading-relaxed"
                       >
                         <CheckCircle2
-                          className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                          className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                           aria-hidden="true"
                         />
                         <span>{tip}</span>
@@ -956,7 +950,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       onClick={(e) =>
                         onNavigate('/blog/como-quitar-mancha-vino-tinto-ropa-delicada', e)
                       }
-                      className="font-bold text-[#0F76BB] underline underline-offset-2 hover:text-[#002147]"
+                      className="font-bold text-[#0C65A1] underline underline-offset-2 hover:text-[#002147]"
                     >
                       Lee nuestro protocolo de primeros minutos →
                     </a>
@@ -974,7 +968,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                       { service_id: 'novia-ceremonia' }
                     )
                   }
-                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
+                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Consultar conservación o limpieza</span>
@@ -994,7 +988,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+                  <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                     Opiniones reales de clientes en Google
                   </p>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -1021,7 +1015,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     <div className="space-y-2.5">
                       <div className="flex items-center gap-2 text-xs text-slate-500">
                         <span
-                          className="text-amber-500 font-bold tracking-tight"
+                          className="text-amber-700 font-bold tracking-tight"
                           aria-label="Valoración de 5 estrellas"
                         >
                           ★★★★★
@@ -1055,7 +1049,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                 <a
                   href="/puntos-mimos"
                   onClick={(e) => onNavigate('/puntos-mimos', e)}
-                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                 >
                   <Store className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Ver mapa y horarios completos</span>
@@ -1068,7 +1062,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     key={t.id}
                     className="rounded-sm border border-slate-200 bg-white p-5 space-y-2"
                   >
-                    <p className="text-xs font-bold text-[#0F76BB]">
+                    <p className="text-xs font-bold text-[#0C65A1]">
                       Tienda propia Mimos · {t.localidad}
                     </p>
                     <h3 className="text-base font-extrabold text-[#002147]">
@@ -1086,7 +1080,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
 
               <div className="rounded-sm border border-slate-200 bg-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
-                  <Truck className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <Truck className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     <strong className="text-[#002147]">Puntos colaboradores y domicilio:</strong> recepción en{' '}
                     {PUNTOS_COLABORADORES.map((p) => `${p.localidad} (${p.nombre_comercio})`).join(', ')}{' '}
@@ -1096,7 +1090,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                 <a
                   href="/recogida-a-domicilio"
                   onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
-                  className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                 >
                   Ver recogida a domicilio →
                 </a>
@@ -1110,7 +1104,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
             <div>
               <div className="max-w-3xl mb-8 space-y-1.5">
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                   Dudas habituales antes de dejar tu prenda
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -1119,14 +1113,14 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {visibleFaqs.map((faq) => (
+                {SERVICIO_NOVIA_CEREMONIA_DATA.preguntasFrecuentes.map((faq) => (
                   <details
                     key={faq.pregunta}
                     className="group rounded-sm border border-slate-200 bg-[#F7F6F2]/70 p-5"
                   >
                     <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                       <span>{faq.pregunta}</span>
-                      <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                      <span className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                         +
                       </span>
                     </summary>
@@ -1136,27 +1130,6 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                   </details>
                 ))}
               </div>
-
-              {SERVICIO_NOVIA_CEREMONIA_DATA.preguntasFrecuentes.length > 6 && (
-                <div className="mt-6 flex justify-center">
-                  <button
-                    type="button"
-                    onClick={() => setShowAllFaqs((prev) => !prev)}
-                    aria-expanded={showAllFaqs}
-                    className="min-h-[44px] inline-flex items-center gap-2 rounded-lg border border-[#002147] bg-white hover:bg-[#002147] hover:text-white px-5 py-2.5 text-xs sm:text-sm font-bold text-[#002147] transition-colors cursor-pointer whitespace-nowrap"
-                  >
-                    <span>
-                      {showAllFaqs
-                        ? 'Ocultar dudas técnicas adicionales'
-                        : `Ver ${SERVICIO_NOVIA_CEREMONIA_DATA.preguntasFrecuentes.length - 6} dudas técnicas más`}
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${showAllFaqs ? 'rotate-180' : ''}`}
-                      aria-hidden="true"
-                    />
-                  </button>
-                </div>
-              )}
             </div>
 
             {/* Enlaces hermanos y pie de consulta */}
@@ -1178,7 +1151,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                         <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                           {rel.titulo}
                         </h3>
-                        <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                        <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                         {rel.descripcion}
@@ -1210,7 +1183,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                         { service_id: 'novia-ceremonia' }
                       )
                     }
-                    className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shadow-xs"
+                    className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Consultar prenda con Mimo</span>
@@ -1223,7 +1196,7 @@ export const BridalCeremonyPage: React.FC<BridalCeremonyPageProps> = ({
                     className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors whitespace-nowrap group"
                   >
                     <Phone
-                      className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0"
+                      className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0"
                       aria-hidden="true"
                     />
                     <span>{CONTACT_INFO.phoneDisplay}</span>

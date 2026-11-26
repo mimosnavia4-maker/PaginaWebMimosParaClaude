@@ -1,6 +1,7 @@
 import { buildMimoWhatsAppUrl } from './mimosData';
+import { ROUTE_SEO_MAP } from './routesSeoData';
 
-// Información de las páginas por localidad (Sección 5: contenido único por municipio, con noindex mientras esté en revisión previa a publicación)
+// Información de las páginas locales por zona (metadatos SEO sincronizados con ROUTE_SEO_MAP)
 export interface ZonaSEOLocal {
   slug: string;
   url: string;
@@ -74,14 +75,29 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     ],
     preguntasFrecuentes: [
       {
-        pregunta: '¿Cómo funciona el punto Mimos Redondela en C/ José Regojo 29?',
+        pregunta: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Redondela?',
         respuesta:
-          'Es un establecimiento colaborador de recogida y entrega en Redondela (C/ José Regojo, 29 bajo, teléfono 613 62 47 24) donde puedes dejar tus prendas, colada familiar y textiles del hogar para su tratamiento en nuestras instalaciones de Vigo, además de recibir alfombras para su gestión con taller especialista.',
+          'Depositas tus prendas (trajes, vestidos de fiesta o comunión, abrigos, edredones, mantas, alfombras o colada familiar) en nuestro punto colaborador de C/ José Regojo, 29 bajo en Redondela. Se te entrega tu resguardo oficial y nuestra furgoneta propia traslada tus prendas y textiles del hogar a la central de Mimos en Navia (y coordina las alfombras con taller especialista colaborador), devolviéndolas listas y precintadas.',
       },
       {
-        pregunta: '¿Cómo puedo saber cuánto cuesta limpiar una prenda desde el punto de Redondela?',
+        pregunta: '¿Cuál es el horario de atención en Mimos Redondela?',
         respuesta:
-          'Los precios te los facilita directamente nuestro asistente Mimo por WhatsApp en el 655 536 844 antes de que lleves tu prenda al punto de Redondela.',
+          'Mimos Redondela atiende de lunes a viernes de 10:00 a 13:30 y de 17:00 a 20:00, y los sábados de 10:00 a 13:00, lo que permite conciliar la entrega y recogida con tu rutina diaria.',
+      },
+      {
+        pregunta: '¿Se pueden entregar edredones grandes y alfombras?',
+        respuesta:
+          'Sí, recibimos edredones sintéticos y de plumón natural, cortinas, mantas y alfombras (consultando dimensiones). Tratamos los edredones, mantas y cortinas en nuestra planta de Navia y gestionamos las alfombras mediante taller especialista colaborador con secado controlado.',
+      },
+      {
+        pregunta: '¿Los precios de tintorería son los mismos que en Vigo?',
+        respuesta:
+          'Exactamente los mismos. La tarifa oficial de Tintorería Mimos es idéntica en toda nuestra red de tiendas y puntos colaboradores, sin recargos por gestión ni transporte.',
+      },
+      {
+        pregunta: '¿Puedo solicitar entrega a domicilio si luego no puedo pasar a recoger?',
+        respuesta:
+          'Sí. Puedes escribir a Mimo por WhatsApp al 655 536 844 y coordinar la entrega directa en tu domicilio o lugar de trabajo en Redondela o alrededores.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -128,14 +144,39 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     ],
     preguntasFrecuentes: [
       {
-        pregunta: '¿Qué relación hay entre Puntadas No Aire y Tintorería Mimos?',
+        pregunta: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Puntadas No Aire?',
         respuesta:
-          'Puntadas No Aire es un taller y tienda de costura independiente en Gondomar que actúa como establecimiento colaborador para la recogida y entrega de encargos gestionados por Tintorería Mimos Navia, S.L., ofreciendo además servicio confirmado de costura y arreglos de ropa.',
+          'Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a Puntadas No Aire en Avda. Elduayen, 9, Gondomar. El establecimiento anota tus datos y te entrega un resguardo oficial. La furgoneta de transporte de Mimos traslada tus prendas y textiles del hogar a nuestra central de Vigo (y coordina las alfombras con taller especialista) y las devuelve al punto listas y precintadas para que las recojas cómodamente.',
       },
       {
-        pregunta: '¿Qué servicios están confirmados en el punto colaborador de Gondomar?',
+        pregunta: '¿Qué ventaja tiene el horario de apertura a las 08:00 h?',
         respuesta:
-          'En Puntadas No Aire (Avda. Elduayen, 9) puedes entregar tus prendas y textiles del hogar para los servicios de Tintorería Mimos (tratados en nuestra central de Vigo) y solicitar costura y arreglos de ropa (bajos, cremalleras, botones, estrechar o ensanchar y zurcidos). Consulta cualquier duda o presupuesto con Mimo por WhatsApp.',
+          'De martes a viernes, Puntadas No Aire abre sus puertas a las 08:00 de la mañana. Esto permite a los vecinos de Gondomar y del Val Miñor dejar su ropa antes de desplazarse al trabajo o llevar a los niños al colegio, facilitando enormemente la rutina diaria.',
+      },
+      {
+        pregunta: '¿Qué tipo de arreglos de costura se pueden solicitar en Puntadas No Aire?',
+        respuesta:
+          'Puntadas No Aire dispone de taller propio de costura in situ: dobladillos y bajos de pantalones y faldas (original, invisible o estándar), cambio y reparación de cremalleras, entallado de vestidos y trajes, ajustes de cintura, botones y zurcidos de rotos o descosidos.',
+      },
+      {
+        pregunta: '¿Se pueden entregar edredones de plumas y alfombras grandes en Gondomar?',
+        respuesta:
+          'Sí. Puntadas No Aire recibe edredones de plumón, plumas naturales, mantas y alfombras (consultando dimensiones). Mimos realiza el lavado higiénico y secado de edredones y textiles en su planta de Vigo y gestiona las alfombras con taller especialista colaborador.',
+      },
+      {
+        pregunta: '¿Los precios de tintorería son los mismos que en las tiendas propias de Vigo?',
+        respuesta:
+          'Exactamente iguales. Las tarifas oficiales de Tintorería Mimos son uniformes en toda nuestra red. No hay ningún sobrecoste ni recargo por entrega o recogida en el punto colaborador de Gondomar.',
+      },
+      {
+        pregunta: '¿Puedo consultar dudas o presupuestos antes de acercarme a la tienda?',
+        respuesta:
+          'Por supuesto. Puedes chatear directamente con Mimo por WhatsApp al 655 536 844 o llamar directamente a Puntadas No Aire al 630 82 21 84.',
+      },
+      {
+        pregunta: 'Si después no puedo desplazarme a recogerlas, ¿podéis entregármelas a domicilio?',
+        respuesta:
+          'Sí. Si prefieres entrega a domicilio en cualquier punto de Gondomar, Nigrán, Baiona o Vigo, avísanos por WhatsApp y coordinamos la entrega con nuestra furgoneta propia de reparto.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -182,14 +223,39 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     ],
     preguntasFrecuentes: [
       {
-        pregunta: '¿Dónde puedo dejar mis prendas para tintorería o arreglos de ropa en Ponteareas?',
+        pregunta: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Arregla2?',
         respuesta:
-          'En el establecimiento colaborador independiente Arregla2, situado en C/ Argentina, 4 (36860 Ponteareas), teléfono 647 61 66 15, en horario de lunes a viernes de 09:30 a 13:30 y de 16:00 a 19:30, y sábados de 09:30 a 13:30.',
+          'Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a Arregla2 en C/ Argentina, 4, Ponteareas. El establecimiento anota tus datos y te entrega un resguardo oficial. La furgoneta de transporte de Mimos traslada tus prendas y textiles del hogar a nuestra central de Vigo (y coordina las alfombras con taller especialista) y las devuelve al punto listas y precintadas para que las recojas cómodamente.',
       },
       {
-        pregunta: '¿Qué servicios están confirmados en el punto colaborador de Ponteareas?',
+        pregunta: '¿Qué tipo de arreglos de costura se realizan directamente en Arregla2?',
         respuesta:
-          'Actúa como punto de recogida y entrega para los servicios de Tintorería Mimos (tratados en nuestra central de Vigo) y dispone de servicio confirmado de costura y arreglos de ropa (bajos, bastillas, cremalleras, botones, ajustes de talla y zurcidos). Puedes consultar previamente con Mimo por WhatsApp.',
+          'Arregla2 dispone de taller propio de costura in situ en Ponteareas: dobladillos y bajos de pantalones y faldas (original en vaqueros, invisible o estándar), cambio y reparación de cremalleras, entallado de vestidos y trajes, ajustes de cintura, botones y zurcidos de rotos o descosidos.',
+      },
+      {
+        pregunta: '¿Se pueden entregar edredones de plumas y alfombras grandes en Ponteareas?',
+        respuesta:
+          'Sí. Arregla2 recibe edredones de plumón, plumas naturales, mantas y alfombras (consultando dimensiones). Mimos realiza el lavado higiénico y secado de edredones en su planta de Vigo y gestiona las alfombras con taller especialista colaborador.',
+      },
+      {
+        pregunta: '¿Cuáles son los horarios de apertura de Arregla2 en Ponteareas?',
+        respuesta:
+          'Arregla2 abre de lunes a viernes en horario de mañana y tarde (09:30 a 13:30 y 16:00 a 19:30) y los sábados por la mañana (09:30 a 13:30). Los domingos permanece cerrado por descanso semanal.',
+      },
+      {
+        pregunta: '¿Los precios de tintorería son los mismos que en las tiendas propias de Vigo?',
+        respuesta:
+          'Exactamente iguales. Las tarifas oficiales de Tintorería Mimos son uniformes en toda nuestra red. No hay ningún sobrecoste ni recargo por entrega o recogida en el punto colaborador de Ponteareas.',
+      },
+      {
+        pregunta: '¿Puedo consultar dudas o presupuestos antes de acercarme a la tienda?',
+        respuesta:
+          'Por supuesto. Puedes chatear directamente con Mimo por WhatsApp al 655 536 844 o llamar directamente a Arregla2 al 647 61 66 15.',
+      },
+      {
+        pregunta: 'Si después no puedo desplazarme a recogerlas, ¿podéis entregármelas a domicilio?',
+        respuesta:
+          'Sí. Si prefieres entrega a domicilio en cualquier punto de Ponteareas, Mondariz, Salvaterra, As Neves, O Porriño o Vigo, avísanos por WhatsApp y coordinamos la entrega con nuestra furgoneta propia de reparto.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -236,14 +302,39 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
     ],
     preguntasFrecuentes: [
       {
-        pregunta: '¿Qué servicios ofrece el punto colaborador Telas y Más en O Porriño?',
+        pregunta: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Telas y Más?',
         respuesta:
-          'Telas y Más (C/ Manuel Rodríguez, 30) es un establecimiento colaborador independiente donde puedes entregar y recoger tus prendas y textiles para su tratamiento por Tintorería Mimos en Vigo, y que ofrece además servicio confirmado de costura y arreglos de ropa.',
+          'Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada) a Telas y Más en C/ Manuel Rodríguez, 30, O Porriño. Allí registran tu encargo con tus datos. El equipo logístico de Mimos recoge las prendas y textiles del hogar hacia nuestras instalaciones centrales en Vigo (y coordina las alfombras con taller especialista colaborador) y las devuelve listas y precintadas a Telas y Más para que las recojas cómodamente.',
       },
       {
-        pregunta: '¿Cómo consulto un precio o arreglo antes de acudir al punto de O Porriño?',
+        pregunta: '¿Qué tipo de arreglos de costura se pueden solicitar en Telas y Más?',
         respuesta:
-          'Escríbenos por WhatsApp al 655 536 844 para consultar disponibilidad y presupuesto personalizado según la prenda o el arreglo que necesites.',
+          'Telas y Más cuenta con taller propio de costura y arreglos in situ: subida y bajada de bajos en pantalones, faldas y abrigos, cambio y ajuste de cremalleras, ensanchar o estrechar prendas, ajustes de cintura, zurcidos y composturas en general. Además son especialistas en venta y corte de telas.',
+      },
+      {
+        pregunta: '¿Se pueden entregar edredones de plumas y alfombras grandes en este punto?',
+        respuesta:
+          'Sí. Telas y Más recibe textiles de gran volumen como edredones sintéticos y nórdicos de plumón natural, mantas, colchas y alfombras (consultando dimensiones). Mimos realiza el lavado y secado de edredones en su central de Vigo y gestiona las alfombras mediante taller especialista colaborador.',
+      },
+      {
+        pregunta: '¿Cuáles son los días y plazos habituales de entrega y recogida?',
+        respuesta:
+          'La recepción en Telas y Más está abierta de lunes a viernes (10:00-13:30 y 17:00-20:30) y sábados por la mañana (10:00-13:30). Los plazos varían según el tratamiento: las prendas habituales de tintorería suelen estar listas en pocos días, mientras que alfombras o prendas delicadas pueden requerir unos días adicionales. Puedes consultar el estado en cualquier momento por WhatsApp.',
+      },
+      {
+        pregunta: '¿Los precios de tintorería son los mismos que en las tiendas de Vigo?',
+        respuesta:
+          'Sí, las tarifas de los servicios de tintorería, lavandería y limpieza de textiles de Tintorería Mimos se mantienen en toda la red de puntos colaboradores, beneficiándote de los mismos precios de Vigo sin costes de desplazamiento.',
+      },
+      {
+        pregunta: '¿Puedo consultar dudas o presupuestos antes de llevar las prendas?',
+        respuesta:
+          'Por supuesto. Puedes escribirnos directamente por WhatsApp al 655 536 844 o llamar a la tienda Telas y Más al 605 02 76 52. Con una foto de la prenda o del arreglo te orientamos al instante.',
+      },
+      {
+        pregunta: 'Si después no puedo desplazarme a recogerlas, ¿podéis llevármelas a casa?',
+        respuesta:
+          'Sí. Si por cualquier motivo prefieres que te entreguemos tus prendas limpias en tu domicilio o lugar de trabajo en O Porriño o comarca, solo tienes que indicárnoslo por WhatsApp y coordinamos la entrega con nuestra furgoneta propia de reparto.',
       },
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -446,7 +537,7 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
         paso: '03',
         titulo: 'Lavado, secado completo anti-humedad y devolución',
         detalle:
-          'Tratamos cada pieza en nuestra planta central de Vigo con secado completo controlado y la devolvemos embolsada o en percha lista para usar o guardar.',
+          'Tratamos tus prendas y textiles del hogar en nuestra planta central de Vigo con secado completo controlado (y gestionamos tus alfombras mediante taller especialista colaborador) antes de devolvértelos embolsados o en percha.',
       },
     ],
     preguntasFrecuentes: [
@@ -477,4 +568,12 @@ const ZONAS_SEO_LOCAL_BASE: ZonaSEOLocal[] = [
   },
 ];
 
-export const ZONAS_SEO_LOCAL: ZonaSEOLocal[] = ZONAS_SEO_LOCAL_BASE;
+export const ZONAS_SEO_LOCAL: ZonaSEOLocal[] = ZONAS_SEO_LOCAL_BASE.map((z) => {
+  const routeMeta = ROUTE_SEO_MAP[z.url];
+  return {
+    ...z,
+    seoTitle: routeMeta?.title ?? z.seoTitle,
+    metaDescription: routeMeta?.description ?? z.metaDescription,
+    h1: routeMeta?.h1 ?? z.h1,
+  };
+});

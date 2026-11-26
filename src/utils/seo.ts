@@ -1,81 +1,9 @@
 import { ALL_ROUTE_PATHS, ROUTE_SEO_MAP } from '../data/routesSeoData.ts';
+import { LEGACY_REDIRECT_MAP, resolveCanonicalRoute } from '../data/redirectsData.ts';
+
+export { LEGACY_REDIRECT_MAP, resolveCanonicalRoute };
 
 export const KNOWN_ROUTES: string[] = ALL_ROUTE_PATHS;
-
-const LEGACY_REDIRECT_MAP: Record<string, string> = {
-  '/feder.html': '/feder',
-  '/programa-bono-energia-peme-2025-in417z.html': '/programa-bono-energia-peme-2025-in417z',
-  '/empleo-unete-a-nosotros.html': '/empleo-unete-a-nosotros',
-  '/empleo': '/empleo-unete-a-nosotros',
-  '/unete-a-nosotros': '/empleo-unete-a-nosotros',
-  '/servicios/alfombras-pieles': '/limpieza-alfombras-vigo',
-  '/alfombras-vigo': '/limpieza-alfombras-vigo',
-  '/servicios/limpieza-de-alfombras.html': '/limpieza-alfombras-vigo',
-  '/servicios/limpieza-de-alfombras': '/limpieza-alfombras-vigo',
-  '/servicios/reparacion-de-alfombras.html': '/reparacion-alfombras-vigo',
-  '/servicios/reparacion-de-alfombras': '/reparacion-alfombras-vigo',
-  '/servicios/limpieza-de-pieles-y-cuero.html': '/limpieza-pieles-cuero-vigo',
-  '/servicios/limpieza-de-pieles-y-cuero': '/limpieza-pieles-cuero-vigo',
-  '/pieles-y-cuero-vigo': '/limpieza-pieles-cuero-vigo',
-  '/costura-y-arreglos': '/arreglos-de-ropa-vigo',
-  '/servicios/costura-arreglos': '/arreglos-de-ropa-vigo',
-  '/arreglos-ropa-vigo': '/arreglos-de-ropa-vigo',
-  '/blog/9-blog/26-la-colada-en-casa.html': '/blog/la-colada-en-casa',
-  '/blog/9-blog/26-la-colada-en-casa': '/blog/la-colada-en-casa',
-  '/blog/9-blog/22-montar-tu-propia-tintoreria-lavanderia.html':
-    '/blog/montar-tu-propia-tintoreria-lavanderia',
-  '/blog/9-blog/22-montar-tu-propia-tintoreria-lavanderia':
-    '/blog/montar-tu-propia-tintoreria-lavanderia',
-  '/punto-telas-mas-porrino': '/zonas/o-porrino',
-  '/punto/telas-mas': '/zonas/o-porrino',
-  '/ficha/telas-mas': '/zonas/o-porrino',
-  '/punto-puntadas-no-aire-gondomar': '/zonas/gondomar',
-  '/punto/puntadas-no-aire': '/zonas/gondomar',
-  '/ficha/puntadas-no-aire': '/zonas/gondomar',
-  '/tienda/navia': '/tienda-mimos-navia-vigo',
-  '/tienda-navia': '/tienda-mimos-navia-vigo',
-  '/central-navia': '/tienda-mimos-navia-vigo',
-  '/tienda/gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
-  '/tienda-gregorio-espino': '/tienda-mimos-gregorio-espino-vigo',
-  '/tienda/venezuela': '/tienda-mimos-venezuela-vigo',
-  '/tienda-venezuela': '/tienda-mimos-venezuela-vigo',
-  '/punto-dpasso-vigo': '/punto-mimos-dpasso-vigo',
-  '/punto/dpasso': '/punto-mimos-dpasso-vigo',
-  '/ficha/dpasso': '/punto-mimos-dpasso-vigo',
-  '/se-punto-de-recogida.html': '/se-punto-colaborador',
-  '/se-punto-de-recogida': '/se-punto-colaborador',
-  '/punto-colaborador': '/se-punto-colaborador',
-  '/siniestros-vigo': '/limpieza-incendios-siniestros-vigo',
-  '/limpieza-incendios-vigo': '/limpieza-incendios-siniestros-vigo',
-  '/recuperacion-textil-siniestros': '/limpieza-incendios-siniestros-vigo',
-  '/franquicia-wash-in-town.html': '/se-punto-colaborador',
-  '/franquicia-wash-in-town': '/se-punto-colaborador',
-  '/servicios/tintoreria.html': '/tintoreria-vigo',
-  '/servicios/tintoreria': '/tintoreria-vigo',
-  '/servicios/lavanderia.html': '/lavanderia-vigo',
-  '/servicios/lavanderia': '/lavanderia-vigo',
-  '/servicios/costura.html': '/arreglos-de-ropa-vigo',
-  '/servicios/costura': '/arreglos-de-ropa-vigo',
-  '/servicios/alfombras.html': '/limpieza-alfombras-vigo',
-  '/servicios/alfombras': '/limpieza-alfombras-vigo',
-  '/servicios/limpieza-de-sofas.html': '/limpieza-sofas-vigo',
-  '/servicios/limpieza-de-sofas': '/limpieza-sofas-vigo',
-  '/servicios/limpieza-a-domicilio.html': '/limpieza-casas-vigo',
-  '/servicios/limpieza-a-domicilio': '/limpieza-casas-vigo',
-  '/limpieza-casas-particulares-vigo': '/limpieza-casas-vigo',
-  '/servicios/edredones-y-cortinas.html': '/textiles-hogar-vigo',
-  '/servicios/edredones-y-cortinas': '/textiles-hogar-vigo',
-  '/recogida-a-domicilio.html': '/recogida-a-domicilio',
-  '/contacto.html': '/contacto',
-  '/blog.html': '/blog',
-};
-
-export function resolveCanonicalRoute(rawPath: string): string {
-  const withoutQuery = (rawPath || '/').split('?')[0].split('#')[0] || '/';
-  const normalized =
-    withoutQuery.length > 1 ? withoutQuery.replace(/\/+$/, '') : '/';
-  return LEGACY_REDIRECT_MAP[normalized] || normalized;
-}
 
 export function isKnownRoute(rawPath: string): boolean {
   const resolved = resolveCanonicalRoute(rawPath);

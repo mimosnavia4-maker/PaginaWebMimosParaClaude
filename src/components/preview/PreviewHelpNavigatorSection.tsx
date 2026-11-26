@@ -292,7 +292,7 @@ const PROFILE_TABS: ProfileTabConfig[] = [
       {
         id: 'vut-urgencias',
         title: 'Urgencias para propietarios',
-        subtitle: 'Mismo día · Sábados y festivos',
+        subtitle: 'Mismo día · Sábados, domingos y festivos',
         href: '/limpieza-apartamentos-turisticos-vigo#urgencias',
         renderIcon: () => <Clock className="w-5 h-5" aria-hidden="true" />,
       },
@@ -398,11 +398,11 @@ export const PreviewHelpNavigatorSection: React.FC<PreviewHelpNavigatorSectionPr
               className="group relative flex flex-col rounded-2xl bg-white border border-[#BFDBFE] p-4 sm:p-5 min-h-[146px] sm:min-h-[156px] transition-all hover:border-[#0F76BB] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F76BB] focus-visible:ring-offset-2"
             >
               <div className="flex items-start justify-between gap-2 mb-3.5">
-                <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#EAF4FE] text-[#0F76BB] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#0F76BB] group-hover:text-white">
+                <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#EAF4FE] text-[#0C65A1] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#0F76BB] group-hover:text-white">
                   {card.renderIcon()}
                 </span>
                 <ArrowUpRight
-                  className="w-4 h-4 text-[#0F76BB] opacity-75 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+                  className="w-4 h-4 text-[#0C65A1] opacity-75 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
                   aria-hidden="true"
                 />
               </div>

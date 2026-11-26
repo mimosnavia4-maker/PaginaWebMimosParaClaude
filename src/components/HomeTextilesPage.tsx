@@ -7,7 +7,6 @@ import {
   Blinds,
   Check,
   CheckCircle2,
-  ChevronDown,
   Copy,
   Droplets,
   ExternalLink,
@@ -136,7 +135,6 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
   const [activeSpecId, setActiveSpecId] = useState<string>(
     SERVICIO_TEXTILES_HOGAR_DATA.especialidades[0].id
   );
-  const [showAllFaqs, setShowAllFaqs] = useState<boolean>(false);
 
   const [tipoPieza, setTipoPieza] = useState(PIECE_TYPES[0]);
   const [medidaCantidad, setMedidaCantidad] = useState(SIZE_OR_QTY_OPTIONS[1]);
@@ -155,10 +153,6 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
 
   const activeMeta =
     SPECIALTY_VISUAL_META[activeSpec.id] ?? SPECIALTY_VISUAL_META.edredones;
-
-  const visibleFaqs = showAllFaqs
-    ? SERVICIO_TEXTILES_HOGAR_DATA.preguntasFrecuentes
-    : SERVICIO_TEXTILES_HOGAR_DATA.preguntasFrecuentes.slice(0, 6);
 
   const orderedReviews = [...RESENAS_REALES].sort((a, b) => {
     const aHasCurtains = a.texto.toLowerCase().includes('cortinajes') ? -1 : 0;
@@ -265,7 +259,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
         <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10 space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Cada textil del hogar tratado según su relleno y tejido
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -299,7 +293,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                         className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                           isSelected
                             ? 'bg-[#002147] text-white'
-                            : 'bg-[#F7F6F2] text-[#0F76BB]'
+                            : 'bg-[#F7F6F2] text-[#0C65A1]'
                         }`}
                       >
                         <Icon className="w-5 h-5" aria-hidden="true" />
@@ -354,7 +348,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
 
                     <div className="p-6 sm:p-8 space-y-5">
                       <div className="space-y-2">
-                        <p className="text-xs font-mono font-bold text-[#0F76BB]">
+                        <p className="text-xs font-mono font-bold text-[#0C65A1]">
                           {activeSpec.tejidos}
                         </p>
                         <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
@@ -372,7 +366,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                             className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed"
                           >
                             <CheckCircle2
-                              className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                              className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                               aria-hidden="true"
                             />
                             <span>{clave}</span>
@@ -388,7 +382,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                         <button
                           type="button"
                           onClick={() => selectSpecialtyAndConsult(activeSpec.id)}
-                          className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
+                          className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
                         >
                           <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                           <span>Consultar esta pieza</span>
@@ -398,7 +392,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                           <a
                             href="/limpieza-sofas-vigo"
                             onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
-                            className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                            className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                           >
                             <span>¿Sofá fijo? Ver limpieza a domicilio</span>
                             <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -407,7 +401,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                           <a
                             href="/arreglos-de-ropa-vigo"
                             onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                            className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                            className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                           >
                             <span>¿Necesita costura o bajos?</span>
                             <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -427,7 +421,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
               <div className="max-w-3xl space-y-2">
-                <div className="flex items-center gap-2 text-[#0F76BB]">
+                <div className="flex items-center gap-2 text-[#0C65A1]">
                   <Droplets className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <p className="text-xs sm:text-sm font-bold">
                     Humedad media del 77 % en Vigo · Secado en gran formato
@@ -443,7 +437,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                 onClick={(e) =>
                   onNavigate('/blog/como-lavar-edredon-de-plumas-guia-practica', e)
                 }
-                className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
               >
                 <span>Leer guía técnica de edredones</span>
                 <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -455,7 +449,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
               <article className="rounded-sm border border-slate-200 border-t-4 border-t-amber-500 bg-white p-6 sm:p-8 space-y-5">
                 <div className="flex items-start gap-3">
                   <ShieldAlert
-                    className="w-6 h-6 text-[#C85A17] shrink-0 mt-0.5"
+                    className="w-6 h-6 text-[#9E440E] shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                   <div>
@@ -475,7 +469,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       className="rounded-sm bg-[#F7F6F2] border border-slate-200 p-4 flex items-start gap-3"
                     >
                       <XCircle
-                        className="w-5 h-5 text-[#C85A17] shrink-0 mt-0.5"
+                        className="w-5 h-5 text-[#9E440E] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <div>
@@ -493,7 +487,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
               <article className="rounded-sm border border-[#0F76BB]/30 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-8 space-y-5">
                 <div className="flex items-start gap-3">
                   <Sparkles
-                    className="w-6 h-6 text-[#0F76BB] shrink-0 mt-0.5"
+                    className="w-6 h-6 text-[#0C65A1] shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                   <div>
@@ -513,7 +507,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       className="rounded-sm bg-white border border-slate-200 p-4 flex items-start gap-3"
                     >
                       <CheckCircle2
-                        className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5"
+                        className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <div>
@@ -534,7 +528,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
         <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10 space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Dos soluciones que rara vez encontrarás juntas en Vigo
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -546,7 +540,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
               {/* Bloque A: Desmontaje y colocación de cortinas */}
               <article className="rounded-sm bg-[#EDF5FD] border border-[#0F76BB]/25 p-6 sm:p-8 flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2.5 text-[#0F76BB]">
+                  <div className="flex items-center gap-2.5 text-[#0C65A1]">
                     <Home className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <span className="font-mono text-xs font-bold">
                       01 ·{' '}
@@ -576,7 +570,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                           className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed"
                         >
                           <CheckCircle2
-                            className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                            className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
                           <span>{det}</span>
@@ -589,7 +583,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                 <button
                   type="button"
                   onClick={() => selectSpecialtyAndConsult('cortinas')}
-                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer self-start whitespace-nowrap shadow-xs"
+                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer self-start whitespace-nowrap shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Consultar retirada y colocación de cortinas</span>
@@ -599,7 +593,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
               {/* Bloque B: Taller propio de costura */}
               <article className="rounded-sm bg-[#F7F6F2] border border-slate-200 text-[#002147] p-6 sm:p-8 flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2.5 text-[#0F76BB]">
+                  <div className="flex items-center gap-2.5 text-[#0C65A1]">
                     <Scissors className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <span className="font-mono text-xs font-bold">
                       02 ·{' '}
@@ -626,7 +620,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                           className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed"
                         >
                           <CheckCircle2
-                            className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                            className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
                           <span>{det}</span>
@@ -656,7 +650,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10 space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Consulta directa sin cargar con piezas grandes antes de saber presupuesto
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -682,7 +676,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       id="ht-piece-type"
                       value={tipoPieza}
                       onChange={(e) => setTipoPieza(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {PIECE_TYPES.map((p) => (
                         <option key={p} value={p}>
@@ -703,7 +697,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       id="ht-size"
                       value={medidaCantidad}
                       onChange={(e) => setMedidaCantidad(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {SIZE_OR_QTY_OPTIONS.map((s) => (
                         <option key={s} value={s}>
@@ -724,7 +718,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       id="ht-material"
                       value={materialDetalle}
                       onChange={(e) => setMaterialDetalle(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {MATERIAL_OPTIONS.map((m) => (
                         <option key={m} value={m}>
@@ -745,7 +739,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       id="ht-extra"
                       value={servicioExtra}
                       onChange={(e) => setServicioExtra(e.target.value)}
-                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       {EXTRA_SERVICE_OPTIONS.map((ex) => (
                         <option key={ex} value={ex}>
@@ -767,7 +761,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                     id="ht-delivery"
                     value={puntoEntrega}
                     onChange={(e) => setPuntoEntrega(e.target.value)}
-                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                   >
                     {DELIVERY_POINTS.map((p) => (
                       <option key={p} value={p}>
@@ -790,7 +784,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                     value={observaciones}
                     onChange={(e) => setObservaciones(e.target.value)}
                     placeholder="Ej.: 2 nórdicos de plumas (150 cm) y 4 paños de cortina de salón en Coia para desmontar..."
-                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                    className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-base lg:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                   />
                 </div>
 
@@ -806,7 +800,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                         { service_id: 'textiles-hogar-builder' }
                       )
                     }
-                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors sm:whitespace-nowrap shadow-xs"
+                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-5 rounded-lg transition-colors sm:whitespace-nowrap shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Abrir WhatsApp con esta consulta</span>
@@ -819,7 +813,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                   >
                     {copied ? (
                       <>
-                        <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                        <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                         <span>Copiado</span>
                       </>
                     ) : (
@@ -835,7 +829,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
               {/* Barra lateral: Transparencia de valoración */}
               <aside className="lg:col-span-5 rounded-sm border border-slate-200 bg-white p-6 sm:p-8 space-y-5">
                 <div className="space-y-1.5">
-                  <p className="text-xs font-bold text-[#0F76BB]">
+                  <p className="text-xs font-bold text-[#0C65A1]">
                     Sin precios cerrados a ciegas
                   </p>
                   <h3 className="text-xl font-extrabold text-[#002147] tracking-tight">
@@ -850,7 +844,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                   {SERVICIO_TEXTILES_HOGAR_DATA.criteriosPresupuesto.map((criterio, idx) => (
                     <div key={criterio.titulo} className="py-3.5 first:pt-0 last:pb-0">
                       <dt className="text-sm font-extrabold text-[#002147] flex items-center gap-2">
-                        <span className="font-mono text-xs text-[#0F76BB]">0{idx + 1}</span>
+                        <span className="font-mono text-xs text-[#0C65A1]">0{idx + 1}</span>
                         <span>{criterio.titulo}</span>
                       </dt>
                       <dd className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
@@ -871,7 +865,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                         className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed"
                       >
                         <CheckCircle2
-                          className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 mt-0.5"
+                          className="w-3.5 h-3.5 text-[#0C65A1] shrink-0 mt-0.5"
                           aria-hidden="true"
                         />
                         <span>{tip}</span>
@@ -893,7 +887,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+                  <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                     Opiniones reales de clientes en Google
                   </p>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -920,7 +914,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                     <div className="space-y-2.5">
                       <div className="flex items-center gap-2 text-xs text-slate-500">
                         <span
-                          className="text-amber-500 font-bold tracking-tight"
+                          className="text-amber-700 font-bold tracking-tight"
                           aria-label="Valoración de 5 estrellas"
                         >
                           ★★★★★
@@ -953,7 +947,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                 <a
                   href="/puntos-mimos"
                   onClick={(e) => onNavigate('/puntos-mimos', e)}
-                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                 >
                   <Store className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Ver mapa y horarios completos</span>
@@ -966,7 +960,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                     key={t.id}
                     className="rounded-sm border border-slate-200 bg-[#F7F6F2]/70 p-5 space-y-2"
                   >
-                    <p className="text-xs font-bold text-[#0F76BB]">
+                    <p className="text-xs font-bold text-[#0C65A1]">
                       Tienda propia Mimos · {t.localidad}
                     </p>
                     <h3 className="text-base font-extrabold text-[#002147]">
@@ -984,7 +978,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
 
               <div className="rounded-sm border border-slate-200 bg-[#F7F6F2] p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
-                  <Truck className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <Truck className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     <strong className="text-[#002147]">Puntos colaboradores y domicilio:</strong> entrega cómoda en{' '}
                     {PUNTOS_COLABORADORES.map((p) => `${p.localidad} (${p.nombre_comercio})`).join(', ')}{' '}
@@ -994,7 +988,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                 <a
                   href="/recogida-a-domicilio"
                   onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
-                  className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
                 >
                   Ver recogida a domicilio →
                 </a>
@@ -1007,7 +1001,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
         <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-8 space-y-1.5">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Dudas habituales antes de entregar tus piezas
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -1016,14 +1010,14 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {visibleFaqs.map((faq) => (
+              {SERVICIO_TEXTILES_HOGAR_DATA.preguntasFrecuentes.map((faq) => (
                 <details
                   key={faq.pregunta}
                   className="group rounded-sm border border-slate-200 bg-white p-5"
                 >
                   <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                     <span>{faq.pregunta}</span>
-                    <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                    <span className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                       +
                     </span>
                   </summary>
@@ -1033,27 +1027,6 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                 </details>
               ))}
             </div>
-
-            {SERVICIO_TEXTILES_HOGAR_DATA.preguntasFrecuentes.length > 6 && (
-              <div className="mt-6 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => setShowAllFaqs((prev) => !prev)}
-                  aria-expanded={showAllFaqs}
-                  className="min-h-[44px] inline-flex items-center gap-2 rounded-lg border border-[#002147] bg-white hover:bg-[#002147] hover:text-white px-5 py-2.5 text-xs sm:text-sm font-bold text-[#002147] transition-colors cursor-pointer whitespace-nowrap"
-                >
-                  <span>
-                    {showAllFaqs
-                      ? 'Ocultar dudas adicionales'
-                      : `Ver ${SERVICIO_TEXTILES_HOGAR_DATA.preguntasFrecuentes.length - 6} dudas más`}
-                  </span>
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform ${showAllFaqs ? 'rotate-180' : ''}`}
-                    aria-hidden="true"
-                  />
-                </button>
-              </div>
-            )}
           </div>
         </section>
 
@@ -1082,7 +1055,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                         {rel.titulo}
                       </h3>
-                      <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                      <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                       {rel.descripcion}
@@ -1114,7 +1087,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                       { service_id: 'textiles-hogar' }
                     )
                   }
-                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shadow-xs"
+                  className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Consultar pieza con Mimo</span>
@@ -1127,7 +1100,7 @@ export const HomeTextilesPage: React.FC<HomeTextilesPageProps> = ({
                   className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors whitespace-nowrap group"
                 >
                   <Phone
-                    className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0"
+                    className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0"
                     aria-hidden="true"
                   />
                   <span>{CONTACT_INFO.phoneDisplay}</span>

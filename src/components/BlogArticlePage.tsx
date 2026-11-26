@@ -38,7 +38,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                 <a
                   href="/"
                   onClick={(e) => onNavigate('/', e)}
-                  className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
+                  className="inline-flex items-center min-h-[44px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
                 >
                   Inicio
                 </a>
@@ -48,20 +48,20 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                 <a
                   href="/blog"
                   onClick={(e) => onNavigate('/blog', e)}
-                  className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
+                  className="inline-flex items-center min-h-[44px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
                 >
                   Guías y Consejos de Mimos
                 </a>
               </li>
               <li aria-hidden="true" className="text-slate-400">/</li>
-              <li className="text-[#0F76BB] font-bold truncate max-w-xs sm:max-w-md">
+              <li className="text-[#0C65A1] font-bold truncate max-w-xs sm:max-w-md">
                 {articulo.titulo}
               </li>
             </ol>
           </nav>
 
           <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-600 mb-3">
-            <span className="font-bold text-[#0F76BB]">
+            <span className="font-bold text-[#0C65A1]">
               {articulo.categoria}
             </span>
             <span aria-hidden="true">·</span>
@@ -97,7 +97,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
             />
           ) : (
             <div className="p-12 bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] text-center text-[#002147] flex flex-col items-center justify-center">
-              <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
+              <Sparkles className="w-8 h-8 text-[#0C65A1] mb-2" aria-hidden="true" />
               <p className="font-bold">{articulo.imagenAlt}</p>
             </div>
           )}
@@ -123,7 +123,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
           {articulo.slug === 'ropa-afectada-humo-incendio-siniestro-hogar' && (
             <div className="p-5 sm:p-6 rounded-2xl border border-[#0F76BB]/30 bg-[#EDF5FD] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
-                <p className="text-xs font-bold text-[#0F76BB]">
+                <p className="text-xs font-bold text-[#0C65A1]">
                   Servicio técnico en Vigo · Documentación Art. 38 LCS
                 </p>
                 <p className="text-sm sm:text-base font-extrabold text-[#002147]">
@@ -177,7 +177,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                     <li key={idx} className="flex items-start gap-3">
                       <span
                         aria-hidden="true"
-                        className="font-bold text-[#0F76BB] tabular-nums shrink-0"
+                        className="font-bold text-[#0C65A1] tabular-nums shrink-0"
                       >
                         {String(idx + 1).padStart(2, '0')}.
                       </span>
@@ -221,9 +221,9 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
 
               {sec.destacado && (
                 <div className="my-6 p-5 sm:p-6 rounded-2xl bg-[#EDF5FD] border border-[#0F76BB]/25">
-                  <h4 className="text-sm sm:text-base font-extrabold text-[#002147] mb-2">
+                  <h3 className="text-sm sm:text-base font-extrabold text-[#002147] mb-2">
                     {sec.destacado.titulo}
-                  </h4>
+                  </h3>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                     {sec.destacado.texto}
                   </p>
@@ -261,7 +261,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                       <span className="font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                         {link.texto}
                       </span>
-                      <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                      <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600">
                       {link.descripcion}
@@ -286,11 +286,11 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                     key={faq.pregunta}
                     className="group rounded-xl border border-slate-200 bg-[#F7F6F2] p-5"
                   >
-                    <summary className="font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base min-h-[32px]">
+                    <summary className="font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base min-h-[44px]">
                       <span>{faq.pregunta}</span>
                       <span
                         aria-hidden="true"
-                        className="text-[#0F76BB] font-bold text-lg group-open:rotate-45 transition-transform shrink-0"
+                        className="text-[#0C65A1] font-bold text-lg group-open:rotate-45 transition-transform shrink-0"
                       >
                         +
                       </span>
@@ -320,7 +320,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                 href={articulo.whatsappCtaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base px-5 sm:px-6 py-3 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
+                className="inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base px-5 sm:px-6 py-3 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Consultar con Mimo por WhatsApp</span>
@@ -330,7 +330,7 @@ export const BlogArticlePage: React.FC<BlogArticlePageProps> = ({
                 href={CONTACT_INFO.phoneHref}
                 className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-sm sm:text-base px-5 py-3 rounded-xl transition-colors text-center sm:whitespace-nowrap shrink-0 group tabular-nums"
               >
-                <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" aria-hidden="true" />
                 <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
               </a>
             </div>

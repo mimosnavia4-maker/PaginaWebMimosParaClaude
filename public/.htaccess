@@ -84,10 +84,15 @@ ErrorDocument 404 /404.html
   RewriteRule ^servicios/costura(\.html)?/?$ /arreglos-de-ropa-vigo [L,R=301]
   RewriteRule ^servicios/alfombras(\.html)?/?$ /limpieza-alfombras-vigo [L,R=301]
   RewriteRule ^servicios/pieles(\.html)?/?$ /limpieza-pieles-cuero-vigo [L,R=301]
-  RewriteRule ^servicios/limpieza-a-domicilio(\.html)?/?$ /recogida-a-domicilio [L,R=301]
+  RewriteRule ^servicios/limpieza-de-sofas(\.html)?/?$ /limpieza-sofas-vigo [L,R=301]
+  RewriteRule ^servicios/limpieza-a-domicilio(\.html)?/?$ /limpieza-casas-vigo [L,R=301]
+  RewriteRule ^limpieza-casas-particulares-vigo/?$ /limpieza-casas-vigo [L,R=301]
+  RewriteRule ^servicios/edredones-y-cortinas(\.html)?/?$ /textiles-hogar-vigo [L,R=301]
   RewriteRule ^servicios/tenido-de-prendas(\.html)?/?$ /tintoreria-vigo [L,R=301]
   RewriteRule ^tarifa-duende(-coladas)?(\.html)?/?$ /colada-familiar-vigo [L,R=301]
   RewriteRule ^blog\.html$ /blog [L,R=301]
+  RewriteRule ^recogida-a-domicilio\.html$ /recogida-a-domicilio [L,R=301]
+  RewriteRule ^contacto\.html$ /contacto [L,R=301]
   RewriteRule ^galeria(\.html)?/?$ /puntos-mimos [L,R=301]
   RewriteRule ^franquicia-wash-in-town(\.html)?/?$ /se-punto-colaborador [L,R=301]
 
@@ -148,6 +153,8 @@ ErrorDocument 404 /404.html
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  # HSTS (activar ÚNICAMENTE cuando HTTPS + www esté 100 % verificado en Plesk):
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
 
   # 1. Recursos estáticos versionados con hash en /assets/ (CSS y JS generados por Vite): caché inmutable 1 año
   <FilesMatch "\.(css|js)$">

@@ -29,7 +29,7 @@ export interface GoogleReviewsCarouselSectionProps {
 const AVATAR_STYLES = [
   'bg-[#DCEBFA] text-[#002147]',
   'bg-[#E2E8F0] text-[#002147]',
-  'bg-[#1FA855] text-white',
+  'bg-[#1FA855] text-[#002147]',
   'bg-[#FCD9B6] text-[#7C2D12]',
 ];
 
@@ -321,6 +321,7 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
                             {resena.autor}
                           </h3>
                           <div
+                            role="img"
                             className="flex items-center gap-0.5 mt-0.5"
                             aria-label={`${resena.estrellas} de 5 estrellas`}
                           >

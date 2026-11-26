@@ -19,7 +19,6 @@ import {
   CreditCard,
   Bus,
   ChevronDown,
-  ChevronUp,
   Shirt,
   Maximize2,
   Check,
@@ -36,6 +35,7 @@ import {
   buildGoogleMapsUrl,
   buildMimoWhatsAppUrl,
 } from '../data/mimosData';
+import { ZONAS_SEO_LOCAL } from '../data/zonasSeoData';
 import { getStoreStatusById } from '../utils/storeStatus';
 
 interface PuntoArregla2FichaProps {
@@ -56,12 +56,13 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
   const [activeTabPhoto, setActiveTabPhoto] = useState<'fachada1' | 'interior' | 'fachada2'>('fachada1');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
-  const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada1: {
       url: '/images/arregla2-ponteareas/fachada-arregla2-ponteareas.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Fachada Principal y Rótulo Oficial',
       subtitulo: 'Entrada y rótulo de Arregla2 en C/ Argentina, 4 (Ponteareas).',
       tag: 'Fachada Principal',
@@ -70,6 +71,8 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
     },
     interior: {
       url: '/images/arregla2-ponteareas/interior-taller-arregla2-ponteareas.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Interior: Taller de Costura y Mostrador',
       subtitulo: 'Mostrador de atención al público, taller de confección y recepción de prendas.',
       tag: 'Taller In Situ & Mostrador',
@@ -78,6 +81,8 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
     },
     fachada2: {
       url: '/images/arregla2-ponteareas/escaparate-arregla2-ponteareas.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Perspectiva Exterior y Escaparate',
       subtitulo: 'Escaparate y visibilidad comercial de Arregla2 en C/ Argentina (O Condado).',
       tag: 'Escaparate y Acceso',
@@ -104,40 +109,8 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
     }
   };
 
-  const toggleFaq = (index: number) => {
-    setFaqAbierta(faqAbierta === index ? null : index);
-  };
-
-  const preguntasFrecuentes = [
-    {
-      q: '¿Cómo funciona la entrega de ropa para Tintorería Mimos en Arregla2?',
-      a: 'Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a Arregla2 en C/ Argentina, 4, Ponteareas. El establecimiento anota tus datos y te entrega un resguardo oficial. La furgoneta de transporte de Mimos traslada tus prendas y textiles del hogar a nuestra central de Vigo (y coordina las alfombras con taller especialista) y las devuelve al punto listas y precintadas para que las recojas cómodamente.',
-    },
-    {
-      q: '¿Qué tipo de arreglos de costura se realizan directamente en Arregla2?',
-      a: 'Arregla2 dispone de taller propio de costura in situ en Ponteareas: dobladillos y bajos de pantalones y faldas (original en vaqueros, invisible o estándar), cambio y reparación de cremalleras, entallado de vestidos y trajes, ajustes de cintura, botones y zurcidos de rotos o descosidos.',
-    },
-    {
-      q: '¿Se pueden entregar edredones de plumas y alfombras grandes en Ponteareas?',
-      a: 'Sí. Arregla2 recibe edredones de plumón, plumas naturales, mantas y alfombras (consultando dimensiones). Mimos realiza el lavado higiénico y secado de edredones en su planta de Vigo y gestiona las alfombras con taller especialista colaborador.',
-    },
-    {
-      q: '¿Cuáles son los horarios de apertura de Arregla2 en Ponteareas?',
-      a: 'Arregla2 abre de lunes a viernes en horario de mañana y tarde (09:30 a 13:30 y 16:00 a 19:30) y los sábados por la mañana (09:30 a 13:30). Los domingos permanece cerrado por descanso semanal.',
-    },
-    {
-      q: '¿Los precios de tintorería son los mismos que en las tiendas propias de Vigo?',
-      a: 'Exactamente iguales. Las tarifas oficiales de Tintorería Mimos son uniformes en toda nuestra red. No hay ningún sobrecoste ni recargo por entrega o recogida en el punto colaborador de Ponteareas.',
-    },
-    {
-      q: '¿Puedo consultar dudas o presupuestos antes de acercarme a la tienda?',
-      a: 'Por supuesto. Puedes chatear directamente con Mimo por WhatsApp al 655 536 844 o llamar directamente a Arregla2 al 647 61 66 15.',
-    },
-    {
-      q: 'Si después no puedo desplazarme a recogerlas, ¿podéis entregármelas a domicilio?',
-      a: 'Sí. Si prefieres entrega a domicilio en cualquier punto de Ponteareas, Mondariz, Salvaterra, As Neves, O Porriño o Vigo, avísanos por WhatsApp y coordinamos la entrega con nuestra furgoneta propia de reparto.',
-    },
-  ];
+  const preguntasFrecuentes =
+    ZONAS_SEO_LOCAL.find((z) => z.url === '/zonas/ponteareas')?.preguntasFrecuentes ?? [];
 
   return (
     <div className="space-y-10 animate-fadeIn text-[#002147]">
@@ -181,13 +154,15 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             <img
               src={photos[activeTabPhoto].url}
               alt={photos[activeTabPhoto].titulo}
+              width={photos[activeTabPhoto].width}
+              height={photos[activeTabPhoto].height}
               referrerPolicy="no-referrer"
               onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
+              className="max-h-[75dvh] w-full object-contain"
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
-              <Handshake className="w-10 h-10 text-[#0F76BB] mb-3" />
+              <Handshake className="w-10 h-10 text-[#0C65A1] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
               <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
@@ -195,14 +170,14 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         </div>
         <div className="p-4 sm:p-6 bg-white border-t border-slate-200 text-[#002147]">
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0C65A1]">
               {photos[activeTabPhoto].tag}
             </span>
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-600">
               Punto Colaborador Oficial Mimos · Ponteareas (O Condado)
             </span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</p>
           <p className="text-xs sm:text-sm text-slate-700 mt-1">{photos[activeTabPhoto].subtitulo}</p>
           <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
@@ -221,13 +196,15 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                 <img
                   src={photos[activeTabPhoto].url}
                   alt={photos[activeTabPhoto].titulo}
+                  width={photos[activeTabPhoto].width}
+                  height={photos[activeTabPhoto].height}
                   referrerPolicy="no-referrer"
                   onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
-                  <Handshake className="w-10 h-10 text-[#0F76BB] mb-2" />
+                  <Handshake className="w-10 h-10 text-[#0C65A1] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
                   <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
@@ -241,14 +218,14 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                 className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-md transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-extrabold bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
-                  <Handshake className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Handshake className="w-3.5 h-3.5 text-[#0C65A1]" />
                   Punto Colaborador Mimos · Taller In Situ
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
@@ -273,7 +250,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada1')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada1'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -284,7 +261,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('interior')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'interior'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -295,7 +272,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada2')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada2'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -310,13 +287,13 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0C65A1] uppercase tracking-wider">
                   Punto Colaborador Oficial · Ponteareas
                 </span>
                 <span
                   className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-extrabold ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-50 text-[#178A47] border border-emerald-200'
+                      ? 'bg-emerald-50 text-[#147A3E] border border-emerald-200'
                       : 'bg-slate-100 text-slate-700 border border-slate-200'
                   }`}
                 >
@@ -342,7 +319,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-[#002147] flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <span>
                     <strong>C/ Argentina, 4</strong>, 36860 Ponteareas (Pontevedra).
                   </span>
@@ -350,13 +327,13 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
 
                 <div className="p-3 rounded-2xl bg-[#F4F9FE] border border-slate-200 space-y-2">
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Car className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+                    <Car className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
                     <span>
                       <strong>Aparcamiento & Acceso:</strong> En el casco urbano de Ponteareas, con zonas de parada y estacionamiento en calles aledañas para entrega y recogida ágil.
                     </span>
                   </div>
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Clock className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                    <Clock className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                     <span>
                       <strong>Horario Comercial:</strong> L-V 09:30-13:30 y 16:00-19:30 · Sábados 09:30-13:30.
                     </span>
@@ -372,7 +349,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>WhatsApp de Mimos</span>
@@ -381,7 +358,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-extrabold text-sm py-3 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors shrink-0" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors shrink-0" />
                   <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
@@ -393,7 +370,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#F4F9FE] hover:bg-[#EDF5FD] text-[#002147] border border-slate-300 font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
                 >
-                  <Navigation className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Navigation className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Cómo llegar (Ruta en Google Maps)</span>
                   <ExternalLink className="w-3 h-3 opacity-70" />
                 </a>
@@ -403,7 +380,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
                   title="Copiar enlace de Ponteareas"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Share2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span className="hidden sm:inline">{copiedShare ? '¡Copiado!' : 'Compartir'}</span>
                 </button>
               </div>
@@ -417,7 +394,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         <h2 id="seccion-ventajas" className="sr-only">Ventajas y características de Arregla2 Ponteareas</h2>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Scissors className="w-5 h-5" />
           </div>
           <div>
@@ -429,7 +406,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#1FA855] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#147A3E] flex items-center justify-center mb-3">
             <Clock className="w-5 h-5" />
           </div>
           <div>
@@ -441,7 +418,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
@@ -453,7 +430,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
@@ -472,7 +449,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           <div>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -518,11 +495,11 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
 
           <div className="mt-6 pt-4 border-t border-slate-200 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-700">
-              <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
+              <CreditCard className="w-4 h-4 text-[#0C65A1] shrink-0" />
               <span><strong>Formas de pago:</strong> Efectivo y Tarjeta (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-700">
-              <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0" />
               <span><strong>Resguardo oficial:</strong> Entrega con justificante numerado garantizado.</span>
             </div>
           </div>
@@ -567,7 +544,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                   key={idx}
                   className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start gap-2.5"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-extrabold text-[#002147] leading-tight">
                       {elem.tit}
@@ -589,7 +566,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               <a
                 href="/arreglos-de-ropa-vigo"
                 onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                className="min-h-[44px] inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] hover:underline"
+                className="min-h-[44px] inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1] hover:underline"
               >
                 <span>Ver sección completa de Arreglos de Ropa</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -603,7 +580,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       <section aria-labelledby="seccion-servicios" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0C65A1]">
               Catálogo de Mostrador
             </span>
             <span className="text-xs font-bold text-slate-600">100% Confirmado en Ponteareas</span>
@@ -634,11 +611,11 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desmanchado manual especializado</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Planchado profesional con entrega en percha y funda</span>
               </li>
             </ul>
@@ -661,11 +638,11 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Tratamiento bactericida y antiácaros</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Embolsado higiénico listo para guardar</span>
               </li>
             </ul>
@@ -675,7 +652,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Car className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -688,11 +665,11 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desempolvado y limpieza profunda</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Ahorra el viaje con la alfombra en coche hasta Vigo</span>
               </li>
             </ul>
@@ -715,11 +692,11 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Camisas planchadas en percha impecables</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Detergentes hipoalergénicos de alta calidad</span>
               </li>
             </ul>
@@ -729,7 +706,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-amber-700 text-white flex items-center justify-center">
                   <Scissors className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -742,11 +719,11 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Atención artesanal personalizada</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Rapidez y acabados precisos</span>
               </li>
             </ul>
@@ -756,7 +733,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Truck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -769,11 +746,11 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Horarios concertados con antelación</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Furgoneta propia acondicionada para prendas colgadas</span>
               </li>
             </ul>
@@ -786,8 +763,8 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-[#0F76BB]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <Calendar className="w-4 h-4 text-[#0C65A1]" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 Planificación Transparente
               </span>
             </div>
@@ -831,7 +808,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
                 </td>
                 <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">48 a 72 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0F76BB] border border-[#0F76BB]/20">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0C65A1] border border-[#0F76BB]/20">
                     Bajo consulta
                   </span>
                 </td>
@@ -878,8 +855,8 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       <section aria-labelledby="seccion-llegar" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Navigation className="w-4 h-4 text-[#0F76BB]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+            <Navigation className="w-4 h-4 text-[#0C65A1]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
               Accesibilidad y Transporte
             </span>
           </div>
@@ -895,7 +872,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
           {/* Tarjeta Coche y Aparcamiento */}
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                 <Car className="w-4 h-4" />
               </div>
               <h3 className="text-sm font-extrabold text-[#002147]">En Coche Particular</h3>
@@ -965,8 +942,8 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       {/* 7. PREGUNTAS FRECUENTES (FAQ) DE PONTEAREAS */}
       <section aria-labelledby="seccion-faq" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
         <div className="flex items-center gap-2 mb-2">
-          <HelpCircle className="w-4 h-4 text-[#0F76BB]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+          <HelpCircle className="w-4 h-4 text-[#0C65A1]" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
             Respuestas Claras
           </span>
         </div>
@@ -978,34 +955,20 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
         </p>
 
         <div className="divide-y divide-slate-200 mt-4">
-          {preguntasFrecuentes.map((item, index) => {
-            const abierta = faqAbierta === index;
-            return (
-              <div key={index} className="py-3 sm:py-4">
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(index)}
-                  className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer"
-                  aria-expanded={abierta}
-                >
-                  <span className="flex items-start gap-2">
-                    <span className="text-[#0F76BB] font-black tabular-nums">{index + 1}.</span>
-                    <span>{item.q}</span>
-                  </span>
-                  {abierta ? (
-                    <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
-                  )}
-                </button>
-                {abierta && (
-                  <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-700 leading-relaxed animate-fadeIn">
-                    <p>{item.a}</p>
-                  </div>
-                )}
+          {preguntasFrecuentes.map((item, index) => (
+            <details key={index} className="group py-3 sm:py-4">
+              <summary className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer list-none">
+                <span className="flex items-start gap-2">
+                  <span className="text-[#0C65A1] font-black tabular-nums">{index + 1}.</span>
+                  <span>{item.pregunta}</span>
+                </span>
+                <ChevronDown className="w-4 h-4 text-slate-500 group-open:rotate-180 group-open:text-[#0C65A1] transition-transform shrink-0" />
+              </summary>
+              <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <p>{item.respuesta}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </section>
 
@@ -1013,7 +976,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
       <section aria-labelledby="seccion-confianza" className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] border border-slate-200 text-[#002147] shadow-sm relative overflow-hidden">
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0F76BB] border border-[#0F76BB]/25">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0C65A1] border border-[#0F76BB]/25">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               La tecnología de Mimos con la atención cercana de Arregla2
             </span>
@@ -1030,7 +993,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Consultar ahora con Mimo</span>
@@ -1039,7 +1002,7 @@ export const PuntoArregla2Ficha: React.FC<PuntoArregla2FichaProps> = ({
               href={`tel:+34${punto.telefono}`}
               className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
             >
-              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
+              <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors" />
               <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>

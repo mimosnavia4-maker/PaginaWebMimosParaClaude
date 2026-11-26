@@ -701,7 +701,7 @@ Teléfono de contacto: [Tu teléfono]`;
         secondaryAction={{
           label: 'Plantilla inventario y carta seguro',
           href: '#herramientas-seguro',
-          icon: <ClipboardList className="w-4 h-4 text-[#0F76BB] group-hover:text-white" aria-hidden="true" />,
+          icon: <ClipboardList className="w-4 h-4 text-[#0C65A1] group-hover:text-white" aria-hidden="true" />,
           isInternalRoute: false,
         }}
         image={{
@@ -716,15 +716,15 @@ Teléfono de contacto: [Tu teléfono]`;
           <div className="space-y-3 pt-1">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
               <div className="rounded-lg bg-white border border-slate-200 px-3 py-2.5">
-                <p className="font-mono font-bold text-[#0F76BB] uppercase">Ciclo habitual</p>
+                <p className="font-mono font-bold text-[#0C65A1] uppercase">Ciclo habitual</p>
                 <p className="font-bold text-[#002147] mt-0.5">1 a 3 semanas</p>
               </div>
               <div className="rounded-lg bg-white border border-slate-200 px-3 py-2.5">
-                <p className="font-mono font-bold text-[#0F76BB] uppercase">Urgencia diaria</p>
+                <p className="font-mono font-bold text-[#0C65A1] uppercase">Urgencia diaria</p>
                 <p className="font-bold text-[#002147] mt-0.5">Lote prioritario trabajo/colegio</p>
               </div>
               <div className="rounded-lg bg-white border border-slate-200 px-3 py-2.5">
-                <p className="font-mono font-bold text-[#0F76BB] uppercase">Piezas críticas</p>
+                <p className="font-mono font-bold text-[#0C65A1] uppercase">Piezas críticas</p>
                 <p className="font-bold text-[#002147] mt-0.5">Prueba de viabilidad previa</p>
               </div>
             </div>
@@ -749,30 +749,30 @@ Teléfono de contacto: [Tu teléfono]`;
       <div className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
           <nav aria-label="Atajos según tu situación actual" className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="font-mono font-bold uppercase tracking-wider text-slate-500 mr-1">
+            <span className="font-mono font-bold uppercase tracking-wider text-slate-600 mr-1">
               Ir directo a:
             </span>
             <a
               href="#primeras-horas"
-              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
+              className="inline-flex items-center min-h-[44px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
             >
               1. Qué NO hacer ahora (24–48 h)
             </a>
             <a
               href="#casos-cotidianos"
-              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
+              className="inline-flex items-center min-h-[44px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
             >
               2. Casos frecuentes y cómo valoramos
             </a>
             <a
               href="#herramientas-seguro"
-              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
+              className="inline-flex items-center min-h-[44px] px-3 py-1.5 rounded-lg border border-slate-200 bg-[#F7F6F2] hover:bg-[#002147] hover:text-white text-[#002147] font-bold transition-colors"
             >
               3. Plantilla 5 días y carta al seguro
             </a>
             <a
               href="#entrega-hoy"
-              className="inline-flex items-center min-h-[40px] px-3 py-1.5 rounded-lg border border-[#0F76BB]/30 bg-[#EDF5FD] hover:bg-[#0F76BB] hover:text-white text-[#002147] font-bold transition-colors"
+              className="inline-flex items-center min-h-[44px] px-3 py-1.5 rounded-lg border border-[#0F76BB]/30 bg-[#EDF5FD] hover:bg-[#0F76BB] hover:text-white text-[#002147] font-bold transition-colors"
             >
               4. Dónde entregar HOY en Vigo (horarios)
             </a>
@@ -788,7 +788,7 @@ Teléfono de contacto: [Tu teléfono]`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-5">
             <div className="space-y-1.5">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Casos cotidianos en pisos y locales de Vigo
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -862,7 +862,7 @@ Teléfono de contacto: [Tu teléfono]`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div>
             <div className="max-w-3xl mb-8 space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Protocolo crítico de las primeras 24–48 horas
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -876,7 +876,7 @@ Teléfono de contacto: [Tu teléfono]`;
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
               <article className="rounded-xl border border-emerald-200 border-t-4 border-t-[#1FA855] bg-white p-6 sm:p-8 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2.5 text-[#178A47] mb-5">
+                  <div className="flex items-center gap-2.5 text-[#147A3E] mb-5">
                     <CheckCircle2 className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                       Qué SÍ hacer de inmediato
@@ -888,7 +888,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         key={paso.titulo}
                         className="flex items-start gap-3.5 pb-4 last:pb-0 border-b last:border-b-0 border-slate-200"
                       >
-                        <span className="text-xs font-mono font-bold text-[#178A47] tabular-nums pt-0.5 shrink-0">
+                        <span className="text-xs font-mono font-bold text-[#147A3E] tabular-nums pt-0.5 shrink-0">
                           0{idx + 1}.
                         </span>
                         <div>
@@ -942,7 +942,7 @@ Teléfono de contacto: [Tu teléfono]`;
           <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200">
               <div className="space-y-1 max-w-2xl">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                   Diagnóstico químico según qué ardió
                 </p>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
@@ -982,7 +982,7 @@ Teléfono de contacto: [Tu teléfono]`;
 
             <div className="pt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               <div className="lg:col-span-5 space-y-3">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                   {residuoSeleccionado.subtitulo}
                 </p>
                 <h4 className="text-lg sm:text-xl font-extrabold text-[#002147]">
@@ -1011,7 +1011,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 </div>
 
                 <div className="rounded-xl border border-[#0F76BB]/25 bg-[#EDF5FD] p-5 space-y-2">
-                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                     Secuencia técnica en Mimos Navia
                   </p>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
@@ -1029,7 +1029,7 @@ Teléfono de contacto: [Tu teléfono]`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div>
             <div className="max-w-3xl mb-8 space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Especialización estrictamente textil · Particulares, comercios y comunidades
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -1046,7 +1046,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   key={bloque.num}
                   className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-6"
                 >
-                  <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums mb-2">
+                  <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums mb-2">
                     {bloque.num} · ÁREA TEXTIL
                   </p>
                   <h3 className="text-lg font-extrabold text-[#002147] mb-2">
@@ -1094,7 +1094,7 @@ Teléfono de contacto: [Tu teléfono]`;
           <div className="rounded-xl border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               <div className="lg:col-span-7 space-y-2">
-                <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   <CloudRain className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Inundaciones y agua de extinción en el clima de Vigo</span>
                 </div>
@@ -1116,7 +1116,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   </p>
                 </div>
                 <div className="rounded-xl border border-slate-200 bg-white p-3.5">
-                  <p className="text-lg sm:text-xl font-extrabold text-[#0F76BB] tabular-nums">
+                  <p className="text-lg sm:text-xl font-extrabold text-[#0C65A1] tabular-nums">
                     81–84 %
                   </p>
                   <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
@@ -1144,7 +1144,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     <span
                       className={`inline-block text-xs font-mono font-bold ${
                         cat.estado === 'Recuperable'
-                          ? 'text-[#178A47]'
+                          ? 'text-[#147A3E]'
                           : cat.estado === 'Bajo condición técnica'
                           ? 'text-amber-800'
                           : 'text-red-700'
@@ -1177,7 +1177,7 @@ Teléfono de contacto: [Tu teléfono]`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
             <div className="max-w-3xl space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Triaje técnico profesional
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -1196,7 +1196,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <button
                 type="button"
                 onClick={() => setFiltroMatriz('todos')}
-                className={`min-h-[40px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`min-h-[44px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   filtroMatriz === 'todos'
                     ? 'bg-[#002147] text-white'
                     : 'text-slate-700 hover:text-[#002147]'
@@ -1207,7 +1207,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <button
                 type="button"
                 onClick={() => setFiltroMatriz('humo')}
-                className={`inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   filtroMatriz === 'humo'
                     ? 'bg-[#002147] text-white'
                     : 'text-slate-700 hover:text-[#002147]'
@@ -1219,7 +1219,7 @@ Teléfono de contacto: [Tu teléfono]`;
               <button
                 type="button"
                 onClick={() => setFiltroMatriz('agua')}
-                className={`inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   filtroMatriz === 'agua'
                     ? 'bg-[#002147] text-white'
                     : 'text-slate-700 hover:text-[#002147]'
@@ -1260,7 +1260,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       <span
                         className={`inline-flex items-center gap-1.5 font-bold text-xs ${
                           fila.estado === 'Recuperable'
-                            ? 'text-[#178A47]'
+                            ? 'text-[#147A3E]'
                             : fila.estado === 'Valoración previa'
                             ? 'text-amber-800'
                             : 'text-red-700'
@@ -1298,7 +1298,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   key={fase.num}
                   className="rounded-xl border border-slate-200 bg-white p-5"
                 >
-                  <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums mb-1.5">
+                  <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums mb-1.5">
                     FASE {fase.num}
                   </p>
                   <h4 className="text-sm sm:text-base font-extrabold text-[#002147] mb-2">
@@ -1314,7 +1314,7 @@ Teléfono de contacto: [Tu teléfono]`;
             {/* 3 compromisos operativos confirmados */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
               <div className="rounded-xl border border-[#0F76BB]/30 bg-white p-5">
-                <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] mb-1">
+                <p className="text-xs font-mono font-bold uppercase text-[#0C65A1] mb-1">
                   Plazo orientativo completo
                 </p>
                 <h4 className="text-base font-extrabold text-[#002147] mb-1">
@@ -1325,7 +1325,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 </p>
               </div>
               <div className="rounded-xl border border-emerald-200 bg-white p-5">
-                <p className="text-xs font-mono font-bold uppercase text-[#178A47] mb-1">
+                <p className="text-xs font-mono font-bold uppercase text-[#147A3E] mb-1">
                   Para que sigas con tu día a día
                 </p>
                 <h4 className="text-base font-extrabold text-[#002147] mb-1">
@@ -1336,7 +1336,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 bg-white p-5">
-                <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] mb-1">
+                <p className="text-xs font-mono font-bold uppercase text-[#0C65A1] mb-1">
                   Transparencia antes de facturar el grueso
                 </p>
                 <h4 className="text-base font-extrabold text-[#002147] mb-1">
@@ -1359,7 +1359,7 @@ Teléfono de contacto: [Tu teléfono]`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-6 space-y-3">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Tramitación con aseguradoras y peritos · Ley 50/1980
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -1375,7 +1375,7 @@ Teléfono de contacto: [Tu teléfono]`;
 
             <div className="lg:col-span-6 rounded-xl border border-[#0F76BB]/25 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 space-y-3 text-xs sm:text-sm">
               <div className="flex items-center gap-2 font-extrabold text-[#002147]">
-                <ShieldCheck className="w-4 h-4 text-[#178A47] shrink-0" aria-hidden="true" />
+                <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0" aria-hidden="true" />
                 <span>Tus derechos clave bajo la Ley 50/1980 de Contrato de Seguro</span>
               </div>
               <p className="text-slate-700 leading-relaxed">
@@ -1398,10 +1398,10 @@ Teléfono de contacto: [Tu teléfono]`;
                 className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5"
               >
                 <div className="flex items-center justify-between gap-2 mb-2.5">
-                  <span className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
+                  <span className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums">
                     DOC. {doc.num}
                   </span>
-                  <FileCheck2 className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                  <FileCheck2 className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                 </div>
                 <h3 className="text-base font-extrabold text-[#002147] mb-1.5">
                   {doc.titulo}
@@ -1417,7 +1417,7 @@ Teléfono de contacto: [Tu teléfono]`;
           <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-6 sm:p-8 space-y-6">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 pb-5">
               <div className="space-y-1 max-w-2xl">
-                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+                <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                   Utilidades gratuitas para desbloquear tu expediente hoy mismo
                 </p>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -1435,7 +1435,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   role="tab"
                   aria-selected={herramientaActiva === 'inventario'}
                   onClick={() => setHerramientaActiva('inventario')}
-                  className={`min-h-[40px] px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`min-h-[44px] px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
                     herramientaActiva === 'inventario'
                       ? 'bg-[#002147] text-white'
                       : 'text-slate-700 hover:text-[#002147]'
@@ -1448,7 +1448,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   role="tab"
                   aria-selected={herramientaActiva === 'carta'}
                   onClick={() => setHerramientaActiva('carta')}
-                  className={`min-h-[40px] px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`min-h-[44px] px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer whitespace-nowrap ${
                     herramientaActiva === 'carta'
                       ? 'bg-[#002147] text-white'
                       : 'text-slate-700 hover:text-[#002147]'
@@ -1469,14 +1469,14 @@ Teléfono de contacto: [Tu teléfono]`;
                     <button
                       type="button"
                       onClick={() => cargarLoteTipo('dormitorio')}
-                      className="min-h-[40px] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer"
+                      className="min-h-[44px] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer"
                     >
                       + Añadir dormitorio tipo
                     </button>
                     <button
                       type="button"
                       onClick={() => cargarLoteTipo('hogar')}
-                      className="min-h-[40px] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer"
+                      className="min-h-[44px] text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer"
                     >
                       + Añadir alfombra / pieles
                     </button>
@@ -1504,7 +1504,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invNombre}
                         onChange={(e) => setInvNombre(e.target.value)}
                         placeholder="Ej.: María García..."
-                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
@@ -1514,10 +1514,12 @@ Teléfono de contacto: [Tu teléfono]`;
                       <input
                         id="inv-telefono"
                         type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
                         value={invTelefono}
                         onChange={(e) => setInvTelefono(e.target.value)}
                         placeholder="Ej.: 600 123 456"
-                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
@@ -1530,7 +1532,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invLocalidad}
                         onChange={(e) => setInvLocalidad(e.target.value)}
                         placeholder="Vigo / Navia / Comarca..."
-                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
@@ -1543,7 +1545,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invAseguradora}
                         onChange={(e) => setInvAseguradora(e.target.value)}
                         placeholder="Ej.: Mapfre, Allianz..."
-                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
@@ -1556,7 +1558,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={invSiniestro}
                         onChange={(e) => setInvSiniestro(e.target.value)}
                         placeholder="Ej.: SIN-2026-..."
-                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                   </div>
@@ -1575,7 +1577,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       type="text"
                       value={nuevaEstancia}
                       onChange={(e) => setNuevaEstancia(e.target.value)}
-                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="sm:col-span-4">
@@ -1588,7 +1590,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       value={nuevaPrenda}
                       onChange={(e) => setNuevaPrenda(e.target.value)}
                       placeholder="Ej.: 2 trajes lana, 1 edredón pluma..."
-                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="sm:col-span-1">
@@ -1598,10 +1600,11 @@ Teléfono de contacto: [Tu teléfono]`;
                     <input
                       id="inv-uds"
                       type="number"
+                      inputMode="numeric"
                       min={1}
                       value={nuevasUnidades}
                       onChange={(e) => setNuevasUnidades(Math.max(1, Number(e.target.value) || 1))}
-                      className="w-full min-h-[44px] px-2.5 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 tabular-nums focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] px-2.5 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 tabular-nums focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="sm:col-span-3">
@@ -1612,7 +1615,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       id="inv-estado"
                       value={nuevoEstado}
                       onChange={(e) => setNuevoEstado(e.target.value)}
-                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs font-medium text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     >
                       <option value="Olor a humo sin hollín visible">Olor a humo sin hollín visible</option>
                       <option value="Hollín superficial (sin quemadura)">Hollín superficial (sin quemadura)</option>
@@ -1655,7 +1658,7 @@ Teléfono de contacto: [Tu teléfono]`;
                               type="button"
                               onClick={() => eliminarFilaInventario(item.id)}
                               aria-label={`Eliminar ${item.prenda}`}
-                              className="inline-flex items-center justify-center min-h-[36px] min-w-[36px] text-slate-400 hover:text-red-700 cursor-pointer p-1"
+                              className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-slate-600 hover:text-red-700 cursor-pointer p-2"
                             >
                               <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
                             </button>
@@ -1670,7 +1673,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 <div className="rounded-xl border border-[#0F76BB]/25 bg-white p-4 sm:p-5 space-y-3">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+                      <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                         Recepción directa en {CONTACT_INFO.legalName} · CIF {CONTACT_INFO.cif}
                       </p>
                       <p className="text-xs text-slate-600 mt-0.5">
@@ -1685,14 +1688,14 @@ Teléfono de contacto: [Tu teléfono]`;
                         }
                         className="inline-flex items-center gap-1.5 text-[#002147] hover:text-[#0F76BB] tabular-nums"
                       >
-                        <Phone className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                        <Phone className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                         <span>{CONTACT_INFO.phoneDisplay}</span>
                       </a>
                       <a
                         href={`mailto:${CONTACT_INFO.email}`}
                         className="inline-flex items-center gap-1.5 text-[#002147] hover:text-[#0F76BB]"
                       >
-                        <Mail className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                        <Mail className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                         <span>{CONTACT_INFO.email}</span>
                       </a>
                     </div>
@@ -1766,7 +1769,7 @@ Teléfono de contacto: [Tu teléfono]`;
                           }
                         )
                       }
-                      className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-xs font-bold text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-xs font-bold text-[#002147] transition-colors"
                     >
                       <MessageCircle className="w-4 h-4" aria-hidden="true" />
                       <span>Enviar por WhatsApp</span>
@@ -1775,7 +1778,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       href={mailtoInventarioHref}
                       className="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2 rounded-lg border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
                     >
-                      <Mail className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                      <Mail className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                       <span>Enviar por Email</span>
                     </a>
                     <button
@@ -1785,7 +1788,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     >
                       {inventarioCopiado ? (
                         <>
-                          <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                          <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                           <span>Inventario copiado</span>
                         </>
                       ) : (
@@ -1811,7 +1814,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       value={cartaAseguradora}
                       onChange={(e) => setCartaAseguradora(e.target.value)}
                       placeholder="Ej.: Mapfre, AXA, Allianz, Generali..."
-                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
@@ -1825,7 +1828,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={cartaSiniestro}
                         onChange={(e) => setCartaSiniestro(e.target.value)}
                         placeholder="Ej.: 2026-00412"
-                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                     <div>
@@ -1838,7 +1841,7 @@ Teléfono de contacto: [Tu teléfono]`;
                         value={cartaPoliza}
                         onChange={(e) => setCartaPoliza(e.target.value)}
                         placeholder="Opcional"
-                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                   </div>
@@ -1852,7 +1855,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       value={cartaAsegurado}
                       onChange={(e) => setCartaAsegurado(e.target.value)}
                       placeholder="Nombre y DNI/NIF"
-                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                     />
                   </div>
                   <label className="flex items-start gap-2.5 text-xs text-slate-700 pt-1 cursor-pointer">
@@ -1860,7 +1863,7 @@ Teléfono de contacto: [Tu teléfono]`;
                       type="checkbox"
                       checked={cartaOposicionContrata}
                       onChange={(e) => setCartaOposicionContrata(e.target.checked)}
-                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB]"
                     />
                     <span>
                       Incluir cláusula Art. 18 (preferencia de tintorería especialista frente a contrata generalista de obra)
@@ -1874,7 +1877,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     aria-label="Vista previa de carta modelo para aseguradora"
                     rows={12}
                     value={generarCartaSeguro()}
-                    className="w-full p-4 rounded-xl border border-slate-200 bg-white text-xs text-slate-700 font-mono leading-relaxed focus:outline-hidden"
+                    className="w-full p-4 rounded-xl border border-slate-200 bg-white text-base lg:text-xs text-slate-700 font-mono leading-relaxed focus:outline-hidden"
                   />
                   <div className="flex justify-end">
                     <button
@@ -1913,7 +1916,7 @@ Teléfono de contacto: [Tu teléfono]`;
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <p className="text-xs font-mono uppercase tracking-wider text-[#0F76BB] font-bold mb-2">
+            <p className="text-xs font-mono uppercase tracking-wider text-[#0C65A1] font-bold mb-2">
               Atención prioritaria por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
@@ -1937,7 +1940,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-tipo"
                   value={tipoSiniestro}
                   onChange={(e) => setTipoSiniestro(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Humo y olor en armario / vivienda (sin fuego directo en la ropa)">
                     Humo y olor en armario / vivienda
@@ -1965,7 +1968,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-origen"
                   value={origenIncidente}
                   onChange={(e) => setOrigenIncidente(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Por confirmar (humo doméstico / madera / eléctrico / agua)">
                     No lo sé aún / varios focos
@@ -2007,7 +2010,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     >
                       <Check
                         className={`w-3.5 h-3.5 shrink-0 ${
-                          selected ? 'text-[#1FA855] opacity-100' : 'opacity-25'
+                          selected ? 'text-[#147A3E] opacity-100' : 'opacity-25'
                         }`}
                         aria-hidden="true"
                       />
@@ -2030,7 +2033,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-seguro"
                   value={situacionSeguro}
                   onChange={(e) => setSituacionSeguro(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Ya tengo parte o número de expediente con mi seguro">
                     Ya tengo parte / expediente abierto
@@ -2053,7 +2056,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     type="checkbox"
                     checked={necesitaLotePrioritario}
                     onChange={(e) => setNecesitaLotePrioritario(e.target.checked)}
-                    className="h-4 w-4 rounded border-slate-300 text-[#1FA855] focus:ring-[#1FA855]"
+                    className="h-4 w-4 rounded border-slate-300 text-[#147A3E] focus:ring-[#1FA855]"
                   />
                   <span>Necesito lote prioritario (ropa de trabajo / colegio)</span>
                 </label>
@@ -2072,7 +2075,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-localidad"
                   value={localidad}
                   onChange={(e) => setLocalidad(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {ZONAS_SERVICIO.map((loc) => (
                     <option key={loc} value={loc}>
@@ -2096,7 +2099,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   id="siniestro-modalidad"
                   value={modalidad}
                   onChange={(e) => setModalidad(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Coordinar recogida urgente a domicilio en Vigo / comarca">
                     Recogida urgente a domicilio
@@ -2123,7 +2126,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   value={observaciones}
                   onChange={(e) => setObservaciones(e.target.value)}
                   placeholder="Ej.: 2 armarios, 4 cortinas y 2 edredones"
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -2142,7 +2145,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     }
                   )
                 }
-                className="flex-1 inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
+                className="flex-1 inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
                 <span>Enviar parte urgente a Mimo por WhatsApp</span>
@@ -2155,7 +2158,7 @@ Teléfono de contacto: [Tu teléfono]`;
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                    <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                     <span>Texto copiado</span>
                   </>
                 ) : (
@@ -2169,14 +2172,14 @@ Teléfono de contacto: [Tu teléfono]`;
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-slate-200 text-xs text-slate-600">
               <div className="flex items-start gap-2.5">
-                <Store className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                <Store className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                 <p>
                   <strong className="text-[#002147]">Sin pedido mínimo en tiendas propias:</strong>{' '}
                   {TIENDAS_PROPIAS.map((t) => t.direccion).join(' · ')}.
                 </p>
               </div>
               <div className="flex items-start gap-2.5">
-                <Truck className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                <Truck className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                 <p>
                   <strong className="text-[#002147]">Recogida a domicilio:</strong> sujeta a ruta e importe mínimo según volumen y localidad de Vigo / comarca.
                 </p>
@@ -2194,7 +2197,7 @@ Teléfono de contacto: [Tu teléfono]`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div className="max-w-3xl space-y-2">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Entrega inmediata hoy o recogida en Vigo y comarca
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -2207,7 +2210,7 @@ Teléfono de contacto: [Tu teléfono]`;
             <a
               href="/puntos-mimos"
               onClick={(e) => onNavigate('/puntos-mimos', e)}
-              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:text-[#002147] hover:underline shrink-0"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:text-[#002147] hover:underline shrink-0"
             >
               <MapPin className="w-4 h-4" aria-hidden="true" />
               <span>Ver mapa completo de tiendas y puntos</span>
@@ -2230,7 +2233,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-6 flex flex-col justify-between space-y-4"
                 >
                   <div className="space-y-2">
-                    <p className="text-xs font-mono font-bold uppercase text-[#0F76BB]">
+                    <p className="text-xs font-mono font-bold uppercase text-[#0C65A1]">
                       Tienda propia · {tienda.localidad}
                     </p>
                     <h3 className="text-lg font-extrabold text-[#002147]">
@@ -2255,7 +2258,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   <a
                     href={tiendaHref}
                     onClick={(e) => onNavigate(tiendaHref, e)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F76BB] hover:underline pt-2 border-t border-slate-200"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0C65A1] hover:underline pt-2 border-t border-slate-200"
                   >
                     <span>Ver ficha de tienda y cómo llegar</span>
                     <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -2267,7 +2270,7 @@ Teléfono de contacto: [Tu teléfono]`;
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             <div className="lg:col-span-7 rounded-xl border border-[#0F76BB]/20 bg-[#EDF5FD] p-6 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 <Camera className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>3 fotos rápidas que aceleran tu valoración y el parte</span>
               </div>
@@ -2298,7 +2301,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     key={zona.slug}
                     href={zona.url}
                     onClick={(e) => onNavigate(zona.url, e)}
-                    className="inline-flex items-center min-h-[36px] px-2.5 py-1 rounded-lg border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
+                    className="inline-flex items-center min-h-[44px] px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:border-[#0F76BB] transition-colors"
                   >
                     {zona.localidad}
                   </a>
@@ -2314,7 +2317,7 @@ Teléfono de contacto: [Tu teléfono]`;
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 <BookOpen className="w-4 h-4" aria-hidden="true" />
                 <span>Documentación técnica extendida</span>
               </div>
@@ -2338,7 +2341,7 @@ Teléfono de contacto: [Tu teléfono]`;
 
           <div>
             <div className="max-w-3xl mb-8 space-y-1">
-              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB]">
+              <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1]">
                 Dudas habituales sobre siniestros textiles y seguros
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -2354,7 +2357,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 >
                   <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                     <span>{faq.pregunta}</span>
-                    <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                    <span className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                       +
                     </span>
                   </summary>
@@ -2386,7 +2389,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Edredones, cortinas y estores
                   </h3>
-                  <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Higienización de gran formato para edredones de plumas, mantas, estores de tela y cortinas (con desmontaje y colocación).
@@ -2404,7 +2407,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Limpieza de alfombras en Vigo
                   </h3>
-                  <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Retirada de hollín, ceniza y humedad en alfombras mediante taller especialista colaborador con recogida a domicilio o entrega en tienda.
@@ -2422,7 +2425,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Reparación de alfombras
                   </h3>
-                  <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Arreglo y restauración de flecos, festón lateral y ribetes mediante restaurador colaborador (independiente o con limpieza).
@@ -2440,7 +2443,7 @@ Teléfono de contacto: [Tu teléfono]`;
                   <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                     Limpieza de pieles, cuero y ante
                   </h3>
-                  <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Valoración individualizada y prueba técnica para cazadoras de cuero, ante o peletería expuestas a humedad o humo.
@@ -2473,7 +2476,7 @@ Teléfono de contacto: [Tu teléfono]`;
                     }
                   )
                 }
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Consultar siniestro con Mimo</span>
@@ -2485,7 +2488,7 @@ Teléfono de contacto: [Tu teléfono]`;
                 }
                 className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors group tabular-nums"
               >
-                <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white" aria-hidden="true" />
                 <span>{CONTACT_INFO.phoneDisplay}</span>
               </a>
             </div>

@@ -565,7 +565,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
       <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#F4F9FE] via-white to-[#EDF5FD] text-[#002147] shadow-xs border border-slate-200">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Estándar Internacional ISO 3758:2023
             </p>
             <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#002147]">
@@ -589,7 +589,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
         {/* Las 5 familias visuales en orden */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-6 pt-5 border-t border-slate-200">
           <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
-            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 1</span>
+            <span className="text-xs font-bold text-[#0C65A1] mb-1">Paso 1</span>
             <div className="w-9 h-9 text-[#002147]">
               <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
                 <path d="M 12,32 L 17,80 L 83,80 L 88,32 Q 78,42 68,32 Q 58,22 48,32 Q 38,42 28,32 Q 20,24 12,32 Z" />
@@ -599,7 +599,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
           </div>
 
           <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
-            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 2</span>
+            <span className="text-xs font-bold text-[#0C65A1] mb-1">Paso 2</span>
             <div className="w-9 h-9 text-[#002147]">
               <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
                 <polygon points="50,15 12,85 88,85" />
@@ -609,7 +609,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
           </div>
 
           <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
-            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 3</span>
+            <span className="text-xs font-bold text-[#0C65A1] mb-1">Paso 3</span>
             <div className="w-9 h-9 text-[#002147]">
               <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
                 <rect x="15" y="15" width="70" height="70" rx="6" />
@@ -620,7 +620,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
           </div>
 
           <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200">
-            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 4</span>
+            <span className="text-xs font-bold text-[#0C65A1] mb-1">Paso 4</span>
             <div className="w-9 h-9 text-[#002147]">
               <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
                 <path d="M 18,65 L 82,65 C 82,65 80,42 60,42 L 28,42 L 18,65 Z M 28,42 L 28,26 L 68,26" />
@@ -630,7 +630,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
           </div>
 
           <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white border border-slate-200 col-span-2 sm:col-span-1">
-            <span className="text-xs font-bold text-[#0F76BB] mb-1">Paso 5</span>
+            <span className="text-xs font-bold text-[#0C65A1] mb-1">Paso 5</span>
             <div className="w-9 h-9 text-[#002147]">
               <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-current stroke-[5]" aria-hidden="true">
                 <circle cx="50" cy="50" r="35" />
@@ -652,7 +652,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               placeholder="Buscar símbolo (ej: 30°, percloroetileno, lejía, plancha, lana...)"
-              className="w-full min-h-[44px] pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F76BB]"
+              className="w-full min-h-[44px] pl-10 pr-4 py-2.5 text-base lg:text-sm rounded-xl border border-slate-300 bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F76BB]"
               aria-label="Buscar símbolo textil"
             />
           </div>
@@ -699,7 +699,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
                   }}
                 />
                 <div className="space-y-1 min-w-0">
-                  <span className="inline-block text-[11px] font-bold text-[#0F76BB]">
+                  <span className="inline-block text-[11px] font-bold text-[#0C65A1]">
                     {simbolo.categoriaNombre}
                   </span>
                   <h3 className="text-base font-extrabold text-[#002147] leading-snug">
@@ -719,7 +719,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
               {/* Riesgo o precaución */}
               <div className="p-3 rounded-lg bg-amber-50/80 border border-amber-200 text-xs text-amber-950 space-y-1">
                 <div className="flex items-center gap-1.5 font-bold">
-                  <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0" aria-hidden="true" />
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-700 shrink-0" aria-hidden="true" />
                   <span>Riesgo al tratarlo en casa:</span>
                 </div>
                 <p className="leading-normal">{simbolo.riesgo}</p>
@@ -731,7 +731,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
               <span className="font-semibold text-slate-500">
                 Consejo experto de Mimos
               </span>
-              <span className="font-bold text-[#0F76BB] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+              <span className="font-bold text-[#0C65A1] group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                 Ver detalle técnico →
               </span>
             </div>
@@ -757,7 +757,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
                   }}
                 />
                 <div>
-                  <span className="text-xs font-bold text-[#0F76BB]">
+                  <span className="text-xs font-bold text-[#0C65A1]">
                     {simboloActivo.categoriaNombre}
                   </span>
                   <h3 id="simbolo-modal-titulo" className="text-xl font-extrabold text-[#002147]">
@@ -814,7 +814,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
                     setSimboloActivo(null);
                     onNavigate(simboloActivo.servicioRelacionado!.href, e);
                   }}
-                  className="inline-flex items-center gap-1.5 min-h-[44px] font-bold text-xs text-[#0F76BB] hover:underline"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] font-bold text-xs text-[#0C65A1] hover:underline"
                 >
                   <span>{simboloActivo.servicioRelacionado.texto}</span>
                   <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -946,7 +946,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
                 <td className="p-3.5">Trajes sastre, abrigos de paño, faldas plisadas</td>
                 <td className="p-3.5 font-bold text-rose-700">No (Exclusivo tintorería)</td>
                 <td className="p-3.5">
-                  <a href="/tintoreria-vigo" onClick={(e) => onNavigate('/tintoreria-vigo', e)} className="text-[#0F76BB] font-bold underline">
+                  <a href="/tintoreria-vigo" onClick={(e) => onNavigate('/tintoreria-vigo', e)} className="text-[#0C65A1] font-bold underline">
                     Limpieza en seco profesional
                   </a>
                 </td>
@@ -975,7 +975,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
       {/* Recuadro descargable / imprimible (Link Magnet) */}
       <div className="p-6 sm:p-8 rounded-2xl border border-dashed border-[#0F76BB]/40 bg-[#F4F9FE] flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0F76BB]">
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0C65A1]">
             <Printer className="w-4 h-4" aria-hidden="true" />
             <span>Recurso descargable para casa y lavandería</span>
           </div>
@@ -987,7 +987,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
             <a
               href="/tintoreria-vigo"
               onClick={(e) => onNavigate('/tintoreria-vigo', e)}
-              className="font-bold text-[#0F76BB] underline underline-offset-2"
+              className="font-bold text-[#0C65A1] underline underline-offset-2"
             >
               consulta nuestra tintorería
             </a>{' '}
@@ -995,7 +995,7 @@ export const TextileCareSymbols: React.FC<TextileCareSymbolsProps> = ({ onNaviga
             <a
               href="/lavanderia-vigo"
               onClick={(e) => onNavigate('/lavanderia-vigo', e)}
-              className="font-bold text-[#0F76BB] underline underline-offset-2"
+              className="font-bold text-[#0C65A1] underline underline-offset-2"
             >
               lavandería atendida en Vigo
             </a>

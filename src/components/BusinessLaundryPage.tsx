@@ -138,14 +138,14 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
         secondaryAction={{
           label: `Llamar al ${CONTACT_INFO.phoneDisplay}`,
           href: CONTACT_INFO.phoneHref,
-          icon: <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white" aria-hidden="true" />,
+          icon: <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white" aria-hidden="true" />,
           isInternalRoute: false,
         }}
         extraContent={
           <div className="pt-1">
             <a
               href="#presupuesto-empresas"
-              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:text-[#002147] underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:text-[#002147] underline-offset-4 hover:underline"
             >
               <span>Preparar consulta guiada para Mimo</span>
               <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -157,31 +157,31 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
       {/* 1B. Ventajas directas para tu negocio */}
       <section className="py-10 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#0F76BB] font-bold mb-5">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#0C65A1] font-bold mb-5">
             <FileText className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span>Ventaja directa para tu negocio en Vigo</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <CheckCircle2 className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" aria-hidden="true" />
+              <CheckCircle2 className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" aria-hidden="true" />
               <span>
                 <strong className="text-[#002147]">Tus propias prendas, sin renting:</strong> no alquilas lencería ajena ni pierdes tus toallas o batas bordadas.
               </span>
             </div>
             <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <CheckCircle2 className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" aria-hidden="true" />
+              <CheckCircle2 className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" aria-hidden="true" />
               <span>
                 <strong className="text-[#002147]">Carros separados y marcado:</strong> aislamos cargas por cliente y marcamos piezas repetidas para evitar pérdidas.
               </span>
             </div>
             <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <CheckCircle2 className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" aria-hidden="true" />
+              <CheckCircle2 className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" aria-hidden="true" />
               <span>
                 <strong className="text-[#002147]">Secado completo para Vigo:</strong> olvídate del olor a humedad y de tender en el local en invierno.
               </span>
             </div>
             <div className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <CheckCircle2 className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" aria-hidden="true" />
+              <CheckCircle2 className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" aria-hidden="true" />
               <span>
                 <strong className="text-[#002147]">Sin permanencia y factura con CIF:</strong> pagas solo por lo enviado y eliges 3 tiendas o recogida concertada.
               </span>
@@ -194,7 +194,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
       <section className="py-12 lg:py-18 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
               Navia, Gregorio Espino, Vigo centro y rutas concertadas · Prendas propias de tu negocio
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -213,7 +213,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
               >
                 <div className="space-y-4">
                   <div>
-                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] mb-1">
+                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1] mb-1">
                       {sec.etiqueta}
                     </p>
                     <h3 className="text-xl font-extrabold text-[#002147]">
@@ -229,7 +229,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                     {sec.items.map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
                         <CheckCircle2
-                          className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                          className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                           aria-hidden="true"
                         />
                         <span>{item}</span>
@@ -248,7 +248,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         service_id: `empresas:${sec.id}`,
                       })
                     }
-                    className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white text-xs sm:text-sm font-bold transition-colors"
+                    className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] text-xs sm:text-sm font-bold transition-colors"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Consultar este sector con Mimo</span>
@@ -264,7 +264,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
       <section className="py-12 lg:py-18 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
               Planta propia en Navia · Control directo de principio a fin
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -281,7 +281,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                 key={paso.numero}
                 className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 space-y-2.5"
               >
-                <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
+                <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums">
                   PASO {paso.numero}
                 </p>
                 <h3 className="text-base font-extrabold text-[#002147] leading-snug">
@@ -300,7 +300,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
       <section className="py-12 lg:py-18 bg-[#EDF5FD] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs font-mono uppercase tracking-wider text-[#0F76BB] font-bold flex items-center gap-1.5">
+            <p className="text-xs font-mono uppercase tracking-wider text-[#0C65A1] font-bold flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Alternativa cercana frente a la gran lavandería industrial</span>
             </p>
@@ -337,7 +337,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0F76BB] flex items-center gap-1.5">
+            <p className="text-xs font-mono uppercase tracking-wider font-bold text-[#0C65A1] flex items-center gap-1.5">
               <Truck className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Logística flexible y facturación fiscal</span>
             </p>
@@ -353,7 +353,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                 key={v.numero}
                 className="rounded-xl border border-slate-200 bg-white p-6 space-y-2.5"
               >
-                <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
+                <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums">
                   {v.numero} · LOGÍSTICA
                 </p>
                 <h3 className="text-base sm:text-lg font-extrabold text-[#002147] leading-snug">
@@ -376,7 +376,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                 <a
                   href="/puntos-mimos"
                   onClick={(e) => onNavigate('/puntos-mimos', e)}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] hover:underline shrink-0"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1] hover:underline shrink-0"
                 >
                   <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>Ver mapa</span>
@@ -409,7 +409,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         <a
                           href={storeUrl}
                           onClick={(e) => onNavigate(storeUrl, e)}
-                          className="text-xs font-bold text-[#0F76BB] hover:underline shrink-0"
+                          className="text-xs font-bold text-[#0C65A1] hover:underline shrink-0"
                         >
                           Ver ficha →
                         </a>
@@ -428,7 +428,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
 
             {/* Columna derecha: Formulario rápido cualificador */}
             <div className="lg:col-span-7 rounded-xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] mb-2">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1] mb-2">
                 <Building2 className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Solicitud B2B sin compromiso · Respuesta directa por WhatsApp</span>
               </div>
@@ -462,7 +462,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         setPreparedReady(false);
                       }}
                       placeholder="Ej.: Peluquería X / Clínica Y"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
                     />
                   </div>
                   <div>
@@ -475,6 +475,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                     <input
                       id="emp-telefono"
                       type="tel"
+                      inputMode="tel"
                       required
                       autoComplete="tel"
                       aria-required="true"
@@ -486,7 +487,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         setPreparedReady(false);
                       }}
                       placeholder="Ej.: 600 123 456"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
                     />
                   </div>
                 </div>
@@ -505,7 +506,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                       setSector(e.target.value);
                       setPreparedReady(false);
                     }}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
                   >
                     {SECTORES_FORMULARIO.map((op) => (
                       <option key={op} value={op}>
@@ -530,7 +531,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         setModalidadEntrega(e.target.value);
                         setPreparedReady(false);
                       }}
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
                     >
                       {MODALIDADES_ENTREGA_B2B.map((op) => (
                         <option key={op} value={op}>
@@ -554,7 +555,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         setFrecuencia(e.target.value);
                         setPreparedReady(false);
                       }}
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
                     >
                       {FRECUENCIAS_B2B.map((op) => (
                         <option key={op} value={op}>
@@ -581,7 +582,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: Unas 40 toallas semanales y 6 capas en zona As Travesas / Centro..."
-                    className="w-full px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
+                    className="w-full px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden"
                   />
                 </div>
 
@@ -594,7 +595,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         setFacturaCif(e.target.checked);
                         setPreparedReady(false);
                       }}
-                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB]"
                     />
                     <span>Necesito factura mensual agrupada con CIF</span>
                   </label>
@@ -607,7 +608,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                         setAceptoPrivacidad(e.target.checked);
                         setErrorMsg('');
                       }}
-                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB]"
                     />
                     <span>
                       Acepto la{' '}
@@ -648,7 +649,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                             service_id: 'servicios-empresas',
                           })
                         }
-                        className="flex-1 inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors"
+                        className="flex-1 inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm py-3 px-4 rounded-lg transition-colors"
                       >
                         <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>Abrir WhatsApp con Mimo</span>
@@ -660,7 +661,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                       >
                         {copied ? (
                           <>
-                            <Check className="w-3.5 h-3.5 text-[#1FA855]" />
+                            <Check className="w-3.5 h-3.5 text-[#147A3E]" />
                             <span>Copiado</span>
                           </>
                         ) : (
@@ -698,14 +699,14 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
               className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 hover:border-[#0F76BB] transition-colors flex flex-col justify-between gap-3"
             >
               <div>
-                <p className="text-xs font-mono font-bold text-[#0F76BB] uppercase mb-1">
+                <p className="text-xs font-mono font-bold text-[#0C65A1] uppercase mb-1">
                   Viviendas vacacionales
                 </p>
                 <p className="text-sm font-extrabold text-[#002147]">
                   Limpieza y lencería para apartamentos turísticos en Vigo
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB]">
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
                 <span>Ir a Apartamentos turísticos</span>
                 <ArrowRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               </span>
@@ -717,14 +718,14 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
               className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 hover:border-[#0F76BB] transition-colors flex flex-col justify-between gap-3"
             >
               <div>
-                <p className="text-xs font-mono font-bold text-[#0F76BB] uppercase mb-1">
+                <p className="text-xs font-mono font-bold text-[#0C65A1] uppercase mb-1">
                   Espacios y locales
                 </p>
                 <p className="text-sm font-extrabold text-[#002147]">
                   Limpieza profesional de oficinas, comunidades y clínicas
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB]">
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
                 <span>Ir a Limpieza profesional</span>
                 <ArrowRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               </span>
@@ -736,14 +737,14 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
               className="rounded-xl border border-slate-200 bg-[#F7F6F2] p-5 hover:border-[#0F76BB] transition-colors flex flex-col justify-between gap-3"
             >
               <div>
-                <p className="text-xs font-mono font-bold text-[#0F76BB] uppercase mb-1">
+                <p className="text-xs font-mono font-bold text-[#0C65A1] uppercase mb-1">
                   Salas de espera
                 </p>
                 <p className="text-sm font-extrabold text-[#002147]">
                   Limpieza in situ de sofás, sillones y sillas tapizadas
                 </p>
               </div>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB]">
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
                 <span>Ver sofás y tapicerías</span>
                 <ArrowRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               </span>
@@ -761,7 +762,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-5 space-y-4">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] flex items-center gap-1.5">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1] flex items-center gap-1.5">
                 <HelpCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Dudas frecuentes de empresas y autónomos</span>
               </p>
@@ -790,7 +791,7 @@ export const BusinessLaundryPage: React.FC<BusinessLaundryPageProps> = ({ onNavi
                       >
                         <span>{faq.pregunta}</span>
                         <ChevronDown
-                          className={`w-5 h-5 text-[#0F76BB] shrink-0 transition-transform duration-200 ${
+                          className={`w-5 h-5 text-[#0C65A1] shrink-0 transition-transform duration-200 ${
                             isOpen ? 'rotate-180' : ''
                           }`}
                           aria-hidden="true"

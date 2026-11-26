@@ -91,11 +91,6 @@ const PuntoDPassoPage = lazyWithRetry(() =>
 const NotFoundPage = lazyWithRetry(() =>
   import('./components/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 );
-const PreviewPortadaPage = import.meta.env.DEV
-  ? lazyWithRetry(() =>
-      import('./components/PreviewPortadaPage').then((m) => ({ default: m.PreviewPortadaPage }))
-    )
-  : null;
 import {
   ARTICULOS_BLOG_RESUMEN,
   SERVICIOS_MIMOS,
@@ -126,7 +121,11 @@ export function App() {
       const normalized = cleanPath.length > 1 ? cleanPath.replace(/\/+$/, '') : '/';
       const canonicalPath = resolveCanonicalRoute(normalized);
       if (canonicalPath !== normalized && KNOWN_ROUTES.includes(canonicalPath)) {
-        window.history.replaceState({}, '', `${canonicalPath}${window.location.hash || ''}`);
+        window.history.replaceState(
+          {},
+          '',
+          `${canonicalPath}${window.location.search || ''}${window.location.hash || ''}`
+        );
         return canonicalPath;
       }
       return cleanPath;
@@ -151,6 +150,8 @@ export function App() {
     }
     return false;
   });
+  const [mimoOpen, setMimoOpen] = useState(false);
+  const mobileMimoTriggerRef = useRef<HTMLButtonElement>(null);
 
   // Mantener toda la web siempre en modo claro
   useEffect(() => {
@@ -163,10 +164,6 @@ export function App() {
   // Apply SEO & Schema.org on route change, manage GA4, and focus h1 for accessibility
   useEffect(() => {
     applyPageSEO(currentPath);
-    const cleanRoute = (currentPath || '/').split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
-    if (import.meta.env.DEV && cleanRoute === '/preview-portada') {
-      document.title = 'Vista previa Portada (Piloto 2) | Tintorería Mimos';
-    }
     if (hasAnalyticsConsent()) {
       initGA4();
       trackPageView(currentPath, document.title);
@@ -502,8 +499,7 @@ export function App() {
   const normalizedRoute =
     cleanCurrentPath.length > 1 ? cleanCurrentPath.replace(/\/+$/, '') : '/';
   const effectivePath = resolveCanonicalRoute(normalizedRoute);
-  const isPreviewPortada = import.meta.env.DEV && effectivePath === '/preview-portada';
-  const isKnown = KNOWN_ROUTES.includes(effectivePath) || isPreviewPortada;
+  const isKnown = KNOWN_ROUTES.includes(effectivePath);
 
   // Match route
   const articuloActivo = ARTICULOS_BLOG_RESUMEN.find((a) => a.url === effectivePath);
@@ -536,7 +532,7 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-slate-900 pb-16 md:pb-0">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-slate-900 pb-20 md:pb-0">
       {/* Aviso amable de disponibilidad de mapa para visitantes */}
       {quotaExceeded && (
         <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs sm:text-sm text-center sticky top-0 z-50 shadow-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
@@ -640,8 +636,6 @@ export function App() {
           <TiendaVenezuelaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/punto-mimos-dpasso-vigo' ? (
           <PuntoDPassoPage onNavigate={handleNavigate} />
-        ) : isPreviewPortada && PreviewPortadaPage ? (
-          <PreviewPortadaPage onNavigate={handleNavigate} />
         ) : effectivePath === '/' ? (
           /* Portada principal luminosa: Hero de 7 transiciones + navegador de perfiles + 4 bandas editoriales */
           <main id="main-content" tabIndex={-1} className="focus:outline-hidden">
@@ -665,10 +659,16 @@ export function App() {
         currentPath={currentPath}
         onNavigate={handleNavigate}
         onOpenCookieSettings={() => setCookieBannerOpen(true)}
+        mimoOpen={mimoOpen}
+        onToggleMimo={() => setMimoOpen((prev) => !prev)}
+        mimoTriggerRef={mobileMimoTriggerRef}
       />
 
       {/* Asistente Mimo y Preferencias de Cookies */}
       <MimoAssistant
+        isOpen={mimoOpen}
+        onOpenChange={setMimoOpen}
+        mobileTriggerRef={mobileMimoTriggerRef}
         cookieBannerOpen={cookieBannerOpen}
         onAcceptCookies={handleAcceptCookies}
         onRejectCookies={handleRejectCookies}

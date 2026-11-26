@@ -15,6 +15,7 @@ import {
   Clock,
   HelpCircle,
   FileText,
+  Mail,
 } from 'lucide-react';
 import {
   CONTACT_INFO,
@@ -40,6 +41,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
   const [observaciones, setObservaciones] = useState('');
   const [aceptoPrivacidad, setAceptoPrivacidad] = useState(false);
   const [errorPrivacidad, setErrorPrivacidad] = useState('');
+  const [solicitudPreparada, setSolicitudPreparada] = useState(false);
   const [copied, setCopied] = useState(false);
   const [failedImgs, setFailedImgs] = useState<Record<string, boolean>>({});
 
@@ -65,6 +67,9 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
   };
 
   const whatsappUrl = buildMimoWhatsAppUrl(buildCollaboratorWhatsAppMessage());
+  const collaboratorMailtoHref = `mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(
+    `Solicitud Punto Colaborador - ${nombreComercio.trim() || 'Nuevo comercio'}`
+  )}&body=${encodeURIComponent(buildCollaboratorWhatsAppMessage())}`;
 
   const handleCopyMessage = async () => {
     try {
@@ -100,7 +105,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
   ];
 
   return (
-    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white text-slate-900 min-h-screen">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden bg-white text-slate-900 flex-1">
       {/* Hero Comercial Luminoso */}
       <PageHeroLight
         breadcrumbs={[
@@ -117,7 +122,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
         secondaryAction={{
           label: `Llamar al ${CONTACT_INFO.phoneDisplay}`,
           href: CONTACT_INFO.phoneHref,
-          icon: <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />,
+          icon: <Phone className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />,
           isInternalRoute: false,
         }}
         image={{
@@ -130,15 +135,15 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
         extraContent={
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-slate-200 text-xs text-slate-700 font-medium">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+              <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
               <span>Comisión fija transparente</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+              <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
               <span>Resguardos oficiales incluidos</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+              <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
               <span>Logística en tu puerta</span>
             </div>
           </div>
@@ -149,7 +154,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
       <section className="py-16 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <p className="text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider mb-2">
+            <p className="text-xs font-mono font-bold text-[#0C65A1] uppercase tracking-wider mb-2">
               Ventajas comerciales directas
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-4">
@@ -162,7 +167,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-xs">
-              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0F76BB]">
+              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0C65A1]">
                 <TrendingUp className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-[#002147]">
@@ -174,7 +179,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-xs">
-              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0F76BB]">
+              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0C65A1]">
                 <Users className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-[#002147]">
@@ -186,7 +191,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-xs">
-              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0F76BB]">
+              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0C65A1]">
                 <Truck className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-[#002147]">
@@ -198,7 +203,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-xs">
-              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0F76BB]">
+              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0C65A1]">
                 <Monitor className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-[#002147]">
@@ -216,7 +221,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
       <section className="py-16 lg:py-24 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-[#0C65A1] uppercase tracking-wider">
               Operativa sencilla y transparente
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mt-2 mb-4">
@@ -254,7 +259,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-mono font-bold text-[#0F76BB] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
+                    <span className="text-xs font-mono font-bold text-[#0C65A1] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
                       PASO 01
                     </span>
                     <span className="text-xs text-slate-500">
@@ -270,11 +275,11 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 </div>
                 <ul className="space-y-1.5 text-xs text-slate-700 pt-3 border-t border-slate-200">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>Sin cálculos de precios ni errores en tickets</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>Etiquetado claro y seguro para cada prenda</span>
                   </li>
                 </ul>
@@ -307,7 +312,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-mono font-bold text-[#0F76BB] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
+                    <span className="text-xs font-mono font-bold text-[#0C65A1] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
                       PASO 02
                     </span>
                     <span className="text-xs text-slate-500">
@@ -323,11 +328,11 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 </div>
                 <ul className="space-y-1.5 text-xs text-slate-700 pt-3 border-t border-slate-200">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>Horarios y frecuencias regulares sin sorpresas</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>Traspaso rápido y coordinado con albarán oficial</span>
                   </li>
                 </ul>
@@ -360,7 +365,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-mono font-bold text-[#0F76BB] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
+                    <span className="text-xs font-mono font-bold text-[#0C65A1] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
                       PASO 03
                     </span>
                     <span className="text-xs text-slate-500">
@@ -376,11 +381,11 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 </div>
                 <ul className="space-y-1.5 text-xs text-slate-700 pt-3 border-t border-slate-200">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>Cuidado experto para trajes, sedas, pieles y edredones</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>El prestigio de tu comercio siempre respaldado</span>
                   </li>
                 </ul>
@@ -413,7 +418,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-mono font-bold text-[#0F76BB] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
+                    <span className="text-xs font-mono font-bold text-[#0C65A1] bg-white border border-[#0F76BB]/25 px-2.5 py-0.5 rounded-md">
                       PASO 04
                     </span>
                     <span className="text-xs text-slate-500">
@@ -429,11 +434,11 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 </div>
                 <ul className="space-y-1.5 text-xs text-slate-700 pt-3 border-t border-slate-200">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>Entrega protegida y con presentación de tintorería</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#147A3E] shrink-0" aria-hidden="true" />
                     <span>Liquidaciones mensuales transparentes y puntuales</span>
                   </li>
                 </ul>
@@ -447,8 +452,8 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
       <section className="py-16 lg:py-20 bg-[#EDF5FD] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0F76BB] bg-white border border-[#0F76BB]/25 px-3 py-1 rounded-md uppercase tracking-wider mb-3">
-              <ShieldCheck className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+            <span className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0C65A1] bg-white border border-[#0F76BB]/25 px-3 py-1 rounded-md uppercase tracking-wider mb-3">
+              <ShieldCheck className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
               <span>Tecnología y Respaldo Total</span>
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight">
@@ -461,7 +466,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-4">
             <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3.5">
-              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0F76BB]">
+              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0C65A1]">
                 <FileText className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-[#002147]">
@@ -470,14 +475,14 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Operativa sencilla pensada para el comercio de barrio. Identificación clara de cada prenda con resguardo oficial numerado, desglose del servicio y control mensual y transparente de liquidación de comisiones.
               </p>
-              <div className="text-xs text-[#0F76BB] font-semibold flex items-center gap-1.5 pt-1">
+              <div className="text-xs text-[#0C65A1] font-semibold flex items-center gap-1.5 pt-1">
                 <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Atención ágil sin complicaciones técnicas</span>
               </div>
             </div>
 
             <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3.5">
-              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0F76BB]">
+              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0C65A1]">
                 <Store className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-[#002147]">
@@ -486,14 +491,14 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Te facilitamos vinilos para tu escaparate con el distintivo de «Punto Colaborador Oficial Mimos», cartelería informativa, fundas protectoras y talonarios de apoyo.
               </p>
-              <div className="text-xs text-[#0F76BB] font-semibold flex items-center gap-1.5 pt-1">
+              <div className="text-xs text-[#0C65A1] font-semibold flex items-center gap-1.5 pt-1">
                 <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Identificación visible para tus vecinos</span>
               </div>
             </div>
 
             <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3.5">
-              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0F76BB]">
+              <div className="w-12 h-12 rounded-xl bg-[#EDF5FD] flex items-center justify-center text-[#0C65A1]">
                 <MapPin className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-[#002147]">
@@ -502,7 +507,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Tu tienda aparecerá de inmediato en nuestra página web oficial, en las fichas de Google Maps y en nuestras páginas de localidad como punto recomendado para clientes de tu zona.
               </p>
-              <div className="text-xs text-[#0F76BB] font-semibold flex items-center gap-1.5 pt-1">
+              <div className="text-xs text-[#0C65A1] font-semibold flex items-center gap-1.5 pt-1">
                 <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Tráfico web derivado hacia tu local</span>
               </div>
@@ -515,7 +520,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
       <section className="py-16 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-[#0C65A1] uppercase tracking-wider">
               Sinergia y compatibilidad
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mt-2 mb-4">
@@ -528,7 +533,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5">
-              <span className="text-xs font-mono font-bold text-[#0F76BB]">01 · MÁXIMA AFINIDAD</span>
+              <span className="text-xs font-mono font-bold text-[#0C65A1]">01 · MÁXIMA AFINIDAD</span>
               <h3 className="text-base font-bold text-[#002147]">
                 Arreglos de ropa y modisterías
               </h3>
@@ -538,7 +543,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5">
-              <span className="text-xs font-mono font-bold text-[#0F76BB]">02 · HOGAR Y TEXTIL</span>
+              <span className="text-xs font-mono font-bold text-[#0C65A1]">02 · HOGAR Y TEXTIL</span>
               <h3 className="text-base font-bold text-[#002147]">
                 Mercerías y ropa de cama
               </h3>
@@ -548,7 +553,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5">
-              <span className="text-xs font-mono font-bold text-[#0F76BB]">03 · SERVICIOS DE BARRIO</span>
+              <span className="text-xs font-mono font-bold text-[#0C65A1]">03 · SERVICIOS DE BARRIO</span>
               <h3 className="text-base font-bold text-[#002147]">
                 Reparación de calzado y llaves
               </h3>
@@ -558,7 +563,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5">
-              <span className="text-xs font-mono font-bold text-[#0F76BB]">04 · MODA Y EVENTOS</span>
+              <span className="text-xs font-mono font-bold text-[#0C65A1]">04 · MODA Y EVENTOS</span>
               <h3 className="text-base font-bold text-[#002147]">
                 Boutiques de moda y fiesta
               </h3>
@@ -568,7 +573,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5">
-              <span className="text-xs font-mono font-bold text-[#0F76BB]">05 · COMERCIO DE PROXIMIDAD</span>
+              <span className="text-xs font-mono font-bold text-[#0C65A1]">05 · COMERCIO DE PROXIMIDAD</span>
               <h3 className="text-base font-bold text-[#002147]">
                 Droguerías, papelerías y prensa
               </h3>
@@ -578,7 +583,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
             </div>
 
             <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-2.5">
-              <span className="text-xs font-mono font-bold text-[#0F76BB]">06 · EXPANSIÓN COMARCAL</span>
+              <span className="text-xs font-mono font-bold text-[#0C65A1]">06 · EXPANSIÓN COMARCAL</span>
               <h3 className="text-base font-bold text-[#002147]">
                 Nuevas zonas de búsqueda activa
               </h3>
@@ -594,7 +599,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
       <section className="py-16 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-[#0C65A1] uppercase tracking-wider">
               Red consolidada en Galicia
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mt-2 mb-4">
@@ -627,7 +632,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                 )}
                 <div className="p-5 sm:p-6 space-y-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-mono font-bold text-[#0F76BB]">
+                    <span className="text-xs font-mono font-bold text-[#0C65A1]">
                       {pto.localidad.toUpperCase()}
                     </span>
                     <span className="text-[11px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">
@@ -638,7 +643,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                     {pto.nombre_mostrado}
                   </h3>
                   <p className="text-xs text-slate-600 flex items-start gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                    <MapPin className="w-3.5 h-3.5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                     <span>{pto.direccion}, {pto.codigo_postal} {pto.localidad}</span>
                   </p>
                   <p className="text-xs text-slate-500 flex items-center gap-1.5 pt-1">
@@ -657,7 +662,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-sm">
             <div className="max-w-2xl mb-8">
-              <span className="text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider">
+              <span className="text-xs font-mono font-bold text-[#0C65A1] uppercase tracking-wider">
                 Solicitud sin compromiso
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight mt-1 mb-2">
@@ -672,19 +677,15 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
               onSubmit={(e) => {
                 e.preventDefault();
                 if (!aceptoPrivacidad) {
-                  setErrorPrivacidad('Debes aceptar la política de privacidad para enviar tu solicitud.');
+                  setErrorPrivacidad('Debes aceptar la política de privacidad para continuar.');
                   return;
                 }
                 setErrorPrivacidad('');
+                setSolicitudPreparada(true);
                 trackFormPrepared(
                   typeof window !== 'undefined' ? window.location.pathname : '/se-punto-colaborador',
                   'collaborator_application'
                 );
-                trackWhatsAppClick(
-                  typeof window !== 'undefined' ? window.location.pathname : '/se-punto-colaborador',
-                  'collaborator_form'
-                );
-                window.location.href = whatsappUrl;
               }}
               className="space-y-5"
             >
@@ -698,9 +699,12 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                     type="text"
                     required
                     value={nombreComercio}
-                    onChange={(e) => setNombreComercio(e.target.value)}
+                    onChange={(e) => {
+                      setNombreComercio(e.target.value);
+                      setSolicitudPreparada(false);
+                    }}
                     placeholder="Ej. Mercería Carmen / Modas Gómez"
-                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base sm:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
+                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base lg:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
                   />
                 </div>
 
@@ -713,9 +717,12 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                     type="text"
                     required
                     value={personaContacto}
-                    onChange={(e) => setPersonaContacto(e.target.value)}
+                    onChange={(e) => {
+                      setPersonaContacto(e.target.value);
+                      setSolicitudPreparada(false);
+                    }}
                     placeholder="Tu nombre y apellidos"
-                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base sm:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
+                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base lg:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
                   />
                 </div>
               </div>
@@ -728,8 +735,11 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                   <select
                     id="colab-tipo-negocio"
                     value={tipoNegocio}
-                    onChange={(e) => setTipoNegocio(e.target.value)}
-                    className="w-full min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base sm:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
+                    onChange={(e) => {
+                      setTipoNegocio(e.target.value);
+                      setSolicitudPreparada(false);
+                    }}
+                    className="w-full min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base lg:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
                   >
                     <option value="Tienda de arreglos de ropa / Modistería">
                       Arreglos de ropa / Modistería
@@ -758,9 +768,12 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                     type="text"
                     required
                     value={localidad}
-                    onChange={(e) => setLocalidad(e.target.value)}
+                    onChange={(e) => {
+                      setLocalidad(e.target.value);
+                      setSolicitudPreparada(false);
+                    }}
                     placeholder="Ej. Vigo, Cangas, Nigrán, Baiona, Mos..."
-                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base sm:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
+                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base lg:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
                   />
                 </div>
 
@@ -771,11 +784,16 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                   <input
                     id="colab-telefono"
                     type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
                     required
                     value={telefono}
-                    onChange={(e) => setTelefono(e.target.value)}
+                    onChange={(e) => {
+                      setTelefono(e.target.value);
+                      setSolicitudPreparada(false);
+                    }}
                     placeholder="Ej. 600 000 000"
-                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base sm:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
+                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base lg:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
                   />
                 </div>
               </div>
@@ -788,9 +806,12 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                   id="colab-direccion"
                   type="text"
                   value={direccion}
-                  onChange={(e) => setDireccion(e.target.value)}
+                  onChange={(e) => {
+                    setDireccion(e.target.value);
+                    setSolicitudPreparada(false);
+                  }}
                   placeholder="Calle, número o barrio aproximado"
-                  className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base sm:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
+                  className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base lg:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
                 />
               </div>
 
@@ -802,9 +823,12 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                   id="colab-observaciones"
                   rows={3}
                   value={observaciones}
-                  onChange={(e) => setObservaciones(e.target.value)}
+                  onChange={(e) => {
+                    setObservaciones(e.target.value);
+                    setSolicitudPreparada(false);
+                  }}
                   placeholder="Ej. Horario de apertura, si dispones de perchero, etc."
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base sm:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE] text-slate-900 text-base lg:text-sm focus:ring-2 focus:ring-[#0F76BB] focus:bg-white outline-hidden"
                 />
               </div>
 
@@ -819,55 +843,99 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
                       setAceptoPrivacidad(e.target.checked);
                       if (e.target.checked) setErrorPrivacidad('');
                     }}
-                    className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                    className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB]"
                   />
                   <label htmlFor="colab-privacidad" className="text-xs text-slate-600 leading-relaxed">
                     He leído y acepto la{' '}
                     <a
                       href="/privacidad"
                       onClick={(e) => onNavigate('/privacidad', e)}
-                      className="font-bold text-[#0F76BB] underline"
+                      className="font-bold text-[#0C65A1] underline"
                     >
                       política de privacidad
                     </a>
-                    . Entiendo que este formulario estructura un mensaje que abrirá mi aplicación de WhatsApp para enviarlo directamente a Tintorería Mimos Navia, S.L., con el fin de informarme sobre las condiciones de colaboración.
+                    . Entiendo que este formulario estructura un mensaje en mi navegador para enviarlo voluntariamente por WhatsApp o correo electrónico a Tintorería Mimos Navia, S.L.
                   </label>
                 </div>
                 {errorPrivacidad && (
-                  <p className="text-xs font-bold text-red-600 mt-1.5">
+                  <p role="alert" className="text-xs font-bold text-red-600 mt-1.5">
                     {errorPrivacidad}
                   </p>
                 )}
               </div>
 
-              {/* Botón de envío */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-xs transition-all cursor-pointer"
-                >
-                  <MessageCircle className="w-5 h-5" aria-hidden="true" />
-                  <span>Enviar solicitud por WhatsApp</span>
-                </button>
+              {/* Botón de envío en 2 pasos */}
+              {!solicitudPreparada ? (
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center gap-2.5 min-h-[48px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-xs transition-all cursor-pointer"
+                  >
+                    <FileText className="w-5 h-5" aria-hidden="true" />
+                    <span>Preparar solicitud</span>
+                  </button>
 
-                <button
-                  type="button"
-                  onClick={handleCopyMessage}
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3.5 rounded-xl transition-colors cursor-pointer group"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-4 h-4 text-[#1FA855] group-hover:text-white" />
-                      <span>Mensaje copiado</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4 text-[#0F76BB] group-hover:text-white" />
-                      <span>Copiar datos</span>
-                    </>
-                  )}
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    onClick={handleCopyMessage}
+                    className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3.5 rounded-xl transition-colors cursor-pointer group"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4 text-[#147A3E] group-hover:text-white" />
+                        <span>Mensaje copiado</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4 text-[#0C65A1] group-hover:text-white" />
+                        <span>Copiar datos</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              ) : (
+                <div className="p-4 rounded-xl bg-[#EDF5FD] border border-[#0F76BB]/25 flex flex-col sm:flex-row flex-wrap gap-3">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      trackWhatsAppClick(
+                        typeof window !== 'undefined' ? window.location.pathname : '/se-punto-colaborador',
+                        'collaborator_form'
+                      )
+                    }
+                    className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm py-3 px-4 rounded-xl transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                    <span>Enviar solicitud por WhatsApp a Mimo</span>
+                  </a>
+                  <a
+                    href={collaboratorMailtoHref}
+                    className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-sm py-3 px-4 rounded-xl transition-colors"
+                  >
+                    <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
+                    <span>Enviar por Email</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={handleCopyMessage}
+                    className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-slate-300 hover:border-[#0F76BB] text-[#002147] font-bold text-sm py-3 px-4 rounded-xl transition-colors cursor-pointer"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4 text-[#147A3E]" />
+                        <span>Copiado</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4 text-[#0C65A1]" />
+                        <span>Copiar datos</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
             </form>
           </div>
         </div>
@@ -876,7 +944,7 @@ export const PuntoColaboradorPage: React.FC<PuntoColaboradorPageProps> = ({
       {/* Sección: Preguntas frecuentes para Colaboradores */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#0F76BB] font-bold mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#0C65A1] font-bold mb-3">
             <HelpCircle className="w-4 h-4" aria-hidden="true" />
             <span>DUDAS HABITUALES</span>
           </div>

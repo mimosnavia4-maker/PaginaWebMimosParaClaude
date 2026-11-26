@@ -2994,12 +2994,12 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
   badgeSuperior: 'ALOJAMIENTOS TURÍSTICOS VUT EN VIGO · FRANJA 11:00–15:00 · DECRETO 12/2017 (REAT)',
   h1: 'Limpieza y lavandería para apartamentos turísticos y viviendas vacacionales en Vigo',
   subtitulo:
-    'Operativa diseñada para rotaciones reales entre huéspedes en Vigo: limpieza en la franja crítica de 11:00 a 15:00 incluidos sábados, festivos y agosto, lavandería de tu propia lencería separada por vivienda, reposición de amenities, entrega de llaves y reporte fotográfico alineado con los estándares de higiene textil del Decreto 12/2017 y el REAT.',
+    'Operativa diseñada para rotaciones reales entre huéspedes en Vigo: limpieza en la franja crítica de 11:00 a 15:00 incluidos sábados, domingos, festivos y agosto, lavandería de tu propia lencería separada por vivienda, reposición de amenities, gestión de llaves (sin check-in presencial) y reporte fotográfico alineado con los estándares de higiene textil del Decreto 12/2017 y el REAT.',
   clavesDiferenciales: [
     {
       titulo: 'Franja crítica 11:00–15:00 y urgencias en el día',
       detalle:
-        'Planificamos los cambios entre salidas y entradas de 11:00 a 15:00 y atendemos urgencias el mismo día, incluidos sábados, festivos y temporada alta en agosto.',
+        'Planificamos los cambios entre salidas y entradas de 11:00 a 15:00 y atendemos urgencias el mismo día, incluidos sábados, domingos, festivos y temporada alta en agosto.',
     },
     {
       titulo: 'Lencería propia separada (acuerdos negociables)',
@@ -3024,9 +3024,9 @@ export const APARTAMENTOS_TURISTICOS_DATA = {
   ],
   preguntasFrecuentes: [
     {
-      pregunta: '¿Cubrís cambios entre huéspedes de 11:00 a 15:00 los sábados, festivos y en agosto?',
+      pregunta: '¿Cubrís cambios entre huéspedes de 11:00 a 15:00 los sábados, domingos, festivos y en agosto?',
       respuesta:
-        'Sí. Sabemos que el grueso de las entradas y salidas en Vigo se concentra entre las 11:00 y las 15:00, especialmente en fines de semana, puentes festivos y verano. Coordinamos turnos propios y cubrimos urgencias en el mismo día, sábados y festivos.',
+        'Sí. Sabemos que el grueso de las entradas y salidas en Vigo se concentra entre las 11:00 y las 15:00, especialmente en fines de semana, puentes festivos y verano. Coordinamos turnos propios y cubrimos urgencias en el mismo día, sábados, domingos y festivos.',
     },
     {
       pregunta: '¿Tenéis servicio de renting de sábanas o laváis la lencería propia del apartamento?',
@@ -3273,9 +3273,9 @@ export const BLOG_FAQS_MAP: Record<string, ServicioFaqItem[]> = {
         'Lavamos, higienizamos y planchamos en calandra tu propia lencería separada por apartamento para que nunca se mezcle, sin imponerte un renting estándar cerrado; además, estamos abiertos a negociar acuerdos a medida según volumen.',
     },
     {
-      pregunta: '¿Cubrís entregas y cambios entre las 11:00 y las 15:00 en sábados, festivos y agosto?',
+      pregunta: '¿Cubrís entregas y cambios entre las 11:00 y las 15:00 en sábados, domingos, festivos y agosto?',
       respuesta:
-        'Sí. Adaptamos la logística de recogida de lencería, limpieza entre estancias, reposición de amenities y reporte fotográfico a la ventana real de 11:00 a 15:00 todo el año en Vigo.',
+        'Sí. Adaptamos la logística de recogida de lencería, limpieza entre estancias, reposición de amenities y reporte fotográfico a la ventana real de 11:00 a 15:00 todo el año en Vigo, incluidos sábados, domingos y festivos.',
     },
   ],
   'la-colada-en-casa': [

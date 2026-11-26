@@ -21,7 +21,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
   const b2bLines = [
     {
       title: 'Apartamentos turísticos y VUT',
-      text: 'Operativa concentrada en la franja crítica de 11:00 a 15:00 incluidos sábados, festivos y agosto. Lavamos tu propia lencería separada por vivienda, reponemos amenities, coordinamos llaves y enviamos foto-reporte alineado con el Decreto 12/2017 y el REAT.',
+      text: 'Operativa concentrada en la franja crítica de 11:00 a 15:00 incluidos sábados, domingos, festivos y agosto. Lavamos tu propia lencería separada por vivienda, reponemos amenities, gestionamos llaves en cajetín o punto acordado (sin check-in presencial) y enviamos foto-reporte alineado con el Decreto 12/2017 y el REAT.',
       href: '/limpieza-apartamentos-turisticos-vigo',
       cta: 'Ver operativa para VUT',
     },
@@ -78,7 +78,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-5 space-y-5">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 División profesional, comunidades y VUT en Vigo
               </p>
               <h2
@@ -97,7 +97,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('/', 'b2b_band')}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>Solicitar visita por WhatsApp</span>
@@ -123,7 +123,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                   <a
                     href={item.href}
                     onClick={(e) => onNavigate(item.href, e)}
-                    className="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:text-[#002147] hover:underline transition-colors"
+                    className="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:text-[#002147] hover:underline transition-colors"
                   >
                     <span>{item.cta}</span>
                     <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -144,7 +144,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-6 space-y-4">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Recogida y entrega a domicilio
               </p>
               <h2
@@ -164,7 +164,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('/', 'pickup_direct')}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white px-4 py-2 rounded-sm transition-colors shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] px-4 py-2 rounded-sm transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>WhatsApp directo ({CONTACT_INFO.whatsappNumber})</span>
@@ -215,6 +215,8 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                     <input
                       id="home-pickup-phone"
                       type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
                       value={telefono}
                       onChange={(e) => {
                         setTelefono(e.target.value);
@@ -284,7 +286,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                     type="checkbox"
                     checked={aceptoPrivacidad}
                     onChange={(e) => setAceptoPrivacidad(e.target.checked)}
-                    className="w-5 h-5 rounded-xs border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB] shrink-0"
+                    className="w-5 h-5 rounded-xs border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB] shrink-0"
                   />
                   <span>
                     Acepto la{' '}
@@ -308,14 +310,14 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                 {!readyUrl ? (
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-sm transition-colors cursor-pointer shadow-xs"
+                    className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-6 py-3 rounded-sm transition-colors cursor-pointer shadow-xs"
                   >
                     <Send className="w-4 h-4" aria-hidden="true" />
                     <span>Preparar consulta para WhatsApp</span>
                   </button>
                 ) : (
                   <div className="border-l-2 border-[#1FA855] pl-4 py-1 space-y-2.5">
-                    <p className="inline-flex items-center gap-1.5 text-xs font-bold text-[#178A47]">
+                    <p className="inline-flex items-center gap-1.5 text-xs font-bold text-[#147A3E]">
                       <Check className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Consulta preparada con tus datos</span>
                     </p>
@@ -325,7 +327,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => trackWhatsAppClick('/', 'pickup_form_send')}
-                        className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-sm transition-colors shadow-xs"
+                        className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-6 py-3 rounded-sm transition-colors shadow-xs"
                       >
                         <MessageCircle className="w-4 h-4" aria-hidden="true" />
                         <span>Enviar ahora por WhatsApp a Mimo</span>

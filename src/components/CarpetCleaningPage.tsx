@@ -125,7 +125,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-1.5">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Proceso claro de principio a fin
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -140,7 +140,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 className="rounded-sm border border-slate-200 bg-white p-6 flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
+                  <span className="text-xs font-mono tabular-nums font-bold text-[#0C65A1]">
                     PASO {paso.num}
                   </span>
                   <h3 className="text-lg font-extrabold text-[#002147] mt-1.5 mb-2.5">
@@ -163,7 +163,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             {/* Qué alfombras se valoran */}
             <div className="lg:col-span-7 space-y-6">
               <div>
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                   Cuidado adaptado a cada tejido
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -179,7 +179,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   >
                     <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-1.5 flex items-start gap-2.5">
                       <CheckCircle2
-                        className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                        className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                         aria-hidden="true"
                       />
                       <span>{tipo.titulo}</span>
@@ -195,7 +195,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
             {/* Cómo medirla (Mini guía luminosa) */}
             <aside className="lg:col-span-5">
               <div className="rounded-sm border border-[#0F76BB]/30 bg-[#EDF5FD] p-6 sm:p-8 space-y-5">
-                <div className="flex items-center gap-2 text-[#0F76BB]">
+                <div className="flex items-center gap-2 text-[#0C65A1]">
                   <Ruler className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <span className="text-xs font-bold uppercase tracking-wider">
                     Mini guía práctica de medición
@@ -213,7 +213,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 {/* Diagrama Visual Largo x Ancho */}
                 <div className="p-5 rounded-sm bg-white border border-slate-200 text-center space-y-2">
                   <div className="mx-auto max-w-[240px] aspect-[3/2] rounded-sm border-2 border-dashed border-[#0F76BB] bg-[#F4F9FE] flex flex-col items-center justify-center p-3">
-                    <span className="text-[11px] font-mono font-bold text-[#0F76BB] uppercase">
+                    <span className="text-[11px] font-mono font-bold text-[#0C65A1] uppercase">
                       Largo (ej. 2,40 m) →
                     </span>
                     <span className="text-xs font-extrabold text-[#002147] mt-1">
@@ -231,7 +231,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 <ol className="space-y-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
                   {SERVICIO_ALFOMBRAS_DATA.guiaComoMedir.pasos.map((p, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="font-mono font-extrabold text-[#0F76BB] shrink-0">
+                      <span className="font-mono font-extrabold text-[#0C65A1] shrink-0">
                         0{idx + 1}.
                       </span>
                       <span>{p}</span>
@@ -246,7 +246,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
           <div className="mt-12 rounded-sm border border-slate-200 border-l-4 border-l-[#0F76BB] bg-[#F7F6F2] p-6 sm:p-8 lg:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.subtitulo}
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -259,7 +259,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   {SERVICIO_ALFOMBRAS_DATA.reparacionYRestauracion.trabajos.map((trabajo) => (
                     <li key={trabajo} className="flex items-start gap-2.5">
                       <CheckCircle2
-                        className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                        className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <span>{trabajo}</span>
@@ -289,7 +289,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                       service_id: 'reparacion-alfombras',
                     })
                   }
-                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-lg transition-colors shadow-xs"
+                  className="w-full min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs sm:text-sm px-4 py-3 rounded-lg transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Enviar fotos de borde o fleco a Mimo</span>
@@ -305,7 +305,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           <div>
             <div className="max-w-3xl mb-8">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                 Valoración personalizada con Mimo · Sin tarifas estándar cerradas
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
@@ -335,7 +335,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6 border-t border-slate-300/70">
             <div className="lg:col-span-7 rounded-sm border border-slate-200 bg-white p-6 sm:p-8 space-y-4">
-              <div className="flex items-center gap-2 text-[#0F76BB]">
+              <div className="flex items-center gap-2 text-[#0C65A1]">
                 <Truck className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   Dónde recogemos o recibimos tu alfombra
@@ -386,7 +386,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               </div>
 
               <div className="rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-7">
-                <div className="flex items-center gap-2 text-[#0F76BB] mb-2">
+                <div className="flex items-center gap-2 text-[#0C65A1] mb-2">
                   <Camera className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <h2 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                     Revisión previa por foto en WhatsApp
@@ -405,7 +405,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-8">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
               Recomendaciones profesionales de conservación
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -422,7 +422,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 {SERVICIO_ALFOMBRAS_DATA.cuidadoYManchas.consejosMantenimiento.map((c) => (
                   <li key={c} className="flex items-start gap-2.5">
                     <CheckCircle2
-                      className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                      className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                       aria-hidden="true"
                     />
                     <span>{c}</span>
@@ -444,7 +444,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               <div className="p-6 rounded-sm border border-slate-200 border-l-4 border-l-amber-500 bg-white text-sm text-slate-700">
                 <div className="flex items-center gap-2 font-extrabold text-[#002147] mb-1.5">
                   <AlertTriangle
-                    className="w-4 h-4 text-amber-600 shrink-0"
+                    className="w-4 h-4 text-amber-700 shrink-0"
                     aria-hidden="true"
                   />
                   <span>Cuándo acudir a una limpieza profesional e información importante</span>
@@ -465,7 +465,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
               Valoración directa por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
@@ -489,7 +489,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-servicio"
                   value={servicioSolicitado}
                   onChange={(e) => setServicioSolicitado(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Limpieza e higienización de alfombra">
                     Limpieza de alfombra
@@ -514,7 +514,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-localidad"
                   value={localidad}
                   onChange={(e) => setLocalidad(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {ZONAS_SERVICIO.map((loc) => (
                     <option key={loc} value={loc}>
@@ -540,7 +540,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   value={largo}
                   onChange={(e) => setLargo(e.target.value)}
                   placeholder="Ej.: 2,40 m"
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
 
@@ -557,7 +557,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   value={ancho}
                   onChange={(e) => setAncho(e.target.value)}
                   placeholder="Ej.: 1,70 m"
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -574,7 +574,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-fibra"
                   value={tipoFibra}
                   onChange={(e) => setTipoFibra(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="No estoy seguro / Sin etiqueta">
                     No estoy seguro / Sin etiqueta
@@ -599,7 +599,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                   id="alf-modalidad"
                   value={modalidadEntrega}
                   onChange={(e) => setModalidadEntrega(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Quiero consultar recogida y entrega a domicilio">
                     Quiero consultar recogida y entrega a domicilio
@@ -624,7 +624,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 value={observaciones}
                 onChange={(e) => setObservaciones(e.target.value)}
                 placeholder="Ej.: Tiene una mancha de café y flecos en los bordes. Disponible por las tardes."
-                className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               />
             </div>
 
@@ -638,7 +638,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                     service_id: 'limpieza-alfombras',
                   })
                 }
-                className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
+                className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Presupuestar mi alfombra en WhatsApp con Mimo</span>
@@ -651,7 +651,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                    <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                     <span>Mensaje copiado</span>
                   </>
                 ) : (
@@ -674,7 +674,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
               Resolvemos tus dudas antes de recoger tu alfombra
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -690,7 +690,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
               >
                 <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                   <span>{faq.pregunta}</span>
-                  <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                  <span className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                     +
                   </span>
                 </summary>
@@ -723,7 +723,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                     <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                       {rel.titulo}
                     </h3>
-                    <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                    <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {rel.descripcion}
@@ -753,7 +753,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                     service_id: 'limpieza-alfombras',
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Presupuestar mi alfombra</span>
@@ -763,7 +763,7 @@ export const CarpetCleaningPage: React.FC<CarpetCleaningPageProps> = ({
                 onClick={() => trackPhoneClick('/limpieza-alfombras-vigo', 'service_detail')}
                 className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors group"
               >
-                <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" aria-hidden="true" />
                 <span>{CONTACT_INFO.phoneDisplay}</span>
               </a>
             </div>

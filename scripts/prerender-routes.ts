@@ -241,7 +241,7 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
         `<dt><strong>¿Tengo que pedir cita previa para acudir a la tienda de Navia?</strong></dt><dd>No, no necesitas cita previa. Puedes venir libremente de lunes a viernes (09:30–14:00 y 16:00–20:00) y sábados (10:00–13:30).</dd>` +
         `<dt><strong>¿Cómo funciona el servicio de arreglos y costura en la tienda de Navia?</strong></dt><dd>En Navia recepcionamos tus prendas, tomamos nota de todas las especificaciones, las derivamos a nuestros talleres propios in situ (Gregorio Espino y Venezuela) y te las entregamos de vuelta planchadas y terminadas.</dd>` +
         `<dt><strong>¿Se puede aparcar fácilmente cerca de la tienda en Teixugueiras?</strong></dt><dd>Sí, Rúa das Teixugueiras dispone de amplio aparcamiento público en batería y en línea frente a los soportales.</dd>` +
-        `<dt><strong>¿Puedo entregar alfombras grandes de lana o seda en la tienda de Navia?</strong></dt><dd>Sí, la sede de Navia es punto central de recepción de alfombras para lavado plano, desinfección y secado controlado.</dd>` +
+        `<dt><strong>¿Puedo entregar alfombras grandes de lana o seda en la tienda de Navia?</strong></dt><dd>Sí, la sede de Navia es punto de recepción de alfombras para coordinar su lavado plano, desinfección y secado controlado mediante taller especialista colaborador.</dd>` +
         `<dt><strong>¿Cómo me avisáis cuando la ropa está lista para recoger?</strong></dt><dd>Te notificamos por WhatsApp o SMS en cuanto tus prendas pasan el control de calidad final.</dd>` +
         `<dt><strong>¿Qué formas de pago tenéis disponibles en el mostrador de Navia?</strong></dt><dd>Aceptamos tarjeta (contactless, móvil, Apple Pay, Google Pay) y efectivo (no se acepta Bizum), siempre con ticket oficial con IVA desglosado.</dd>` +
         `<dt><strong>¿Puedo pedir que me entreguen en mi casa las prendas que dejé en Navia?</strong></dt><dd>Sí, coordinamos reparto a domicilio en Vigo y comarca con nuestra furgoneta propia por WhatsApp.</dd>` +
@@ -308,13 +308,13 @@ function buildRootPrerenderContent(routePath: string, meta: RouteMeta): string {
         `<p><strong>Servicios confirmados:</strong> ${escapeHtml(
           punto.servicios_confirmados.map((s) => ETIQUETAS_SERVICIOS_CONFIRMADOS[s] || s).join(', ')
         )}.</p>` +
-        `<p><strong>Nota sobre costura:</strong> D'Passo actúa como punto colaborador oficial de recepción y entrega, sin taller de costura en el local. Para arreglos de ropa, acude a nuestras tiendas propias de Vigo (Navia, Rúa Venezuela o Gregorio Espino).</p>` +
+        `<p><strong>Nota sobre costura:</strong> D'Passo actúa como punto colaborador oficial de recepción y entrega, sin taller de costura en el local. Para arreglos de ropa contamos con talleres propios in situ en Rúa de Venezuela, 29 y Gregorio Espino, 42, además de recepción y entrega en Navia.</p>` +
         `<h3>Preguntas frecuentes sobre el punto colaborador D'Passo en Vigo</h3>` +
         `<dl class="space-y-2">` +
-        `<dt><strong>¿Cómo funciona la entrega de ropa para Tintorería Mimos en D'Passo?</strong></dt><dd>Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a D'Passo en ${escapeHtml(punto.direccion)}, Vigo. Allí registran tu encargo con tu resguardo oficial y nuestra furgoneta las traslada a la central de Mimos en Navia para devolverlas listas y protegidas al punto.</dd>` +
+        `<dt><strong>¿Cómo funciona la entrega de ropa para Tintorería Mimos en D'Passo?</strong></dt><dd>Llevas tus prendas (trajes, vestidos, abrigos, edredones, alfombras o colada familiar) a D'Passo en ${escapeHtml(punto.direccion)}, Vigo. Allí registran tu encargo con tu resguardo oficial y nuestra furgoneta traslada tus prendas y textiles del hogar a la central de Mimos en Navia (y coordina las alfombras con taller especialista colaborador) para devolverlas listas y protegidas al punto.</dd>` +
         `<dt><strong>¿Cuál es el horario de apertura de D'Passo en Vigo?</strong></dt><dd>Atiende de lunes a viernes en horario partido de 09:30 a 13:30 y de 16:30 a 20:30. Los sábados, domingos y festivos permanece cerrado.</dd>` +
-        `<dt><strong>¿Se realizan arreglos de costura o composturas en D'Passo?</strong></dt><dd>No. D'Passo actúa como punto colaborador oficial de recogida y entrega para tintorería, lavandería, planchado, colada familiar, ropa de hogar y alfombras, sin taller de costura en el local. Para arreglos de ropa atendemos en nuestras tiendas propias de Vigo (Navia, Rúa Venezuela y Gregorio Espino).</dd>` +
-        `<dt><strong>¿Se pueden entregar edredones nórdicos y alfombras grandes en este punto?</strong></dt><dd>Sí. En D’Passo recibimos edredones sintéticos y de plumón natural, mantas, colchas, cortinas y alfombras de cualquier formato para su tratamiento en nuestra planta de Navia.</dd>` +
+        `<dt><strong>¿Se realizan arreglos de costura o composturas en D'Passo?</strong></dt><dd>No. D'Passo actúa como punto colaborador oficial de recogida y entrega para tintorería, lavandería, planchado, colada familiar, ropa de hogar y alfombras, sin taller de costura en el local. Para arreglos de ropa contamos con talleres propios de costura in situ en Rúa de Venezuela, 29 y Gregorio Espino, 42, además de recepción y entrega de arreglos en Navia.</dd>` +
+        `<dt><strong>¿Se pueden entregar edredones nórdicos y alfombras grandes en este punto?</strong></dt><dd>Sí. En D’Passo recibimos edredones sintéticos y de plumón natural, mantas, colchas, cortinas y alfombras. Tratamos los edredones, mantas y cortinas en nuestra central de Navia y gestionamos la limpieza de alfombras mediante taller especialista colaborador con secado controlado.</dd>` +
         `<dt><strong>¿Los precios son los mismos que en las tiendas propias de Tintorería Mimos?</strong></dt><dd>Sí. Se aplican exactamente las mismas tarifas oficiales de Tintorería Mimos que en nuestras 3 tiendas propias de Vigo, sin recargos por recepción ni transporte.</dd>` +
         `<dt><strong>¿Puedo consultar por WhatsApp antes de llevar la prenda o pedir entrega en casa?</strong></dt><dd>Sí, puedes escribir directamente a Mimo por WhatsApp al 655 536 844 o llamar a D’Passo al 986 23 06 43, y también coordinar entrega posterior a domicilio en Vigo.</dd>` +
         `</dl>` +
@@ -997,7 +997,7 @@ function renderHtmlForRoute(baseHtml: string, routePath: string, meta: RouteMeta
       '</head>',
       `${
         routePath === '/'
-          ? '    <link rel="preload" as="image" href="/osito-mimos.webp" imagesrcset="/osito-mimos-640w.webp 640w, /osito-mimos.webp 1024w" imagesizes="(max-width: 1023px) 100vw, 42vw" fetchpriority="high" />\n'
+          ? '    <link rel="preload" as="image" href="/osito-mimos.webp" imagesrcset="/osito-mimos-640w.webp 640w, /osito-mimos.webp 900w" imagesizes="(max-width: 1023px) 100vw, 42vw" fetchpriority="high" />\n'
           : ''
       }    ${routeSchemaTag}\n  </head>`
     )
@@ -1085,6 +1085,49 @@ function generateSitemapXml(routes: Record<string, RouteMeta>): string {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 }
 
+function removeUnwantedDistFiles(dir: string): number {
+  let removed = 0;
+  if (!fs.existsSync(dir)) return removed;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      removed += removeUnwantedDistFiles(fullPath);
+    } else if (entry.name === '.gitkeep' || entry.name.endsWith('.conf')) {
+      fs.rmSync(fullPath, { force: true });
+      removed += 1;
+    }
+  }
+  return removed;
+}
+
+function readBuildEnvVar(key: string): string {
+  const fromProcess = (process.env[key] || '').trim();
+  if (fromProcess) return fromProcess;
+
+  const envFiles = [
+    '.env.production.local',
+    '.env.production',
+    '.env.local',
+    '.env',
+  ];
+  for (const relFile of envFiles) {
+    const absFile = path.resolve(process.cwd(), relFile);
+    if (!fs.existsSync(absFile)) continue;
+    const lines = fs.readFileSync(absFile, 'utf-8').split(/\r?\n/);
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const eqIdx = trimmed.indexOf('=');
+      if (eqIdx === -1) continue;
+      const k = trimmed.slice(0, eqIdx).trim();
+      if (k === key) {
+        return trimmed.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, '');
+      }
+    }
+  }
+  return '';
+}
+
 const distDir = path.resolve(process.cwd(), 'dist');
 const baseIndexPath = path.join(distDir, 'index.html');
 
@@ -1117,6 +1160,23 @@ if (fs.existsSync(baseIndexPath)) {
     fs.writeFileSync(path.resolve(process.cwd(), 'public', 'sitemap.xml'), sitemapXml, 'utf-8');
   } catch {
     // ignorar si public no es escribible
+  }
+
+  const removedExtra = removeUnwantedDistFiles(distDir);
+  if (removedExtra > 0) {
+    console.log(`[Dist Cleanup] Eliminados ${removedExtra} archivos internos (.gitkeep / *.conf) de dist/.`);
+  }
+
+  const mapsApiKey = readBuildEnvVar('VITE_GOOGLE_MAPS_API_KEY');
+  const mapsMapId = readBuildEnvVar('VITE_GOOGLE_MAPS_MAP_ID');
+  if (!mapsApiKey || mapsApiKey === 'AIzaSy...') {
+    console.warn(
+      '[Maps Config Warning] VITE_GOOGLE_MAPS_API_KEY no configurada en entorno/.env; el build usará el listado alternativo de ubicaciones.'
+    );
+  } else if (!mapsMapId) {
+    console.warn(
+      '[Maps Config Warning] VITE_GOOGLE_MAPS_MAP_ID no configurada; el mapa usará marcadores clásicos en lugar de AdvancedMarker.'
+    );
   }
 
   console.log(`[AEO Prerender] Generados ${Object.keys(ROUTE_SEO_MAP).length} archivos HTML estáticos + dist/404.html y sitemap.xml.`);

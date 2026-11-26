@@ -3,6 +3,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { LEGACY_REDIRECT_MAP } from './src/data/redirectsData.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,162 +13,32 @@ async function startServer() {
   const server = http.createServer(app);
   const PORT = Number(process.env.PORT) || 3000;
 
-  // Redirecciones 301 hacia las URLs canónicas oficiales
+  // Redirecciones 301 hacia las URLs canónicas oficiales (fuente única: redirectsData.ts)
   app.use((req, res, next) => {
-    const cleanPath = req.path;
-    if (
-      cleanPath === '/servicios/alfombras-pieles' ||
-      cleanPath === '/servicios/alfombras-pieles/' ||
-      cleanPath === '/alfombras-vigo' ||
-      cleanPath === '/alfombras-vigo/' ||
-      cleanPath === '/servicios/limpieza-de-alfombras.html' ||
-      cleanPath === '/servicios/limpieza-de-alfombras'
-    ) {
-      return res.redirect(301, '/limpieza-alfombras-vigo');
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      return next();
     }
-    if (
-      cleanPath === '/servicios/reparacion-de-alfombras.html' ||
-      cleanPath === '/servicios/reparacion-de-alfombras' ||
-      cleanPath === '/servicios/reparacion-de-alfombras/'
-    ) {
-      return res.redirect(301, '/reparacion-alfombras-vigo');
+
+    const cleanPath = req.path || '/';
+    if (cleanPath.startsWith('/assets/') || cleanPath.startsWith('/api/')) {
+      return next();
     }
-    if (
-      cleanPath === '/servicios/limpieza-de-pieles-y-cuero.html' ||
-      cleanPath === '/servicios/limpieza-de-pieles-y-cuero' ||
-      cleanPath === '/servicios/limpieza-de-pieles-y-cuero/' ||
-      cleanPath === '/pieles-y-cuero-vigo' ||
-      cleanPath === '/pieles-y-cuero-vigo/'
-    ) {
-      return res.redirect(301, '/limpieza-pieles-cuero-vigo');
+
+    const normalized =
+      cleanPath.length > 1 ? cleanPath.replace(/\/+$/, '') : '/';
+    const queryIndex = req.originalUrl.indexOf('?');
+    const querySuffix =
+      queryIndex !== -1 ? req.originalUrl.slice(queryIndex) : '';
+
+    const redirectTarget = LEGACY_REDIRECT_MAP[normalized];
+    if (redirectTarget) {
+      return res.redirect(301, `${redirectTarget}${querySuffix}`);
     }
-    if (
-      cleanPath === '/arreglos-de-ropa-vigo/' ||
-      cleanPath === '/costura-y-arreglos' ||
-      cleanPath === '/costura-y-arreglos/' ||
-      cleanPath === '/servicios/costura-arreglos' ||
-      cleanPath === '/servicios/costura-arreglos/' ||
-      cleanPath === '/costura-arreglos-vigo' ||
-      cleanPath === '/costura-arreglos-vigo/' ||
-      cleanPath === '/arreglos-ropa-vigo' ||
-      cleanPath === '/arreglos-ropa-vigo/'
-    ) {
-      return res.redirect(301, '/arreglos-de-ropa-vigo');
+
+    if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+      return res.redirect(301, `${normalized}${querySuffix}`);
     }
-    if (
-      cleanPath === '/empleo' ||
-      cleanPath === '/empleo/' ||
-      cleanPath === '/unete-a-nosotros' ||
-      cleanPath === '/unete-a-nosotros/' ||
-      cleanPath === '/empleo-unete-a-nosotros.html'
-    ) {
-      return res.redirect(301, '/empleo-unete-a-nosotros');
-    }
-    if (cleanPath === '/feder.html') {
-      return res.redirect(301, '/feder');
-    }
-    if (cleanPath === '/programa-bono-energia-peme-2025-in417z.html') {
-      return res.redirect(301, '/programa-bono-energia-peme-2025-in417z');
-    }
-    if (
-      cleanPath === '/punto-telas-mas-porrino' ||
-      cleanPath === '/punto-telas-mas-porrino/' ||
-      cleanPath === '/punto/telas-mas' ||
-      cleanPath === '/punto/telas-mas/' ||
-      cleanPath === '/ficha/telas-mas' ||
-      cleanPath === '/ficha/telas-mas/'
-    ) {
-      return res.redirect(301, '/zonas/o-porrino');
-    }
-    if (
-      cleanPath === '/punto-puntadas-no-aire-gondomar' ||
-      cleanPath === '/punto-puntadas-no-aire-gondomar/' ||
-      cleanPath === '/punto/puntadas-no-aire' ||
-      cleanPath === '/punto/puntadas-no-aire/' ||
-      cleanPath === '/ficha/puntadas-no-aire' ||
-      cleanPath === '/ficha/puntadas-no-aire/'
-    ) {
-      return res.redirect(301, '/zonas/gondomar');
-    }
-    if (
-      cleanPath === '/tienda/gregorio-espino' ||
-      cleanPath === '/tienda/gregorio-espino/' ||
-      cleanPath === '/tienda-gregorio-espino' ||
-      cleanPath === '/tienda-gregorio-espino/'
-    ) {
-      return res.redirect(301, '/tienda-mimos-gregorio-espino-vigo');
-    }
-    if (
-      cleanPath === '/tienda/venezuela' ||
-      cleanPath === '/tienda/venezuela/' ||
-      cleanPath === '/tienda-venezuela' ||
-      cleanPath === '/tienda-venezuela/'
-    ) {
-      return res.redirect(301, '/tienda-mimos-venezuela-vigo');
-    }
-    if (
-      cleanPath === '/punto-dpasso-vigo' ||
-      cleanPath === '/punto-dpasso-vigo/' ||
-      cleanPath === '/punto/dpasso' ||
-      cleanPath === '/punto/dpasso/' ||
-      cleanPath === '/ficha/dpasso' ||
-      cleanPath === '/ficha/dpasso/'
-    ) {
-      return res.redirect(301, '/punto-mimos-dpasso-vigo');
-    }
-    if (
-      cleanPath === '/tienda/navia' ||
-      cleanPath === '/tienda/navia/' ||
-      cleanPath === '/tienda-navia' ||
-      cleanPath === '/tienda-navia/' ||
-      cleanPath === '/central-navia' ||
-      cleanPath === '/central-navia/'
-    ) {
-      return res.redirect(301, '/tienda-mimos-navia-vigo');
-    }
-    if (
-      cleanPath === '/blog/9-blog/26-la-colada-en-casa.html' ||
-      cleanPath === '/blog/9-blog/26-la-colada-en-casa'
-    ) {
-      return res.redirect(301, '/blog/la-colada-en-casa');
-    }
-    if (
-      cleanPath === '/blog/9-blog/22-montar-tu-propia-tintoreria-lavanderia.html' ||
-      cleanPath === '/blog/9-blog/22-montar-tu-propia-tintoreria-lavanderia'
-    ) {
-      return res.redirect(301, '/blog/montar-tu-propia-tintoreria-lavanderia');
-    }
-    if (
-      cleanPath === '/siniestros-vigo' ||
-      cleanPath === '/siniestros-vigo/' ||
-      cleanPath === '/limpieza-incendios-vigo' ||
-      cleanPath === '/limpieza-incendios-vigo/' ||
-      cleanPath === '/recuperacion-textil-siniestros' ||
-      cleanPath === '/recuperacion-textil-siniestros/'
-    ) {
-      return res.redirect(301, '/limpieza-incendios-siniestros-vigo');
-    }
-    if (
-      cleanPath === '/se-punto-de-recogida.html' ||
-      cleanPath === '/se-punto-de-recogida' ||
-      cleanPath === '/se-punto-de-recogida/' ||
-      cleanPath === '/punto-colaborador' ||
-      cleanPath === '/punto-colaborador/'
-    ) {
-      return res.redirect(301, '/se-punto-colaborador');
-    }
-    if (
-      (req.method === 'GET' || req.method === 'HEAD') &&
-      cleanPath.length > 1 &&
-      cleanPath.endsWith('/') &&
-      !cleanPath.startsWith('/assets/') &&
-      !cleanPath.startsWith('/api/')
-    ) {
-      const target = cleanPath.replace(/\/+$/, '');
-      const queryIndex = req.originalUrl.indexOf('?');
-      const querySuffix = queryIndex !== -1 ? req.originalUrl.slice(queryIndex) : '';
-      return res.redirect(301, `${target}${querySuffix}`);
-    }
+
     next();
   });
 

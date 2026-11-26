@@ -105,7 +105,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
             {/* Columna izquierda: Titular editorial + foto real mostrador Navia + secuencia real 1-2-3 */}
             <div className="lg:col-span-5 space-y-7">
               <div className="space-y-3">
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                   Oficio textil · Planta central en Navia
                 </p>
                 <h2
@@ -141,19 +141,19 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
                     </div>
                   )}
                 </div>
-                <figcaption className="text-xs text-slate-500">
+                <figcaption className="text-xs text-slate-600">
                   Mostrador central en Navia · Revisión directa de tejidos al recibir cada encargo.
                 </figcaption>
               </figure>
 
               {/* Secuencia real cronológica en 3 pasos */}
               <div className="pt-5 border-t border-slate-300/80 space-y-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-600">
                   Cómo trabajamos
                 </p>
                 <ol className="space-y-3 text-sm">
                   <li className="flex items-baseline gap-3">
-                    <span className="font-mono font-bold text-[#0F76BB] shrink-0">
+                    <span className="font-mono font-bold text-[#0C65A1] shrink-0">
                       01
                     </span>
                     <span className="text-slate-700">
@@ -165,7 +165,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
                     </span>
                   </li>
                   <li className="flex items-baseline gap-3">
-                    <span className="font-mono font-bold text-[#0F76BB] shrink-0">
+                    <span className="font-mono font-bold text-[#0C65A1] shrink-0">
                       02
                     </span>
                     <span className="text-slate-700">
@@ -176,7 +176,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
                     </span>
                   </li>
                   <li className="flex items-baseline gap-3">
-                    <span className="font-mono font-bold text-[#0F76BB] shrink-0">
+                    <span className="font-mono font-bold text-[#0C65A1] shrink-0">
                       03
                     </span>
                     <span className="text-slate-700">
@@ -204,7 +204,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
                         {srv.title}
                       </a>
                     </h3>
-                    <span className="text-xs font-semibold text-[#0F76BB] shrink-0">
+                    <span className="text-xs font-semibold text-[#0C65A1] shrink-0">
                       {srv.scope}
                     </span>
                   </div>
@@ -226,7 +226,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
                       <a
                         href={srv.secondaryHref}
                         onClick={(e) => onNavigate(srv.secondaryHref!, e)}
-                        className="inline-flex items-center gap-1 min-h-[44px] text-[#0F76BB] hover:underline"
+                        className="inline-flex items-center gap-1 min-h-[44px] text-[#0C65A1] hover:underline"
                       >
                         <span>{srv.secondaryLabel}</span>
                         <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -249,7 +249,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
         <div id="alfombras" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5">
             <div className="max-w-2xl space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Hogar y cuidado especializado en Vigo
               </p>
               <h2
@@ -265,7 +265,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('/', 'craft_whatsapp')}
-              className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white text-sm font-bold px-5 py-2.5 rounded-sm transition-colors whitespace-nowrap shrink-0 shadow-xs"
+              className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] text-sm font-bold px-5 py-2.5 rounded-sm transition-colors whitespace-nowrap shrink-0 shadow-xs"
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
               <span>Enviar foto por WhatsApp</span>
@@ -362,7 +362,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
                   <a
                     href="/reparacion-alfombras-vigo"
                     onClick={(e) => onNavigate('/reparacion-alfombras-vigo', e)}
-                    className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:underline"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:underline"
                   >
                     <span>Reparación y flecos</span>
                     <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -377,7 +377,7 @@ export const PreviewCatalogSection: React.FC<PreviewCatalogSectionProps> = ({
             aria-label="Índice completo de especialidades"
             className="pt-6 border-t border-slate-200 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm"
           >
-            <span className="font-bold text-slate-500">
+            <span className="font-bold text-slate-600">
               Todas las especialidades:
             </span>
             {SERVICIOS_MIMOS.map((srv) => (

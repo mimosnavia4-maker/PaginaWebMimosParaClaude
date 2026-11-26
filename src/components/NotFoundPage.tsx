@@ -64,7 +64,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
       {/* Cabecera luminosa 404 */}
       <section className="py-12 sm:py-16 bg-gradient-to-br from-white via-[#F4F9FE] to-[#EDF5FD] border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2 tabular-nums">
+          <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2 tabular-nums">
             Error 404 · Dirección no encontrada
           </p>
 
@@ -95,7 +95,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
               onClick={(e) => onNavigate('/contacto', e)}
               className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-sm sm:text-base transition-colors group"
             >
-              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
+              <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" aria-hidden="true" />
               <span>Contactar con nosotros</span>
             </a>
           </div>
@@ -128,7 +128,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
                   className="group p-5 rounded-2xl bg-[#F4F9FE] hover:bg-[#EDF5FD] border border-slate-200 hover:border-[#0F76BB] transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white border border-slate-200 text-[#0F76BB] mb-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white border border-slate-200 text-[#0C65A1] mb-3">
                       <Icon className="w-5 h-5" aria-hidden="true" />
                     </div>
                     <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
@@ -138,7 +138,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
                       {item.descripcion}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-slate-200/80 flex items-center text-xs font-bold text-[#0F76BB]">
+                  <div className="mt-4 pt-3 border-t border-slate-200/80 flex items-center text-xs font-bold text-[#0C65A1]">
                     <span>Ver información y servicios</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                   </div>
@@ -173,7 +173,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
                   href={CONTACT_INFO.whatsappBaseHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm transition-colors tabular-nums"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm transition-colors tabular-nums"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>WhatsApp: {CONTACT_INFO.whatsappNumber}</span>
@@ -182,21 +182,21 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
                   href={CONTACT_INFO.phoneHref}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-sm transition-colors group tabular-nums"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" aria-hidden="true" />
                   <span>{CONTACT_INFO.phoneDisplay}</span>
                 </a>
                 <a
                   href={CONTACT_INFO.emailHref}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] text-[#002147] font-bold text-sm border border-slate-300 transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <Mail className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                   <span>{CONTACT_INFO.email}</span>
                 </a>
               </div>
             </div>
 
             <div className="pt-6">
-              <h3 className="text-xs font-bold text-[#0F76BB] mb-4">
+              <h3 className="text-xs font-bold text-[#0C65A1] mb-4">
                 Nuestras 3 tiendas propias en Vigo:
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -214,7 +214,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
                     >
                       <div>
                         <div className="flex items-start gap-2.5 mb-1.5">
-                          <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                          <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                           <a
                             href={storeUrl}
                             onClick={(e) => onNavigate(storeUrl, e)}
@@ -227,14 +227,14 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
                           {tienda.direccion} ({tienda.codigo_postal} {tienda.localidad})
                         </p>
                         <div className="flex items-center gap-1.5 text-xs text-slate-600 pl-6 mt-2 tabular-nums">
-                          <Clock className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                          <Clock className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
                           <span>{tienda.horario.resumen}</span>
                         </div>
                       </div>
                       <div className="pl-6 mt-2.5">
                         <a
                           href={`tel:+34${tienda.telefono}`}
-                          className="inline-flex items-center min-h-[36px] text-xs font-bold text-[#0F76BB] hover:underline tabular-nums"
+                          className="inline-flex items-center min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline tabular-nums"
                         >
                           Tel. {tienda.telefonos_mostrados}
                         </a>

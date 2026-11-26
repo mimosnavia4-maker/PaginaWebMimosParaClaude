@@ -163,7 +163,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
       >
         <div>
           <div className="flex flex-wrap items-center justify-between gap-2 text-xs mb-3">
-            <span className="inline-flex items-center gap-1.5 font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+            <span className="inline-flex items-center gap-1.5 font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
               {punto.tipo === 'tienda' ? (
                 <>
                   <Store className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
@@ -178,23 +178,23 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
             </span>
 
             {punto.id === 'gregorio-espino' || punto.id === 'rua-venezuela' ? (
-              <span className="text-xs font-bold text-[#178A47]">
+              <span className="text-xs font-bold text-[#147A3E]">
                 Taller propio in situ
               </span>
             ) : punto.id === 'as-teixugueiras' ? (
-              <span className="text-xs font-bold text-[#0F76BB]">
+              <span className="text-xs font-bold text-[#0C65A1]">
                 Recepción para taller propio
               </span>
             ) : tieneCostura ? (
-              <span className="text-xs font-bold text-[#178A47]">
+              <span className="text-xs font-bold text-[#147A3E]">
                 Taller del colaborador
               </span>
             ) : null}
           </div>
 
-          <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] mb-1">
+          <h4 className="text-lg sm:text-xl font-extrabold text-[#002147] mb-1">
             {punto.nombre_mostrado}
-          </h3>
+          </h4>
 
           {punto.tipo === 'punto' && (
             <p className="text-xs font-semibold text-slate-600 mb-3">
@@ -204,7 +204,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
 
           <dl className="space-y-2 text-sm text-slate-600 mb-4">
             <div className="flex items-start gap-2.5">
-              <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
+              <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1" aria-hidden="true" />
               <div>
                 <dt className="sr-only">Dirección</dt>
                 <dd className="font-bold text-slate-800">
@@ -215,7 +215,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
             </div>
 
             <div className="flex items-start gap-2.5">
-              <Clock className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
+              <Clock className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1" aria-hidden="true" />
               <div>
                 <dt className="sr-only">Horario</dt>
                 <dd>{punto.horario.resumen}</dd>
@@ -223,13 +223,13 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
             </div>
 
             <div className="flex items-center gap-2.5">
-              <Phone className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+              <Phone className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
               <div>
                 <dt className="sr-only">Teléfono</dt>
                 <dd>
                   <a
                     href={`tel:+34${punto.telefono}`}
-                    className="inline-flex items-center min-h-[36px] font-bold text-[#002147] hover:text-[#0F76BB] hover:underline tabular-nums"
+                    className="inline-flex items-center min-h-[44px] font-bold text-[#002147] hover:text-[#0F76BB] hover:underline tabular-nums"
                   >
                     {punto.telefonos_mostrados}
                   </a>
@@ -241,14 +241,14 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
           {tieneCostura && punto.arreglos_confirmados.length > 0 ? (
             <div className="p-3.5 rounded-sm bg-[#F7F6F2] border border-slate-200 mb-4">
               <p className="text-xs font-extrabold uppercase tracking-wider text-[#002147] mb-2 flex items-center gap-1.5">
-                <Scissors className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                <Scissors className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                 <span>Arreglos confirmados en este establecimiento:</span>
               </p>
               <ul className="space-y-1.5 text-xs text-slate-700">
                 {punto.arreglos_confirmados.map((arr) => (
                   <li key={arr} className="flex items-start gap-2">
                     <CheckCircle2
-                      className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 mt-0.5"
+                      className="w-3.5 h-3.5 text-[#0C65A1] shrink-0 mt-0.5"
                       aria-hidden="true"
                     />
                     <span>{arr}</span>
@@ -265,7 +265,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 {derivarEtiquetasServicios(punto.servicios_confirmados).map((srv) => (
                   <li key={srv} className="flex items-start gap-1.5">
                     <CheckCircle2
-                      className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 mt-0.5"
+                      className="w-3.5 h-3.5 text-[#0C65A1] shrink-0 mt-0.5"
                       aria-hidden="true"
                     />
                     <span>{srv}</span>
@@ -287,7 +287,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 store_id: punto.id,
               })
             }
-            className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white text-xs font-bold transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] text-xs font-bold transition-colors"
           >
             <MessageCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
             <span>Consultar con Mimo</span>
@@ -308,7 +308,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
               <a
                 href={zonaPage.url}
                 onClick={(e) => onNavigate(zonaPage.url, e)}
-                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0F76BB] hover:underline"
+                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline"
               >
                 <span>Zona {punto.localidad}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
@@ -367,7 +367,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
           <div className="rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 space-y-5">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div className="space-y-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                   Consejos prácticos antes de venir (sin cita previa)
                 </p>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -377,7 +377,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
               <a
                 href="/blog/guia-arreglos-ropa-bajo-vaquero-vigo"
                 onClick={(e) => onNavigate('/blog/guia-arreglos-ropa-bajo-vaquero-vigo', e)}
-                className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-extrabold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-extrabold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
               >
                 <span>Leer guía técnica de bajo original y ceremonia</span>
                 <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -416,7 +416,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-8 space-y-6">
               <div>
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                   Composturas de ropa de vestir · Tiendas propias y puntos con costura
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -434,11 +434,11 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     className="p-5 rounded-sm border border-slate-200 bg-[#F7F6F2]/70 flex flex-col justify-between"
                   >
                     <div>
-                      <p className="text-[11px] font-mono font-bold text-[#0F76BB] mb-1">
+                      <p className="text-[11px] font-mono font-bold text-[#0C65A1] mb-1">
                         {item.disponibilidad}
                       </p>
                       <div className="flex items-center gap-2 mb-2">
-                        <Scissors className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                        <Scissors className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                         <h3 className="text-base sm:text-lg font-extrabold text-[#002147]">
                           {item.titulo}
                         </h3>
@@ -466,7 +466,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   {SERVICIO_ARREGLOS_DATA.prendasConfirmadas.map((prenda) => (
                     <li key={prenda} className="flex items-start gap-2.5">
                       <CheckCircle2
-                        className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                        className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <span>{prenda}</span>
@@ -480,7 +480,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
               </div>
 
               <div className="rounded-sm border border-[#0F76BB]/25 border-l-4 border-l-[#0F76BB] bg-[#EDF5FD] p-6 space-y-3">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                   Servicio combinado Mimos
                 </p>
                 <h3 className="text-lg font-extrabold text-[#002147]">
@@ -497,7 +497,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
           <div className="pt-10 border-t border-slate-200 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-7 space-y-5">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] mb-1">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1] mb-1">
                   Especialidades de taller propio en Vigo
                 </p>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] tracking-tight">
@@ -511,7 +511,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     key={esp.id}
                     className="p-5 rounded-sm border border-slate-200 bg-[#F7F6F2]/70"
                   >
-                    <p className="text-[11px] font-mono font-bold text-[#0F76BB] mb-1">
+                    <p className="text-[11px] font-mono font-bold text-[#0C65A1] mb-1">
                       {esp.disponibilidad}
                     </p>
                     <h4 className="text-base font-extrabold text-[#002147] mb-1.5">
@@ -527,7 +527,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
 
             <div className="lg:col-span-5 rounded-sm border border-slate-200 bg-[#F7F6F2] p-6 sm:p-7 space-y-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] mb-1">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1] mb-1">
                   Taller propio Gregorio Espino · Vigo
                 </p>
                 <h3 className="text-xl font-extrabold text-[#002147]">
@@ -545,7 +545,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     className="p-3.5 rounded-sm border border-slate-200 bg-white"
                   >
                     <h4 className="text-sm font-extrabold text-[#002147] flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                       <span>{conf.titulo}</span>
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed pl-6 mt-1">
@@ -559,13 +559,13 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
 
           {/* Índice completo de trabajos de costura y confección */}
           <div className="p-6 sm:p-7 rounded-sm border border-slate-200 bg-[#F7F6F2]">
-            <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB] mb-3">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1] mb-3">
               Listado completo de trabajos de costura y confección profesional
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-700">
               {SERVICIO_ARREGLOS_DATA.catalogoCompleto18Puntos.map((puntoNombre, idx) => (
                 <li key={puntoNombre} className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-[#0F76BB] tabular-nums w-6 shrink-0">
+                  <span className="font-mono text-xs font-bold text-[#0C65A1] tabular-nums w-6 shrink-0">
                     {idx + 1 < 10 ? `0${idx + 1}.` : `${idx + 1}.`}
                   </span>
                   <span>{puntoNombre}</span>
@@ -580,7 +580,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
               <a
                 href="/blog/guia-arreglos-ropa-bajo-vaquero-vigo"
                 onClick={(e) => onNavigate('/blog/guia-arreglos-ropa-bajo-vaquero-vigo', e)}
-                className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
               >
                 <span>Leer guía de arreglos, bajo original y modista in situ</span>
                 <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -597,7 +597,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-8">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
               Localizador de establecimientos por localidad y servicio
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
@@ -625,7 +625,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     type="button"
                     onClick={() => setSelectedLocalidad(loc)}
                     aria-pressed={active}
-                    className={`min-h-[40px] px-3.5 py-2 rounded-md text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                    className={`min-h-[44px] px-3.5 py-2 rounded-md text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                       active
                         ? 'bg-[#002147] text-white'
                         : 'text-slate-700 hover:text-[#002147] hover:bg-slate-50'
@@ -646,7 +646,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   )
                 }
                 aria-label="Filtrar por servicio confirmado"
-                className="min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                className="min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base lg:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               >
                 <option value="costura_arreglos">
                   Servicio: Costura y arreglos ({PUNTOS_CON_COSTURA.length})
@@ -662,7 +662,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   setSelectedTipo(e.target.value as 'todos' | 'tienda' | 'punto')
                 }
                 aria-label="Filtrar por tienda propia o punto colaborador"
-                className="min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                className="min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-white text-base lg:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               >
                 <option value="todos">Tiendas propias y colaboradores</option>
                 <option value="tienda">
@@ -685,7 +685,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Calle, localidad o CP..."
-                  className="w-full min-h-[44px] pl-10 pr-4 py-2.5 rounded-sm border border-slate-300 bg-white text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] pl-10 pr-4 py-2.5 rounded-sm border border-slate-300 bg-white text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -694,7 +694,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
           {tiendasPropiasFiltradas.length > 0 && (
             <div className="mb-10">
               <div className="flex items-center gap-2.5 mb-4">
-                <Store className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
+                <Store className="w-5 h-5 text-[#0C65A1]" aria-hidden="true" />
                 <h3 className="text-xl font-extrabold text-[#002147]">
                   Tiendas propias de Tintorería Mimos en Vigo con servicio de costura (
                   {tiendasPropiasFiltradas.length})
@@ -709,7 +709,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
           {puntosColaboradoresFiltrados.length > 0 && (
             <div className="mb-10">
               <div className="flex items-center gap-2.5 mb-2">
-                <Handshake className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
+                <Handshake className="w-5 h-5 text-[#0C65A1]" aria-hidden="true" />
                 <h3 className="text-xl font-extrabold text-[#002147]">
                   Puntos colaboradores ({puntosColaboradoresFiltrados.length})
                 </h3>
@@ -752,7 +752,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
             <a
               href="/puntos-mimos"
               onClick={(e) => onNavigate('/puntos-mimos', e)}
-              className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0"
             >
               <span>Ver mapa completo de puntos</span>
               <ArrowUpRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
@@ -766,7 +766,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           <div>
             <div className="max-w-3xl mb-8">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                 Atención en mostrador o consulta previa por WhatsApp
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -780,7 +780,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   key={paso.num}
                   className="p-6 rounded-sm border border-slate-200 bg-[#F7F6F2]/70"
                 >
-                  <span className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
+                  <span className="text-xs font-mono tabular-nums font-bold text-[#0C65A1]">
                     PASO {paso.num}
                   </span>
                   <h3 className="text-lg font-extrabold text-[#002147] mt-1.5 mb-2">
@@ -796,7 +796,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
 
           <div className="pt-10 border-t border-slate-200">
             <div className="max-w-3xl mb-8">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                 Valoración clara y sin sorpresas · Sin tarifas estándar cerradas
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight mb-2 text-balance">
@@ -833,7 +833,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
               Consulta directa por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
@@ -857,7 +857,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   id="arr-tipo"
                   value={tipoArreglo}
                   onChange={(e) => setTipoArreglo(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Bajos o bastillas">Bajos o bastillas</option>
                   <option value="Bajo original de vaquero">Bajo original de vaquero</option>
@@ -904,7 +904,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   id="arr-prenda"
                   value={tipoPrenda}
                   onChange={(e) => setTipoPrenda(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Pantalón">Pantalón</option>
                   <option value="Falda">Falda</option>
@@ -931,7 +931,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                   id="arr-zona"
                   value={zonaPreferida}
                   onChange={(e) => setZonaPreferida(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {PUNTOS_CON_COSTURA.map((p) => (
                     <option key={p.id} value={formatPuntoCosturaOptionValue(p)}>
@@ -955,7 +955,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 value={detallesExtra}
                 onChange={(e) => setDetallesExtra(e.target.value)}
                 placeholder="Ej.: Es un pantalón de traje con vuelta, o un abrigo con forro interior..."
-                className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               />
             </div>
 
@@ -969,7 +969,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     service_id: 'arreglos-de-ropa',
                   })
                 }
-                className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
+                className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Consultar mi arreglo con Mimo en WhatsApp</span>
@@ -982,7 +982,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                    <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                     <span>Mensaje copiado</span>
                   </>
                 ) : (
@@ -1005,7 +1005,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
               Dudas habituales sobre costura y composturas
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -1021,7 +1021,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
               >
                 <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                   <span>{faq.pregunta}</span>
-                  <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                  <span className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                     +
                   </span>
                 </summary>
@@ -1054,7 +1054,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                       {rel.titulo}
                     </h3>
-                    <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                    <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {rel.descripcion}
@@ -1084,7 +1084,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                     service_id: 'arreglos-de-ropa',
                   })
                 }
-                className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
+                className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Consultar mi arreglo con Mimo</span>
@@ -1095,7 +1095,7 @@ export const ClothingAlterationsPage: React.FC<ClothingAlterationsPageProps> = (
                 className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors tabular-nums group"
               >
                 <Phone
-                  className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0"
+                  className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0"
                   aria-hidden="true"
                 />
                 <span>{CONTACT_INFO.phoneDisplay}</span>

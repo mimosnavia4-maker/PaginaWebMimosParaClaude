@@ -50,7 +50,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       return (
         <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-center items-center p-4 sm:p-6">
           <div className="w-full max-w-lg bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-2xl text-center">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/10 text-amber-700 flex items-center justify-center">
               <AlertCircle className="w-9 h-9" aria-hidden="true" />
             </div>
 
@@ -85,7 +85,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <a
                   href={CONTACT_INFO.phoneHref}
-                  className="inline-flex items-center gap-1.5 text-[#0F76BB] font-bold hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[#0C65A1] font-bold hover:underline"
                 >
                   <Phone className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>{CONTACT_INFO.phoneDisplay}</span>
@@ -94,7 +94,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                   href={CONTACT_INFO.whatsappBaseHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[#178A47] hover:text-[#1FA855] font-bold hover:underline"
+                  className="inline-flex items-center gap-1.5 text-[#147A3E] hover:text-[#147A3E] font-bold hover:underline"
                 >
                   <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>WhatsApp: {CONTACT_INFO.whatsappNumber}</span>

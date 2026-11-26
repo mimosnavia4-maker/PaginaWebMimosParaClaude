@@ -93,7 +93,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         note={
           detalle?.aclaracionHonesta ? (
             <span className="flex items-start gap-2.5">
-              <Info className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+              <Info className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
               <span>{detalle.aclaracionHonesta}</span>
             </span>
           ) : undefined
@@ -108,7 +108,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         secondaryAction={{
           label: `Llamar al ${CONTACT_INFO.phoneDisplay}`,
           href: CONTACT_INFO.phoneHref,
-          icon: <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white" aria-hidden="true" />,
+          icon: <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white" aria-hidden="true" />,
           isInternalRoute: false,
         }}
         extraContent={
@@ -117,7 +117,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               <button
                 type="button"
                 onClick={() => scrollToElement('preguntas-frecuentes-servicio')}
-                className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:text-[#002147] underline-offset-4 hover:underline cursor-pointer"
+                className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:text-[#002147] underline-offset-4 hover:underline cursor-pointer"
               >
                 <HelpCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Ver dudas frecuentes sobre este servicio</span>
@@ -132,7 +132,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         <section className="py-12 lg:py-18 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mb-10 space-y-2">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 Técnicas y modalidades de atención
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -151,7 +151,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 >
                   <div className="space-y-4">
                     <div>
-                      <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] mb-1.5">
+                      <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1] mb-1.5">
                         {mod.etiqueta}
                       </p>
                       <h3 className="text-xl font-extrabold text-[#002147] leading-snug">
@@ -167,7 +167,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                       {mod.puntos.map((pt) => (
                         <li key={pt} className="flex items-start gap-2.5">
                           <CheckCircle2
-                            className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                            className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
                           <span>{pt}</span>
@@ -186,7 +186,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                           service_id: `${servicio.id}:${mod.id}`,
                         })
                       }
-                      className="w-full inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white text-xs sm:text-sm font-bold transition-colors"
+                      className="w-full inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] text-xs sm:text-sm font-bold transition-colors"
                     >
                       <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Consultar esta modalidad con Mimo</span>
@@ -204,7 +204,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         <section className="py-12 lg:py-18 bg-[#F7F6F2] border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="max-w-3xl space-y-2">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 Cómo trabajamos en nuestras instalaciones de Navia (Vigo)
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -221,7 +221,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   key={paso.numero}
                   className="rounded-xl border border-slate-200 bg-white p-6 space-y-2.5"
                 >
-                  <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
+                  <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums">
                     PASO {paso.numero}
                   </p>
                   <h3 className="text-base sm:text-lg font-extrabold text-[#002147] leading-snug">
@@ -236,7 +236,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
 
             <div className="rounded-xl border border-[#0F76BB]/25 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-8">
               <div className="flex items-start gap-3 mb-4">
-                <Sparkles className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                <Sparkles className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                 <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
                   {detalle.consejosTitulo}
                 </h3>
@@ -248,7 +248,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                     className="rounded-lg bg-white border border-slate-200 p-4 text-xs sm:text-sm text-slate-700 leading-relaxed flex items-start gap-2.5"
                   >
                     <CheckCircle2
-                      className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                      className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                       aria-hidden="true"
                     />
                     <span>{consejo}</span>
@@ -325,7 +325,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   {servicio.queTratamos.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle2
-                        className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5"
+                        className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <span>{item}</span>
@@ -341,7 +341,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 <ol className="space-y-3 text-sm text-slate-600">
                   {servicio.comoSeContrata.map((paso, idx) => (
                     <li key={paso} className="flex items-start gap-2.5">
-                      <span className="font-mono font-bold text-[#0F76BB] tabular-nums">
+                      <span className="font-mono font-bold text-[#0C65A1] tabular-nums">
                         0{idx + 1}.
                       </span>
                       <span>{paso}</span>
@@ -375,7 +375,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               {detalle ? (
                 <>
                   <div className="space-y-1.5">
-                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                       Atención inmediata · WhatsApp {CONTACT_INFO.whatsappNumber}
                     </p>
                     <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -398,7 +398,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                         id="service-consulta-select"
                         value={selectedOpcion}
                         onChange={(e) => setSelectedOpcion(e.target.value)}
-                        className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-white text-slate-900 px-3.5 py-2.5 text-base sm:text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full min-h-[44px] rounded-sm border border-slate-300 bg-white text-slate-900 px-3.5 py-2.5 text-base lg:text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       >
                         {detalle.consultaOpciones.map((op) => (
                           <option key={op} value={op}>
@@ -421,7 +421,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                         value={notaConsulta}
                         onChange={(e) => setNotaConsulta(e.target.value)}
                         placeholder={detalle.consultaPlaceholder}
-                        className="w-full rounded-sm border border-slate-300 bg-white text-slate-900 px-3.5 py-2.5 text-base sm:text-sm placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+                        className="w-full rounded-sm border border-slate-300 bg-white text-slate-900 px-3.5 py-2.5 text-base lg:text-sm placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
                       />
                     </div>
                   </div>
@@ -435,7 +435,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                         service_id: servicio.id,
                       })
                     }
-                    className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
+                    className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>Enviar consulta por WhatsApp a Mimo</span>
@@ -455,7 +455,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                         service_id: servicio.id,
                       })
                     }
-                    className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
+                    className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
                   >
                     <MessageCircle className="w-4 h-4" aria-hidden="true" />
                     <span>{servicio.ctaTexto}</span>
@@ -473,7 +473,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rounded-xl border border-[#0F76BB]/30 bg-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-2 max-w-2xl">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Sección especializada · Ceremonia y celebración
                 </p>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -502,7 +502,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rounded-xl border border-[#0F76BB]/30 bg-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-2 max-w-2xl">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Puesta a punto previa a celebración
                 </p>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -515,7 +515,9 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <a
                   href="/limpieza-vestidos-novia-ceremonia-vigo#planchado-antes-evento"
-                  onClick={(e) => onNavigate('/limpieza-vestidos-novia-ceremonia-vigo', e)}
+                  onClick={(e) =>
+                    onNavigate('/limpieza-vestidos-novia-ceremonia-vigo#planchado-antes-evento', e)
+                  }
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0"
                 >
                   <span>Ver planchado pre-evento de ceremonia</span>
@@ -527,7 +529,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white border border-slate-300 hover:border-[#0F76BB] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0"
                 >
                   <span>¿Lavar y planchar? Colada familiar</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -541,7 +543,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           <section className="py-10 bg-[#EDF5FD] border-b border-slate-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
               <div className="max-w-3xl space-y-1.5">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Rutas comarcales y entregas sin mínimo
                 </p>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -565,9 +567,9 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                     key={z.href}
                     href={z.href}
                     onClick={(e) => onNavigate(z.href, e)}
-                    className="inline-flex items-center gap-1.5 min-h-[40px] px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:border-[#0F76BB] text-xs sm:text-sm font-bold text-[#002147] transition-colors"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:border-[#0F76BB] text-xs sm:text-sm font-bold text-[#002147] transition-colors"
                   >
-                    <MapPin className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                    <MapPin className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
                     <span>{z.label}</span>
                   </a>
                 ))}
@@ -584,7 +586,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rounded-xl border border-[#0F76BB]/30 bg-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-2 max-w-2xl">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Sección exclusiva para negocios y autónomos en Vigo
                 </p>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -617,7 +619,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
               <div className="lg:col-span-5 space-y-4">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Dudas frecuentes · {servicio.titulo}
                 </p>
                 <h2
@@ -638,7 +640,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                       service_id: servicio.id,
                     })
                   }
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Preguntar por WhatsApp</span>
@@ -658,7 +660,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                       >
                         <span>{faq.pregunta}</span>
                         <ChevronDown
-                          className={`w-5 h-5 text-[#0F76BB] shrink-0 transition-transform duration-200 ${
+                          className={`w-5 h-5 text-[#0C65A1] shrink-0 transition-transform duration-200 ${
                             isOpen ? 'rotate-180' : ''
                           }`}
                           aria-hidden="true"
@@ -702,7 +704,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                       {link.descripcion}
                     </p>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0F76BB]">
+                  <span className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0C65A1]">
                     <span>{link.cta}</span>
                     <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                   </span>
@@ -729,7 +731,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             <a
               href="/puntos-mimos"
               onClick={(e) => onNavigate('/puntos-mimos', e)}
-              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0F76BB] hover:text-[#002147] hover:underline shrink-0"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#0C65A1] hover:text-[#002147] hover:underline shrink-0"
             >
               <MapPin className="w-4 h-4" aria-hidden="true" />
               <span>Ver mapa y horarios completos</span>
@@ -742,7 +744,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 key={t.id}
                 className="rounded-xl border border-slate-200 bg-white p-5"
               >
-                <p className="text-xs font-mono font-bold uppercase text-[#0F76BB] mb-1.5">
+                <p className="text-xs font-mono font-bold uppercase text-[#0C65A1] mb-1.5">
                   Tienda propia Mimos · {t.localidad}
                 </p>
                 <h3 className="text-base font-extrabold text-[#002147]">
@@ -787,7 +789,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 <span className="text-xs sm:text-sm font-bold text-[#002147]">
                   {s.index}. {s.titulo}
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
               </a>
             ))}
           </div>

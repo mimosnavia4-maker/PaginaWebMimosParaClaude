@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   Clock,
@@ -20,6 +21,7 @@ import {
 import { getNaviaStoreStatus, StoreStatusInfo } from '../../utils/storeStatus';
 import { trackPhoneClick, trackWhatsAppClick } from '../../utils/analytics';
 import limpiezaSofasImg from '../../assets/images/limpieza_sofas_domicilio_1794599721481.webp';
+import limpiezaSofasImg640 from '../../assets/images/limpieza_sofas_domicilio_640w.webp';
 
 interface PreviewHeroSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -34,6 +36,8 @@ interface HeroServiceSlide {
   description: string;
   imageUrl: string;
   imageSrcSet?: string;
+  imageWidth: number;
+  imageHeight: number;
   imageAlt: string;
   isBrandSlide?: boolean;
   pageHref: string;
@@ -54,11 +58,13 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     id: 'marca-mimos',
     tabLabel: 'Mimos Vigo',
     kicker: '3 tiendas propias en Vigo · 5 puntos colaboradores · Recogida a domicilio',
-    headline: 'Cuidamos tu ropa, tus textiles del hogar y tus espacios con mimo profesional.',
+    headline: 'Cuidamos tu ropa, tus textiles del hogar y tus espacios con mimo profesional desde 2011',
     description:
       'Desde nuestras instalaciones en Navia (Vigo) damos servicio a particulares, apartamentos turísticos y empresas. Contamos con 3 tiendas propias en Vigo, red de establecimientos colaboradores en Redondela, Gondomar, Ponteareas, O Porriño y As Travesas, y servicio de recogida y entrega a domicilio.',
     imageUrl: IMAGES.ositoMimos,
-    imageSrcSet: '/osito-mimos-640w.webp 640w, /osito-mimos.webp 1024w',
+    imageSrcSet: '/osito-mimos-640w.webp 640w, /osito-mimos.webp 900w',
+    imageWidth: 900,
+    imageHeight: 900,
     imageAlt:
       'Osito Mimos en la puerta de Tintorería Mimos Navia en Vigo con un traje en funda protectora',
     isBrandSlide: true,
@@ -76,7 +82,9 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     description:
       'Bajos y bajo original vaquero, cremalleras, ajustes de talla, prendas de piel, bordados personalizados y confección de cortinas, estores y cojines. Disponible también en puntos colaboradores con costura.',
     imageUrl: IMAGES.arreglosRopa,
-    imageSrcSet: '/arreglos-ropa-mimos-640w.webp 640w, /arreglos-ropa-mimos.webp 1024w',
+    imageSrcSet: '/arreglos-ropa-mimos-640w.webp 640w, /arreglos-ropa-mimos.webp 1200w',
+    imageWidth: 1200,
+    imageHeight: 896,
     imageAlt: 'Trabajo de costura y marcado de bajo de pantalón con jaboncillo de sastre',
     pageHref: '/arreglos-de-ropa-vigo',
     pageLabel: 'Ver arreglos y costura',
@@ -91,6 +99,9 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     description:
       'Inyección-extracción controlada o baja humedad según etiqueta (W/S/WS/X) sin mover muebles, sin vapor seco ni ozono y con secado natural al aire. Para hogares, empresas y pisos turísticos.',
     imageUrl: limpiezaSofasImg,
+    imageSrcSet: `${limpiezaSofasImg640} 640w, ${limpiezaSofasImg} 1200w`,
+    imageWidth: 1200,
+    imageHeight: 896,
     imageAlt: 'Técnico realizando limpieza de sofá a domicilio en Vigo',
     pageHref: '/limpieza-sofas-vigo',
     pageLabel: 'Ver sofás a domicilio',
@@ -107,7 +118,9 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     description:
       'Limpieza profunda según fibra y reverso con secado completo anti-humedad, y reparación de flecos, festón y bordes mediante especialista (puedes contratar solo reparación o limpieza + arreglo juntos).',
     imageUrl: IMAGES.alfombrasMimos,
-    imageSrcSet: '/alfombras-mimos-640w.webp 640w, /alfombras-mimos.webp 1024w',
+    imageSrcSet: '/alfombras-mimos-640w.webp 640w, /alfombras-mimos.webp 960w',
+    imageWidth: 960,
+    imageHeight: 717,
     imageAlt: 'Revisión y medición profesional de una alfombra de lana',
     pageHref: '/limpieza-alfombras-vigo',
     pageLabel: 'Ver alfombras y reparaciones',
@@ -122,7 +135,9 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     description:
       'Servicio 100 % atendido por nuestro equipo (sin monedas): trajes, novia y ceremonia, pieles, teñido, encerado Barbour e impermeabilización Gore-Tex, colada familiar, solo plancha, edredones y cortinas.',
     imageUrl: IMAGES.servicioTintoreria,
-    imageSrcSet: '/servicio-tintoreria-640w.webp 640w, /servicio-tintoreria.webp 1024w',
+    imageSrcSet: '/servicio-tintoreria-640w.webp 640w, /servicio-tintoreria.webp 1200w',
+    imageWidth: 1200,
+    imageHeight: 670,
     imageAlt: 'Trajes y prendas delicadas en taller de tintorería y planchado',
     pageHref: '/tintoreria-vigo',
     pageLabel: 'Ver tintorería y lavandería',
@@ -140,6 +155,9 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     description:
       'Mantenimiento periódico de viviendas particulares (baños, cocinas y cristales), comunidades de propietarios (LPH), oficinas, clínicas y locales comerciales, además de lavandería laboral y recuperación textil tras siniestros.',
     imageUrl: IMAGES.blogLimpiezaOficinas,
+    imageSrcSet: '/images/articulos/blog-limpieza-oficinas-640w.webp 640w, /images/articulos/blog-limpieza-oficinas.webp 1200w',
+    imageWidth: 1200,
+    imageHeight: 670,
     imageAlt: 'Equipo profesional realizando limpieza de mantenimiento en oficina',
     pageHref: '/limpieza-profesional-vigo',
     pageLabel: 'Ver limpieza profesional',
@@ -155,7 +173,9 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     description:
       'Tú decides el nivel de ayuda: solo lavado y planchado de tu lencería separada por vivienda, limpieza de rotación + lavandería o coordinación integral con amenities, entrega de llaves y foto-reporte.',
     imageUrl: IMAGES.b2bApartamentos,
-    imageSrcSet: '/apartamentos-mimos-640w.webp 640w, /apartamentos-mimos.webp 1024w',
+    imageSrcSet: '/apartamentos-mimos-640w.webp 640w, /apartamentos-mimos.webp 1200w',
+    imageWidth: 1200,
+    imageHeight: 896,
     imageAlt: 'Cama de apartamento turístico vestida con sábanas blancas planchadas y toallas dobladas',
     pageHref: '/limpieza-apartamentos-turisticos-vigo',
     pageLabel: 'Ver servicio para VUT',
@@ -170,8 +190,20 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
 }) => {
   const [storeStatus, setStoreStatus] = useState<StoreStatusInfo>(() => getNaviaStoreStatus());
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState<boolean>(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return false;
+    return window.matchMedia('(max-width: 639px)').matches;
+  });
+  const [isPaused, setIsPaused] = useState<boolean>(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return false;
+    return (
+      window.matchMedia('(max-width: 639px)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
+  });
+  const [visitedSlideIds, setVisitedSlideIds] = useState<string[]>([]);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
     const statusTimer = setInterval(() => {
@@ -180,24 +212,67 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
     return () => clearInterval(statusTimer);
   }, []);
 
+  // Detectar viewport móvil (<640px) para desactivar rotación automática en móvil sin afectar escritorio
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(max-width: 639px)');
+    const handleViewportChange = (e: MediaQueryListEvent) => {
+      setIsMobileViewport(e.matches);
+      if (e.matches) {
+        setIsPaused(true);
+      }
+    };
+    setIsMobileViewport(mq.matches);
+    mq.addEventListener('change', handleViewportChange);
+    return () => mq.removeEventListener('change', handleViewportChange);
+  }, []);
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduced || isPaused) return;
+    if (reduced || isPaused || isMobileViewport) return;
 
     const slideTimer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % HERO_SERVICE_SLIDES.length);
     }, 6500);
 
     return () => clearInterval(slideTimer);
-  }, [isPaused]);
+  }, [isPaused, isMobileViewport]);
 
   const activeSlide = HERO_SERVICE_SLIDES[activeIndex];
   const isBrandSlide = Boolean(activeSlide.isBrandSlide);
 
+  // Cargar imágenes de fondo de las diapositivas 2-7 únicamente cuando el usuario o el carrusel en escritorio pasa a ellas
+  useEffect(() => {
+    if (!activeSlide.isBrandSlide) {
+      setVisitedSlideIds((prev) =>
+        prev.includes(activeSlide.id) ? prev : [...prev, activeSlide.id]
+      );
+    }
+  }, [activeSlide.id, activeSlide.isBrandSlide]);
+
   const handleSelectSlide = (idx: number) => {
     setActiveIndex(idx);
     setIsPaused(true);
+  };
+
+  const handleTabKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, idx: number) => {
+    const total = HERO_SERVICE_SLIDES.length;
+    let targetIdx: number | null = null;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      targetIdx = (idx + 1) % total;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      targetIdx = (idx - 1 + total) % total;
+    } else if (e.key === 'Home') {
+      targetIdx = 0;
+    } else if (e.key === 'End') {
+      targetIdx = total - 1;
+    }
+    if (targetIdx !== null) {
+      e.preventDefault();
+      handleSelectSlide(targetIdx);
+      tabRefs.current[targetIdx]?.focus();
+    }
   };
 
   const handleImageError = (slideId: string) => {
@@ -207,16 +282,18 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
   return (
     <section
       aria-labelledby="hero-h1"
-      className="relative min-h-[82svh] flex flex-col justify-between bg-[#F4F9FE] overflow-hidden border-b border-slate-200"
+      className="relative min-h-0 sm:min-h-[82svh] flex flex-col justify-between bg-[#F4F9FE] overflow-hidden border-b border-slate-200"
     >
-      {/* Fondo de diapositivas 2–7 con foto grande desenfocada y velo luminoso; en la 1 (Marca) lienzo limpio para lucir el oso nítido */}
+      {/* Fondo de diapositivas 2–7: solo se montan bajo demanda al activarse para evitar descargas ocultas en la carga inicial */}
       <div
         className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
           isBrandSlide ? 'opacity-0' : 'opacity-100'
         }`}
         aria-hidden="true"
       >
-        {HERO_SERVICE_SLIDES.filter((slide) => !slide.isBrandSlide).map((slide) => {
+        {HERO_SERVICE_SLIDES.filter(
+          (slide) => !slide.isBrandSlide && visitedSlideIds.includes(slide.id)
+        ).map((slide) => {
           const isCurrent = slide.id === activeSlide.id;
           if (failedImages[slide.id]) {
             return (
@@ -234,6 +311,8 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
               src={slide.imageUrl}
               srcSet={slide.imageSrcSet}
               sizes="100vw"
+              width={slide.imageWidth}
+              height={slide.imageHeight}
               alt=""
               loading="lazy"
               decoding="async"
@@ -259,20 +338,17 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
       />
 
       {/* Cuerpo principal del Hero */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 sm:py-10">
-        {/* Fila superior fija: H1 semántico + Estado Navia + Teléfono directo */}
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1.5 pb-3.5 mb-5 sm:mb-6 border-b border-[#002147]/12">
-          <h1
-            id="hero-h1"
-            className="text-sm sm:text-base font-extrabold text-[#002147] tracking-tight"
-          >
-            Tintorería, lavandería y limpieza profesional en Vigo
-          </h1>
+      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 my-auto py-4 sm:py-10">
+        {/* Barra superior de servicio: sede y contacto directo */}
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-0.5 pb-2 sm:pb-3 mb-3 sm:mb-5 border-b border-[#002147]/12">
+          <p className="text-xs sm:text-sm font-bold text-[#0C65A1] tracking-tight">
+            Sede central en Navia · 3 tiendas en Vigo y comarca
+          </p>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm font-bold text-[#002147]">
+          <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-0.5 text-xs sm:text-sm font-bold text-[#002147]">
             <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" aria-hidden="true" />
-              <span className={storeStatus.isOpen ? 'text-[#178A47]' : 'text-slate-700'}>
+              <Clock className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
+              <span className={storeStatus.isOpen ? 'text-[#147A3E]' : 'text-slate-700'}>
                 Navia: {storeStatus.statusText}
               </span>
             </span>
@@ -282,32 +358,43 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
             <a
               href={CONTACT_INFO.phoneHref}
               onClick={() => trackPhoneClick('/', 'hero_top_phone')}
-              className="inline-flex items-center gap-1.5 min-h-[44px] text-[#002147] hover:text-[#0F76BB] tabular-nums whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-[#002147] hover:text-[#0F76BB] tabular-nums whitespace-nowrap focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-md"
             >
-              <Phone className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+              <Phone className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
               <span>{CONTACT_INFO.phoneDisplay}</span>
             </a>
           </div>
         </div>
 
-        {/* Contenido dinámico sincronizado */}
+        {/* H1 fijo principal de portada (sincronizado con ROUTE_SEO_MAP['/'].h1) */}
+        <h1
+          id="hero-h1"
+          className="text-2xl sm:text-3xl lg:text-[2.5rem] font-black text-[#002147] tracking-tight leading-[1.1] mb-2.5 sm:mb-5 max-w-4xl text-balance"
+        >
+          Tintorería, lavandería y limpieza profesional en Vigo
+        </h1>
+
+        {/* Contenido dinámico sincronizado (panel de pestaña accesible) */}
         <div
+          id="hero-slide-panel"
+          role="tabpanel"
+          aria-labelledby={`hero-tab-${activeSlide.id}`}
           className={
             isBrandSlide
-              ? 'grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-center'
-              : 'max-w-3xl'
+              ? 'grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-7 lg:gap-10 items-center lg:min-h-[410px]'
+              : 'max-w-3xl lg:min-h-[410px] flex items-center'
           }
         >
-          <div className={isBrandSlide ? 'lg:col-span-7 space-y-4 sm:space-y-5' : 'space-y-4 sm:space-y-5'}>
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] leading-snug">
+          <div className={isBrandSlide ? 'lg:col-span-7 space-y-2.5 sm:space-y-4' : 'space-y-2.5 sm:space-y-4'}>
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] leading-snug">
               {activeSlide.kicker}
             </p>
 
             <h2
-              className={`font-extrabold text-[#002147] tracking-tight leading-[1.08] text-balance ${
+              className={`font-extrabold text-[#002147] tracking-tight leading-[1.14] text-balance ${
                 isBrandSlide
-                  ? 'text-[1.75rem] sm:text-4xl lg:text-[3.1rem]'
-                  : 'text-[1.8rem] sm:text-5xl lg:text-[3.25rem]'
+                  ? 'text-lg sm:text-2xl lg:text-[1.85rem]'
+                  : 'text-xl sm:text-3xl lg:text-[2rem]'
               }`}
             >
               {activeSlide.headline}
@@ -323,7 +410,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1">
               <a
                 href={activeSlide.whatsappHref}
                 target="_blank"
@@ -333,7 +420,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                     service_id: activeSlide.id,
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>{activeSlide.whatsappLabel}</span>
@@ -371,17 +458,17 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                     srcSet={activeSlide.imageSrcSet}
                     sizes="(max-width: 1023px) 100vw, 42vw"
                     alt={activeSlide.imageAlt}
-                    width={800}
-                    height={600}
+                    width={activeSlide.imageWidth}
+                    height={activeSlide.imageHeight}
                     fetchPriority="high"
                     decoding="async"
                     referrerPolicy="no-referrer"
                     onError={() => handleImageError(activeSlide.id)}
-                    className="w-full aspect-[4/3] object-cover"
+                    className="w-full aspect-[16/10] sm:aspect-[4/3] object-cover"
                   />
                 ) : (
-                  <div className="w-full aspect-[4/3] bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
-                    <Store className="w-10 h-10 text-[#0F76BB] mb-2" aria-hidden="true" />
+                  <div className="w-full aspect-[16/10] sm:aspect-[4/3] bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
+                    <Store className="w-10 h-10 text-[#0C65A1] mb-2" aria-hidden="true" />
                     <p className="font-extrabold text-base">Tintorería Mimos Navia</p>
                     <p className="text-xs text-slate-600 mt-1">
                       {CONTACT_INFO.streetAddress} · {CONTACT_INFO.postalCode} Vigo
@@ -396,28 +483,40 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
 
       {/* Zócalo inferior luminoso: Franja fija de 3 Tiendas Propias y Horarios + Tira de 7 Transiciones */}
       <div className="relative z-10 bg-white/95 backdrop-blur-xs border-t border-slate-200">
-        {/* Franja fija compacta con las 3 tiendas propias, direcciones y horarios reales */}
+        {/* Franja fija compacta: en móvil fila horizontal deslizable con indicación visual; en escritorio rejilla de 3 columnas */}
         <div className="border-b border-slate-200 bg-[#F8FBFF]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 lg:gap-6 flex-1 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3">
+            <div className="sm:hidden flex items-center justify-between gap-2 mb-1.5 text-[11px] font-bold text-[#0C65A1]">
+              <span>Nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo</span>
+              <span aria-hidden="true" className="text-[#002147]">
+                Desliza para ver →
+              </span>
+            </div>
+
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-3">
+              <div
+                aria-label="Nuestras 3 tiendas propias en Vigo"
+                className="flex sm:grid sm:grid-cols-3 gap-2.5 lg:gap-6 flex-1 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:divide-y-0 sm:divide-x divide-slate-200 pb-1 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0"
+              >
                 {TIENDAS_PROPIAS.map((tienda, idx) => {
                   const detailHref = STORE_DETAIL_HREFS[tienda.id] ?? '/puntos-mimos';
                   return (
                     <div
                       key={tienda.id}
-                      className={idx > 0 ? 'pt-2 sm:pt-0 sm:pl-4 lg:pl-6' : ''}
+                      className={`w-[78vw] max-w-[270px] sm:w-auto sm:max-w-none shrink-0 snap-start rounded-xl sm:rounded-none border sm:border-0 border-slate-200 bg-white sm:bg-transparent p-2.5 sm:p-0 ${
+                        idx > 0 ? 'sm:pl-4 lg:pl-6' : ''
+                      }`}
                     >
                       <a
                         href={detailHref}
                         onClick={(e) => onNavigate(detailHref, e)}
-                        className="group block focus:outline-hidden min-h-[44px]"
+                        className="group block focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-lg min-h-[44px]"
                       >
                         <div className="flex items-center justify-between gap-2">
                           <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                             {tienda.nombre_mostrado}
                           </span>
-                          <span className="text-[11px] font-bold text-[#0F76BB] tabular-nums shrink-0">
+                          <span className="text-[11px] font-bold text-[#0C65A1] tabular-nums shrink-0">
                             {tienda.telefonos_mostrados}
                           </span>
                         </div>
@@ -433,14 +532,14 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                 })}
               </div>
 
-              <div className="pt-1 sm:pt-2 lg:pt-0 lg:pl-4 lg:border-l lg:border-slate-200 shrink-0">
+              <div className="pt-0.5 sm:pt-2 lg:pt-0 lg:pl-4 lg:border-l lg:border-slate-200 shrink-0">
                 <a
                   href="#puntos"
                   onClick={(e) => {
                     e.preventDefault();
                     onScrollToSection('puntos');
                   }}
-                  className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-bold text-[#0F76BB] hover:underline whitespace-nowrap shrink-0"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-md"
                 >
                   <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                   <span>Ver los {PUNTOS_COLABORADORES.length} puntos y mapa</span>
@@ -452,20 +551,49 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
         </div>
 
         {/* Selector de las 7 transiciones + Pausa/Reanudar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 space-y-2.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 space-y-2 sm:space-y-2.5">
           <div className="flex items-center justify-between gap-3">
             <p className="text-xs font-bold text-slate-600 tabular-nums">
               Elige o explora servicio ({activeIndex + 1}/{HERO_SERVICE_SLIDES.length})
+              <span className="sm:hidden text-[#0C65A1] ml-1.5" aria-hidden="true">
+                · Desliza →
+              </span>
             </p>
+            <div className="flex items-center gap-1.5 sm:hidden shrink-0">
+              <button
+                type="button"
+                onClick={() =>
+                  handleSelectSlide(
+                    (activeIndex - 1 + HERO_SERVICE_SLIDES.length) % HERO_SERVICE_SLIDES.length
+                  )
+                }
+                aria-label="Servicio anterior"
+                className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+              >
+                <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  handleSelectSlide((activeIndex + 1) % HERO_SERVICE_SLIDES.length)
+                }
+                aria-label="Siguiente servicio"
+                className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+              >
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </button>
+            </div>
+
             <button
               type="button"
               onClick={() => setIsPaused((prev) => !prev)}
+              aria-pressed={isPaused}
               aria-label={
                 isPaused
                   ? 'Reanudar carrusel de servicios'
                   : 'Pausar carrusel de servicios'
               }
-              className="inline-flex items-center gap-1.5 min-h-[44px] px-3 text-xs font-bold text-[#002147] hover:text-[#0F76BB] cursor-pointer whitespace-nowrap shrink-0"
+              className="hidden sm:inline-flex items-center gap-1.5 min-h-[44px] px-3 text-xs font-bold text-[#002147] hover:text-[#0F76BB] cursor-pointer whitespace-nowrap shrink-0 rounded-md focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               {isPaused ? (
                 <>
@@ -484,32 +612,37 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
           <div
             role="tablist"
             aria-label="Servicios destacados en el carrusel"
-            className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-x-3 gap-y-1.5"
+            className="flex sm:grid sm:grid-cols-4 lg:grid-cols-7 overflow-x-auto sm:overflow-visible snap-x snap-mandatory gap-2 sm:gap-x-3 sm:gap-y-1.5 pb-1 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0"
           >
             {HERO_SERVICE_SLIDES.map((slide, idx) => {
               const isSelected = idx === activeIndex;
               return (
                 <button
                   key={slide.id}
+                  ref={(el) => {
+                    tabRefs.current[idx] = el;
+                  }}
+                  id={`hero-tab-${slide.id}`}
                   type="button"
                   role="tab"
                   aria-selected={isSelected}
+                  aria-controls="hero-slide-panel"
+                  tabIndex={isSelected ? 0 : -1}
                   onClick={() => handleSelectSlide(idx)}
-                  className={`min-h-[48px] text-left pt-2 pb-1.5 border-t-2 transition-colors cursor-pointer flex items-center justify-between gap-1 ${
-                    idx === HERO_SERVICE_SLIDES.length - 1 ? 'col-span-2 sm:col-span-1' : ''
-                  } ${
+                  onKeyDown={(e) => handleTabKeyDown(e, idx)}
+                  className={`min-h-[48px] shrink-0 snap-start min-w-[146px] sm:min-w-0 text-left px-3 py-2 sm:px-0 sm:pt-2 sm:pb-1.5 rounded-lg sm:rounded-none border sm:border-0 sm:border-t-2 transition-colors cursor-pointer flex items-center justify-between gap-1.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] ${
                     isSelected
-                      ? 'border-[#0F76BB] text-[#002147]'
-                      : 'border-slate-300 text-slate-600 hover:border-[#002147]/50 hover:text-[#002147]'
+                      ? 'border-[#0F76BB] bg-[#EDF5FD] sm:bg-transparent text-[#002147]'
+                      : 'border-slate-300 bg-white sm:bg-transparent text-slate-600 hover:border-[#002147]/50 hover:text-[#002147]'
                   }`}
                 >
                   <span className="text-xs font-extrabold leading-tight">
-                    <span className="text-[#0F76BB] mr-1 tabular-nums">{idx + 1}.</span>
+                    <span className="text-[#0C65A1] mr-1 tabular-nums">{idx + 1}.</span>
                     {slide.tabLabel}
                   </span>
                   {isSelected && (
                     <ArrowRight
-                      className="w-3.5 h-3.5 text-[#0F76BB] shrink-0"
+                      className="w-3.5 h-3.5 text-[#0C65A1] shrink-0"
                       aria-hidden="true"
                     />
                   )}

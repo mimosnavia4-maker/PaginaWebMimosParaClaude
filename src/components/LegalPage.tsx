@@ -36,13 +36,13 @@ export const LegalPage: React.FC<LegalPageProps> = ({
                   <a
                     href="/"
                     onClick={(e) => onNavigate('/', e)}
-                    className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
+                    className="inline-flex items-center min-h-[44px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
                   >
                     Inicio
                   </a>
                 </li>
                 <li aria-hidden="true" className="text-slate-400">/</li>
-                <li className="font-bold text-[#0F76BB]">{sectionLabel}</li>
+                <li className="font-bold text-[#0C65A1]">{sectionLabel}</li>
               </ol>
             </nav>
 
@@ -56,7 +56,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             </a>
           </div>
 
-          <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+          <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
             Transparencia legal · LSSI-CE y RGPD
           </p>
           <h1 className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight mb-6">
@@ -170,7 +170,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             </h2>
             <p>
               Para cualquier consulta, reclamación, sugerencia o comunicación sobre cumplimiento y transparencia empresarial, las personas usuarias pueden dirigirse a nuestro canal de atención por correo electrónico a{' '}
-              <a href={CONTACT_INFO.emailHref} className="underline font-bold text-[#0F76BB] hover:text-[#002147]">
+              <a href={CONTACT_INFO.emailHref} className="underline font-bold text-[#0C65A1] hover:text-[#002147]">
                 {CONTACT_INFO.email}
               </a>
               .
@@ -182,7 +182,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
           <article className="space-y-6 text-slate-700 leading-relaxed max-w-[72ch]">
             <p>
               Responsable del tratamiento: <strong>{CONTACT_INFO.legalName}</strong> (CIF <strong className="tabular-nums">{CONTACT_INFO.cif}</strong>), con domicilio en {CONTACT_INFO.streetAddress}, {CONTACT_INFO.postalCode} {CONTACT_INFO.locality} ({CONTACT_INFO.region}), teléfono <span className="tabular-nums">{CONTACT_INFO.phoneDisplay}</span> y correo electrónico{' '}
-              <a href={CONTACT_INFO.emailHref} className="underline font-bold text-[#0F76BB] hover:text-[#002147]">
+              <a href={CONTACT_INFO.emailHref} className="underline font-bold text-[#0C65A1] hover:text-[#002147]">
                 {CONTACT_INFO.email}
               </a>
               .
@@ -209,7 +209,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             </h2>
             <p>
               Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad enviando una comunicación a{' '}
-              <a href={CONTACT_INFO.emailHref} className="underline font-bold text-[#0F76BB] hover:text-[#002147]">
+              <a href={CONTACT_INFO.emailHref} className="underline font-bold text-[#0C65A1] hover:text-[#002147]">
                 {CONTACT_INFO.email}
               </a>{' '}
               o por correo postal a nuestra sede en {CONTACT_INFO.streetAddress}, {CONTACT_INFO.postalCode} {CONTACT_INFO.locality}.
@@ -249,7 +249,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
                 Conocer de forma estadística y agregada qué páginas informativas y de servicios se consultan dentro de la web (evento <code>page_view</code>).
               </li>
               <li>
-                Contabilizar de forma agregada cuántas veces se pulsan los enlaces de contacto hacia WhatsApp (<code>whatsapp_click</code>) o teléfono (<code>phone_click</code>), registrando únicamente la página y la zona del botón pulsado, sin enviar a Google Analytics números de teléfono, textos de mensajes ni datos introducidos en formularios.
+                Contabilizar de forma agregada los clics hacia WhatsApp (<code>whatsapp_click</code>) o teléfono (<code>phone_click</code>), la preparación de solicitudes en formularios (<code>form_prepared</code>) y el uso de filtros en el localizador de tiendas (<code>locator_search</code>), registrando únicamente métricas agregadas (ruta, zona del botón, tipo de formulario o recuento de resultados), sin enviar a Google Analytics nombres, teléfonos, textos de consultas ni búsquedas personales.
               </li>
             </ul>
             <p className="text-sm">

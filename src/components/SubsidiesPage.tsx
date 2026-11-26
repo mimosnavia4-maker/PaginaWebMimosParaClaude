@@ -27,13 +27,13 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                   <a
                     href="/"
                     onClick={(e) => onNavigate('/', e)}
-                    className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
+                    className="inline-flex items-center min-h-[44px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
                   >
                     Inicio
                   </a>
                 </li>
                 <li aria-hidden="true" className="text-slate-400">/</li>
-                <li className="font-bold text-[#0F76BB]">
+                <li className="font-bold text-[#0C65A1]">
                   {isFeder ? 'FEDER' : 'Programa Bono Energía Peme 2025: IN417Z'}
                 </li>
               </ol>
@@ -49,7 +49,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
             </a>
           </div>
 
-          <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+          <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
             {isFeder
               ? `Publicidade e transparencia institucional · ${CONTACT_INFO.legalName}`
               : `Instituto Enerxético de Galicia (INEGA) · ${CONTACT_INFO.legalName}`}
@@ -98,17 +98,22 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
             {/* Cartel oficial FEDER sobre fondo blanco para garantizar contraste institucional */}
             {!failedImgs.feder ? (
               <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 flex justify-center">
-                <img
-                  src="/images/subvenciones/feder-reacciona-tic.png"
-                  alt="Cartel informativo oficial del Programa Re-Acciona TIC cofinanciado por la Unión Europea (Programa Operativo FEDER Galicia 2014-2020), Xunta de Galicia, IGAPE y AMTEGA"
-                  referrerPolicy="no-referrer"
-                  onError={() => setFailedImgs((prev) => ({ ...prev, feder: true }))}
-                  className="w-full max-w-3xl h-auto object-contain"
-                />
+                <picture className="w-full max-w-3xl flex justify-center">
+                  <source srcSet="/images/subvenciones/feder-reacciona-tic.webp" type="image/webp" />
+                  <img
+                    src="/images/subvenciones/feder-reacciona-tic.png"
+                    alt="Cartel informativo oficial del Programa Re-Acciona TIC cofinanciado por la Unión Europea (Programa Operativo FEDER Galicia 2014-2020), Xunta de Galicia, IGAPE y AMTEGA"
+                    width={800}
+                    height={520}
+                    referrerPolicy="no-referrer"
+                    onError={() => setFailedImgs((prev) => ({ ...prev, feder: true }))}
+                    className="w-full max-w-3xl h-auto object-contain"
+                  />
+                </picture>
               </div>
             ) : (
               <div className="rounded-xl bg-[#EDF5FD] border border-slate-200 p-8 flex flex-col items-center justify-center text-center text-[#002147]">
-                <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
+                <Sparkles className="w-8 h-8 text-[#0C65A1] mb-2" aria-hidden="true" />
                 <p className="font-bold">Cartel oficial FEDER — Programa Re-Acciona TIC</p>
               </div>
             )}
@@ -128,7 +133,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                 <p className="text-xs sm:text-sm text-slate-700">
                   Promover o desenvolvemento tecnolóxico, a innovación e unha investigación de calidade
                 </p>
-                <p className="text-sm font-bold italic text-[#0F76BB] pt-1">
+                <p className="text-sm font-bold italic text-[#0C65A1] pt-1">
                   «Unha maneira de facer Europa»
                 </p>
               </div>
@@ -144,6 +149,8 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                   <img
                     src="/images/subvenciones/programa-bono-energia-peme-2025.webp"
                     alt="Cartel informativo oficial de la Convocatoria de Subvencións do Instituto Enerxético de Galicia para proxectos de Mellora Enerxética dirixido ao sector servizos — Programa Bono enerxía Peme 2025 (IN417Z)"
+                    width={1070}
+                    height={667}
                     referrerPolicy="no-referrer"
                     onError={() => setFailedImgs((prev) => ({ ...prev, bono: true }))}
                     className="w-full max-w-3xl h-auto object-contain"
@@ -151,7 +158,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                 </div>
               ) : (
                 <div className="rounded-xl bg-[#EDF5FD] border border-slate-200 p-8 flex flex-col items-center justify-center text-center text-[#002147]">
-                  <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
+                  <Sparkles className="w-8 h-8 text-[#0C65A1] mb-2" aria-hidden="true" />
                   <p className="font-bold">Cartel oficial Programa Bono Energía Peme 2025 (IN417Z)</p>
                 </div>
               )}
@@ -163,7 +170,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                 <p className="text-sm sm:text-base font-extrabold text-[#002147]">
                   Convocatoria de Subvencións do Instituto Enerxético de Galicia para proxectos de Mellora Enerxética dirixido ao sector servizos
                 </p>
-                <p className="text-sm font-bold text-[#0F76BB]">
+                <p className="text-sm font-bold text-[#0C65A1]">
                   Programa Bono enerxía Peme 2025 (Código de procedemento: IN417Z)
                 </p>
                 <p className="text-xs sm:text-sm text-slate-700">
@@ -178,7 +185,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
               className="pt-6 border-t border-slate-200 space-y-5"
             >
               <div className="text-center space-y-1.5">
-                <p className="text-xs font-bold text-[#0F76BB]">
+                <p className="text-xs font-bold text-[#0C65A1]">
                   Actuación realizada
                 </p>
                 <h2
@@ -194,6 +201,8 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                   <img
                     src="/images/subvenciones/secadora-domus-dtt2-18e.webp"
                     alt="Sustitución de secadora Girbau STI-23 por nueva secadora eficiente de doble tambor Domus DTT2-18 E en Tintorería Mimos Navia"
+                    width={400}
+                    height={717}
                     className="w-full max-w-md h-auto rounded-lg object-contain shadow-xs"
                     loading="lazy"
                     referrerPolicy="no-referrer"
@@ -202,7 +211,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
                 </div>
               ) : (
                 <div className="rounded-xl bg-[#EDF5FD] border border-slate-200 p-8 flex flex-col items-center justify-center text-center text-[#002147]">
-                  <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
+                  <Sparkles className="w-8 h-8 text-[#0C65A1] mb-2" aria-hidden="true" />
                   <p className="font-bold">Secadora Domus DTT2-18 E — Tintorería Mimos Navia</p>
                 </div>
               )}
@@ -220,7 +229,7 @@ export const SubsidiesPage: React.FC<SubsidiesPageProps> = ({ variant, onNavigat
             onClick={(e) =>
               onNavigate(isFeder ? '/programa-bono-energia-peme-2025-in417z' : '/feder', e)
             }
-            className="inline-flex items-center gap-1.5 min-h-[44px] font-bold text-[#0F76BB] hover:underline"
+            className="inline-flex items-center gap-1.5 min-h-[44px] font-bold text-[#0C65A1] hover:underline"
           >
             <span>
               {isFeder

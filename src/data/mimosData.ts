@@ -609,9 +609,9 @@ export const PACKS_APARTAMENTOS_BORRADOR = [
   {
     id: 'pack-checkout',
     nombre: 'Limpieza y Lavandería Completa',
-    estado: 'Franja 11:00–15:00 · Sábados, festivos y agosto',
+    estado: 'Franja 11:00–15:00 · Sábados, domingos, festivos y agosto',
     descripcion:
-      'Tú gestionas las reservas. Nosotros cubrimos la limpieza en la ventana crítica de check-out/check-in (11:00–15:00 incluidos sábados, festivos y agosto) y la lencería entre huéspedes.',
+      'Tú gestionas las reservas. Nosotros cubrimos la limpieza en la ventana crítica de check-out/check-in (11:00–15:00 incluidos sábados, domingos, festivos y agosto) y la lencería entre huéspedes.',
     incluye: [
       'Limpieza integral tras salida (cocina, baños, dormitorios y superficies de alto contacto) en línea con el Decreto 12/2017 de la Xunta.',
       'Recogida y lavado planchado de la ropa de cama y baño propia de cada piso turístico.',
@@ -629,7 +629,7 @@ export const PACKS_APARTAMENTOS_BORRADOR = [
     descripcion:
       'Coordinamos la limpieza de rotación, la lencería planchada, reposición de amenities, entrega de llaves o cajetines (sin check-in presencial con viajeros) y reporte fotográfico continuo para tu VUT.',
     incluye: [
-      'Cobertura garantizada en franja 11:00–15:00 incluidos fines de semana, festivos, temporada alta (agosto) y urgencias en el mismo día.',
+      'Cobertura garantizada en franja 11:00–15:00 incluidos sábados, domingos, festivos, temporada alta (agosto) y urgencias en el mismo día.',
       'Lavandería y planchado de juegos propios separados por vivienda, sin mezclas ni pérdidas.',
       'Reposición de amenities y gestión de llaves en cajetines o punto acordado (sin check-in presencial).',
       'Revisión completa con reporte fotográfico inmediato de incidencias y mantenimiento básico tras cada salida.',
@@ -647,7 +647,7 @@ export const GESTION_INTEGRAL_AREAS = [
     numero: '01',
     titulo: 'Rotación en franja 11:00–15:00 (todos los días)',
     puntos: [
-      'Ventanas operativas coordinadas entre salidas y entradas de 11:00 a 15:00, incluidos sábados, festivos y agosto.',
+      'Ventanas operativas coordinadas entre salidas y entradas de 11:00 a 15:00, incluidos sábados, domingos, festivos y agosto.',
       'Limpieza exhaustiva y desinfección de cocina, baños, dormitorios y puntos de alto contacto conforme al Decreto 12/2017 de la Xunta.',
       'Checklist sistemático adaptado al número de huéspedes y características de cada vivienda.',
     ],
@@ -675,7 +675,7 @@ export const GESTION_INTEGRAL_AREAS = [
     titulo: 'Entrega de llaves y coordinación logística',
     puntos: [
       'Gestión y colocación de llaves en cajetines o punto acordado tras cada puesta a punto (sin check-in presencial con viajeros).',
-      'Atención de urgencias en el mismo día, sábados y festivos según calendario de Airbnb, Booking o canal directo en Vigo.',
+      'Atención de urgencias en el mismo día, sábados, domingos y festivos según calendario de Airbnb, Booking o canal directo en Vigo.',
       'Facturación mensual agrupada con CIF para propietarios particulares y gestoras de VUT.',
     ],
   },
@@ -1193,11 +1193,11 @@ export const SERVICIOS_LIMPIEZA_PROFESIONAL: ServicioLimpiezaProfesional[] = [
     titulo: 'Limpieza e higienización de textiles de gran formato',
     subtitulo: 'Edredones, mantas, cortinas y alfombras en Vigo',
     descripcion:
-      'Tratamiento profesional para prendas y piezas textiles voluminosas que requieren procesos de tintorería y lavandería especializada en nuestras instalaciones propias.',
+      'Tratamiento profesional para edredones, mantas y cortinas en nuestras instalaciones propias, y gestión de limpieza y restauración de alfombras mediante taller especialista colaborador.',
     incluye: [
       'Lavado e higienización de edredones de plumas y sintéticos',
       'Limpieza y tratamiento de cortinas y fundas desmontables',
-      'Servicio de limpieza y mantenimiento de alfombras con recogida y entrega',
+      'Recepción y recogida de alfombras coordinadas con taller especialista colaborador',
       'Tratamiento adaptado a la composición y etiqueta de cada tejido',
     ],
     whatsappUrl: buildMimoWhatsAppUrl(
@@ -1382,11 +1382,11 @@ export const SUBBLOQUES_TINTORERIA_PORTADA: SubbloqueTintoreriaPortada[] = [
     id: 'hogar-cortinas-alfombras',
     codigo: 'SUBBLOQUE 03 · HOGAR Y GRAN FORMATO',
     titulo: 'Edredones, mantas, cortinas, estores y alfombras',
-    subtitulo: 'Maquinaria de gran capacidad y taller propio para piezas voluminosas',
+    subtitulo: 'Maquinaria de gran capacidad para hogar y taller especialista colaborador para alfombras',
     servicios: [
       'Limpieza e higienización de edredones (plumas y sintéticos) y mantas',
       'Limpieza de cortinas y estores',
-      'Limpieza e higienización profunda de alfombras con secado completo',
+      'Limpieza e higienización profunda de alfombras mediante taller especialista colaborador',
       'Reparación y restauración de alfombras: flecos, ribetes y bordes mediante especialista',
     ],
     enlaces: [
@@ -1443,9 +1443,9 @@ export const RESUMEN_FAMILIAS_EXTENDIDAS_PORTADA = {
     badge: 'FAMILIA 04 · ALOJAMIENTOS TURÍSTICOS',
     titulo: 'Limpieza, lencería y operativa VUT en franja 11:00–15:00',
     descripcion:
-      'Especialistas en apartamentos turísticos en Vigo incluidos sábados, festivos y agosto: rotación entre huéspedes, lavandería propia, amenities, entrega de llaves y reporte fotográfico.',
+      'Especialistas en apartamentos turísticos en Vigo incluidos sábados, domingos, festivos y agosto: rotación entre huéspedes, lavandería propia, amenities, gestión de llaves (sin check-in presencial) y reporte fotográfico.',
     puntos: [
-      'Limpieza en ventana 11:00–15:00 (sábados, festivos y agosto) según Decreto 12/2017',
+      'Limpieza en ventana 11:00–15:00 (sábados, domingos, festivos y agosto) según Decreto 12/2017',
       'Lavado y planchado de tu ropa de cama y toallas separada por vivienda',
       'Reposición de amenities y gestión de llaves con cajetines (sin check-in presencial)',
       'Reporte fotográfico inmediato de incidencias tras cada check-out',

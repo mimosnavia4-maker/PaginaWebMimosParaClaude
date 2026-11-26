@@ -19,7 +19,6 @@ import {
   CreditCard,
   Footprints,
   ChevronDown,
-  ChevronUp,
   Shirt,
   Maximize2,
   Check,
@@ -60,13 +59,13 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
   const [activeTabPhoto, setActiveTabPhoto] = useState<'fachada' | 'interior' | 'calle'>('fachada');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
-  const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada: {
-      url: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.jpg',
-      webpUrl: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.webp',
+      url: '/images/mimos-venezuela/fachada-portal-mimos-venezuela-vigo.webp',
+      width: 1000,
+      height: 746,
       titulo: 'Portal en Rúa de Venezuela, 29 y Señalización Mimos',
       subtitulo:
         'Cartel azul de Tintorería Arreglos Mimos en la acera junto al portal nº 29 y placa oficial azul MIMOS indicando acceso a la entreplanta.',
@@ -75,8 +74,9 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         'Acceso en Rúa de Venezuela, 29 (Santiago de Vigo), señalizado en fachada y acera para entrar directamente hacia la entreplanta.',
     },
     interior: {
-      url: '/images/mimos-venezuela/interior-taller-mimos-venezuela-vigo.jpg',
-      webpUrl: '/images/mimos-venezuela/interior-taller-mimos-venezuela-vigo.webp',
+      url: '/images/mimos-venezuela/interior-taller-mimos-venezuela-vigo.webp',
+      width: 1200,
+      height: 896,
       titulo: 'Interior: Taller de Costura In Situ, Probador y Mostrador',
       subtitulo:
         'Máquina de coser industrial en tienda, espejo probador para toma de medidas exacta y mostrador de atención al público.',
@@ -85,8 +85,9 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         'Espacio luminoso preparado para probar tus prendas en tienda, marcar bajos o entalles al momento y entregar tus encargos en mostrador.',
     },
     calle: {
-      url: '/images/mimos-venezuela/calle-senalizacion-mimos-venezuela-vigo.jpg',
-      webpUrl: '/images/mimos-venezuela/calle-senalizacion-mimos-venezuela-vigo.webp',
+      url: '/images/mimos-venezuela/calle-senalizacion-mimos-venezuela-vigo.webp',
+      width: 960,
+      height: 716,
       titulo: 'Entorno Rúa de Venezuela y Parking Subterráneo Enfrente',
       subtitulo:
         'Perspectiva desde la acera de la tienda frente al acceso del aparcamiento de pago Parking Venezuela (nº 34–36), en pleno Santiago de Vigo.',
@@ -108,10 +109,6 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
       setCopiedShare(true);
       setTimeout(() => setCopiedShare(false), 2500);
     }
-  };
-
-  const toggleFaq = (index: number) => {
-    setFaqAbierta(faqAbierta === index ? null : index);
   };
 
   const preguntasFrecuentes = [
@@ -178,19 +175,18 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         </button>
         <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#F4F9FE] flex items-center justify-center">
           {!failedPhotos[activeTabPhoto] ? (
-            <picture className="w-full h-full flex items-center justify-center">
-              <source srcSet={photos[activeTabPhoto].webpUrl} type="image/webp" />
-              <img
-                src={photos[activeTabPhoto].url}
-                alt={photos[activeTabPhoto].titulo}
-                referrerPolicy="no-referrer"
-                onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-                className="max-h-[75vh] w-full object-contain"
-              />
-            </picture>
+            <img
+              src={photos[activeTabPhoto].url}
+              alt={photos[activeTabPhoto].titulo}
+              width={photos[activeTabPhoto].width}
+              height={photos[activeTabPhoto].height}
+              referrerPolicy="no-referrer"
+              onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+              className="max-h-[75dvh] w-full object-contain"
+            />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
-              <Store className="w-10 h-10 text-[#0F76BB] mb-3" />
+              <Store className="w-10 h-10 text-[#0C65A1] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
               <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
@@ -201,11 +197,11 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
             <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#0F76BB] text-white">
               {photos[activeTabPhoto].tag}
             </span>
-            <span className="text-xs text-slate-500">Tienda Propia Mimos · Santiago de Vigo</span>
+            <span className="text-xs text-slate-600">Tienda Propia Mimos · Santiago de Vigo</span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</p>
           <p className="text-xs sm:text-sm text-slate-600 mt-1">{photos[activeTabPhoto].subtitulo}</p>
-          <p className="text-xs text-slate-500 mt-2 border-t border-slate-200 pt-2">
+          <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
           </p>
         </div>
@@ -218,19 +214,18 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           <div className="lg:col-span-7 flex flex-col justify-between bg-[#F4F9FE]">
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden group bg-[#EDF5FD]">
               {!failedPhotos[activeTabPhoto] ? (
-                <picture className="block w-full h-full">
-                  <source srcSet={photos[activeTabPhoto].webpUrl} type="image/webp" />
-                  <img
-                    src={photos[activeTabPhoto].url}
-                    alt={photos[activeTabPhoto].titulo}
-                    referrerPolicy="no-referrer"
-                    onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </picture>
+                <img
+                  src={photos[activeTabPhoto].url}
+                  alt={photos[activeTabPhoto].titulo}
+                  width={photos[activeTabPhoto].width}
+                  height={photos[activeTabPhoto].height}
+                  referrerPolicy="no-referrer"
+                  onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
-                  <Store className="w-10 h-10 text-[#0F76BB] mb-2" />
+                  <Store className="w-10 h-10 text-[#0C65A1] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
                   <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
@@ -241,17 +236,17 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setLightboxOpen(true)}
-                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[40px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-sm transition-colors cursor-pointer border border-slate-200"
+                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-sm transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-black bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
-                  <Store className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Store className="w-3.5 h-3.5 text-[#0C65A1]" />
                   Tienda Propia Mimos · Taller In Situ
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
@@ -276,7 +271,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -287,7 +282,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('interior')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'interior'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -298,7 +293,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('calle')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'calle'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -313,13 +308,13 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0C65A1] uppercase tracking-wider">
                   Sede Centro · Santiago de Vigo
                 </span>
                 <span
                   className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-extrabold ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-50 text-[#178A47] border border-emerald-200'
+                      ? 'bg-emerald-50 text-[#147A3E] border border-emerald-200'
                       : 'bg-[#F4F9FE] text-[#002147] border border-slate-200'
                   }`}
                 >
@@ -360,7 +355,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-slate-700 flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <span>
                     <strong>Rúa de Venezuela, 29, Entreplanta</strong>, Santiago de Vigo, 36203 Vigo (Pontevedra).
                   </span>
@@ -368,13 +363,13 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
 
                 <div className="p-3 rounded-2xl bg-[#F4F9FE] border border-slate-200 space-y-2">
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Store className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                    <Store className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                     <span>
                       <strong>Cómo encontrarnos:</strong> Busca el cartel azul en la acera y la placa oficial <strong>MIMOS</strong> junto al portal del nº 29 para subir a la entreplanta.
                     </span>
                   </div>
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Car className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+                    <Car className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
                     <span>
                       <strong>Parking justo enfrente:</strong> Aparcamiento subterráneo de pago <strong>Parking Venezuela</strong> (nº 34–36), justo cruzando la calle frente al nº 29.
                     </span>
@@ -390,7 +385,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-xs transition-all"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-sm py-3 px-4 rounded-xl shadow-xs transition-all"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>WhatsApp con Mimo</span>
@@ -400,7 +395,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                   href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-extrabold text-sm py-3 px-4 rounded-xl transition-all group"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" />
                   <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
@@ -412,7 +407,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#F4F9FE] hover:bg-[#EDF5FD] border border-slate-200 text-[#002147] font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
                 >
-                  <Navigation className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Navigation className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Cómo llegar (Ruta GPS en Google Maps)</span>
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
@@ -423,7 +418,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-[#002147] hover:bg-[#F4F9FE] transition-colors cursor-pointer"
                   title="Copiar enlace directo de la tienda"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Share2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span className="hidden sm:inline">{copiedShare ? '¡Copiado!' : 'Compartir'}</span>
                 </button>
               </div>
@@ -436,7 +431,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
       <section aria-labelledby="seccion-ventajas-venezuela" className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <h2 id="seccion-ventajas-venezuela" className="sr-only">Ventajas y características de Mimos Venezuela</h2>
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Scissors className="w-5 h-5" />
           </div>
           <div>
@@ -448,7 +443,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#1FA855] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#147A3E] flex items-center justify-center mb-3">
             <Car className="w-5 h-5" />
           </div>
           <div>
@@ -460,7 +455,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Footprints className="w-5 h-5" />
           </div>
           <div>
@@ -490,7 +485,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center">
                 <Clock className="w-5 h-5" />
               </div>
               <div>
@@ -520,15 +515,15 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                   <span className="font-bold text-[#002147]">Sábados</span>
                   <p className="text-[11px]">Esta tienda no abre los sábados</p>
                 </div>
-                <span className="font-bold text-slate-500">Cerrado</span>
+                <span className="font-bold text-slate-600">Cerrado</span>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center text-slate-500">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center text-slate-600">
                 <div>
                   <span className="font-medium">Domingos y Festivos</span>
-                  <p className="text-[11px] text-slate-400">Descanso del personal</p>
+                  <p className="text-[11px] text-slate-600">Descanso del personal</p>
                 </div>
-                <span className="font-bold text-slate-400">Cerrado</span>
+                <span className="font-bold text-slate-600">Cerrado</span>
               </div>
             </div>
 
@@ -539,7 +534,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                 <a
                   href="/tienda-mimos-gregorio-espino-vigo"
                   onClick={(e) => onNavigate('/tienda-mimos-gregorio-espino-vigo', e)}
-                  className="font-bold text-[#0F76BB] hover:underline"
+                  className="font-bold text-[#0C65A1] hover:underline"
                 >
                   Gregorio Espino 42 (09:30–13:00)
                 </a>{' '}
@@ -547,7 +542,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                 <a
                   href="/tienda-mimos-navia-vigo"
                   onClick={(e) => onNavigate('/tienda-mimos-navia-vigo', e)}
-                  className="font-bold text-[#0F76BB] hover:underline"
+                  className="font-bold text-[#0C65A1] hover:underline"
                 >
                   Sede Central Navia (10:00–13:30)
                 </a>
@@ -558,7 +553,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
 
           <div className="mt-6 pt-4 border-t border-slate-200 space-y-2.5">
             <div className="flex items-start gap-2 text-xs text-slate-700">
-              <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+              <CreditCard className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
               <span>
                 <strong>Métodos de pago:</strong> Tarjeta bancaria (contactless) y Efectivo.
               </span>
@@ -570,7 +565,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               </span>
             </div>
             <div className="flex items-start gap-2 text-xs text-slate-600">
-              <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+              <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
               <span>
                 <strong>Resguardo oficial:</strong> Entrega siempre con ticket de depósito garantizado.
               </span>
@@ -595,8 +590,8 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                   </p>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-black bg-white border border-[#0F76BB]/25 text-[#0F76BB]">
-                <Sparkles className="w-3.5 h-3.5 text-[#0F76BB]" />
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-black bg-white border border-[#0F76BB]/25 text-[#0C65A1]">
+                <Sparkles className="w-3.5 h-3.5 text-[#0C65A1]" />
                 Probador en Tienda
               </span>
             </div>
@@ -636,7 +631,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
                   key={idx}
                   className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start gap-2.5"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-extrabold text-[#002147] leading-tight">
                       {elem.tit}
@@ -658,7 +653,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               <a
                 href="/arreglos-de-ropa-vigo"
                 onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0F76BB] hover:underline"
+                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline"
               >
                 <span>Ver sección completa de Arreglos de Ropa</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -672,7 +667,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
       <section aria-labelledby="seccion-servicios-venezuela" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0C65A1]">
               Catálogo de Tienda Propia
             </span>
             <span className="text-xs font-bold text-slate-500">100% Confirmado en Rúa de Venezuela, 29</span>
@@ -703,11 +698,11 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Revisión previa de manchas y fibras en mostrador</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Planchado profesional con vapor y entrega en percha</span>
               </li>
             </ul>
@@ -730,11 +725,11 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Secado controlado sin apelmazar el relleno</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Sin pedido mínimo y fácil bajada desde Parking Venezuela</span>
               </li>
             </ul>
@@ -744,7 +739,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Car className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -757,11 +752,11 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Higienización, lavado y secado controlado</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Opción de envío a domicilio al terminar con Mimo</span>
               </li>
             </ul>
@@ -784,11 +779,11 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>100% atendida por nuestro equipo, sin monedas</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Acabado de plancha sin brillos listo para armario</span>
               </li>
             </ul>
@@ -798,7 +793,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-amber-700 text-white flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -811,11 +806,11 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Sin suavizantes que apelmazan el plumón natural</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Secado profundo frente a la humedad de Vigo</span>
               </li>
             </ul>
@@ -825,7 +820,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Truck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -838,11 +833,11 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Franjas concertadas por WhatsApp con Mimo</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Muy cómodo para nórdicos, alfombras o varios trajes</span>
               </li>
             </ul>
@@ -875,8 +870,8 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-[#0F76BB]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <Calendar className="w-4 h-4 text-[#0C65A1]" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 Planificación Real en Mostrador
               </span>
             </div>
@@ -921,8 +916,8 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
       <section aria-labelledby="seccion-llegar-venezuela" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Navigation className="w-4 h-4 text-[#0F76BB]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+            <Navigation className="w-4 h-4 text-[#0C65A1]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
               Acceso y Aparcamiento en el Centro
             </span>
           </div>
@@ -938,7 +933,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
           {/* Tarjeta Parking Enfrente */}
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                 <Car className="w-4 h-4" />
               </div>
               <h3 className="text-sm font-extrabold text-[#002147]">Parking Justo Enfrente</h3>
@@ -1008,8 +1003,8 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
       {/* 7. PREGUNTAS FRECUENTES (FAQ) DE LA TIENDA VENEZUELA */}
       <section aria-labelledby="seccion-faq-venezuela" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
         <div className="flex items-center gap-2 mb-2">
-          <HelpCircle className="w-4 h-4 text-[#0F76BB]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+          <HelpCircle className="w-4 h-4 text-[#0C65A1]" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
             Respuestas Claras
           </span>
         </div>
@@ -1021,34 +1016,20 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
         </p>
 
         <div className="divide-y divide-slate-200 mt-4">
-          {preguntasFrecuentes.map((item, index) => {
-            const abierta = faqAbierta === index;
-            return (
-              <div key={index} className="py-3 sm:py-4">
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(index)}
-                  className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer"
-                  aria-expanded={abierta}
-                >
-                  <span className="flex items-start gap-2">
-                    <span className="text-[#0F76BB] font-black">{index + 1}.</span>
-                    <span>{item.q}</span>
-                  </span>
-                  {abierta ? (
-                    <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
-                  )}
-                </button>
-                {abierta && (
-                  <div className="mt-2 pl-6 text-xs sm:text-sm text-slate-600 leading-relaxed animate-fadeIn">
-                    <p>{item.a}</p>
-                  </div>
-                )}
+          {preguntasFrecuentes.map((item, index) => (
+            <details key={index} className="group py-3 sm:py-4">
+              <summary className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer list-none">
+                <span className="flex items-start gap-2">
+                  <span className="text-[#0C65A1] font-black">{index + 1}.</span>
+                  <span>{item.q}</span>
+                </span>
+                <ChevronDown className="w-4 h-4 text-slate-500 group-open:rotate-180 group-open:text-[#0C65A1] transition-transform shrink-0" />
+              </summary>
+              <div className="mt-2 pl-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p>{item.a}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </section>
 
@@ -1056,7 +1037,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
       <section aria-labelledby="seccion-confianza-venezuela" className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] border border-slate-200 text-[#002147] shadow-sm relative overflow-hidden">
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0F76BB] border border-[#0F76BB]/25">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0C65A1] border border-[#0F76BB]/25">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               Tienda propia Mimos en el centro de Vigo
             </span>
@@ -1072,7 +1053,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Consultar ahora con Mimo</span>
@@ -1081,7 +1062,7 @@ export const TiendaVenezuelaFicha: React.FC<TiendaVenezuelaFichaProps> = ({
               href={`tel:+34${punto.telefono}`}
               className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
             >
-              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
+              <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors" />
               <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>

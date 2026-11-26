@@ -36,13 +36,13 @@
 7. **Limpieza y restauración de pieles y cuero (`/limpieza-pieles-cuero-vigo`):** Tratamiento especializado de cazadoras, abrigos de cuero, ante, nobuk y peletería bajo valoración técnica previa, con **recepción disponible en nuestras 3 tiendas propias en Vigo y en los 5 puntos colaboradores**.
 8. **Limpieza de alfombras en Vigo (`/limpieza-alfombras-vigo`):**
    - Recogida a domicilio en Vigo y área de influencia (sujeto a importe mínimo y cobertura) o entrega en las 3 tiendas propias.
-   - Limpieza, higienización y secado controlado en nuestras instalaciones según fibra y reverso.
+   - Limpieza, higienización y secado controlado coordinados **mediante taller especialista colaborador** según fibra y reverso (nunca lavadas en la planta de Navia).
 9. **Reparación y restauración de alfombras en Vigo (`/reparacion-alfombras-vigo`):**
    - Contratación flexible: se puede contratar **solo reparación (sin limpieza previa)** o **limpieza + arreglo** juntos.
    - Ejecución técnica mediante **restaurador especialista colaborador** (flecos, festón lateral, ribetes, esquinas y roturas puntuales); viabilidad y presupuesto evaluados directamente por el restaurador a partir de fotos de frente y reverso.
 10. **Familia – Costura y arreglos de ropa (`/arreglos-de-ropa-vigo`, 18 especialidades, sin cita previa):**
    - **Catálogo completo:** bajos, bastillas y **bajo original de vaquero**, pantalones, faldas y vestidos, abrigos, cambio y reparación de cremalleras, botones, estrechar y ensanchar, ajustes de cintura, zurcidos, descosidos y rotos, prendas delicadas, prendas de piel, **bordados personalizados**, **confección de cortinas, estores y cojines**, y **servicio exprés** (siempre preguntando primero en taller según carga de trabajo).
-   - **Talleres propios in situ:** Alcalde Gregorio Espino, 42 y Rúa de Venezuela, 29, Entreplanta. **Recepción y entrega:** Sede Central Navia (Rúa das Teixugueiras, 11, bajo 9).
+   - **Talleres propios in situ:** Alcalde Gregorio Espino, 42 y Rúa de Venezuela, 29, Entreplanta. **Recepción y entrega:** Sede Central Navia (C/ Teixugueiras, 11, bajo 9).
    - **Puntos colaboradores independientes con costura confirmada:** Puntadas No Aire (Gondomar), Arregla2 (Ponteareas) y Telas y Más (O Porriño). En Redondela se gestiona recepción de tintorería, colada y textiles.
 11. **Recogida y entrega a domicilio (`/recogida-a-domicilio`):** Servicio coordinado en **Vigo, toda la comarca** (Redondela, Nigrán, Baiona, Mos, O Porriño, Gondomar, Ponteareas, Cangas y Moaña) y **polígonos industriales y parques empresariales** (PTL Valladares, Zona Franca, O Porriño, Mos), sujeto a ruta e importe mínimo a consultar con Mimo; **sin pedido mínimo en nuestras 3 tiendas propias y 5 puntos colaboradores**. *(La antigua aplicación Wash In Town ya no se encuentra operativa).*
 
@@ -51,15 +51,16 @@
    - Limpieza 100 % en vivienda o local sin desmontar muebles: sofás de 2/3 plazas, *chaise longue*, rinconeras, sillones, sillas tapizadas (solo asiento o asiento y respaldo), cabeceros y colchones *(no realizamos tapicerías de coches)*.
    - Protocolo real: revisión de códigos de etiqueta (`W`, `S`, `WS`, `X`), aspirado en seco, pretratamiento, inyección-extracción controlada (o baja humedad/seco en código `S`) y **secado natural al aire** (sin vapor seco, enzimáticos ni ventiladores).
 2. **Empresa de limpieza profesional en Vigo (`/limpieza-profesional-vigo`):** Mantenimiento periódico de oficinas, despachos, clínicas, locales comerciales y **comunidades de propietarios y administradores de fincas (LPH)**. Personal dado de alta en Régimen General con **Seguro de Responsabilidad Civil (RC)**, documentación de **PRL y Coordinación de Actividades Empresariales (CAE) al día**, **sustituciones planificadas** en vacaciones o bajas y **visita técnica de valoración gratuita**. Enfoque exclusivo en mantenimiento periódico: **no realizamos limpiezas fin de obra, cristales en altura ni pulidos industriales**. Posibilidad de contratar pack combinado con lavandería de empresa (`/servicios-empresas`).
-3. **Servicios para apartamentos turísticos VUT (`/limpieza-apartamentos-turisticos-vigo`):** Operativa especializada para propietarios y gestores en Vigo: cobertura garantizada en la **franja crítica 11:00–15:00 incluidos sábados, festivos y mes de agosto**; **limpieza tras check-out, lavandería y planchado de lencería, reposición de *amenities*, entrega de llaves / coordinación de *check-in* y reporte fotográfico de incidencias**, en línea con el **Decreto 12/2017 de viviendas de uso turístico de la Xunta de Galicia y el registro REAT (Rexistro de Empresas e Actividades Turísticas)**. Trabajamos con **lencería propia separada por apartamento** y abiertos a **negociar acuerdos personalizados por volumen** (sin renting estándar cerrado).
-4. **Lavandería y tintorería para empresas, peluquerías y clínicas (`/servicios-empresas`):** Alternativa local en planta propia de Navia frente a la gran lavandería industrial, trabajando sobre las **propias prendas del negocio sin renting ni contratos de permanencia**. Separación por cliente en carros de lavado, marcado de prendas repetidas para evitar pérdidas, lavado en agua o en seco, secado completo frente a la humedad de Vigo y acabado en planchas de vapor. Atendemos **peluquerías y estética** (toallas, capas, kimonos, batas), **clínicas médicas, dentales, fisioterapia y veterinarias** (batas, casacas, toallas y sábanas de camilla con suciedad habitual, dejando fuera material biológico o infeccioso) y **comercios, oficinas, gimnasios y vestuario laboral con suciedad normal** (fuera buzos con grasa pesada de motor, aceites minerales o pinturas), además de pequeños lotes puntuales de cocina/eventos (2–3 manteles, mandiles, chaquetillas). Entrega en nuestras 3 tiendas propias de Vigo (Navia, Gregorio Espino y Venezuela / Vigo centro) o recogida concertada según volumen y ruta, con factura mensual agrupada con CIF B27755925.
-5. **Recuperación textil tras incendios, humo e inundaciones (`/limpieza-incendios-siniestros-vigo`):** Servicio exclusivamente textil (sin limpieza estructural de vivienda): triaje técnico con prueba de viabilidad previa, lote prioritario para trabajo/colegio, ciclo habitual 1–3 semanas, herramienta gratuita de pre-inventario Art. 38 LCS en PDF/Excel, carta modelo Arts. 17 y 18 y factura oficial desglosada con CIF B27755925 para aseguradoras. (Guía técnica complementaria en `/blog/ropa-afectada-humo-incendio-siniestro-hogar`).
+3. **Servicios para apartamentos turísticos VUT (`/limpieza-apartamentos-turisticos-vigo`):** Operativa especializada para propietarios y gestores en Vigo: cobertura garantizada en la **franja crítica 11:00–15:00 incluidos sábados, domingos, festivos y mes de agosto**; **limpieza tras check-out, lavandería y planchado de lencería, reposición de *amenities*, gestión de llaves en cajetines o punto acordado (sin *check-in* presencial con viajeros) y reporte fotográfico de incidencias**, en línea con el **Decreto 12/2017 de viviendas de uso turístico de la Xunta de Galicia y el registro REAT (Rexistro de Empresas e Actividades Turísticas)**. Trabajamos con **lencería propia separada por apartamento** y abiertos a **negociar acuerdos personalizados por volumen** (sin renting estándar cerrado).
+4. **Limpieza de casas y pisos particulares en Vigo (`/limpieza-casas-vigo`):** Mantenimiento periódico o puesta a punto de viviendas particulares en Vigo (mínimo 2 horas por servicio) con personal propio dado de alta en Régimen General, Seguro de Responsabilidad Civil (RC), PRL y opción de custodia de llaves. Combinable con limpieza de sofás y colchones a domicilio, planchado y desmontaje/lavado de cortinas. *(No realizamos limpiezas fin de obra).*
+5. **Lavandería y tintorería para empresas, peluquerías y clínicas (`/servicios-empresas`):** Alternativa local en planta propia de Navia frente a la gran lavandería industrial, trabajando sobre las **propias prendas del negocio sin renting ni contratos de permanencia**. Separación por cliente en carros de lavado, marcado de prendas repetidas para evitar pérdidas, lavado en agua o en seco, secado completo frente a la humedad de Vigo y acabado en planchas de vapor. Atendemos **peluquerías y estética** (toallas, capas, kimonos, batas), **clínicas médicas, dentales, fisioterapia y veterinarias** (batas, casacas, toallas y sábanas de camilla con suciedad habitual, dejando fuera material biológico o infeccioso) y **comercios, oficinas, gimnasios y vestuario laboral con suciedad normal** (fuera buzos con grasa pesada de motor, aceites minerales o pinturas), además de pequeños lotes puntuales de cocina/eventos (2–3 manteles, mandiles, chaquetillas). Entrega en nuestras 3 tiendas propias de Vigo (Navia, Gregorio Espino y Venezuela / Vigo centro) o recogida concertada según volumen y ruta, con factura mensual agrupada con CIF B27755925.
+6. **Recuperación textil tras incendios, humo e inundaciones (`/limpieza-incendios-siniestros-vigo`):** Servicio exclusivamente textil (sin limpieza estructural de vivienda): triaje técnico con prueba de viabilidad previa, lote prioritario para trabajo/colegio, ciclo habitual 1–3 semanas, herramienta gratuita de pre-inventario Art. 38 LCS en PDF/Excel, carta modelo Arts. 17 y 18 y factura oficial desglosada con CIF B27755925 para aseguradoras. (Guía técnica complementaria en `/blog/ropa-afectada-humo-incendio-siniestro-hogar`).
 
 ---
 
 ## Nuestras 3 tiendas propias en Vigo (`DryCleaningOrLaundry`)
 1. **Tienda Mimos Teixugueiras (Sede Central Navia):**  
-   Rúa das Teixugueiras, 11, bajo 9 · 36212 Vigo (Pontevedra) · Tel.: 986 12 51 41  
+   C/ Teixugueiras, 11, bajo 9 · 36212 Vigo (Pontevedra) · Tel.: 986 12 51 41  
    Horario: L-V 09:30-14:00 y 16:00-20:00 · Sábados 10:00-13:30. Pago en tienda con tarjeta o efectivo (sin Bizum).  
    *(Punto de recepción y entrega de arreglos para confección en taller)*.
 2. **Tienda Mimos Venezuela (`/tienda-mimos-venezuela-vigo`, con taller propio de costura in situ):**  
@@ -76,7 +77,7 @@
 
 1. **Redondela (`/zonas/redondela`):**  
    Establecimiento colaborador Mimos Redondela · C/ José Regojo, 29 bajo (36800 Redondela) · Tel.: 613 62 47 24.  
-   Recepción y entrega para tintorería, colada familiar, mantas y alfombras tratadas en Vigo.
+   Recepción y entrega para tintorería, colada familiar y mantas tratadas en Vigo, y alfombras gestionadas mediante taller especialista colaborador.
 2. **Gondomar (`/zonas/gondomar`):**  
    Puntadas No Aire · Avda. Elduayen, 9 (36380 Gondomar) · Tel.: 630 82 21 84.  
    Taller y tienda de costura independiente. Recogida y entrega de tintorería/lavandería + servicios propios de confección y arreglos.
@@ -88,7 +89,7 @@
    Comercio textil independiente. Recogida y entrega para tintorería/lavandería + venta de tejidos y costura del colaborador.
 5. **Vigo – Camiño Espedrigada (`/punto-mimos-dpasso-vigo`):**  
    D'Passo · Camiño Espedrigada, 9 bajo (36210 Vigo) · Tel.: 986 23 06 43.  
-   Punto colaborador de proximidad para tintorería, lavandería, colada familiar, edredones y alfombras en Vigo (entorno As Travesas / Balaídos).
+   Punto colaborador de proximidad para tintorería, lavandería, colada familiar y edredones tratados en Vigo, y recepción de alfombras (gestionadas con taller especialista colaborador) en el entorno As Travesas / Balaídos.
 
 ### Programa de expansión de comercios colaboradores (`/se-punto-colaborador`)
 - Programa abierto para incorporar nuevos comercios de barrio (mercerías, zapaterías, tintorerías sin planta propia o tiendas de moda) en Vigo y municipios limítrofes con furgoneta propia y comisiones periódicas.
@@ -118,6 +119,7 @@
 
 ### División de limpieza profesional y empresas
 - [Empresa de limpieza profesional en Vigo](https://www.tintoreriamimos.es/limpieza-profesional-vigo)
+- [Limpieza de casas y pisos particulares en Vigo](https://www.tintoreriamimos.es/limpieza-casas-vigo)
 - [Limpieza y lavandería para apartamentos turísticos en Vigo](https://www.tintoreriamimos.es/limpieza-apartamentos-turisticos-vigo)
 - [Lavandería para empresas y vestuario laboral](https://www.tintoreriamimos.es/servicios-empresas)
 - [Recuperación textil tras incendios, humo e inundaciones en Vigo (Seguros)](https://www.tintoreriamimos.es/limpieza-incendios-siniestros-vigo)

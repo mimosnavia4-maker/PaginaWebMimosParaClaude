@@ -82,12 +82,12 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
                       <a
                         href={crumb.href}
                         onClick={(e) => onNavigate(crumb.href!, e)}
-                        className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline transition-colors font-medium"
+                        className="inline-flex items-center min-h-[44px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline transition-colors font-medium"
                       >
                         {crumb.label}
                       </a>
                     ) : (
-                      <span className="font-bold text-[#0F76BB]">{crumb.label}</span>
+                      <span className="font-bold text-[#0C65A1]">{crumb.label}</span>
                     )}
                   </li>
                 </React.Fragment>
@@ -104,7 +104,7 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
           }
         >
           <div className={image ? 'lg:col-span-7 space-y-4 sm:space-y-5' : 'space-y-4 sm:space-y-5'}>
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] leading-snug">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] leading-snug">
               {kicker}
             </p>
 
@@ -134,7 +134,7 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onWhatsAppClick}
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>{whatsappLabel}</span>
@@ -179,7 +179,7 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
                   />
                 ) : (
                   <div className="w-full aspect-[4/3] bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
-                    <Sparkles className="w-9 h-9 text-[#0F76BB] mb-2" aria-hidden="true" />
+                    <Sparkles className="w-9 h-9 text-[#0C65A1] mb-2" aria-hidden="true" />
                     <p className="font-extrabold text-base">{image.fallbackTitle}</p>
                     {image.fallbackSubtitle && (
                       <p className="text-xs text-slate-600 mt-1">{image.fallbackSubtitle}</p>

@@ -9,6 +9,9 @@ import {
 import { trackWhatsAppClick } from '../utils/analytics';
 
 interface MimoAssistantProps {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  mobileTriggerRef?: React.RefObject<HTMLButtonElement | null>;
   cookieBannerOpen: boolean;
   onAcceptCookies: () => void;
   onRejectCookies: () => void;
@@ -137,12 +140,23 @@ function getLocalFaqReply(query: string): {
 }
 
 export const MimoAssistant: React.FC<MimoAssistantProps> = ({
+  isOpen,
+  onOpenChange,
+  mobileTriggerRef,
   cookieBannerOpen,
   onAcceptCookies,
   onRejectCookies,
   onNavigate,
 }) => {
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = typeof isOpen === 'boolean' ? isOpen : internalOpen;
+  const setOpen = (next: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(next);
+    } else {
+      setInternalOpen(next);
+    }
+  };
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -158,17 +172,25 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
   const dialogPanelRef = useRef<HTMLDivElement>(null);
+  const cookieBannerRef = useRef<HTMLDivElement>(null);
   const wasOpenRef = useRef(false);
 
   useEffect(() => {
-    if (wasOpenRef.current && !open) {
-      // Devolver foco al botón disparador tras cerrarse el asistente
+    if (open) {
+      setTimeout(() => inputRef.current?.focus(), 50);
+    } else if (wasOpenRef.current && !open) {
+      // Devolver foco al disparador visible (píldora en escritorio o botón de barra inferior en móvil)
       setTimeout(() => {
-        triggerButtonRef.current?.focus();
+        const desktopTrigger = triggerButtonRef.current;
+        if (desktopTrigger && desktopTrigger.offsetParent !== null) {
+          desktopTrigger.focus();
+        } else {
+          mobileTriggerRef?.current?.focus();
+        }
       }, 50);
     }
     wasOpenRef.current = open;
-  }, [open]);
+  }, [open, mobileTriggerRef]);
 
   useEffect(() => {
     if (open && scrollRef.current) {
@@ -178,13 +200,21 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && open) {
-        setOpen(false);
+      if (e.key === 'Escape') {
+        if (open) {
+          if (onOpenChange) {
+            onOpenChange(false);
+          } else {
+            setInternalOpen(false);
+          }
+        } else if (cookieBannerOpen) {
+          onRejectCookies();
+        }
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [open]);
+  }, [open, onOpenChange, cookieBannerOpen, onRejectCookies]);
 
   // Trampa de foco (Tab / Shift+Tab) confinada al asistente Mimo mientras permanezca abierto
   useEffect(() => {
@@ -273,15 +303,18 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
       {/* Cookie Consent Notice */}
       {cookieBannerOpen && (
         <div
+          ref={cookieBannerRef}
           role="dialog"
+          aria-modal="false"
           aria-labelledby="cookie-preferences-title"
-          className="fixed left-4 right-4 md:left-auto md:right-4 bottom-20 md:bottom-5 z-50 max-w-md rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl text-sm"
+          tabIndex={-1}
+          className="fixed left-4 right-4 md:left-auto md:right-4 bottom-24 md:bottom-5 z-50 max-w-md rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl text-sm focus:outline-hidden"
         >
           <p id="cookie-preferences-title" className="font-extrabold text-[#002147] mb-1">
             Preferencias de cookies
           </p>
           <p className="text-xs text-slate-600 leading-relaxed mb-4">
-            Utilizamos almacenamiento técnico en tu navegador para recordar tu elección. Solo si pulsas «Aceptar» activaremos Google Analytics 4 para medir de forma agregada las visitas y el uso de los botones de contacto. Puedes consultar los detalles en nuestra{' '}
+            Utilizamos almacenamiento técnico en tu navegador para recordar tu elección. Solo si pulsas «Aceptar» activaremos Google Analytics 4 para medir de forma agregada las visitas y el uso de los botones de contacto, y habilitaremos la carga automática del mapa interactivo de Google Maps. Puedes consultar los detalles en nuestra{' '}
             <a
               href="/cookies"
               onClick={(e) => {
@@ -289,7 +322,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                   onNavigate('/cookies', e);
                 }
               }}
-              className="underline font-bold text-[#0F76BB] hover:text-[#002147] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xs"
+              className="underline font-bold text-[#0C65A1] hover:text-[#002147] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xs"
             >
               Política de cookies
             </a>
@@ -314,7 +347,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
         </div>
       )}
 
-      {/* Floating Assistant Trigger (Posicionado por encima de la barra móvil inferior; oculto mientras el banner de cookies esté abierto) */}
+      {/* Floating Assistant Trigger: visible solo en escritorio; en móvil Mimo está integrado en la barra inferior */}
       {!open && !cookieBannerOpen && (
         <button
           ref={triggerButtonRef}
@@ -325,7 +358,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           }}
           aria-haspopup="dialog"
           aria-expanded={open}
-          className="fixed right-4 bottom-20 md:bottom-5 z-40 inline-flex items-center gap-2.5 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg border bg-white hover:bg-[#EDF5FD] text-[#002147] border-slate-200 transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+          className="hidden md:inline-flex fixed right-4 bottom-5 z-40 items-center gap-2.5 font-bold text-sm px-4 py-2.5 rounded-full shadow-lg border bg-white hover:bg-[#EDF5FD] text-[#002147] border-slate-200 transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
         >
           <img
             src={IMAGES.logoMimos}
@@ -346,7 +379,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
           role="dialog"
           aria-modal="true"
           aria-label="Mimo, asistente de Tintorería Mimos"
-          className="fixed right-4 bottom-20 md:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(510px,calc(100vh-7rem))] rounded-2xl border border-slate-200 bg-white shadow-2xl flex flex-col overflow-hidden focus:outline-hidden"
+          className="fixed right-4 bottom-20 md:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] h-[min(510px,calc(100dvh-7rem))] rounded-2xl border border-slate-200 bg-white shadow-2xl flex flex-col overflow-hidden focus:outline-hidden"
         >
           <div className="px-4 py-3 flex items-center justify-between bg-[#F4F9FE] text-[#002147] border-b border-slate-200">
             <div className="flex items-center gap-2.5">
@@ -362,7 +395,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                 <p className="text-sm font-extrabold leading-tight">
                   Mimo · Asistente de Tintorería Mimos
                 </p>
-                <p className="text-[11px] text-[#0F76BB] font-semibold">
+                <p className="text-[11px] text-[#0C65A1] font-semibold">
                   WhatsApp oficial: {CONTACT_INFO.whatsappNumber}
                 </p>
               </div>
@@ -371,7 +404,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Cerrar asistente"
-              className="p-1.5 min-h-[36px] min-w-[36px] inline-flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#EDF5FD] text-[#002147] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+              className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg cursor-pointer hover:bg-[#EDF5FD] text-[#002147] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               <X className="w-5 h-5" aria-hidden="true" />
             </button>
@@ -401,7 +434,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                         setOpen(false);
                       }
                     }}
-                    className="mt-2 inline-flex items-center gap-1.5 bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] mr-2"
+                    className="mt-2 inline-flex items-center gap-1.5 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-xs px-3 py-2 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] mr-2"
                   >
                     <span>{m.routeLabel || 'Ver página del servicio →'}</span>
                   </a>
@@ -417,7 +450,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                         'mimo_assistant'
                       )
                     }
-                    className="mt-2.5 inline-flex items-center gap-1.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs px-3 py-1.5 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1FA855]"
+                    className="mt-2.5 inline-flex items-center gap-1.5 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs px-3 py-2 rounded-lg transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1FA855]"
                   >
                     <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>{m.whatsappCtaLabel || 'Abrir WhatsApp de Mimo'}</span>
@@ -434,7 +467,7 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
                 key={t.id}
                 type="button"
                 onClick={() => handleTopicClick(t)}
-                className="px-2.5 py-1 rounded-md border border-slate-300 hover:border-[#0F76BB] hover:bg-[#EDF5FD] text-[11px] font-bold text-[#002147] cursor-pointer transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+                className="min-h-[44px] px-3 py-1.5 rounded-md border border-slate-300 hover:border-[#0F76BB] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147] cursor-pointer transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
               >
                 {t.label}
               </button>
@@ -452,12 +485,12 @@ export const MimoAssistant: React.FC<MimoAssistantProps> = ({
               onChange={(e) => setInput(e.target.value)}
               placeholder="Pregunta por tu prenda, horario o punto..."
               aria-label="Escribe tu consulta"
-              className="flex-1 px-3 py-2 rounded-lg border border-slate-300 bg-white text-xs text-slate-900 placeholder:text-slate-500 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
+              className="flex-1 min-h-[44px] px-3 py-2 rounded-lg border border-slate-300 bg-white text-base lg:text-xs text-slate-900 placeholder:text-slate-500 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB]"
             />
             <button
               type="submit"
               aria-label="Enviar pregunta"
-              className="p-2 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white cursor-pointer transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+              className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center p-2.5 rounded-lg bg-[#0F76BB] hover:bg-[#0B5C94] text-white cursor-pointer transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
             >
               <Send className="w-4 h-4" aria-hidden="true" />
             </button>

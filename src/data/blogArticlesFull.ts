@@ -350,7 +350,7 @@ export const ARTICULOS_BLOG: ArticuloBlog[] = [
         puntosClave: [
           'Ropa de cama y toallas libres de restos de maquillaje, cremas solares o humedad residual.',
           'Ventilación completa y revisión de protectores impermeables transpirables en colchones y almohadas.',
-          'Cobertura operativa en la franja real de cambios de 11:00 a 15:00, incluidos sábados, festivos y mes de agosto.',
+          'Cobertura operativa en la franja real de cambios de 11:00 a 15:00, incluidos sábados, domingos, festivos y mes de agosto.',
         ],
       },
       {

@@ -297,7 +297,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Valor frente a retapizar o usar trucos domésticos
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -313,7 +313,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               >
                 <h3 className="text-lg font-extrabold text-[#002147] flex items-start gap-2.5">
                   <ShieldCheck
-                    className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5"
+                    className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                   <span>{item.titulo}</span>
@@ -331,7 +331,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="max-w-3xl space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Alcance residencial y profesional
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -350,7 +350,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               >
                 <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mb-2 flex items-start gap-2.5">
                   <CheckCircle2
-                    className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5"
+                    className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5"
                     aria-hidden="true"
                   />
                   <span>{item.titulo}</span>
@@ -365,7 +365,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
           {/* Bloque específico: Higienización de colchones a domicilio en Vigo */}
           <div className="rounded-sm border border-slate-200 border-l-4 border-l-[#0F76BB] bg-white p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             <div className="lg:col-span-8 space-y-2.5">
-              <p className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 Higienización de colchones a domicilio en Vigo
               </p>
               <h3 className="text-xl font-extrabold text-[#002147]">
@@ -382,7 +382,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
             <div className="lg:col-span-4 flex flex-col gap-3">
               <a
                 href="#presupuestar-sofa"
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-lg transition-colors text-center shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs sm:text-sm px-5 py-3 rounded-lg transition-colors text-center shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Pedir valoración de colchón</span>
@@ -401,7 +401,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
           {/* Franja B2B para alojamientos, oficinas, clínicas y hostelería */}
           <div className="rounded-sm border border-[#0F76BB]/25 bg-[#EDF5FD] p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 <Building2 className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Empresas, clínicas, oficinas y alojamientos turísticos</span>
               </div>
@@ -439,7 +439,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Protocolo técnico controlado · Sin vapor ni secado forzado
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -453,7 +453,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 key={fase.num}
                 className="border-t-2 border-slate-200 pt-5"
               >
-                <span className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
+                <span className="text-xs font-mono tabular-nums font-bold text-[#0C65A1]">
                   Paso {fase.num}
                 </span>
                 <h3 className="text-lg font-extrabold text-[#002147] mt-1.5 mb-2">
@@ -472,7 +472,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#0C65A1]">
               <Tag className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>Cómo interpretar la etiqueta bajo los cojines</span>
             </div>
@@ -492,7 +492,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                   key={c.codigo}
                   className="rounded-sm border border-slate-200 bg-white p-5"
                 >
-                  <p className="font-mono text-xs font-extrabold text-[#0F76BB] uppercase tracking-wider mb-1">
+                  <p className="font-mono text-xs font-extrabold text-[#0C65A1] uppercase tracking-wider mb-1">
                     Código {c.codigo}
                   </p>
                   <h3 className="text-base font-extrabold text-[#002147] mb-2">
@@ -532,7 +532,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-6 border-t-2 border-[#0F76BB] pt-6 space-y-4">
-              <div className="flex items-center gap-2 text-[#0F76BB]">
+              <div className="flex items-center gap-2 text-[#0C65A1]">
                 <Home className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   Qué tener en cuenta el día de la visita
@@ -540,19 +540,19 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               </div>
               <ul className="space-y-3 text-sm text-slate-700 leading-relaxed">
                 <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1" aria-hidden="true" />
                   <span>
                     Necesitamos una toma de corriente doméstica, un punto de agua en la vivienda y un pequeño margen libre alrededor del sofá para trabajar con comodidad.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1" aria-hidden="true" />
                   <span>
                     Agradecemos la presencia de una persona responsable al inicio y al final para revisar contigo las zonas prioritarias y repasar las indicaciones finales.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1" aria-hidden="true" />
                   <span>
                     <strong className="text-[#002147]">Secado natural al aire:</strong> no usamos secadores de aire caliente ni ventiladores industriales; el tejido seca al aire (referencia de 8–12 horas con ventilación cruzada continua, variando según grosor de espuma, tejido y humedad ambiental de Vigo) antes de volver a sentarse o vestir la cama.
                   </span>
@@ -561,7 +561,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
             </div>
 
             <div className="lg:col-span-6 border-t-2 border-amber-500 pt-6 space-y-4">
-              <div className="flex items-center gap-2 text-amber-600">
+              <div className="flex items-center gap-2 text-amber-700">
                 <AlertTriangle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   Franqueza técnica sobre manchas difíciles
@@ -572,13 +572,13 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               </p>
               <ul className="space-y-2.5 text-sm text-slate-700 leading-relaxed">
                 <li className="flex items-start gap-2.5">
-                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-1" aria-hidden="true" />
+                  <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-1" aria-hidden="true" />
                   <span>
                     Manchas muy antiguas, tintas penetradas, transferencia vaquera o cercos alterados previamente con lejía, amoníaco, bicarbonato con vinagre o vaporeta (que fijan proteínas y provocan pardeamiento celulósico) pueden dejar marca permanente.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-1" aria-hidden="true" />
+                  <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-1" aria-hidden="true" />
                   <span>
                     En derrames orgánicos que ya han calado en la espuma interior, la limpieza de la tela atenúa la mancha superficial, aunque el resultado depende de hasta dónde haya penetrado el líquido.
                   </span>
@@ -596,7 +596,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
               Valoración directa por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
@@ -610,7 +610,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Checklist de 6 fotos/datos útiles */}
             <div className="lg:col-span-5 rounded-sm bg-white/85 border border-[#0F76BB]/25 p-6 space-y-4">
-              <div className="flex items-center gap-2 text-[#0F76BB]">
+              <div className="flex items-center gap-2 text-[#0C65A1]">
                 <Camera className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <h3 className="text-lg font-extrabold text-[#002147]">
                   Qué incluir al escribir a Mimo
@@ -619,7 +619,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
               <ol className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
                 {CHECKLIST_FOTOS_SOFA.map((paso, idx) => (
                   <li key={paso} className="flex items-start gap-2.5">
-                    <span className="font-mono font-extrabold text-[#0F76BB] shrink-0">
+                    <span className="font-mono font-extrabold text-[#0C65A1] shrink-0">
                       0{idx + 1}.
                     </span>
                     <span>{paso}</span>
@@ -642,7 +642,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-mueble"
                     value={tipoMueble}
                     onChange={(e) => setTipoMueble(e.target.value)}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Sofá de 2 o 3 plazas">Sofá de 2 o 3 plazas</option>
                     <option value="Sofá con chaiselongue o rinconera">
@@ -669,7 +669,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-tapiceria"
                     value={tapiceria}
                     onChange={(e) => setTapiceria(e.target.value)}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Tela / Microfibra / Antimanchas">
                       Tela / Microfibra / Antimanchas
@@ -705,7 +705,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-localidad"
                     value={localidad}
                     onChange={(e) => setLocalidad(e.target.value)}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     {ZONAS_SERVICIO.map((loc) => (
                       <option key={loc} value={loc}>
@@ -729,7 +729,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     id="sofa-motivo"
                     value={motivo}
                     onChange={(e) => setMotivo(e.target.value)}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     <option value="Limpieza general e higienización">
                       Limpieza general e higienización
@@ -758,7 +758,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                   value={observaciones}
                   onChange={(e) => setObservaciones(e.target.value)}
                   placeholder="Ej.: Chaiselongue de 4 plazas en Coia, mancha de café sin tratar."
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
 
@@ -772,7 +772,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                       service_id: 'limpieza-sofas',
                     })
                   }
-                  className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
+                  className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
                 >
                   <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <span>Enviar consulta y fotos por WhatsApp</span>
@@ -785,7 +785,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                 >
                   {copied ? (
                     <>
-                      <Check className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
+                      <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                       <span>Texto copiado</span>
                     </>
                   ) : (
@@ -819,7 +819,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             <div className="lg:col-span-5 space-y-4">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Dudas habituales antes de solicitar visita
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -837,7 +837,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     service_id: 'limpieza-sofas',
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-colors shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-2.5 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Consultar duda con Mimo</span>
@@ -857,7 +857,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     >
                       <span>{faq.pregunta}</span>
                       <ChevronDown
-                        className={`w-5 h-5 text-[#0F76BB] shrink-0 transition-transform duration-200 ${
+                        className={`w-5 h-5 text-[#0C65A1] shrink-0 transition-transform duration-200 ${
                           isOpen ? 'rotate-180' : ''
                         }`}
                         aria-hidden="true"
@@ -903,7 +903,7 @@ export const SofaCleaningPage: React.FC<SofaCleaningPageProps> = ({
                     {rel.descripcion}
                   </p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] mt-2">
+                <span className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] mt-2">
                   <span>Ver servicio</span>
                   <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </span>

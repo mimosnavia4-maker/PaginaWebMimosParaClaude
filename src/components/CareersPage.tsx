@@ -36,13 +36,13 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                   <a
                     href="/"
                     onClick={(e) => onNavigate('/', e)}
-                    className="inline-flex items-center min-h-[36px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
+                    className="inline-flex items-center min-h-[44px] text-slate-600 hover:text-[#0F76BB] underline-offset-4 hover:underline font-medium transition-colors"
                   >
                     Inicio
                   </a>
                 </li>
                 <li aria-hidden="true" className="text-slate-400">/</li>
-                <li className="font-bold text-[#0F76BB]">
+                <li className="font-bold text-[#0C65A1]">
                   Empleo — Únete a nosotros
                 </li>
               </ol>
@@ -58,7 +58,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
             </a>
           </div>
 
-          <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+          <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
             Trabaja en Tintorería Mimos · Vigo
           </p>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#002147] tracking-tight mb-4">
@@ -81,13 +81,15 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                   <img
                     src="/images/articulos/personal-tintoreria.webp"
                     alt="Personal de tintorería en Tintorería Mimos Vigo: atención al público, desmanchado, lavado y planchado"
+                    width={210}
+                    height={139}
                     referrerPolicy="no-referrer"
                     onError={() => setFailedImgs((prev) => ({ ...prev, tintoreria: true }))}
                     className="w-full h-full object-cover"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
-                    <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
+                    <Sparkles className="w-8 h-8 text-[#0C65A1] mb-2" aria-hidden="true" />
                     <p className="font-bold text-sm">Personal de tintorería y atención</p>
                   </div>
                 )}
@@ -95,7 +97,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
 
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
                 <div className="space-y-3">
-                  <p className="text-xs font-bold text-[#0F76BB]">
+                  <p className="text-xs font-bold text-[#0C65A1]">
                     Área 1 · Tiendas y Taller Textil en Vigo
                   </p>
                   <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -107,15 +109,15 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
 
                   <ul className="pt-2 space-y-2 text-xs sm:text-sm text-slate-700">
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>Recepción de prendas y atención al cliente en nuestras tiendas de Vigo.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>Desmanchado específico, lavado profesional y cuidado de tejidos delicados.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>Planchado profesional y preparación de pedidos.</span>
                     </li>
                   </ul>
@@ -142,13 +144,15 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                   <img
                     src="/images/articulos/personal-limpieza.webp"
                     alt="Personal de lavandería e higienización textil para alojamientos y empresas en Tintorería Mimos Vigo"
+                    width={210}
+                    height={140}
                     referrerPolicy="no-referrer"
                     onError={() => setFailedImgs((prev) => ({ ...prev, lavanderia: true }))}
                     className="w-full h-full object-cover"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
-                    <Sparkles className="w-8 h-8 text-[#0F76BB] mb-2" aria-hidden="true" />
+                    <Sparkles className="w-8 h-8 text-[#0C65A1] mb-2" aria-hidden="true" />
                     <p className="font-bold text-sm">Gestión textil y lavandería para alojamientos</p>
                   </div>
                 )}
@@ -156,7 +160,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
 
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
                 <div className="space-y-3">
-                  <p className="text-xs font-bold text-[#0F76BB]">
+                  <p className="text-xs font-bold text-[#0C65A1]">
                     Área 2 · Gestión Textil y Alojamientos
                   </p>
                   <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -168,15 +172,15 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
 
                   <ul className="pt-2 space-y-2 text-xs sm:text-sm text-slate-700">
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>Preparación y empaquetado de juegos de cama y toallas para alojamientos turísticos.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>Control de calidad y desmanchado de lencería de uso intensivo.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>Apoyo en la coordinación de recogidas y entregas de lavandería para empresas.</span>
                     </li>
                   </ul>
@@ -218,7 +222,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                   Al pulsar en cualquiera de los botones de candidatura se abrirá automáticamente tu aplicación o programa de correo electrónico habitual (con el asunto preparado) para que puedas <strong>adjuntar tu currículum en formato PDF</strong> y enviárnoslo directamente a{' '}
                   <a
                     href={CONTACT_INFO.emailHref}
-                    className="font-extrabold text-[#0F76BB] hover:underline"
+                    className="font-extrabold text-[#0C65A1] hover:underline"
                   >
                     {CONTACT_INFO.email}
                   </a>{' '}
@@ -243,7 +247,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
                 >
                   {copiedEmail ? (
                     <>
-                      <Check className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
+                      <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                       <span>Correo copiado</span>
                     </>
                   ) : (
@@ -257,13 +261,13 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="pt-4 border-t border-slate-200 flex items-start gap-2.5 text-xs text-slate-600">
-              <ShieldCheck className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+              <ShieldCheck className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
               <p className="leading-relaxed">
                 <strong>Información sobre Protección de Datos (RGPD):</strong> Los datos personales y currículums remitidos a {CONTACT_INFO.email} serán tratados por <strong>{CONTACT_INFO.legalName}</strong> con la única finalidad de gestionar su participación en nuestros procesos de selección de personal. Puede consultar más información y cómo ejercer sus derechos en nuestra{' '}
                 <a
                   href="/privacidad"
                   onClick={(e) => onNavigate('/privacidad', e)}
-                  className="text-[#0F76BB] font-bold hover:underline"
+                  className="text-[#0C65A1] font-bold hover:underline"
                 >
                   Política de Privacidad
                 </a>

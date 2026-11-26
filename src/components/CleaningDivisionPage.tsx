@@ -170,7 +170,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             <a
               href="/limpieza-profesional-vigo"
               onClick={(e) => onNavigate('/limpieza-profesional-vigo', e)}
-              className={`inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-colors whitespace-nowrap shrink-0 ${
+              className={`inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-colors sm:whitespace-nowrap sm:shrink-0 ${
                 !isVut
                   ? 'bg-[#EDF5FD] border-[#0F76BB] text-[#002147]'
                   : 'bg-white border-slate-200 text-slate-700 hover:border-[#0F76BB]'
@@ -181,7 +181,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             <a
               href="/limpieza-apartamentos-turisticos-vigo"
               onClick={(e) => onNavigate('/limpieza-apartamentos-turisticos-vigo', e)}
-              className={`inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-colors whitespace-nowrap shrink-0 ${
+              className={`inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border transition-colors whitespace-nowrap shrink-0 ${
                 isVut
                   ? 'bg-[#EDF5FD] border-[#0F76BB] text-[#002147]'
                   : 'bg-white border-slate-200 text-slate-700 hover:border-[#0F76BB]'
@@ -192,28 +192,28 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             <a
               href="/servicios-empresas"
               onClick={(e) => onNavigate('/servicios-empresas', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
             >
               Lavandería para empresas
             </a>
             <a
               href="/limpieza-casas-vigo"
               onClick={(e) => onNavigate('/limpieza-casas-vigo', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
             >
               Casas y pisos particulares
             </a>
             <a
               href="/limpieza-sofas-vigo"
               onClick={(e) => onNavigate('/limpieza-sofas-vigo', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-[#0F76BB] hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-[#0C65A1] hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
             >
               Sofás y colchones a domicilio →
             </a>
             <a
               href="/limpieza-incendios-siniestros-vigo"
               onClick={(e) => onNavigate('/limpieza-incendios-siniestros-vigo', e)}
-              className="inline-flex items-center min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-[#0F76BB] hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center min-h-[44px] px-3.5 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white text-[#0C65A1] hover:border-[#0F76BB] transition-colors whitespace-nowrap shrink-0"
             >
               Incendios y siniestros →
             </a>
@@ -241,7 +241,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
         secondaryAction={{
           label: `Llamar al ${CONTACT_INFO.phoneDisplay}`,
           href: CONTACT_INFO.phoneHref,
-          icon: <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white" aria-hidden="true" />,
+          icon: <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white" aria-hidden="true" />,
           isInternalRoute: false,
         }}
         image={{
@@ -260,7 +260,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             {/* Garantías legales y operativas */}
             <div>
               <div className="max-w-3xl mb-8 space-y-2">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Respaldo legal para juntas LPH, administradores de fincas y empresas
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -274,7 +274,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     key={g.titulo}
                     className="rounded-xl border border-slate-200 bg-white p-6 space-y-2"
                   >
-                    <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
+                    <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums">
                       0{idx + 1} · GARANTÍA B2B
                     </p>
                     <h3 className="text-base font-extrabold text-[#002147] leading-snug">
@@ -290,7 +290,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
 
             {/* Alcance transparente */}
             <div className="rounded-xl border border-slate-200 border-l-4 border-l-[#0F76BB] bg-white p-6 sm:p-8 flex items-start gap-4">
-              <AlertCircle className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+              <AlertCircle className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
               <div className="space-y-1">
                 <h2 className="text-base sm:text-lg font-extrabold text-[#002147]">
                   Alcance transparente de nuestro servicio
@@ -304,7 +304,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             {/* 4 Áreas B2B */}
             <div>
               <div className="max-w-3xl mb-8 space-y-2">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Mantenimiento continuado en Vigo y área de influencia
                 </p>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight">
@@ -319,7 +319,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-2xs"
                   >
                     <div>
-                      <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB] mb-2">
+                      <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1] mb-2">
                         ÁREA {area.index} · {area.etiqueta}
                       </p>
                       <h3 className="text-xl font-extrabold text-[#002147] mb-2">
@@ -332,7 +332,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                         {area.incluye.map((item) => (
                           <li key={item} className="flex items-start gap-2">
                             <CheckCircle2
-                              className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                              className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                               aria-hidden="true"
                             />
                             <span>{item}</span>
@@ -351,7 +351,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                             service_id: area.id,
                           })
                         }
-                        className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap shrink-0"
+                        className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs sm:text-sm px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap shrink-0"
                       >
                         <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>Solicitar visita / presupuesto</span>
@@ -360,7 +360,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                         <a
                           href={area.enlaceHref}
                           onClick={(e) => onNavigate(area.enlaceHref!, e)}
-                          className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0F76BB] hover:text-[#002147] hover:underline"
+                          className="inline-flex items-center gap-1.5 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:text-[#002147] hover:underline"
                         >
                           <span>{area.enlaceTexto}</span>
                           <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -375,7 +375,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             {/* Banner cross-link Pack Combinado Limpieza + Lavandería */}
             <div className="rounded-xl border border-[#0F76BB]/30 border-l-4 border-l-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-2 max-w-2xl">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Pack combinado exclusivo · Planta propia en Navia
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147]">
@@ -405,7 +405,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             {/* 4 Claves Operativas VUT */}
             <div>
               <div className="max-w-3xl mb-8 space-y-2">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                   Operativa pensada para anfitriones y gestoras VUT en Vigo
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -419,7 +419,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     key={clave.titulo}
                     className="rounded-xl border border-slate-200 bg-white p-6 space-y-2"
                   >
-                    <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums">
+                    <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums">
                       0{idx + 1} · CLAVE VUT
                     </p>
                     <h3 className="text-base font-extrabold text-[#002147] leading-snug">
@@ -436,7 +436,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
             {/* Las 3 Modalidades para Apartamentos Turísticos */}
             <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-10 shadow-2xs">
               <div className="max-w-3xl mb-8">
-                <span className="text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider">
+                <span className="text-xs font-mono font-bold text-[#0C65A1] uppercase tracking-wider">
                   Propuesta comercial para anfitriones y propietarios · Tres niveles de colaboración
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] mt-1 mb-2">
@@ -468,11 +468,11 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     >
                       <div>
                         <div className="flex items-center justify-between gap-2 mb-3">
-                          <span className="text-xs font-mono uppercase tracking-wider text-[#0F76BB] font-bold">
+                          <span className="text-xs font-mono uppercase tracking-wider text-[#0C65A1] font-bold">
                             {pack.estado}
                           </span>
                           {isIntegral && (
-                            <span className="text-xs font-mono uppercase font-bold tracking-wider text-[#178A47]">
+                            <span className="text-xs font-mono uppercase font-bold tracking-wider text-[#147A3E]">
                               Servicio más completo
                             </span>
                           )}
@@ -486,7 +486,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                         <ul className="space-y-2.5 mb-6 text-xs sm:text-sm text-slate-700">
                           {pack.incluye.map((inc, i) => (
                             <li key={i} className="flex items-start gap-2">
-                              <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                              <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                               <span>{inc}</span>
                             </li>
                           ))}
@@ -501,7 +501,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                             service_id: pack.id,
                           })
                         }
-                        className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
+                        className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs sm:text-sm py-3 px-4 rounded-lg transition-colors shadow-xs"
                       >
                         <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                         <span>{pack.ctaTexto}</span>
@@ -518,15 +518,15 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
               className="scroll-mt-24 rounded-xl border border-[#0F76BB]/30 border-t-4 border-t-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-10"
             >
               <div className="max-w-3xl mb-8">
-                <p className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0F76BB] uppercase tracking-wider mb-2">
-                  <ShieldCheck className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                <p className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0C65A1] uppercase tracking-wider mb-2">
+                  <ShieldCheck className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                   <span>Modalidad 3 · Servicio integral a medida para propietarios</span>
                 </p>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight leading-tight">
                   Coordinación Integral de Limpieza, Lavandería y Llaves
                 </h2>
                 <p className="text-sm sm:text-base text-slate-700 mt-3 leading-relaxed">
-                  Tú gestionas tus reservas y precios en Airbnb o Booking. Mimos se encarga de la parte operativa crítica: limpieza en la franja 11:00–15:00 incluidos sábados, festivos y agosto, lavandería de tu lencería propia separada por apartamento, reposición de amenities, llaves en cajetines o punto acordado (sin check-in presencial con viajeros) y foto-reporte inmediato de incidencias.
+                  Tú gestionas tus reservas y precios en Airbnb o Booking. Mimos se encarga de la parte operativa crítica: limpieza en la franja 11:00–15:00 incluidos sábados, domingos, festivos y agosto, lavandería de tu lencería propia separada por apartamento, reposición de amenities, llaves en cajetines o punto acordado (sin check-in presencial con viajeros) y foto-reporte inmediato de incidencias.
                 </p>
               </div>
 
@@ -537,7 +537,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     className="p-6 rounded-xl bg-white border border-slate-200 flex flex-col justify-between space-y-3"
                   >
                     <div>
-                      <p className="text-xs font-mono font-bold text-[#0F76BB] tabular-nums mb-1.5">
+                      <p className="text-xs font-mono font-bold text-[#0C65A1] tabular-nums mb-1.5">
                         ÁREA {area.numero}
                       </p>
                       <h3 className="text-base font-extrabold text-[#002147] mb-3 leading-snug">
@@ -546,7 +546,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       <ul className="space-y-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                         {area.puntos.map((punto, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                            <Check className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                             <span>{punto}</span>
                           </li>
                         ))}
@@ -572,7 +572,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs"
+                    className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs"
                   >
                     <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                     <span>Delegar mi apartamento turístico</span>
@@ -603,20 +603,20 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
               className="scroll-mt-24 rounded-xl border border-[#0F76BB]/30 border-l-4 border-l-[#1FA855] bg-white p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-2xs"
             >
               <div className="space-y-2 max-w-2xl">
-                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#178A47]">
-                  Urgencias para propietarios VUT · Mismo día, sábados y festivos
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#147A3E]">
+                  Urgencias para propietarios VUT · Mismo día, sábados, domingos y festivos
                 </p>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                   ¿Tienes una entrada imprevista hoy, en fin de semana o festivo?
                 </h2>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Cubrimos rotaciones urgentes en el mismo día, sábados y festivos en Vigo (limpieza de salida, cambio de lencería o repaso rápido tras imprevistos con huéspedes). Escríbenos directo por WhatsApp con la dirección y hora límite de entrada.
+                  Cubrimos rotaciones urgentes en el mismo día, sábados, domingos y festivos en Vigo (limpieza de salida, cambio de lencería o repaso rápido tras imprevistos con huéspedes). Escríbenos directo por WhatsApp con la dirección y hora límite de entrada.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <a
                   href={buildMimoWhatsAppUrl(
-                    'Hola, Mimo. Tengo una URGENCIA en mi apartamento turístico en Vigo (mismo día / sábado / festivo). ¿Podéis cubrirla?'
+                    'Hola, Mimo. Tengo una URGENCIA en mi apartamento turístico en Vigo (mismo día / sábado / domingo / festivo). ¿Podéis cubrirla?'
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -625,7 +625,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       service_id: 'vut-urgencias',
                     })
                   }
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap shrink-0 shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                   <span>Consultar urgencia por WhatsApp</span>
@@ -663,7 +663,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                   key={item}
                   className="p-4 rounded-lg border border-slate-200 bg-white space-y-1.5"
                 >
-                  <span className="font-mono font-bold text-[#0F76BB] tabular-nums">
+                  <span className="font-mono font-bold text-[#0C65A1] tabular-nums">
                     0{idx + 1}.
                   </span>
                   <p className="leading-relaxed">{item}</p>
@@ -675,7 +675,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
           {/* FAQs */}
           <div id="preguntas-frecuentes-b2b">
             <div className="max-w-3xl mb-8 space-y-1">
-              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F76BB]">
+              <p className="text-xs font-mono font-bold uppercase tracking-wider text-[#0C65A1]">
                 Dudas frecuentes antes de contratar
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight">
@@ -695,7 +695,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     <span>{faq.pregunta}</span>
                     <span
                       aria-hidden="true"
-                      className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0"
+                      className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0"
                     >
                       +
                     </span>
@@ -748,7 +748,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setPreparedReady(false);
                     }}
                     placeholder={isVut ? 'Ej.: Apartamentos Ría / Laura' : 'Ej.: Comunidad Plaza América 4 / Clínica X'}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
                 <div>
@@ -761,6 +761,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                   <input
                     id="b2b-telefono"
                     type="tel"
+                    inputMode="tel"
                     required
                     autoComplete="tel"
                     aria-required="true"
@@ -772,7 +773,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setPreparedReady(false);
                     }}
                     placeholder="Ej.: 600 123 456"
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
               </div>
@@ -792,7 +793,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setTipoInmueble(e.target.value);
                       setPreparedReady(false);
                     }}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     {isVut ? (
                       <>
@@ -848,15 +849,15 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       setFrecuencia(e.target.value);
                       setPreparedReady(false);
                     }}
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   >
                     {isVut ? (
                       <>
                         <option value="Rotación por reservas (franja 11:00–15:00)">
                           Rotación por reservas (franja 11:00–15:00)
                         </option>
-                        <option value="Temporada alta (incluidos sábados, festivos y agosto)">
-                          Temporada alta (sábados, festivos y agosto)
+                        <option value="Temporada alta (incluidos sábados, domingos, festivos y agosto)">
+                          Temporada alta (sábados, domingos, festivos y agosto)
                         </option>
                         <option value="Entrega semanal de lencería propia limpia">
                           Entrega semanal de lencería propia limpia
@@ -898,7 +899,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                       ? 'Ej.: 2 viviendas en Zona Náutico/Casco Vello, 4 camas, cambios 11:00–15:00...'
                       : 'Ej.: Portal de 5 plantas en As Travesas, 2 días/semana con CAE para administrador...'
                   }
-                  className="w-full px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
 
@@ -910,7 +911,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     setAceptoPrivacidad(e.target.checked);
                     setErrorMsg('');
                   }}
-                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB]"
                 />
                 <span>
                   Acepto la{' '}
@@ -952,7 +953,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                           service_id: `b2b-${variant}`,
                         })
                       }
-                      className="flex-1 inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm py-3 px-4 rounded-lg transition-colors"
                     >
                       <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Abrir WhatsApp con Mimo</span>
@@ -964,7 +965,7 @@ export const CleaningDivisionPage: React.FC<CleaningDivisionPageProps> = ({
                     >
                       {copied ? (
                         <>
-                          <Check className="w-3.5 h-3.5 text-[#1FA855]" aria-hidden="true" />
+                          <Check className="w-3.5 h-3.5 text-[#147A3E]" aria-hidden="true" />
                           <span>Copiado</span>
                         </>
                       ) : (

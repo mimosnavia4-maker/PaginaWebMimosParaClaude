@@ -10,7 +10,6 @@ import {
   ARTICULOS_BLOG_RESUMEN,
   CONTACT_INFO,
   FAQ_PORTADA_SIN_PRECIOS,
-  GOOGLE_RATING_SUMMARY,
   RESENAS_PORTADA_GOOGLE,
 } from '../../data/mimosData';
 import { trackWhatsAppClick } from '../../utils/analytics';
@@ -24,7 +23,6 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
   onNavigate,
 }) => {
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
-  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
 
   const featuredGuides = ARTICULOS_BLOG_RESUMEN.slice(0, 3);
   const moreGuides = ARTICULOS_BLOG_RESUMEN.slice(3);
@@ -39,9 +37,6 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
         title="Ganándonos la confianza de Vigo"
         subtitle="Lo que dicen de Mimos quienes ya nos confían su ropa y sus espacios en Vigo y alrededores."
         reviews={RESENAS_PORTADA_GOOGLE}
-        ratingValue={GOOGLE_RATING_SUMMARY.ratingValue}
-        ratingDisplay={GOOGLE_RATING_SUMMARY.ratingDisplay}
-        reviewCountLabel={GOOGLE_RATING_SUMMARY.label}
         googleReviewsHref={CONTACT_INFO.googleReviewsHref}
         googleButtonLabel="Ver todas las opiniones en Google"
       />
@@ -55,7 +50,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
             <div className="max-w-2xl space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Cuaderno textil · Guías de Tintorería Mimos
               </p>
               <h2
@@ -111,8 +106,8 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                   </a>
 
                   <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                      <span className="font-bold text-[#0F76BB]">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
+                      <span className="font-bold text-[#0C65A1]">
                         {articulo.categoria}
                       </span>
                       <span aria-hidden="true">·</span>
@@ -151,7 +146,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
 
           {moreGuides.length > 0 && (
             <div className="pt-5 border-t border-slate-300/80 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm">
-              <span className="font-bold text-slate-500">
+              <span className="font-bold text-slate-600">
                 Más guías útiles:
               </span>
               {moreGuides.map((g) => (
@@ -178,7 +173,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             <div className="lg:col-span-5 space-y-4">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Dudas habituales
               </p>
               <h2
@@ -195,7 +190,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick('/', 'faq_closing')}
-                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Preguntar ahora por WhatsApp</span>
@@ -203,37 +198,21 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
             </div>
 
             <div className="lg:col-span-7 divide-y divide-slate-200 border-t border-b border-slate-200">
-              {FAQ_PORTADA_SIN_PRECIOS.map((faq, idx) => {
-                const isOpen = openFaqIdx === idx;
-                return (
-                  <div key={faq.pregunta} className="py-3.5">
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaqIdx(isOpen ? null : idx)}
-                      aria-expanded={isOpen}
-                      className="w-full min-h-[48px] text-left flex items-center justify-between gap-4 font-extrabold text-sm sm:text-base text-[#002147] cursor-pointer py-1"
-                    >
-                      <span>{faq.pregunta}</span>
-                      <ChevronDown
-                        className={`w-5 h-5 text-[#0F76BB] shrink-0 transition-transform duration-200 ${
-                          isOpen ? 'rotate-180' : ''
-                        }`}
-                        aria-hidden="true"
-                      />
-                    </button>
+              {FAQ_PORTADA_SIN_PRECIOS.map((faq) => (
+                <details key={faq.pregunta} className="group py-3.5">
+                  <summary className="w-full min-h-[48px] text-left flex items-center justify-between gap-4 font-extrabold text-sm sm:text-base text-[#002147] cursor-pointer py-1 list-none">
+                    <span>{faq.pregunta}</span>
+                    <ChevronDown
+                      className="w-5 h-5 text-[#0C65A1] shrink-0 transition-transform duration-200 group-open:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </summary>
 
-                    <div
-                      className={
-                        isOpen
-                          ? 'pt-2 pb-2 text-sm text-slate-600 leading-relaxed'
-                          : 'hidden'
-                      }
-                    >
-                      {faq.respuesta}
-                    </div>
+                  <div className="pt-2 pb-2 text-sm text-slate-600 leading-relaxed">
+                    {faq.respuesta}
                   </div>
-                );
-              })}
+                </details>
+              ))}
             </div>
           </div>
         </div>

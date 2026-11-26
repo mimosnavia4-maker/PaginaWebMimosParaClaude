@@ -52,6 +52,10 @@ interface InlineZoneGuidance {
   linkLabel: string;
 }
 
+function getColabDireccion(id: string, fallback: string): string {
+  return PUNTOS_COLABORADORES.find((p) => p.id === id)?.direccion || fallback;
+}
+
 function resolveInlineZoneGuidance(rawQuery: string): InlineZoneGuidance | null {
   const q = rawQuery
     .toLowerCase()
@@ -86,32 +90,36 @@ function resolveInlineZoneGuidance(rawQuery: string): InlineZoneGuidance | null 
     };
   }
   if (q.includes('redondela') || q.includes('36800') || q.includes('chapela')) {
+    const dir = getColabDireccion('punto-redondela', 'C/ José Regojo, 29 bajo');
     return {
       title: 'Redondela · Comercio colaborador oficial',
-      text: 'Mismas tarifas que Vigo en Rúa Alfonso XII, 66 (sin pedido mínimo) conectado con planta Navia.',
+      text: `Mismas tarifas que Vigo en ${dir} (sin pedido mínimo) conectado con planta Navia.`,
       href: '/zonas/redondela',
       linkLabel: 'Ver ficha Redondela',
     };
   }
   if (q.includes('gondomar') || q.includes('36380')) {
+    const dir = getColabDireccion('punto-gondomar', 'Avda. Elduayen, 9');
     return {
-      title: 'Gondomar · Puntadas No Aire (Avda. Elduayen, 9)',
+      title: `Gondomar · Puntadas No Aire (${dir})`,
       text: 'Recepción Mimos sin mínimo y taller propio de costura desde las 08:00 (M-V).',
       href: '/zonas/gondomar',
       linkLabel: 'Ver ficha Gondomar',
     };
   }
   if (q.includes('ponteareas') || q.includes('36860')) {
+    const dir = getColabDireccion('punto-ponteareas', 'C/ Argentina, 4');
     return {
-      title: 'Ponteareas · Arregla2 (C/ Esperanza, 6)',
+      title: `Ponteareas · Arregla2 (${dir})`,
       text: 'Tintorería, lavandería, alfombras y arreglos de costura con enlace directo a Vigo.',
       href: '/zonas/ponteareas',
       linkLabel: 'Ver ficha Ponteareas',
     };
   }
   if (q.includes('porrino') || q.includes('36400')) {
+    const dir = getColabDireccion('punto-o-porrino', 'C/ Manuel Rodríguez, 30');
     return {
-      title: 'O Porriño · Telas y Más (C/ Manuel Rodríguez, 30)',
+      title: `O Porriño · Telas y Más (${dir})`,
       text: 'Punto colaborador sin mínimo ni recargos y taller propio de costura.',
       href: '/zonas/o-porrino',
       linkLabel: 'Ver ficha O Porriño',
@@ -198,7 +206,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Red sin pedido mínimo · Vigo y área metropolitana
             </p>
             <h2
@@ -246,7 +254,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   className={`min-h-[44px] pb-2 border-b-2 text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap ${
                     active
                       ? 'border-[#002147] text-[#002147]'
-                      : 'border-transparent text-slate-500 hover:text-[#002147]'
+                      : 'border-transparent text-slate-600 hover:text-[#002147]'
                   }`}
                 >
                   {tab.label}
@@ -280,7 +288,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
             <a
               href={zoneGuidance.href}
               onClick={(e) => onNavigate(zoneGuidance.href, e)}
-              className="inline-flex items-center gap-1 min-h-[44px] font-bold text-[#0F76BB] hover:underline shrink-0"
+              className="inline-flex items-center gap-1 min-h-[44px] font-bold text-[#0C65A1] hover:underline shrink-0"
             >
               <span>{zoneGuidance.linkLabel}</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -314,9 +322,9 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                       }}
                       className="text-left flex-1 cursor-pointer group min-h-[44px]"
                     >
-                      <p className="text-xs font-bold text-[#0F76BB]">
+                      <p className="text-xs font-bold text-[#0C65A1]">
                         {punto.tipo === 'tienda' ? 'Tienda propia' : 'Comercio colaborador'} ·{' '}
-                        <span className="text-slate-500 font-medium">
+                        <span className="text-slate-600 font-medium">
                           {punto.localidad}
                         </span>
                       </p>
@@ -328,7 +336,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                       <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
                         {punto.direccion} · {punto.codigo_postal}
                       </p>
-                      <p className="text-xs text-slate-500 mt-0.5">
+                      <p className="text-xs text-slate-600 mt-0.5">
                         {punto.horario.resumen}
                       </p>
                     </button>
@@ -360,7 +368,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                       }
                       className="inline-flex items-center gap-1 min-h-[44px] text-[#002147] hover:text-[#0F76BB] tabular-nums"
                     >
-                      <Phone className="w-3.5 h-3.5 text-[#0F76BB]" aria-hidden="true" />
+                      <Phone className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                       <span>{punto.telefonos_mostrados}</span>
                     </a>
 
@@ -368,7 +376,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                       href={mapsHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 min-h-[44px] text-[#0F76BB] hover:underline"
+                      className="inline-flex items-center gap-1 min-h-[44px] text-[#0C65A1] hover:underline"
                     >
                       <span>Cómo llegar</span>
                       <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
@@ -378,7 +386,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                       <a
                         href={detailHref}
                         onClick={(e) => onNavigate(detailHref, e)}
-                        className="inline-flex items-center gap-1 min-h-[44px] text-[#0F76BB] hover:underline"
+                        className="inline-flex items-center gap-1 min-h-[44px] text-[#0C65A1] hover:underline"
                       >
                         <span>Ver ficha</span>
                         <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -395,7 +403,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
             <div ref={mapContainerRef}>
               {!mapShouldLoad ? (
                 <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
-                  <MapPin className="w-6 h-6 text-[#0F76BB] mb-2.5" aria-hidden="true" />
+                  <MapPin className="w-6 h-6 text-[#0C65A1] mb-2.5" aria-hidden="true" />
                   <h3 className="text-lg font-extrabold text-[#002147] mb-1.5">
                     Mapa interactivo de tiendas y puntos Mimos
                   </h3>
@@ -415,7 +423,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                 <ErrorBoundary
                   fallback={
                     <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
-                      <MapPin className="w-6 h-6 text-[#0F76BB] mb-2.5" aria-hidden="true" />
+                      <MapPin className="w-6 h-6 text-[#0C65A1] mb-2.5" aria-hidden="true" />
                       <h3 className="text-lg font-extrabold text-[#002147] mb-1.5">
                         Mapa interactivo no disponible temporalmente
                       </h3>
@@ -436,7 +444,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   <React.Suspense
                     fallback={
                       <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
-                        <MapPin className="w-7 h-7 text-[#0F76BB] mb-2" aria-hidden="true" />
+                        <MapPin className="w-7 h-7 text-[#0C65A1] mb-2" aria-hidden="true" />
                         <p className="font-bold text-[#002147] text-sm">
                           Cargando mapa interactivo de Mimos...
                         </p>
@@ -458,7 +466,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
               className="border-t border-slate-300 pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
               <div className="space-y-1">
-                <p className="text-xs font-bold text-[#0F76BB]">
+                <p className="text-xs font-bold text-[#0C65A1]">
                   Sede central · {CONTACT_INFO.legalName}
                 </p>
                 <p className="text-base font-extrabold text-[#002147]">
@@ -478,7 +486,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   onClick={() => trackPhoneClick('/', 'central_strip')}
                   className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-white border border-slate-300 hover:border-[#002147] text-[#002147] font-bold text-xs sm:text-sm px-4 py-2 rounded-sm transition-colors tabular-nums whitespace-nowrap"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                  <Phone className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                   <span>{CONTACT_INFO.phoneDisplay}</span>
                 </a>
                 <a
@@ -488,7 +496,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('/', 'central_strip')}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-sm transition-colors whitespace-nowrap shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs sm:text-sm px-4 py-2 rounded-sm transition-colors whitespace-nowrap shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>WhatsApp Mimo</span>
@@ -503,7 +511,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
           aria-label="Cobertura por municipios"
           className="pt-5 border-t border-slate-300/80 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm"
         >
-          <span className="font-bold text-slate-500">
+          <span className="font-bold text-slate-600">
             Guías por zona:
           </span>
           {ZONAS_RESUMEN.map((zona) => (
@@ -511,7 +519,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
               key={zona.slug}
               href={zona.url}
               onClick={(e) => onNavigate(zona.url, e)}
-              className="inline-flex items-center min-h-[44px] font-bold text-[#0F76BB] hover:underline whitespace-nowrap"
+              className="inline-flex items-center min-h-[44px] font-bold text-[#0C65A1] hover:underline whitespace-nowrap"
             >
               {zona.localidad}
             </a>

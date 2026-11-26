@@ -539,7 +539,9 @@ export function trackMimosEvent(
     trackPhoneClick(path, location, { store_id: storeId });
   } else if (eventName === 'form_prepared' || eventName === 'request_prepared') {
     const formName =
-      params.form_name === 'contact_request' ? 'contact_request' : 'pickup_request';
+      typeof params.form_name === 'string' && params.form_name.trim()
+        ? params.form_name.trim()
+        : 'pickup_request';
     trackFormPrepared(path, formName);
   }
 }

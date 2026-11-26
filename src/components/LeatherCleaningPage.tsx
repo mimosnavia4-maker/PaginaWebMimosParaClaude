@@ -118,7 +118,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-10">
             <div className="lg:col-span-7 space-y-3">
-              <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
                 Identifica tu prenda
               </p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -161,7 +161,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                 className="rounded-sm border border-slate-200 bg-white p-6 flex flex-col justify-between"
               >
                 <div>
-                  <p className="text-xs font-mono text-[#0F76BB] font-bold mb-1.5">
+                  <p className="text-xs font-mono text-[#0C65A1] font-bold mb-1.5">
                     {piel.grupo}
                   </p>
                   <h3 className="text-lg font-extrabold text-[#002147] mb-2">
@@ -181,7 +181,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-8 space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Importante antes de entregar tu prenda
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -231,7 +231,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Protocolo técnico en 5 fases
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -248,7 +248,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                 key={fase.num}
                 className="rounded-sm border border-slate-200 bg-white p-6 flex flex-col"
               >
-                <span className="text-xs font-mono tabular-nums font-bold text-[#0F76BB]">
+                <span className="text-xs font-mono tabular-nums font-bold text-[#0C65A1]">
                   Fase {fase.num}
                 </span>
                 <h3 className="text-base sm:text-lg font-extrabold text-[#002147] mt-1.5 mb-2.5">
@@ -270,7 +270,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
             {/* Columna izquierda: Riesgos inherentes del cuero */}
             <div className="lg:col-span-6 space-y-5">
               <div>
-                <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-1">
+                <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-1">
                   Expectativas reales y transparencia
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -286,7 +286,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   >
                     <h3 className="text-base font-extrabold text-[#002147] mb-1 flex items-center gap-2">
                       <AlertTriangle
-                        className="w-4 h-4 text-amber-600 shrink-0"
+                        className="w-4 h-4 text-amber-700 shrink-0"
                         aria-hidden="true"
                       />
                       <span>{riesgo.titulo}</span>
@@ -302,7 +302,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
             {/* Columna derecha: Plazos, resguardo RD 1453/1987 y tiendas */}
             <div className="lg:col-span-6 space-y-6">
               <div className="rounded-sm border border-[#0F76BB]/25 border-l-4 border-l-[#0F76BB] bg-[#EDF5FD] p-6 sm:p-8 space-y-4">
-                <div className="flex items-center gap-2 text-[#0F76BB]">
+                <div className="flex items-center gap-2 text-[#0C65A1]">
                   <FileCheck2 className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <h2 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
                     Plazos, valoración y garantías de tu resguardo
@@ -317,7 +317,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   {SERVICIO_PIELES_DATA.garantiasResguardo.map((garantia) => (
                     <li key={garantia} className="flex items-start gap-2.5">
                       <CheckCircle2
-                        className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                        className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                         aria-hidden="true"
                       />
                       <span>{garantia}</span>
@@ -328,7 +328,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
 
               <div className="rounded-sm border border-slate-200 bg-white p-6 space-y-4">
                 <div className="flex items-center gap-2 text-[#002147]">
-                  <Store className="w-5 h-5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                  <Store className="w-5 h-5 text-[#0C65A1] shrink-0" aria-hidden="true" />
                   <h3 className="text-base sm:text-lg font-extrabold">
                     Recepción en nuestras {TIENDAS_PROPIAS.length} tiendas propias de Vigo, nuestros 5 puntos colaboradores o a domicilio
                   </h3>
@@ -358,7 +358,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Conservación entre temporadas
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -369,14 +369,14 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-6 rounded-sm border border-slate-200 bg-white p-6 sm:p-8">
               <h3 className="text-lg font-extrabold text-[#002147] mb-4 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#178A47] shrink-0" aria-hidden="true" />
+                <CheckCircle2 className="w-5 h-5 text-[#147A3E] shrink-0" aria-hidden="true" />
                 <span>Buenas prácticas recomendadas</span>
               </h3>
               <ul className="space-y-3.5 text-sm text-slate-700 leading-relaxed">
                 {SERVICIO_PIELES_DATA.consejosCasa.map((consejo) => (
                   <li key={consejo} className="flex items-start gap-2.5">
                     <CheckCircle2
-                      className="w-4 h-4 text-[#0F76BB] shrink-0 mt-1"
+                      className="w-4 h-4 text-[#0C65A1] shrink-0 mt-1"
                       aria-hidden="true"
                     />
                     <span>{consejo}</span>
@@ -387,7 +387,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
 
             <div className="lg:col-span-6 rounded-sm border border-slate-200 bg-white p-6 sm:p-8">
               <h3 className="text-lg font-extrabold text-[#002147] mb-4 flex items-center gap-2">
-                <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0" aria-hidden="true" />
+                <ShieldAlert className="w-5 h-5 text-amber-700 shrink-0" aria-hidden="true" />
                 <span>Mitos frecuentes que dañan la piel</span>
               </h3>
               <div className="space-y-4">
@@ -421,7 +421,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB] mb-2">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] mb-2">
               Valoración directa por WhatsApp · {CONTACT_INFO.whatsappNumber}
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight mb-3 text-balance">
@@ -445,7 +445,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   id="piel-prenda"
                   value={tipoPrenda}
                   onChange={(e) => setTipoPrenda(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Cazadora o chaqueta">Cazadora o chaqueta</option>
                   <option value="Abrigo largo o chaquetón">Abrigo largo o chaquetón</option>
@@ -471,7 +471,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   id="piel-material"
                   value={tipoPiel}
                   onChange={(e) => setTipoPiel(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="No estoy seguro / Prefiero enviar foto">
                     No estoy seguro / Prefiero enviar foto
@@ -495,7 +495,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   id="piel-localidad"
                   value={localidad}
                   onChange={(e) => setLocalidad(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm font-medium text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   {ZONAS_SERVICIO.map((loc) => (
                     <option key={loc} value={loc}>
@@ -521,7 +521,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   id="piel-modalidad"
                   value={modalidadEntrega}
                   onChange={(e) => setModalidadEntrega(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 >
                   <option value="Llevarla a una tienda propia Mimos en Vigo">
                     Llevarla a una tienda propia Mimos en Vigo
@@ -548,7 +548,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                   value={observaciones}
                   onChange={(e) => setObservaciones(e.target.value)}
                   placeholder="Ej.: Rozadura en puños y mancha de lluvia en manga."
-                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm border border-slate-300 bg-slate-50 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -563,7 +563,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                     service_id: 'pieles-y-cuero',
                   })
                 }
-                className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
+                className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base py-3 px-6 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Enviar consulta a Mimo por WhatsApp</span>
@@ -576,7 +576,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-[#1FA855]" aria-hidden="true" />
+                    <Check className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
                     <span>Texto copiado</span>
                   </>
                 ) : (
@@ -599,7 +599,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
       <section className="py-14 lg:py-20 bg-[#F7F6F2] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10 space-y-1">
-            <p className="text-xs sm:text-sm font-bold text-[#0F76BB]">
+            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
               Dudas habituales antes de limpiar tu prenda
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance">
@@ -615,7 +615,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
               >
                 <summary className="min-h-[44px] font-extrabold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base">
                   <span>{faq.pregunta}</span>
-                  <span className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
+                  <span className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0">
                     +
                   </span>
                 </summary>
@@ -648,7 +648,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                     <h3 className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                       {rel.titulo}
                     </h3>
-                    <ArrowUpRight className="w-4 h-4 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                    <ArrowUpRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {rel.descripcion}
@@ -678,7 +678,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                     service_id: 'pieles-y-cuero',
                   })
                 }
-                className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
+                className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-lg transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Consultar prenda con Mimo</span>
@@ -689,7 +689,7 @@ export const LeatherCleaningPage: React.FC<LeatherCleaningPageProps> = ({
                 className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm px-4 py-3 rounded-lg transition-colors group"
               >
                 <Phone
-                  className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0"
+                  className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0"
                   aria-hidden="true"
                 />
                 <span>{CONTACT_INFO.phoneDisplay}</span>

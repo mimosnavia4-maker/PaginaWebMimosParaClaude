@@ -8,7 +8,7 @@ interface PuntoTelasMasPageProps {
 
 export const PuntoTelasMasPage: React.FC<PuntoTelasMasPageProps> = ({ onNavigate }) => {
   return (
-    <main id="main-content" tabIndex={-1} className="focus:outline-hidden py-8 sm:py-12 bg-gradient-to-b from-[#F4F9FE] via-white to-[#F7F6F2] flex-1 min-h-screen">
+    <main id="main-content" tabIndex={-1} className="focus:outline-hidden py-8 sm:py-12 bg-gradient-to-b from-[#F4F9FE] via-white to-[#F7F6F2] flex-1">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Migas de pan y navegación */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">

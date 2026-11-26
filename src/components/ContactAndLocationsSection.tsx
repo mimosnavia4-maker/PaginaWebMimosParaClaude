@@ -14,7 +14,6 @@ import {
   CheckCircle2,
   Navigation,
   Car,
-  X,
   FileText,
   Map as MapIcon,
 } from 'lucide-react';
@@ -44,23 +43,18 @@ import { ErrorBoundary } from './ErrorBoundary';
 const MimosGoogleMap = lazyWithRetry(() =>
   import('./MimosGoogleMap').then((m) => ({ default: m.MimosGoogleMap }))
 );
-const PuntoTelasMasFicha = lazyWithRetry(() =>
-  import('./PuntoTelasMasFicha').then((m) => ({ default: m.PuntoTelasMasFicha }))
-);
-const PuntoGondomarFicha = lazyWithRetry(() =>
-  import('./PuntoGondomarFicha').then((m) => ({ default: m.PuntoGondomarFicha }))
-);
-const PuntoRedondelaFicha = lazyWithRetry(() =>
-  import('./PuntoRedondelaFicha').then((m) => ({ default: m.PuntoRedondelaFicha }))
-);
-const PuntoArregla2Ficha = lazyWithRetry(() =>
-  import('./PuntoArregla2Ficha').then((m) => ({ default: m.PuntoArregla2Ficha }))
-);
-const TiendaNaviaFicha = lazyWithRetry(() =>
-  import('./TiendaNaviaFicha').then((m) => ({ default: m.TiendaNaviaFicha }))
-);
-import { Dialog } from './Dialog';
 import { PageHeroLight } from './PageHeroLight';
+
+const FICHA_RUTA_CARD: Record<string, { href: string; label: string }> = {
+  'as-teixugueiras': { href: '/tienda-mimos-navia-vigo', label: 'Ver ficha detallada' },
+  'gregorio-espino': { href: '/tienda-mimos-gregorio-espino-vigo', label: 'Ver ficha detallada' },
+  'rua-venezuela': { href: '/tienda-mimos-venezuela-vigo', label: 'Ver ficha y fotos' },
+  'punto-o-porrino': { href: '/zonas/o-porrino', label: 'Ver ficha detallada' },
+  'punto-gondomar': { href: '/zonas/gondomar', label: 'Ver ficha y fotos' },
+  'punto-redondela': { href: '/zonas/redondela', label: 'Ver ficha y fotos' },
+  'punto-ponteareas': { href: '/zonas/ponteareas', label: 'Ver ficha y fotos' },
+  'punto-vigo-dpasso': { href: '/punto-mimos-dpasso-vigo', label: 'Ver ficha y fotos' },
+};
 
 interface ContactAndLocationsSectionProps {
   onNavigate: (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => void;
@@ -76,7 +70,6 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
   const [selectedTipo, setSelectedTipo] = useState<'todos' | 'tienda' | 'punto'>('todos');
   const [selectedServicio, setSelectedServicio] = useState<string>('todos');
   const [selectedMapPuntoId, setSelectedMapPuntoId] = useState<string | null>(null);
-  const [puntoModalFicha, setPuntoModalFicha] = useState<PuntoRegistro | null>(null);
 
   // Carga diferida del componente mapa (sin peticiones a Google Maps hasta consentimiento o clic manual)
   const mapRef = React.useRef<HTMLDivElement>(null);
@@ -213,6 +206,8 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               <img
                 src={punto.foto}
                 alt={`Fachada de ${punto.nombre_mostrado}`}
+                width={1200}
+                height={670}
                 className="w-full h-full object-cover"
                 loading="lazy"
                 referrerPolicy="no-referrer"
@@ -223,9 +218,9 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               <div className="absolute top-3.5 left-3.5 z-10">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-mono uppercase tracking-wider bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
                   {punto.tipo === 'tienda' ? (
-                    <Store className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                    <Store className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                   ) : (
-                    <Handshake className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                    <Handshake className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                   )}
                   <span>
                     {punto.tipo === 'tienda' ? 'Tienda Propia Mimos' : 'Punto Colaborador'} · {punto.localidad.toUpperCase()}
@@ -251,7 +246,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     </>
                   ) : (
                     <>
-                      <Handshake className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                      <Handshake className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                       <span>Punto Colaborador · {punto.localidad.toUpperCase()}</span>
                     </>
                   )}
@@ -263,11 +258,11 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           {/* Cuerpo de la tarjeta con todos los datos completos */}
           <div className="p-6 space-y-4">
             <div>
-              <h3 className="text-2xl font-black text-[#002147] tracking-tight">
+              <h4 className="text-2xl font-black text-[#002147] tracking-tight">
                 {punto.nombre_mostrado}
-              </h3>
+              </h4>
               {punto.tipo === 'punto' && (
-                <p className="text-xs font-bold text-[#0F76BB] mt-1">
+                <p className="text-xs font-bold text-[#0C65A1] mt-1">
                   Comercio colaborador: {punto.nombre_comercio}
                 </p>
               )}
@@ -276,7 +271,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
             {/* Datos principales con iconos */}
             <dl className="space-y-2.5 text-sm text-slate-700">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                <MapPin className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                 <div>
                   <dt className="sr-only">Dirección</dt>
                   <dd className="font-bold text-[#002147]">
@@ -286,7 +281,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               </div>
 
               <div className="flex items-start gap-2.5">
-                <Clock className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                <Clock className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                 <div>
                   <dt className="sr-only">Horario</dt>
                   <dd className="text-slate-700 font-medium">
@@ -296,7 +291,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               </div>
 
               <div className="flex items-center gap-2.5">
-                <Phone className="w-5 h-5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                <Phone className="w-5 h-5 text-[#0C65A1] shrink-0" aria-hidden="true" />
                 <div>
                   <dt className="sr-only">Teléfono</dt>
                   <dd>
@@ -307,7 +302,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                           store_id: punto.id,
                         })
                       }
-                      className="font-extrabold text-[#0F76BB] hover:underline tabular-nums text-base"
+                      className="font-extrabold text-[#0C65A1] hover:underline tabular-nums text-base"
                     >
                       {punto.telefonos_mostrados}
                     </a>
@@ -317,7 +312,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
 
               {punto.referencia_local && (
                 <div className="flex items-start gap-2.5">
-                  <Navigation className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <Navigation className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
                     <dt className="sr-only">Ubicación</dt>
                     <dd className="text-xs sm:text-sm text-slate-600 leading-snug">
@@ -329,7 +324,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
 
               {punto.aparcamiento && (
                 <div className="flex items-start gap-2.5">
-                  <Car className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
+                  <Car className="w-5 h-5 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
                     <dt className="sr-only">Aparcamiento</dt>
                     <dd className="text-xs sm:text-sm text-slate-600 leading-snug">
@@ -357,7 +352,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   {derivarEtiquetasServicios(punto.servicios_confirmados).map((srv) => (
                     <li key={srv} className="flex items-start gap-2.5">
                       <CheckCircle2
-                        className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5"
+                        className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <span>{srv}</span>
@@ -370,8 +365,8 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   <div className="mt-3.5 pt-3.5 border-t border-slate-200">
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <div className="flex items-center gap-1.5">
-                        <Scissors className="w-4 h-4 text-[#178A47]" aria-hidden="true" />
-                        <span className="text-xs font-bold text-[#178A47]">
+                        <Scissors className="w-4 h-4 text-[#147A3E]" aria-hidden="true" />
+                        <span className="text-xs font-bold text-[#147A3E]">
                           {punto.id === 'gregorio-espino' || punto.id === 'rua-venezuela'
                             ? 'Taller propio de costura y arreglos'
                             : punto.id === 'as-teixugueiras'
@@ -382,7 +377,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       <a
                         href="/arreglos-de-ropa-vigo"
                         onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                        className="text-xs font-bold text-[#0F76BB] hover:underline"
+                        className="text-xs font-bold text-[#0C65A1] hover:underline"
                       >
                         Ver arreglos →
                       </a>
@@ -401,7 +396,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       <ul className="space-y-1 text-xs text-slate-600 pl-4">
                         {punto.arreglos_confirmados.slice(0, 3).map((arr) => (
                           <li key={arr} className="flex items-start gap-1.5">
-                            <span className="text-[#0F76BB] font-bold">·</span>
+                            <span className="text-[#0C65A1] font-bold">·</span>
                             <span>{arr}</span>
                           </li>
                         ))}
@@ -419,87 +414,15 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           <div className="pt-4 border-t border-slate-100 space-y-3">
             {/* Fila 1: Botón Ver ficha detallada + Cómo llegar */}
             <div className="flex flex-wrap items-center gap-2.5">
-              {punto.id === 'as-teixugueiras' ? (
+              {FICHA_RUTA_CARD[punto.id] && (
                 <a
-                  href="/tienda-mimos-navia-vigo"
-                  onClick={(e) => onNavigate('/tienda-mimos-navia-vigo', e)}
+                  href={FICHA_RUTA_CARD[punto.id].href}
+                  onClick={(e) => onNavigate(FICHA_RUTA_CARD[punto.id].href, e)}
                   className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
                 >
                   <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha detallada</span>
+                  <span>{FICHA_RUTA_CARD[punto.id].label}</span>
                 </a>
-              ) : punto.id === 'gregorio-espino' ? (
-                <a
-                  href="/tienda-mimos-gregorio-espino-vigo"
-                  onClick={(e) => onNavigate('/tienda-mimos-gregorio-espino-vigo', e)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha detallada</span>
-                </a>
-              ) : punto.id === 'rua-venezuela' ? (
-                <a
-                  href="/tienda-mimos-venezuela-vigo"
-                  onClick={(e) => onNavigate('/tienda-mimos-venezuela-vigo', e)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha y fotos</span>
-                </a>
-              ) : punto.id === 'punto-o-porrino' ? (
-                <a
-                  href="/zonas/o-porrino"
-                  onClick={(e) => onNavigate('/zonas/o-porrino', e)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha detallada</span>
-                </a>
-              ) : punto.id === 'punto-gondomar' ? (
-                <a
-                  href="/zonas/gondomar"
-                  onClick={(e) => onNavigate('/zonas/gondomar', e)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha y fotos</span>
-                </a>
-              ) : punto.id === 'punto-redondela' ? (
-                <a
-                  href="/zonas/redondela"
-                  onClick={(e) => onNavigate('/zonas/redondela', e)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha y fotos</span>
-                </a>
-              ) : punto.id === 'punto-ponteareas' ? (
-                <a
-                  href="/zonas/ponteareas"
-                  onClick={(e) => onNavigate('/zonas/ponteareas', e)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha y fotos</span>
-                </a>
-              ) : punto.id === 'punto-vigo-dpasso' ? (
-                <a
-                  href="/punto-mimos-dpasso-vigo"
-                  onClick={(e) => onNavigate('/punto-mimos-dpasso-vigo', e)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha y fotos</span>
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setPuntoModalFicha(punto)}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs cursor-pointer"
-                >
-                  <FileText className="w-4 h-4" aria-hidden="true" />
-                  <span>Ver ficha detallada</span>
-                </button>
               )}
 
               <a
@@ -530,7 +453,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     store_id: punto.id,
                   })
                 }
-                className="inline-flex items-center justify-center gap-1.5 min-h-[40px] px-3 py-1.5 rounded-lg bg-[#1FA855] hover:bg-[#178A47] text-white transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] transition-colors"
               >
                 <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>WhatsApp</span>
@@ -542,7 +465,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   setSelectedMapPuntoId(punto.id);
                   document.getElementById('mapa-interactivo-puntos')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-1.5 min-h-[40px] px-2.5 py-1.5 text-[#0F76BB] hover:underline cursor-pointer"
+                className="inline-flex items-center gap-1.5 min-h-[44px] px-2.5 py-1.5 text-[#0C65A1] hover:underline cursor-pointer"
               >
                 <MapIcon className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Ver en mapa</span>
@@ -552,7 +475,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 <a
                   href={zonaPage.url}
                   onClick={(e) => onNavigate(zonaPage.url, e)}
-                  className="inline-flex items-center gap-1 min-h-[40px] px-2 py-1.5 text-[#0F76BB] hover:underline"
+                  className="inline-flex items-center gap-1 min-h-[44px] px-2 py-1.5 text-[#0C65A1] hover:underline"
                 >
                   <span>Ver ficha de {punto.localidad}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -615,7 +538,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {!pageMode && (
             <div className="max-w-3xl mb-10">
-              <p className="text-sm font-bold text-[#0F76BB] mb-2">
+              <p className="text-sm font-bold text-[#0C65A1] mb-2">
                 {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} puntos de recogida colaboradores
               </p>
               <h2
@@ -653,13 +576,13 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       <span className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
                         {zona.localidad}
                       </span>
-                      <ArrowUpRight className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
+                      <ArrowUpRight className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                     </div>
                     <p className="text-xs text-slate-600">
                       {zona.comarca} · CP {zona.codigosPostales}
                     </p>
                   </div>
-                  <span className="mt-3 text-xs font-bold text-[#0F76BB] group-hover:underline">
+                  <span className="mt-3 text-xs font-bold text-[#0C65A1] group-hover:underline">
                     {zona.modoCobertura === 'solo-domicilio'
                       ? `Cobertura a domicilio en ${zona.localidad} →`
                       : `Ver puntos en ${zona.localidad} →`}
@@ -674,7 +597,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="p-1.5 rounded-lg bg-[#EDF5FD] text-[#0F76BB]">
+                  <span className="p-1.5 rounded-lg bg-[#EDF5FD] text-[#0C65A1]">
                     <MapPin className="w-5 h-5" aria-hidden="true" />
                   </span>
                   <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147]">
@@ -689,7 +612,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
             {!mapShouldLoad ? (
               <div className="w-full h-[430px] sm:h-[490px] lg:h-[530px] rounded-2xl border border-slate-200 bg-white flex flex-col items-center justify-center p-6 text-center">
                 <div className="w-14 h-14 rounded-2xl bg-[#EDF5FD] flex items-center justify-center mb-4">
-                  <MapPin className="w-7 h-7 text-[#0F76BB]" />
+                  <MapPin className="w-7 h-7 text-[#0C65A1]" />
                 </div>
                 <h4 className="font-extrabold text-[#002147] text-lg sm:text-xl mb-2">
                   Mapa interactivo de tiendas y puntos Mimos
@@ -713,7 +636,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
               <ErrorBoundary
                 fallback={
                   <div className="w-full h-[430px] sm:h-[490px] lg:h-[530px] rounded-2xl border border-slate-200 bg-white flex flex-col items-center justify-center p-6 text-center">
-                    <MapPin className="w-7 h-7 text-[#0F76BB] mb-2.5" aria-hidden="true" />
+                    <MapPin className="w-7 h-7 text-[#0C65A1] mb-2.5" aria-hidden="true" />
                     <p className="font-extrabold text-[#002147] text-base mb-1">
                       Mapa interactivo no disponible temporalmente
                     </p>
@@ -735,7 +658,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   fallback={
                     <div className="w-full h-[430px] sm:h-[490px] lg:h-[530px] rounded-2xl border border-slate-200 bg-white flex flex-col items-center justify-center p-6 text-center animate-pulse">
                       <div className="w-12 h-12 rounded-full bg-[#EDF5FD] flex items-center justify-center mb-3">
-                        <MapPin className="w-6 h-6 text-[#0F76BB] animate-bounce" />
+                        <MapPin className="w-6 h-6 text-[#0C65A1] animate-bounce" />
                       </div>
                       <p className="font-extrabold text-[#002147] text-base">
                         Cargando mapa y ubicaciones de Mimos...
@@ -785,7 +708,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 value={selectedServicio}
                 onChange={(e) => setSelectedServicio(e.target.value)}
                 aria-label="Filtrar por servicio"
-                className="min-h-[44px] px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                className="min-h-[44px] px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-base lg:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               >
                 <option value="todos">Todos los servicios ({REGISTROS_PUNTOS.length})</option>
                 <option value="costura_arreglos">
@@ -805,7 +728,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   setSelectedTipo(e.target.value as 'todos' | 'tienda' | 'punto')
                 }
                 aria-label="Filtrar por tipo de establecimiento"
-                className="min-h-[44px] px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                className="min-h-[44px] px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-base lg:text-sm font-bold text-[#002147] focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
               >
                 <option value="todos">Todos ({REGISTROS_PUNTOS.length})</option>
                 <option value="tienda">Solo tiendas propias ({TIENDAS_PROPIAS.length})</option>
@@ -828,7 +751,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   value={searchLocation}
                   onChange={(e) => setSearchLocation(e.target.value)}
                   placeholder="Calle, localidad o CP (ej. 36860)..."
-                  className="w-full min-h-[44px] pl-10 pr-4 py-2 rounded-xl border border-slate-300 bg-white text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                  className="w-full min-h-[44px] pl-10 pr-4 py-2 rounded-xl border border-slate-300 bg-white text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                 />
               </div>
             </div>
@@ -838,7 +761,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           {tiendasFiltradas.length > 0 && (
             <div className="mb-12">
               <div className="flex items-center gap-2.5 mb-4">
-                <Store className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
+                <Store className="w-5 h-5 text-[#0C65A1]" aria-hidden="true" />
                 <h3 className="text-xl font-extrabold text-[#002147]">
                   Tiendas propias de Tintorería Mimos en Vigo ({tiendasFiltradas.length})
                 </h3>
@@ -853,7 +776,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           {colaboradoresFiltrados.length > 0 && (
             <div className="mb-14">
               <div className="flex items-center gap-2.5 mb-2">
-                <Handshake className="w-5 h-5 text-[#0F76BB]" aria-hidden="true" />
+                <Handshake className="w-5 h-5 text-[#0C65A1]" aria-hidden="true" />
                 <h3 className="text-xl font-extrabold text-[#002147]">
                   Puntos de recogida en establecimientos colaboradores ({colaboradoresFiltrados.length})
                 </h3>
@@ -870,7 +793,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
           {/* Bloque para captar nuevos comercios colaboradores */}
           <div className="mb-16 rounded-2xl border border-[#0F76BB]/30 bg-[#EDF5FD] p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div className="max-w-2xl">
-              <p className="text-xs font-mono uppercase tracking-wider text-[#0F76BB] font-bold mb-1">
+              <p className="text-xs font-mono uppercase tracking-wider text-[#0C65A1] font-bold mb-1">
                 Red de comercios colaboradores Mimos
               </p>
               <h3 className="text-xl sm:text-2xl font-extrabold text-[#002147] mb-2">
@@ -897,7 +820,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 onClick={() =>
                   trackWhatsAppClick(currentSectionPath, 'partner_acquisition_cta')
                 }
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors text-center sm:whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-3 rounded-xl transition-colors text-center sm:whitespace-nowrap"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>WhatsApp directo</span>
@@ -919,7 +842,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                 <summary className="font-bold text-[#002147] cursor-pointer list-none flex items-center justify-between gap-4 text-sm sm:text-base min-h-[44px]">
                   <span>{faq.pregunta}</span>
                   <span
-                    className="text-[#0F76BB] font-mono text-lg group-open:rotate-45 transition-transform shrink-0"
+                    className="text-[#0C65A1] font-mono text-lg group-open:rotate-45 transition-transform shrink-0"
                     aria-hidden="true"
                   >
                     +
@@ -940,7 +863,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         >
           <div className="lg:col-span-5 space-y-6">
             <div>
-              <p className="text-sm font-bold text-[#0F76BB] mb-1">
+              <p className="text-sm font-bold text-[#0C65A1] mb-1">
                 Contacto directo · {CONTACT_INFO.legalName}
               </p>
               {pageMode === 'contacto' ? (
@@ -978,7 +901,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     Teléfono fijo central
                   </span>
                   <span className="font-extrabold text-base tabular-nums flex items-center gap-1.5">
-                    <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" aria-hidden="true" />
+                    <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" aria-hidden="true" />
                     {CONTACT_INFO.phoneDisplay}
                   </span>
                 </a>
@@ -988,7 +911,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick(currentSectionPath, 'contact_central_whatsapp')}
-                  className="p-4 rounded-xl bg-[#1FA855] hover:bg-[#178A47] text-white transition-colors block min-h-[48px]"
+                  className="p-4 rounded-xl bg-[#1FA855] hover:bg-[#25B860] text-[#002147] transition-colors block min-h-[48px]"
                 >
                   <span className="text-xs text-white/90 block mb-1">
                     WhatsApp y Asistente Mimo
@@ -1011,7 +934,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     </a>
                   </dd>
                 </div>
-                <Mail className="w-5 h-5 text-[#0F76BB] shrink-0" aria-hidden="true" />
+                <Mail className="w-5 h-5 text-[#0C65A1] shrink-0" aria-hidden="true" />
               </div>
 
               {/* Redes Sociales Oficiales */}
@@ -1111,7 +1034,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactReady(false);
                       }}
                       placeholder="Tu nombre"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
                   <div>
@@ -1124,6 +1047,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                     <input
                       id="contact-telefono"
                       type="tel"
+                      inputMode="tel"
                       required
                       autoComplete="tel"
                       aria-required="true"
@@ -1135,7 +1059,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactReady(false);
                       }}
                       placeholder="Ej.: 600 000 000"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
                 </div>
@@ -1158,7 +1082,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactReady(false);
                       }}
                       placeholder="tu@email.com"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     />
                   </div>
                   <div>
@@ -1175,7 +1099,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                         setContactAsunto(e.target.value);
                         setContactReady(false);
                       }}
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base sm:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base lg:text-sm text-slate-900 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                     >
                       <option value="Consulta de precio o prenda">Consulta de precio o prenda</option>
                       <option value="Consulta de Costura y Arreglos de Ropa">
@@ -1215,7 +1139,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       setContactReady(false);
                     }}
                     placeholder="Indícanos qué prenda o servicio necesitas consultar..."
-                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-slate-300 bg-[#F4F9FE]/60 text-base lg:text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#0F76BB] focus:border-[#0F76BB] focus:outline-hidden transition-colors"
                   />
                 </div>
 
@@ -1227,14 +1151,14 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       setContactPrivacidad(e.target.checked);
                       setContactError('');
                     }}
-                    className="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#0F76BB] focus:ring-[#0F76BB]"
+                    className="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#0C65A1] focus:ring-[#0F76BB]"
                   />
                   <span>
                     He leído y acepto la{' '}
                     <a
                       href="/privacidad"
                       onClick={(e) => onNavigate('/privacidad', e)}
-                      className="underline font-bold text-[#0F76BB]"
+                      className="underline font-bold text-[#0C65A1]"
                     >
                       política de privacidad
                     </a>
@@ -1264,7 +1188,7 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
                       onClick={() =>
                         trackWhatsAppClick(currentSectionPath, 'contact_form')
                       }
-                      className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-bold text-sm py-3 px-4 rounded-xl transition-colors"
+                      className="flex-1 min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm py-3 px-4 rounded-xl transition-colors"
                     >
                       <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Enviar por WhatsApp a Mimo</span>
@@ -1284,412 +1208,6 @@ export const ContactAndLocationsSection: React.FC<ContactAndLocationsSectionProp
         </div>
       </div>
 
-      {/* Modal Ficha Detallada de Establecimiento con gestión accesible Dialog */}
-      <Dialog
-        isOpen={Boolean(puntoModalFicha)}
-        onClose={() => setPuntoModalFicha(null)}
-        titleId={puntoModalFicha ? 'modal-ficha-titulo' : undefined}
-        maxWidthClass={
-          puntoModalFicha?.id === 'as-teixugueiras' ||
-          puntoModalFicha?.id === 'punto-o-porrino' ||
-          puntoModalFicha?.id === 'punto-gondomar' ||
-          puntoModalFicha?.id === 'punto-redondela' ||
-          puntoModalFicha?.id === 'punto-ponteareas'
-            ? 'max-w-5xl'
-            : 'max-w-2xl'
-        }
-      >
-        {puntoModalFicha && (
-          puntoModalFicha.id === 'as-teixugueiras' ? (
-            <div className="overflow-y-auto max-h-[92vh]">
-              <React.Suspense
-                fallback={
-                  <div className="p-8 text-center text-sm font-semibold text-slate-600">
-                    Cargando ficha de tienda...
-                  </div>
-                }
-              >
-                <TiendaNaviaFicha
-                  isModal={true}
-                  onClose={() => setPuntoModalFicha(null)}
-                  onNavigate={onNavigate}
-                />
-              </React.Suspense>
-            </div>
-          ) : puntoModalFicha.id === 'punto-o-porrino' ? (
-            <div className="overflow-y-auto max-h-[92vh]">
-              <React.Suspense
-                fallback={
-                  <div className="p-8 text-center text-sm font-semibold text-slate-600">
-                    Cargando ficha de punto colaborador...
-                  </div>
-                }
-              >
-                <PuntoTelasMasFicha
-                  isModal={true}
-                  onClose={() => setPuntoModalFicha(null)}
-                  onNavigate={onNavigate}
-                />
-              </React.Suspense>
-            </div>
-          ) : puntoModalFicha.id === 'punto-gondomar' ? (
-            <div className="overflow-y-auto max-h-[92vh]">
-              <React.Suspense
-                fallback={
-                  <div className="p-8 text-center text-sm font-semibold text-slate-600">
-                    Cargando ficha de punto colaborador...
-                  </div>
-                }
-              >
-                <PuntoGondomarFicha
-                  isModal={true}
-                  onClose={() => setPuntoModalFicha(null)}
-                  onNavigate={onNavigate}
-                />
-              </React.Suspense>
-            </div>
-          ) : puntoModalFicha.id === 'punto-redondela' ? (
-            <div className="overflow-y-auto max-h-[92vh]">
-              <React.Suspense
-                fallback={
-                  <div className="p-8 text-center text-sm font-semibold text-slate-600">
-                    Cargando ficha de punto colaborador...
-                  </div>
-                }
-              >
-                <PuntoRedondelaFicha
-                  isModal={true}
-                  onClose={() => setPuntoModalFicha(null)}
-                  onNavigate={onNavigate}
-                />
-              </React.Suspense>
-            </div>
-          ) : puntoModalFicha.id === 'punto-ponteareas' ? (
-            <div className="overflow-y-auto max-h-[92vh]">
-              <React.Suspense
-                fallback={
-                  <div className="p-8 text-center text-sm font-semibold text-slate-600">
-                    Cargando ficha de punto colaborador...
-                  </div>
-                }
-              >
-                <PuntoArregla2Ficha
-                  isModal={true}
-                  onClose={() => setPuntoModalFicha(null)}
-                  onNavigate={onNavigate}
-                />
-              </React.Suspense>
-            </div>
-          ) : (
-            <>
-              {/* Cabecera del Modal */}
-              <div className="relative px-6 py-5 bg-gradient-to-r from-[#F4F9FE] to-[#EDF5FD] border-b border-slate-200 text-[#002147] shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setPuntoModalFicha(null)}
-                  className="absolute top-4 right-4 w-11 h-11 inline-flex items-center justify-center rounded-full bg-white border border-slate-200 hover:bg-slate-100 text-[#002147] transition-colors cursor-pointer"
-                  aria-label="Cerrar ficha de la tienda"
-                >
-                  <X className="w-5 h-5" aria-hidden="true" />
-                </button>
-
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-[#0F76BB]/25 text-xs font-bold text-[#0F76BB] mb-2">
-                  {puntoModalFicha.tipo === 'tienda' ? (
-                    <>
-                      <Store className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>Tienda Propia Mimos · Taller in situ</span>
-                    </>
-                  ) : (
-                    <>
-                      <Handshake className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>Punto Colaborador Oficial</span>
-                    </>
-                  )}
-                </div>
-
-                <h3 id="modal-ficha-titulo" className="text-xl sm:text-2xl font-black text-[#002147] pr-12">
-                  {puntoModalFicha.nombre_mostrado}
-                </h3>
-                <p className="text-xs text-slate-600 font-medium">
-                  {puntoModalFicha.tipo === 'tienda'
-                    ? 'Tintorería Mimos Navia, S.L. · Atención y taller directo'
-                    : `Comercio colaborador: ${puntoModalFicha.nombre_comercio}`}
-                </p>
-              </div>
-
-              {/* Contenido scrolleable de la ficha */}
-              <div className="px-6 py-5 overflow-y-auto space-y-5 text-slate-800">
-                {/* Fotografías del establecimiento si están disponibles */}
-                {puntoModalFicha.id === 'punto-redondela' ? (
-                  <div className="space-y-1.5">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#002147]">
-                      Fotografías del establecimiento
-                    </p>
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 bg-[#F4F9FE]">
-                        <img
-                          src="/images/mimos-redondela/fachada-mimos-redondela.webp"
-                          alt="Fachada de Mimos Redondela"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 bg-[#F4F9FE]">
-                        <img
-                          src="/images/mimos-redondela/interior-mostrador-mimos-redondela.webp"
-                          alt="Interior y mostrador de Mimos Redondela"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 bg-[#F4F9FE]">
-                        <img
-                          src="/images/mimos-redondela/escaparate-acceso-mimos-redondela.webp"
-                          alt="Acceso comercial de Mimos Redondela"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ) : puntoModalFicha.id === 'punto-ponteareas' ? (
-                  <div className="space-y-1.5">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#002147]">
-                      Fotografías del establecimiento
-                    </p>
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 bg-[#F4F9FE]">
-                        <img
-                          src="/images/arregla2-ponteareas/fachada-arregla2-ponteareas.webp"
-                          alt="Fachada de Arregla2 Ponteareas"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 bg-[#F4F9FE]">
-                        <img
-                          src="/images/arregla2-ponteareas/interior-taller-arregla2-ponteareas.webp"
-                          alt="Interior y taller de costura de Arregla2 Ponteareas"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="aspect-[4/3] rounded-lg overflow-hidden border border-slate-200 bg-[#F4F9FE]">
-                        <img
-                          src="/images/arregla2-ponteareas/escaparate-arregla2-ponteareas.webp"
-                          alt="Acceso comercial y escaparate de Arregla2 Ponteareas"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ) : puntoModalFicha.foto ? (
-                  <div className="aspect-[16/9] rounded-xl overflow-hidden border border-slate-200 bg-[#F4F9FE]">
-                    <img
-                      src={puntoModalFicha.foto}
-                      alt={`Instalaciones de ${puntoModalFicha.nombre_mostrado}`}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                ) : null}
-
-                {/* Ubicación y accesos */}
-                <div className="p-4 rounded-xl bg-[#F4F9FE] border border-slate-200 space-y-2.5">
-                  <div className="flex items-start gap-2.5">
-                    <MapPin className="w-5 h-5 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
-                    <div>
-                      <p className="text-xs font-semibold text-slate-500">Dirección física</p>
-                      <p className="text-sm font-bold text-[#002147]">
-                        {puntoModalFicha.direccion} · {puntoModalFicha.codigo_postal} {puntoModalFicha.localidad}
-                      </p>
-                    </div>
-                  </div>
-
-                  {puntoModalFicha.referencia_local && (
-                    <div className="flex items-start gap-2.5">
-                      <Navigation className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
-                      <div>
-                        <p className="text-xs font-semibold text-slate-500">Referencia visual</p>
-                        <p className="text-xs text-slate-700 font-medium">
-                          {puntoModalFicha.referencia_local}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {puntoModalFicha.aparcamiento && (
-                    <div className="flex items-start gap-2.5">
-                      <Car className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" aria-hidden="true" />
-                      <div>
-                        <p className="text-xs font-semibold text-slate-500">Aparcamiento y descarga</p>
-                        <p className="text-xs text-slate-700 font-medium">
-                          {puntoModalFicha.aparcamiento}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Horario y Teléfonos */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-4 rounded-xl bg-[#F7F6F2] border border-slate-200">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Clock className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#002147]">
-                        Horario de atención
-                      </h4>
-                    </div>
-                    <p className="text-xs text-slate-700 leading-relaxed">
-                      {puntoModalFicha.horario.resumen}
-                    </p>
-                    <p className="text-[11px] text-slate-500 mt-2">
-                      Domingos y festivos: Cerrado
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-[#F7F6F2] border border-slate-200">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Phone className="w-4 h-4 text-[#0F76BB]" aria-hidden="true" />
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#002147]">
-                        Contacto directo
-                      </h4>
-                    </div>
-                    <p className="text-xs text-slate-500 mb-1">Teléfono tienda:</p>
-                    <a
-                      href={`tel:+34${puntoModalFicha.telefono}`}
-                      className="text-base font-extrabold text-[#002147] hover:text-[#0F76BB] hover:underline block mb-2"
-                    >
-                      {puntoModalFicha.telefonos_mostrados}
-                    </a>
-                    <a
-                      href={buildMimoWhatsAppUrl(
-                        `Hola, Mimo. Quiero hacer una consulta sobre la tienda ${puntoModalFicha.nombre_mostrado} (${puntoModalFicha.direccion})`
-                      )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#178A47] hover:underline"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>WhatsApp Mimos ({CONTACT_INFO.whatsappNumber})</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Taller de costura y arreglos si aplica */}
-                {puntoModalFicha.arreglos_confirmados && puntoModalFicha.arreglos_confirmados.length > 0 && (
-                  <div className="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#178A47] flex items-center gap-1.5">
-                        <Scissors className="w-4 h-4" aria-hidden="true" />
-                        <span>Taller propio de costura y arreglos (In situ)</span>
-                      </h4>
-                      <a
-                        href="/arreglos-de-ropa-vigo"
-                        onClick={(e) => {
-                          setPuntoModalFicha(null);
-                          onNavigate('/arreglos-de-ropa-vigo', e);
-                        }}
-                        className="text-xs font-bold text-[#0F76BB] hover:underline"
-                      >
-                        Ver tarifas y prendas →
-                      </a>
-                    </div>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-slate-700">
-                      {puntoModalFicha.arreglos_confirmados.map((arr) => (
-                        <li key={arr} className="flex items-start gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#178A47] shrink-0 mt-0.5" aria-hidden="true" />
-                          <span>{arr}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Servicios confirmados */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#002147] mb-2">
-                    Servicios disponibles en este punto
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {derivarEtiquetasServicios(puntoModalFicha.servicios_confirmados).map((srv) => (
-                      <span
-                        key={srv}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium bg-[#F4F9FE] border border-slate-200 text-[#002147]"
-                      >
-                        <CheckCircle2 className="w-3 h-3 text-[#0F76BB]" aria-hidden="true" />
-                        <span>{srv}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Instrucciones de recogida y entrega */}
-                <div className="p-3.5 rounded-lg bg-[#EDF5FD] border border-[#0F76BB]/25 text-xs text-slate-700">
-                  <p className="font-bold text-[#002147] mb-1">
-                    Recepción y entrega de prendas:
-                  </p>
-                  <p>{puntoModalFicha.instrucciones_entrega_recogida}</p>
-                </div>
-              </div>
-
-              {/* Pie de botones de acción */}
-              <div className="px-6 py-4 bg-[#F4F9FE] border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
-                <a
-                  href={buildGoogleMapsUrl(puntoModalFicha)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-bold text-[#002147] hover:text-[#0F76BB]"
-                >
-                  <span>Cómo llegar (Google Maps)</span>
-                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                </a>
-
-                <div className="flex flex-wrap items-center gap-2">
-                  <a
-                    href={`tel:+34${puntoModalFicha.telefono}`}
-                    onClick={() =>
-                      trackPhoneClick(currentSectionPath, 'point_modal', {
-                        store_id: puntoModalFicha.id,
-                      })
-                    }
-                    className="inline-flex items-center justify-center gap-1 min-h-[44px] text-xs font-bold px-3.5 py-2 rounded-xl bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white transition-colors"
-                  >
-                    <Phone className="w-3.5 h-3.5" aria-hidden="true" />
-                    <span>Llamar</span>
-                  </a>
-
-                  <a
-                    href={buildMimoWhatsAppUrl(
-                      `Hola, Mimo. Quiero consultar para la tienda de ${puntoModalFicha.nombre_mostrado}`
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() =>
-                      trackWhatsAppClick(currentSectionPath, 'point_modal', {
-                        store_id: puntoModalFicha.id,
-                      })
-                    }
-                    className="inline-flex items-center justify-center gap-1 min-h-[44px] text-xs font-bold px-3.5 py-2 rounded-xl bg-[#1FA855] hover:bg-[#178A47] text-white transition-colors"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                    <span>WhatsApp</span>
-                  </a>
-
-                  <button
-                    type="button"
-                    onClick={() => setPuntoModalFicha(null)}
-                    className="min-h-[44px] text-xs font-bold px-3.5 py-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-[#002147] transition-colors cursor-pointer"
-                  >
-                    Cerrar
-                  </button>
-                </div>
-              </div>
-            </>
-          )
-        )}
-      </Dialog>
     </section>
     </>
   );

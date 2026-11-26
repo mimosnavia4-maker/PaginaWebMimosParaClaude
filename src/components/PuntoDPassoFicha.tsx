@@ -18,7 +18,6 @@ import {
   Calendar,
   Bus,
   ChevronDown,
-  ChevronUp,
   Shirt,
   Maximize2,
   Check,
@@ -57,12 +56,13 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
   );
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
-  const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada: {
       url: '/images/dpasso-vigo/fachada-dpasso-vigo.webp',
+      width: 1200,
+      height: 670,
       titulo: "Fachada Principal y Rótulo de D'Passo (Vigo)",
       subtitulo: `Acceso exterior del punto colaborador en ${punto.direccion} (${punto.localidad}).`,
       tag: 'Fachada Principal',
@@ -70,6 +70,8 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
     },
     interior: {
       url: '/images/dpasso-vigo/interior-punto-recogida-dpasso-vigo.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Interior: Vitrina y Punto de Recogida Mimos',
       subtitulo: 'Vitrina dedicada de tintorería y lavandería dentro del establecimiento.',
       tag: 'Interior & Vitrina',
@@ -78,6 +80,8 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
     },
     escaparate: {
       url: '/images/dpasso-vigo/escaparate-dpasso-vigo.webp',
+      width: 1024,
+      height: 765,
       titulo: 'Escaparate Exterior y Relación de Servicios',
       subtitulo: `Escaparate y señalización de servicios Mimos en ${punto.direccion}.`,
       tag: 'Escaparate y Servicios',
@@ -104,10 +108,6 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
     }
   };
 
-  const toggleFaq = (index: number) => {
-    setFaqAbierta(faqAbierta === index ? null : index);
-  };
-
   const handleInternalLink = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClose) onClose();
     if (onNavigate) onNavigate(href, e);
@@ -124,7 +124,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
     },
     {
       q: "¿Se realizan arreglos de costura o composturas en D'Passo?",
-      a: "No. D'Passo actúa como punto colaborador oficial de recogida y entrega para tintorería, lavandería, planchado, colada familiar, ropa de hogar y alfombras, pero no cuenta con taller de costura en el local. Si necesitas bajos, cremalleras o arreglos de ropa, te atendemos en nuestras tiendas propias de Vigo (Navia, Rúa Venezuela y Gregorio Espino).",
+      a: "No. D'Passo actúa como punto colaborador oficial de recogida y entrega para tintorería, lavandería, planchado, colada familiar, ropa de hogar y alfombras, pero no cuenta con taller de costura en el local. Si necesitas bajos, cremalleras o arreglos de ropa, contamos con talleres propios de costura in situ en Vigo (Rúa de Venezuela, 29 y Gregorio Espino, 42) además de recepción y entrega de arreglos en nuestra tienda de Navia.",
     },
     {
       q: '¿Se pueden entregar edredones nórdicos y alfombras grandes en este punto?',
@@ -180,13 +180,15 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
             <img
               src={photos[activeTabPhoto].url}
               alt={photos[activeTabPhoto].titulo}
+              width={photos[activeTabPhoto].width}
+              height={photos[activeTabPhoto].height}
               referrerPolicy="no-referrer"
               onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
+              className="max-h-[75dvh] w-full object-contain"
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
-              <Handshake className="w-10 h-10 text-[#0F76BB] mb-3" />
+              <Handshake className="w-10 h-10 text-[#0C65A1] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
               <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
@@ -194,14 +196,14 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
         </div>
         <div className="p-4 sm:p-6 bg-white border-t border-slate-200 text-[#002147]">
           <div className="flex items-center gap-2 mb-1">
-            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#EDF5FD] text-[#0C65A1]">
               {photos[activeTabPhoto].tag}
             </span>
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-600">
               Punto Colaborador Oficial Mimos · {punto.localidad}
             </span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</p>
           <p className="text-xs sm:text-sm text-slate-700 mt-1">{photos[activeTabPhoto].subtitulo}</p>
           <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
@@ -220,6 +222,8 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                 <img
                   src={photos[activeTabPhoto].url}
                   alt={photos[activeTabPhoto].titulo}
+                  width={photos[activeTabPhoto].width}
+                  height={photos[activeTabPhoto].height}
                   referrerPolicy="no-referrer"
                   onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
                   className={`w-full h-full transition-transform duration-500 ${
@@ -230,7 +234,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
-                  <Handshake className="w-10 h-10 text-[#0F76BB] mb-2" />
+                  <Handshake className="w-10 h-10 text-[#0C65A1] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
                   <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
@@ -244,14 +248,14 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                 className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-md transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-extrabold bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
-                  <Handshake className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Handshake className="w-3.5 h-3.5 text-[#0C65A1]" />
                   Punto Colaborador Oficial Mimos · Vigo
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
@@ -276,7 +280,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -287,7 +291,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('interior')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'interior'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -298,7 +302,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('escaparate')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'escaparate'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -313,13 +317,13 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0C65A1] uppercase tracking-wider">
                   Punto Colaborador Oficial · Vigo
                 </span>
                 <span
                   className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-extrabold ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-50 text-[#178A47] border border-emerald-200'
+                      ? 'bg-emerald-50 text-[#147A3E] border border-emerald-200'
                       : 'bg-slate-100 text-slate-700 border border-slate-200'
                   }`}
                 >
@@ -345,7 +349,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-[#002147] flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <span>
                     <strong>{punto.direccion}</strong>, {punto.codigo_postal} {punto.localidad} (Pontevedra).
                   </span>
@@ -353,13 +357,13 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
 
                 <div className="p-3 rounded-2xl bg-[#F4F9FE] border border-slate-200 space-y-2">
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Car className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+                    <Car className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
                     <span>
                       <strong>Aparcamiento & Acceso:</strong> {punto.aparcamiento} Entrada directa a pie de calle para dejar o recoger prendas pesadas.
                     </span>
                   </div>
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Store className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                    <Store className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                     <span>
                       <strong>Entorno:</strong> En {punto.direccion} (entorno As Travesas / Balaídos), práctico para entregar encargos cerca de casa sin cruzar toda la ciudad.
                     </span>
@@ -375,7 +379,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>WhatsApp con Mimo</span>
@@ -385,7 +389,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-extrabold text-sm py-3 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors shrink-0" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors shrink-0" />
                   <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
@@ -397,7 +401,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#F4F9FE] hover:bg-[#EDF5FD] text-[#002147] border border-slate-300 font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
                 >
-                  <Navigation className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Navigation className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Cómo llegar (Ruta GPS en Google Maps)</span>
                   <ExternalLink className="w-3 h-3 opacity-70" />
                 </a>
@@ -408,7 +412,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-xs font-bold text-[#002147] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
                   title="Copiar enlace directo de este punto"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Share2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span className="hidden sm:inline">{copiedShare ? '¡Copiado!' : 'Compartir'}</span>
                 </button>
               </div>
@@ -423,7 +427,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
           Ventajas y características de D&apos;Passo Vigo como punto colaborador Mimos
         </h2>
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <MapPin className="w-5 h-5" />
           </div>
           <div>
@@ -437,7 +441,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#1FA855] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#147A3E] flex items-center justify-center mb-3">
             <Handshake className="w-5 h-5" />
           </div>
           <div>
@@ -451,7 +455,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
@@ -465,7 +469,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
@@ -486,7 +490,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
           <div>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -532,11 +536,11 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
 
           <div className="mt-6 pt-4 border-t border-slate-200 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-700">
-              <Truck className="w-4 h-4 text-[#0F76BB] shrink-0" />
+              <Truck className="w-4 h-4 text-[#0C65A1] shrink-0" />
               <span><strong>Logística propia:</strong> Traslado en furgoneta de Tintorería Mimos a Navia.</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-700">
-              <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0" />
               <span><strong>Resguardo oficial:</strong> Entrega con ticket numerado y garantía Mimos.</span>
             </div>
           </div>
@@ -599,7 +603,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   key={idx}
                   className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start gap-2.5"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-extrabold text-[#002147] leading-tight">
                       {elem.tit}
@@ -615,14 +619,14 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
 
           <div className="mt-5 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2">
             <span className="text-xs text-slate-700 font-medium flex items-center gap-1.5">
-              <Scissors className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" />
+              <Scissors className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" />
               <span>Sin arreglos de costura en este local: para composturas acude a nuestras tiendas propias.</span>
             </span>
             {onNavigate && (
               <a
                 href="/arreglos-de-ropa-vigo"
                 onClick={(e) => handleInternalLink('/arreglos-de-ropa-vigo', e)}
-                className="min-h-[44px] inline-flex items-center gap-1 text-xs font-bold text-[#0F76BB] hover:underline"
+                className="min-h-[44px] inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1] hover:underline"
               >
                 <span>Ver tiendas con Arreglos de Ropa</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -639,7 +643,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
       >
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0C65A1]">
               Catálogo de Recepción
             </span>
             <span className="text-xs font-bold text-slate-600">100% Confirmado en {punto.localidad}</span>
@@ -673,11 +677,11 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desmanchado artesanal previo en central</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Planchado con prensa de vapor y funda</span>
               </li>
             </ul>
@@ -700,11 +704,11 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Higienización profunda sin apelmazar</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Opción de bolsa al vacío para guardar</span>
               </li>
             </ul>
@@ -714,7 +718,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -727,11 +731,11 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desempolvado mecánico y lavado plano</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Sin tener que desplazarte hasta Navia</span>
               </li>
             </ul>
@@ -754,11 +758,11 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Camisas en percha o dobladas para viaje</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Ropa clasificada, lavada y doblada</span>
               </li>
             </ul>
@@ -768,7 +772,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-amber-700 text-white flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -781,11 +785,11 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Cuidado de tejidos delicados y lino</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Eliminación de olores y alérgenos</span>
               </li>
             </ul>
@@ -795,7 +799,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Truck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -808,11 +812,11 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Rutas propias en Vigo acordadas con Mimo</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Práctico para alfombras y edredones</span>
               </li>
             </ul>
@@ -828,8 +832,8 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-[#0F76BB]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <Calendar className="w-4 h-4 text-[#0C65A1]" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 Operativa Transparente
               </span>
             </div>
@@ -864,7 +868,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   Central Mimos Navia
                 </td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#178A47] border border-emerald-200">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#147A3E] border border-emerald-200">
                     Disponible
                   </span>
                 </td>
@@ -880,7 +884,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   Central Mimos Navia
                 </td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#178A47] border border-emerald-200">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#147A3E] border border-emerald-200">
                     Disponible
                   </span>
                 </td>
@@ -896,7 +900,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   Central Mimos Navia
                 </td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#178A47] border border-emerald-200">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#147A3E] border border-emerald-200">
                     Disponible
                   </span>
                 </td>
@@ -912,7 +916,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   Central Mimos Navia
                 </td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#178A47] border border-emerald-200">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#147A3E] border border-emerald-200">
                     Disponible
                   </span>
                 </td>
@@ -928,7 +932,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   Taller especialista colaborador
                 </td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#178A47] border border-emerald-200">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#147A3E] border border-emerald-200">
                     Disponible
                   </span>
                 </td>
@@ -944,7 +948,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
                   Central Mimos Navia
                 </td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#178A47] border border-emerald-200">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-[#147A3E] border border-emerald-200">
                     Disponible
                   </span>
                 </td>
@@ -980,8 +984,8 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
       >
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Navigation className="w-4 h-4 text-[#0F76BB]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+            <Navigation className="w-4 h-4 text-[#0C65A1]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
               Accesibilidad y Transporte
             </span>
           </div>
@@ -997,7 +1001,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
           {/* Tarjeta Coche y Aparcamiento */}
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                 <Car className="w-4 h-4" />
               </div>
               <h3 className="text-sm font-extrabold text-[#002147]">En Coche Particular</h3>
@@ -1073,8 +1077,8 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
         className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4"
       >
         <div className="flex items-center gap-2 mb-2">
-          <HelpCircle className="w-4 h-4 text-[#0F76BB]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+          <HelpCircle className="w-4 h-4 text-[#0C65A1]" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
             Respuestas Claras
           </span>
         </div>
@@ -1086,34 +1090,20 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
         </p>
 
         <div className="divide-y divide-slate-200 mt-4">
-          {preguntasFrecuentes.map((item, index) => {
-            const abierta = faqAbierta === index;
-            return (
-              <div key={index} className="py-3 sm:py-4">
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(index)}
-                  className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer"
-                  aria-expanded={abierta}
-                >
-                  <span className="flex items-start gap-2">
-                    <span className="text-[#0F76BB] font-black tabular-nums">{index + 1}.</span>
-                    <span>{item.q}</span>
-                  </span>
-                  {abierta ? (
-                    <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
-                  )}
-                </button>
-                {abierta && (
-                  <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-700 leading-relaxed animate-fadeIn">
-                    <p>{item.a}</p>
-                  </div>
-                )}
+          {preguntasFrecuentes.map((item, index) => (
+            <details key={index} className="group py-3 sm:py-4">
+              <summary className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer list-none">
+                <span className="flex items-start gap-2">
+                  <span className="text-[#0C65A1] font-black tabular-nums">{index + 1}.</span>
+                  <span>{item.q}</span>
+                </span>
+                <ChevronDown className="w-4 h-4 text-slate-500 group-open:rotate-180 group-open:text-[#0C65A1] transition-transform shrink-0" />
+              </summary>
+              <div className="mt-2.5 pl-6 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <p>{item.a}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </section>
 
@@ -1124,7 +1114,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
       >
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0F76BB] border border-[#0F76BB]/25">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0C65A1] border border-[#0F76BB]/25">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               La tecnología de Mimos con la comodidad de entregar cerca de ti en Vigo
             </span>
@@ -1140,7 +1130,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+              className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Consultar ahora con Mimo</span>
@@ -1149,7 +1139,7 @@ export const PuntoDPassoFicha: React.FC<PuntoDPassoFichaProps> = ({
               href={`tel:+34${punto.telefono}`}
               className="min-h-[48px] inline-flex items-center justify-center gap-2 bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
             >
-              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
+              <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors" />
               <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>

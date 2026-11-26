@@ -19,7 +19,6 @@ import {
   CreditCard,
   Bus,
   ChevronDown,
-  ChevronUp,
   Shirt,
   Maximize2,
   Check,
@@ -59,12 +58,13 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
   const [activeTabPhoto, setActiveTabPhoto] = useState<'fachada' | 'interior' | 'esquina'>('fachada');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
-  const [faqAbierta, setFaqAbierta] = useState<number | null>(null);
   const [failedPhotos, setFailedPhotos] = useState<Record<string, boolean>>({});
 
   const photos = {
     fachada: {
       url: '/images/gregorio-espino/fachada-mimos-gregorio-espino-vigo.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Fachada Principal y Rótulo Mimos',
       subtitulo: 'Rótulo azul distintivo Tintorería Lavandería Mimos, toldos amarillos y escaparate luminoso en Gregorio Espino 42.',
       tag: 'Fachada Principal',
@@ -72,6 +72,8 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
     },
     interior: {
       url: '/images/gregorio-espino/interior-taller-gregorio-espino-vigo.webp',
+      width: 1200,
+      height: 670,
       titulo: 'Interior: Mostrador de Atención y Oso Mimos',
       subtitulo: 'Mostrador de recepción de prendas, taller de costura in situ y nuestra entrañable mascota Mimos presidiendo la tienda.',
       tag: 'Taller In Situ & Mostrador',
@@ -79,6 +81,8 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
     },
     esquina: {
       url: '/images/gregorio-espino/escaparate-mimos-gregorio-espino-vigo.webp',
+      width: 1024,
+      height: 572,
       titulo: 'Esquina Rúa do Escultor Nogueira',
       subtitulo: 'Perspectiva de la esquina con Escultor Nogueira y acceso directo a la zona de carga y descarga de vehículos.',
       tag: 'Acceso y Carga/Descarga',
@@ -98,10 +102,6 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
       setCopiedShare(true);
       setTimeout(() => setCopiedShare(false), 2500);
     }
-  };
-
-  const toggleFaq = (index: number) => {
-    setFaqAbierta(faqAbierta === index ? null : index);
   };
 
   const preguntasFrecuentes = [
@@ -175,13 +175,15 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             <img
               src={photos[activeTabPhoto].url}
               alt={photos[activeTabPhoto].titulo}
+              width={photos[activeTabPhoto].width}
+              height={photos[activeTabPhoto].height}
               referrerPolicy="no-referrer"
               onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
-              className="max-h-[75vh] w-full object-contain"
+              className="max-h-[75dvh] w-full object-contain"
             />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F4F9FE] text-[#002147]">
-              <Store className="w-10 h-10 text-[#0F76BB] mb-3" />
+              <Store className="w-10 h-10 text-[#0C65A1] mb-3" />
               <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
               <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
             </div>
@@ -192,11 +194,11 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-[#0F76BB] text-white">
               {photos[activeTabPhoto].tag}
             </span>
-            <span className="text-xs text-slate-500">Tienda Propia Mimos · Vigo</span>
+            <span className="text-xs text-slate-600">Tienda Propia Mimos · Vigo</span>
           </div>
-          <h4 className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</h4>
+          <p className="text-base sm:text-lg font-bold text-[#002147]">{photos[activeTabPhoto].titulo}</p>
           <p className="text-xs sm:text-sm text-slate-600 mt-1">{photos[activeTabPhoto].subtitulo}</p>
-          <p className="text-xs text-slate-500 mt-2 border-t border-slate-200 pt-2">
+          <p className="text-xs text-slate-600 mt-2 border-t border-slate-200 pt-2">
             {photos[activeTabPhoto].detalle}
           </p>
         </div>
@@ -213,13 +215,15 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 <img
                   src={photos[activeTabPhoto].url}
                   alt={photos[activeTabPhoto].titulo}
+                  width={photos[activeTabPhoto].width}
+                  height={photos[activeTabPhoto].height}
                   referrerPolicy="no-referrer"
                   onError={() => setFailedPhotos((prev) => ({ ...prev, [activeTabPhoto]: true }))}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] text-[#002147]">
-                  <Store className="w-10 h-10 text-[#0F76BB] mb-2" />
+                  <Store className="w-10 h-10 text-[#0C65A1] mb-2" />
                   <p className="text-sm font-bold">{photos[activeTabPhoto].titulo}</p>
                   <p className="text-xs text-slate-600 mt-1 max-w-md">{photos[activeTabPhoto].subtitulo}</p>
                 </div>
@@ -230,17 +234,17 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               <button
                 type="button"
                 onClick={() => setLightboxOpen(true)}
-                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[40px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-sm transition-colors cursor-pointer border border-slate-200"
+                className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-xl bg-white/95 hover:bg-white text-[#002147] text-xs font-bold shadow-sm transition-colors cursor-pointer border border-slate-200"
                 title="Ampliar foto a pantalla completa"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                <Maximize2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                 <span className="hidden sm:inline">Ampliar</span>
               </button>
 
               {/* Tags flotantes sobre la foto */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 pr-24">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-black bg-white/95 text-[#002147] border border-slate-200 shadow-sm">
-                  <Store className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Store className="w-3.5 h-3.5 text-[#0C65A1]" />
                   Tienda Propia Mimos · Taller In Situ
                 </span>
                 <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#0F76BB] text-white shadow-sm">
@@ -265,7 +269,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('fachada')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'fachada'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -276,7 +280,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('interior')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'interior'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -287,7 +291,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               <button
                 type="button"
                 onClick={() => setActiveTabPhoto('esquina')}
-                className={`flex items-center gap-2 min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
+                className={`flex items-center gap-2 min-h-[44px] px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border cursor-pointer ${
                   activeTabPhoto === 'esquina'
                     ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
                     : 'bg-white text-[#002147] border-slate-300 hover:bg-[#EDF5FD]'
@@ -302,13 +306,13 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-[#0F76BB] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0C65A1] uppercase tracking-wider">
                   Sede O Calvario / Gregorio Espino
                 </span>
                 <span
                   className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-extrabold ${
                     storeStatus.isOpen
-                      ? 'bg-emerald-50 text-[#178A47] border border-emerald-200'
+                      ? 'bg-emerald-50 text-[#147A3E] border border-emerald-200'
                       : 'bg-[#F4F9FE] text-[#002147] border border-slate-200'
                   }`}
                 >
@@ -349,7 +353,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
 
               <div className="mt-4 space-y-2 text-xs">
                 <p className="text-slate-700 flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <span>
                     <strong>Rúa do Alcalde Gregorio Espino, 42, bajo</strong> (esquina con Rúa do Escultor Nogueira), 36205 Vigo (Pontevedra).
                   </span>
@@ -357,13 +361,13 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
 
                 <div className="p-3 rounded-2xl bg-[#F4F9FE] border border-slate-200 space-y-2">
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Car className="w-4 h-4 text-[#1FA855] shrink-0 mt-0.5" />
+                    <Car className="w-4 h-4 text-[#147A3E] shrink-0 mt-0.5" />
                     <span>
                       <strong>Aparcamiento & Descarga:</strong> Zona reservada de carga y descarga justo en la esquina de Escultor Nogueira (a 15 metros). Estacionamiento en batería en calles colindantes.
                     </span>
                   </div>
                   <div className="flex items-start gap-2 text-slate-700">
-                    <Store className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                    <Store className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                     <span>
                       <strong>Entorno:</strong> Frente al paseo peatonal ajardinado de Gregorio Espino, a 4 minutos a pie de la peatonal del Calvario.
                     </span>
@@ -379,7 +383,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-xs transition-all"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-sm py-3 px-4 rounded-xl shadow-xs transition-all"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>WhatsApp de Tienda</span>
@@ -389,7 +393,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                   href={`tel:+34${punto.telefono}`}
                   className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 border border-[#002147] hover:bg-[#002147] text-[#002147] hover:text-white font-extrabold text-sm py-3 px-4 rounded-xl transition-all group"
                 >
-                  <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white shrink-0" />
+                  <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white shrink-0" />
                   <span>Llamar: {punto.telefonos_mostrados}</span>
                 </a>
               </div>
@@ -401,7 +405,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#F4F9FE] hover:bg-[#EDF5FD] border border-slate-200 text-[#002147] font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
                 >
-                  <Navigation className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Navigation className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span>Cómo llegar (Ruta GPS en Google Maps)</span>
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
@@ -412,7 +416,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                   className="inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-xs font-bold text-[#002147] hover:bg-[#F4F9FE] transition-colors cursor-pointer"
                   title="Copiar enlace directo de la tienda"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-[#0F76BB]" />
+                  <Share2 className="w-3.5 h-3.5 text-[#0C65A1]" />
                   <span className="hidden sm:inline">{copiedShare ? '¡Copiado!' : 'Compartir'}</span>
                 </button>
               </div>
@@ -425,7 +429,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
       <section aria-labelledby="seccion-ventajas" className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <h2 id="seccion-ventajas" className="sr-only">Ventajas y características de Mimos Gregorio Espino</h2>
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Scissors className="w-5 h-5" />
           </div>
           <div>
@@ -437,7 +441,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#1FA855] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#147A3E] flex items-center justify-center mb-3">
             <Car className="w-5 h-5" />
           </div>
           <div>
@@ -449,7 +453,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
         </div>
 
         <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center mb-3">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center mb-3">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
@@ -480,7 +484,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           <div>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-[#EDF5FD] text-[#0C65A1] flex items-center justify-center">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -514,23 +518,23 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center text-slate-500">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center text-slate-600">
                 <div>
                   <span className="font-medium">Domingos y Festivos</span>
-                  <p className="text-[11px] text-slate-400">Descanso del personal</p>
+                  <p className="text-[11px] text-slate-600">Descanso del personal</p>
                 </div>
-                <span className="font-bold text-slate-400">Cerrado</span>
+                <span className="font-bold text-slate-600">Cerrado</span>
               </div>
             </div>
           </div>
 
           <div className="mt-6 pt-4 border-t border-slate-200 space-y-2">
             <div className="flex items-center gap-2 text-xs text-slate-600">
-              <CreditCard className="w-4 h-4 text-[#0F76BB] shrink-0" />
+              <CreditCard className="w-4 h-4 text-[#0C65A1] shrink-0" />
               <span><strong>Cobro disponible:</strong> Tarjeta (Contactless / Apple Pay) y Efectivo (sin Bizum).</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-600">
-              <ShieldCheck className="w-4 h-4 text-[#1FA855] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#147A3E] shrink-0" />
               <span><strong>Resguardo oficial:</strong> Entrega con ticket de depósito garantizado.</span>
             </div>
           </div>
@@ -553,8 +557,8 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                   </p>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-black bg-white border border-[#0F76BB]/25 text-[#0F76BB]">
-                <Sparkles className="w-3.5 h-3.5 text-[#0F76BB]" />
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-black bg-white border border-[#0F76BB]/25 text-[#0C65A1]">
+                <Sparkles className="w-3.5 h-3.5 text-[#0C65A1]" />
                 Servicio Exprés (bajo consulta)
               </span>
             </div>
@@ -576,7 +580,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                   key={idx}
                   className="p-3 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-start gap-2.5"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-extrabold text-[#002147] leading-tight">
                       {elem.tit}
@@ -598,7 +602,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               <a
                 href="/arreglos-de-ropa-vigo"
                 onClick={(e) => onNavigate('/arreglos-de-ropa-vigo', e)}
-                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0F76BB] hover:underline"
+                className="inline-flex items-center gap-1 min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline"
               >
                 <span>Ver sección completa de Arreglos de Ropa</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -612,7 +616,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
       <section aria-labelledby="seccion-servicios" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0F76BB]">
+            <span className="px-2.5 py-1 rounded-md text-xs font-black bg-[#EDF5FD] text-[#0C65A1]">
               Catálogo de Mostrador
             </span>
             <span className="text-xs font-bold text-slate-500">100% Confirmado en Gregorio Espino</span>
@@ -643,11 +647,11 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desmanchado artesanal previo a mano</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Planchado con prensa de vapor y entrega en percha</span>
               </li>
             </ul>
@@ -670,11 +674,11 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Tratamiento bactericida y antiácaros higiénico</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Opción de envasado al vacío para guardar en armario</span>
               </li>
             </ul>
@@ -684,7 +688,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Car className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -697,11 +701,11 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Desempolvado mecánico profundo y lavado plano</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Carga y descarga en Escultor Nogueira para tu comodidad</span>
               </li>
             </ul>
@@ -724,11 +728,11 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Camisas en percha con funda o dobladas para viaje</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Coladas higienizadas con detergentes dermatológicos</span>
               </li>
             </ul>
@@ -738,7 +742,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-amber-700 text-white flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -751,11 +755,11 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Peletería artesana con productos libres de solventes agresivos</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Tratamiento hidrófugo antimanchas opcional</span>
               </li>
             </ul>
@@ -765,7 +769,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                   <Truck className="w-4 h-4" />
                 </div>
                 <h3 className="text-sm font-extrabold text-[#002147]">
@@ -778,11 +782,11 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
             </div>
             <ul className="text-xs text-slate-600 space-y-1 border-t border-slate-200 pt-3">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Franjas horarias concertadas por WhatsApp</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#1FA855] shrink-0" />
+                <Check className="w-3.5 h-3.5 text-[#147A3E] shrink-0" />
                 <span>Ideal para alfombras o lotes de ropa de invierno</span>
               </li>
             </ul>
@@ -812,8 +816,8 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-[#0F76BB]" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+              <Calendar className="w-4 h-4 text-[#0C65A1]" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
                 Planificación Transparente
               </span>
             </div>
@@ -857,7 +861,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 </td>
                 <td className="py-3 px-3 text-slate-700 font-semibold tabular-nums">48 a 72 horas</td>
                 <td className="py-3 px-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0F76BB] border border-[#0F76BB]/20">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EDF5FD] text-[#0C65A1] border border-[#0F76BB]/20">
                     24h a 48h bajo consulta
                   </span>
                 </td>
@@ -914,8 +918,8 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
       <section aria-labelledby="seccion-llegar" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Navigation className="w-4 h-4 text-[#0F76BB]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+            <Navigation className="w-4 h-4 text-[#0C65A1]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
               Accesibilidad y Transporte
             </span>
           </div>
@@ -931,7 +935,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
           {/* Tarjeta Coche y Carga/Descarga */}
           <div className="p-5 rounded-2xl bg-[#F7F6F2] border border-slate-200 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-white flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#1FA855] text-[#002147] flex items-center justify-center">
                 <Car className="w-4 h-4" />
               </div>
               <h3 className="text-sm font-extrabold text-[#002147]">En Coche Particular</h3>
@@ -968,7 +972,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
                 href="https://www.vitrasa.es"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-[#0F76BB] underline hover:text-[#002147]"
+                className="font-semibold text-[#0C65A1] underline hover:text-[#002147]"
               >
                 vitrasa.es
               </a>
@@ -1017,8 +1021,8 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
       {/* 7. PREGUNTAS FRECUENTES (FAQ) DE LA TIENDA GREGORIO ESPINO */}
       <section aria-labelledby="seccion-faq" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
         <div className="flex items-center gap-2 mb-2">
-          <HelpCircle className="w-4 h-4 text-[#0F76BB]" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0F76BB]">
+          <HelpCircle className="w-4 h-4 text-[#0C65A1]" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0C65A1]">
             Respuestas Claras
           </span>
         </div>
@@ -1030,34 +1034,20 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
         </p>
 
         <div className="divide-y divide-slate-200 mt-4">
-          {preguntasFrecuentes.map((item, index) => {
-            const abierta = faqAbierta === index;
-            return (
-              <div key={index} className="py-3 sm:py-4">
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(index)}
-                  className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer"
-                  aria-expanded={abierta}
-                >
-                  <span className="flex items-start gap-2">
-                    <span className="text-[#0F76BB] font-black">{index + 1}.</span>
-                    <span>{item.q}</span>
-                  </span>
-                  {abierta ? (
-                    <ChevronUp className="w-4 h-4 text-[#0F76BB] shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
-                  )}
-                </button>
-                {abierta && (
-                  <div className="mt-2 pl-6 text-xs sm:text-sm text-slate-600 leading-relaxed animate-fadeIn">
-                    <p>{item.a}</p>
-                  </div>
-                )}
+          {preguntasFrecuentes.map((item, index) => (
+            <details key={index} className="group py-3 sm:py-4">
+              <summary className="w-full min-h-[44px] py-2 flex items-center justify-between text-left gap-4 font-bold text-xs sm:text-sm text-[#002147] hover:text-[#0F76BB] transition-colors cursor-pointer list-none">
+                <span className="flex items-start gap-2">
+                  <span className="text-[#0C65A1] font-black">{index + 1}.</span>
+                  <span>{item.q}</span>
+                </span>
+                <ChevronDown className="w-4 h-4 text-slate-500 group-open:rotate-180 group-open:text-[#0C65A1] transition-transform shrink-0" />
+              </summary>
+              <div className="mt-2 pl-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p>{item.a}</p>
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </section>
 
@@ -1065,7 +1055,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
       <section aria-labelledby="seccion-confianza" className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#F4F9FE] to-[#EDF5FD] border border-slate-200 text-[#002147] shadow-sm relative overflow-hidden">
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0F76BB] border border-[#0F76BB]/25">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-white text-[#0C65A1] border border-[#0F76BB]/25">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               Más de 15 años cuidando los textiles de Vigo
             </span>
@@ -1081,7 +1071,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#178A47] text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
+              className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-sm transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Consultar ahora con Mimo</span>
@@ -1090,7 +1080,7 @@ export const TiendaGregorioEspinoFicha: React.FC<TiendaGregorioEspinoFichaProps>
               href={`tel:+34${punto.telefono}`}
               className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-white/95 hover:bg-[#002147] text-[#002147] hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-[#002147] transition-colors group tabular-nums"
             >
-              <Phone className="w-4 h-4 text-[#0F76BB] group-hover:text-white transition-colors" />
+              <Phone className="w-4 h-4 text-[#0C65A1] group-hover:text-white transition-colors" />
               <span>Llamar al {punto.telefonos_mostrados}</span>
             </a>
           </div>
