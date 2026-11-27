@@ -6,6 +6,7 @@ import {
   X,
   ChevronDown,
   ChevronRight,
+  ChevronLeft,
   ArrowRight,
   Sparkles,
   Store,
@@ -36,14 +37,19 @@ export const Header: React.FC<HeaderProps> = ({
   const [activeMenu, setActiveMenu] = useState<ActiveMegaMenu>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileExpandedSection, setMobileExpandedSection] = useState<string | null>(null);
+  const [mobileSlideDirection, setMobileSlideDirection] = useState<'forward' | 'back'>('forward');
   const [isTrackingModalOpen, setIsTrackingModalOpen] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
+  const [canScrollNavLeft, setCanScrollNavLeft] = useState(false);
+  const [canScrollNavRight, setCanScrollNavRight] = useState(true);
   const menuCloseTimeoutRef = useRef<number | null>(null);
   const trackingLinkRef = useRef<HTMLAnchorElement | null>(null);
   const orderInputRef = useRef<HTMLInputElement | null>(null);
   const mobileMenuBtnRef = useRef<HTMLButtonElement | null>(null);
   const mobileDrawerRef = useRef<HTMLDivElement | null>(null);
   const mobileCloseBtnRef = useRef<HTMLButtonElement | null>(null);
+  const mobileScrollRef = useRef<HTMLDivElement | null>(null);
+  const chapterNavRef = useRef<HTMLDivElement | null>(null);
   const skipMobileRestoreFocusRef = useRef(false);
 
   const trackingWhatsAppUrl = buildMimoWhatsAppUrl(
@@ -80,7 +86,10 @@ export const Header: React.FC<HeaderProps> = ({
 
   // Gestión de foco accesible, bloqueo de scroll y trampa de tabulación para el drawer móvil
   useEffect(() => {
-    if (!mobileMenuOpen) return;
+    if (!mobileMenuOpen) {
+      setMobileExpandedSection(null);
+      return;
+    }
 
     skipMobileRestoreFocusRef.current = false;
     const originalOverflow = document.body.style.overflow;
@@ -143,12 +152,61 @@ export const Header: React.FC<HeaderProps> = ({
   // Cerrar menús al cambiar de ruta
   useEffect(() => {
     setActiveMenu(null);
+    setMobileExpandedSection(null);
     if (mobileMenuOpen) {
       skipMobileRestoreFocusRef.current = true;
       setMobileMenuOpen(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPath]);
+
+  // Actualizar visibilidad de las flechas < y > según posición real de scroll
+  const updateChapterNavArrows = () => {
+    const el = chapterNavRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollNavLeft(scrollLeft > 12);
+    setCanScrollNavRight(scrollLeft + clientWidth < scrollWidth - 12);
+  };
+
+  useEffect(() => {
+    updateChapterNavArrows();
+    const el = chapterNavRef.current;
+    let resizeObserver: ResizeObserver | null = null;
+    if (el && typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(updateChapterNavArrows);
+      resizeObserver.observe(el);
+    }
+    const timer = window.setTimeout(updateChapterNavArrows, 180);
+    window.addEventListener('resize', updateChapterNavArrows);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('resize', updateChapterNavArrows);
+      resizeObserver?.disconnect();
+    };
+  }, [currentPath]);
+
+  const scrollChapterNav = (direction: 'left' | 'right') => {
+    const el = chapterNavRef.current;
+    if (!el) return;
+    const step = Math.max(200, Math.round(el.clientWidth * 0.65));
+    el.scrollBy({
+      left: direction === 'left' ? -step : step,
+      behavior: 'smooth',
+    });
+  };
+
+  const openMobileSubmenu = (section: string) => {
+    setMobileSlideDirection('forward');
+    setMobileExpandedSection(section);
+    mobileScrollRef.current?.scrollTo({ top: 0 });
+  };
+
+  const closeMobileSubmenu = () => {
+    setMobileSlideDirection('back');
+    setMobileExpandedSection(null);
+    mobileScrollRef.current?.scrollTo({ top: 0 });
+  };
 
   const handleMouseEnterMenu = (menu: ActiveMegaMenu) => {
     if (menuCloseTimeoutRef.current) {
@@ -169,6 +227,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const handleLinkClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     setActiveMenu(null);
+    setMobileExpandedSection(null);
     if (mobileMenuOpen) {
       skipMobileRestoreFocusRef.current = true;
       setMobileMenuOpen(false);
@@ -182,7 +241,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
-      {/* Estilos CSS embebidos para animación de caída suave tipo telón */}
+      {/* Estilos CSS embebidos para animación de caída suave, transiciones móviles y scroll limpio */}
       <style>{`
         @keyframes curtainDrop {
           0% {
@@ -197,6 +256,39 @@ export const Header: React.FC<HeaderProps> = ({
         .animate-curtain-drop {
           animation: curtainDrop 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
           transform-origin: top center;
+        }
+        @keyframes slideInRight {
+          0% {
+            opacity: 0;
+            transform: translateX(24px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes slideInLeft {
+          0% {
+            opacity: 0;
+            transform: translateX(-24px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .animate-slide-in-right {
+          animation: slideInRight 220ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .animate-slide-in-left {
+          animation: slideInLeft 220ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
 
@@ -213,34 +305,45 @@ export const Header: React.FC<HeaderProps> = ({
         className="sticky top-0 z-50 select-none bg-white/95 backdrop-blur-xs text-[#002147] border-b border-slate-200 shadow-xs"
         onMouseLeave={handleMouseLeaveMenu}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-2.5 sm:py-3 gap-3 lg:gap-5">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-2 sm:py-3 gap-1 sm:gap-3 lg:gap-5">
             {/* =========================================================================
                 1. BLOQUE IZQUIERDO (Identidad y Marca a doble altura)
                 ========================================================================= */}
-            <div className="flex items-center shrink-0">
+            <div className="flex items-center min-w-0 shrink lg:shrink-0 overflow-hidden">
               <a
                 href="/"
                 onClick={(e) => handleLinkClick('/', e)}
-                className="flex items-center gap-3 group focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xl pr-1"
-                aria-label="Tintorería Mimos - Volver a la portada principal"
+                className="flex items-center gap-1.5 sm:gap-3 group focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-xl pr-1 min-w-0"
+                aria-label="Tintorería Mimos Navia - Volver a la portada principal"
               >
                 <img
                   src={IMAGES.logoMimos}
                   alt="Tintorería Mimos Navia"
                   width={48}
                   height={48}
-                  className="w-12 h-12 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform bg-[#EDF5FD] border border-[#002147]/10"
+                  className="w-9 h-9 sm:w-12 sm:h-12 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform bg-[#EDF5FD] border border-[#002147]/10"
                 />
-                <div className="flex flex-col">
-                  <span className="font-extrabold text-base sm:text-lg tracking-tight leading-tight text-[#002147]">
+                <div className="flex flex-col min-w-0 leading-none">
+                  {/* Móvil (< sm): 3 líneas compactas TINTORERÍA / MIMOS NAVIA / VIGO */}
+                  <span className="sm:hidden text-[9px] font-bold tracking-[0.12em] uppercase text-[#002147]/85">
+                    Tintorería
+                  </span>
+                  <span className="sm:hidden font-extrabold text-[13px] min-[360px]:text-[14px] tracking-tight leading-[1.08] text-[#0F76BB] mt-0.5 whitespace-nowrap">
+                    MIMOS NAVIA
+                  </span>
+
+                  {/* Tablet y escritorio (>= sm): marca en una línea */}
+                  <span className="hidden sm:inline font-extrabold text-lg tracking-tight leading-tight text-[#002147] whitespace-nowrap">
                     TINTORERÍA{' '}
                     <span className="text-[#0C65A1]">
                       MIMOS
                     </span>
                   </span>
-                  <span className="text-[10px] sm:text-[11px] font-medium tracking-wider uppercase text-slate-600">
-                    Navia · Vigo · Cuidado Textil
+
+                  <span className="text-[8.5px] sm:text-[11px] font-semibold tracking-wider uppercase text-slate-600 truncate mt-0.5">
+                    <span className="sm:hidden">Vigo</span>
+                    <span className="hidden sm:inline">Navia · Vigo · Cuidado Textil</span>
                   </span>
                 </div>
               </a>
@@ -463,22 +566,32 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Botonera para pantallas móviles / tablets (< lg) */}
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 lg:hidden">
+              {/* WhatsApp en tablet (768–1023 px), oculto en móvil (< 768 px) porque ya está en la barra inferior fija */}
               <a
                 href={CONTACT_INFO.whatsappGeneralHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'header_mobile_icon')}
-                className="hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] transition-colors"
+                className="hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl bg-[#1FA855] hover:bg-[#25B860] text-[#002147] transition-colors"
                 aria-label="WhatsApp con Mimo"
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5" aria-hidden="true" />
               </a>
+              <button
+                type="button"
+                onClick={() => setIsTrackingModalOpen(true)}
+                className="inline-flex items-center justify-center gap-1 sm:gap-1.5 min-h-[44px] px-2 sm:px-3 py-1.5 rounded-xl bg-[#EDF5FD] hover:bg-[#DCEBFA] border border-[#002147]/15 text-[#002147] text-[11px] sm:text-xs font-extrabold whitespace-nowrap transition-colors cursor-pointer active:scale-95"
+                aria-label="Consultar estado de tu pedido"
+              >
+                <Package className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
+                <span>Consulta pedido</span>
+              </button>
               <button
                 ref={mobileMenuBtnRef}
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] text-[#002147] hover:bg-[#EDF5FD]"
+                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-1.5 sm:p-2 rounded-xl transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] text-[#002147] hover:bg-[#EDF5FD] cursor-pointer"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Abrir menú de navegación"
               >
@@ -1290,6 +1403,114 @@ export const Header: React.FC<HeaderProps> = ({
       </header>
 
       {/* =========================================================================
+          BANDA HORIZONTAL DE ACCESOS RÁPIDOS CON OSITOS (ESTILO IKEA, SOLO < lg, NO STICKY)
+          ========================================================================= */}
+      <nav
+        aria-label="Accesos rápidos de servicios"
+        className="lg:hidden relative bg-white border-b border-slate-200/70"
+      >
+        {canScrollNavLeft && (
+          <button
+            type="button"
+            onClick={() => scrollChapterNav('left')}
+            aria-label="Desplazar servicios a la izquierda"
+            className="absolute inset-y-0 left-0 z-10 w-8 flex items-center justify-start pl-1 bg-gradient-to-r from-white via-white/95 to-transparent text-slate-600 hover:text-[#002147] active:scale-95 transition-colors cursor-pointer"
+          >
+            <ChevronLeft className="w-4 h-4 stroke-[2.25]" aria-hidden="true" />
+          </button>
+        )}
+
+        <div
+          ref={chapterNavRef}
+          onScroll={updateChapterNavArrows}
+          className="flex items-center overflow-x-auto no-scrollbar snap-x snap-mandatory px-3 py-2.5 gap-2"
+        >
+          {[
+            {
+              label: 'Tintorería y lavandería',
+              href: '/tintoreria-vigo',
+              imgSrc: '/images/ositos/osito-tintoreria.webp',
+              imgAlt: 'Osito Mimos con traje para tintorería y lavandería',
+            },
+            {
+              label: 'Costura y arreglos',
+              href: '/arreglos-de-ropa-vigo',
+              imgSrc: '/images/ositos/osito-costura.webp',
+              imgAlt: 'Osito Mimos con tijeras y cinta métrica para costura y arreglos',
+            },
+            {
+              label: 'Sofás a domicilio',
+              href: '/limpieza-sofas-vigo',
+              imgSrc: '/images/ositos/osito-sofas.webp',
+              imgAlt: 'Osito Mimos limpiando un sofá a domicilio',
+            },
+            {
+              label: 'Alfombras y arreglos',
+              href: '/limpieza-alfombras-vigo',
+              imgSrc: '/images/ositos/osito-alfombras.webp',
+              imgAlt: 'Osito Mimos enrollando una alfombra con flecos',
+            },
+            {
+              label: 'Limpieza profesional',
+              href: '/limpieza-profesional-vigo',
+              imgSrc: '/images/ositos/osito-limpieza.webp',
+              imgAlt: 'Osito Mimos con mopa y cubo para limpieza profesional',
+            },
+            {
+              label: 'Alojamientos turísticos',
+              href: '/limpieza-apartamentos-turisticos-vigo',
+              imgSrc: '/images/ositos/osito-apartamentos.webp',
+              imgAlt: 'Osito Mimos con llaves para alojamientos turísticos',
+            },
+          ].map((item) => {
+            const isActive =
+              currentPath === item.href ||
+              (item.href === '/limpieza-alfombras-vigo' && currentPath === '/reparacion-alfombras-vigo');
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleLinkClick(item.href, e)}
+                className={`snap-start shrink-0 h-[44px] pl-1.5 pr-4 rounded-full inline-flex items-center gap-2 border transition-colors group focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] ${
+                  isActive
+                    ? 'bg-[#EDF5FD] border-[#0F76BB] text-[#0C65A1]'
+                    : 'bg-[#F3F4F6] hover:bg-[#EDF5FD] border-transparent text-[#002147]'
+                }`}
+              >
+                <img
+                  src={item.imgSrc}
+                  alt={item.imgAlt}
+                  width={34}
+                  height={34}
+                  loading="eager"
+                  decoding="async"
+                  className="w-[34px] h-[34px] object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
+                />
+                <span
+                  className={`text-[12px] font-bold whitespace-nowrap leading-none ${
+                    isActive ? 'text-[#0C65A1]' : 'text-[#002147] group-hover:text-[#0C65A1]'
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+
+        {canScrollNavRight && (
+          <button
+            type="button"
+            onClick={() => scrollChapterNav('right')}
+            aria-label="Desplazar servicios a la derecha"
+            className="absolute inset-y-0 right-0 z-10 w-8 flex items-center justify-end pr-1 bg-gradient-to-l from-white via-white/95 to-transparent text-slate-600 hover:text-[#002147] active:scale-95 transition-colors cursor-pointer"
+          >
+            <ChevronRight className="w-4 h-4 stroke-[2.25]" aria-hidden="true" />
+          </button>
+        )}
+      </nav>
+
+      {/* =========================================================================
           MODAL DE SEGUIMIENTO: CONSULTAR ESTADO DE PEDIDO (Dialog accesible)
           ========================================================================= */}
       <Dialog
@@ -1381,397 +1602,674 @@ export const Header: React.FC<HeaderProps> = ({
       </Dialog>
 
       {/* =========================================================================
-          MENÚ MÓVIL LATERAL (Drawer accesible para pantallas pequeñas < lg)
+          MENÚ MÓVIL PANTALLA COMPLETA EN 2 NIVELES (Estilo Apple / IKEA < lg)
           ========================================================================= */}
       {mobileMenuOpen && (
         <div
+          ref={mobileDrawerRef}
           role="dialog"
           aria-modal="true"
           aria-label="Menú de navegación móvil"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setMobileMenuOpen(false);
-            }
-          }}
-          className="fixed inset-0 z-50 lg:hidden bg-black/60 backdrop-blur-xs flex justify-end animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 lg:hidden bg-white text-[#002147] flex flex-col animate-in fade-in duration-150"
         >
-          <div
-            ref={mobileDrawerRef}
-            className="w-full max-w-sm h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl bg-white text-[#002147]"
-          >
-            <div>
-              {/* Cabecera del drawer */}
-              <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
-                <div className="flex items-center gap-2.5">
-                  <img
-                    src={IMAGES.logoMimos}
-                    alt=""
-                    width={36}
-                    height={36}
-                    className="w-9 h-9 rounded-full p-0.5 bg-[#EDF5FD]"
-                  />
+          {/* Cabecera fija del menú móvil (cambia entre Nivel 1 y Nivel 2 con botón Volver) */}
+          <div className="shrink-0 px-4 py-3 border-b border-slate-200 bg-white flex items-center justify-between gap-2">
+            {mobileExpandedSection === null ? (
+              <div className="flex items-center gap-2.5">
+                <img
+                  src={IMAGES.logoMimos}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="w-9 h-9 rounded-full p-0.5 bg-[#EDF5FD]"
+                />
+                <div className="flex flex-col leading-tight">
                   <span className="font-extrabold text-sm tracking-tight text-[#002147]">
-                    TINTORERÍA MIMOS
+                    TINTORERÍA{' '}
+                    <span className="text-[#0F76BB]">MIMOS NAVIA</span>
+                  </span>
+                  <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-wider">
+                    Vigo
                   </span>
                 </div>
-                <button
-                  ref={mobileCloseBtnRef}
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
-                  aria-label="Cerrar menú"
-                >
-                  <X className="w-5 h-5" />
-                </button>
               </div>
+            ) : (
+              <button
+                type="button"
+                onClick={closeMobileSubmenu}
+                className="min-h-[44px] pl-1 pr-3 -ml-1 inline-flex items-center gap-1 rounded-xl text-sm font-extrabold text-[#0C65A1] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-5 h-5" aria-hidden="true" />
+                <span>Menú</span>
+              </button>
+            )}
 
+            {mobileExpandedSection !== null && (
+              <span className="text-sm font-extrabold text-[#002147] truncate">
+                {mobileExpandedSection === 'tintoreria' && 'Tintorería y lavandería'}
+                {mobileExpandedSection === 'limpieza' && 'Limpieza profesional'}
+                {mobileExpandedSection === 'apartamentos' && 'Alojamientos turísticos'}
+                {mobileExpandedSection === 'alfombras' && 'Alfombras'}
+                {mobileExpandedSection === 'puntos' && 'Puntos Mimos'}
+              </span>
+            )}
 
-              {/* Lista de navegación móvil */}
-              <nav className="space-y-2 text-sm font-semibold">
-                {/* 1. Tintorería y lavandería */}
-                <div>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setMobileExpandedSection(
-                        mobileExpandedSection === 'tintoreria' ? null : 'tintoreria'
-                      )
-                    }
-                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold text-[#002147] hover:bg-[#EDF5FD]"
-                  >
-                    <span>Tintorería y lavandería</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        mobileExpandedSection === 'tintoreria'
-                          ? 'rotate-180 text-[#0C65A1]'
-                          : ''
+            <button
+              ref={mobileCloseBtnRef}
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-xl text-slate-600 hover:text-[#002147] hover:bg-[#EDF5FD] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] transition-colors cursor-pointer"
+              aria-label="Cerrar menú"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Área de contenido con scroll independiente y transición lateral */}
+          <div ref={mobileScrollRef} className="flex-1 overflow-y-auto px-4 py-2">
+            {/* NIVEL 1: Secciones reales de la web + Blog al final */}
+            {mobileExpandedSection === null && (
+              <div
+                key="mobile-root"
+                className={mobileSlideDirection === 'back' ? 'animate-slide-in-left' : ''}
+              >
+                <nav aria-label="Navegación principal" className="divide-y divide-slate-100">
+                  {[
+                    {
+                      id: 'tintoreria',
+                      title: 'Tintorería y lavandería',
+                      desc: 'Trajes, ceremonia, colada, hogar y domicilio',
+                    },
+                    {
+                      id: 'limpieza',
+                      title: 'Limpieza profesional',
+                      desc: 'Casas, oficinas, comunidades, sofás y empresas',
+                    },
+                    {
+                      id: 'apartamentos',
+                      title: 'Alojamientos turísticos',
+                      desc: 'Limpieza en rotación y lencería para anfitriones',
+                    },
+                    {
+                      id: 'alfombras',
+                      title: 'Alfombras',
+                      desc: 'Limpieza por fibra y arreglo de flecos y bordes',
+                    },
+                    {
+                      id: 'puntos',
+                      title: 'Puntos Mimos',
+                      desc: '3 tiendas propias en Vigo y 5 colaboradores',
+                    },
+                  ].map((cat) => (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => openMobileSubmenu(cat.id)}
+                      className="w-full min-h-[52px] py-2.5 px-2 flex items-center justify-between gap-3 text-left rounded-xl hover:bg-[#EDF5FD]/60 active:bg-[#EDF5FD] transition-colors cursor-pointer"
+                    >
+                      <div className="min-w-0">
+                        <span className="block text-[15px] font-extrabold text-[#002147] leading-snug">
+                          {cat.title}
+                        </span>
+                        <span className="block text-xs text-slate-600 mt-0.5 truncate">
+                          {cat.desc}
+                        </span>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-slate-500 shrink-0" aria-hidden="true" />
+                    </button>
+                  ))}
+
+                  {[
+                    {
+                      title: 'Costura y arreglos',
+                      desc: 'Taller propio en Gregorio Espino y Venezuela',
+                      href: '/arreglos-de-ropa-vigo',
+                    },
+                    {
+                      title: 'Limpieza de sofás',
+                      desc: 'Tapicerías, sillones y colchones a domicilio',
+                      href: '/limpieza-sofas-vigo',
+                    },
+                    {
+                      title: 'Blog y guías textiles',
+                      desc: 'Consejos de cuidado textil y limpieza en casa',
+                      href: '/blog',
+                    },
+                  ].map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => handleLinkClick(link.href, e)}
+                      className={`w-full min-h-[52px] py-2.5 px-2 flex items-center justify-between gap-3 text-left rounded-xl transition-colors ${
+                        currentPath === link.href
+                          ? 'bg-[#EDF5FD] text-[#0C65A1]'
+                          : 'hover:bg-[#EDF5FD]/60 active:bg-[#EDF5FD]'
                       }`}
-                    />
-                  </button>
-                  {mobileExpandedSection === 'tintoreria' && (
-                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
-                      <a
-                        href="/tintoreria-vigo"
-                        onClick={(e) => handleLinkClick('/tintoreria-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Tintorería profesional (Trajes, abrigos, delicadas)
-                      </a>
-                      <a
-                        href="/limpieza-vestidos-novia-ceremonia-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-vestidos-novia-ceremonia-vigo', e)}
-                        className="block py-1.5 font-bold text-[#0C65A1]"
-                      >
-                        • Vestidos de novia, fiesta y ceremonia
-                      </a>
-                      <a
-                        href="/lavanderia-vigo"
-                        onClick={(e) => handleLinkClick('/lavanderia-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Lavandería profesional (servicio atendido)
-                      </a>
-                      <a
-                        href="/planchado-vigo"
-                        onClick={(e) => handleLinkClick('/planchado-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Planchado profesional
-                      </a>
-                      <a
-                        href="/textiles-hogar-vigo"
-                        onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Textiles del hogar (Edredones, mantas, cortinas)
-                      </a>
-                      <a
-                        href="/colada-familiar-vigo"
-                        onClick={(e) => handleLinkClick('/colada-familiar-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Colada familiar (lavar y doblar / planchar)
-                      </a>
-                      <a
-                        href="/limpieza-alfombras-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Limpieza de alfombras (recogida o tienda)
-                      </a>
-                      <a
-                        href="/reparacion-alfombras-vigo"
-                        onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Reparación de alfombras (flecos y bordes)
-                      </a>
-                      <a
-                        href="/limpieza-pieles-cuero-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-pieles-cuero-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Pieles, cuero y peletería
-                      </a>
-                      <a
-                        href="/limpieza-incendios-siniestros-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-incendios-siniestros-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Recuperación tras incendios y siniestros
-                      </a>
-                      <a
-                        href="/servicios-empresas"
-                        onClick={(e) => handleLinkClick('/servicios-empresas', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Lavandería para empresas (peluquerías, clínicas y uniformes)
-                      </a>
-                      <a
-                        href="/recogida-a-domicilio"
-                        onClick={(e) => handleLinkClick('/recogida-a-domicilio', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Recogida y entrega a domicilio (Vigo, comarca y polígonos)
-                      </a>
+                    >
+                      <div className="min-w-0">
+                        <span
+                          className={`block text-[15px] font-extrabold leading-snug ${
+                            currentPath === link.href ? 'text-[#0C65A1]' : 'text-[#002147]'
+                          }`}
+                        >
+                          {link.title}
+                        </span>
+                        <span className="block text-xs text-slate-600 mt-0.5 truncate">
+                          {link.desc}
+                        </span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            )}
+
+            {/* NIVEL 2A: TINTORERÍA Y LAVANDERÍA */}
+            {mobileExpandedSection === 'tintoreria' && (
+              <div key="mobile-tintoreria" className="animate-slide-in-right space-y-5 py-2">
+                <a
+                  href="/#servicios"
+                  onClick={(e) => handleLinkClick('/#servicios', e)}
+                  className="min-h-[44px] flex items-center justify-between px-3.5 py-3 rounded-xl bg-[#EDF5FD] text-xs font-extrabold text-[#002147]"
+                >
+                  <span>Ver catálogo completo en portada</span>
+                  <ArrowRight className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
+                </a>
+
+                {[
+                  {
+                    heading: 'Prendas de vestir y sastrería',
+                    items: [
+                      { title: 'Tintorería profesional', desc: 'Trajes, abrigos, sedas y desmanchado técnico', href: '/tintoreria-vigo' },
+                      { title: 'Vestidos de novia y ceremonia', desc: 'Novia, fiesta, comunión, bautizo y chaqués', href: '/limpieza-vestidos-novia-ceremonia-vigo' },
+                      { title: 'Planchado artesanal', desc: 'Camisas en percha o dobladas sin brillos', href: '/planchado-vigo' },
+                      { title: 'Pieles, cuero y ante', desc: 'Ante, nobuk, doble faz y peletería', href: '/limpieza-pieles-cuero-vigo' },
+                    ],
+                  },
+                  {
+                    heading: 'Hogar, lavandería y costura',
+                    items: [
+                      { title: 'Lavandería profesional atendida', desc: 'Plumíferos, anoraks y ropa técnica sin monedas', href: '/lavanderia-vigo' },
+                      { title: 'Colada familiar y ropa diaria', desc: 'Lavar y doblar o lavado con planchado combinado', href: '/colada-familiar-vigo' },
+                      { title: 'Edredones, mantas y cortinas', desc: 'Plumas, colchas, estores y secado gran formato', href: '/textiles-hogar-vigo' },
+                      { title: 'Costura y arreglos de ropa', desc: 'Taller in situ en Gregorio Espino y Venezuela', href: '/arreglos-de-ropa-vigo' },
+                    ],
+                  },
+                  {
+                    heading: 'Especialidades y recogida',
+                    items: [
+                      { title: 'Limpieza de alfombras', desc: 'Lavado por fibra con secado anti-humedad', href: '/limpieza-alfombras-vigo' },
+                      { title: 'Reparación de alfombras', desc: 'Flecos, ribetes, festón y bordes por especialista', href: '/reparacion-alfombras-vigo' },
+                      { title: 'Siniestros, humo e incendios', desc: 'Prueba previa de viabilidad y factura con CIF', href: '/limpieza-incendios-siniestros-vigo' },
+                      { title: 'Recogida y entrega a domicilio', desc: 'Vigo, comarca y polígonos según ruta y mínimo', href: '/recogida-a-domicilio' },
+                    ],
+                  },
+                ].map((group) => (
+                  <div key={group.heading}>
+                    <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1] pb-1.5 mb-2 border-b border-slate-200">
+                      {group.heading}
+                    </p>
+                    <div className="space-y-1">
+                      {group.items.map((item) => (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          onClick={(e) => handleLinkClick(item.href, e)}
+                          className={`min-h-[52px] flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl transition-colors ${
+                            currentPath === item.href ? 'bg-[#EDF5FD]' : 'hover:bg-[#EDF5FD]'
+                          }`}
+                        >
+                          <div className="min-w-0">
+                            <span className="block text-sm font-extrabold text-[#002147] leading-snug">
+                              {item.title}
+                            </span>
+                            <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
+                              {item.desc}
+                            </span>
+                          </div>
+                          <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
+                        </a>
+                      ))}
                     </div>
-                  )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* NIVEL 2B: LIMPIEZA PROFESIONAL */}
+            {mobileExpandedSection === 'limpieza' && (
+              <div key="mobile-limpieza" className="animate-slide-in-right space-y-6 py-2">
+                <div>
+                  <div className="pb-2 mb-2.5 border-b border-slate-200">
+                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                      01 · Instalaciones y Sedes
+                    </span>
+                    <h3 className="text-sm font-extrabold text-[#002147] mt-0.5">
+                      Limpieza técnica de inmuebles en Vigo
+                    </h3>
+                  </div>
+                  <div className="space-y-1">
+                    {[
+                      {
+                        title: 'Limpieza de casas y pisos particulares',
+                        desc: 'Mantenimiento periódico o puesta a punto en Vigo con personal en Régimen General y RC.',
+                        url: '/limpieza-casas-vigo',
+                      },
+                      {
+                        title: 'Limpieza de oficinas y despachos',
+                        desc: 'Mantenimiento periódico adaptado a tu horario comercial.',
+                        url: '/blog/limpieza-oficinas-despachos-clinicas-vigo',
+                      },
+                      {
+                        title: 'Limpieza de comunidades de propietarios',
+                        desc: 'Portales, escaleras y zonas comunes con personal de confianza.',
+                        url: '/blog/limpieza-comunidades-propietarios-vigo',
+                      },
+                      {
+                        title: 'Limpieza de locales comerciales',
+                        desc: 'Aperturas, cristales, escaparates y mantenimiento continuo.',
+                        url: '/limpieza-profesional-vigo',
+                      },
+                      {
+                        title: 'Limpieza de clínicas y consultas',
+                        desc: 'Protocolos de higiene y desinfección sanitaria estricta.',
+                        url: '/blog/limpieza-oficinas-despachos-clinicas-vigo',
+                      },
+                      {
+                        title: 'Espacios profesionales y empresariales',
+                        desc: 'Contratos flexibles con facturación transparente para autónomos y pymes.',
+                        url: '/limpieza-profesional-vigo',
+                      },
+                    ].map((item, idx) => (
+                      <a
+                        key={idx}
+                        href={item.url}
+                        onClick={(e) => handleLinkClick(item.url, e)}
+                        className="min-h-[52px] flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-[#EDF5FD] transition-colors"
+                      >
+                        <div className="min-w-0">
+                          <span className="block text-sm font-extrabold text-[#002147] leading-snug">
+                            {item.title}
+                          </span>
+                          <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
+                            {item.desc}
+                          </span>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
 
-                {/* 2. Limpieza profesional */}
                 <div>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setMobileExpandedSection(
-                        mobileExpandedSection === 'limpieza' ? null : 'limpieza'
-                      )
-                    }
-                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold text-[#002147] hover:bg-[#EDF5FD]"
-                  >
-                    <span>Limpieza profesional</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        mobileExpandedSection === 'limpieza'
-                          ? 'rotate-180 text-[#0C65A1]'
-                          : ''
-                      }`}
-                    />
-                  </button>
-                  {mobileExpandedSection === 'limpieza' && (
-                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
-                      <a
-                        href="/limpieza-casas-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-casas-vigo', e)}
-                        className="block py-1.5 font-bold text-[#002147] hover:text-[#0F76BB]"
-                      >
-                        • Limpieza de casas y pisos particulares
-                      </a>
-                      <a
-                        href="/limpieza-profesional-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-profesional-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Oficinas, despachos, comunidades y locales
-                      </a>
-                      <a
-                        href="/limpieza-sofas-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Limpieza de sofás y tapicerías a domicilio
-                      </a>
-                    </div>
-                  )}
+                  <div className="pb-2 mb-2.5 border-b border-slate-200">
+                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                      02 · Cuidado Textil y Tapicerías
+                    </span>
+                    <h3 className="text-sm font-extrabold text-[#002147] mt-0.5">
+                      Tratamiento profesional in situ y en planta
+                    </h3>
+                  </div>
+                  <div className="space-y-1.5">
+                    <a
+                      href="/limpieza-sofas-vigo"
+                      onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
+                      className="block px-3.5 py-3 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] transition-colors"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="inline-flex items-center gap-1.5 text-sm font-extrabold text-[#002147]">
+                          <Sparkles className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
+                          <span>Limpieza de sofás (Destacado)</span>
+                        </span>
+                        <span className="text-[10px] font-bold uppercase text-[#136F3A] bg-[#1FA855]/15 px-2 py-0.5 rounded-sm shrink-0">
+                          A domicilio
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 mt-1 leading-snug">
+                        Inyección-extracción e higienización profunda en tu propia vivienda sin desmontar el sofá.
+                      </p>
+                    </a>
+
+                    <a
+                      href="/limpieza-sofas-vigo"
+                      onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
+                      className="min-h-[52px] flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-[#EDF5FD] transition-colors"
+                    >
+                      <div className="min-w-0">
+                        <span className="block text-sm font-extrabold text-[#002147]">
+                          Higienización in situ de tapicerías y colchones
+                        </span>
+                        <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
+                          Sillones, sillas tapizadas, cabeceros de cama, colchones y fundas desenfundables.
+                        </span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
+                    </a>
+
+                    <a
+                      href="/servicios-empresas"
+                      onClick={(e) => handleLinkClick('/servicios-empresas', e)}
+                      className="min-h-[52px] flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-[#EDF5FD] transition-colors"
+                    >
+                      <div className="min-w-0">
+                        <span className="block text-sm font-extrabold text-[#002147]">
+                          Lavandería para empresas y negocios
+                        </span>
+                        <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
+                          Toallas de peluquerías y clínicas, vestuario laboral (suciedad normal) y factura mensual con CIF.
+                        </span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* NIVEL 2C: ALOJAMIENTOS TURÍSTICOS */}
+            {mobileExpandedSection === 'apartamentos' && (
+              <div key="mobile-apartamentos" className="animate-slide-in-right space-y-3 py-2">
+                <div className="pb-2 border-b border-slate-200">
+                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                    Viviendas turísticas y Airbnb en Vigo
+                  </span>
+                  <h3 className="text-sm font-extrabold text-[#002147] mt-0.5">
+                    Soluciones de lavandería y limpieza a medida para anfitriones
+                  </h3>
                 </div>
 
-                {/* 3. Alojamientos turísticos */}
                 <a
                   href="/limpieza-apartamentos-turisticos-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
+                  className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
                 >
-                  Alojamientos turísticos
-                </a>
-
-                {/* 4. Puntos Mimos */}
-                <div>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setMobileExpandedSection(
-                        mobileExpandedSection === 'puntos' ? null : 'puntos'
-                      )
-                    }
-                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-bold text-[#002147] hover:bg-[#EDF5FD]"
-                  >
-                    <span>Puntos Mimos y tiendas</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        mobileExpandedSection === 'puntos'
-                          ? 'rotate-180 text-[#0C65A1]'
-                          : ''
-                      }`}
-                    />
-                  </button>
-                  {mobileExpandedSection === 'puntos' && (
-                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
-                      <a
-                        href="/tienda-mimos-navia-vigo"
-                        onClick={(e) => handleLinkClick('/tienda-mimos-navia-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Sede Central Navia (Teixugueiras 11)
-                      </a>
-                      <a
-                        href="/tienda-mimos-gregorio-espino-vigo"
-                        onClick={(e) => handleLinkClick('/tienda-mimos-gregorio-espino-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Mimos Gregorio Espino (Taller in situ)
-                      </a>
-                      <a
-                        href="/tienda-mimos-venezuela-vigo"
-                        onClick={(e) => handleLinkClick('/tienda-mimos-venezuela-vigo', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Mimos Venezuela 29 (Taller in situ)
-                      </a>
-                      <a
-                        href="/puntos-mimos"
-                        onClick={(e) => handleLinkClick('/puntos-mimos', e)}
-                        className="block py-1.5 hover:text-[#0F76BB]"
-                      >
-                        • Todos los puntos y comarca
-                      </a>
-                      <a
-                        href="/se-punto-colaborador"
-                        onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
-                        className="block py-1.5 font-bold text-[#0C65A1]"
-                      >
-                        • Quiero ser punto colaborador →
-                      </a>
-                    </div>
-                  )}
-                </div>
-
-                {/* 5. Limpieza de sofás a domicilio */}
-                <a
-                  href="/limpieza-sofas-vigo"
-                  onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg font-extrabold text-[#0C65A1] hover:bg-[#EDF5FD]"
-                >
-                  Limpieza de sofás a domicilio
-                </a>
-
-                {/* 6. Alfombras (limpieza y arreglos) */}
-                <div>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setMobileExpandedSection(
-                        mobileExpandedSection === 'alfombras' ? null : 'alfombras'
-                      )
-                    }
-                    className="w-full flex items-center justify-between min-h-[44px] py-2.5 px-3 rounded-lg text-left font-extrabold text-[#0C65A1] hover:bg-[#EDF5FD]"
-                  >
-                    <span>Alfombras (limpieza y arreglos)</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        mobileExpandedSection === 'alfombras'
-                          ? 'rotate-180 text-[#0C65A1]'
-                          : ''
-                      }`}
-                    />
-                  </button>
-                  {mobileExpandedSection === 'alfombras' && (
-                    <div className="pl-4 pr-2 py-2 space-y-1.5 text-xs border-l ml-3 text-slate-600 border-[#0F76BB]/30">
-                      <a
-                        href="/limpieza-alfombras-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                        className="block py-1.5 font-bold text-[#002147] hover:text-[#0F76BB]"
-                      >
-                        • Limpieza de alfombras (recogida o tienda)
-                      </a>
-                      <a
-                        href="/reparacion-alfombras-vigo"
-                        onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                        className="block py-1.5 font-bold text-[#002147] hover:text-[#0F76BB]"
-                      >
-                        • Arreglos de alfombras (flecos y bordes)
-                      </a>
-                    </div>
-                  )}
-                </div>
-
-                {/* 7. Costura y arreglos */}
-                <a
-                  href="/arreglos-de-ropa-vigo"
-                  onClick={(e) => handleLinkClick('/arreglos-de-ropa-vigo', e)}
-                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
-                >
-                  Costura y arreglos de ropa
-                </a>
-
-                {/* 6. Blog */}
-                <a
-                  href="/blog"
-                  onClick={(e) => handleLinkClick('/blog', e)}
-                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
-                >
-                  Blog y consejos
-                </a>
-
-                {/* 7. Contacto */}
-                <a
-                  href="/contacto"
-                  onClick={(e) => handleLinkClick('/contacto', e)}
-                  className="block py-2.5 px-3 rounded-lg font-bold text-[#002147] hover:bg-[#EDF5FD]"
-                >
-                  Contacto y horarios
-                </a>
-              </nav>
-
-              {/* Botonera de acciones rápida en móvil */}
-              <div className="mt-6 pt-6 border-t border-slate-200 space-y-2.5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    skipMobileRestoreFocusRef.current = true;
-                    setMobileMenuOpen(false);
-                    setIsTrackingModalOpen(true);
-                  }}
-                  className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-3 px-4 rounded-xl transition-colors cursor-pointer bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]"
-                >
-                  <Package className="w-4 h-4 text-[#0C65A1]" />
-                  <span>Consultar estado de mi pedido</span>
-                </button>
-
-                <a
-                  href={CONTACT_INFO.whatsappGeneralHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppClick(currentPath, 'drawer_whatsapp')}
-                  className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Hablar con Mimo en WhatsApp</span>
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#0C65A1] inline-flex items-center justify-center font-extrabold text-xs">
+                      01
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147]">
+                      Servicio de Limpieza y Lavandería
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Servicio completo de limpieza del apartamento en cada rotación y suministro de ropa de cama y toallas higienizadas con planchado profesional entre huéspedes.
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                    <span>Ver modalidad y presupuesto a medida</span>
+                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </span>
                 </a>
 
                 <a
-                  href={CONTACT_INFO.phoneHref}
-                  onClick={() => trackPhoneClick(currentPath, 'drawer_phone')}
-                  className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-2.5 px-4 rounded-xl transition-colors border-slate-300 hover:border-[#002147] text-[#002147]"
+                  href="/limpieza-apartamentos-turisticos-vigo"
+                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
+                  className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#0C65A1]" />
-                  <span>Llamar al {CONTACT_INFO.phoneDisplay}</span>
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#002147] inline-flex items-center justify-center font-extrabold text-xs">
+                      02
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147]">
+                      Coordinación Integral de Limpieza y Lavandería
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Tú gestionas tus reservas y calendario. Mimos asume la parte operativa crítica: limpieza exhaustiva en cada checkout, supervisión básica y entrega puntual de lencería hotelera impecable.
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                    <span>Consultar propuesta a medida</span>
+                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </span>
                 </a>
               </div>
-            </div>
+            )}
 
-            {/* Pie del drawer */}
-            <div className="pt-4 text-center text-[10px] text-slate-600">
-              Tintorería Mimos Navia, S.L. · Vigo (Pontevedra)
+            {/* NIVEL 2D: ALFOMBRAS */}
+            {mobileExpandedSection === 'alfombras' && (
+              <div key="mobile-alfombras" className="animate-slide-in-right space-y-3 py-2">
+                <p className="text-xs font-semibold text-slate-600">
+                  Recogida a domicilio o entrega en nuestras 3 tiendas de Vigo:
+                </p>
+
+                <a
+                  href="/limpieza-alfombras-vigo"
+                  onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
+                  className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#0C65A1] inline-flex items-center justify-center font-extrabold text-xs">
+                      01
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147]">
+                      Limpieza de alfombras
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Lavado adaptado según fibra y reverso (lana, seda, yute, algodón o fibras modernas) con secado completo anti-humedad.
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                    <span>Ver limpieza de alfombras</span>
+                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </span>
+                </a>
+
+                <a
+                  href="/reparacion-alfombras-vigo"
+                  onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
+                  className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#002147] inline-flex items-center justify-center font-extrabold text-xs">
+                      02
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147]">
+                      Arreglo y reparación de alfombras
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Restauración artesanal de flecos, festón, ribetes, descosidos y bordes mediante especialista.
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                    <span>Ver arreglos de alfombras</span>
+                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </span>
+                </a>
+              </div>
+            )}
+
+            {/* NIVEL 2E: PUNTOS MIMOS (PROPIOS VS COLABORADORES + TARJETA CREMA CON RIBETE AZUL) */}
+            {mobileExpandedSection === 'puntos' && (
+              <div key="mobile-puntos" className="animate-slide-in-right space-y-5 py-2">
+                {/* 3 Tiendas Propias en Vigo */}
+                <div>
+                  <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-200">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#002147]">
+                      <Store className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
+                      <span>3 Tiendas Propias en Vigo</span>
+                    </span>
+                    <a
+                      href="/puntos-mimos"
+                      onClick={(e) => handleLinkClick('/puntos-mimos', e)}
+                      className="min-h-[44px] px-2 text-xs font-bold text-[#0C65A1] inline-flex items-center gap-1"
+                    >
+                      <span>Ver mapa</span>
+                      <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                    </a>
+                  </div>
+
+                  <div className="rounded-2xl bg-[#F4F9FE] border border-[#002147]/12 p-2.5 space-y-1.5">
+                    {[
+                      {
+                        nombre: 'Sede Central Navia',
+                        badge: 'Central',
+                        badgeClass: 'bg-[#002147] text-white',
+                        direccion: 'C/ Teixugueiras, 11, bajo 9 · 986 12 51 41',
+                        url: '/tienda-mimos-navia-vigo',
+                      },
+                      {
+                        nombre: 'Mimos Gregorio Espino',
+                        badge: 'Taller in situ',
+                        badgeClass: 'bg-[#0C65A1] text-white',
+                        direccion: 'Alcalde Gregorio Espino, 42 · 986 19 27 87',
+                        url: '/tienda-mimos-gregorio-espino-vigo',
+                      },
+                      {
+                        nombre: 'Mimos Venezuela',
+                        badge: 'Taller in situ',
+                        badgeClass: 'bg-[#0C65A1] text-white',
+                        direccion: 'Rúa de Venezuela, 29, Entrep. · 646 94 67 64',
+                        url: '/tienda-mimos-venezuela-vigo',
+                      },
+                    ].map((tienda) => (
+                      <a
+                        key={tienda.url}
+                        href={tienda.url}
+                        onClick={(e) => handleLinkClick(tienda.url, e)}
+                        className="block px-3 py-2.5 rounded-xl bg-white/90 hover:bg-white transition-colors"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-sm font-extrabold text-[#002147]">
+                            {tienda.nombre}
+                          </span>
+                          <span className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-sm shrink-0 ${tienda.badgeClass}`}>
+                            {tienda.badge}
+                          </span>
+                        </div>
+                        <p className="text-xs font-medium text-slate-600 mt-0.5">
+                          {tienda.direccion}
+                        </p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 5 Comercios Colaboradores */}
+                <div>
+                  <p className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1] pb-2 mb-2 border-b border-slate-200 w-full">
+                    <MapPin className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
+                    <span>5 Comercios Colaboradores</span>
+                  </p>
+                  <p className="text-xs text-slate-600 leading-relaxed mb-2">
+                    Tiendas independientes asociadas donde entregas y recoges con las mismas tarifas oficiales de Mimos:
+                  </p>
+                  <div className="space-y-1">
+                    {[
+                      { localidad: 'Vigo · As Travesas', comercio: "D'Passo (Camiño Espedrigada, 9)", url: '/punto-mimos-dpasso-vigo' },
+                      { localidad: 'Redondela', comercio: 'Mimos Redondela (C/ José Regojo, 29)', url: '/zonas/redondela' },
+                      { localidad: 'Gondomar', comercio: 'Puntadas No Aire (costura y recepción)', url: '/zonas/gondomar' },
+                      { localidad: 'Ponteareas', comercio: 'Arregla2 (C/ Argentina, 4)', url: '/zonas/ponteareas' },
+                      { localidad: 'O Porriño', comercio: 'Telas y Más (C/ Manuel Rodríguez, 30)', url: '/zonas/o-porrino' },
+                    ].map((punto) => (
+                      <a
+                        key={punto.url}
+                        href={punto.url}
+                        onClick={(e) => handleLinkClick(punto.url, e)}
+                        className="min-h-[48px] flex items-center justify-between gap-2 px-3 py-2 rounded-xl hover:bg-[#EDF5FD] transition-colors"
+                      >
+                        <div className="min-w-0">
+                          <span className="block text-sm font-extrabold text-[#002147]">
+                            {punto.localidad}
+                          </span>
+                          <span className="block text-xs text-slate-600 truncate">
+                            {punto.comercio}
+                          </span>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" />
+                      </a>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 pt-3 mt-3 border-t border-slate-200">
+                    <a
+                      href="/contacto"
+                      onClick={(e) => handleLinkClick('/contacto', e)}
+                      className="min-h-[44px] flex items-center justify-between px-3 py-2 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147]"
+                    >
+                      <span>Contacto y horarios</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
+                    </a>
+                    <a
+                      href="/blog"
+                      onClick={(e) => handleLinkClick('/blog', e)}
+                      className="min-h-[44px] flex items-center justify-between px-3 py-2 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147]"
+                    >
+                      <span>Blog y guías textiles</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Captación comercios: crema con ribete azul Mimos */}
+                <div className="rounded-2xl bg-[#F7F6F2] border-2 border-[#0F76BB] p-4 space-y-3">
+                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                    ¿Quieres ser un punto de recogida Mimos?
+                  </p>
+                  <h4 className="text-sm font-extrabold text-[#002147] leading-snug">
+                    ¿Tienes un negocio y quieres más ingresos y tránsito de clientes?
+                  </h4>
+                  <ul className="space-y-2 text-xs text-slate-700 leading-snug">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>Servicio complementario de entrega y recogida en tu mostrador.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>Más clientes y ventas sin cuotas ni inversión inicial.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0C65A1] shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>Nosotros nos encargamos de todo (furgoneta, resguardos y limpieza en Vigo).</span>
+                    </li>
+                  </ul>
+                  <a
+                    href="/se-punto-colaborador"
+                    onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
+                    className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full bg-[#0F76BB] hover:bg-[#002147] text-white text-xs font-extrabold px-4 py-2.5 transition-colors"
+                  >
+                    <span>Quiero ser punto colaborador</span>
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Barra inferior fija de acción dentro del menú móvil */}
+          <div className="shrink-0 border-t border-slate-200 bg-[#F4F9FE]/80 px-4 pt-3 pb-[max(0.875rem,env(safe-area-inset-bottom))] space-y-2">
+            <button
+              type="button"
+              onClick={() => {
+                skipMobileRestoreFocusRef.current = true;
+                setMobileMenuOpen(false);
+                setIsTrackingModalOpen(true);
+              }}
+              className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-2.5 px-4 rounded-xl transition-colors cursor-pointer bg-white hover:bg-[#EDF5FD] border-[#002147]/15 text-[#002147]"
+            >
+              <Package className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
+              <span>Consultar estado de mi pedido</span>
+            </button>
+
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={CONTACT_INFO.whatsappGeneralHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick(currentPath, 'drawer_whatsapp')}
+                className="min-h-[44px] flex items-center justify-center gap-1.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs py-2.5 px-3 rounded-xl transition-colors shadow-xs"
+              >
+                <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Hablar con Mimo</span>
+              </a>
+
+              <a
+                href={CONTACT_INFO.phoneHref}
+                onClick={() => trackPhoneClick(currentPath, 'drawer_phone')}
+                className="min-h-[44px] flex items-center justify-center gap-1.5 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span className="font-mono tracking-tight">{CONTACT_INFO.phoneDisplay}</span>
+              </a>
             </div>
           </div>
         </div>
