@@ -8,6 +8,9 @@ import {
   ChevronRight,
   ArrowRight,
   Sparkles,
+  Store,
+  MapPin,
+  CheckCircle2,
   Receipt,
   Package,
 } from 'lucide-react';
@@ -301,7 +304,6 @@ export const Header: React.FC<HeaderProps> = ({
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
-                    title="Limpieza y reparación de alfombras en Vigo (pasa el ratón para ver opciones)"
                   >
                     <span className="truncate">Alfombras</span>
                     <ChevronDown
@@ -343,7 +345,6 @@ export const Header: React.FC<HeaderProps> = ({
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
-                    title="Ver catálogo de tintorería y lavandería (pasa el ratón para desglose)"
                   >
                     <span className="truncate">Tintorería y lavandería</span>
                     <ChevronDown
@@ -368,7 +369,6 @@ export const Header: React.FC<HeaderProps> = ({
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
-                    title="Limpieza técnica de oficinas, comunidades y sofás a domicilio"
                   >
                     <span className="truncate">Limpieza profesional</span>
                     <ChevronDown
@@ -393,7 +393,6 @@ export const Header: React.FC<HeaderProps> = ({
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
-                    title="Servicios para apartamentos turísticos y Airbnb en Vigo"
                   >
                     <span className="truncate">Alojamientos turísticos</span>
                     <ChevronDown
@@ -418,7 +417,6 @@ export const Header: React.FC<HeaderProps> = ({
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
                     }`}
-                    title="Tiendas propias y puntos colaboradores con mapa interactivo"
                   >
                     <span className="truncate">Puntos Mimos</span>
                     <ChevronDown
@@ -491,278 +489,222 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* =========================================================================
-            DESPLEGABLE 1: TINTORERÍA Y LAVANDERÍA (TARJETAS MODULARES ESTILO PUNTOS MIMOS)
+            DESPLEGABLE 1: TINTORERÍA Y LAVANDERÍA (PANEL FLOTANTE 3 COLUMNAS)
             ========================================================================= */}
         {activeMenu === 'tintoreria' && (
           <div
-            className="hidden lg:block absolute left-0 right-0 top-full bg-[#FAF8F5] text-slate-800 border-b border-[#EADBCA] shadow-[0_25px_50px_-12px_rgba(44,24,16,0.18)] animate-curtain-drop z-50"
+            className="hidden lg:block absolute inset-x-0 top-full pt-2 px-6 z-50"
             onMouseEnter={() => handleMouseEnterMenu('tintoreria')}
             onMouseLeave={handleMouseLeaveMenu}
           >
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-7">
-              {/* Barra superior del menú */}
-              <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#EADBCA]/60">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
-                  01 · Tintorería, Lavandería y Cuidado Textil en Vigo
+            <div className="max-w-6xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
+              {/* Barra superior */}
+              <div className="flex items-center justify-between pb-3 mb-5 border-b border-slate-200">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[#0F76BB]">
+                  Tintorería, lavandería y cuidado textil en Vigo
                 </span>
                 <a
                   href="/#servicios"
                   onClick={(e) => handleLinkClick('/#servicios', e)}
-                  className="text-xs font-bold text-[#0B5C94] hover:underline inline-flex items-center gap-1"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#002147] hover:text-[#0F76BB] transition-colors"
                 >
                   <span>Ver catálogo completo en portada</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
 
-              {/* Cuadrícula de tarjetas en 3 columnas */}
-              <div className="grid grid-cols-3 gap-5">
-                {/* COLUMNA 1: Ropa de vestir y Sastrería */}
-                <div className="space-y-4">
-                  {/* Tarjeta 1: Tintorería Profesional */}
-                  <a
-                    href="/tintoreria-vigo"
-                    onClick={(e) => handleLinkClick('/tintoreria-vigo', e)}
-                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Tintorería Profesional
-                      </span>
-                      <span className="text-[10px] font-mono uppercase bg-[#002147] text-white px-2 py-0.5 rounded-sm font-bold">
-                        Prendas delicadas
-                      </span>
-                    </div>
-                    <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Trajes, americanas, vestidos de fiesta, novias, comunión y abrigos.
-                    </p>
-                    <p className="text-[11px] text-slate-600 mt-0.5">
-                      Desmanchado técnico manual, limpieza en seco profesional y Wet Cleaning ecológico.
-                    </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
-                      <span>Ver prendas y tratamientos</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </a>
-
-                  {/* Tarjeta 1B: Vestidos de Novia, Fiesta y Ceremonia */}
-                  <a
-                    href="/limpieza-vestidos-novia-ceremonia-vigo"
-                    onClick={(e) => handleLinkClick('/limpieza-vestidos-novia-ceremonia-vigo', e)}
-                    className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Vestidos de Novia y Ceremonia
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#0B5C94] shrink-0 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                    <p className="text-[11px] text-slate-600 mt-1">
-                      Novia, madrina, fiesta, comunión y chaqués · Pedrería, encajes y bajos.
-                    </p>
-                  </a>
-
-                  {/* Tarjeta 2: Planchado Profesional */}
-                  <a
-                    href="/planchado-vigo"
-                    onClick={(e) => handleLinkClick('/planchado-vigo', e)}
-                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Planchado Artesanal
-                      </span>
-                      <span className="text-[10px] font-mono uppercase bg-[#9E440E] text-white px-2 py-0.5 rounded-sm font-bold">
-                        Sastrería
-                      </span>
-                    </div>
-                    <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Camisas en percha o dobladas, pantalones y mantelerías.
-                    </p>
-                    <p className="text-[11px] text-slate-600 mt-0.5">
-                      Acabados sin brillos en mesas de vaporización y aspiración alemanas.
-                    </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
-                      <span>Ver planchado profesional</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </a>
+              {/* Grid de 3 columnas iguales */}
+              <div className="grid grid-cols-3 gap-7 items-start">
+                {/* Columna 1: Prendas de vestir y sastrería */}
+                <div className="pr-5 border-r border-slate-200/80">
+                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
+                    Prendas de vestir y sastrería
+                  </p>
+                  <ul className="space-y-1">
+                    {[
+                      {
+                        title: 'Tintorería profesional',
+                        desc: 'Trajes, abrigos, sedas y desmanchado técnico',
+                        href: '/tintoreria-vigo',
+                      },
+                      {
+                        title: 'Vestidos de novia y ceremonia',
+                        desc: 'Novia, fiesta, comunión, bautizo y chaqués',
+                        href: '/limpieza-vestidos-novia-ceremonia-vigo',
+                      },
+                      {
+                        title: 'Planchado artesanal',
+                        desc: 'Camisas en percha o dobladas sin brillos',
+                        href: '/planchado-vigo',
+                      },
+                      {
+                        title: 'Pieles, cuero y ante',
+                        desc: 'Ante, nobuk, doble faz y peletería',
+                        href: '/limpieza-pieles-cuero-vigo',
+                      },
+                    ].map((item) => {
+                      const isActive = currentPath === item.href;
+                      return (
+                        <li key={item.href}>
+                          <a
+                            href={item.href}
+                            onClick={(e) => handleLinkClick(item.href, e)}
+                            className={`group block px-2.5 py-2 rounded-xl transition-colors ${
+                              isActive ? 'bg-[#EDF5FD]' : 'hover:bg-[#EDF5FD]'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span
+                                className={`text-sm font-extrabold transition-colors ${
+                                  isActive
+                                    ? 'text-[#0F76BB]'
+                                    : 'text-[#002147] group-hover:text-[#0F76BB]'
+                                }`}
+                              >
+                                {item.title}
+                              </span>
+                              <ArrowRight
+                                className={`w-3.5 h-3.5 text-[#0F76BB] shrink-0 transition-all ${
+                                  isActive
+                                    ? 'opacity-100'
+                                    : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5'
+                                }`}
+                              />
+                            </div>
+                            <p className="text-xs text-slate-600 mt-0.5">{item.desc}</p>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
 
-                {/* COLUMNA 2: Hogar, Lavandería y Colada */}
-                <div className="space-y-4">
-                  {/* Tarjeta 3: Textiles del Hogar */}
-                  <a
-                    href="/textiles-hogar-vigo"
-                    onClick={(e) => handleLinkClick('/textiles-hogar-vigo', e)}
-                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Textiles del Hogar
-                      </span>
-                      <span className="text-[10px] font-mono uppercase bg-[#0F76BB] text-white px-2 py-0.5 rounded-sm font-bold">
-                        Hogar
-                      </span>
-                    </div>
-                    <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Edredones de plumas, mantas, colchas, cortinas, estores y fundas.
-                    </p>
-                    <p className="text-[11px] text-slate-600 mt-0.5">
-                      Maquinaria de gran capacidad, higienización y secado controlado.
-                    </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
-                      <span>Ver textiles del hogar</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </a>
-
-                  {/* Tarjeta 3B: Lavandería Profesional */}
-                  <a
-                    href="/lavanderia-vigo"
-                    onClick={(e) => handleLinkClick('/lavanderia-vigo', e)}
-                    className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Lavandería Profesional
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#0B5C94] shrink-0 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                    <p className="text-[11px] text-slate-600 mt-1">
-                      Servicio atendido (no autoservicio): separación real, anoraks y secado anti-humedad.
-                    </p>
-                  </a>
-
-                  {/* Tarjeta 4: Colada Familiar y Ropa Diaria */}
-                  <a
-                    href="/colada-familiar-vigo"
-                    onClick={(e) => handleLinkClick('/colada-familiar-vigo', e)}
-                    className="group block p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Colada Familiar y Ropa Diaria
-                      </span>
-                      <span className="text-[10px] font-mono uppercase bg-[#147A3E] text-white px-2 py-0.5 rounded-sm font-bold">
-                        Lavar y doblar / planchar
-                      </span>
-                    </div>
-                    <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Ropa cotidiana, toallas y sábanas con opción de lavar y doblar o lavar y planchar.
-                    </p>
-                    <p className="text-[11px] text-slate-600 mt-0.5">
-                      Combina ropa doblada con camisas o prendas concretas planchadas en el mismo encargo.
-                    </p>
-                    <div className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
-                      <span>Ver servicio de colada</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </a>
+                {/* Columna 2: Hogar, lavandería y costura */}
+                <div className="pr-5 border-r border-slate-200/80">
+                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
+                    Hogar, lavandería y costura
+                  </p>
+                  <ul className="space-y-1">
+                    {[
+                      {
+                        title: 'Lavandería profesional atendida',
+                        desc: 'Plumíferos, anoraks y ropa técnica sin monedas',
+                        href: '/lavanderia-vigo',
+                      },
+                      {
+                        title: 'Colada familiar y ropa diaria',
+                        desc: 'Lavar y doblar o lavado con planchado combinado',
+                        href: '/colada-familiar-vigo',
+                      },
+                      {
+                        title: 'Edredones, mantas y cortinas',
+                        desc: 'Plumas, colchas, estores y secado gran formato',
+                        href: '/textiles-hogar-vigo',
+                      },
+                      {
+                        title: 'Costura y arreglos de ropa',
+                        desc: 'Taller in situ en Gregorio Espino y Venezuela',
+                        href: '/arreglos-de-ropa-vigo',
+                      },
+                    ].map((item) => {
+                      const isActive = currentPath === item.href;
+                      return (
+                        <li key={item.href}>
+                          <a
+                            href={item.href}
+                            onClick={(e) => handleLinkClick(item.href, e)}
+                            className={`group block px-2.5 py-2 rounded-xl transition-colors ${
+                              isActive ? 'bg-[#EDF5FD]' : 'hover:bg-[#EDF5FD]'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span
+                                className={`text-sm font-extrabold transition-colors ${
+                                  isActive
+                                    ? 'text-[#0F76BB]'
+                                    : 'text-[#002147] group-hover:text-[#0F76BB]'
+                                }`}
+                              >
+                                {item.title}
+                              </span>
+                              <ArrowRight
+                                className={`w-3.5 h-3.5 text-[#0F76BB] shrink-0 transition-all ${
+                                  isActive
+                                    ? 'opacity-100'
+                                    : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5'
+                                }`}
+                              />
+                            </div>
+                            <p className="text-xs text-slate-600 mt-0.5">{item.desc}</p>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
 
-                {/* COLUMNA 3: Especialidades y Empresas */}
-                <div className="space-y-4">
-                  {/* Tarjeta 5: Limpieza y Reparación de Alfombras (dos enlaces limpios sin anidar) */}
-                  <div className="p-4 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all">
-                    <div className="flex items-center justify-between gap-2">
-                      <a
-                        href="/limpieza-alfombras-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                        className="text-sm font-extrabold text-[#002147] hover:text-[#0F76BB] transition-colors"
-                      >
-                        Alfombras en Vigo
-                      </a>
-                      <span className="text-[10px] font-mono uppercase bg-[#147A3E] text-white px-2 py-0.5 rounded-sm font-bold shrink-0">
-                        Recogida / Tienda
-                      </span>
-                    </div>
-                    <p className="text-xs font-medium text-slate-700 mt-1.5">
-                      Limpieza profunda por fibra y reparación de flecos, ribetes y bordes por especialista.
-                    </p>
-                    <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5">
-                      <a
-                        href="/limpieza-alfombras-vigo"
-                        onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0B5C94] hover:text-[#002147]"
-                      >
-                        <span>Limpieza</span>
-                        <ArrowRight className="w-3 h-3" />
-                      </a>
-                      <a
-                        href="/reparacion-alfombras-vigo"
-                        onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#002147] hover:text-[#0F76BB]"
-                      >
-                        <span>Reparación y flecos</span>
-                        <ArrowRight className="w-3 h-3" />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Tarjetas 6 y 7 en subgrid para Pieles y Siniestros/Empresas */}
-                  <div className="grid grid-cols-2 gap-2.5">
-                    <a
-                      href="/limpieza-pieles-cuero-vigo"
-                      onClick={(e) => handleLinkClick('/limpieza-pieles-cuero-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                          Pieles y Cuero
-                        </span>
-                        <span className="text-[9px] font-mono uppercase bg-[#002147] text-white px-1.5 py-0.5 rounded-xs font-bold">
-                          Peletería
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5">
-                        Ante, nobuk, cuero y prendas delicadas de peletería.
-                      </p>
-                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0B5C94] group-hover:text-[#002147]">
-                        <span>Ver pieles</span>
-                        <ArrowRight className="w-2.5 h-2.5" />
-                      </div>
-                    </a>
-
-                    <a
-                      href="/limpieza-incendios-siniestros-vigo"
-                      onClick={(e) => handleLinkClick('/limpieza-incendios-siniestros-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                          Siniestros
-                        </span>
-                        <span className="text-[9px] font-mono uppercase bg-[#9E440E] text-white px-1.5 py-0.5 rounded-xs font-bold">
-                          Seguros
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 line-clamp-2 mt-0.5">
-                        Recuperación tras humo, incendios e inundaciones (Art. 38 y CIF).
-                      </p>
-                      <div className="mt-2 inline-flex items-center gap-0.5 text-[11px] font-bold text-[#0B5C94] group-hover:text-[#002147]">
-                        <span>Ver protocolo</span>
-                        <ArrowRight className="w-2.5 h-2.5" />
-                      </div>
-                    </a>
-                  </div>
-
-                  {/* Tarjeta 8: Recogida a domicilio */}
-                  <a
-                    href="/recogida-a-domicilio"
-                    onClick={(e) => handleLinkClick('/recogida-a-domicilio', e)}
-                    className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] hover:shadow-xs transition-all"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                        Recogida y Entrega a Domicilio
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#0B5C94] shrink-0 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                    <p className="text-[11px] text-slate-600 mt-1">
-                      Vigo, comarca y polígonos industriales (a consultar con Mimo según ruta y mínimo).
-                    </p>
-                  </a>
+                {/* Columna 3: Especialidades y recogida */}
+                <div>
+                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
+                    Especialidades y recogida
+                  </p>
+                  <ul className="space-y-1">
+                    {[
+                      {
+                        title: 'Limpieza de alfombras',
+                        desc: 'Lavado por fibra con secado anti-humedad',
+                        href: '/limpieza-alfombras-vigo',
+                      },
+                      {
+                        title: 'Reparación de alfombras',
+                        desc: 'Flecos, ribetes, festón y bordes por especialista',
+                        href: '/reparacion-alfombras-vigo',
+                      },
+                      {
+                        title: 'Siniestros, humo e incendios',
+                        desc: 'Prueba previa de viabilidad y factura con CIF',
+                        href: '/limpieza-incendios-siniestros-vigo',
+                      },
+                      {
+                        title: 'Recogida y entrega a domicilio',
+                        desc: 'Vigo, comarca y polígonos según ruta y mínimo',
+                        href: '/recogida-a-domicilio',
+                      },
+                    ].map((item) => {
+                      const isActive = currentPath === item.href;
+                      return (
+                        <li key={item.href}>
+                          <a
+                            href={item.href}
+                            onClick={(e) => handleLinkClick(item.href, e)}
+                            className={`group block px-2.5 py-2 rounded-xl transition-colors ${
+                              isActive ? 'bg-[#EDF5FD]' : 'hover:bg-[#EDF5FD]'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span
+                                className={`text-sm font-extrabold transition-colors ${
+                                  isActive
+                                    ? 'text-[#0F76BB]'
+                                    : 'text-[#002147] group-hover:text-[#0F76BB]'
+                                }`}
+                              >
+                                {item.title}
+                              </span>
+                              <ArrowRight
+                                className={`w-3.5 h-3.5 text-[#0F76BB] shrink-0 transition-all ${
+                                  isActive
+                                    ? 'opacity-100'
+                                    : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5'
+                                }`}
+                              />
+                            </div>
+                            <p className="text-xs text-slate-600 mt-0.5">{item.desc}</p>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -770,25 +712,27 @@ export const Header: React.FC<HeaderProps> = ({
         )}
 
         {/* =========================================================================
-            DESPLEGABLE 2: LIMPIEZA PROFESIONAL (2 COLUMNAS)
+            DESPLEGABLE 2: LIMPIEZA PROFESIONAL (PANEL FLOTANTE 12 COLUMNAS)
             ========================================================================= */}
         {activeMenu === 'limpieza' && (
           <div
-            className="hidden lg:block absolute left-0 right-0 top-full bg-[#FAF8F5] text-slate-800 border-b border-[#EADBCA] shadow-[0_25px_50px_-12px_rgba(44,24,16,0.18)] animate-curtain-drop z-50"
+            className="hidden lg:block absolute inset-x-0 top-full pt-2 px-6 z-50"
             onMouseEnter={() => handleMouseEnterMenu('limpieza')}
             onMouseLeave={handleMouseLeaveMenu}
           >
-            <div className="max-w-5xl mx-auto px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-2 gap-10">
-                {/* Columna 1: Instalaciones y Sedes */}
-                <div className="space-y-3 border-r border-[#EADBCA]/60 pr-8">
-                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
-                    01 · Instalaciones y Sedes
-                  </span>
-                  <p className="text-base font-extrabold text-[#002147]">
-                    Limpieza técnica de inmuebles en Vigo
-                  </p>
-                  <ul className="space-y-1.5 pt-1">
+            <div className="max-w-5xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
+              <div className="grid grid-cols-12 gap-8 items-start">
+                {/* Bloque 1: Instalaciones y Sedes */}
+                <div className="col-span-7 pr-6 border-r border-slate-200/80">
+                  <div className="pb-3 mb-3 border-b border-slate-200">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                      01 · Instalaciones y Sedes
+                    </span>
+                    <p className="text-base font-extrabold text-[#002147] mt-0.5">
+                      Limpieza técnica de inmuebles en Vigo
+                    </p>
+                  </div>
+                  <ul className="grid grid-cols-2 gap-x-5 gap-y-1.5">
                     {[
                       {
                         title: 'Limpieza de casas y pisos particulares',
@@ -798,12 +742,12 @@ export const Header: React.FC<HeaderProps> = ({
                       {
                         title: 'Limpieza de oficinas y despachos',
                         desc: 'Mantenimiento periódico adaptado a tu horario comercial.',
-                        url: '/limpieza-profesional-vigo',
+                        url: '/blog/limpieza-oficinas-despachos-clinicas-vigo',
                       },
                       {
                         title: 'Limpieza de comunidades de propietarios',
                         desc: 'Portales, escaleras y zonas comunes con personal de confianza.',
-                        url: '/limpieza-profesional-vigo',
+                        url: '/blog/limpieza-comunidades-propietarios-vigo',
                       },
                       {
                         title: 'Limpieza de locales comerciales',
@@ -813,57 +757,88 @@ export const Header: React.FC<HeaderProps> = ({
                       {
                         title: 'Limpieza de clínicas y consultas',
                         desc: 'Protocolos de higiene y desinfección sanitaria estricta.',
-                        url: '/limpieza-profesional-vigo',
+                        url: '/blog/limpieza-oficinas-despachos-clinicas-vigo',
                       },
                       {
                         title: 'Espacios profesionales y empresariales',
                         desc: 'Contratos flexibles con facturación transparente para autónomos y pymes.',
                         url: '/limpieza-profesional-vigo',
                       },
-                    ].map((item, idx) => (
-                      <li key={idx}>
-                        <a
-                          href={item.url}
-                          onClick={(e) => handleLinkClick(item.url, e)}
-                          className="group block p-2 rounded-lg hover:bg-[#FFF2E6] transition-colors"
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
-                              {item.title}
-                            </span>
-                            <ArrowRight className="w-3.5 h-3.5 text-[#9E440E] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                          </div>
-                          <p className="text-[11px] text-slate-600 mt-0.5">{item.desc}</p>
-                        </a>
-                      </li>
-                    ))}
+                    ].map((item, idx) => {
+                      const isActive = currentPath === item.url;
+                      return (
+                        <li key={idx}>
+                          <a
+                            href={item.url}
+                            onClick={(e) => handleLinkClick(item.url, e)}
+                            className={`group block p-2 rounded-xl transition-colors ${
+                              isActive ? 'bg-[#EDF5FD]' : 'hover:bg-[#EDF5FD]'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span
+                                className={`text-xs font-extrabold transition-colors ${
+                                  isActive
+                                    ? 'text-[#0F76BB]'
+                                    : 'text-[#002147] group-hover:text-[#0F76BB]'
+                                }`}
+                              >
+                                {item.title}
+                              </span>
+                              <ArrowRight
+                                className={`w-3.5 h-3.5 text-[#0F76BB] shrink-0 transition-all ${
+                                  isActive
+                                    ? 'opacity-100'
+                                    : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5'
+                                }`}
+                              />
+                            </div>
+                            <p className="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
+                              {item.desc}
+                            </p>
+                          </a>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
 
-                {/* Columna 2: Cuidado Textil y Tapicerías */}
-                <div className="space-y-3">
-                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
-                    02 · Cuidado Textil y Tapicerías
-                  </span>
-                  <p className="text-base font-extrabold text-[#002147]">
-                    Tratamiento profesional in situ y en planta
-                  </p>
-                  <div className="space-y-3 pt-1">
+                {/* Bloque 2: Cuidado Textil y Tapicerías */}
+                <div className="col-span-5">
+                  <div className="pb-3 mb-3 border-b border-slate-200">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                      02 · Cuidado Textil y Tapicerías
+                    </span>
+                    <p className="text-base font-extrabold text-[#002147] mt-0.5">
+                      Tratamiento profesional in situ y en planta
+                    </p>
+                  </div>
+                  <div className="space-y-1.5">
                     <a
                       href="/limpieza-sofas-vigo"
                       onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#9E440E]/60 hover:shadow-xs transition-all"
+                      className={`group block p-2.5 rounded-xl transition-colors ${
+                        currentPath === '/limpieza-sofas-vigo'
+                          ? 'bg-[#EDF5FD]'
+                          : 'hover:bg-[#EDF5FD]'
+                      }`}
                     >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#002147]">
-                          <Sparkles className="w-3.5 h-3.5 text-[#9E440E]" />
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span
+                          className={`inline-flex items-center gap-1.5 text-xs font-extrabold transition-colors ${
+                            currentPath === '/limpieza-sofas-vigo'
+                              ? 'text-[#0F76BB]'
+                              : 'text-[#002147] group-hover:text-[#0F76BB]'
+                          }`}
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" />
                           <span>Limpieza de sofás (Servicio destacado)</span>
                         </span>
-                        <span className="text-[10px] font-mono uppercase bg-[#178A47]/10 text-[#147A3E] font-bold px-2 py-0.5 rounded-sm">
+                        <span className="text-[10px] font-bold uppercase text-[#178A47] bg-[#178A47]/10 px-2 py-0.5 rounded-sm shrink-0">
                           A domicilio
                         </span>
                       </div>
-                      <p className="text-xs text-slate-600">
+                      <p className="text-xs text-slate-600 leading-relaxed">
                         Inyección-extracción e higienización profunda en tu propia vivienda sin desmontar el sofá.
                       </p>
                     </a>
@@ -871,15 +846,25 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/limpieza-sofas-vigo"
                       onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#9E440E]/60 hover:shadow-xs transition-all"
+                      className={`group block p-2.5 rounded-xl transition-colors ${
+                        currentPath === '/limpieza-sofas-vigo'
+                          ? 'bg-[#EDF5FD]'
+                          : 'hover:bg-[#EDF5FD]'
+                      }`}
                     >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-bold text-[#002147]">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span
+                          className={`text-xs font-extrabold transition-colors ${
+                            currentPath === '/limpieza-sofas-vigo'
+                              ? 'text-[#0F76BB]'
+                              : 'text-[#002147] group-hover:text-[#0F76BB]'
+                          }`}
+                        >
                           Higienización in situ de tapicerías y colchones
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#9E440E] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                       </div>
-                      <p className="text-xs text-slate-600">
+                      <p className="text-xs text-slate-600 leading-relaxed">
                         Sillones, sillas tapizadas, cabeceros de cama, colchones y fundas desenfundables.
                       </p>
                     </a>
@@ -887,15 +872,25 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/servicios-empresas"
                       onClick={(e) => handleLinkClick('/servicios-empresas', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#9E440E]/60 hover:shadow-xs transition-all"
+                      className={`group block p-2.5 rounded-xl transition-colors ${
+                        currentPath === '/servicios-empresas'
+                          ? 'bg-[#EDF5FD]'
+                          : 'hover:bg-[#EDF5FD]'
+                      }`}
                     >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-bold text-[#002147]">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span
+                          className={`text-xs font-extrabold transition-colors ${
+                            currentPath === '/servicios-empresas'
+                              ? 'text-[#0F76BB]'
+                              : 'text-[#002147] group-hover:text-[#0F76BB]'
+                          }`}
+                        >
                           Lavandería para empresas y negocios
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#9E440E] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                       </div>
-                      <p className="text-xs text-slate-600">
+                      <p className="text-xs text-slate-600 leading-relaxed">
                         Toallas de peluquerías y clínicas, vestuario laboral (suciedad normal) y factura mensual con CIF.
                       </p>
                     </a>
@@ -907,62 +902,72 @@ export const Header: React.FC<HeaderProps> = ({
         )}
 
         {/* =========================================================================
-            DESPLEGABLE 3: ALOJAMIENTOS TURÍSTICOS (2 TARJETAS ENFRENTADAS)
+            DESPLEGABLE 3: ALOJAMIENTOS TURÍSTICOS (PANEL FLOTANTE 2 COLUMNAS)
             ========================================================================= */}
         {activeMenu === 'apartamentos' && (
           <div
-            className="hidden lg:block absolute left-0 right-0 top-full bg-[#FAF8F5] text-slate-800 border-b border-[#EADBCA] shadow-[0_25px_50px_-12px_rgba(44,24,16,0.18)] animate-curtain-drop z-50"
+            className="hidden lg:block absolute inset-x-0 top-full pt-2 px-6 z-50"
             onMouseEnter={() => handleMouseEnterMenu('apartamentos')}
             onMouseLeave={handleMouseLeaveMenu}
           >
-            <div className="max-w-5xl mx-auto px-6 lg:px-8 py-8">
-              <div className="text-center max-w-xl mx-auto mb-6">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
-                  VIVIENDAS TURÍSTICAS Y AIRBNB EN VIGO
+            <div className="max-w-4xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
+              <div className="pb-3 mb-5 border-b border-slate-200">
+                <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                  Viviendas turísticas y Airbnb en Vigo
                 </span>
-                <p className="text-lg font-extrabold text-[#002147] mt-1">
+                <p className="text-lg font-extrabold text-[#002147] mt-0.5">
                   Soluciones de lavandería y limpieza a medida para anfitriones
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
-                {/* Tarjeta 1: Servicio de Limpieza y lavandería */}
+              <div className="grid grid-cols-2 gap-6 items-start">
                 <a
-                  href="/limpieza-apartamentos-turisticos-vigo#rotacion"
-                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo#rotacion', e)}
-                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#9E440E] hover:shadow-md transition-all relative overflow-hidden"
+                  href="/limpieza-apartamentos-turisticos-vigo"
+                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
+                  className={`group block p-4 rounded-xl transition-colors ${
+                    currentPath === '/limpieza-apartamentos-turisticos-vigo'
+                      ? 'bg-[#EDF5FD]'
+                      : 'hover:bg-[#EDF5FD]'
+                  }`}
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#0F76BB]/10 text-[#0C65A1] flex items-center justify-center font-bold text-sm mb-3">
-                    01
+                  <div className="flex items-center gap-2.5 mb-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                      01
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                      Servicio de Limpieza y Lavandería
+                    </span>
                   </div>
-                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#9E440E] transition-colors">
-                    Servicio de Limpieza y Lavandería
-                  </p>
-                  <p className="text-xs text-slate-600 leading-relaxed mt-2">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     Servicio completo de limpieza del apartamento en cada rotación y suministro de ropa de cama y toallas higienizadas con planchado profesional entre huéspedes.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#9E440E]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Ver modalidad y presupuesto a medida</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
 
-                {/* Tarjeta 2: Coordinación integral de limpieza y lavandería */}
                 <a
-                  href="/limpieza-apartamentos-turisticos-vigo#integral"
-                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo#integral', e)}
-                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#9E440E] hover:shadow-md transition-all relative overflow-hidden"
+                  href="/limpieza-apartamentos-turisticos-vigo"
+                  onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
+                  className={`group block p-4 rounded-xl transition-colors ${
+                    currentPath === '/limpieza-apartamentos-turisticos-vigo'
+                      ? 'bg-[#EDF5FD]'
+                      : 'hover:bg-[#EDF5FD]'
+                  }`}
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#9E440E]/10 text-[#9E440E] flex items-center justify-center font-bold text-sm mb-3">
-                    02
+                  <div className="flex items-center gap-2.5 mb-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                      02
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                      Coordinación Integral de Limpieza y Lavandería
+                    </span>
                   </div>
-                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#9E440E] transition-colors">
-                    Coordinación Integral de Limpieza y Lavandería
-                  </p>
-                  <p className="text-xs text-slate-600 leading-relaxed mt-2">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     Tú gestionas tus reservas y calendario. Mimos asume la parte operativa crítica: limpieza exhaustiva en cada checkout, supervisión básica y entrega puntual de lencería hotelera impecable.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#9E440E]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Consultar propuesta a medida</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -973,165 +978,232 @@ export const Header: React.FC<HeaderProps> = ({
         )}
 
         {/* =========================================================================
-            DESPLEGABLE 4: PUNTOS MIMOS (2 COLUMNAS: TIENDAS PROPIAS VS PUNTOS COLABORADORES)
+            DESPLEGABLE 4: PUNTOS MIMOS (PANEL FLOTANTE 3 COLUMNAS)
             ========================================================================= */}
         {activeMenu === 'puntos' && (
           <div
-            className="hidden lg:block absolute left-0 right-0 top-full bg-[#FAF8F5] text-slate-800 border-b border-[#EADBCA] shadow-[0_25px_50px_-12px_rgba(44,24,16,0.18)] animate-curtain-drop z-50"
+            className="hidden lg:block absolute inset-x-0 top-full pt-2 px-6 z-50"
             onMouseEnter={() => handleMouseEnterMenu('puntos')}
             onMouseLeave={handleMouseLeaveMenu}
           >
-            <div className="max-w-5xl mx-auto px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-2 gap-10">
-                {/* Columna 1: Nuestras 3 tiendas propias en Vigo */}
-                <div className="space-y-4 border-r border-[#EADBCA]/60 pr-8">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
-                      Tiendas Propias en Vigo
+            <div className="max-w-6xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
+              <div className="grid grid-cols-12 gap-7 items-start">
+                {/* Columna 1: 3 Tiendas Propias en Vigo */}
+                <div className="col-span-4">
+                  <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-200">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#002147]">
+                      <Store className="w-3.5 h-3.5 text-[#0F76BB]" />
+                      <span>3 Tiendas Propias en Vigo</span>
                     </span>
                     <a
                       href="/puntos-mimos"
                       onClick={(e) => handleLinkClick('/puntos-mimos', e)}
-                      className="text-xs font-bold text-[#0B5C94] hover:underline inline-flex items-center gap-1"
+                      className="text-xs font-bold text-[#0F76BB] hover:text-[#002147] inline-flex items-center gap-1 transition-colors"
                     >
-                      <span>Ver mapa completo</span>
+                      <span>Ver mapa</span>
                       <ArrowRight className="w-3 h-3" />
                     </a>
                   </div>
-                  <div className="space-y-3">
-                    {/* Sede Navia */}
-                    <a
-                      href="/tienda-mimos-navia-vigo"
-                      onClick={(e) => handleLinkClick('/tienda-mimos-navia-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] transition-all"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
-                          Sede Central Navia
-                        </span>
-                        <span className="text-[10px] font-mono uppercase bg-[#002147] text-white px-2 py-0.5 rounded-sm font-bold">
-                          Central
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 mt-1">
-                        C/ Teixugueiras, 11, bajo 9 · Tel. 986 12 51 41
-                      </p>
-                      <p className="text-[11px] text-slate-600 mt-0.5">
-                        Planta de tintorería, planchado y recepción para taller de costura.
-                      </p>
-                    </a>
 
-                    {/* Tienda Gregorio Espino */}
-                    <a
-                      href="/tienda-mimos-gregorio-espino-vigo"
-                      onClick={(e) => handleLinkClick('/tienda-mimos-gregorio-espino-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] transition-all"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
-                          Mimos Gregorio Espino
-                        </span>
-                        <span className="text-[10px] font-mono uppercase bg-[#9E440E] text-white px-2 py-0.5 rounded-sm font-bold">
-                          Taller in situ
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 mt-1">
-                        Alcalde Gregorio Espino, 42 · Tel. 986 19 27 87
-                      </p>
-                      <p className="text-[11px] text-slate-600 mt-0.5">
-                        Taller propio de costura, arreglos de ropa y tintorería directa.
-                      </p>
-                    </a>
+                  <div className="rounded-xl bg-[#F4F9FE] border border-[#002147]/12 p-2.5 space-y-1.5">
+                    {[
+                      {
+                        name: 'Sede Central Navia',
+                        badge: 'Central',
+                        badgeClass: 'bg-[#002147] text-white',
+                        meta: 'C/ Teixugueiras, 11, bajo 9 · 986 12 51 41',
+                        desc: 'Planta de tintorería, planchado y recepción de costura.',
+                        href: '/tienda-mimos-navia-vigo',
+                      },
+                      {
+                        name: 'Mimos Gregorio Espino',
+                        badge: 'Taller in situ',
+                        badgeClass: 'bg-[#0F76BB] text-white',
+                        meta: 'Alcalde Gregorio Espino, 42 · 986 19 27 87',
+                        desc: 'Taller propio de costura y tintorería directa.',
+                        href: '/tienda-mimos-gregorio-espino-vigo',
+                      },
+                      {
+                        name: 'Mimos Venezuela',
+                        badge: 'Taller in situ',
+                        badgeClass: 'bg-[#0F76BB] text-white',
+                        meta: 'Rúa de Venezuela, 29, Entrep. · 646 94 67 64',
+                        desc: 'Taller propio de costura y atención en Vigo Centro.',
+                        href: '/tienda-mimos-venezuela-vigo',
+                      },
+                    ].map((tienda) => {
+                      const isActive = currentPath === tienda.href;
+                      return (
+                        <a
+                          key={tienda.href}
+                          href={tienda.href}
+                          onClick={(e) => handleLinkClick(tienda.href, e)}
+                          className={`group block p-2.5 rounded-lg transition-colors ${
+                            isActive ? 'bg-[#EDF5FD]' : 'hover:bg-[#EDF5FD]'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span
+                              className={`text-xs font-extrabold transition-colors ${
+                                isActive
+                                  ? 'text-[#0F76BB]'
+                                  : 'text-[#002147] group-hover:text-[#0F76BB]'
+                              }`}
+                            >
+                              {tienda.name}
+                            </span>
+                            <span
+                              className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm shrink-0 ${tienda.badgeClass}`}
+                            >
+                              {tienda.badge}
+                            </span>
+                          </div>
+                          <p className="text-[11px] font-medium text-slate-700 mt-1">
+                            {tienda.meta}
+                          </p>
+                          <p className="text-[11px] text-slate-600 mt-0.5">{tienda.desc}</p>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
 
-                    {/* Tienda Venezuela */}
+                {/* Columna 2: 5 Comercios Colaboradores + accesos */}
+                <div className="col-span-4">
+                  <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-200">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#002147]">
+                      <MapPin className="w-3.5 h-3.5 text-[#0F76BB]" />
+                      <span>5 Comercios Colaboradores</span>
+                    </span>
+                  </div>
+
+                  <p className="text-[11px] text-slate-600 leading-relaxed mb-2.5">
+                    Tiendas independientes asociadas donde entregas y recoges con las mismas tarifas oficiales de Mimos:
+                  </p>
+
+                  <div className="space-y-1">
+                    {[
+                      {
+                        localidad: 'Vigo · As Travesas',
+                        detalle: "D'Passo (Camiño Espedrigada, 9)",
+                        href: '/punto-mimos-dpasso-vigo',
+                      },
+                      {
+                        localidad: 'Redondela',
+                        detalle: 'Mimos Redondela (C/ José Regojo, 29)',
+                        href: '/zonas/redondela',
+                      },
+                      {
+                        localidad: 'Gondomar',
+                        detalle: 'Puntadas No Aire (costura y recepción)',
+                        href: '/zonas/gondomar',
+                      },
+                      {
+                        localidad: 'Ponteareas',
+                        detalle: 'Arregla2 (C/ Argentina, 4)',
+                        href: '/zonas/ponteareas',
+                      },
+                      {
+                        localidad: 'O Porriño',
+                        detalle: 'Telas y Más (C/ Manuel Rodríguez, 30)',
+                        href: '/zonas/o-porrino',
+                      },
+                    ].map((punto) => {
+                      const isActive = currentPath === punto.href;
+                      return (
+                        <a
+                          key={punto.href}
+                          href={punto.href}
+                          onClick={(e) => handleLinkClick(punto.href, e)}
+                          className={`group flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-lg transition-colors ${
+                            isActive ? 'bg-[#EDF5FD]' : 'hover:bg-[#EDF5FD]'
+                          }`}
+                        >
+                          <div className="min-w-0">
+                            <span
+                              className={`text-xs font-extrabold block transition-colors ${
+                                isActive
+                                  ? 'text-[#0F76BB]'
+                                  : 'text-[#002147] group-hover:text-[#0F76BB]'
+                              }`}
+                            >
+                              {punto.localidad}
+                            </span>
+                            <span className="text-[11px] text-slate-600 block truncate">
+                              {punto.detalle}
+                            </span>
+                          </div>
+                          <ArrowRight className="w-3.5 h-3.5 text-[#0F76BB] shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                        </a>
+                      );
+                    })}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 pt-3 mt-3 border-t border-slate-200">
                     <a
-                      href="/tienda-mimos-venezuela-vigo"
-                      onClick={(e) => handleLinkClick('/tienda-mimos-venezuela-vigo', e)}
-                      className="group block p-3.5 rounded-xl border border-[#EADBCA] bg-white hover:border-[#002147] transition-all"
+                      href="/contacto"
+                      onClick={(e) => handleLinkClick('/contacto', e)}
+                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147] hover:text-[#0F76BB] transition-colors"
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB]">
-                          Mimos Venezuela
-                        </span>
-                        <span className="text-[10px] font-mono uppercase bg-[#9E440E] text-white px-2 py-0.5 rounded-sm font-bold">
-                          Taller in situ
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-600 mt-1">
-                        Rúa de Venezuela, 29, Entreplanta · Tel. 646 94 67 64
-                      </p>
-                      <p className="text-[11px] text-slate-600 mt-0.5">
-                        Taller propio de costura y punto directo de atención en el centro de Vigo.
-                      </p>
+                      <span>Contacto y horarios</span>
+                      <ArrowRight className="w-3 h-3 text-[#0F76BB] shrink-0" />
+                    </a>
+                    <a
+                      href="/blog"
+                      onClick={(e) => handleLinkClick('/blog', e)}
+                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147] hover:text-[#0F76BB] transition-colors"
+                    >
+                      <span>Blog y guías textiles</span>
+                      <ArrowRight className="w-3 h-3 text-[#0F76BB] shrink-0" />
                     </a>
                   </div>
                 </div>
 
-                {/* Columna 2: Red de Puntos Colaboradores */}
-                <div className="space-y-4">
-                  <span className="inline-block pb-1 text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
-                    Puntos Colaboradores (Comarca)
-                  </span>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Comercios de proximidad en tu localidad donde entregar y recoger tus encargos tratados en la central de Mimos Vigo:
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-2 pt-1">
-                    {[
-                      { nombre: 'Redondela', url: '/zonas/redondela' },
-                      { nombre: 'Gondomar', url: '/zonas/gondomar' },
-                      { nombre: 'Ponteareas', url: '/zonas/ponteareas' },
-                      { nombre: 'O Porriño', url: '/zonas/o-porrino' },
-                      { nombre: 'Vigo (As Travesas)', url: '/zonas/vigo' },
-                      { nombre: 'Ver mapa completo', url: '/puntos-mimos' },
-                    ].map((loc, idx) => (
-                      <a
-                        key={idx}
-                        href={loc.url}
-                        onClick={(e) => handleLinkClick(loc.url, e)}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#0B5C94] text-xs font-bold text-[#0B5C94] hover:text-[#002147] hover:bg-[#FFF2E6] transition-colors"
-                      >
-                        <span>{loc.nombre}</span>
-                        <ArrowRight className="w-3 h-3 text-[#9E440E]" />
-                      </a>
-                    ))}
+                {/* Columna 3: Captación de comercios */}
+                <div className="col-span-4">
+                  <div className="pb-2 mb-3 border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB]">
+                    ¿Quieres ser un punto de recogida Mimos?
                   </div>
 
-                  <div className="pt-3 space-y-2.5">
+                  <div className="rounded-2xl bg-[#F7F6F2] border-2 border-[#0F76BB] text-slate-800 p-5 shadow-[0_10px_28px_-10px_rgba(15,118,187,0.22)] flex flex-col justify-between space-y-4">
+                    <div>
+                      <p className="text-[15px] font-extrabold leading-snug text-[#002147]">
+                        ¿Tienes un negocio y quieres más ingresos y tránsito de clientes?
+                      </p>
+                      <p className="text-xs text-slate-600 leading-relaxed mt-1.5">
+                        Te proponemos montar un punto de recogida Mimos en tu establecimiento.
+                      </p>
+                    </div>
+
+                    <ul className="space-y-2 text-xs text-slate-700 leading-relaxed">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#002147]">Servicio complementario:</strong> entrega y recogida de prendas directamente en tu mostrador.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#002147]">Más clientes y ventas:</strong> atrae visitas nuevas dos veces sin cuotas ni inversión inicial.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#0F76BB] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#002147]">Destaca en tu zona:</strong> nosotros nos encargamos de todo (furgoneta, resguardos y limpieza en Vigo).
+                        </span>
+                      </li>
+                    </ul>
+
                     <a
                       href="/se-punto-colaborador"
                       onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
-                      className="group flex items-center justify-between p-3.5 rounded-xl bg-gradient-to-r from-[#002147] to-[#0F76BB] text-white hover:opacity-95 transition-opacity"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#0F76BB] hover:bg-[#002147] text-white text-xs font-extrabold px-4 py-2.5 transition-colors shadow-xs"
                     >
-                      <div>
-                        <span className="text-xs font-bold block">
-                          ¿Tienes un comercio de proximidad?
-                        </span>
-                        <span className="text-[11px] text-slate-200">
-                          Únete a la red de puntos Mimos sin inversión inicial
-                        </span>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-[#60B5F6] group-hover:translate-x-1 transition-transform" />
+                      <span>Quiero ser punto colaborador</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </a>
-
-                    <div className="grid grid-cols-2 gap-2">
-                      <a
-                        href="/contacto"
-                        onClick={(e) => handleLinkClick('/contacto', e)}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#002147] text-xs font-bold text-[#002147] transition-colors"
-                      >
-                        <span>Contacto y horarios</span>
-                        <ArrowRight className="w-3 h-3 text-[#9E440E]" />
-                      </a>
-                      <a
-                        href="/blog"
-                        onClick={(e) => handleLinkClick('/blog', e)}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg bg-white border border-[#EADBCA] hover:border-[#002147] text-xs font-bold text-[#002147] transition-colors"
-                      >
-                        <span>Blog y guías textiles</span>
-                        <ArrowRight className="w-3 h-3 text-[#9E440E]" />
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1140,62 +1212,72 @@ export const Header: React.FC<HeaderProps> = ({
         )}
 
         {/* =========================================================================
-            DESPLEGABLE 5: ALFOMBRAS (LIMPIEZA Y ARREGLOS EN 2 TARJETAS)
+            DESPLEGABLE 5: ALFOMBRAS (PANEL FLOTANTE 2 COLUMNAS)
             ========================================================================= */}
         {activeMenu === 'alfombras' && (
           <div
-            className="hidden lg:block absolute left-0 right-0 top-full bg-[#FAF8F5] text-slate-800 border-b border-[#EADBCA] shadow-[0_25px_50px_-12px_rgba(44,24,16,0.18)] animate-curtain-drop z-50"
+            className="hidden lg:block absolute inset-x-0 top-full pt-2 px-6 z-50"
             onMouseEnter={() => handleMouseEnterMenu('alfombras')}
             onMouseLeave={handleMouseLeaveMenu}
           >
-            <div className="max-w-5xl mx-auto px-6 lg:px-8 py-8">
-              <div className="text-center max-w-xl mx-auto mb-6">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9E440E]">
-                  ALFOMBRAS EN VIGO · RECOGIDA O ENTREGA EN NUESTRAS 3 TIENDAS
+            <div className="max-w-4xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
+              <div className="pb-3 mb-5 border-b border-slate-200">
+                <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                  Alfombras en Vigo · Recogida o entrega en nuestras 3 tiendas
                 </span>
-                <p className="text-lg font-extrabold text-[#002147] mt-1">
+                <p className="text-lg font-extrabold text-[#002147] mt-0.5">
                   Limpieza profunda y arreglos de alfombras
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
-                {/* Tarjeta 1: Limpieza de alfombras */}
+              <div className="grid grid-cols-2 gap-6 items-start">
                 <a
                   href="/limpieza-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
-                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#0F76BB] hover:shadow-md transition-all"
+                  className={`group block p-4 rounded-xl transition-colors ${
+                    currentPath === '/limpieza-alfombras-vigo'
+                      ? 'bg-[#EDF5FD]'
+                      : 'hover:bg-[#EDF5FD]'
+                  }`}
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#0F76BB]/10 text-[#0C65A1] flex items-center justify-center font-bold text-sm mb-3">
-                    01
+                  <div className="flex items-center gap-2.5 mb-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                      01
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                      Limpieza de alfombras
+                    </span>
                   </div>
-                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                    Limpieza de alfombras
-                  </p>
-                  <p className="text-xs text-slate-600 leading-relaxed mt-2">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     Lavado adaptado según fibra y reverso (lana, seda, yute, algodón o fibras modernas) con secado completo anti-humedad. Entrega en tienda o recogida a domicilio.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#002147]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Ver limpieza de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
 
-                {/* Tarjeta 2: Arreglo y reparación de alfombras */}
                 <a
                   href="/reparacion-alfombras-vigo"
                   onClick={(e) => handleLinkClick('/reparacion-alfombras-vigo', e)}
-                  className="group block p-6 rounded-2xl border border-[#EADBCA] bg-white hover:border-[#9E440E] hover:shadow-md transition-all"
+                  className={`group block p-4 rounded-xl transition-colors ${
+                    currentPath === '/reparacion-alfombras-vigo'
+                      ? 'bg-[#EDF5FD]'
+                      : 'hover:bg-[#EDF5FD]'
+                  }`}
                 >
-                  <div className="w-9 h-9 rounded-xl bg-[#9E440E]/10 text-[#9E440E] flex items-center justify-center font-bold text-sm mb-3">
-                    02
+                  <div className="flex items-center gap-2.5 mb-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                      02
+                    </span>
+                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                      Arreglo y reparación de alfombras
+                    </span>
                   </div>
-                  <p className="text-base font-extrabold text-[#002147] group-hover:text-[#9E440E] transition-colors">
-                    Arreglo y reparación de alfombras
-                  </p>
-                  <p className="text-xs text-slate-600 leading-relaxed mt-2">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     Restauración artesanal de flecos, festón, ribetes, descosidos y bordes mediante especialista. Puedes contratar solo el arreglo o junto con la limpieza.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0B5C94] group-hover:text-[#9E440E]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Ver arreglos de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
