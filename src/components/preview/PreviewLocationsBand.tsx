@@ -201,21 +201,21 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
     <section
       id="puntos"
       aria-labelledby="puntos-heading"
-      className="py-16 lg:py-24 bg-[#F7F6F2] border-b border-slate-200"
+      className="py-16 lg:py-24 bg-[#FAF9F6] border-b border-slate-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl space-y-2">
-            <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
+            <p className="text-xs sm:text-sm font-semibold text-[#0C65A1]">
               Red sin pedido mínimo · Vigo y área metropolitana
             </p>
             <h2
               id="puntos-heading"
-              className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
+              className="font-editorial-display text-2xl sm:text-4xl font-medium text-[#002147] tracking-tight leading-[1.12] text-balance"
             >
               {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} comercios colaboradores
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-[1.6] font-normal">
               Los 5 puntos colaboradores son establecimientos independientes con nuestras tarifas oficiales. Toca cualquiera para centrarlo en el mapa o abrir su ficha.
             </p>
           </div>
@@ -224,7 +224,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
             <a
               href="/puntos-mimos"
               onClick={(e) => onNavigate('/puntos-mimos', e)}
-              className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors whitespace-nowrap"
             >
               <span>Fichas completas ({REGISTROS_PUNTOS.length})</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -232,7 +232,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
             <a
               href="/se-punto-colaborador"
               onClick={(e) => onNavigate('/se-punto-colaborador', e)}
-              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#002147] hover:text-[#0F76BB] hover:underline whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-semibold text-[#002147] hover:text-[#0F76BB] hover:underline whitespace-nowrap"
             >
               <span>¿Tienes comercio? Colabora</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -241,7 +241,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
         </div>
 
         {/* Barra de filtro integrada sin cajas: tabs subrayados + buscador rápido de municipio/CP */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-300 pb-3">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 pb-3">
           <div className="flex flex-wrap items-center gap-5">
             {filterTabs.map((tab) => {
               const active = filterKind === tab.id;
@@ -251,7 +251,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   type="button"
                   onClick={() => setFilterKind(tab.id)}
                   aria-pressed={active}
-                  className={`min-h-[44px] pb-2 border-b-2 text-xs sm:text-sm font-bold transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`min-h-[44px] pb-2 border-b-2 text-xs sm:text-sm font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                     active
                       ? 'border-[#002147] text-[#002147]'
                       : 'border-transparent text-slate-600 hover:text-[#002147]'
@@ -274,7 +274,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
               onChange={(e) => setZoneQuery(e.target.value)}
               aria-label="Filtrar por barrio, municipio o código postal"
               placeholder="Buscar zona o CP (Mos, Nigrán, 36212...)"
-              className="w-full min-h-[44px] pl-9 pr-3 py-2 rounded-sm bg-white border border-slate-300 text-base text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+              className="w-full min-h-[44px] pl-9 pr-3 py-2 rounded-xl bg-white border border-slate-300 text-base text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
             />
           </div>
         </div>
@@ -282,13 +282,13 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
         {zoneGuidance && (
           <div className="border-l-2 border-[#0F76BB] pl-4 py-1 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm">
             <div>
-              <strong className="text-[#002147]">{zoneGuidance.title}: </strong>
+              <strong className="font-semibold text-[#002147]">{zoneGuidance.title}: </strong>
               <span className="text-slate-600">{zoneGuidance.text}</span>
             </div>
             <a
               href={zoneGuidance.href}
               onClick={(e) => onNavigate(zoneGuidance.href, e)}
-              className="inline-flex items-center gap-1 min-h-[44px] font-bold text-[#0C65A1] hover:underline shrink-0"
+              className="inline-flex items-center gap-1 min-h-[44px] font-semibold text-[#0C65A1] hover:underline shrink-0"
             >
               <span>{zoneGuidance.linkLabel}</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -298,7 +298,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Izquierda (5 cols): Directorio con líneas finas */}
-          <div className="lg:col-span-5 divide-y divide-slate-300/80 border-t border-b border-slate-300/80">
+          <div className="lg:col-span-5 divide-y divide-slate-200 border-t border-b border-slate-200">
             {visiblePuntos.map((punto) => {
               const isSelected = selectedPuntoId === punto.id;
               const detailHref = getPointDetailHref(punto);
@@ -322,21 +322,21 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                       }}
                       className="text-left flex-1 cursor-pointer group min-h-[44px]"
                     >
-                      <p className="text-xs font-bold text-[#0C65A1]">
+                      <p className="text-xs font-semibold text-[#0C65A1]">
                         {punto.tipo === 'tienda' ? 'Tienda propia' : 'Comercio colaborador'} ·{' '}
                         <span className="text-slate-600 font-medium">
                           {punto.localidad}
                         </span>
                       </p>
 
-                      <h3 className="text-base font-extrabold text-[#002147] mt-0.5 group-hover:text-[#0F76BB] transition-colors">
+                      <h3 className="text-base font-semibold text-[#002147] mt-0.5 group-hover:text-[#0F76BB] transition-colors">
                         {punto.nombre_mostrado}
                       </h3>
 
-                      <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+                      <p className="text-xs sm:text-sm text-slate-600 mt-0.5 font-normal">
                         {punto.direccion} · {punto.codigo_postal}
                       </p>
-                      <p className="text-xs text-slate-600 mt-0.5">
+                      <p className="text-xs text-slate-600 mt-0.5 font-normal">
                         {punto.horario.resumen}
                       </p>
                     </button>
@@ -348,7 +348,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                         setMapShouldLoad(true);
                       }}
                       aria-label={`Centrar ${punto.nombre_mostrado} en el mapa`}
-                      className={`min-h-[44px] px-3 py-1.5 rounded-sm text-xs font-bold shrink-0 border transition-colors cursor-pointer whitespace-nowrap ${
+                      className={`min-h-[44px] px-3.5 py-1.5 rounded-full text-xs font-semibold shrink-0 border transition-colors cursor-pointer whitespace-nowrap ${
                         isSelected
                           ? 'bg-[#0F76BB] border-[#0F76BB] text-white'
                           : 'border-slate-300 bg-white text-[#002147] hover:border-[#002147]'
@@ -358,7 +358,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                     </button>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs sm:text-sm font-bold">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs sm:text-sm font-semibold">
                     <a
                       href={`tel:+34${punto.telefono}`}
                       onClick={() =>
@@ -402,18 +402,18 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
           <div className="lg:col-span-7 space-y-6">
             <div ref={mapContainerRef}>
               {!mapShouldLoad ? (
-                <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-full h-[420px] lg:h-[520px] rounded-2xl border border-slate-200 bg-white flex flex-col items-center justify-center p-6 text-center">
                   <MapPin className="w-6 h-6 text-[#0C65A1] mb-2.5" aria-hidden="true" />
-                  <h3 className="text-lg font-extrabold text-[#002147] mb-1.5">
+                  <h3 className="text-lg font-semibold text-[#002147] mb-1.5">
                     Mapa interactivo de tiendas y puntos Mimos
                   </h3>
-                  <p className="text-sm text-slate-600 max-w-md mb-5">
+                  <p className="text-sm text-slate-600 max-w-md mb-5 font-normal">
                     Consulta ubicaciones exactas y aparcamiento en nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo y {PUNTOS_COLABORADORES.length} puntos colaboradores.
                   </p>
                   <button
                     type="button"
                     onClick={() => setMapShouldLoad(true)}
-                    className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors cursor-pointer"
                   >
                     <MapIcon className="w-4 h-4" aria-hidden="true" />
                     <span>Cargar mapa interactivo</span>
@@ -422,18 +422,18 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
               ) : (
                 <ErrorBoundary
                   fallback={
-                    <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
+                    <div className="w-full h-[420px] lg:h-[520px] rounded-2xl border border-slate-200 bg-white flex flex-col items-center justify-center p-6 text-center">
                       <MapPin className="w-6 h-6 text-[#0C65A1] mb-2.5" aria-hidden="true" />
-                      <h3 className="text-lg font-extrabold text-[#002147] mb-1.5">
+                      <h3 className="text-lg font-semibold text-[#002147] mb-1.5">
                         Mapa interactivo no disponible temporalmente
                       </h3>
-                      <p className="text-sm text-slate-600 max-w-md mb-5">
+                      <p className="text-sm text-slate-600 max-w-md mb-5 font-normal">
                         Puedes abrir «Cómo llegar» en Google Maps directamente desde cualquiera de nuestras 3 tiendas y 5 puntos colaboradores de la lista.
                       </p>
                       <button
                         type="button"
                         onClick={() => window.location.reload()}
-                        className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm px-5 py-2.5 rounded-sm transition-colors cursor-pointer"
+                        className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors cursor-pointer"
                       >
                         <MapIcon className="w-4 h-4" aria-hidden="true" />
                         <span>Recargar mapa</span>
@@ -443,9 +443,9 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                 >
                   <React.Suspense
                     fallback={
-                      <div className="w-full h-[420px] lg:h-[520px] rounded-sm border border-slate-300 bg-white flex flex-col items-center justify-center p-6 text-center">
+                      <div className="w-full h-[420px] lg:h-[520px] rounded-2xl border border-slate-200 bg-white flex flex-col items-center justify-center p-6 text-center">
                         <MapPin className="w-7 h-7 text-[#0C65A1] mb-2" aria-hidden="true" />
-                        <p className="font-bold text-[#002147] text-sm">
+                        <p className="font-semibold text-[#002147] text-sm">
                           Cargando mapa interactivo de Mimos...
                         </p>
                       </div>
@@ -463,16 +463,16 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
 
             <div
               id="contacto"
-              className="border-t border-slate-300 pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              className="border-t border-slate-200 pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
               <div className="space-y-1">
-                <p className="text-xs font-bold text-[#0C65A1]">
+                <p className="text-xs font-semibold text-[#0C65A1]">
                   Sede central · {CONTACT_INFO.legalName}
                 </p>
-                <p className="text-base font-extrabold text-[#002147]">
+                <p className="text-base font-semibold text-[#002147]">
                   {CONTACT_INFO.streetAddress} · {CONTACT_INFO.postalCode} {CONTACT_INFO.locality}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-600 font-normal">
                   {CONTACT_INFO.scheduleFullNavia} ·{' '}
                   <a href={CONTACT_INFO.emailHref} className="underline hover:text-[#0F76BB]">
                     {CONTACT_INFO.email}
@@ -484,7 +484,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                 <a
                   href={CONTACT_INFO.phoneHref}
                   onClick={() => trackPhoneClick('/', 'central_strip')}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-white border border-slate-300 hover:border-[#002147] text-[#002147] font-bold text-xs sm:text-sm px-4 py-2 rounded-sm transition-colors tabular-nums whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-white border border-slate-300 hover:border-[#002147] text-[#002147] font-medium text-xs sm:text-sm px-4 py-2 rounded-full transition-colors tabular-nums whitespace-nowrap"
                 >
                   <Phone className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
                   <span>{CONTACT_INFO.phoneDisplay}</span>
@@ -496,7 +496,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('/', 'central_strip')}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-xs sm:text-sm px-4 py-2 rounded-sm transition-colors whitespace-nowrap shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-xs sm:text-sm px-5 py-2 rounded-full transition-colors whitespace-nowrap"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>WhatsApp Mimo</span>
@@ -509,9 +509,9 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
         {/* Enlaces directos a los 7 municipios para SEO local (usando ZONAS_RESUMEN ligero) */}
         <nav
           aria-label="Cobertura por municipios"
-          className="pt-5 border-t border-slate-300/80 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm"
+          className="pt-5 border-t border-slate-200 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm"
         >
-          <span className="font-bold text-slate-600">
+          <span className="font-semibold text-slate-600">
             Guías por zona:
           </span>
           {ZONAS_RESUMEN.map((zona) => (
@@ -519,7 +519,7 @@ export const PreviewLocationsBand: React.FC<PreviewLocationsBandProps> = ({
               key={zona.slug}
               href={zona.url}
               onClick={(e) => onNavigate(zona.url, e)}
-              className="inline-flex items-center min-h-[44px] font-bold text-[#0C65A1] hover:underline whitespace-nowrap"
+              className="inline-flex items-center min-h-[44px] font-medium text-[#0C65A1] hover:underline whitespace-nowrap"
             >
               {zona.localidad}
             </a>

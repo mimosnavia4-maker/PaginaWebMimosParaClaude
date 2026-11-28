@@ -32,6 +32,7 @@ export interface PageHeroLightProps {
     fallbackSubtitle?: string;
   };
   extraContent?: React.ReactNode;
+  editorial?: boolean;
 }
 
 export const PageHeroLight: React.FC<PageHeroLightProps> = ({
@@ -47,6 +48,7 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
   secondaryAction,
   image,
   extraContent,
+  editorial = false,
 }) => {
   const [imgError, setImgError] = useState(false);
 
@@ -64,8 +66,14 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
   };
 
   return (
-    <section className="relative py-10 sm:py-14 lg:py-16 bg-gradient-to-br from-white via-[#F4F9FE] to-[#EDF5FD] border-b border-slate-200 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      className={
+        editorial
+          ? 'relative py-10 sm:py-14 lg:py-16 bg-[#FAF9F6] border-b border-slate-200/70 overflow-hidden'
+          : 'relative py-10 sm:py-14 lg:py-16 bg-gradient-to-br from-white via-[#F4F9FE] to-[#EDF5FD] border-b border-slate-200 overflow-hidden'
+      }
+    >
+      <div className={editorial ? 'max-w-6xl mx-auto px-4 sm:px-6 lg:px-8' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}>
         <nav aria-label="Migas de pan" className="mb-5 sm:mb-6">
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-slate-600">
             {breadcrumbs.map((crumb, idx) => {
@@ -87,7 +95,9 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
                         {crumb.label}
                       </a>
                     ) : (
-                      <span className="font-bold text-[#0C65A1]">{crumb.label}</span>
+                      <span className={editorial ? 'font-semibold text-[#0C65A1]' : 'font-bold text-[#0C65A1]'}>
+                        {crumb.label}
+                      </span>
                     )}
                   </li>
                 </React.Fragment>
@@ -104,26 +114,44 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
           }
         >
           <div className={image ? 'lg:col-span-7 space-y-4 sm:space-y-5' : 'space-y-4 sm:space-y-5'}>
-            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] leading-snug">
+            <p className={editorial ? 'text-xs sm:text-[13px] font-medium text-[#0C65A1] leading-snug' : 'text-xs sm:text-sm font-bold text-[#0C65A1] leading-snug'}>
               {kicker}
             </p>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-extrabold text-[#002147] tracking-tight leading-[1.1] text-balance">
+            <h1
+              className={
+                editorial
+                  ? 'font-editorial-display text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-[#002147] tracking-[-0.02em] leading-[1.08] text-balance'
+                  : 'text-3xl sm:text-4xl lg:text-[2.85rem] font-extrabold text-[#002147] tracking-tight leading-[1.1] text-balance'
+              }
+            >
               {title}
             </h1>
 
-            <div className="flex items-start gap-4 max-w-2xl">
-              <span
-                className="hidden sm:block w-10 h-px bg-[#002147]/25 mt-3 shrink-0"
-                aria-hidden="true"
-              />
-              <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-medium">
+            {editorial ? (
+              <p className="text-[15px] sm:text-base lg:text-[17px] text-slate-600 leading-[1.65] font-normal max-w-2xl">
                 {description}
               </p>
-            </div>
+            ) : (
+              <div className="flex items-start gap-4 max-w-2xl">
+                <span
+                  className="hidden sm:block w-10 h-px bg-[#002147]/25 mt-3 shrink-0"
+                  aria-hidden="true"
+                />
+                <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-medium">
+                  {description}
+                </p>
+              </div>
+            )}
 
             {note && (
-              <div className="border-l-2 border-[#0F76BB] pl-4 py-1 text-xs sm:text-sm text-slate-700 leading-relaxed bg-white/70 rounded-r-sm max-w-2xl">
+              <div
+                className={
+                  editorial
+                    ? 'rounded-2xl border border-slate-200/80 bg-white px-4 py-3 text-xs sm:text-sm text-slate-600 leading-[1.6] max-w-2xl'
+                    : 'border-l-2 border-[#0F76BB] pl-4 py-1 text-xs sm:text-sm text-slate-700 leading-relaxed bg-white/70 rounded-r-sm max-w-2xl'
+                }
+              >
                 {note}
               </div>
             )}
@@ -134,7 +162,11 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={onWhatsAppClick}
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
+                className={
+                  editorial
+                    ? 'inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-full bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0'
+                    : 'inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs'
+                }
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>{whatsappLabel}</span>
@@ -144,7 +176,11 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
                 <a
                   href={secondaryAction.href}
                   onClick={handleSecondaryClick}
-                  className="inline-flex items-center justify-center gap-1.5 min-h-[48px] px-5 py-3 rounded-lg bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 group"
+                  className={
+                    editorial
+                      ? 'inline-flex items-center justify-center gap-1.5 min-h-[48px] px-5 py-3 rounded-full bg-white border border-slate-300 hover:border-[#002147] text-[#002147] font-medium text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0'
+                      : 'inline-flex items-center justify-center gap-1.5 min-h-[48px] px-5 py-3 rounded-lg bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 group'
+                  }
                 >
                   {secondaryAction.icon && (
                     <span className="shrink-0">{secondaryAction.icon}</span>
@@ -162,36 +198,71 @@ export const PageHeroLight: React.FC<PageHeroLightProps> = ({
 
           {image && (
             <div className="lg:col-span-5">
-              <figure className="rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm">
-                {!imgError ? (
-                  <img
-                    src={image.src}
-                    srcSet={image.srcSet}
-                    sizes={image.sizes || '(max-width: 1023px) 100vw, 42vw'}
-                    alt={image.alt}
-                    width={800}
-                    height={600}
-                    fetchPriority="high"
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                    onError={() => setImgError(true)}
-                    className="w-full aspect-[4/3] object-cover"
-                  />
-                ) : (
-                  <div className="w-full aspect-[4/3] bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
-                    <Sparkles className="w-9 h-9 text-[#0C65A1] mb-2" aria-hidden="true" />
-                    <p className="font-extrabold text-base">{image.fallbackTitle}</p>
-                    {image.fallbackSubtitle && (
-                      <p className="text-xs text-slate-600 mt-1">{image.fallbackSubtitle}</p>
+              {editorial ? (
+                <figure>
+                  <div className="rounded-2xl overflow-hidden bg-[#F4F9FE]">
+                    {!imgError ? (
+                      <img
+                        src={image.src}
+                        srcSet={image.srcSet}
+                        sizes={image.sizes || '(max-width: 1023px) 100vw, 42vw'}
+                        alt={image.alt}
+                        width={800}
+                        height={600}
+                        fetchPriority="high"
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                        onError={() => setImgError(true)}
+                        className="w-full aspect-[4/3] object-cover"
+                      />
+                    ) : (
+                      <div className="w-full aspect-[4/3] bg-[#F4F9FE] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
+                        <Sparkles className="w-9 h-9 text-[#0C65A1] mb-2" aria-hidden="true" />
+                        <p className="font-semibold text-base">{image.fallbackTitle}</p>
+                        {image.fallbackSubtitle && (
+                          <p className="text-xs text-slate-600 mt-1">{image.fallbackSubtitle}</p>
+                        )}
+                      </div>
                     )}
                   </div>
-                )}
-                {image.caption && (
-                  <figcaption className="px-4 py-3 text-xs text-slate-600 border-t border-slate-100 bg-white leading-relaxed">
-                    {image.caption}
-                  </figcaption>
-                )}
-              </figure>
+                  {image.caption && (
+                    <figcaption className="mt-2.5 text-xs text-slate-600 leading-relaxed">
+                      {image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ) : (
+                <figure className="rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm">
+                  {!imgError ? (
+                    <img
+                      src={image.src}
+                      srcSet={image.srcSet}
+                      sizes={image.sizes || '(max-width: 1023px) 100vw, 42vw'}
+                      alt={image.alt}
+                      width={800}
+                      height={600}
+                      fetchPriority="high"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      onError={() => setImgError(true)}
+                      className="w-full aspect-[4/3] object-cover"
+                    />
+                  ) : (
+                    <div className="w-full aspect-[4/3] bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
+                      <Sparkles className="w-9 h-9 text-[#0C65A1] mb-2" aria-hidden="true" />
+                      <p className="font-extrabold text-base">{image.fallbackTitle}</p>
+                      {image.fallbackSubtitle && (
+                        <p className="text-xs text-slate-600 mt-1">{image.fallbackSubtitle}</p>
+                      )}
+                    </div>
+                  )}
+                  {image.caption && (
+                    <figcaption className="px-4 py-3 text-xs text-slate-600 border-t border-slate-100 bg-white leading-relaxed">
+                      {image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
             </div>
           )}
         </div>

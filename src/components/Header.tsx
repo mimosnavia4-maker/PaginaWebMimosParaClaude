@@ -295,18 +295,18 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Enlace accesible para saltar directamente al contenido principal con Tab */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#002147] focus:text-white focus:text-sm focus:font-bold focus:shadow-lg focus:ring-2 focus:ring-[#60B5F6]"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#002147] focus:text-white focus:text-sm focus:font-semibold focus:shadow-lg focus:ring-2 focus:ring-[#60B5F6]"
       >
         Saltar al contenido principal
       </a>
 
       {/* Cabecera Principal Sticky */}
       <header
-        className="sticky top-0 z-50 select-none bg-white/95 backdrop-blur-xs text-[#002147] border-b border-slate-200 shadow-xs"
+        className="sticky top-0 z-50 select-none bg-white/95 backdrop-blur-xs text-[#002147] border-b border-slate-200/80"
         onMouseLeave={handleMouseLeaveMenu}
       >
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-2 sm:py-3 gap-1 sm:gap-3 lg:gap-5">
+          <div className="flex items-center justify-between py-2 sm:py-2.5 gap-1 sm:gap-3 lg:gap-5">
             {/* =========================================================================
                 1. BLOQUE IZQUIERDO (Identidad y Marca a doble altura)
                 ========================================================================= */}
@@ -322,26 +322,26 @@ export const Header: React.FC<HeaderProps> = ({
                   alt="Tintorería Mimos Navia"
                   width={48}
                   height={48}
-                  className="w-9 h-9 sm:w-12 sm:h-12 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform bg-[#EDF5FD] border border-[#002147]/10"
+                  className="w-9 h-9 sm:w-11 sm:h-11 object-contain rounded-full p-1 shrink-0 group-hover:scale-105 transition-transform bg-[#F4F9FE] border border-[#002147]/10"
                 />
                 <div className="flex flex-col min-w-0 leading-none">
                   {/* Móvil (< sm): 3 líneas compactas TINTORERÍA / MIMOS NAVIA / VIGO */}
-                  <span className="sm:hidden text-[9px] font-bold tracking-[0.12em] uppercase text-[#002147]/85">
+                  <span className="sm:hidden text-[9px] font-semibold tracking-[0.12em] uppercase text-[#002147]/85">
                     Tintorería
                   </span>
-                  <span className="sm:hidden font-extrabold text-[13px] min-[360px]:text-[14px] tracking-tight leading-[1.08] text-[#0F76BB] mt-0.5 whitespace-nowrap">
+                  <span className="sm:hidden font-semibold text-[13px] min-[360px]:text-[14px] tracking-tight leading-[1.08] text-[#0F76BB] mt-0.5 whitespace-nowrap">
                     MIMOS NAVIA
                   </span>
 
-                  {/* Tablet y escritorio (>= sm): marca en una línea */}
-                  <span className="hidden sm:inline font-extrabold text-lg tracking-tight leading-tight text-[#002147] whitespace-nowrap">
-                    TINTORERÍA{' '}
-                    <span className="text-[#0C65A1]">
-                      MIMOS
+                  {/* Tablet y escritorio (>= sm): wordmark editorial en Fraunces */}
+                  <span className="hidden sm:inline font-editorial-display font-medium text-[19px] tracking-[-0.015em] leading-tight text-[#002147] whitespace-nowrap">
+                    Tintorería{' '}
+                    <span className="text-[#0F76BB]">
+                      Mimos
                     </span>
                   </span>
 
-                  <span className="text-[8.5px] sm:text-[11px] font-semibold tracking-wider uppercase text-slate-600 truncate mt-0.5">
+                  <span className="text-[8.5px] sm:text-[11px] font-normal text-slate-600 truncate mt-0.5">
                     <span className="sm:hidden">Vigo</span>
                     <span className="hidden sm:inline">Navia · Vigo · Cuidado Textil</span>
                   </span>
@@ -365,9 +365,9 @@ export const Header: React.FC<HeaderProps> = ({
                     href="/arreglos-de-ropa-vigo"
                     onClick={(e) => handleLinkClick('/arreglos-de-ropa-vigo', e)}
                     onMouseEnter={() => setActiveMenu(null)}
-                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
+                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-semibold whitespace-nowrap ${
                       currentPath === '/arreglos-de-ropa-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0C65A1] font-extrabold'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] font-semibold'
                         : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                     }`}
                     title="Taller propio de costura y arreglos de ropa en Vigo"
@@ -382,9 +382,9 @@ export const Header: React.FC<HeaderProps> = ({
                     href="/limpieza-sofas-vigo"
                     onClick={(e) => handleLinkClick('/limpieza-sofas-vigo', e)}
                     onMouseEnter={() => setActiveMenu(null)}
-                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-bold whitespace-nowrap ${
+                    className={`w-full text-center py-1 px-1.5 rounded-md transition-colors text-xs font-semibold whitespace-nowrap ${
                       currentPath === '/limpieza-sofas-vigo'
-                        ? 'bg-[#EDF5FD] text-[#0C65A1] font-extrabold'
+                        ? 'bg-[#EDF5FD] text-[#0C65A1] font-semibold'
                         : 'text-slate-700 hover:text-[#0F76BB] hover:bg-[#EDF5FD]'
                     }`}
                     title="Limpieza profesional de sofás, sillones y tapicerías a domicilio en Vigo"
@@ -400,7 +400,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={(e) => handleLinkClick('/limpieza-alfombras-vigo', e)}
                     onMouseEnter={() => handleMouseEnterMenu('alfombras')}
                     aria-expanded={activeMenu === 'alfombras'}
-                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border whitespace-nowrap ${
+                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer border whitespace-nowrap ${
                       activeMenu === 'alfombras' ||
                       currentPath === '/limpieza-alfombras-vigo' ||
                       currentPath === '/reparacion-alfombras-vigo'
@@ -424,7 +424,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <a
                     href={CONTACT_INFO.phoneHref}
                     onClick={() => trackPhoneClick(currentPath, 'header')}
-                    className="w-full inline-flex items-center justify-center gap-1.5 py-1 px-1.5 rounded-md transition-colors text-xs font-bold truncate text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD]"
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-1 px-1.5 rounded-md transition-colors text-xs font-semibold truncate text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD]"
                     title="Llamar directamente a Tintorería Mimos Navia"
                   >
                     <Phone
@@ -443,7 +443,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={(e) => handleLinkClick('/#servicios', e)}
                     onMouseEnter={() => handleMouseEnterMenu('tintoreria')}
                     aria-expanded={activeMenu === 'tintoreria'}
-                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
+                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer border ${
                       activeMenu === 'tintoreria'
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
@@ -467,7 +467,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={(e) => handleLinkClick('/limpieza-profesional-vigo', e)}
                     onMouseEnter={() => handleMouseEnterMenu('limpieza')}
                     aria-expanded={activeMenu === 'limpieza'}
-                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
+                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer border ${
                       activeMenu === 'limpieza' || currentPath === '/limpieza-profesional-vigo'
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
@@ -491,7 +491,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={(e) => handleLinkClick('/limpieza-apartamentos-turisticos-vigo', e)}
                     onMouseEnter={() => handleMouseEnterMenu('apartamentos')}
                     aria-expanded={activeMenu === 'apartamentos'}
-                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
+                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer border ${
                       activeMenu === 'apartamentos' || currentPath === '/limpieza-apartamentos-turisticos-vigo'
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
@@ -515,7 +515,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={(e) => handleLinkClick('/puntos-mimos', e)}
                     onMouseEnter={() => handleMouseEnterMenu('puntos')}
                     aria-expanded={activeMenu === 'puntos'}
-                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-bold cursor-pointer border ${
+                    className={`w-full inline-flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer border ${
                       activeMenu === 'puntos' || currentPath === '/puntos-mimos'
                         ? 'bg-[#EDF5FD] text-[#0C65A1] border-[#0F76BB]/25 shadow-xs'
                         : 'text-[#002147] hover:text-[#0F76BB] hover:bg-[#EDF5FD] border-transparent'
@@ -544,7 +544,7 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'header_whatsapp_mimo')}
-                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs px-3 rounded-lg transition-all shadow-xs cursor-pointer active:scale-95"
+                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-xs px-3 rounded-full transition-colors cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 <span>Hablar con Mimo</span>
@@ -554,7 +554,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setIsTrackingModalOpen(true)}
-                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 border font-bold text-xs px-3 rounded-lg transition-colors cursor-pointer bg-[#EDF5FD] hover:bg-[#DCEBFA] border-[#002147]/15 text-[#002147]"
+                className="w-full h-[32px] inline-flex items-center justify-center gap-1.5 border font-medium text-xs px-3 rounded-full transition-colors cursor-pointer bg-white hover:bg-[#F4F9FE] border-slate-300 hover:border-[#002147] text-[#002147]"
                 title="Consultar el estado de tu encargo o ticket oficial"
               >
                 <Package
@@ -573,7 +573,7 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'header_mobile_icon')}
-                className="hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-xl bg-[#1FA855] hover:bg-[#25B860] text-[#002147] transition-colors"
+                className="hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[44px] p-2 rounded-full bg-[#13733B] hover:bg-[#0F5C2F] text-white transition-colors"
                 aria-label="WhatsApp con Mimo"
               >
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
@@ -581,7 +581,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setIsTrackingModalOpen(true)}
-                className="inline-flex items-center justify-center gap-1 sm:gap-1.5 min-h-[44px] px-2 sm:px-3 py-1.5 rounded-xl bg-[#EDF5FD] hover:bg-[#DCEBFA] border border-[#002147]/15 text-[#002147] text-[11px] sm:text-xs font-extrabold whitespace-nowrap transition-colors cursor-pointer active:scale-95"
+                className="inline-flex items-center justify-center gap-1 sm:gap-1.5 min-h-[44px] px-2.5 sm:px-3.5 py-1.5 rounded-full bg-white hover:bg-[#F4F9FE] border border-slate-300 hover:border-[#002147] text-[#002147] text-[11px] sm:text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer active:scale-95"
                 aria-label="Consultar estado de tu pedido"
               >
                 <Package className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
@@ -613,13 +613,13 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="max-w-6xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
               {/* Barra superior */}
               <div className="flex items-center justify-between pb-3 mb-5 border-b border-slate-200">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#0F76BB]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#0F76BB]">
                   Tintorería, lavandería y cuidado textil en Vigo
                 </span>
                 <a
                   href="/#servicios"
                   onClick={(e) => handleLinkClick('/#servicios', e)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#002147] hover:text-[#0F76BB] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#002147] hover:text-[#0F76BB] transition-colors"
                 >
                   <span>Ver catálogo completo en portada</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -630,7 +630,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="grid grid-cols-3 gap-7 items-start">
                 {/* Columna 1: Prendas de vestir y sastrería */}
                 <div className="pr-5 border-r border-slate-200/80">
-                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
                     Prendas de vestir y sastrería
                   </p>
                   <ul className="space-y-1">
@@ -668,7 +668,7 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center justify-between gap-2">
                               <span
-                                className={`text-sm font-extrabold transition-colors ${
+                                className={`text-sm font-semibold transition-colors ${
                                   isActive
                                     ? 'text-[#0F76BB]'
                                     : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -694,7 +694,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* Columna 2: Hogar, lavandería y costura */}
                 <div className="pr-5 border-r border-slate-200/80">
-                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
                     Hogar, lavandería y costura
                   </p>
                   <ul className="space-y-1">
@@ -732,7 +732,7 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center justify-between gap-2">
                               <span
-                                className={`text-sm font-extrabold transition-colors ${
+                                className={`text-sm font-semibold transition-colors ${
                                   isActive
                                     ? 'text-[#0F76BB]'
                                     : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -758,7 +758,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* Columna 3: Especialidades y recogida */}
                 <div>
-                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB] mb-2.5 px-2.5">
                     Especialidades y recogida
                   </p>
                   <ul className="space-y-1">
@@ -796,7 +796,7 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center justify-between gap-2">
                               <span
-                                className={`text-sm font-extrabold transition-colors ${
+                                className={`text-sm font-semibold transition-colors ${
                                   isActive
                                     ? 'text-[#0F76BB]'
                                     : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -838,10 +838,10 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Bloque 1: Instalaciones y Sedes */}
                 <div className="col-span-7 pr-6 border-r border-slate-200/80">
                   <div className="pb-3 mb-3 border-b border-slate-200">
-                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB] block">
                       01 · Instalaciones y Sedes
                     </span>
-                    <p className="text-base font-extrabold text-[#002147] mt-0.5">
+                    <p className="text-base font-semibold text-[#002147] mt-0.5">
                       Limpieza técnica de inmuebles en Vigo
                     </p>
                   </div>
@@ -890,7 +890,7 @@ export const Header: React.FC<HeaderProps> = ({
                           >
                             <div className="flex items-center justify-between gap-2">
                               <span
-                                className={`text-xs font-extrabold transition-colors ${
+                                className={`text-xs font-semibold transition-colors ${
                                   isActive
                                     ? 'text-[#0F76BB]'
                                     : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -919,10 +919,10 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Bloque 2: Cuidado Textil y Tapicerías */}
                 <div className="col-span-5">
                   <div className="pb-3 mb-3 border-b border-slate-200">
-                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB] block">
                       02 · Cuidado Textil y Tapicerías
                     </span>
-                    <p className="text-base font-extrabold text-[#002147] mt-0.5">
+                    <p className="text-base font-semibold text-[#002147] mt-0.5">
                       Tratamiento profesional in situ y en planta
                     </p>
                   </div>
@@ -938,7 +938,7 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <span
-                          className={`inline-flex items-center gap-1.5 text-xs font-extrabold transition-colors ${
+                          className={`inline-flex items-center gap-1.5 text-xs font-semibold transition-colors ${
                             currentPath === '/limpieza-sofas-vigo'
                               ? 'text-[#0F76BB]'
                               : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -947,7 +947,7 @@ export const Header: React.FC<HeaderProps> = ({
                           <Sparkles className="w-3.5 h-3.5 text-[#0F76BB] shrink-0" />
                           <span>Limpieza de sofás (Servicio destacado)</span>
                         </span>
-                        <span className="text-[10px] font-bold uppercase text-[#178A47] bg-[#178A47]/10 px-2 py-0.5 rounded-sm shrink-0">
+                        <span className="text-[10px] font-semibold uppercase text-[#13733B] bg-[#13733B]/10 px-2 py-0.5 rounded-sm shrink-0">
                           A domicilio
                         </span>
                       </div>
@@ -967,7 +967,7 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <span
-                          className={`text-xs font-extrabold transition-colors ${
+                          className={`text-xs font-semibold transition-colors ${
                             currentPath === '/limpieza-sofas-vigo'
                               ? 'text-[#0F76BB]'
                               : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -993,7 +993,7 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className="flex items-center justify-between gap-2 mb-1">
                         <span
-                          className={`text-xs font-extrabold transition-colors ${
+                          className={`text-xs font-semibold transition-colors ${
                             currentPath === '/servicios-empresas'
                               ? 'text-[#0F76BB]'
                               : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -1025,10 +1025,10 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <div className="max-w-4xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
               <div className="pb-3 mb-5 border-b border-slate-200">
-                <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB] block">
                   Viviendas turísticas y Airbnb en Vigo
                 </span>
-                <p className="text-lg font-extrabold text-[#002147] mt-0.5">
+                <p className="text-lg font-semibold text-[#002147] mt-0.5">
                   Soluciones de lavandería y limpieza a medida para anfitriones
                 </p>
               </div>
@@ -1044,17 +1044,17 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   <div className="flex items-center gap-2.5 mb-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-semibold text-xs shrink-0">
                       01
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                    <span className="text-sm font-semibold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                       Servicio de Limpieza y Lavandería
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Servicio completo de limpieza del apartamento en cada rotación y suministro de ropa de cama y toallas higienizadas con planchado profesional entre huéspedes.
                   </p>
-                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Ver modalidad y presupuesto a medida</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -1070,17 +1070,17 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   <div className="flex items-center gap-2.5 mb-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-semibold text-xs shrink-0">
                       02
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                    <span className="text-sm font-semibold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                       Coordinación Integral de Limpieza y Lavandería
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Tú gestionas tus reservas y calendario. Mimos asume la parte operativa crítica: limpieza exhaustiva en cada checkout, supervisión básica y entrega puntual de lencería hotelera impecable.
                   </p>
-                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Consultar propuesta a medida</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -1104,14 +1104,14 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Columna 1: 3 Tiendas Propias en Vigo */}
                 <div className="col-span-4">
                   <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-200">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#002147]">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#002147]">
                       <Store className="w-3.5 h-3.5 text-[#0F76BB]" />
                       <span>3 Tiendas Propias en Vigo</span>
                     </span>
                     <a
                       href="/puntos-mimos"
                       onClick={(e) => handleLinkClick('/puntos-mimos', e)}
-                      className="text-xs font-bold text-[#0F76BB] hover:text-[#002147] inline-flex items-center gap-1 transition-colors"
+                      className="text-xs font-semibold text-[#0F76BB] hover:text-[#002147] inline-flex items-center gap-1 transition-colors"
                     >
                       <span>Ver mapa</span>
                       <ArrowRight className="w-3 h-3" />
@@ -1157,7 +1157,7 @@ export const Header: React.FC<HeaderProps> = ({
                         >
                           <div className="flex items-center justify-between gap-2">
                             <span
-                              className={`text-xs font-extrabold transition-colors ${
+                              className={`text-xs font-semibold transition-colors ${
                                 isActive
                                   ? 'text-[#0F76BB]'
                                   : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -1166,7 +1166,7 @@ export const Header: React.FC<HeaderProps> = ({
                               {tienda.name}
                             </span>
                             <span
-                              className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm shrink-0 ${tienda.badgeClass}`}
+                              className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-sm shrink-0 ${tienda.badgeClass}`}
                             >
                               {tienda.badge}
                             </span>
@@ -1184,7 +1184,7 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Columna 2: 5 Comercios Colaboradores + accesos */}
                 <div className="col-span-4">
                   <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-200">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#002147]">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#002147]">
                       <MapPin className="w-3.5 h-3.5 text-[#0F76BB]" />
                       <span>5 Comercios Colaboradores</span>
                     </span>
@@ -1234,7 +1234,7 @@ export const Header: React.FC<HeaderProps> = ({
                         >
                           <div className="min-w-0">
                             <span
-                              className={`text-xs font-extrabold block transition-colors ${
+                              className={`text-xs font-semibold block transition-colors ${
                                 isActive
                                   ? 'text-[#0F76BB]'
                                   : 'text-[#002147] group-hover:text-[#0F76BB]'
@@ -1256,7 +1256,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/contacto"
                       onClick={(e) => handleLinkClick('/contacto', e)}
-                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147] hover:text-[#0F76BB] transition-colors"
+                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-semibold text-[#002147] hover:text-[#0F76BB] transition-colors"
                     >
                       <span>Contacto y horarios</span>
                       <ArrowRight className="w-3 h-3 text-[#0F76BB] shrink-0" />
@@ -1264,7 +1264,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/blog"
                       onClick={(e) => handleLinkClick('/blog', e)}
-                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147] hover:text-[#0F76BB] transition-colors"
+                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-semibold text-[#002147] hover:text-[#0F76BB] transition-colors"
                     >
                       <span>Blog y guías textiles</span>
                       <ArrowRight className="w-3 h-3 text-[#0F76BB] shrink-0" />
@@ -1274,13 +1274,13 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* Columna 3: Captación de comercios */}
                 <div className="col-span-4">
-                  <div className="pb-2 mb-3 border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB]">
+                  <div className="pb-2 mb-3 border-b border-slate-200 text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB]">
                     ¿Quieres ser un punto de recogida Mimos?
                   </div>
 
-                  <div className="rounded-2xl bg-[#F7F6F2] border-2 border-[#0F76BB] text-slate-800 p-5 shadow-[0_10px_28px_-10px_rgba(15,118,187,0.22)] flex flex-col justify-between space-y-4">
+                  <div className="rounded-2xl bg-[#FAF9F6] border border-[#0F76BB] text-slate-800 p-5 flex flex-col justify-between space-y-4">
                     <div>
-                      <p className="text-[15px] font-extrabold leading-snug text-[#002147]">
+                      <p className="text-[15px] font-semibold leading-snug text-[#002147]">
                         ¿Tienes un negocio y quieres más ingresos y tránsito de clientes?
                       </p>
                       <p className="text-xs text-slate-600 leading-relaxed mt-1.5">
@@ -1312,7 +1312,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/se-punto-colaborador"
                       onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#0F76BB] hover:bg-[#002147] text-white text-xs font-extrabold px-4 py-2.5 transition-colors shadow-xs"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#0F76BB] hover:bg-[#002147] text-white text-xs font-semibold px-4 py-2.5 transition-colors shadow-xs"
                     >
                       <span>Quiero ser punto colaborador</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -1335,10 +1335,10 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <div className="max-w-4xl mx-auto bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-[0_24px_48px_-12px_rgba(0,33,71,0.22)] p-7 animate-curtain-drop">
               <div className="pb-3 mb-5 border-b border-slate-200">
-                <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#0F76BB] block">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#0F76BB] block">
                   Alfombras en Vigo · Recogida o entrega en nuestras 3 tiendas
                 </span>
-                <p className="text-lg font-extrabold text-[#002147] mt-0.5">
+                <p className="text-lg font-semibold text-[#002147] mt-0.5">
                   Limpieza profunda y arreglos de alfombras
                 </p>
               </div>
@@ -1354,17 +1354,17 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   <div className="flex items-center gap-2.5 mb-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-semibold text-xs shrink-0">
                       01
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                    <span className="text-sm font-semibold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                       Limpieza de alfombras
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Lavado adaptado según fibra y reverso (lana, seda, yute, algodón o fibras modernas) con secado completo anti-humedad. Entrega en tienda o recogida a domicilio.
                   </p>
-                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Ver limpieza de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -1380,17 +1380,17 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   <div className="flex items-center gap-2.5 mb-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-extrabold text-xs shrink-0">
+                    <span className="w-7 h-7 rounded-lg bg-[#EDF5FD] text-[#0F76BB] flex items-center justify-center font-semibold text-xs shrink-0">
                       02
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
+                    <span className="text-sm font-semibold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
                       Arreglo y reparación de alfombras
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Restauración artesanal de flecos, festón, ribetes, descosidos y bordes mediante especialista. Puedes contratar solo el arreglo o junto con la limpieza.
                   </p>
-                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0F76BB] group-hover:text-[#002147]">
+                  <div className="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F76BB] group-hover:text-[#002147]">
                     <span>Ver arreglos de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -1487,7 +1487,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className="w-[34px] h-[34px] object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
                 />
                 <span
-                  className={`text-[12px] font-bold whitespace-nowrap leading-none ${
+                  className={`text-[12px] font-semibold whitespace-nowrap leading-none ${
                     isActive ? 'text-[#0C65A1]' : 'text-[#002147] group-hover:text-[#0C65A1]'
                   }`}
                 >
@@ -1534,7 +1534,7 @@ export const Header: React.FC<HeaderProps> = ({
             <Package className="w-5 h-5" />
           </div>
           <div>
-            <h2 id="modal-tracking-title" className="text-lg font-extrabold text-[#002147]">
+            <h2 id="modal-tracking-title" className="text-lg font-semibold text-[#002147]">
               Consultar estado de encargo
             </h2>
             <p className="text-xs text-slate-600">
@@ -1555,7 +1555,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="space-y-3.5"
         >
           <div>
-            <label htmlFor="order-ticket-input" className="block text-xs font-bold text-[#002147] mb-1">
+            <label htmlFor="order-ticket-input" className="block text-xs font-semibold text-[#002147] mb-1">
               N.º de ticket o resguardo:
             </label>
             <div className="relative">
@@ -1581,7 +1581,7 @@ export const Header: React.FC<HeaderProps> = ({
               trackWhatsAppClick(currentPath, 'modal_order_status_submit');
               setIsTrackingModalOpen(false);
             }}
-            className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer active:scale-98"
+            className="w-full min-h-[44px] py-2.5 px-4 rounded-full bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer active:scale-98"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Consultar por WhatsApp con Mimo</span>
@@ -1593,7 +1593,7 @@ export const Header: React.FC<HeaderProps> = ({
           <a
             href={CONTACT_INFO.phoneHref}
             onClick={() => trackPhoneClick(currentPath, 'modal_order_phone')}
-            className="font-bold text-[#0C65A1] hover:underline inline-flex items-center gap-1"
+            className="font-semibold text-[#0C65A1] hover:underline inline-flex items-center gap-1"
           >
             <Phone className="w-3.5 h-3.5" />
             <span>{CONTACT_INFO.phoneDisplay}</span>
@@ -1624,7 +1624,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className="w-9 h-9 rounded-full p-0.5 bg-[#EDF5FD]"
                 />
                 <div className="flex flex-col leading-tight">
-                  <span className="font-extrabold text-sm tracking-tight text-[#002147]">
+                  <span className="font-semibold text-sm tracking-tight text-[#002147]">
                     TINTORERÍA{' '}
                     <span className="text-[#0F76BB]">MIMOS NAVIA</span>
                   </span>
@@ -1637,7 +1637,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={closeMobileSubmenu}
-                className="min-h-[44px] pl-1 pr-3 -ml-1 inline-flex items-center gap-1 rounded-xl text-sm font-extrabold text-[#0C65A1] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
+                className="min-h-[44px] pl-1 pr-3 -ml-1 inline-flex items-center gap-1 rounded-xl text-sm font-semibold text-[#0C65A1] hover:bg-[#EDF5FD] transition-colors cursor-pointer"
               >
                 <ChevronLeft className="w-5 h-5" aria-hidden="true" />
                 <span>Menú</span>
@@ -1645,7 +1645,7 @@ export const Header: React.FC<HeaderProps> = ({
             )}
 
             {mobileExpandedSection !== null && (
-              <span className="text-sm font-extrabold text-[#002147] truncate">
+              <span className="text-sm font-semibold text-[#002147] truncate">
                 {mobileExpandedSection === 'tintoreria' && 'Tintorería y lavandería'}
                 {mobileExpandedSection === 'limpieza' && 'Limpieza profesional'}
                 {mobileExpandedSection === 'apartamentos' && 'Alojamientos turísticos'}
@@ -1708,7 +1708,7 @@ export const Header: React.FC<HeaderProps> = ({
                       className="w-full min-h-[52px] py-2.5 px-2 flex items-center justify-between gap-3 text-left rounded-xl hover:bg-[#EDF5FD]/60 active:bg-[#EDF5FD] transition-colors cursor-pointer"
                     >
                       <div className="min-w-0">
-                        <span className="block text-[15px] font-extrabold text-[#002147] leading-snug">
+                        <span className="block text-[15px] font-semibold text-[#002147] leading-snug">
                           {cat.title}
                         </span>
                         <span className="block text-xs text-slate-600 mt-0.5 truncate">
@@ -1748,7 +1748,7 @@ export const Header: React.FC<HeaderProps> = ({
                     >
                       <div className="min-w-0">
                         <span
-                          className={`block text-[15px] font-extrabold leading-snug ${
+                          className={`block text-[15px] font-semibold leading-snug ${
                             currentPath === link.href ? 'text-[#0C65A1]' : 'text-[#002147]'
                           }`}
                         >
@@ -1771,7 +1771,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   href="/#servicios"
                   onClick={(e) => handleLinkClick('/#servicios', e)}
-                  className="min-h-[44px] flex items-center justify-between px-3.5 py-3 rounded-xl bg-[#EDF5FD] text-xs font-extrabold text-[#002147]"
+                  className="min-h-[44px] flex items-center justify-between px-3.5 py-3 rounded-xl bg-[#EDF5FD] text-xs font-semibold text-[#002147]"
                 >
                   <span>Ver catálogo completo en portada</span>
                   <ArrowRight className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
@@ -1807,7 +1807,7 @@ export const Header: React.FC<HeaderProps> = ({
                   },
                 ].map((group) => (
                   <div key={group.heading}>
-                    <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1] pb-1.5 mb-2 border-b border-slate-200">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0C65A1] pb-1.5 mb-2 border-b border-slate-200">
                       {group.heading}
                     </p>
                     <div className="space-y-1">
@@ -1821,7 +1821,7 @@ export const Header: React.FC<HeaderProps> = ({
                           }`}
                         >
                           <div className="min-w-0">
-                            <span className="block text-sm font-extrabold text-[#002147] leading-snug">
+                            <span className="block text-sm font-semibold text-[#002147] leading-snug">
                               {item.title}
                             </span>
                             <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
@@ -1842,10 +1842,10 @@ export const Header: React.FC<HeaderProps> = ({
               <div key="mobile-limpieza" className="animate-slide-in-right space-y-6 py-2">
                 <div>
                   <div className="pb-2 mb-2.5 border-b border-slate-200">
-                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                    <span className="block text-[11px] font-semibold uppercase tracking-wider text-[#0C65A1]">
                       01 · Instalaciones y Sedes
                     </span>
-                    <h3 className="text-sm font-extrabold text-[#002147] mt-0.5">
+                    <h3 className="text-sm font-semibold text-[#002147] mt-0.5">
                       Limpieza técnica de inmuebles en Vigo
                     </h3>
                   </div>
@@ -1889,7 +1889,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="min-h-[52px] flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-[#EDF5FD] transition-colors"
                       >
                         <div className="min-w-0">
-                          <span className="block text-sm font-extrabold text-[#002147] leading-snug">
+                          <span className="block text-sm font-semibold text-[#002147] leading-snug">
                             {item.title}
                           </span>
                           <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
@@ -1904,10 +1904,10 @@ export const Header: React.FC<HeaderProps> = ({
 
                 <div>
                   <div className="pb-2 mb-2.5 border-b border-slate-200">
-                    <span className="block text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                    <span className="block text-[11px] font-semibold uppercase tracking-wider text-[#0C65A1]">
                       02 · Cuidado Textil y Tapicerías
                     </span>
-                    <h3 className="text-sm font-extrabold text-[#002147] mt-0.5">
+                    <h3 className="text-sm font-semibold text-[#002147] mt-0.5">
                       Tratamiento profesional in situ y en planta
                     </h3>
                   </div>
@@ -1918,11 +1918,11 @@ export const Header: React.FC<HeaderProps> = ({
                       className="block px-3.5 py-3 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] transition-colors"
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <span className="inline-flex items-center gap-1.5 text-sm font-extrabold text-[#002147]">
+                        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002147]">
                           <Sparkles className="w-4 h-4 text-[#0C65A1] shrink-0" aria-hidden="true" />
                           <span>Limpieza de sofás (Destacado)</span>
                         </span>
-                        <span className="text-[10px] font-bold uppercase text-[#136F3A] bg-[#1FA855]/15 px-2 py-0.5 rounded-sm shrink-0">
+                        <span className="text-[10px] font-semibold uppercase text-[#13733B] bg-[#13733B]/10 px-2 py-0.5 rounded-sm shrink-0">
                           A domicilio
                         </span>
                       </div>
@@ -1937,7 +1937,7 @@ export const Header: React.FC<HeaderProps> = ({
                       className="min-h-[52px] flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-[#EDF5FD] transition-colors"
                     >
                       <div className="min-w-0">
-                        <span className="block text-sm font-extrabold text-[#002147]">
+                        <span className="block text-sm font-semibold text-[#002147]">
                           Higienización in situ de tapicerías y colchones
                         </span>
                         <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
@@ -1953,7 +1953,7 @@ export const Header: React.FC<HeaderProps> = ({
                       className="min-h-[52px] flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-[#EDF5FD] transition-colors"
                     >
                       <div className="min-w-0">
-                        <span className="block text-sm font-extrabold text-[#002147]">
+                        <span className="block text-sm font-semibold text-[#002147]">
                           Lavandería para empresas y negocios
                         </span>
                         <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
@@ -1971,10 +1971,10 @@ export const Header: React.FC<HeaderProps> = ({
             {mobileExpandedSection === 'apartamentos' && (
               <div key="mobile-apartamentos" className="animate-slide-in-right space-y-3 py-2">
                 <div className="pb-2 border-b border-slate-200">
-                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                  <span className="block text-[11px] font-semibold uppercase tracking-wider text-[#0C65A1]">
                     Viviendas turísticas y Airbnb en Vigo
                   </span>
-                  <h3 className="text-sm font-extrabold text-[#002147] mt-0.5">
+                  <h3 className="text-sm font-semibold text-[#002147] mt-0.5">
                     Soluciones de lavandería y limpieza a medida para anfitriones
                   </h3>
                 </div>
@@ -1985,17 +1985,17 @@ export const Header: React.FC<HeaderProps> = ({
                   className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-white text-[#0C65A1] inline-flex items-center justify-center font-extrabold text-xs">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#0C65A1] inline-flex items-center justify-center font-semibold text-xs">
                       01
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147]">
+                    <span className="text-sm font-semibold text-[#002147]">
                       Servicio de Limpieza y Lavandería
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Servicio completo de limpieza del apartamento en cada rotación y suministro de ropa de cama y toallas higienizadas con planchado profesional entre huéspedes.
                   </p>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0C65A1]">
                     <span>Ver modalidad y presupuesto a medida</span>
                     <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </span>
@@ -2007,17 +2007,17 @@ export const Header: React.FC<HeaderProps> = ({
                   className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-white text-[#002147] inline-flex items-center justify-center font-extrabold text-xs">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#002147] inline-flex items-center justify-center font-semibold text-xs">
                       02
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147]">
+                    <span className="text-sm font-semibold text-[#002147]">
                       Coordinación Integral de Limpieza y Lavandería
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Tú gestionas tus reservas y calendario. Mimos asume la parte operativa crítica: limpieza exhaustiva en cada checkout, supervisión básica y entrega puntual de lencería hotelera impecable.
                   </p>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0C65A1]">
                     <span>Consultar propuesta a medida</span>
                     <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </span>
@@ -2038,17 +2038,17 @@ export const Header: React.FC<HeaderProps> = ({
                   className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-white text-[#0C65A1] inline-flex items-center justify-center font-extrabold text-xs">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#0C65A1] inline-flex items-center justify-center font-semibold text-xs">
                       01
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147]">
+                    <span className="text-sm font-semibold text-[#002147]">
                       Limpieza de alfombras
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Lavado adaptado según fibra y reverso (lana, seda, yute, algodón o fibras modernas) con secado completo anti-humedad.
                   </p>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0C65A1]">
                     <span>Ver limpieza de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </span>
@@ -2060,17 +2060,17 @@ export const Header: React.FC<HeaderProps> = ({
                   className="block p-4 rounded-2xl bg-[#F4F9FE] border border-[#002147]/10 space-y-2"
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-white text-[#002147] inline-flex items-center justify-center font-extrabold text-xs">
+                    <span className="w-7 h-7 rounded-lg bg-white text-[#002147] inline-flex items-center justify-center font-semibold text-xs">
                       02
                     </span>
-                    <span className="text-sm font-extrabold text-[#002147]">
+                    <span className="text-sm font-semibold text-[#002147]">
                       Arreglo y reparación de alfombras
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
                     Restauración artesanal de flecos, festón, ribetes, descosidos y bordes mediante especialista.
                   </p>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[#0C65A1]">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0C65A1]">
                     <span>Ver arreglos de alfombras</span>
                     <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </span>
@@ -2084,14 +2084,14 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* 3 Tiendas Propias en Vigo */}
                 <div>
                   <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-200">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#002147]">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#002147]">
                       <Store className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                       <span>3 Tiendas Propias en Vigo</span>
                     </span>
                     <a
                       href="/puntos-mimos"
                       onClick={(e) => handleLinkClick('/puntos-mimos', e)}
-                      className="min-h-[44px] px-2 text-xs font-bold text-[#0C65A1] inline-flex items-center gap-1"
+                      className="min-h-[44px] px-2 text-xs font-semibold text-[#0C65A1] inline-flex items-center gap-1"
                     >
                       <span>Ver mapa</span>
                       <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -2129,10 +2129,10 @@ export const Header: React.FC<HeaderProps> = ({
                         className="block px-3 py-2.5 rounded-xl bg-white/90 hover:bg-white transition-colors"
                       >
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-sm font-extrabold text-[#002147]">
+                          <span className="text-sm font-semibold text-[#002147]">
                             {tienda.nombre}
                           </span>
-                          <span className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-sm shrink-0 ${tienda.badgeClass}`}>
+                          <span className={`text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded-sm shrink-0 ${tienda.badgeClass}`}>
                             {tienda.badge}
                           </span>
                         </div>
@@ -2146,7 +2146,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                 {/* 5 Comercios Colaboradores */}
                 <div>
-                  <p className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1] pb-2 mb-2 border-b border-slate-200 w-full">
+                  <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0C65A1] pb-2 mb-2 border-b border-slate-200 w-full">
                     <MapPin className="w-3.5 h-3.5 text-[#0C65A1]" aria-hidden="true" />
                     <span>5 Comercios Colaboradores</span>
                   </p>
@@ -2168,7 +2168,7 @@ export const Header: React.FC<HeaderProps> = ({
                         className="min-h-[48px] flex items-center justify-between gap-2 px-3 py-2 rounded-xl hover:bg-[#EDF5FD] transition-colors"
                       >
                         <div className="min-w-0">
-                          <span className="block text-sm font-extrabold text-[#002147]">
+                          <span className="block text-sm font-semibold text-[#002147]">
                             {punto.localidad}
                           </span>
                           <span className="block text-xs text-slate-600 truncate">
@@ -2184,7 +2184,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/contacto"
                       onClick={(e) => handleLinkClick('/contacto', e)}
-                      className="min-h-[44px] flex items-center justify-between px-3 py-2 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147]"
+                      className="min-h-[44px] flex items-center justify-between px-3 py-2 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-semibold text-[#002147]"
                     >
                       <span>Contacto y horarios</span>
                       <ArrowRight className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
@@ -2192,7 +2192,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <a
                       href="/blog"
                       onClick={(e) => handleLinkClick('/blog', e)}
-                      className="min-h-[44px] flex items-center justify-between px-3 py-2 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-bold text-[#002147]"
+                      className="min-h-[44px] flex items-center justify-between px-3 py-2 rounded-xl bg-[#F4F9FE] hover:bg-[#EDF5FD] text-xs font-semibold text-[#002147]"
                     >
                       <span>Blog y guías textiles</span>
                       <ArrowRight className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
@@ -2201,11 +2201,11 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
 
                 {/* Captación comercios: crema con ribete azul Mimos */}
-                <div className="rounded-2xl bg-[#F7F6F2] border-2 border-[#0F76BB] p-4 space-y-3">
-                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#0C65A1]">
+                <div className="rounded-2xl bg-[#FAF9F6] border border-[#0F76BB] p-4 space-y-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0C65A1]">
                     ¿Quieres ser un punto de recogida Mimos?
                   </p>
-                  <h4 className="text-sm font-extrabold text-[#002147] leading-snug">
+                  <h4 className="text-sm font-semibold text-[#002147] leading-snug">
                     ¿Tienes un negocio y quieres más ingresos y tránsito de clientes?
                   </h4>
                   <ul className="space-y-2 text-xs text-slate-700 leading-snug">
@@ -2225,7 +2225,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <a
                     href="/se-punto-colaborador"
                     onClick={(e) => handleLinkClick('/se-punto-colaborador', e)}
-                    className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full bg-[#0F76BB] hover:bg-[#002147] text-white text-xs font-extrabold px-4 py-2.5 transition-colors"
+                    className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full bg-[#0F76BB] hover:bg-[#002147] text-white text-xs font-semibold px-4 py-2.5 transition-colors"
                   >
                     <span>Quiero ser punto colaborador</span>
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -2244,7 +2244,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 setIsTrackingModalOpen(true);
               }}
-              className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-bold text-xs py-2.5 px-4 rounded-xl transition-colors cursor-pointer bg-white hover:bg-[#EDF5FD] border-[#002147]/15 text-[#002147]"
+              className="w-full min-h-[44px] flex items-center justify-center gap-2 border font-semibold text-xs py-2.5 px-4 rounded-xl transition-colors cursor-pointer bg-white hover:bg-[#EDF5FD] border-[#002147]/15 text-[#002147]"
             >
               <Package className="w-4 h-4 text-[#0C65A1]" aria-hidden="true" />
               <span>Consultar estado de mi pedido</span>
@@ -2256,7 +2256,7 @@ export const Header: React.FC<HeaderProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(currentPath, 'drawer_whatsapp')}
-                className="min-h-[44px] flex items-center justify-center gap-1.5 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-extrabold text-xs py-2.5 px-3 rounded-xl transition-colors shadow-xs"
+                className="min-h-[44px] flex items-center justify-center gap-1.5 bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-xs py-2.5 px-3 rounded-full transition-colors"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Hablar con Mimo</span>
@@ -2265,7 +2265,7 @@ export const Header: React.FC<HeaderProps> = ({
               <a
                 href={CONTACT_INFO.phoneHref}
                 onClick={() => trackPhoneClick(currentPath, 'drawer_phone')}
-                className="min-h-[44px] flex items-center justify-center gap-1.5 bg-[#002147] hover:bg-[#0F76BB] text-white font-bold text-xs py-2.5 px-3 rounded-xl transition-colors"
+                className="min-h-[44px] flex items-center justify-center gap-1.5 bg-[#002147] hover:bg-[#0F76BB] text-white font-semibold text-xs py-2.5 px-3 rounded-xl transition-colors"
               >
                 <Phone className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 <span className="font-mono tracking-tight">{CONTACT_INFO.phoneDisplay}</span>

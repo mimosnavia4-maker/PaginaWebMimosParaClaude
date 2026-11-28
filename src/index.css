@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Nunito Sans", system-ui, -apple-system, sans-serif;
-  --font-sans: "Nunito Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, Cambria, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Paleta estricta: Azul marino (#002147), Azul vivo rótulo (#0F76BB), Blanco, Verde WhatsApp (#1FA855). Sin turquesa. */
+  /* Paleta estricta: Azul marino (#002147), Azul vivo rótulo (#0F76BB), Blanco, Verde WhatsApp WCAG AA (#13733B). Sin turquesa. */
   --color-mimos-navy: #002147;
   --color-mimos-navy-light: #0a3161;
   --color-mimos-blue: #0F76BB;
   --color-mimos-blue-dark: #0B5C94;
-  --color-mimos-whatsapp: #1FA855;
-  --color-mimos-whatsapp-hover: #178A47;
+  --color-mimos-whatsapp: #13733B;
+  --color-mimos-whatsapp-hover: #0F5C2F;
 }
 
 @layer base {
@@ -27,16 +27,21 @@
     max-width: 100%;
   }
 
-  h1 {
-    font-family: var(--font-display);
-    text-wrap: balance;
-  }
-
+  h1,
   h2,
   h3,
   h4 {
     text-wrap: balance;
   }
+}
+
+.font-editorial-display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 40, "WONK" 0;
+}
+
+.font-editorial-body {
+  font-family: var(--font-sans);
 }
 
 /* Animaciones declaradas y respetuosas con accesibilidad (WCAG 2.3.3) */

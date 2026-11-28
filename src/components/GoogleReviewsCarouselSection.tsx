@@ -24,12 +24,13 @@ export interface GoogleReviewsCarouselSectionProps {
   writeReviewHref?: string;
   writeReviewLabel?: string;
   trackAriaLabel?: string;
+  editorial?: boolean;
 }
 
 const AVATAR_STYLES = [
   'bg-[#DCEBFA] text-[#002147]',
   'bg-[#E2E8F0] text-[#002147]',
-  'bg-[#1FA855] text-[#002147]',
+  'bg-[#13733B] text-white',
   'bg-[#FCD9B6] text-[#7C2D12]',
 ];
 
@@ -116,6 +117,7 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
   writeReviewHref,
   writeReviewLabel = 'Dejar una reseña',
   trackAriaLabel = 'Carrusel de reseñas reales de clientes en Google',
+  editorial = false,
 }) => {
   const autoHeadingId = useId();
   const resolvedHeadingId = headingId || autoHeadingId;
@@ -219,11 +221,13 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
   const isCard = variant === 'card';
   const sectionClass = isCard
     ? 'scroll-mt-24 rounded-3xl bg-[#EAF4FE] border border-[#BFDBFE] shadow-sm py-8 sm:py-10 overflow-hidden'
-    : 'py-14 sm:py-16 lg:py-20 bg-[#EAF4FE] border-b border-slate-200 overflow-hidden';
+    : editorial
+      ? 'py-14 sm:py-16 lg:py-20 bg-[#F4F9FE] border-b border-slate-200 overflow-hidden'
+      : 'py-14 sm:py-16 lg:py-20 bg-[#EAF4FE] border-b border-slate-200 overflow-hidden';
 
   const headerContainerClass = isCard
     ? 'px-4 sm:px-8 text-center space-y-3.5'
-    : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4';
+    : `${editorial ? 'max-w-6xl' : 'max-w-7xl'} mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4`;
 
   const trackPaddingClass = isCard ? 'px-4 sm:px-8' : 'px-4 sm:px-6 lg:px-10';
 
@@ -235,12 +239,14 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
           className={
             isCard
               ? 'text-xl sm:text-3xl font-extrabold text-[#002147] tracking-tight text-balance'
-              : 'text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance'
+              : editorial
+                ? 'font-editorial-display text-2xl sm:text-4xl font-medium text-[#002147] tracking-tight text-balance'
+                : 'text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance'
           }
         >
           {title}
         </h2>
-        <p className="text-sm sm:text-base text-slate-700 max-w-xl mx-auto leading-relaxed">
+        <p className={`text-sm sm:text-base max-w-xl mx-auto leading-[1.6] ${editorial ? 'text-slate-600 font-normal' : 'text-slate-700'}`}>
           {subtitle}
         </p>
 
@@ -253,15 +259,15 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
               aria-label={`Valoración media ${formattedRating} sobre 5${
                 reviewCountLabel ? ` basada en ${reviewCountLabel}` : ''
               }. Abrir reseñas en Google`}
-              className="inline-flex items-center gap-2.5 min-h-[44px] bg-white border border-[#BFDBFE] hover:border-[#0F76BB] rounded-full px-4 sm:px-5 py-2 shadow-2xs transition-colors"
+              className={`inline-flex items-center gap-2.5 min-h-[44px] bg-white ${editorial ? 'border border-slate-200 hover:border-[#0F76BB]' : 'border border-[#BFDBFE] hover:border-[#0F76BB] shadow-2xs'} rounded-full px-4 sm:px-5 py-2 transition-colors`}
             >
               <GoogleGIcon className="w-4 h-4 shrink-0" />
-              <span className="text-sm sm:text-base font-extrabold text-[#002147] tabular-nums">
+              <span className={`text-sm sm:text-base ${editorial ? 'font-semibold' : 'font-extrabold'} text-[#002147] tabular-nums`}>
                 {formattedRating}
               </span>
               <RatingSummaryStars ratingValue={ratingValue} />
               {reviewCountLabel && (
-                <span className="text-xs sm:text-sm font-bold text-[#002147]">
+                <span className={`text-xs sm:text-sm ${editorial ? 'font-medium' : 'font-bold'} text-[#002147]`}>
                   {reviewCountLabel}
                 </span>
               )}
@@ -277,11 +283,11 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
           onMouseLeave={() => setIsHoveringTrack(false)}
         >
           <div
-            className="hidden md:block pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-12 bg-gradient-to-r from-[#EAF4FE] to-transparent z-10"
+            className={`hidden md:block pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-12 bg-gradient-to-r ${editorial && !isCard ? 'from-[#F4F9FE]' : 'from-[#EAF4FE]'} to-transparent z-10`}
             aria-hidden="true"
           />
           <div
-            className="hidden md:block pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-12 bg-gradient-to-l from-[#EAF4FE] to-transparent z-10"
+            className={`hidden md:block pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-12 bg-gradient-to-l ${editorial && !isCard ? 'from-[#F4F9FE]' : 'from-[#EAF4FE]'} to-transparent z-10`}
             aria-hidden="true"
           />
 
@@ -305,19 +311,19 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
                 <article
                   key={`${resena.autor}-${index}`}
                   aria-hidden={isDuplicate ? true : undefined}
-                  className="w-[82vw] max-w-[330px] sm:w-[340px] sm:max-w-none shrink-0 snap-start rounded-2xl bg-white border border-[#BFDBFE] p-5 sm:p-6 shadow-2xs flex flex-col justify-between"
+                  className={`w-[82vw] max-w-[330px] sm:w-[340px] sm:max-w-none shrink-0 snap-start rounded-2xl bg-white border ${editorial ? 'border-slate-200' : 'border-[#BFDBFE] shadow-2xs'} p-5 sm:p-6 flex flex-col justify-between`}
                 >
                   <div>
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3 min-w-0">
                         <span
-                          className={`w-10 h-10 rounded-full flex items-center justify-center font-extrabold text-sm shrink-0 ${avatarStyle}`}
+                          className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm shrink-0 ${avatarStyle}`}
                           aria-hidden="true"
                         >
                           {initial}
                         </span>
                         <div className="min-w-0">
-                          <h3 className="text-sm font-extrabold text-[#002147] truncate">
+                          <h3 className={`text-sm ${editorial ? 'font-semibold' : 'font-extrabold'} text-[#002147] truncate`}>
                             {resena.autor}
                           </h3>
                           <div
@@ -345,7 +351,7 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
                     </p>
                   </div>
 
-                  <p className="mt-4 pt-2 text-[11px] font-bold text-[#002147]">
+                  <p className={`mt-4 pt-2 text-[11px] ${editorial ? 'font-medium' : 'font-bold'} text-[#002147]`}>
                     {footerOrigin}
                     {resena.fechaTexto ? ` · ${resena.fechaTexto}` : ''}
                   </p>
@@ -359,7 +365,7 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
       {/* Controles inferiores: anterior/pausa/siguiente + acciones Google */}
       <div
         className={`${
-          isCard ? 'px-4 sm:px-8' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+          isCard ? 'px-4 sm:px-8' : `${editorial ? 'max-w-6xl' : 'max-w-7xl'} mx-auto px-4 sm:px-6 lg:px-8`
         } mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-3`}
       >
         {carouselReviews.length > 0 && (
@@ -407,7 +413,7 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
             href={googleReviewsHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 sm:px-6 py-2.5 rounded-full bg-[#0F76BB] hover:bg-[#0B5C94] text-white font-bold text-sm transition-colors shadow-xs"
+            className={`inline-flex items-center justify-center gap-2 min-h-[44px] px-5 sm:px-6 py-2.5 rounded-full bg-[#0F76BB] hover:bg-[#0B5C94] text-white ${editorial ? 'font-semibold' : 'font-bold'} text-sm transition-colors`}
           >
             <span>{googleButtonLabel}</span>
           </a>
@@ -417,7 +423,7 @@ export const GoogleReviewsCarouselSection: React.FC<GoogleReviewsCarouselSection
               href={writeReviewHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-full bg-white border border-[#BFDBFE] hover:border-[#0F76BB] text-[#002147] font-bold text-sm transition-colors shadow-2xs"
+              className={`inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-full bg-white border ${editorial ? 'border-slate-300 hover:border-[#002147] font-medium' : 'border-[#BFDBFE] hover:border-[#0F76BB] font-bold shadow-2xs'} text-[#002147] text-sm transition-colors`}
             >
               <GoogleGIcon className="w-4 h-4 shrink-0" />
               <span>{writeReviewLabel}</span>

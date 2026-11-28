@@ -216,19 +216,19 @@ export const PreviewHelpNavigatorSection: React.FC<PreviewHelpNavigatorSectionPr
     <section
       id="ayuda-servicios"
       aria-labelledby="help-navigator-heading"
-      className="py-12 sm:py-14 lg:py-16 bg-[#EAF4FE] border-b border-slate-200"
+      className="py-14 sm:py-16 lg:py-20 bg-[#F4F9FE] border-b border-slate-200/70"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado centrado */}
         <div className="max-w-2xl mx-auto text-center space-y-2.5">
           <h2
             id="help-navigator-heading"
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002147] tracking-tight"
+            className="font-editorial-display text-3xl sm:text-4xl font-medium text-[#002147] tracking-[-0.02em] text-balance"
           >
-            ¿En qué podemos ayudarte?
+            ¿Qué necesitas lavar, arreglar o limpiar en Vigo?
           </h2>
-          <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-            Elige tu perfil para ir directo al servicio que necesitas en Vigo y alrededores.
+          <p className="text-sm sm:text-base text-slate-600 leading-[1.65] font-normal">
+            Elige tu perfil —particular, empresa o vivienda turística— para ir directo al servicio sin pedido mínimo en tienda.
           </p>
         </div>
 
@@ -252,10 +252,10 @@ export const PreviewHelpNavigatorSection: React.FC<PreviewHelpNavigatorSectionPr
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => setActiveTab(tab.id)}
                 onKeyDown={(e) => handleTabKeyDown(e, index)}
-                className={`inline-flex items-center justify-center gap-2 min-h-[44px] px-4 sm:px-5 py-2.5 rounded-full border text-sm font-bold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#002147] focus-visible:ring-offset-2 ${
+                className={`inline-flex items-center justify-center gap-2 min-h-[44px] px-4 sm:px-5 py-2.5 rounded-full border text-sm font-semibold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#002147] focus-visible:ring-offset-2 ${
                   isSelected
-                    ? 'bg-[#0F76BB] text-white border-[#0F76BB] shadow-xs'
-                    : 'bg-white text-[#002147] border-[#BFDBFE] hover:border-[#0F76BB] hover:bg-[#F8FBFF]'
+                    ? 'bg-[#0F76BB] text-white border-[#0F76BB]'
+                    : 'bg-white text-[#002147] border-slate-200/90 hover:border-[#0F76BB] hover:bg-[#EDF5FD]'
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" aria-hidden={true} />
@@ -281,10 +281,10 @@ export const PreviewHelpNavigatorSection: React.FC<PreviewHelpNavigatorSectionPr
               key={card.id}
               href={card.href}
               onClick={(e) => onNavigate(card.href, e)}
-              className="group min-w-0 flex flex-col rounded-2xl bg-white border border-[#BFDBFE] hover:border-[#0F76BB] p-3 sm:p-4 shadow-xs hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F76BB] focus-visible:ring-offset-2"
+              className="group min-w-0 flex flex-col rounded-2xl bg-white border border-slate-200/80 hover:border-[#0F76BB]/60 p-3 sm:p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F76BB] focus-visible:ring-offset-2"
             >
               {/* Escenario superior con ilustración Osito Mimos */}
-              <div className="rounded-xl bg-[#F4F9FE] group-hover:bg-[#EAF4FE] py-3 sm:py-4 px-2 flex items-center justify-center transition-colors">
+              <div className="rounded-xl bg-[#F4F9FE] group-hover:bg-[#EDF5FD] py-3 sm:py-4 px-2 flex items-center justify-center transition-colors">
                 <img
                   src={card.imgSrc}
                   alt=""
@@ -301,14 +301,14 @@ export const PreviewHelpNavigatorSection: React.FC<PreviewHelpNavigatorSectionPr
                 />
               </div>
 
-              {/* Cápsula de título + subtítulo centrado */}
+              {/* Cápsula de título + subtítulo centrado (siempre en Plus Jakarta Sans) */}
               <div className="mt-3 flex-1 flex flex-col">
                 <div className="rounded-full bg-[#EDF5FD] group-hover:bg-[#0F76BB] px-3 py-2 min-h-[40px] sm:min-h-[44px] flex items-center justify-center text-center transition-colors">
-                  <h3 className="text-xs sm:text-[13px] font-extrabold text-[#002147] group-hover:text-white leading-tight transition-colors">
+                  <h3 className="text-xs sm:text-[13px] font-semibold text-[#002147] group-hover:text-white leading-tight transition-colors">
                     {card.title}
                   </h3>
                 </div>
-                <p className="mt-2 text-center text-[11px] sm:text-xs text-slate-600 leading-snug">
+                <p className="mt-2 text-center text-[11px] sm:text-xs text-slate-600 leading-snug font-normal">
                   {card.subtitle}
                 </p>
               </div>

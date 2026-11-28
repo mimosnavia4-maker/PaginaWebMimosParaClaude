@@ -73,21 +73,21 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
       <section
         id="empresas"
         aria-labelledby="b2b-heading"
-        className="py-16 lg:py-24 bg-[#EDF5FD] text-[#002147] border-b border-slate-200"
+        className="py-16 lg:py-24 bg-[#F4F9FE] text-[#002147] border-b border-slate-200/70"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-5 space-y-5">
-              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
+              <p className="text-xs sm:text-[13px] font-medium text-[#0C65A1]">
                 División profesional, comunidades y VUT en Vigo
               </p>
               <h2
                 id="b2b-heading"
-                className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-balance text-[#002147]"
+                className="font-editorial-display text-3xl sm:text-4xl font-medium tracking-[-0.02em] leading-[1.15] text-balance text-[#002147]"
               >
                 Lavandería y limpieza periódica para apartamentos y empresas
               </h2>
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-[1.65] font-normal">
                 Un mismo equipo con planta propia en Navia, facturación mensual con CIF y documentación laboral al día para anfitriones, administradores de fincas y comercios de Vigo.
               </p>
 
@@ -97,7 +97,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('/', 'b2b_band')}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>Solicitar visita por WhatsApp</span>
@@ -105,7 +105,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                 <a
                   href="/limpieza-apartamentos-turisticos-vigo"
                   onClick={(e) => onNavigate('/limpieza-apartamentos-turisticos-vigo', e)}
-                  className="inline-flex items-center justify-center gap-1.5 min-h-[44px] bg-white border border-[#002147]/25 hover:border-[#002147] text-[#002147] font-bold text-sm px-5 py-2.5 rounded-sm transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 min-h-[48px] bg-white border border-slate-300 hover:border-[#002147] text-[#002147] font-medium text-sm px-5 py-3 rounded-full transition-colors"
                 >
                   <span>Apartamentos turísticos</span>
                   <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -113,17 +113,17 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
               </div>
             </div>
 
-            <div className="lg:col-span-7 divide-y divide-slate-300/80 border-t border-b border-slate-300/80">
+            <div className="lg:col-span-7 divide-y divide-slate-200/80 border-t border-b border-slate-200/80">
               {b2bLines.map((item) => (
                 <div key={item.title} className="py-6 space-y-2">
-                  <h3 className="text-lg sm:text-xl font-extrabold text-[#002147]">
+                  <h3 className="font-editorial-display text-xl font-medium text-[#002147] leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-slate-700 leading-relaxed">{item.text}</p>
+                  <p className="text-sm text-slate-600 leading-[1.65] font-normal">{item.text}</p>
                   <a
                     href={item.href}
                     onClick={(e) => onNavigate(item.href, e)}
-                    className="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm font-bold text-[#0C65A1] hover:text-[#002147] hover:underline transition-colors"
+                    className="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm font-medium text-[#0C65A1] hover:text-[#002147] hover:underline transition-colors"
                   >
                     <span>{item.cta}</span>
                     <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -135,36 +135,36 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
         </div>
       </section>
 
-      {/* RECOGIDA EN RUTA VS ENTREGA SIN MÍNIMO (Líneas limpias, sin cajas abultadas) */}
+      {/* RECOGIDA EN RUTA VS ENTREGA SIN MÍNIMO */}
       <section
         id="recogida"
         aria-labelledby="recogida-heading"
-        className="py-16 lg:py-22 bg-white border-b border-slate-200"
+        className="py-16 lg:py-22 bg-white border-b border-slate-200/70"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-6 space-y-4">
-              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
+              <p className="text-xs sm:text-[13px] font-medium text-[#0C65A1]">
                 Recogida y entrega a domicilio
               </p>
               <h2
                 id="recogida-heading"
-                className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
+                className="font-editorial-display text-3xl sm:text-4xl font-medium text-[#002147] tracking-[-0.02em] leading-[1.15] text-balance"
               >
-                Consulta ruta en tu dirección o entrega en tienda sin mínimo
+                Recogida a domicilio en Vigo y comarca o entrega en tienda sin mínimo
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-[1.65] font-normal">
                 Pasamos con furgoneta propia por Vigo y alrededores, servicio siempre{' '}
-                <strong>sujeto a ruta disponible e importe mínimo a confirmar con Mimo</strong>. Si traes pocas prendas sueltas, recuerda que en nuestras{' '}
-                <strong>3 tiendas propias y 5 puntos colaboradores no existe pedido mínimo</strong>.
+                <strong className="font-semibold text-[#002147]">sujeto a ruta disponible e importe mínimo a confirmar con Mimo</strong>. Si traes pocas prendas sueltas, recuerda que en nuestras{' '}
+                <strong className="font-semibold text-[#002147]">3 tiendas propias y 5 puntos colaboradores no existe pedido mínimo</strong>.
               </p>
-              <div className="flex flex-wrap items-center gap-4 pt-1 text-sm font-bold">
+              <div className="flex flex-wrap items-center gap-4 pt-1 text-sm font-medium">
                 <a
                   href={CONTACT_INFO.whatsappPickupHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick('/', 'pickup_direct')}
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] px-4 py-2 rounded-sm transition-colors shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold px-6 py-3 rounded-full transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   <span>WhatsApp directo ({CONTACT_INFO.whatsappNumber})</span>
@@ -172,7 +172,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                 <a
                   href="/recogida-a-domicilio"
                   onClick={(e) => onNavigate('/recogida-a-domicilio', e)}
-                  className="inline-flex items-center gap-1.5 min-h-[44px] text-[#002147] hover:text-[#0F76BB] hover:underline"
+                  className="inline-flex items-center gap-1.5 min-h-[44px] font-medium text-[#002147] hover:text-[#0F76BB] hover:underline transition-colors"
                 >
                   <span>Condiciones de recogida</span>
                   <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -183,13 +183,13 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
             <div className="lg:col-span-6">
               <form
                 onSubmit={handlePrepare}
-                className="border-t border-slate-300 pt-6 space-y-4"
+                className="bg-[#FAF9F6] rounded-2xl p-6 sm:p-8 border border-slate-200/80 space-y-4"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       htmlFor="home-pickup-name"
-                      className="block text-xs font-bold text-slate-700 mb-1.5"
+                      className="block text-xs font-semibold text-slate-700 mb-1.5"
                     >
                       Nombre
                     </label>
@@ -202,13 +202,13 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         setReadyUrl(null);
                       }}
                       placeholder="Tu nombre"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="home-pickup-phone"
-                      className="block text-xs font-bold text-slate-700 mb-1.5"
+                      className="block text-xs font-semibold text-slate-700 mb-1.5"
                     >
                       Teléfono
                     </label>
@@ -223,7 +223,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         setReadyUrl(null);
                       }}
                       placeholder="Ej.: 600 000 000"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     />
                   </div>
                 </div>
@@ -232,7 +232,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                   <div>
                     <label
                       htmlFor="home-pickup-zone"
-                      className="block text-xs font-bold text-slate-700 mb-1.5"
+                      className="block text-xs font-semibold text-slate-700 mb-1.5"
                     >
                       Dirección o código postal
                     </label>
@@ -245,13 +245,13 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         setReadyUrl(null);
                       }}
                       placeholder="Calle y zona / CP"
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="home-pickup-service"
-                      className="block text-xs font-bold text-slate-700 mb-1.5"
+                      className="block text-xs font-semibold text-slate-700 mb-1.5"
                     >
                       Qué necesitas
                     </label>
@@ -262,7 +262,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         setServicio(e.target.value);
                         setReadyUrl(null);
                       }}
-                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-sm bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
+                      className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-base text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F76BB]"
                     >
                       <option value="Tintorería profesional">Tintorería profesional</option>
                       <option value="Limpieza de sofás o colchones a domicilio">
@@ -293,7 +293,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                     <a
                       href="/privacidad"
                       onClick={(e) => onNavigate('/privacidad', e)}
-                      className="underline font-bold text-[#002147]"
+                      className="underline font-semibold text-[#002147]"
                     >
                       política de privacidad
                     </a>{' '}
@@ -302,7 +302,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                 </label>
 
                 {errorMsg && (
-                  <p className="text-xs font-bold text-red-600" role="alert">
+                  <p className="text-xs font-semibold text-red-700" role="alert">
                     {errorMsg}
                   </p>
                 )}
@@ -310,14 +310,14 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                 {!readyUrl ? (
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-6 py-3 rounded-sm transition-colors cursor-pointer shadow-xs"
+                    className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors cursor-pointer"
                   >
                     <Send className="w-4 h-4" aria-hidden="true" />
                     <span>Preparar consulta para WhatsApp</span>
                   </button>
                 ) : (
-                  <div className="border-l-2 border-[#1FA855] pl-4 py-1 space-y-2.5">
-                    <p className="inline-flex items-center gap-1.5 text-xs font-bold text-[#147A3E]">
+                  <div className="rounded-xl border border-[#13733B]/35 bg-white p-4 space-y-2.5">
+                    <p className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#13733B]">
                       <Check className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>Consulta preparada con tus datos</span>
                     </p>
@@ -327,7 +327,7 @@ export const PreviewB2BAndPickupSection: React.FC<PreviewB2BAndPickupSectionProp
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => trackWhatsAppClick('/', 'pickup_form_send')}
-                        className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-6 py-3 rounded-sm transition-colors shadow-xs"
+                        className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2 bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors"
                       >
                         <MessageCircle className="w-4 h-4" aria-hidden="true" />
                         <span>Enviar ahora por WhatsApp a Mimo</span>

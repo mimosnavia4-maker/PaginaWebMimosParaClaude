@@ -532,7 +532,7 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-slate-900 pb-20 md:pb-0">
+    <div className="font-editorial-body min-h-screen w-full max-w-full overflow-x-clip flex flex-col bg-white text-slate-900 pb-20 md:pb-0">
       {/* Aviso amable de disponibilidad de mapa para visitantes */}
       {quotaExceeded && (
         <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs sm:text-sm text-center sticky top-0 z-50 shadow-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">

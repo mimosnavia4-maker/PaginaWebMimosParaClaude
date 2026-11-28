@@ -53,14 +53,20 @@ const STORE_DETAIL_HREFS: Record<string, string> = {
   'rua-venezuela': '/tienda-mimos-venezuela-vigo',
 };
 
+const STORE_SHORT_NAMES: Record<string, string> = {
+  'as-teixugueiras': 'Navia',
+  'gregorio-espino': 'Gregorio Espino',
+  'rua-venezuela': 'Venezuela',
+};
+
 const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
   {
     id: 'marca-mimos',
     tabLabel: 'Mimos Vigo',
-    kicker: '3 tiendas propias en Vigo · 5 puntos colaboradores · Recogida a domicilio',
-    headline: 'Cuidamos tu ropa, tus textiles del hogar y tus espacios con mimo profesional desde 2011',
+    kicker: 'Planta propia en Navia · Sin pedido mínimo en tienda · Recogida según ruta',
+    headline: 'Tintorería, lavandería y limpieza profesional en Vigo',
     description:
-      'Desde nuestras instalaciones en Navia (Vigo) damos servicio a particulares, apartamentos turísticos y empresas. Contamos con 3 tiendas propias en Vigo, red de establecimientos colaboradores en Redondela, Gondomar, Ponteareas, O Porriño y As Travesas, y servicio de recogida y entrega a domicilio.',
+      'Servicio 100 % atendido desde nuestras 3 tiendas propias en Vigo (Navia, Gregorio Espino y Venezuela), 5 puntos colaboradores en Redondela, Gondomar, Ponteareas, O Porriño y As Travesas, y recogida a domicilio.',
     imageUrl: IMAGES.ositoMimos,
     imageSrcSet: '/osito-mimos-640w.webp 640w, /osito-mimos.webp 900w',
     imageWidth: 900,
@@ -77,10 +83,10 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
   {
     id: 'costura',
     tabLabel: 'Arreglos y costura',
-    kicker: 'Sin cita previa · Talleres propios en Gregorio Espino y Venezuela · Recepción en Navia',
-    headline: 'Arreglos de ropa y costura profesional de todo tipo de prendas',
+    kicker: 'Sin cita previa · Taller propio en Gregorio Espino y Venezuela · Recepción en Navia',
+    headline: 'Arreglos de ropa y costura profesional en Vigo',
     description:
-      'Bajos y bajo original vaquero, cremalleras, ajustes de talla, prendas de piel, bordados personalizados y confección de cortinas, estores y cojines. Disponible también en puntos colaboradores con costura.',
+      'Bajos y bajo original vaquero, cremalleras, ajustes de talla, prendas de piel, bordados y confección de cortinas, estores y cojines. Taller propio in situ en Gregorio Espino y Venezuela, recepción en Navia y puntos colaboradores con costura.',
     imageUrl: IMAGES.arreglosRopa,
     imageSrcSet: '/arreglos-ropa-mimos-640w.webp 640w, /arreglos-ropa-mimos.webp 1200w',
     imageWidth: 1200,
@@ -95,7 +101,7 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
     id: 'sofas',
     tabLabel: 'Sofás a domicilio',
     kicker: '100 % en tu domicilio · Vigo y área metropolitana',
-    headline: 'Limpieza de sofás, tapicerías y colchones a domicilio',
+    headline: 'Limpieza de sofás, tapicerías y colchones a domicilio en Vigo',
     description:
       'Inyección-extracción controlada o baja humedad según etiqueta (W/S/WS/X) sin mover muebles, sin vapor seco ni ozono y con secado natural al aire. Para hogares, empresas y pisos turísticos.',
     imageUrl: limpiezaSofasImg,
@@ -113,10 +119,10 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
   {
     id: 'alfombras',
     tabLabel: 'Alfombras',
-    kicker: 'Recogida a domicilio o entrega en nuestras 3 tiendas',
-    headline: 'Limpieza y reparación de alfombras',
+    kicker: 'Recogida a domicilio o entrega en nuestras 3 tiendas propias',
+    headline: 'Limpieza y reparación de alfombras en Vigo',
     description:
-      'Limpieza profunda según fibra y reverso con secado completo anti-humedad, y reparación de flecos, festón y bordes mediante especialista (puedes contratar solo reparación o limpieza + arreglo juntos).',
+      'Limpieza profunda según fibra y reverso con secado completo libre de humedad, y reparación artesanal de flecos, festón y bordes mediante especialista (solo arreglo o limpieza + reparación).',
     imageUrl: IMAGES.alfombrasMimos,
     imageSrcSet: '/alfombras-mimos-640w.webp 640w, /alfombras-mimos.webp 960w',
     imageWidth: 960,
@@ -130,10 +136,10 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
   {
     id: 'tintoreria-lavanderia',
     tabLabel: 'Tintorería y lavandería',
-    kicker: 'Lavandería y limpieza profesional de prendas · En seco y al agua',
-    headline: 'Tintorería, lavandería atendida, colada familiar y hogar',
+    kicker: 'Limpieza en seco y Wet Cleaning · 100 % atendida sin monedas',
+    headline: 'Tintorería, lavandería atendida, colada familiar y hogar en Vigo',
     description:
-      'Servicio 100 % atendido por nuestro equipo (sin monedas): trajes, novia y ceremonia, pieles, teñido, encerado Barbour e impermeabilización Gore-Tex, colada familiar, solo plancha, edredones y cortinas.',
+      'Trajes, vestidos de novia y ceremonia, pieles, teñido, encerado Barbour e impermeabilización Gore-Tex, colada semanal doblada, solo planchado, edredones y cortinas.',
     imageUrl: IMAGES.servicioTintoreria,
     imageSrcSet: '/servicio-tintoreria-640w.webp 640w, /servicio-tintoreria.webp 1200w',
     imageWidth: 1200,
@@ -149,13 +155,13 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
   {
     id: 'limpieza-profesional',
     tabLabel: 'Limpieza profesional',
-    kicker:
-      'Personal propio contratado · Seguro de responsabilidad civil · Prevención de riesgos laborales · Visita y presupuesto gratuitos',
-    headline: 'Limpieza de comunidades, oficinas, locales y hogares',
+    kicker: 'Personal propio · Seguro RC · PRL · Visita técnica gratuita en Vigo',
+    headline: 'Limpieza de comunidades, oficinas, locales y viviendas en Vigo',
     description:
-      'Mantenimiento periódico de viviendas particulares (baños, cocinas y cristales), comunidades de propietarios (LPH), oficinas, clínicas y locales comerciales, además de lavandería laboral y recuperación textil tras siniestros.',
+      'Mantenimiento periódico continuo en hogares (baños, cocinas y cristales), comunidades de propietarios (LPH), oficinas, clínicas y locales comerciales, además de lavandería laboral y recuperación tras siniestros.',
     imageUrl: IMAGES.blogLimpiezaOficinas,
-    imageSrcSet: '/images/articulos/blog-limpieza-oficinas-640w.webp 640w, /images/articulos/blog-limpieza-oficinas.webp 1200w',
+    imageSrcSet:
+      '/images/articulos/blog-limpieza-oficinas-640w.webp 640w, /images/articulos/blog-limpieza-oficinas.webp 1200w',
     imageWidth: 1200,
     imageHeight: 670,
     imageAlt: 'Equipo profesional realizando limpieza de mantenimiento en oficina',
@@ -167,11 +173,10 @@ const HERO_SERVICE_SLIDES: HeroServiceSlide[] = [
   {
     id: 'apartamentos-turisticos',
     tabLabel: 'Apartamentos turísticos',
-    kicker:
-      'Limpiezas entre reservas el mismo día · Sábados, domingos y festivos · Decreto 12/2017 (REAT)',
-    headline: 'Apartamentos turísticos y viviendas de uso turístico',
+    kicker: 'Operativa 11:00–15:00 · Sábados, festivos y agosto · Decreto 12/2017 (REAT)',
+    headline: 'Lavandería y limpieza para apartamentos turísticos (VUT) en Vigo',
     description:
-      'Tú decides el nivel de ayuda: solo lavado y planchado de tu lencería separada por vivienda, limpieza de rotación + lavandería o coordinación integral con amenities, entrega de llaves y foto-reporte.',
+      'Tú decides el nivel de ayuda: lavado y planchado de tu propia lencería separada por vivienda, rotación entre huéspedes o coordinación integral con amenities, llaves y foto-reporte.',
     imageUrl: IMAGES.b2bApartamentos,
     imageSrcSet: '/apartamentos-mimos-640w.webp 640w, /apartamentos-mimos.webp 1200w',
     imageWidth: 1200,
@@ -201,6 +206,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     );
   });
+  const [isHoveringHero, setIsHoveringHero] = useState(false);
   const [visitedSlideIds, setVisitedSlideIds] = useState<string[]>([]);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -230,14 +236,14 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduced || isPaused || isMobileViewport) return;
+    if (reduced || isPaused || isHoveringHero || isMobileViewport) return;
 
     const slideTimer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % HERO_SERVICE_SLIDES.length);
     }, 6500);
 
     return () => clearInterval(slideTimer);
-  }, [isPaused, isMobileViewport]);
+  }, [isPaused, isHoveringHero, isMobileViewport]);
 
   const activeSlide = HERO_SERVICE_SLIDES[activeIndex];
   const isBrandSlide = Boolean(activeSlide.isBrandSlide);
@@ -282,9 +288,11 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
   return (
     <section
       aria-labelledby="hero-h1"
-      className="relative min-h-0 sm:min-h-[82svh] flex flex-col justify-between bg-[#F4F9FE] overflow-hidden border-b border-slate-200"
+      onMouseEnter={() => setIsHoveringHero(true)}
+      onMouseLeave={() => setIsHoveringHero(false)}
+      className="relative min-h-0 sm:min-h-[74svh] lg:min-h-[78svh] flex flex-col justify-between bg-[#FAF9F6] overflow-hidden border-b border-slate-200/70"
     >
-      {/* Fondo de diapositivas 2–7: solo se montan bajo demanda al activarse para evitar descargas ocultas en la carga inicial */}
+      {/* Fondo de diapositivas 2–7 con velo luminoso editorial; montadas bajo demanda */}
       <div
         className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
           isBrandSlide ? 'opacity-0' : 'opacity-100'
@@ -299,7 +307,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
             return (
               <div
                 key={slide.id}
-                className={`absolute inset-0 bg-gradient-to-br from-[#EDF5FD] via-white to-[#DCEBFA] transition-opacity duration-700 ease-out ${
+                className={`absolute inset-0 bg-gradient-to-br from-[#FAF9F6] via-white to-[#EEF5FD] transition-opacity duration-700 ease-out ${
                   isCurrent ? 'opacity-100' : 'opacity-0'
                 }`}
               />
@@ -318,37 +326,37 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
               decoding="async"
               referrerPolicy="no-referrer"
               onError={() => handleImageError(slide.id)}
-              className={`absolute inset-0 w-full h-full object-cover blur-[2px] sm:blur-[2.5px] scale-[1.03] transition-opacity duration-700 ease-out ${
+              className={`absolute inset-0 w-full h-full object-cover blur-[2px] scale-[1.03] transition-opacity duration-700 ease-out ${
                 isCurrent ? 'opacity-100' : 'opacity-0'
               }`}
             />
           );
         })}
 
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-[#F2F8FE]/82 to-[#EBF4FD]/28" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/92 via-white/10 to-white/60 lg:via-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-[#FAF9F6]/88 to-[#F4F9FE]/38" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/15 to-white/65 lg:via-transparent" />
       </div>
 
-      {/* Lienzo luminoso para la Transición 1 (Oso nítido) */}
+      {/* Lienzo luminoso para la Transición 1 (Marca Mimos) */}
       <div
-        className={`absolute inset-0 pointer-events-none bg-gradient-to-br from-white via-[#F4F9FE] to-[#E6F1FC] transition-opacity duration-500 ${
+        className={`absolute inset-0 pointer-events-none bg-gradient-to-br from-white via-[#FAF9F6] to-[#F2F7FC] transition-opacity duration-500 ${
           isBrandSlide ? 'opacity-100' : 'opacity-0'
         }`}
         aria-hidden="true"
       />
 
       {/* Cuerpo principal del Hero */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 my-auto py-4 sm:py-10">
+      <div className="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 my-auto py-5 sm:py-10 lg:py-12">
         {/* Barra superior de servicio: sede y contacto directo */}
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-0.5 pb-2 sm:pb-3 mb-3 sm:mb-5 border-b border-[#002147]/12">
-          <p className="text-xs sm:text-sm font-bold text-[#0C65A1] tracking-tight">
-            Sede central en Navia · 3 tiendas en Vigo y comarca
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 pb-3 mb-5 sm:mb-7 border-b border-slate-200/80">
+          <p className="text-xs sm:text-sm font-semibold text-[#0C65A1] tracking-tight">
+            Planta central en Navia · 3 tiendas en Vigo y 5 puntos colaboradores
           </p>
 
-          <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-0.5 text-xs sm:text-sm font-bold text-[#002147]">
+          <div className="flex flex-wrap items-center gap-x-3.5 gap-y-0.5 text-xs sm:text-sm font-medium text-[#002147]">
             <span className="inline-flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
-              <span className={storeStatus.isOpen ? 'text-[#147A3E]' : 'text-slate-700'}>
+              <span className={storeStatus.isOpen ? 'text-[#13733B]' : 'text-slate-600'}>
                 Navia: {storeStatus.statusText}
               </span>
             </span>
@@ -358,7 +366,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
             <a
               href={CONTACT_INFO.phoneHref}
               onClick={() => trackPhoneClick('/', 'hero_top_phone')}
-              className="inline-flex items-center gap-1.5 min-h-[44px] text-[#002147] hover:text-[#0F76BB] tabular-nums whitespace-nowrap focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-md"
+              className="inline-flex items-center gap-1.5 min-h-[44px] sm:min-h-0 py-1 text-[#002147] hover:text-[#0F76BB] tabular-nums whitespace-nowrap transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-md"
             >
               <Phone className="w-3.5 h-3.5 text-[#0C65A1] shrink-0" aria-hidden="true" />
               <span>{CONTACT_INFO.phoneDisplay}</span>
@@ -366,51 +374,38 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
           </div>
         </div>
 
-        {/* H1 fijo principal de portada (sincronizado con ROUTE_SEO_MAP['/'].h1) */}
-        <h1
-          id="hero-h1"
-          className="text-2xl sm:text-3xl lg:text-[2.5rem] font-black text-[#002147] tracking-tight leading-[1.1] mb-2.5 sm:mb-5 max-w-4xl text-balance"
-        >
-          Tintorería, lavandería y limpieza profesional en Vigo
-        </h1>
-
-        {/* Contenido dinámico sincronizado (panel de pestaña accesible) */}
+        {/* Contenido dinámico sincronizado con un único titular principal en Fraunces */}
         <div
           id="hero-slide-panel"
           role="tabpanel"
           aria-labelledby={`hero-tab-${activeSlide.id}`}
           className={
             isBrandSlide
-              ? 'grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-7 lg:gap-10 items-center lg:min-h-[410px]'
-              : 'max-w-3xl lg:min-h-[410px] flex items-center'
+              ? 'grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center lg:min-h-[380px]'
+              : 'max-w-3xl lg:min-h-[380px] flex items-center'
           }
         >
-          <div className={isBrandSlide ? 'lg:col-span-7 space-y-2.5 sm:space-y-4' : 'space-y-2.5 sm:space-y-4'}>
-            <p className="text-xs sm:text-sm font-bold text-[#0C65A1] leading-snug">
+          <div className={isBrandSlide ? 'lg:col-span-7 space-y-3.5 sm:space-y-5' : 'space-y-3.5 sm:space-y-5'}>
+            <p className="text-xs sm:text-[13px] font-medium text-[#0C65A1] leading-snug">
               {activeSlide.kicker}
             </p>
 
-            <h2
-              className={`font-extrabold text-[#002147] tracking-tight leading-[1.14] text-balance ${
+            <h1
+              id="hero-h1"
+              className={`font-editorial-display font-medium text-[#002147] tracking-[-0.02em] leading-[1.08] text-balance ${
                 isBrandSlide
-                  ? 'text-lg sm:text-2xl lg:text-[1.85rem]'
-                  : 'text-xl sm:text-3xl lg:text-[2rem]'
+                  ? 'text-[1.85rem] sm:text-4xl lg:text-[2.9rem]'
+                  : 'text-[1.9rem] sm:text-[2.65rem] lg:text-[3.05rem]'
               }`}
             >
               {activeSlide.headline}
-            </h2>
+            </h1>
 
-            <div className="flex items-start gap-4 max-w-2xl">
-              <span
-                className="hidden sm:block w-10 h-px bg-[#002147]/30 mt-3 shrink-0"
-                aria-hidden="true"
-              />
-              <p className="text-sm sm:text-base lg:text-lg text-slate-800 leading-relaxed font-medium">
-                {activeSlide.description}
-              </p>
-            </div>
+            <p className="text-[15px] sm:text-base lg:text-[17px] text-slate-600 leading-[1.65] max-w-2xl font-normal">
+              {activeSlide.description}
+            </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <a
                 href={activeSlide.whatsappHref}
                 target="_blank"
@@ -420,7 +415,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                     service_id: activeSlide.id,
                   })
                 }
-                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-lg bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-full bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-sm sm:text-[15px] transition-colors text-center sm:whitespace-nowrap shrink-0"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>{activeSlide.whatsappLabel}</span>
@@ -430,7 +425,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => onScrollToSection(activeSlide.scrollTargetId!)}
-                  className="inline-flex items-center justify-center gap-1.5 min-h-[48px] px-5 py-3 rounded-lg bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 min-h-[48px] px-5 py-3 rounded-full bg-white/95 border border-slate-300 hover:border-[#002147] text-[#002147] font-medium text-sm sm:text-[15px] transition-colors text-center sm:whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   <span>{activeSlide.pageLabel}</span>
                   <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -439,7 +434,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                 <a
                   href={activeSlide.pageHref}
                   onClick={(e) => onNavigate(activeSlide.pageHref, e)}
-                  className="inline-flex items-center justify-center gap-1.5 min-h-[48px] px-5 py-3 rounded-lg bg-white/95 border border-[#002147] hover:bg-[#002147] hover:text-white text-[#002147] font-bold text-sm sm:text-base transition-colors text-center sm:whitespace-nowrap shrink-0"
+                  className="inline-flex items-center justify-center gap-1.5 min-h-[48px] px-5 py-3 rounded-full bg-white/95 border border-slate-300 hover:border-[#002147] text-[#002147] font-medium text-sm sm:text-[15px] transition-colors text-center sm:whitespace-nowrap shrink-0"
                 >
                   <span>{activeSlide.pageLabel}</span>
                   <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -448,10 +443,10 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
             </div>
           </div>
 
-          {/* Foto nítida del Osito Mimos en la puerta solo en Transición 1 */}
+          {/* Foto sin marco encajonado del Osito Mimos en la puerta solo en Transición 1 */}
           {isBrandSlide && (
             <div className="lg:col-span-5">
-              <figure className="rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm">
+              <figure className="rounded-2xl overflow-hidden bg-[#F4F9FE]">
                 {!failedImages[activeSlide.id] ? (
                   <img
                     src={activeSlide.imageUrl}
@@ -467,9 +462,11 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                     className="w-full aspect-[16/10] sm:aspect-[4/3] object-cover"
                   />
                 ) : (
-                  <div className="w-full aspect-[16/10] sm:aspect-[4/3] bg-gradient-to-br from-[#EDF5FD] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
+                  <div className="w-full aspect-[16/10] sm:aspect-[4/3] bg-gradient-to-br from-[#F4F9FE] to-[#DCEBFA] flex flex-col items-center justify-center p-6 text-center text-[#002147]">
                     <Store className="w-10 h-10 text-[#0C65A1] mb-2" aria-hidden="true" />
-                    <p className="font-extrabold text-base">Tintorería Mimos Navia</p>
+                    <p className="font-editorial-display font-medium text-lg">
+                      Tintorería Mimos Navia
+                    </p>
                     <p className="text-xs text-slate-600 mt-1">
                       {CONTACT_INFO.streetAddress} · {CONTACT_INFO.postalCode} Vigo
                     </p>
@@ -481,85 +478,15 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
         </div>
       </div>
 
-      {/* Zócalo inferior luminoso: Franja fija de 3 Tiendas Propias y Horarios + Tira de 7 Transiciones */}
-      <div className="relative z-10 bg-white/95 backdrop-blur-xs border-t border-slate-200">
-        {/* Franja fija compacta: en móvil fila horizontal deslizable con indicación visual; en escritorio rejilla de 3 columnas */}
-        <div className="border-b border-slate-200 bg-[#F8FBFF]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3">
-            <div className="sm:hidden flex items-center justify-between gap-2 mb-1.5 text-[11px] font-bold text-[#0C65A1]">
-              <span>Nuestras {TIENDAS_PROPIAS.length} tiendas propias en Vigo</span>
-              <span aria-hidden="true" className="text-[#002147]">
-                Desliza para ver →
-              </span>
-            </div>
-
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-3">
-              <div
-                aria-label="Nuestras 3 tiendas propias en Vigo"
-                className="flex sm:grid sm:grid-cols-3 gap-2.5 lg:gap-6 flex-1 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:divide-y-0 sm:divide-x divide-slate-200 pb-1 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0"
-              >
-                {TIENDAS_PROPIAS.map((tienda, idx) => {
-                  const detailHref = STORE_DETAIL_HREFS[tienda.id] ?? '/puntos-mimos';
-                  return (
-                    <div
-                      key={tienda.id}
-                      className={`w-[78vw] max-w-[270px] sm:w-auto sm:max-w-none shrink-0 snap-start rounded-xl sm:rounded-none border sm:border-0 border-slate-200 bg-white sm:bg-transparent p-2.5 sm:p-0 ${
-                        idx > 0 ? 'sm:pl-4 lg:pl-6' : ''
-                      }`}
-                    >
-                      <a
-                        href={detailHref}
-                        onClick={(e) => onNavigate(detailHref, e)}
-                        className="group block focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-lg min-h-[44px]"
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-extrabold text-[#002147] group-hover:text-[#0F76BB] transition-colors">
-                            {tienda.nombre_mostrado}
-                          </span>
-                          <span className="text-[11px] font-bold text-[#0C65A1] tabular-nums shrink-0">
-                            {tienda.telefonos_mostrados}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-700 font-medium mt-0.5">
-                          {tienda.direccion}
-                        </p>
-                        <p className="text-[11px] text-slate-600 mt-0.5 tabular-nums">
-                          {tienda.horario.resumen}
-                        </p>
-                      </a>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="pt-0.5 sm:pt-2 lg:pt-0 lg:pl-4 lg:border-l lg:border-slate-200 shrink-0">
-                <a
-                  href="#puntos"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onScrollToSection('puntos');
-                  }}
-                  className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-bold text-[#0C65A1] hover:underline whitespace-nowrap shrink-0 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-md"
-                >
-                  <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                  <span>Ver los {PUNTOS_COLABORADORES.length} puntos y mapa</span>
-                  <ArrowRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Selector de las 7 transiciones + Pausa/Reanudar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 space-y-2 sm:space-y-2.5">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-xs font-bold text-slate-600 tabular-nums">
-              Elige o explora servicio ({activeIndex + 1}/{HERO_SERVICE_SLIDES.length})
-              <span className="sm:hidden text-[#0C65A1] ml-1.5" aria-hidden="true">
-                · Desliza →
-              </span>
-            </p>
-            <div className="flex items-center gap-1.5 sm:hidden shrink-0">
+      {/* Pie limpio del Hero: selector de 7 servicios + una sola línea serena con las 3 tiendas */}
+      <div className="relative z-10 bg-white/95 backdrop-blur-xs border-t border-slate-200/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Controles compactos solo en móvil (< sm) */}
+          <div className="flex sm:hidden items-center justify-between gap-2 pt-2.5 pb-1">
+            <span className="text-xs font-semibold text-slate-600 tabular-nums">
+              Servicios ({activeIndex + 1}/{HERO_SERVICE_SLIDES.length})
+            </span>
+            <div className="flex items-center gap-1.5 shrink-0">
               <button
                 type="button"
                 onClick={() =>
@@ -568,7 +495,7 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                   )
                 }
                 aria-label="Servicio anterior"
-                className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+                className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full border border-slate-200 bg-white text-[#002147] hover:border-[#002147] cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
               >
                 <ArrowLeft className="w-4 h-4" aria-hidden="true" />
               </button>
@@ -578,41 +505,17 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                   handleSelectSlide((activeIndex + 1) % HERO_SERVICE_SLIDES.length)
                 }
                 aria-label="Siguiente servicio"
-                className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white text-[#002147] hover:border-[#0F76BB] cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
+                className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full border border-slate-200 bg-white text-[#002147] hover:border-[#002147] cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
               >
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </button>
             </div>
-
-            <button
-              type="button"
-              onClick={() => setIsPaused((prev) => !prev)}
-              aria-pressed={isPaused}
-              aria-label={
-                isPaused
-                  ? 'Reanudar carrusel de servicios'
-                  : 'Pausar carrusel de servicios'
-              }
-              className="hidden sm:inline-flex items-center gap-1.5 min-h-[44px] px-3 text-xs font-bold text-[#002147] hover:text-[#0F76BB] cursor-pointer whitespace-nowrap shrink-0 rounded-md focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB]"
-            >
-              {isPaused ? (
-                <>
-                  <Play className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>Reanudar</span>
-                </>
-              ) : (
-                <>
-                  <Pause className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>Pausar</span>
-                </>
-              )}
-            </button>
           </div>
 
           <div
             role="tablist"
-            aria-label="Servicios destacados en el carrusel"
-            className="flex sm:grid sm:grid-cols-4 lg:grid-cols-7 overflow-x-auto sm:overflow-visible snap-x snap-mandatory gap-2 sm:gap-x-3 sm:gap-y-1.5 pb-1 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0"
+            aria-label="Servicios destacados"
+            className="flex lg:grid lg:grid-cols-7 gap-5 lg:gap-3 overflow-x-auto no-scrollbar pt-1 snap-x snap-mandatory"
           >
             {HERO_SERVICE_SLIDES.map((slide, idx) => {
               const isSelected = idx === activeIndex;
@@ -630,25 +533,82 @@ export const PreviewHeroSection: React.FC<PreviewHeroSectionProps> = ({
                   tabIndex={isSelected ? 0 : -1}
                   onClick={() => handleSelectSlide(idx)}
                   onKeyDown={(e) => handleTabKeyDown(e, idx)}
-                  className={`min-h-[48px] shrink-0 snap-start min-w-[146px] sm:min-w-0 text-left px-3 py-2 sm:px-0 sm:pt-2 sm:pb-1.5 rounded-lg sm:rounded-none border sm:border-0 sm:border-t-2 transition-colors cursor-pointer flex items-center justify-between gap-1.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] ${
+                  className={`min-h-[44px] snap-start text-left py-2.5 border-t-2 transition-colors cursor-pointer flex items-center justify-between gap-1.5 shrink-0 lg:shrink whitespace-nowrap lg:whitespace-normal focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] ${
                     isSelected
-                      ? 'border-[#0F76BB] bg-[#EDF5FD] sm:bg-transparent text-[#002147]'
-                      : 'border-slate-300 bg-white sm:bg-transparent text-slate-600 hover:border-[#002147]/50 hover:text-[#002147]'
+                      ? 'border-[#0F76BB] text-[#002147] font-semibold'
+                      : 'border-transparent text-slate-600 hover:border-slate-300 hover:text-[#002147] font-medium'
                   }`}
                 >
-                  <span className="text-xs font-extrabold leading-tight">
-                    <span className="text-[#0C65A1] mr-1 tabular-nums">{idx + 1}.</span>
+                  <span className="text-xs sm:text-[13px] leading-tight">
                     {slide.tabLabel}
                   </span>
-                  {isSelected && (
-                    <ArrowRight
-                      className="w-3.5 h-3.5 text-[#0C65A1] shrink-0"
-                      aria-hidden="true"
-                    />
-                  )}
                 </button>
               );
             })}
+          </div>
+
+          <div className="py-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs text-slate-600">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span className="text-slate-500">Tiendas propias en Vigo:</span>
+              {TIENDAS_PROPIAS.map((tienda, idx) => {
+                const detailHref = STORE_DETAIL_HREFS[tienda.id] ?? '/puntos-mimos';
+                const shortName = STORE_SHORT_NAMES[tienda.id] ?? tienda.nombre_mostrado;
+                return (
+                  <React.Fragment key={tienda.id}>
+                    {idx > 0 && (
+                      <span className="text-slate-300" aria-hidden="true">
+                        ·
+                      </span>
+                    )}
+                    <a
+                      href={detailHref}
+                      onClick={(e) => onNavigate(detailHref, e)}
+                      className="inline-flex items-center min-h-[44px] sm:min-h-0 font-medium text-[#002147] hover:text-[#0F76BB] hover:underline transition-colors py-1"
+                    >
+                      {shortName}
+                    </a>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a
+                href="#puntos"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onScrollToSection('puntos');
+                }}
+                className="inline-flex items-center gap-1.5 min-h-[44px] sm:min-h-0 font-medium text-[#0C65A1] hover:underline whitespace-nowrap py-1"
+              >
+                <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span>Ver mapa y {PUNTOS_COLABORADORES.length} colaboradores</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setIsPaused((prev) => !prev)}
+                aria-pressed={isPaused}
+                aria-label={
+                  isPaused
+                    ? 'Reanudar carrusel de servicios'
+                    : 'Pausar carrusel de servicios'
+                }
+                className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-[#002147] cursor-pointer whitespace-nowrap py-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#0F76BB] rounded-md"
+              >
+                {isPaused ? (
+                  <>
+                    <Play className="w-3 h-3" aria-hidden="true" />
+                    <span>Reanudar</span>
+                  </>
+                ) : (
+                  <>
+                    <Pause className="w-3 h-3" aria-hidden="true" />
+                    <span>Pausar</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>

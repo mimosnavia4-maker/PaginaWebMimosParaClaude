@@ -29,13 +29,14 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
 
   return (
     <>
-      {/* 1. OPINIONES REALES EN GOOGLE ("Ganándonos la confianza de Vigo") */}
+      {/* 1. OPINIONES REALES EN GOOGLE */}
       <GoogleReviewsCarouselSection
         id="por-que-mimos"
         variant="fullwidth"
+        editorial={true}
         headingId="reviews-heading"
-        title="Ganándonos la confianza de Vigo"
-        subtitle="Lo que dicen de Mimos quienes ya nos confían su ropa y sus espacios en Vigo y alrededores."
+        title="Opiniones reales de clientes en Vigo sobre Tintorería Mimos"
+        subtitle="Reseñas verificadas en Google de quienes confían su ropa, alfombras, sofás y apartamentos a nuestro equipo en Vigo y alrededores."
         reviews={RESENAS_PORTADA_GOOGLE}
         googleReviewsHref={CONTACT_INFO.googleReviewsHref}
         googleButtonLabel="Ver todas las opiniones en Google"
@@ -45,26 +46,26 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
       <section
         id="blog"
         aria-labelledby="guides-heading"
-        className="py-16 lg:py-22 bg-[#F7F6F2] border-b border-slate-200"
+        className="py-16 lg:py-22 bg-[#FAF9F6] border-b border-slate-200/70"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
             <div className="max-w-2xl space-y-2">
-              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
+              <p className="text-xs sm:text-[13px] font-medium text-[#0C65A1]">
                 Cuaderno textil · Guías de Tintorería Mimos
               </p>
               <h2
                 id="guides-heading"
-                className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
+                className="font-editorial-display text-3xl sm:text-4xl font-medium text-[#002147] tracking-[-0.02em] leading-[1.15] text-balance"
               >
-                Consejos prácticos antes de lavar o guardar en casa
+                Guías prácticas de cuidado textil, manchas y lavado en casa
               </h2>
             </div>
 
             <a
               href="/blog"
               onClick={(e) => onNavigate('/blog', e)}
-              className="inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-[#002147] hover:underline whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-2 min-h-[44px] text-sm font-medium text-[#002147] hover:text-[#0F76BB] hover:underline whitespace-nowrap shrink-0 transition-colors"
             >
               <BookOpen className="w-4 h-4" aria-hidden="true" />
               <span>Ver las {ARTICULOS_BLOG_RESUMEN.length} guías del blog</span>
@@ -82,7 +83,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                   <a
                     href={articulo.url}
                     onClick={(e) => onNavigate(articulo.url, e)}
-                    className="block aspect-4/3 rounded-sm overflow-hidden bg-[#EDF5FD]"
+                    className="block aspect-4/3 rounded-2xl overflow-hidden bg-[#F4F9FE]"
                   >
                     {!imgErrors[articulo.slug] ? (
                       <img
@@ -100,21 +101,21 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center p-6 text-center text-[#002147]">
-                        <span className="text-base font-bold">{articulo.titulo}</span>
+                        <span className="text-base font-semibold">{articulo.titulo}</span>
                       </div>
                     )}
                   </a>
 
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
-                      <span className="font-bold text-[#0C65A1]">
+                      <span className="font-semibold text-[#0C65A1]">
                         {articulo.categoria}
                       </span>
                       <span aria-hidden="true">·</span>
                       <span>{articulo.tiempoLectura}</span>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-extrabold text-[#002147] leading-snug">
+                    <h3 className="font-editorial-display text-lg sm:text-xl font-medium text-[#002147] leading-snug">
                       <a
                         href={articulo.url}
                         onClick={(e) => onNavigate(articulo.url, e)}
@@ -124,7 +125,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                       </a>
                     </h3>
 
-                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
+                    <p className="text-sm text-slate-600 leading-[1.65] font-normal line-clamp-3">
                       {articulo.extracto}
                     </p>
                   </div>
@@ -134,7 +135,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                   <a
                     href={articulo.url}
                     onClick={(e) => onNavigate(articulo.url, e)}
-                    className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-[#002147] hover:underline"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-medium text-[#002147] hover:text-[#0F76BB] hover:underline transition-colors"
                   >
                     <span>Leer guía completa</span>
                     <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -145,8 +146,8 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
           </div>
 
           {moreGuides.length > 0 && (
-            <div className="pt-5 border-t border-slate-300/80 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm">
-              <span className="font-bold text-slate-600">
+            <div className="pt-5 border-t border-slate-200/80 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm">
+              <span className="font-medium text-slate-500">
                 Más guías útiles:
               </span>
               {moreGuides.map((g) => (
@@ -154,7 +155,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                   key={g.slug}
                   href={g.url}
                   onClick={(e) => onNavigate(g.url, e)}
-                  className="inline-flex items-center min-h-[44px] font-bold text-[#002147] hover:text-[#0F76BB] hover:underline"
+                  className="inline-flex items-center min-h-[44px] font-medium text-[#002147] hover:text-[#0F76BB] hover:underline transition-colors"
                 >
                   {g.titulo}
                 </a>
@@ -170,19 +171,19 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
         aria-labelledby="faq-heading"
         className="py-16 lg:py-22 bg-white"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             <div className="lg:col-span-5 space-y-4">
-              <p className="text-xs sm:text-sm font-bold text-[#0C65A1]">
+              <p className="text-xs sm:text-[13px] font-medium text-[#0C65A1]">
                 Dudas habituales
               </p>
               <h2
                 id="faq-heading"
-                className="text-2xl sm:text-4xl font-extrabold text-[#002147] tracking-tight text-balance"
+                className="font-editorial-display text-3xl sm:text-4xl font-medium text-[#002147] tracking-[-0.02em] leading-[1.15] text-balance"
               >
-                Preguntas frecuentes sobre tiendas, plazos y recogida
+                Preguntas frecuentes sobre tintorería, plazos y recogida en Vigo
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-[1.65] font-normal">
                 Si quieres orientarte al instante para una prenda concreta o un sofá, envíanos una fotografía por WhatsApp antes de venir.
               </p>
               <a
@@ -190,17 +191,17 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick('/', 'faq_closing')}
-                className="inline-flex items-center justify-center gap-2 min-h-[44px] bg-[#1FA855] hover:bg-[#25B860] text-[#002147] font-bold text-sm px-5 py-2.5 rounded-sm transition-colors shadow-xs"
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] bg-[#13733B] hover:bg-[#0F5C2F] text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Preguntar ahora por WhatsApp</span>
               </a>
             </div>
 
-            <div className="lg:col-span-7 divide-y divide-slate-200 border-t border-b border-slate-200">
+            <div className="lg:col-span-7 divide-y divide-slate-200/80 border-t border-b border-slate-200/80">
               {FAQ_PORTADA_SIN_PRECIOS.map((faq) => (
                 <details key={faq.pregunta} className="group py-3.5">
-                  <summary className="w-full min-h-[48px] text-left flex items-center justify-between gap-4 font-extrabold text-sm sm:text-base text-[#002147] cursor-pointer py-1 list-none">
+                  <summary className="w-full min-h-[48px] text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-[#002147] cursor-pointer py-1 list-none">
                     <span>{faq.pregunta}</span>
                     <ChevronDown
                       className="w-5 h-5 text-[#0C65A1] shrink-0 transition-transform duration-200 group-open:rotate-180"
@@ -208,7 +209,7 @@ export const PreviewWhyAndGuidesSection: React.FC<PreviewWhyAndGuidesSectionProp
                     />
                   </summary>
 
-                  <div className="pt-2 pb-2 text-sm text-slate-600 leading-relaxed">
+                  <div className="pt-2 pb-2 text-sm text-slate-600 leading-[1.6] font-normal">
                     {faq.respuesta}
                   </div>
                 </details>
